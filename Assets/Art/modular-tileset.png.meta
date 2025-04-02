@@ -1,0 +1,1002 @@
+fileFormatVersion: 2
+guid: e023e2f0b3ba34948a7f035b69444d29
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2646395214274604776
+    second: modular-tileset_0
+  - first:
+      213: 2978644295416195100
+    second: modular-tileset_1
+  - first:
+      213: -6391714999962713204
+    second: modular-tileset_2
+  - first:
+      213: 3731632116032436014
+    second: modular-tileset_3
+  - first:
+      213: 8402825635617132028
+    second: modular-tileset_4
+  - first:
+      213: -8305227830669253318
+    second: modular-tileset_5
+  - first:
+      213: -1137040511465725268
+    second: modular-tileset_6
+  - first:
+      213: -7635175450836344983
+    second: modular-tileset_7
+  - first:
+      213: -7727402790432228685
+    second: modular-tileset_8
+  - first:
+      213: 5456199289217492172
+    second: modular-tileset_9
+  - first:
+      213: 2080247384450417920
+    second: modular-tileset_10
+  - first:
+      213: -3872287056797499096
+    second: modular-tileset_11
+  - first:
+      213: -4851628154205644837
+    second: modular-tileset_12
+  - first:
+      213: 6209165426163321648
+    second: modular-tileset_13
+  - first:
+      213: -8289663244244397405
+    second: modular-tileset_14
+  - first:
+      213: 8328572636440818963
+    second: modular-tileset_15
+  - first:
+      213: 4057420341211969455
+    second: modular-tileset_16
+  - first:
+      213: 668143706130536504
+    second: modular-tileset_17
+  - first:
+      213: 3693737828831143456
+    second: modular-tileset_18
+  - first:
+      213: -185048550047702790
+    second: modular-tileset_19
+  - first:
+      213: -1196726708833507312
+    second: modular-tileset_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: modular-tileset_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 224
+        width: 15
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c18a6848435465920800000000000000
+      internalID: 2978644295416195100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83cfa182111c47a0800000000000000
+      internalID: -6391714999962713204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_3
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 224
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e277d8473ab69c330800000000000000
+      internalID: 3731632116032436014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_4
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 224
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd41804565dc9470800000000000000
+      internalID: 8402825635617132028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_5
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 128
+        width: 69
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 34.5, y: -32}
+        - {x: 34.5, y: 32}
+        - {x: -32.5, y: 32}
+        - {x: -32.5, y: -32}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a35654e7a47edbc80800000000000000
+      internalID: -8305227830669253318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca26bdaddab6830f0800000000000000
+      internalID: -1137040511465725268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96fdd1f51686a0690800000000000000
+      internalID: -7635175450836344983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3babce78a10c2c490800000000000000
+      internalID: -7727402790432228685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_9
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc42c89685058bb40800000000000000
+      internalID: 5456199289217492172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 9, y: 9}
+        - {x: -9, y: 9}
+        - {x: -9, y: -9}
+        - {x: 9, y: -9}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0054a1b79f58edc10800000000000000
+      internalID: 2080247384450417920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8210e37207fd24ac0800000000000000
+      internalID: -3872287056797499096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_12
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 127
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 6, z: 0, w: 6}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 13.5}
+        - {x: -16, y: 13.5}
+        - {x: -16, y: -10.5}
+        - {x: 16, y: -10.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd7d94616ed8bacb0800000000000000
+      internalID: -4851628154205644837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 127
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 6, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 16.5}
+        - {x: -16, y: 16.5}
+        - {x: -16, y: -9.5}
+        - {x: 16, y: -9.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03b0a1abe036b2650800000000000000
+      internalID: 6209165426163321648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 0, z: 2, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 24}
+        - {x: -6, y: 24}
+        - {x: -6, y: -24}
+        - {x: 6, y: -24}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2533b233335fc80800000000000000
+      internalID: -8289663244244397405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_15
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 96
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 0, z: 8, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 5, y: 16}
+        - {x: -7, y: 16}
+        - {x: -7, y: -16}
+        - {x: 5, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315f719afa8059370800000000000000
+      internalID: 8328572636440818963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_16
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 80
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 4}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 14}
+        - {x: -16, y: 14}
+        - {x: -16, y: -18}
+        - {x: 16, y: -18}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7326e9d4ade4830800000000000000
+      internalID: 4057420341211969455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_17
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 8}
+        - {x: 24, y: 8}
+        - {x: 24, y: 24}
+        - {x: -24, y: 24}
+        - {x: -24, y: 8}
+        - {x: -8, y: 8}
+        - {x: -8, y: -24}
+        - {x: 8, y: -24}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 838d2d62929b54900800000000000000
+      internalID: 668143706130536504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_18
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 96
+        width: 30
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 3}
+        - {x: 15, y: 3}
+        - {x: 15, y: 8}
+        - {x: -15, y: 8}
+        - {x: -15, y: 3}
+        - {x: -8, y: 3}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02627ec2cfac24330800000000000000
+      internalID: 3693737828831143456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_19
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 4}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 14}
+        - {x: -16, y: 14}
+        - {x: -16, y: -18}
+        - {x: 16, y: -18}
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0a43cf2539e6df0800000000000000
+      internalID: -185048550047702790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 0, z: 2, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 24}
+        - {x: -6, y: 24}
+        - {x: -6, y: -24}
+        - {x: 6, y: -24}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018a1ca166f546fe0800000000000000
+      internalID: -1196726708833507312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_21
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 80
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 4}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 14}
+        - {x: -16, y: 14}
+        - {x: -16, y: -18}
+        - {x: 16, y: -18}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd53626d0a9c89c479a408989bfe3272
+      internalID: 1825059475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_22
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 80
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 4}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 14}
+        - {x: -16, y: 14}
+        - {x: -16, y: -18}
+        - {x: 16, y: -18}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd2526de5461b4478e5149df641737e
+      internalID: 354206514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 074c25fbadffc594eab33f5168bd3d07
+      internalID: -2094660902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c293801b97c508439ce38271a1d5c90
+      internalID: -1540511968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_25
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d713dca6abbbd5442ae2c921cb64e5c8
+      internalID: 877550557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_26
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 128
+        width: 52
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 26, y: 32}
+        - {x: -26, y: 32}
+        - {x: -26, y: -32}
+        - {x: 26, y: -32}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48cce861ae9a2d34e92a3a1f3fe36718
+      internalID: -1840403829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_27
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 176
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 2, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 7, y: 8}
+        - {x: -9, y: 8}
+        - {x: -9, y: -8}
+        - {x: 7, y: -8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9eae2d049d16648a87ce4bd65a43f5
+      internalID: 1079316247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_28
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 128
+        width: 9
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 4.5, y: 32}
+        - {x: -4.5, y: 32}
+        - {x: -4.5, y: -32}
+        - {x: 4.5, y: -32}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360fdbaae57bf4846b0396d2fd64ecb0
+      internalID: -199926840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb0ea1e7b72a584499ec7d8fceb82bd8
+      internalID: 900091468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: modular-tileset_30
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 192
+        width: 55
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40cf10f67197a5b419695dad30c7fc89
+      internalID: -2111414563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 57a4b3af25e454a4388894966febca91
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      modular-tileset_0: 2646395214274604776
+      modular-tileset_1: 2978644295416195100
+      modular-tileset_10: 2080247384450417920
+      modular-tileset_11: -3872287056797499096
+      modular-tileset_12: -4851628154205644837
+      modular-tileset_13: 6209165426163321648
+      modular-tileset_14: -8289663244244397405
+      modular-tileset_15: 8328572636440818963
+      modular-tileset_16: 4057420341211969455
+      modular-tileset_17: 668143706130536504
+      modular-tileset_18: 3693737828831143456
+      modular-tileset_19: -185048550047702790
+      modular-tileset_2: -6391714999962713204
+      modular-tileset_20: -1196726708833507312
+      modular-tileset_21: 1825059475
+      modular-tileset_22: 354206514
+      modular-tileset_23: -2094660902
+      modular-tileset_24: -1540511968
+      modular-tileset_25: 877550557
+      modular-tileset_26: -1840403829
+      modular-tileset_27: 1079316247
+      modular-tileset_28: -199926840
+      modular-tileset_29: 900091468
+      modular-tileset_3: 3731632116032436014
+      modular-tileset_30: -2111414563
+      modular-tileset_4: 8402825635617132028
+      modular-tileset_5: -8305227830669253318
+      modular-tileset_6: -1137040511465725268
+      modular-tileset_7: -7635175450836344983
+      modular-tileset_8: -7727402790432228685
+      modular-tileset_9: 5456199289217492172
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
