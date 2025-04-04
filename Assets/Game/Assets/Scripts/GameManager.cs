@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -13,6 +14,8 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] private Text timeText;
     [SerializeField] private Text livesText;
     [SerializeField] private Text scoreText;
+
+    [SerializeField] private InputAction JumpAction;
 
     public int lives { get; private set; } = 3;
     public int score { get; private set; } = 0;
@@ -28,6 +31,7 @@ public class MiniGameManager : MonoBehaviour
         {
             Instance = this;
         }
+        JumpAction.Enable();
     }
 
     private void OnDestroy()
@@ -115,7 +119,7 @@ public class MiniGameManager : MonoBehaviour
 
         while (!playAgain)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (JumpAction.IsPressed())
             {
                 playAgain = true;
             }

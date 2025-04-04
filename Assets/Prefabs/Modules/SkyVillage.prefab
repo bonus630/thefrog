@@ -1420,6 +1420,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transporter
       objectReference: {fileID: 0}
+    - target: {fileID: 8209468083350765616, guid: 0e20593194d84ca4283272a255e83eff, type: 3}
+      propertyPath: destines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209468083350765616, guid: 0e20593194d84ca4283272a255e83eff, type: 3}
+      propertyPath: destines.Array.data[0].x
+      value: -56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209468083350765616, guid: 0e20593194d84ca4283272a255e83eff, type: 3}
+      propertyPath: destines.Array.data[0].y
+      value: 46
+      objectReference: {fileID: 0}
     - target: {fileID: 8488992683162244680, guid: 0e20593194d84ca4283272a255e83eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.91

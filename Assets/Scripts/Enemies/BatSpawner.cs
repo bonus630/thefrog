@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class BatSpawner : MonoBehaviour
     {

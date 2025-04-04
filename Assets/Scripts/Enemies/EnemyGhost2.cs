@@ -1,6 +1,6 @@
 using br.com.bonus630.thefrog.Caracters;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class EnemyGhost2 : EnemyGhost
     {
@@ -42,7 +42,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Ghost2 collision: ");
+                //Debug.Log("Ghost2 collision: ");
                 Player player;
 
                 if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll) && !invencible)

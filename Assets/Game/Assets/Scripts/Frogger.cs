@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -23,30 +24,56 @@ public class Frogger : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+    //    {
+    //        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    //        Move(Vector3.up);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+    //    {
+    //        transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+    //        Move(Vector3.left);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+    //    {
+    //        transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+    //        Move(Vector3.right);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+    //    {
+    //        transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+    //        Move(Vector3.down);
+    //    }
+    //}
+    public void OnMove(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (!enabled)
+            return;
+        Vector2 direction = context.ReadValue<Vector2>();
+        if (direction.y > 0)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             Move(Vector3.up);
         }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            Move(Vector3.left);
-        }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-            Move(Vector3.right);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (direction.y < 0)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             Move(Vector3.down);
         }
-    }
+        if (direction.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            Move(Vector3.left);
+        }
+        if (direction.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            Move(Vector3.right);
+        }
 
+    }
     private void Move(Vector3 direction)
     {
         if (cooldown) return;
@@ -58,6 +85,7 @@ public class Frogger : MonoBehaviour
         Collider2D obstacle = Physics2D.OverlapBox(destination, Vector2.zero, 0f, LayerMask.GetMask("Obstacle"));
         Collider2D barrier = Physics2D.OverlapBox(destination, Vector2.zero, 0f, LayerMask.GetMask("Barrier"));
 
+        //Debug.Log(barrier);
         // Prevent any movement if there is a barrier
         if (barrier != null)
         {
@@ -166,7 +194,7 @@ public class Frogger : MonoBehaviour
         {
             if (other.name == "Car5" && MiniGameManager.Instance.lives == 1)
                 GameManager.Instance.LoadGame(StartType.New);
-                //SceneManager.LoadScene("SampleScene");
+            //SceneManager.LoadScene("SampleScene");
             Death();
         }
     }

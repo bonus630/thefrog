@@ -8,6 +8,8 @@ namespace br.com.bonus630.thefrog.Caracters
         private void Awake()
         {
             this.CurrentDialogueData = dialogueData;
+            if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
+                Dancing();
         }
         public override void SetFinishDialogue()
         {

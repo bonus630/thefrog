@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             receivedApples = GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples;
             currentDialogueData = dialogueData;
-            Debug.Log(currentDialogueData.DialogueName);
+            //Debug.Log(currentDialogueData.DialogueName);
         }
         public override Transform GetTransform()
         {
@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         private void SetDialog(int dialog)
         {
-            Debug.Log("SetFinishDialogue: " + currentDialogue);
+            //Debug.Log("SetFinishDialogue: " + currentDialogue);
 
             dialogueCounter = 0;
 
@@ -80,7 +80,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void ChangePlayerHearts()
         {
-            Debug.Log("CnangeHearts");
+            //Debug.Log("CnangeHearts");
             int amount = GameManager.Instance.PlayerStates.Collectables / 10;
             GetApples(amount * 10);
 

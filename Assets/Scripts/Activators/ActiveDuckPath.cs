@@ -39,7 +39,7 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Builder home");
+            //Debug.Log("Builder home");
             if (!build)
             {
                 build = true;

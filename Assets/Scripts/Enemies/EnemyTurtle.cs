@@ -1,6 +1,6 @@
 using br.com.bonus630.thefrog.Caracters;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class EnemyTurtle : EnemyBase
     {
@@ -38,7 +38,7 @@ namespace br.com.bonus630.thefrog.Enemies
 
         protected override void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log(collision.gameObject.layer);
+            //Debug.Log(collision.gameObject.layer);
             if (collision.gameObject.CompareTag("Player"))
             {
                 Player player = collision.gameObject.GetComponent<Player>();
@@ -55,7 +55,7 @@ namespace br.com.bonus630.thefrog.Enemies
                     GetComponent<CapsuleCollider2D>().enabled = false;
 
                     skull.DisableShield();
-                    Debug.Log("Estou no collision da tartaruga");
+                   // Debug.Log("Estou no collision da tartaruga");
                 }
                 else
                     Destroy(collision.gameObject);

@@ -3,7 +3,7 @@ using Cinemachine;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class ActiveCamera : MonoBehaviour
     {
         [SerializeField] int cameraIndex;
@@ -12,6 +12,18 @@ namespace br.com.bonus630.thefrog.Activators
         public int CameraIndex { get { return cameraIndex; } }
         public int ConfinierIndex { get { return confinierIndex; } }
 
+        private string ConfinerName(int index)
+        {
+            switch(index)
+            {
+                case 0:
+                    return "CameraContainer";
+                    case 1:
+                    return "SkullCameraConfinier";
+                default:
+                    return string.Empty;
+            }
+        }
 
         CamerasController controller;
         private void Awake()
@@ -23,7 +35,9 @@ namespace br.com.bonus630.thefrog.Activators
             if (collision.CompareTag("Player"))
             {
                 GameObject camera = controller.ActiveCam(cameraIndex);
-                camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = (PolygonCollider2D)GameObject.Find("SkullCameraConfinier").transform.GetChild(confinierIndex).gameObject.GetComponentAtIndex(1);
+                string confiner = ConfinerName(cameraIndex);
+                if(!string.IsNullOrEmpty(confiner))
+                    camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(confiner).transform.GetChild(confinierIndex).gameObject.GetComponentAtIndex(1);
             }
         }
 

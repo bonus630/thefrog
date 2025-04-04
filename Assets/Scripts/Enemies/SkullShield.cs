@@ -1,6 +1,6 @@
 using br.com.bonus630.thefrog.Caracters;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class SkullShield : MonoBehaviour
     {

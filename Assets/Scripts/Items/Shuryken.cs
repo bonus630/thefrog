@@ -7,6 +7,8 @@ namespace br.com.bonus630.thefrog.Items
     {
         Rigidbody2D rb;
         [SerializeField] Collider2D coll;
+        [SerializeField] AudioSource hitting;
+        
         // [SerializeField] GameObject shuryken;
         //  bool canClone = true;
 
@@ -31,6 +33,7 @@ namespace br.com.bonus630.thefrog.Items
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            Debug.Log("shury layer: "+gameObject.layer);
         }
         public void Launch(float direction, float force)
         {
@@ -52,7 +55,7 @@ namespace br.com.bonus630.thefrog.Items
 
         }
 
-
+        bool hitWall = false;
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Debug.Log("Collision Shyruken 2: " + collision.gameObject.name);
@@ -60,13 +63,29 @@ namespace br.com.bonus630.thefrog.Items
                 return;
             if (collision.gameObject.layer == 8)
             {
-                Vector2 normal = collision.contacts[0].normal;
-                coll.isTrigger = true;
+                if (hitWall)
+                {
+                    rb.gravityScale = 0;
+                    coll.isTrigger = true;
+                    rb.linearVelocity = Vector2.zero;
+                    rb.freezeRotation = true;
+                }
+                else
+                {
+                    Vector2 normal = collision.contacts[0].normal;
+                    hitWall = true;
+                    hitting.Play();
+                    rb.freezeRotation = false;
+                    rb.constraints = RigidbodyConstraints2D.None;
+                    rb.gravityScale = 1;
+                    rb.AddForce(new Vector2(normal.x * Random.Range(2,5), Random.Range(2, 5)), ForceMode2D.Impulse);
+                    rb.AddTorque(Random.Range(2, 5));
+                }
                 return;
             }
 
 
-            Debug.Log(collision.contacts[0].normal);
+            //Debug.Log(collision.contacts[0].normal);
             Destroy(gameObject);
 
         }

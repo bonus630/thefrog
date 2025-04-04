@@ -35,5 +35,5 @@ MonoBehaviour:
     text: Mas cuidado as noites fora dos muros de Alysky podem ser perigosas!
   - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
     Name: 
-    text: "- Est\xE1 nuvem te levar\xE1 at\xE9 um certo ponto do caminho, o restante
+    text: "- Este transporte te levar\xE1 at\xE9 um certo ponto do caminho, o restante
       \xE9 com voc\xEA!"

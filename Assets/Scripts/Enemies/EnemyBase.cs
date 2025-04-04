@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using br.com.bonus630.thefrog.Caracters;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Collider2D))]
@@ -65,10 +65,11 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 Hit(0.5f);
             }
+            //Debug.Log(collision.gameObject.layer);
         }
         public virtual void Hit(float hit)
         {
-            Debug.Log("Collider Hit BASE " + gameObject.name);
+            //Debug.Log("Collider Hit BASE " + gameObject.name);
             //animator.SetTrigger("Hit");
             animator.SetTrigger(HitID);
             //coll.enabled = false;

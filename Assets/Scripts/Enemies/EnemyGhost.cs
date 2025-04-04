@@ -1,6 +1,6 @@
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class EnemyGhost : EnemyBase
     {
@@ -28,7 +28,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         protected virtual void Active()
         {
-            Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
+            //Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
 
             GetComponent<BoxCollider2D>().enabled = true;
             GetComponent<CircleCollider2D>().enabled = true;
@@ -37,7 +37,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         protected virtual void Deactive()
         {
-            Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
+            //Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<CircleCollider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;

@@ -5,7 +5,7 @@ using br.com.bonus630.thefrog.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
 
     public class Skull : EnemyGhost
@@ -115,7 +115,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             transform.parent.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
-            Debug.Log("Boss die");
+            //Debug.Log("Boss die");
         }
 
     }

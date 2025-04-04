@@ -86,13 +86,18 @@ namespace br.com.bonus630.thefrog.Items
                 door.SetActive(false);
                 GetComponent<BoxCollider2D>().enabled = false;
             }
-
+            Invoke(nameof(EnablesDoor), 0.5f);
         }
         public void Open()
         {
             audioSource.PlayOneShot(openingAudio);
             anim.SetBool("Closed", false);
             isOpen = true;
+            Invoke(nameof(EnablesDoor), 0.5f);
+        }
+        private void EnablesDoor()
+        {
+            transform.GetChild(0).gameObject.SetActive(isOpen);
         }
 
         public void Interact()

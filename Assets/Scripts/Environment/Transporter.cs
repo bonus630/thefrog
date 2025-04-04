@@ -1,47 +1,66 @@
+using System.Collections;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Environment
 {
     public class Transporter : MonoBehaviour
     {
-        [SerializeField] Vector2 destine;
+        [SerializeField] Vector2[] destines;
         [SerializeField] float travelDuration = 2f;
-        // BoxCollider2D coll;
+
+        [SerializeField] Sprite OnSprite;
+        [SerializeField] Sprite OffSprite;
+        SpriteRenderer render;
+
         bool going = false;
         float time = 0;
         private Vector3 startPosition;
-        private Vector3 worldDestination; // Destino convertido para posição global
+        private Vector3 worldDestination; 
+
+        int currentDestine = 0;
+
         void Start()
         {
-            startPosition = transform.TransformPoint(transform.position);
-            worldDestination = new Vector3(destine.x, destine.y, transform.position.z);
-            Debug.Log(startPosition);
-            //coll = GetComponent<BoxCollider2D>();
+            
+            SetPositions();
+            render = GetComponent<SpriteRenderer>();
         }
-
-        // Update is called once per frame
+        private void SetPositions()
+        {
+            startPosition = transform.TransformPoint(transform.position);
+            worldDestination = new Vector3(destines[currentDestine].x, destines[currentDestine].y, transform.position.z);
+        }
         void Update()
         {
             if (going)
             {
-
                 time += Time.deltaTime;
-                float t = Mathf.Clamp01(time / travelDuration); // Garante que t fique entre 0 e 1
-
+                float t = Mathf.Clamp01(time / travelDuration); 
                 Vector3 r = Vector3.Lerp(startPosition, worldDestination, t);
                 transform.position = r;
-                // Se chegou ao destino, para o movimento
+
                 if (t >= 1)
                 {
-                    going = false;
+                    if (currentDestine >= destines.Length)
+                    {
+                        going = false;
+                        render.sprite = OffSprite;
+                    }
+                    else
+                    {
+                        currentDestine++;
+                        SetPositions();
+
+                    }
                 }
             }
         }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
                 going = true;
-
+                render.sprite = OnSprite;
             }
         }
     }

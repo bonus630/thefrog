@@ -43,7 +43,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private void Awake()
         {
             currentDialogueData = dialogueData;
-            Debug.Log(currentDialogueData.DialogueName);
+            //Debug.Log(currentDialogueData.DialogueName);
         }
 
         public void PlayerReadDialogue()

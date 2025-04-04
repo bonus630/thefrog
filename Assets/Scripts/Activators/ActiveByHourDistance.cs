@@ -41,13 +41,13 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (InInterval(hour) && ActiveDistance())
             {
-                Debug.Log("Active : " + itemToActive.name + " hour: " + hour);
+               // Debug.Log("Active : " + itemToActive.name + " hour: " + hour);
                 ActiveItem(true);
                 firstActive = true;
             }
             else
             {
-                Debug.Log("Deactive: " + itemToActive.name + " hour: " + hour);
+               // Debug.Log("Deactive: " + itemToActive.name + " hour: " + hour);
                 ActiveItem(false);
             }
         }

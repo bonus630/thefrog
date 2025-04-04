@@ -10273,6 +10273,7 @@ MonoBehaviour:
   speed: 4.5
   jumpForce: 12.5
   footer: {fileID: 7186347131889531298}
+  LinearMaxY: -15.5
   projectile: {fileID: 1645160297769326799, guid: 177f9eddf690fba41a5a8b89ed6a3ae1, type: 3}
   fireball: {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
   jumpSFX: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
@@ -10281,7 +10282,15 @@ MonoBehaviour:
   Entrace: {fileID: 8300000, guid: a92bd6dc482692547bf604a90f54e2a1, type: 3}
   JumpDownParticles: {fileID: 4093986076357629812}
   GravityParticles: {fileID: 6482932983803259819}
-  LinearMaxY: -15.5
+  moveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b277aa92-821c-45d1-b90e-056ee4fd88de
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   gravityDirection: -1
   inGround: 0
   knockUpForce: {x: 0, y: 0}

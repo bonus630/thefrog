@@ -30,6 +30,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
             if (silentTime > 2f)
             {
+                audioSource.loop = false;
                 PlayFadIn(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
             }
         }
@@ -42,12 +43,13 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void PlayFadIn(AudioClip clip)
         {
+           
             audioSource.resource = clip;
             PlayFadIn();
         }
         public void PlayFadIn(BackgroundMusic music)
         {
-
+            audioSource.loop = true;
             audioSource.resource = BackgroundMusics[(int)music];
             PlayFadIn();
         }
@@ -79,7 +81,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 currentTime += Time.deltaTime / 100;
                 audioSource.volume = Mathf.Lerp(targetVolume, 0, currentTime / targetVolume);
-                Debug.Log("Lerp:" + Mathf.Lerp(targetVolume, 0, currentTime / targetVolume));
+               // Debug.Log("Lerp:" + Mathf.Lerp(targetVolume, 0, currentTime / targetVolume));
                 yield return null;
             }
             audioSource.Stop();

@@ -2,7 +2,7 @@ using System.Collections;
 using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class EnemyPlant : EnemyBase
     {
@@ -56,7 +56,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 shooting = true;
                 anim.SetBool(AttackID, false);
                 StartCoroutine(Shooting());
-                Debug.LogWarning("DEs");
+                //Debug.LogWarning("DEs");
             }
         }
         IEnumerator Shooting()
@@ -96,7 +96,7 @@ namespace br.com.bonus630.thefrog.Enemies
         public override void Hit(float hit)
         {
 
-            Debug.Log("Collider Hit " + gameObject.name);
+           // Debug.Log("Collider Hit " + gameObject.name);
 
             anim.SetTrigger("Hit");
             this.life = this.life - hit;

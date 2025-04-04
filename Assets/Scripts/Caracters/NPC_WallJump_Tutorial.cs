@@ -122,7 +122,7 @@ namespace br.com.bonus630.thefrog.Caracters
             animator.enabled = false;
             transform.position = point2.transform.position;
             currentDialogue = 1;
-            Debug.Log("Current: " + currentDialogue);
+           // Debug.Log("Current: " + currentDialogue);
             StartCoroutine(EnableAnimator());
         }
         IEnumerator EnableAnimator()

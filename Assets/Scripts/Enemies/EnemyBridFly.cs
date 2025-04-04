@@ -2,7 +2,7 @@ using System.Collections;
 using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class EnemyBridFly : MonoBehaviour, IEnemy
     {

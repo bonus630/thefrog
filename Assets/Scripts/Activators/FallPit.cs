@@ -8,7 +8,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("fll");
+               // Debug.Log("fll");
                 GameManager.Instance.GameOver();
             }
         }

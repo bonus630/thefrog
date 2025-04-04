@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using br.com.bonus630.thefrog.Enemies;
+using br.com.bonus630.thefrog.Activators;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Items

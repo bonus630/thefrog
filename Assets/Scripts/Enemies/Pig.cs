@@ -2,7 +2,7 @@ using br.com.bonus630.thefrog.Caracters;
 using UnityEngine;
 
 
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class Pig : EnemyBase
     {
@@ -41,12 +41,16 @@ namespace br.com.bonus630.thefrog.Enemies
             base.Update();
             if (frontColliding)
             {
-                xDirection *= -1;
-                transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y);
-                //anim.SetBool(WalkID, true);
+                ChangeDirection();
             }
 
 
+        }
+        private void ChangeDirection()
+        {
+            xDirection *= -1;
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y);
+            //anim.SetBool(WalkID, true);
         }
         protected override void FixedUpdate()
         {
@@ -71,6 +75,7 @@ namespace br.com.bonus630.thefrog.Enemies
                     animator.SetBool(RunID, true);
                     animator.SetBool(WalkID, false);
                     speed *= 2;
+                    
                     if (life < 1)
                     {
                         Die();
@@ -78,6 +83,11 @@ namespace br.com.bonus630.thefrog.Enemies
                     }
                     Invoke(nameof(ToWalk), furyTimer);
                 }
+                else
+                {
+                    ChangeDirection();
+                }
+                
             }
         }
         private void Die()

@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog.Manager
             environmentStates = new EnvironmentStates(playerStates);
             //Debug
 #if UNITY_EDITOR
-            playerStates.HasGravity = true;
+           // playerStates.HasGravity = true;
             playerStates.HasFireball = true;
             playerStates.HasWallJump = true;
             playerStates.HasFireball = true;
@@ -148,7 +148,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void LoadGame(StartType type)
         {
-            Debug.LogWarning("LoadGame");
+           // Debug.LogWarning("LoadGame");
             eventManager.Reset();
             if (type == StartType.Start)
             {
@@ -185,7 +185,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
 
                 var gb = Instantiate(heart, rect, false);
-                Debug.Log("Col: " + col + " Row: " + row);
+                //Debug.Log("Col: " + col + " Row: " + row);
                 float offsetX = (heartRect.sizeDelta.x + 0.5f) * col;
                 float offsetY = (-heartRect.sizeDelta.y - 0.5f) * row;
                 gb.GetComponent<RectTransform>().anchoredPosition = gb.GetComponent<RectTransform>().anchoredPosition + new Vector2(offsetX, offsetY);
@@ -215,7 +215,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void SaveStates()
         {
-            Debug.Log("Save States");
+            //Debug.Log("Save States");
             // jairson esta vindo vazio 
             environmentStates.playerStates = this.PlayerStates;
             string jason = JsonUtility.ToJson(environmentStates);
@@ -229,11 +229,12 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-            //#if UNITY_EDITOR
+#if UNITY_EDITOR
 
-            //        GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
-            //        GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
-            //#endif
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
+#endif
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHeart(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
@@ -265,9 +266,9 @@ namespace br.com.bonus630.thefrog.Manager
                         case GameEventName.HeartContainer:
                             GameObject.Find("HeartContainerChest").SetActive(false);
                             break;
-                        case GameEventName.Gravity:
-                            FindAnyObjectByType<NPCDuck>().Dancing();
-                            break;
+                        //case GameEventName.Gravity:
+                        //    FindAnyObjectByType<NPCDuck>().Dancing();
+                        //    break;
                     }
                 }
 

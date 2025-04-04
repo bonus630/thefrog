@@ -21,7 +21,7 @@ namespace br.com.bonus630.thefrog.Environment
                 anim.SetTrigger("active");
                 audioSource.PlayOneShot(boingSFX);
             }
-            Debug.Log(rb);
+            //Debug.Log(rb);
         }
     }
 }

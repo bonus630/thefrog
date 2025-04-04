@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 namespace br.com.bonus630.thefrog.Manager
 {
     public class CameraBackground : MonoBehaviour
@@ -11,6 +12,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] GameObject daySunOverlay;
         [SerializeField] GameObject night;
         [SerializeField] GameObject sun;
+        [SerializeField] GameObject sunLight;
         [SerializeField] float cycleDurationMinutes = 1f; // Tempo que você quer que dure o ciclo inteiro (12 minutos)
         [SerializeField][Range(0, 24)] private int hour = 6;
 
@@ -175,6 +177,7 @@ namespace br.com.bonus630.thefrog.Manager
         float sunriseX;
         float sunsetX;
         float amplitude;
+        float rotation = 0;
         void SunMoviment()
         {
             bool isDay = true;
@@ -184,9 +187,19 @@ namespace br.com.bonus630.thefrog.Manager
             if (_hour != hour)
                 CheckNight(_hour);
             if (isDay)
+            {
                 sun.GetComponent<SpriteRenderer>().enabled = true;
+                sunLight.GetComponent<Light2D>().enabled = true;
+            }
             else
+            {
                 sun.GetComponent<SpriteRenderer>().enabled = false;
+                sunLight.GetComponent<Light2D>().enabled = false;
+            }
+            rotation = 90 * x / sunriseX -180;
+           // Debug.Log("Sun rotation: " + rotation);
+
+            sunLight.transform.rotation = Quaternion.Euler(0,0, rotation);
             sun.transform.position = new Vector3(x, y, 0);
         }
         int calculateHour(out float x, out float y, out bool isDay)
@@ -207,7 +220,7 @@ namespace br.com.bonus630.thefrog.Manager
             hour = _hour;
             HourChanged?.Invoke(hour);
             GameManager.Instance.PlayerStates.Hour = hour;
-            Debug.Log("Hour: " + hour);
+            //Debug.Log("Hour: " + hour);
             //  Debug.Log("Tonight: " + isToNight + " ToDay: " + isToDay);
 
             if (_hour >= 17 && _hour < 19)
@@ -256,7 +269,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 hour = _hour;
                 HourChanged?.Invoke(hour);
-                Debug.Log("Hour: " + _hour);
+                //Debug.Log("Hour: " + _hour);
             }
 
             sun.transform.position = new Vector3(x, y, 0);

@@ -268,10 +268,14 @@ MonoBehaviour:
   downPoint: {fileID: 8276259477472417033}
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   coll: {fileID: 2274174843404288792}
   speed: 200
   life: 10
+  repulse: {x: 0, y: 200}
+  repulseForce: 200
+  xDirection: -1
+  enemyWeakenesses: 
   pigSFX: {fileID: 8300000, guid: 5fd459ee560315b49a2f5a906f4788a8, type: 3}
   bossSFX: {fileID: 8300000, guid: 65a5f73431884e047a610147440febb0, type: 3}
 --- !u!58 &3306823746343457482

@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Enemies
+namespace br.com.bonus630.thefrog.Activators
 {
     public class EnemyBat : EnemyBase
     {
@@ -40,6 +40,14 @@ namespace br.com.bonus630.thefrog.Enemies
             startFly = true;
             audioSource.Play();
             animator.SetBool(StartFlyID, true);
+        }
+        protected override void OnCollisionEnter2D(Collision2D collision)
+        {
+            base.OnCollisionEnter2D(collision);
+            //if (collision.gameObject.CompareTag("Player"))
+            //{
+            //    Hit(1);
+            //}
         }
     }
 }

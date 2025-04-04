@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using br.com.bonus630.thefrog.Caracters;
-using br.com.bonus630.thefrog.Enemies;
+using br.com.bonus630.thefrog.Activators;
 using Unity.VisualScripting;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
