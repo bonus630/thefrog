@@ -68,6 +68,7 @@ namespace br.com.bonus630.thefrog.Caracters
                     break;
                 case 4:
                     GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
+                    GameManager.Instance.UpdatePlayer();
                     currentDialogue = 5;
                     //GetComponent<BoxCollider2D>().enabled = false;
                     break;

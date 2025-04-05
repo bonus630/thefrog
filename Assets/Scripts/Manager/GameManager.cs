@@ -294,7 +294,7 @@ namespace br.com.bonus630.thefrog.Manager
                     {
                         FindAnyObjectByType<NPC_WallJump_Tutorial>().FirstTalk = true;
                     }
-                    UpdatePlayer();
+                  //  UpdatePlayer();
                     //FindAnyObjectByType<NPC_WallJump_Tutorial>().PrepareToNext();
                     break;
                 case GameEventName.NPCFirstTalk:
@@ -304,13 +304,13 @@ namespace br.com.bonus630.thefrog.Manager
                     break;
                 case GameEventName.NPCTutorial:
                     playerStates.HasWallJump = true;
-                    UpdatePlayer();
+                    //UpdatePlayer();
                     break;
                 case GameEventName.HeartContainer:
                     GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                     gameObject.SetActive(true);
-                    GameManager.Instance.PlayerStates.Hearts++;
-                    UpdatePlayer();
+                    //GameManager.Instance.PlayerStates.Hearts++;
+                   // UpdatePlayer();
                     break;
                 case GameEventName.DuckPath:
                     NPC_WallJump_Tutorial nPC_WallJump_Tutorial = FindAnyObjectByType<NPC_WallJump_Tutorial>();
@@ -322,7 +322,7 @@ namespace br.com.bonus630.thefrog.Manager
                     var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
                     PlayerStates.HasGravity = true;
                     hud.SetActive(true);
-                    UpdatePlayer();
+                   // UpdatePlayer();
                     break;
                 case GameEventName.FireBall:
                     //var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
@@ -355,12 +355,14 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 text.color = Color.gray;
         }
-        private void UpdatePlayer()
+        public void UpdatePlayer()
         {
             if (GameManager.Instance.GetPlayer.TryGetComponent<Player>(out Player player))
             {
                 player.Speed += 0.1f;
                 player.JumpForce += 0.1f;
+                this.PlayerStates.Speed += 0.1f;
+                this.playerStates.JumpForce += 0.1f;
             }
         }
     }

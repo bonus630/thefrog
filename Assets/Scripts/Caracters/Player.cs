@@ -7,6 +7,7 @@ using br.com.bonus630.thefrog.Items;
 using UnityEngine.InputSystem.LowLevel;
 using System.Threading;
 using UnityEngine.InputSystem;
+using System;
 namespace br.com.bonus630.thefrog.Caracters
 {
 
@@ -86,18 +87,20 @@ namespace br.com.bonus630.thefrog.Caracters
         private Transform npc;
         private IInteract interacting;
         public GameObject FooterColliding { get; protected set; }
-        public bool InputOn { get { return inputsOn; } set { inputsOn = value;  } }
+        public bool InputOn { get { return inputsOn; } set { inputsOn = value; } }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
             life = GameManager.Instance.PlayerStates.Hearts;
+            Speed = GameManager.Instance.PlayerStates.Speed;
+            jumpForce = GameManager.Instance.PlayerStates.JumpForce;
             //Debug
 #if UNITY_EDITOR
             life = 100;
 #endif
             rb = GetComponent<Rigidbody2D>();
-            
+
             anim = GetComponent<Animator>();
             footerCollider = footer.GetComponent<BoxCollider2D>();
             wallCheck = GetComponent<WallCheck>();
@@ -129,13 +132,13 @@ namespace br.com.bonus630.thefrog.Caracters
                 GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
 
 #endif
-        
+
         }
         private GameObject currentBullet;
         private float nextLaunch = 0f;
         public void OnMove(InputAction.CallbackContext context)
         {
-                direction = context.ReadValue<Vector2>();
+            direction = context.ReadValue<Vector2>();
         }
         public void OnJump(InputAction.CallbackContext context)
         {
@@ -146,46 +149,46 @@ namespace br.com.bonus630.thefrog.Caracters
                     isJumping = true;
                     jumps--;
                 }
-                if(knockUp)
+                if (knockUp)
                 {
                     knockUpForce *= 10;
                 }
-                if(isWallSliding)
+                if (isWallSliding)
                 {
                     canWallJump = true;
                 }
-                if(doubleJump)
+                if (doubleJump)
                 {
                     readyToJump = true;
                 }
             }
             //if (context.performed)
             //    Debug.Log("Jump context perfomed"); 
-            if (context.canceled) 
+            if (context.canceled)
             {
-                if(rb.linearVelocityY > 0)
+                if (rb.linearVelocityY > 0)
                 {
-                       rb.linearVelocityY *= 0.2f * gravityDirection;
-                       doubleJump = true;
-                       jumps--;
+                    rb.linearVelocityY *= 0.2f * gravityDirection;
+                    doubleJump = true;
+                    jumps--;
                 }
             }
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
-            
+
             if (context.canceled)
             {
-               
+
                 if (npc != null && Mathf.Abs(transform.position.x - npc.position.x) < 1.1f && wallCheck.IsFaceTo(npc))
                 {
-                   
+
                     if (interacting is INPC inpc)
                     {
-                        
+
                         if (inpc.HaveMoreDialogue())
                         {
-                           
+
                             //vou fazer um teste, se bugar é aqui o erro
                             dialogueSystem.DialogueData = inpc.CurrentDialogueData;
                             Debug.Log(inpc.CurrentDialogueData.name);
@@ -194,7 +197,7 @@ namespace br.com.bonus630.thefrog.Caracters
                         }
                         else
                         {
-                          
+
                             inpc.SetFinishDialogue();
                         }
                     }
@@ -204,23 +207,23 @@ namespace br.com.bonus630.thefrog.Caracters
                 else if (interacting != null && Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && wallCheck.IsFaceTo(interacting.GetTransform()))
                 {
                     interacting.Interact();
-                  
+
                 }
                 else if (tips != null)
                 {
-                   
+
                     ReadDialogue();
                 }
                 else
                 {
-                   
+
                     Launch();
                 }
             }
-        }   
+        }
         public void OnSpirit(InputAction.CallbackContext context)
         {
-            if(GameManager.Instance.PlayerStates.HasFireball)
+            if (GameManager.Instance.PlayerStates.HasFireball)
                 LaunchSpirit();
         }
         public void OnHability(InputAction.CallbackContext context)
@@ -375,12 +378,12 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             if (collision.gameObject.CompareTag("Item"))
             {
-              //  Debug.Log("Item trigger exit");
+                //  Debug.Log("Item trigger exit");
                 interacting = null;
             }
             if (collision.gameObject.CompareTag("Tips"))
             {
-              //  Debug.Log("tips trigger exit");
+                //  Debug.Log("tips trigger exit");
                 tips = null;
                 dialogueSystem.ResetDialog();
             }
@@ -498,19 +501,29 @@ namespace br.com.bonus630.thefrog.Caracters
             jumps = 2;
             timeInFastFall = 0;
         }
+        private float accelerationFactor = 0.4f;
         private void Move()
         {
+            bool canMove = true;
             if (direction.x == 0)
             {
-                anim.SetBool(WalkID, false);
+                if (acceleration > 0)
+                    acceleration -= accelerationFactor;
+                if (acceleration < 0)
+                    acceleration += accelerationFactor;
+                if (MathF.Abs(acceleration) < accelerationFactor)
+                {
+                    canMove = false;
+                    //acceleration = 0f;
+                    //anim.SetBool(WalkID, false);
+                }
             }
             else
             {
-          //  Debug.Log("Move: "+direction);
+                //  Debug.Log("Move: "+direction);
                 //Debug.Log("R: " + wallCheck.RightWallCheck() + " " + direction);
                 // Debug.Log("L: " + wallCheck.LeftWallCheck() + " " + direction);
                 // Debug.Log("Direction:" + direction);
-                bool canMove = true;
                 LookFor = direction.x < 0 ? -1 : 1;
 
                 if (direction.x > 0)
@@ -519,8 +532,8 @@ namespace br.com.bonus630.thefrog.Caracters
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     if (wallCheck.RightWallCheck())
                         canMove = false;
-                        acceleration += 0.4f;
-                    if(acceleration > speed)
+                    acceleration += 0.4f;
+                    if (acceleration > speed)
                         acceleration = speed;
                 }
                 if (direction.x < 0)
@@ -529,33 +542,34 @@ namespace br.com.bonus630.thefrog.Caracters
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     if (wallCheck.RightWallCheck())
                         canMove = false;
-                        acceleration -= 0.4f;
+                    acceleration -= 0.4f;
                     if (acceleration < -speed)
                         acceleration = -speed;
 
                 }
 
-                if (canMove)
-                {
-                    anim.SetBool(WalkID, true);
-                    //Vector3 moviment = new Vector3(direction, 0, 0);
-                    //transform.position += moviment * Time.deltaTime * speed;
-                    //if(Mathf.Abs(rb.linearVelocityX) < speed / 2)
-                    //   rb.AddForceX(speed * 10 * direction.x,ForceMode2D.Force);
-                    //else 
-                    //rb.linearVelocityX = speed * direction.x;
-                   if(inGround)
-                        rb.linearVelocityX = acceleration;
-                   else
-                        rb.linearVelocityX = speed * direction.x;
 
-                }
+            }
+            if (canMove)
+            {
+                anim.SetBool(WalkID, true);
+                //Vector3 moviment = new Vector3(direction, 0, 0);
+                //transform.position += moviment * Time.deltaTime * speed;
+                //if(Mathf.Abs(rb.linearVelocityX) < speed / 2)
+                //   rb.AddForceX(speed * 10 * direction.x,ForceMode2D.Force);
+                //else 
+                // rb.linearVelocityX = speed * direction.x;
+                if (inGround)
+                    rb.linearVelocityX = acceleration;
                 else
-                {
-                    anim.SetBool(WalkID, false);
-                    rb.linearVelocityX = 0;
-                }
-                
+                    rb.linearVelocityX = speed * direction.x;
+
+            }
+            else
+            {
+                anim.SetBool(WalkID, false);
+                rb.linearVelocityX = 0;
+                acceleration = 0f;
             }
         }
         public void Launch()

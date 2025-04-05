@@ -196,10 +196,13 @@ namespace br.com.bonus630.thefrog.Manager
                 sun.GetComponent<SpriteRenderer>().enabled = false;
                 sunLight.GetComponent<Light2D>().enabled = false;
             }
-            rotation = 90 * x / sunriseX -180;
-           // Debug.Log("Sun rotation: " + rotation);
+            if (sunriseX > 0)
+            {
+                rotation = 90 * x / sunriseX - 180;
+                Debug.Log("Sun rotation: " + rotation);
 
-            sunLight.transform.rotation = Quaternion.Euler(0,0, rotation);
+                sunLight.transform.rotation = Quaternion.Euler(0, 0, rotation);
+            }
             sun.transform.position = new Vector3(x, y, 0);
         }
         int calculateHour(out float x, out float y, out bool isDay)

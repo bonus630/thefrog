@@ -36,6 +36,10 @@ namespace br.com.bonus630.thefrog.Manager
         public int Hearts = 2;
         public int Hour = 6;
         public int Collectables;
+
+        public float Speed = 4.3f;
+        public float JumpForce = 12.3f;
+
         public Datas CompletedGameEvents;
     }
     [System.Serializable]

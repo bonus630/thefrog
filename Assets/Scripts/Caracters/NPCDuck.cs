@@ -14,6 +14,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public override void SetFinishDialogue()
         {
             GameManager.Instance.EventCompleted(GameEventName.Gravity);
+            GameManager.Instance.UpdatePlayer();
             Dancing();
         }
 

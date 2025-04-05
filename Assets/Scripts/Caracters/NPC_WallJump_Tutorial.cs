@@ -100,6 +100,7 @@ namespace br.com.bonus630.thefrog.Caracters
             animator.enabled = false;
             transform.position = point3.transform.position;
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
+            GameManager.Instance.UpdatePlayer();
             currentDialogue = 2;
             yield return null;
             StartCoroutine(EnableAnimator());

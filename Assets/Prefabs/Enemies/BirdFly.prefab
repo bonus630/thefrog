@@ -258,5 +258,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affaa107dfe0d914b9f1b47a4a52a7aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topPoint: {fileID: 0}
+  downPoint: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  coll: {fileID: 8526307849751813943}
   speed: 0.05
+  life: 1
   repulse: {x: 0, y: 200}
+  repulseForce: 200
+  xDirection: -1
+  enemyWeakenesses: 

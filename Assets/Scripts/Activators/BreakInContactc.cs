@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Activators;
 using Cinemachine;
 using UnityEngine;
@@ -26,11 +27,17 @@ namespace br.com.bonus630.thefrog.Activators
                 pig.DestroyBoss();
                 spriteRenderer.enabled = false;
                 effect.Play();
-                GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+                StartCoroutine(ShakeCam());
                 GetComponent<AudioSource>().PlayOneShot(wallBreak);
                 Destroy(gameObject, 1f);
 
             }
+        }
+        IEnumerator ShakeCam()
+        {
+            yield return null;
+            GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+            yield return null;
         }
 
     }

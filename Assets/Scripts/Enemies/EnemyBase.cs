@@ -11,7 +11,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] protected Transform topPoint;
         [SerializeField] protected Transform downPoint;
         [SerializeField] protected LayerMask layerMask;
-        [SerializeField] protected BoxCollider2D coll;
+        [SerializeField] protected Collider2D coll;
         [SerializeField] protected float speed = 200;
         [SerializeField] protected float life = 1;
         [SerializeField] protected Vector2 repulse = Vector2.up * 200;
@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             rg = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            coll = GetComponent<BoxCollider2D>();
+            coll = GetComponent<Collider2D>();
         }
 
         protected virtual void Update()
@@ -52,9 +52,9 @@ namespace br.com.bonus630.thefrog.Activators
             if (collision.gameObject.CompareTag("Player"))
             {
                 Player player;
-
                 if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll))
                 {
+                    Debug.Log("collision base");
                     player.KnockUp(repulse);
                     Hit(1);
                     return;
@@ -65,7 +65,6 @@ namespace br.com.bonus630.thefrog.Activators
             {
                 Hit(0.5f);
             }
-            //Debug.Log(collision.gameObject.layer);
         }
         public virtual void Hit(float hit)
         {
