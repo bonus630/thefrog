@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
-  m_Name: WallJumpTip
+  m_Name: Dialogue3PigWasDired
   m_EditorClassIdentifier: 
   DialogueName: 
   Dialogues:
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
-    Name: 
-    text: "Parece sem sa\xEDda, talvez seja melhor eu falar com aquele cara novamente!"
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "Vou at\xE9 l\xE1 verificar! talvez n\xF3s encontremos l\xE1! Quero lhe
+      ensinar algo interessante!"

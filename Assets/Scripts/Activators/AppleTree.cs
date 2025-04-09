@@ -4,6 +4,7 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class AppleTree : MonoBehaviour
     {
+        [SerializeField] MusicSource musicSource;
         bool monitor = false;
         bool active = false;
         bool isFound = false;
@@ -39,7 +40,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Founded()
         {
-            GameObject.Find("Listener").GetComponent<MusicSource>().PlayFadIn(BackgroundMusic.AppleTree);
+            musicSource.PlayFadIn(BackgroundMusic.AppleTree);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

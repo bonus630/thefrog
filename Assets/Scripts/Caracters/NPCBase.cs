@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.DialogueSystem;
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
@@ -10,10 +11,11 @@ namespace br.com.bonus630.thefrog.Caracters
     {
         [SerializeField] protected GameObject TalkIcon;
         [SerializeField] protected DialogueData dialogueData;
+        protected DialogueData currentDialogueData;
         protected bool IsFirstDialogue = true;
         protected int dialogueCounter = 0;
         protected bool playerTriggerEnter = false;
-        protected DialogueData currentDialogueData;
+       // protected List<GameEventName> gameEvents;
         public DialogueData CurrentDialogueData
         {
             get
@@ -40,17 +42,32 @@ namespace br.com.bonus630.thefrog.Caracters
         }
 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             currentDialogueData = dialogueData;
+            GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;   
             //Debug.Log(currentDialogueData.DialogueName);
         }
+        protected virtual void OnDestroy()
+        {
+            GameManager.Instance.eventManager.GameEventCompleted -= OnGameEventCompleted;
+        }
+        protected virtual void OnGameEventCompleted(GameEvent gameEvent)
+        {
 
+        }
         public void PlayerReadDialogue()
         {
             IsFirstDialogue = false;
         }
+        /// <summary>
+        /// Utilizar este método para finalizar o dialogo atual e alterar para o proximo dialogo
+        /// </summary>
         public virtual void SetFinishDialogue() { }
+        /// <summary>
+        /// Verifica se tem mais falas no dialogo atual
+        /// </summary>
+        /// <returns></returns>
         public virtual bool HaveMoreDialogue()
         {
             bool result = CurrentDialogueData.Count > dialogueCounter;

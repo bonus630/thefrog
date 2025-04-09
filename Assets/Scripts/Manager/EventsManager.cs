@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
+    [DefaultExecutionOrder(-1)]
     public class EventsManager : MonoBehaviour
     {
 
@@ -12,6 +13,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] List<string> completedEvents = new List<string>();
         [SerializeField] AudioClip eventCompleteSound;
         AudioSource audioSource;
+        public event Action<GameEvent> GameEventCompleted;
         void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -76,6 +78,8 @@ namespace br.com.bonus630.thefrog.Manager
                 //}
                 if (!eventGame.Completed && playSound)
                     GetComponent<AudioSource>().PlayOneShot(eventCompleteSound);
+                if (!eventGame.Completed)
+                    GameEventCompleted?.Invoke(eventGame);
                 eventGame.Completed = true;
                 if (!completedEvents.Contains(eventName.ToString()))
                     completedEvents.Add(eventName.ToString());
@@ -96,7 +100,6 @@ namespace br.com.bonus630.thefrog.Manager
             completedEvents.Clear();
         }
     }
-    //[Serializable]
     public class GameEvent : IEquatable<GameEvent>
     {
         public GameEvent(GameEventName name, bool unlocked, bool completed)
@@ -115,18 +118,15 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return Name.ToString();
         }
-
         public override bool Equals(object obj)
         {
             return Equals(obj as GameEvent);
         }
-
         public bool Equals(GameEvent other)
         {
             return other is not null &&
                    Name == other.Name;
         }
-
         public override int GetHashCode()
         {
             return HashCode.Combine(Name);

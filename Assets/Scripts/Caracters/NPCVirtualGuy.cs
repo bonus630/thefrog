@@ -12,9 +12,10 @@ namespace br.com.bonus630.thefrog.Caracters
         private int receivedApples = 0;
         private int prizeApplesAmount = 50;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-      
-        private void Awake()
+
+        protected override void Awake()
         {
+            base.Awake();
             receivedApples = GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples;
             currentDialogueData = dialogueData;
             //Debug.Log(currentDialogueData.DialogueName);
@@ -114,6 +115,11 @@ namespace br.com.bonus630.thefrog.Caracters
         public void CheckInitialDialogue(int dialogue)
         {
             currentDialogue = dialogue;
+        }
+
+        public void SetEventsCompleted()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

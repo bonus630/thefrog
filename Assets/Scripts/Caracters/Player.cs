@@ -56,25 +56,25 @@ namespace br.com.bonus630.thefrog.Caracters
         private bool inputsOn = true;
         //private bool isStartJumpTimer;
 
+        private readonly float invencibleTime = 1.2f;
         //private float jumpTimeCharger;
 
-        // [Header("Wall")]
-        private bool teste;
-        private bool isWallSliding;
-        private bool canWallJump;
-
-        private readonly float invencibleTime = 1.2f;
-        private readonly float wallSlideSpeed = -0.4f;
-        private readonly float wallJumpXForce = 120;
-        private readonly float wallJumpYForce = 180;
-        private readonly float maxTimeInFall = 0.6f;
+        //[Header("Wall")]
+        //private bool teste;
+       private bool isWallSliding;
+       private bool canWallJump;
+      
+       private readonly float wallSlideSpeed = -0.36f;
+       private readonly float wallJumpXForce = 120f;
+       private readonly float wallJumpYForce = 220f;
+       private readonly float maxTimeInFall = 0.6f;
 
 
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int WalkID = Animator.StringToHash("Walk");
         protected readonly int RunID = Animator.StringToHash("Run");
         protected readonly int JumpID = Animator.StringToHash("Jump");
-        protected readonly int WallJump = Animator.StringToHash("WallJump");
+        protected readonly int WallJumpID = Animator.StringToHash("WallJump");
         protected readonly int DoubleJumpID = Animator.StringToHash("DoubleJump");
         protected readonly int LifeID = Animator.StringToHash("Life");
 
@@ -121,10 +121,61 @@ namespace br.com.bonus630.thefrog.Caracters
         }
 #endif
         }
+        void FixedUpdate()
+        {
+            //       Debug.DrawLine(transform.position, Vector3.up * gravityDirection * 10);
+            if (Mathf.Abs(rb.linearVelocityY * gravityDirection) > Mathf.Abs(LinearMaxY))
+            {
+                timeInFastFall += Time.deltaTime;
+                if (GameManager.Instance.PlayerStates.FallsControl && Input.GetButtonDown("Jump"))
+                {
+                    timeInFastFall = 0;
+                    // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
+                    rb.linearVelocityY = LinearMaxY * gravityDirection;
+                    JumpDownEffect();
+                }
+                if (timeInFastFall > maxTimeInFall)
+                    Die();
+            }
+            if (inputsOn)
+                Move();
+            Jump();
+            if (GameManager.Instance.PlayerStates.HasDoubleJump)
+                DoubleJump();
+            KnockedUp();
+            if (GameManager.Instance.PlayerStates.HasWallJump)
+                WallSliding();
+            if (invencible)
+            {
+                invencibleTimer -= Time.deltaTime;
+                if (invencibleTimer < 0)
+                {
+                    invencible = false;
+                }
+            }
+            else
+            {
+                invencibleTimer = invencibleTime;
+            }
+
+
+            //FooterColliding = Physics2D.Linecast(r.transform.position, l.transform.position) && isJumping;
+            //Debug.Log(FooterColliding);
+        }
 
         private void Update()
         {
+
+            //Debug.Log("---------------wall check -------------------");
+            //Debug.Log("inground: " + inGround);
+            //Debug.Log("linearVelocityY: " + rb.linearVelocityY);
+            //Debug.Log("direction.x: " + direction.x);
+            //Debug.Log("wallCheck.RightWallCheck(): " + wallCheck.RightWallCheck());
+            //Debug.Log("---------------wall check end -------------------");
+
+            
             isWallSliding = !inGround && rb.linearVelocityY < 0 && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
+
             if (interacting != null)
                 interacting.ReadyToInteract(Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && wallCheck.IsFaceTo(interacting.GetTransform()));
 #if UNITY_EDITOR
@@ -136,6 +187,27 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private GameObject currentBullet;
         private float nextLaunch = 0f;
+        private void SelectProjectilie()
+        {
+            currentBullet = fireball;
+        }
+
+        private void LaunchSpirit()
+        {
+            if (Time.time > nextLaunch)
+            {
+                GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
+                if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
+                {
+                    projectilie.Launch(new Vector2(LookFor, 0));
+                    nextLaunch = Time.time + projectilie.ReloadTime();
+                }
+            }
+        }
+        private void CheckFall()
+        {
+
+        }
         public void OnMove(InputAction.CallbackContext context)
         {
             direction = context.ReadValue<Vector2>();
@@ -231,80 +303,21 @@ namespace br.com.bonus630.thefrog.Caracters
             if (inGround && GameManager.Instance.PlayerStates.HasGravity)
                 ChangeGravity(this.gravityDirection * -1);
         }
-        private void SelectProjectilie()
-        {
-            currentBullet = fireball;
-        }
-
-        private void LaunchSpirit()
-        {
-            if (Time.time > nextLaunch)
-            {
-                GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
-                if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
-                {
-                    projectilie.Launch(new Vector2(LookFor, 0));
-                    nextLaunch = Time.time + projectilie.ReloadTime();
-                }
-            }
-        }
-        private void CheckFall()
-        {
-
-        }
-        void FixedUpdate()
-        {
-            //       Debug.DrawLine(transform.position, Vector3.up * gravityDirection * 10);
-            if (Mathf.Abs(rb.linearVelocityY * gravityDirection) > Mathf.Abs(LinearMaxY))
-            {
-                timeInFastFall += Time.deltaTime;
-                if (GameManager.Instance.PlayerStates.FallsControl && Input.GetButtonDown("Jump"))
-                {
-                    timeInFastFall = 0;
-                    // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
-                    rb.linearVelocityY = LinearMaxY * gravityDirection;
-                    JumpDownEffect();
-                }
-                if (timeInFastFall > maxTimeInFall)
-                    Die();
-            }
-            if (inputsOn)
-                Move();
-            Jump();
-            if (GameManager.Instance.PlayerStates.HasDoubleJump)
-                DoubleJump();
-            KnockedUp();
-            if (GameManager.Instance.PlayerStates.HasWallJump)
-                WallSliding();
-            if (invencible)
-            {
-                invencibleTimer -= Time.deltaTime;
-                if (invencibleTimer < 0)
-                {
-                    invencible = false;
-                }
-            }
-            else
-            {
-                invencibleTimer = invencibleTime;
-            }
-
-
-            //FooterColliding = Physics2D.Linecast(r.transform.position, l.transform.position) && isJumping;
-            //Debug.Log(FooterColliding);
-        }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
             {
-
+                if(FooterTouching(collision.collider))
                 //Debug.Log("Reset jump");
                 resetJump();
             }
             if (collision.gameObject.layer == 13)
             {
-                gameObject.transform.parent = collision.transform;
-                resetJump();
+                if (FooterTouching(collision.collider))
+                {
+                    gameObject.transform.parent = collision.transform;
+                    resetJump();
+                }
             }
             if (collision.gameObject.layer == 10)
                 Die();
@@ -324,8 +337,11 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             if (collision.gameObject.layer == 8 || collision.gameObject.layer == 13 || collision.gameObject.layer == 17)
             {
-                inGround = false;
-                anim.SetBool(JumpID, true);
+                if (!FooterTouching(collision.collider))
+                {
+                    inGround = false;
+                    anim.SetBool(JumpID, true);
+                }
             }
             if (collision.gameObject.layer == 13)
             {
@@ -531,10 +547,15 @@ namespace br.com.bonus630.thefrog.Caracters
                     if (transform.localScale.x < 0)
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     if (wallCheck.RightWallCheck())
+                    {
                         canMove = false;
-                    acceleration += 0.4f;
-                    if (acceleration > speed)
-                        acceleration = speed;
+                    }
+                    else
+                    {
+                        acceleration += 0.4f;
+                        if (acceleration > speed)
+                            acceleration = speed;
+                    }
                 }
                 if (direction.x < 0)
                 {
@@ -542,9 +563,12 @@ namespace br.com.bonus630.thefrog.Caracters
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
                     if (wallCheck.RightWallCheck())
                         canMove = false;
-                    acceleration -= 0.4f;
-                    if (acceleration < -speed)
-                        acceleration = -speed;
+                    else
+                    {
+                        acceleration -= 0.4f;
+                        if (acceleration < -speed)
+                            acceleration = -speed;
+                    }
 
                 }
 
@@ -567,7 +591,10 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             else
             {
+                // if (inGround)
+                //  {
                 anim.SetBool(WalkID, false);
+                //   }
                 rb.linearVelocityX = 0;
                 acceleration = 0f;
             }
@@ -597,7 +624,8 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void WallSliding()
         {
-            anim.SetBool(WallJump, isWallSliding);
+            anim.SetBool(WallJumpID, isWallSliding);
+           // Debug.Log("IsWallSliding: " + isWallSliding);
             if (isWallSliding)
             {
                 rb.linearVelocityY = wallSlideSpeed;
@@ -605,7 +633,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 {
                     rb.linearVelocity = Vector2.zero;
                     rb.AddForce(new Vector2(wallJumpXForce * direction.x * -1, wallJumpYForce), ForceMode2D.Impulse);
-                    StartCoroutine(nameof(RemoveInputs));
+                    StartCoroutine(RemoveInputs());
                 }
             }
             else

@@ -22,6 +22,8 @@ namespace br.com.bonus630.thefrog.Activators
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            if (GameManager.Instance.IsEventCompleted(GameEventName.KillPig))
+                gameObject.SetActive(false);
             //adicionar um fad out
             //GameObject.Find("Listener").GetComponent<AudioSource>().Stop();
         }

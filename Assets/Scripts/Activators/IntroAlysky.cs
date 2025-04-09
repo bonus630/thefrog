@@ -5,6 +5,7 @@ namespace br.com.bonus630.thefrog.Activators
     public class IntroAlysky : MonoBehaviour
     {
         bool play = false;
+       
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player") && !play)
@@ -16,7 +17,7 @@ namespace br.com.bonus630.thefrog.Activators
         public void ExecuteIntro()
         {
             play = true;
-            GameObject.Find("Listener").GetComponent<MusicSource>().PlayFadIn(BackgroundMusic.AlyskyIntro);
+           GameObject.Find("AudioManager").GetComponent<MusicSource>().PlayFadIn(BackgroundMusic.AlyskyIntro);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 namespace br.com.bonus630.thefrog.Manager
 {
     public class CameraBackground : MonoBehaviour
@@ -86,10 +87,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         float InitialTFromHour()
         {
-            // Normaliza o valor da hora no ciclo
             float t = ((hour - 6f) / 12f);
-
-            // Se o resultado for menor que 0, ajusta para o ciclo completo (0-2)
             if (t < 0f)
                 t += 2f;
 
@@ -183,7 +181,8 @@ namespace br.com.bonus630.thefrog.Manager
             bool isDay = true;
             float x = 0;
             float y = 0;
-            int _hour = calculateHour(out x, out y, out isDay);
+            float angle = 0;
+            int _hour = calculateHour(out x, out y, out angle, out isDay);
             if (_hour != hour)
                 CheckNight(_hour);
             if (isDay)
@@ -196,21 +195,22 @@ namespace br.com.bonus630.thefrog.Manager
                 sun.GetComponent<SpriteRenderer>().enabled = false;
                 sunLight.GetComponent<Light2D>().enabled = false;
             }
-            if (sunriseX > 0)
-            {
-                rotation = 90 * x / sunriseX - 180;
-                Debug.Log("Sun rotation: " + rotation);
-
-                sunLight.transform.rotation = Quaternion.Euler(0, 0, rotation);
-            }
+            // if (sunriseX > 0)
+            // {
+            //    rotation = 90 * x / sunriseX - 180;
+           // Debug.Log("Sun anglex: " + x);
+            Vector3 v = (Vector3.zero - sunLight.transform.position).normalized;
+            angle = MathF.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
+           // Debug.Log("Sun angle2: " + angle);
+            sunLight.transform.rotation = Quaternion.RotateTowards(sunLight.transform.rotation, Quaternion.Euler(0, 0, angle), 500);
+            // }
             sun.transform.position = new Vector3(x, y, 0);
         }
-        int calculateHour(out float x, out float y, out bool isDay)
+        int calculateHour(out float x, out float y, out float angle, out bool isDay)
         {
             float t = Mathf.Repeat(initialHour + Time.time * speed, 2f);
             x = Mathf.Lerp(sunriseX, sunsetX, t);
-            float angle = t * Mathf.PI;
-            // Cria um arco no Y usando seno (0 -> π)
+            angle = t * Mathf.PI;
             y = Mathf.Sin(angle) * amplitude;
             int _hour = (Mathf.RoundToInt((angle * Mathf.Rad2Deg / 15)) + 6) % 24;
             isDay = t < 1f;

@@ -10,6 +10,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] GameObject cloud1;
         [SerializeField] GameObject cloud2;
         [SerializeField] GameObject cloud3;
+        [SerializeField] MusicSource musicSource;
         bool build = false;
         float time = 2;
         private Color transparent = new Color(1f, 1f, 1f, 0f);
@@ -70,7 +71,7 @@ namespace br.com.bonus630.thefrog.Activators
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
-            GameObject.Find("Listener").GetComponent<MusicSource>().PlayFadIn(BackgroundMusic.DuckPath);
+            musicSource.PlayFadIn(BackgroundMusic.DuckPath);
 
         }
     }

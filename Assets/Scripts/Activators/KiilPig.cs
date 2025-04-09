@@ -5,7 +5,7 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class KiilPig : MonoBehaviour
     {
-
+        [SerializeField] MusicSource musicSource;
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player") && !GameManager.Instance.IsEventCompleted(GameEventName.KillPig))
@@ -17,8 +17,8 @@ namespace br.com.bonus630.thefrog.Activators
         public void ExecuteKillPig()
         {
             FindAnyObjectByType<BossBattle>().EndBattle();
-            FindAnyObjectByType<NPC_WallJump_Tutorial>().KillPig = true;
-            GameObject.Find("Listener").GetComponent<MusicSource>().PlayFadIn(BackgroundMusic.PigIsDefead);
+            //FindAnyObjectByType<NPC_WallJump_Tutorial>().KillPig = true;
+            musicSource.PlayFadIn(BackgroundMusic.PigIsDefead);
             GameManager.Instance.EventCompleted(GameEventName.KillPig);
             GameManager.Instance.UpdatePlayer();
             Destroy(GameObject.Find("BossActivator"));

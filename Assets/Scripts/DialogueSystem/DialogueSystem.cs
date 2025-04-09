@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace br.com.bonus630.thefrog.DialogueSystem
 {
     public class DialogueSystem : MonoBehaviour
@@ -13,6 +14,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         DialogStates state;
         public DialogueData DialogueData { get; set; }
         public Dictionary<string, string> DialogueVariables { get; set; }
+        [SerializeField] InputAction interactAction;
         private void Awake()
         {
             textAnimation = FindAnyObjectByType<TextAnimation>();
@@ -23,7 +25,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         {
             // textAnimation.TextFinish += OnTextFinish;
             state = DialogStates.DISABLED;
-
+            interactAction.Enable();
         }
 
         // Update is called once per frame
@@ -70,7 +72,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         }
         void Typing()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (interactAction.WasPressedThisFrame())
             {
                 //Debug.Log("Typing");
                 textAnimation.Skip();
@@ -83,7 +85,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         void Waiting()
         {
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (interactAction.WasPressedThisFrame())
             {
                 if (finished)
                 {
