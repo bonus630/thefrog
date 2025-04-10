@@ -22,7 +22,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
-        public GameObject GetPlayer { get { return GameObject.FindGameObjectWithTag("Player"); } }
+        public GameObject GetPlayer { get { return GameObject.Find("Player"); } }
         public static GameManager Instance;
         public EventsManager eventManager;
         public Vector3 StartGamePosition { get; private set; }
@@ -360,6 +360,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void UpdatePlayer()
         {
+    
             if (GameManager.Instance.GetPlayer.TryGetComponent<Player>(out Player player))
             {
                 player.Speed += 0.1f;

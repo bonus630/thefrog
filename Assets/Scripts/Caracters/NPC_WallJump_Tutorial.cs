@@ -18,7 +18,7 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] GameObject point4;
 
         [SerializeField] private int currentDialogue = 0;
-        [SerializeField] private int prevDialogue = -1;
+        [SerializeField] private int prevDialogue = 0;
 
         // private bool CanGoToNext = false;
         private GameObject player;

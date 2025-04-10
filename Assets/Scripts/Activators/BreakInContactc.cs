@@ -35,9 +35,9 @@ namespace br.com.bonus630.thefrog.Activators
         }
         IEnumerator ShakeCam()
         {
-            yield return null;
+            yield return new WaitForEndOfFrame();
             GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
     }

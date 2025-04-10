@@ -180,7 +180,10 @@ namespace br.com.bonus630.thefrog.Caracters
                 interacting.ReadyToInteract(Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && wallCheck.IsFaceTo(interacting.GetTransform()));
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
+            {
                 GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+                GameManager.Instance.UpdatePlayer();
+            }
 
 #endif
 

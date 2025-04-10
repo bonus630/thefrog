@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.DialogueSystem;
+using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
@@ -16,6 +17,17 @@ namespace br.com.bonus630.thefrog.Activators
         private void Awake()
         {
             boxCollider = GetComponent<BoxCollider2D>();
+            GameManager.Instance.eventManager.GameEventCompleted += OnEventCompleted;
+        }
+        private void OnDestroy()
+        {
+            GameManager.Instance.eventManager.GameEventCompleted -= OnEventCompleted;
+        }
+
+
+        protected virtual void OnEventCompleted(GameEvent obj)
+        {
+
         }
         public DialogueData GetDialogue(int index = -1)
         {
