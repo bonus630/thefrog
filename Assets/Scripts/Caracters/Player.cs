@@ -38,7 +38,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private br.com.bonus630.thefrog.DialogueSystem.DialogueSystem dialogueSystem;
 
         private int jumps = 2;
-        private int life = 2;
+       [field:SerializeField] public int CurrentLife { get; set; } = 2;
         private float doubleJumpForce;
         private Vector2 direction;
         private float invencibleTimer = 1.2f;
@@ -92,12 +92,12 @@ namespace br.com.bonus630.thefrog.Caracters
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
-            life = GameManager.Instance.PlayerStates.Hearts;
+            CurrentLife = GameManager.Instance.PlayerStates.Hearts;
             Speed = GameManager.Instance.PlayerStates.Speed;
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
             //Debug
 #if UNITY_EDITOR
-            life = 100;
+           // life = 100;
 #endif
             rb = GetComponent<Rigidbody2D>();
 
@@ -181,8 +181,8 @@ namespace br.com.bonus630.thefrog.Caracters
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-                GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
-                GameManager.Instance.UpdatePlayer();
+                //GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+                //GameManager.Instance.UpdatePlayer();
             }
 
 #endif
@@ -375,8 +375,7 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             if (collision.gameObject.CompareTag("Item"))
             {
-
-                interacting = collision.gameObject.GetComponent<IInteract>();
+               collision.gameObject.TryGetComponent<IInteract>(out interacting);
             }
             if (collision.gameObject.CompareTag("Tips"))
             {
@@ -661,25 +660,26 @@ namespace br.com.bonus630.thefrog.Caracters
         private void Die()
         {
             FreezePlayerMove();
-            life = 0;
+            CurrentLife = 0;
             Hit();
         }
         public void Hit()
         {
             if (invencible)
                 return;
-            life--;
+            GameManager.Instance.UpdateHeart(-1);
             invencible = true;
             anim.SetTrigger(HitID);
             audioSource.PlayOneShot(hitSFX);
-            anim.SetInteger(LifeID, life);
-            GameManager.Instance.UpdateHeart(-1);
+            anim.SetInteger(LifeID, CurrentLife);
+           
             //if (life <= 0)
             //    Invoke(nameof(GameOver), 0.24f);
 
         }
         public void GameOver()
         {
+            inputsOn = false;
             rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0;
             rb.bodyType = RigidbodyType2D.Static;

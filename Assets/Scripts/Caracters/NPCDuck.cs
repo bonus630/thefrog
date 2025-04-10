@@ -40,6 +40,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             GetComponent<Animator>().SetBool("Dancing", true);
             GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(transform.GetChild(0).gameObject);
         }
 
         public void CheckInitialDialogue(int dialogue)

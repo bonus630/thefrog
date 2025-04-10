@@ -10,6 +10,7 @@ namespace br.com.bonus630.thefrog.Items
             if (collision.CompareTag("Player"))
             {
                 GameManager.Instance.EventCompleted(GameEventName.HeartContainer);
+                GameManager.Instance.UpdateHeart(1);
                 Destroy(gameObject);
             }
         }

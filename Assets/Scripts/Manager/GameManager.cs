@@ -132,11 +132,18 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return playerStates.ChestsID.Contains(chestID);
         }
+        private void UpdateHearts(int hearts)
+        {
+            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+            StartCoroutine(AddHeart(hud, hearts - 1));
+        }
         public void UpdateHeart(int hearts)
         {
             GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+            GameManager.Instance.GetPlayer.GetComponent<Player>().CurrentLife += hearts;
             if (hearts > 0)
             {
+                playerStates.Hearts += hearts;
                 StartCoroutine(AddHeart(hud, hearts));
             }
 
@@ -238,7 +245,7 @@ namespace br.com.bonus630.thefrog.Manager
 
 #endif
             GameManager.Instance.UpdateScore();
-            GameManager.Instance.UpdateHeart(state.playerStates.Hearts);
+            GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
             for (int i = 0; i < state.playerStates.CompletedGameEvents.Count; i++)
@@ -265,9 +272,9 @@ namespace br.com.bonus630.thefrog.Manager
                         case GameEventName.Shuriken:
                             GameObject.Find("ShurikenChest").SetActive(false);
                             break;
-                        case GameEventName.HeartContainer:
-                            GameObject.Find("HeartContainerChest").SetActive(false);
-                            break;
+                        //case GameEventName.HeartContainer:
+                        //    GameObject.Find("HeartContainerChest").SetActive(false);
+                        //    break;
                         //case GameEventName.Gravity:
                         //    FindAnyObjectByType<NPCDuck>().Dancing();
                         //    break;
