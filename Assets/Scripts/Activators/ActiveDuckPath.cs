@@ -71,7 +71,7 @@ namespace br.com.bonus630.thefrog.Activators
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
-            musicSource.PlayFadIn(BackgroundMusic.DuckPath);
+            musicSource.CrossFade(BackgroundMusic.DuckPath);
 
         }
     }

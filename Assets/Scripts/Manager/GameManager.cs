@@ -23,8 +23,10 @@ namespace br.com.bonus630.thefrog.Manager
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
         public GameObject GetPlayer { get { return GameObject.Find("Player"); } }
+        public Player GetPlayerScript { get { return GetPlayer.GetComponent<Player>(); } }
         public static GameManager Instance;
         public EventsManager eventManager;
+      
         public Vector3 StartGamePosition { get; private set; }
 
         //Scenes Names
@@ -48,7 +50,19 @@ namespace br.com.bonus630.thefrog.Manager
         //Env Names
         public string SaveDataFilePath { get; private set; }
 
-
+        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        //static void InitOnLoad()
+        //{
+        //    if (Instance == null)
+        //    {
+        //        GameObject prefab = Resources.Load<GameObject>("GameManager");
+        //        if (prefab != null)
+        //        {
+        //            GameObject obj = Instantiate(prefab);
+        //            DontDestroyOnLoad(obj);
+        //        }
+        //    }
+        //}
 
         private void Awake()
         {
@@ -80,8 +94,8 @@ namespace br.com.bonus630.thefrog.Manager
             if (arg0.name.Equals(MainScene))
             {
 #if UNITY_EDITOR
-                ChangeGameToState(this.EnvironmentStates);
-                return;
+                //ChangeGameToState(this.EnvironmentStates);
+                //return;
 
 #endif
                 if (!continueGame)
@@ -269,7 +283,7 @@ namespace br.com.bonus630.thefrog.Manager
                         //        FindAnyObjectByType<NPC_WallJump_Tutorial>().MoveToWallJump();
                         //    }
                         //    break;
-                        case GameEventName.Shuriken:
+                        case GameEventName.Shuryken:
                             GameObject.Find("ShurikenChest").SetActive(false);
                             break;
                         //case GameEventName.HeartContainer:
@@ -318,7 +332,7 @@ namespace br.com.bonus630.thefrog.Manager
                     GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                     gameObject.SetActive(true);
                     break;
-                case GameEventName.Shuriken:
+                case GameEventName.Shuryken:
                    GameObject o =GameObject.Find("ShurykenPoint");
                     if(o!=null)
                         o.SetActive(false);

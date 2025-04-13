@@ -9,6 +9,7 @@ namespace br.com.bonus630.thefrog.Manager
 
 
         public int LastActiveCam { get; private set; }
+        public int LastActiveConfiner { get; private set; }
 
         public GameObject ActiveCam(int index)
         {

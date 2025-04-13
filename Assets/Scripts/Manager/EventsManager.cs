@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Manager
         };
             events.Add(firtEvent);
 
-            GameEvent secondEvent = new GameEvent(GameEventName.Shuriken, false, false);
+            GameEvent secondEvent = new GameEvent(GameEventName.Shuryken, false, false);
             secondEvent.Requires = new List<GameEvent>() { firtEvent };
             events.Add(secondEvent);
             GameEvent thirdEvent = new GameEvent(GameEventName.Gravity, false, false);
@@ -137,7 +137,7 @@ namespace br.com.bonus630.thefrog.Manager
         NPCFirstTalk,
         KillPig,
         NPCTutorial,
-        Shuriken,
+        Shuryken,
         Gravity,
         Teleport,
         HeartContainer,

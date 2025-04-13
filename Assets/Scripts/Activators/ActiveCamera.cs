@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] int cameraIndex;
         [SerializeField] int confinierIndex;
+        [SerializeField] CamerasController controller;
 
         public int CameraIndex { get { return cameraIndex; } }
         public int ConfinierIndex { get { return confinierIndex; } }
@@ -25,15 +26,17 @@ namespace br.com.bonus630.thefrog.Activators
             }
         }
 
-        CamerasController controller;
-        private void Awake()
+        
+        private void Start()
         {
-            controller = FindAnyObjectByType<CamerasController>();
+            if(controller==null)
+                controller = FindAnyObjectByType<CamerasController>();
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
             {
+                Debug.Log("Collider camera Activator");
                 GameObject camera = controller.ActiveCam(cameraIndex);
                 string confiner = ConfinerName(cameraIndex);
                 if(!string.IsNullOrEmpty(confiner))

@@ -57,10 +57,10 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player") && !monitor)
             {
                 monitor = true;
-                FindAnyObjectByType<MusicSource>().Stop();
+                FindAnyObjectByType<MusicSource>().Sleep();
                 audioSource.resource = bossMusic;
                 audioSource.Play();
             }

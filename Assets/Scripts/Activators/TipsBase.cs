@@ -8,7 +8,7 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class TipsBase : MonoBehaviour, ITips
     {
-        [SerializeField] List<DialogueData> dialogues;
+        [SerializeField] protected List<DialogueData> dialogues;
         [SerializeField] protected bool autoPlay;
         [SerializeField] protected bool oneShot;
         [SerializeField] protected bool ciclily = true;
@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
 
         }
-        public DialogueData GetDialogue(int index = -1)
+        public virtual DialogueData GetDialogue(int index = -1)
         {
             if (index > -1)
                 return dialogues[index];

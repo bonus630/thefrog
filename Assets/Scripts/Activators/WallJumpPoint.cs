@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
@@ -8,6 +9,13 @@ namespace br.com.bonus630.thefrog.Activators
         private void Start()
         {
         
+        }
+        public override DialogueData GetDialogue(int index = -1)
+        {
+            if (GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk))
+                return dialogues[0];
+            else
+                return dialogues[1];
         }
         private void OnTriggerExit2D(Collider2D collision)
         {

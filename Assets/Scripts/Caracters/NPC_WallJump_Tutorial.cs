@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Caracters
         //Conditions
         public bool firstTalk = false;
         public bool killPig = false;
-       [SerializeField] private bool playerCheckWall = false;
+        [SerializeField] private bool playerCheckWall = false;
         public bool wallJump = false;
         public bool isFarAwayFromNPC = false;
         private Coroutine courotine;
@@ -111,7 +111,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 if (currentDialogue == 1)
                 {
                     StartWallJumpTutorial();
-                    
+
                 }
                 IsFirstDialogue = false;
 
@@ -120,7 +120,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 courotine = StartCoroutine(GoToWallJump());
         }
         private void SetDialogue()
-         {
+        {
             if (!wallJump)
             {
 
@@ -154,14 +154,14 @@ namespace br.com.bonus630.thefrog.Caracters
                 killPig = true;
                 SetDialogue();
             }
-            if(gameEvent.Name.Equals(GameEventName.NPCTutorial))
+            if (gameEvent.Name.Equals(GameEventName.NPCTutorial))
             {
                 firstTalk = true;
                 killPig = true;
                 playerCheckWall = true;
                 StartCoroutine(GoToFinalRoutine());
             }
-            if(gameEvent.Name.Equals(GameEventName.DuckPath))
+            if (gameEvent.Name.Equals(GameEventName.DuckPath))
             {
                 Dash();
             }
@@ -177,7 +177,7 @@ namespace br.com.bonus630.thefrog.Caracters
             // animator.SetBool("StartTutorial", false);
             animator.enabled = false;
             transform.position = point3.transform.position;
-          
+
             currentDialogue = 3;
             SetDialogue();
             yield return null;
@@ -192,14 +192,16 @@ namespace br.com.bonus630.thefrog.Caracters
                 isFarAwayFromNPC = Vector2.Distance(transform.position, player.transform.position) > 15f && Vector2.Distance(point2.transform.position, player.transform.position) > 15f;
                 if (firstTalk && killPig && playerCheckWall && isFarAwayFromNPC)
                 {
+                    Debug.Log("Coroutine if!");
                     run = false;
-                    MoveToWallJump();
                 }
                 yield return new WaitForEndOfFrame();
             }
+            MoveToWallJump();
         }
         public void MoveToWallJump()
         {
+            Debug.Log("Coroutine MoveTowalljump");
             IsFirstDialogue = true;
             animator.enabled = false;
             transform.position = point2.transform.position;

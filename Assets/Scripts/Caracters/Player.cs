@@ -38,7 +38,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private br.com.bonus630.thefrog.DialogueSystem.DialogueSystem dialogueSystem;
 
         private int jumps = 2;
-       [field:SerializeField] public int CurrentLife { get; set; } = 2;
+        [field: SerializeField] public int CurrentLife { get; set; } = 2;
         private float doubleJumpForce;
         private Vector2 direction;
         private float invencibleTimer = 1.2f;
@@ -53,7 +53,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private bool invencible;
         private bool knockUp = false;
         [SerializeField] private Vector2 knockUpForce;
-        private bool inputsOn = true;
+        public bool InputsOn { get; set; } = true;
         //private bool isStartJumpTimer;
 
         private readonly float invencibleTime = 1.2f;
@@ -61,13 +61,13 @@ namespace br.com.bonus630.thefrog.Caracters
 
         //[Header("Wall")]
         //private bool teste;
-       private bool isWallSliding;
-       private bool canWallJump;
-      
-       private readonly float wallSlideSpeed = -0.36f;
-       private readonly float wallJumpXForce = 120f;
-       private readonly float wallJumpYForce = 220f;
-       private readonly float maxTimeInFall = 0.6f;
+        private bool isWallSliding;
+        private bool canWallJump;
+
+        private readonly float wallSlideSpeed = -0.36f;
+        private readonly float wallJumpXForce = 120f;
+        private readonly float wallJumpYForce = 220f;
+        private readonly float maxTimeInFall = 0.6f;
 
 
         protected readonly int HitID = Animator.StringToHash("Hit");
@@ -87,7 +87,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private Transform npc;
         private IInteract interacting;
         public GameObject FooterColliding { get; protected set; }
-        public bool InputOn { get { return inputsOn; } set { inputsOn = value; } }
+        public bool InputOn { get { return InputsOn; } set { InputsOn = value; } }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
@@ -97,7 +97,7 @@ namespace br.com.bonus630.thefrog.Caracters
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
             //Debug
 #if UNITY_EDITOR
-           // life = 100;
+             CurrentLife = 100;
 #endif
             rb = GetComponent<Rigidbody2D>();
 
@@ -112,14 +112,14 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             //states = GameManager.Instance.PlayerStates;
             //Debug
-#if !UNITY_EDITOR
-        transform.position = GameManager.Instance.PlayerStates.PlayerPosition.Position;
-        if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-        {
-            audioSource.PlayOneShot(Entrace);
-            rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-        }
-#endif
+            #if !UNITY_EDITOR
+            transform.position = GameManager.Instance.PlayerStates.PlayerPosition.Position;
+            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            {
+                audioSource.PlayOneShot(Entrace);
+                rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+            }
+            #endif
         }
         void FixedUpdate()
         {
@@ -137,7 +137,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 if (timeInFastFall > maxTimeInFall)
                     Die();
             }
-            if (inputsOn)
+            if (InputsOn)
                 Move();
             Jump();
             if (GameManager.Instance.PlayerStates.HasDoubleJump)
@@ -173,7 +173,7 @@ namespace br.com.bonus630.thefrog.Caracters
             //Debug.Log("wallCheck.RightWallCheck(): " + wallCheck.RightWallCheck());
             //Debug.Log("---------------wall check end -------------------");
 
-            
+
             isWallSliding = !inGround && rb.linearVelocityY < 0 && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
 
             if (interacting != null)
@@ -181,7 +181,9 @@ namespace br.com.bonus630.thefrog.Caracters
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-                //GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+                //MusicSource m = FindAnyObjectByType<MusicSource>();
+                //m.CrossFade(BackgroundMusic.AppleTree);
+                GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
                 //GameManager.Instance.UpdatePlayer();
             }
 
@@ -282,7 +284,6 @@ namespace br.com.bonus630.thefrog.Caracters
                 else if (interacting != null && Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && wallCheck.IsFaceTo(interacting.GetTransform()))
                 {
                     interacting.Interact();
-
                 }
                 else if (tips != null)
                 {
@@ -303,16 +304,17 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public void OnHability(InputAction.CallbackContext context)
         {
-            if (inGround && GameManager.Instance.PlayerStates.HasGravity)
-                ChangeGravity(this.gravityDirection * -1);
+            if (context.started)
+                if (inGround && GameManager.Instance.PlayerStates.HasGravity)
+                    ChangeGravity(this.gravityDirection * -1);
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
             {
-                if(FooterTouching(collision.collider))
-                //Debug.Log("Reset jump");
-                resetJump();
+                if (FooterTouching(collision.collider))
+                    //Debug.Log("Reset jump");
+                    resetJump();
             }
             if (collision.gameObject.layer == 13)
             {
@@ -375,7 +377,8 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             if (collision.gameObject.CompareTag("Item"))
             {
-               collision.gameObject.TryGetComponent<IInteract>(out interacting);
+                collision.gameObject.TryGetComponent<IInteract>(out interacting);
+                Debug.Log("Item trigger enter:"+interacting);
             }
             if (collision.gameObject.CompareTag("Tips"))
             {
@@ -396,7 +399,7 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             if (collision.gameObject.CompareTag("Item"))
             {
-                //  Debug.Log("Item trigger exit");
+                 Debug.Log("Item trigger exit");
                 interacting = null;
             }
             if (collision.gameObject.CompareTag("Tips"))
@@ -419,23 +422,38 @@ namespace br.com.bonus630.thefrog.Caracters
             dialogueSystem.ResetDialog();
         }
         private ITips tips = null;
-        private void ChangeGravity(float gravityDirection)
+        public void ChangeGravity(float gravityDirection, float speed = 0.4f)
         {
-            //Debug.Log(gravityDirection);
             this.gravityDirection = gravityDirection;
-            jumpForce *= -1;
             //LinearMaxY *= -1;
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
-            rb.gravityScale *= -1;
+            GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
             {
+                Debug.Log(gravityDirection);
+                var m = GravityParticles.main;
+                m.gravityModifierMultiplier = 0;
                 GravityParticles.Play();
+                StartCoroutine(ChangeGravityIenumerator(speed));
             }
             else
             {
+                Debug.Log(gravityDirection);
                 GravityParticles.Stop();
+                jumpForce *= -1;
+                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
+                rb.gravityScale *= -1;
+                knockUpForce *= -1;
             }
-            GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
+
+        }
+        private IEnumerator ChangeGravityIenumerator(float speed)
+        {
+            yield return new WaitForSeconds(speed);
+            var m = GravityParticles.main;
+            m.gravityModifierMultiplier = -1;
+            jumpForce *= -1;
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
+            rb.gravityScale *= -1;
         }
         public void Alert()
         {
@@ -617,17 +635,17 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             direction.x = 0;
             rb.linearVelocity = Vector2.zero;
-            inputsOn = false;
+            InputsOn = false;
             anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()
         {
-            inputsOn = true;
+            InputsOn = true;
         }
         private void WallSliding()
         {
             anim.SetBool(WallJumpID, isWallSliding);
-           // Debug.Log("IsWallSliding: " + isWallSliding);
+            // Debug.Log("IsWallSliding: " + isWallSliding);
             if (isWallSliding)
             {
                 rb.linearVelocityY = wallSlideSpeed;
@@ -644,9 +662,9 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private IEnumerator RemoveInputs()
         {
-            inputsOn = false;
+            InputsOn = false;
             yield return new WaitForSeconds(0.2f);
-            inputsOn = true;
+            InputsOn = true;
         }
         private void KnockedUp()
         {
@@ -672,14 +690,14 @@ namespace br.com.bonus630.thefrog.Caracters
             anim.SetTrigger(HitID);
             audioSource.PlayOneShot(hitSFX);
             anim.SetInteger(LifeID, CurrentLife);
-           
+
             //if (life <= 0)
             //    Invoke(nameof(GameOver), 0.24f);
 
         }
         public void GameOver()
         {
-            inputsOn = false;
+            InputsOn = false;
             rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0;
             rb.bodyType = RigidbodyType2D.Static;

@@ -4,6 +4,8 @@ namespace br.com.bonus630.thefrog.Caracters
 {
     public class NPCDuck : NPCBase, INPC
     {
+       
+        [SerializeField]AudioSource musicTarget;
 
         protected override void Awake()
         {
@@ -24,9 +26,22 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             GameManager.Instance.EventCompleted(GameEventName.Gravity);
             GameManager.Instance.UpdatePlayer();
-
+            MusicSource musicSource;
+            musicSource = GameObject.Find("AudioManager").GetComponent<MusicSource>();
+            musicSource.StopAll();
+            musicSource.Play(BackgroundMusic.Gravity);
+            GameManager.Instance.GetPlayerScript.ChangeGravity(1f,5f);
+            musicTarget.Play();
+            GameManager.Instance.GetPlayerScript.InputsOn = false;
+            Invoke(nameof(RestorePlayerInput), 5f);
+            Time.timeScale = 0.5f;
+            FindAnyObjectByType<CameraBackground>().InitializeDayByHour(GameManager.Instance.PlayerStates.Hour + 4);
         }
-
+        private void RestorePlayerInput()
+        {
+            Time.timeScale = 1f;
+            GameManager.Instance.GetPlayerScript.InputsOn = true;
+        }
         public override void Interact()
         {
 

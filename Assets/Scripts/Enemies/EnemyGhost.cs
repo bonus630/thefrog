@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Activators
 
         private CameraBackground cameraControl;
         public GameObject Player { get { return player; } set { player = value; } }
+        protected bool active = true;
 
         protected override void Awake()
         {
@@ -29,7 +30,7 @@ namespace br.com.bonus630.thefrog.Activators
         protected virtual void Active()
         {
             //Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
-
+            active = true;
             GetComponent<BoxCollider2D>().enabled = true;
             GetComponent<CircleCollider2D>().enabled = true;
             GetComponent<SpriteRenderer>().enabled = true;
@@ -38,6 +39,7 @@ namespace br.com.bonus630.thefrog.Activators
         protected virtual void Deactive()
         {
             //Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
+            active = false;
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<CircleCollider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
@@ -45,6 +47,8 @@ namespace br.com.bonus630.thefrog.Activators
         }
         protected override void Update()
         {
+            if (!active)
+                return;
             FollowPlayer();
             followTime = maxFollowTime;
         }

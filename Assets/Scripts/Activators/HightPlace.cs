@@ -7,7 +7,8 @@ namespace br.com.bonus630.thefrog.Activators
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            StartCoroutine(Active());
+            if(collision.CompareTag("Player"))
+                StartCoroutine(Active());
         }
         IEnumerator Active()
         {
