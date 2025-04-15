@@ -40,7 +40,8 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Founded()
         {
-            musicSource.CrossFade(BackgroundMusic.AppleTree);
+            musicSource.StopAll();
+            musicSource.Play(BackgroundMusic.AppleTree);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

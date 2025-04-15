@@ -9,6 +9,6 @@ PhysicsMaterial2D:
   m_Name: New Physics Material 2D
   serializedVersion: 2
   friction: 1
-  bounciness: 0
+  bounciness: 0.001
   m_FrictionCombine: 1
   m_BounceCombine: 2

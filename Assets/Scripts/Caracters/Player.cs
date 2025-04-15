@@ -66,7 +66,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         private readonly float wallSlideSpeed = -0.36f;
         private readonly float wallJumpXForce = 120f;
-        private readonly float wallJumpYForce = 220f;
+        private  float wallJumpYForce = 220f;
         private readonly float maxTimeInFall = 0.6f;
 
 
@@ -97,7 +97,7 @@ namespace br.com.bonus630.thefrog.Caracters
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
             //Debug
 #if UNITY_EDITOR
-             CurrentLife = 100;
+            CurrentLife = 100;
 #endif
             rb = GetComponent<Rigidbody2D>();
 
@@ -112,14 +112,14 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             //states = GameManager.Instance.PlayerStates;
             //Debug
-            #if !UNITY_EDITOR
+#if !UNITY_EDITOR
             transform.position = GameManager.Instance.PlayerStates.PlayerPosition.Position;
             if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
             {
                 audioSource.PlayOneShot(Entrace);
                 rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-            #endif
+#endif
         }
         void FixedUpdate()
         {
@@ -174,7 +174,21 @@ namespace br.com.bonus630.thefrog.Caracters
             //Debug.Log("---------------wall check end -------------------");
 
 
-            isWallSliding = !inGround && rb.linearVelocityY < 0 && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
+            //isWallSliding = !inGround && rb.linearVelocityY < 0 && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
+             isWallSliding = IsWallSliding();
+            //Debug.Log("iswallSliding:" + isWallSliding);
+            if (wallCheck.CheckGround())
+            {
+                if (!inGround)
+                    resetJump();
+            }
+            else
+            {
+                inGround = false;
+                anim.SetBool(JumpID, true);
+            }
+            //RaycastHit2D hit2D = Physics2D.BoxCast(Vector2.zero, new Vector2(0.140f, 0.01f), 0, Vector2.down);
+            //Gizmos.DrawWireCube(Vector3.zero, new Vector3(0.140f, 0.01f));
 
             if (interacting != null)
                 interacting.ReadyToInteract(Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && wallCheck.IsFaceTo(interacting.GetTransform()));
@@ -190,6 +204,23 @@ namespace br.com.bonus630.thefrog.Caracters
 #endif
 
         }
+        private bool IsWallSliding()
+        {
+            bool falling = false;
+            if(gravityDirection == 1 && rb.linearVelocityY > 0)
+                falling = true;
+            if(gravityDirection == -1 && rb.linearVelocityY < 0)
+                falling = true;
+            if (!falling)
+                return false;
+            return !inGround  && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
+
+        }
+        //private bool CheckGround()
+        //{
+        //    RaycastHit2D raycastHit2D = Physics2D.Raycast(Vector2.zero, Vector2.down, 0.5f, LayerMask.GetMask(new string[] { "Ground", "Platform", "StaticPlatforms" }));
+        //    Gizmos.DrawLine(Vector2.zero,new Vector2.down, 0.5f)
+        //}
         private GameObject currentBullet;
         private float nextLaunch = 0f;
         private void SelectProjectilie()
@@ -310,18 +341,18 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
-            {
-                if (FooterTouching(collision.collider))
-                    //Debug.Log("Reset jump");
-                    resetJump();
-            }
+            //if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
+            //{
+            //    if (FooterTouching(collision.collider))
+            //        //Debug.Log("Reset jump");
+            //        resetJump();
+            //}
             if (collision.gameObject.layer == 13)
             {
                 if (FooterTouching(collision.collider))
                 {
                     gameObject.transform.parent = collision.transform;
-                    resetJump();
+                    //resetJump();
                 }
             }
             if (collision.gameObject.layer == 10)
@@ -340,14 +371,14 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == 8 || collision.gameObject.layer == 13 || collision.gameObject.layer == 17)
-            {
-                if (!FooterTouching(collision.collider))
-                {
-                    inGround = false;
-                    anim.SetBool(JumpID, true);
-                }
-            }
+            //if (collision.gameObject.layer == 8 || collision.gameObject.layer == 13 || collision.gameObject.layer == 17)
+            //{
+            //    if (!FooterTouching(collision.collider))
+            //    {
+            //        inGround = false;
+            //        anim.SetBool(JumpID, true);
+            //    }
+            //}
             if (collision.gameObject.layer == 13)
             {
                 gameObject.transform.parent = null;
@@ -378,7 +409,7 @@ namespace br.com.bonus630.thefrog.Caracters
             if (collision.gameObject.CompareTag("Item"))
             {
                 collision.gameObject.TryGetComponent<IInteract>(out interacting);
-                Debug.Log("Item trigger enter:"+interacting);
+                Debug.Log("Item trigger enter:" + interacting);
             }
             if (collision.gameObject.CompareTag("Tips"))
             {
@@ -399,7 +430,7 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             if (collision.gameObject.CompareTag("Item"))
             {
-                 Debug.Log("Item trigger exit");
+                Debug.Log("Item trigger exit");
                 interacting = null;
             }
             if (collision.gameObject.CompareTag("Tips"))
@@ -443,6 +474,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
                 rb.gravityScale *= -1;
                 knockUpForce *= -1;
+                wallJumpYForce *= -1;
             }
 
         }
@@ -454,6 +486,7 @@ namespace br.com.bonus630.thefrog.Caracters
             jumpForce *= -1;
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
             rb.gravityScale *= -1;
+            wallJumpYForce *= -1;
         }
         public void Alert()
         {
@@ -530,6 +563,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void resetJump()
         {
+
             JumpDownEffect();
             inGround = true;
             doubleJump = false;

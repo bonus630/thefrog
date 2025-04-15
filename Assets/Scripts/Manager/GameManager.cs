@@ -71,6 +71,9 @@ namespace br.com.bonus630.thefrog.Manager
                 Destroy(gameObject);
                 return;
             }
+#if UNITY_EDITOR
+            SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData-editor.json");
+#endif
             SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData.json");
             playerStates = new PlayerStates(new PlayerPosition(gameObject.transform.position), new Datas(), new Datas(), new Datas());
             environmentStates = new EnvironmentStates(playerStates);
@@ -81,6 +84,7 @@ namespace br.com.bonus630.thefrog.Manager
             //playerStates.HasFireball = true;
             //playerStates.Shurykens = 100;
             //playerStates.Collectables = 31;
+            playerStates.HasGravity = true;
 
 #endif
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;

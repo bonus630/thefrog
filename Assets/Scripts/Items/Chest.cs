@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Items
         public void Drop()
         {
 
-            GameObject instance = Instantiate(Item, new Vector2(transform.position.x, transform.position.y + 0.2f), Item.transform.rotation);
+            GameObject instance = Instantiate(Item, new Vector2(transform.position.x, transform.position.y + 0.4f), Item.transform.rotation);
             GameObject effect = Instantiate(Effect, instance.transform);
             Destroy(gameObject);
             GameManager.Instance.PlayerStates.ChestsID.Add(chestID);

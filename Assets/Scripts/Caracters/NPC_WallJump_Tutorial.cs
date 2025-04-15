@@ -181,7 +181,7 @@ namespace br.com.bonus630.thefrog.Caracters
             currentDialogue = 3;
             SetDialogue();
             yield return null;
-            StartCoroutine(EnableAnimator());
+           // StartCoroutine(EnableAnimator());
         }
         private IEnumerator GoToWallJump()
         {
@@ -242,11 +242,27 @@ namespace br.com.bonus630.thefrog.Caracters
         //    dialogueCounter++;
         //    return result;
         //}
-
+        public override Dictionary<string, string> GetDialogueVariables()
+        {
+            string msg = string.Empty;
+            switch(GameManager.Instance.PlayerStates.Hour)
+            {
+                case < 6:
+                    msg = ", mas aguarde até o amanhecer";
+                    break;
+                case > 17:
+                    msg = ", mas você precisa esperar até amanhã";
+                    break;
+                case > 14 and <= 17:
+                    msg = ", mas você não tem muito tempo";
+                    break;
+            }
+            return new Dictionary<string, string>() { { "{hours}",  msg} };
+        }
         public void Dash()
         {
+            animator.enabled = true;
             animator.SetTrigger("DashDemonstration");
-            //animator.enabled = false;
             //transform.position = point4.transform.position;
             Destroy(gameObject, 2f);
 

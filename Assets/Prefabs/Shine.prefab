@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 655124639, guid: 49f097b410d70dc43949300e76016716, type: 3}
   m_Color: {r: 0.8773585, g: 0.66360277, b: 0.10346207, a: 1}
   m_FlipX: 0
@@ -124,7 +124,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: f28f120a655b52340a9676e18e75ce87, type: 3}
   m_Resource: {fileID: 8300000, guid: f28f120a655b52340a9676e18e75ce87, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.616
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -132,8 +132,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 4
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -168,7 +168,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -41,7 +41,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 StartNewMusic(audioLeft, audioRight);
             }
-                Debug.Log("Left Time:" + (audioLeft.clip.length - audioLeft.time));
+             //   Debug.Log("Left Time:" + (audioLeft.clip.length - audioLeft.time));
         }
         private void StartNewMusic(AudioSource current, AudioSource next)
         {
@@ -119,7 +119,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void PlayFadIn(AudioClip clip)
         {
-            Debug.Log("Audio");
+          //  Debug.Log("Audio");
             PlayFadIn(new AudioSource[] { audioLeft, audioRight }, clip);
         }
 
@@ -193,6 +193,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void StopAll()
         {
+            StopAllCoroutines();
             audioLeft.Stop();
             audioRight.Stop();
         }

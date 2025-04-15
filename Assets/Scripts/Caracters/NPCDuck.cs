@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Caracters
@@ -24,18 +25,24 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public override void SetFinishDialogue()
         {
-            GameManager.Instance.EventCompleted(GameEventName.Gravity);
-            GameManager.Instance.UpdatePlayer();
+            StartCoroutine(SkyWalkerLearned());
+        }
+        private IEnumerator SkyWalkerLearned()
+        {
             MusicSource musicSource;
             musicSource = GameObject.Find("AudioManager").GetComponent<MusicSource>();
             musicSource.StopAll();
             musicSource.Play(BackgroundMusic.Gravity);
-            GameManager.Instance.GetPlayerScript.ChangeGravity(1f,5f);
+            yield return new WaitForEndOfFrame();
+            GameManager.Instance.EventCompleted(GameEventName.Gravity);
+            GameManager.Instance.UpdatePlayer();
+            GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 5f);
             musicTarget.Play();
             GameManager.Instance.GetPlayerScript.InputsOn = false;
+            yield return new WaitForEndOfFrame();   
             Invoke(nameof(RestorePlayerInput), 5f);
             Time.timeScale = 0.5f;
-            FindAnyObjectByType<CameraBackground>().InitializeDayByHour(GameManager.Instance.PlayerStates.Hour + 4);
+            FindAnyObjectByType<CameraBackground>().InitializeDayByHour(24);
         }
         private void RestorePlayerInput()
         {

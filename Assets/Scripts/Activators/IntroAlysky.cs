@@ -17,7 +17,10 @@ namespace br.com.bonus630.thefrog.Activators
         public void ExecuteIntro()
         {
             play = true;
-           GameObject.Find("AudioManager").GetComponent<MusicSource>().CrossFade(BackgroundMusic.AlyskyIntro);
+            MusicSource musicSource;
+            musicSource = GameObject.Find("AudioManager").GetComponent<MusicSource>();
+            musicSource.StopAll();
+            musicSource.Play(BackgroundMusic.AlyskyIntro);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace br.com.bonus630.thefrog.Caracters
     {
         [SerializeField] private Transform leftWallCheck;
         [SerializeField] private Transform rightWallCheck;
+        [SerializeField] private Transform footerWallCheck;
         [SerializeField] private Vector2 size;
         [SerializeField] private LayerMask layerMask;
 
@@ -28,6 +29,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             Gizmos.DrawWireCube(leftWallCheck.position, new Vector3(size.x, size.y, 0));
             Gizmos.DrawWireCube(rightWallCheck.position, new Vector3(size.x, size.y, 0));
+            Gizmos.DrawWireCube(footerWallCheck.position, new Vector3(0.34f, 0.03f, 0));
         }
 
         private bool CheckWall(Vector2 side, LayerMask layer)
@@ -37,6 +39,17 @@ namespace br.com.bonus630.thefrog.Caracters
             if (coll != null)
             {
                 // Debug.Log("Coll: "+coll.name);
+                return true;
+            }
+            return false;
+        }
+        public bool CheckGround()
+        {
+            LayerMask layer = LayerMask.GetMask(new string[] { "Ground", "Platform", "StaticPlatforms" });
+            Collider2D coll = Physics2D.OverlapBox(footerWallCheck.position,new Vector2(0.34f, 0.03f), 0, layer);
+            if (coll != null)
+            {
+               // Debug.Log("Coll: "+coll.name);
                 return true;
             }
             return false;
