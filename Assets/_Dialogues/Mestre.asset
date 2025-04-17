@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
+  m_Name: Mestre
+  m_EditorClassIdentifier: 
+  DialogueName: 
+  Dialogues:
+  - Avatar: {fileID: 21300000, guid: 6748d7e3b7fb0ab458f8fa743cae627d, type: 3}
+    Name: 
+    text: "Voc\xEA chegou, afinal."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: Eu... cheguei? O senhor estava me esperando? Outro doido!
+  - Avatar: {fileID: 21300000, guid: 6748d7e3b7fb0ab458f8fa743cae627d, type: 3}
+    Name: 
+    text: "Os rios n\xE3o esperam o viajante, mas ainda assim o guiam. O vento n\xE3o
+      pergunta ao p\xE1ssaro se deseja voar, mas o carrega. E voc\xEA... voc\xEA
+      veio."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Eu... estou buscando poder? Quero me tornar mais forte... N\xE3o..."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "N\xE3o... Quero encontrar um lugar tranquilo para morar, uma lagoa pacifica
+      seria perfeito, por isso estou aqui."
+  - Avatar: {fileID: 21300000, guid: 6748d7e3b7fb0ab458f8fa743cae627d, type: 3}
+    Name: 
+    text: "O rio que luta contra a corrente se parte em mil gotas. Mas aquele que
+      se entrega... se torna a pr\xF3pria corrente."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "O qu\xEA? Isso significa que eu devo... desistir? N\xE3o... Voc\xEA que
+      n\xE3o est\xE1 falando coisa com coisa."
+  - Avatar: {fileID: 21300000, guid: 6748d7e3b7fb0ab458f8fa743cae627d, type: 3}
+    Name: 
+    text: "(Fecha os olhos, inspira profundamente.) Voc\xEA j\xE1 caiu sem tocar
+      o ch\xE3o? J\xE1 caminhou sobre algo que n\xE3o existe?"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Isso n\xE3o faz sentido\u2026"
+  - Avatar: {fileID: 21300000, guid: 6748d7e3b7fb0ab458f8fa743cae627d, type: 3}
+    Name: 
+    text: "O sentido \xE9 uma jaula para a mente. Liberte-se, e ver\xE1 o que nunca
+      foi oculto."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: Como...?!
+  - Avatar: {fileID: 21300000, guid: 6748d7e3b7fb0ab458f8fa743cae627d, type: 3}
+    Name: 
+    text: "O sapo que teme o salto jamais alcan\xE7ar\xE1 a lua."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "\"Ser\xE1... ser\xE1 que sou capaz de entender?\""
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Do que estou falando, \xE9 s\xF3 mais um doido da regi\xE3o! "
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: Que Seja!

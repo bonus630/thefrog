@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
+  m_Name: VirtualGuyRequestApples
+  m_EditorClassIdentifier: 
+  DialogueName: 
+  Dialogues:
+  - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
+    Name: 
+    text: "Poderia me dar essas ma\xE7\xE3s, eu adoro ma\xE7\xE3s, aqui perto existe
+      uma macieira gigante, por\xE9m n\xE3o consigo pegar nenhuma"
+  - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
+    Name: 
+    text: "Percebi que voc\xEA j\xE1 consegui manipular a ess\xEAncia da vida, ent\xE3o
+      para cada DEZ ma\xE7\xE3s posso te oferecer um sopro de vida"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Bom, que seja! N\xE3o gosto de ma\xE7\xE3s mesmo, nem sei o motivo de
+      carrega-l\xE1s por ai!"
+  - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
+    Name: 
+    text: "Caso tenha interesse as ma\xE7\xE3s nesta arvore ficam visiveis somente
+      a noite!"
+  - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
+    Name: 
+    text: Mas cuidado as noites fora dos muros de Alysky podem ser perigosas!
+  - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
+    Name: 
+    text: "- Este transporte te levar\xE1 at\xE9 um certo ponto do caminho, o restante
+      \xE9 com voc\xEA!"

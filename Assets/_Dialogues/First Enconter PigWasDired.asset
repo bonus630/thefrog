@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
+  m_Name: First Enconter PigWasDired
+  m_EditorClassIdentifier: 
+  DialogueName: 
+  Dialogues:
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "Ol\xE1 companheiro, que bom que voc\xEA veio at\xE9 aqui"
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "Percebi sua grande presen\xE7a espiritual, um verdadeiro poder!!!"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: "N\xE3o estou entendendo nada, do que voc\xEA est\xE1 falando?"
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: Um mestre do ninjutsu e modesto.
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: "Voc\xEA est\xE1 me confundindo com outra pessoa, n\xE3o sou mestre nem
+      ninjutsu!!!"
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "Mas sua apar\xEAncia n\xE3o me engana!"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: Eu sou assim desde o momento que vim a este mundo!
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "Bem parece que voc\xEA ainda est\xE1 apegado ao o que seus olhos ve\xEAm!"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: "Que seja! S\xF3 estou de passagem, quero voltar para minha Lagoa..."
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: "Foi por isso que subi at\xE9 aqui, voc\xEA sabe como posso voltar para
+      minha Lagoa?"
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "N\xE3o sei te dizer! Mas quem sabe o \"Pato\" que mora a frente!"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: "Isso \xE9 bom, um Pato provavelmente visita todas as Lagoas pr\xF3ximas"
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "O problema que est\xE1 regi\xE3o \xE9 dominio dos \"Tr\xEAs Porc\xF5es\""
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "E um deles come\xE7ou a construir uma casa de tijolos, bem no caminho
+      para a casa do Pato"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: Desconhecido
+    text: Encontrei um "Porco" agressivo a frente e o derrotei!
+  - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
+    Name: Desconhecido
+    text: "Fascinante, vou at\xE9 l\xE1 verificar! talvez n\xF3s encontremos l\xE1!"
