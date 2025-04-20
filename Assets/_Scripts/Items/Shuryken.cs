@@ -37,7 +37,8 @@ namespace br.com.bonus630.thefrog.Items
         }
         public void Launch(float direction, float force)
         {
-            rb.AddForce(new Vector2(direction * force, 0));
+            rb.linearVelocityX = direction * force;
+            //rb.AddForce(new Vector2(direction * force, 0));
         }
         protected new void OnTriggerEnter2D(Collider2D collision)
         {

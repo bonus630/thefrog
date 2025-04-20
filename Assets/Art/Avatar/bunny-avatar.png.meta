@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bunny-avatar_0: -4626299607104563725
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

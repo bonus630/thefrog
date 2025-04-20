@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 464034328416817164}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleported: {fileID: 0}
-  to: {fileID: 0}
   from: {fileID: 0}
+  to: {fileID: 0}
   Auto: 0
 --- !u!114 &1394574726552382947
 MonoBehaviour:
@@ -280,7 +280,7 @@ AudioSource:
   m_GameObject: {fileID: 1109232665979645552}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

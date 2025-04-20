@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] int endHour;
         [SerializeField] float distance;
         [SerializeField] bool ignoreDistanceAfterActive;
+        [SerializeField] bool startActived = false;
         public float playerDistance;
         private bool firstActive = false;
         private int hour;
@@ -24,13 +25,13 @@ namespace br.com.bonus630.thefrog.Activators
 
         void Awake()
         {
+            ActiveItem(startActived);
             cameraControl = FindAnyObjectByType<CameraBackground>();
             this.hour = cameraControl.Hour;
             cameraControl.HourChanged += Item_HourChanged;
         }
         private void Start()
         {
-
         }
         private void Item_HourChanged(int hour)
         {
@@ -41,13 +42,13 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (InInterval(hour) && ActiveDistance())
             {
-               // Debug.Log("Active : " + itemToActive.name + " hour: " + hour);
+                // Debug.Log("Active : " + itemToActive.name + " hour: " + hour);
                 ActiveItem(true);
                 firstActive = true;
             }
             else
             {
-               // Debug.Log("Deactive: " + itemToActive.name + " hour: " + hour);
+                // Debug.Log("Deactive: " + itemToActive.name + " hour: " + hour);
                 ActiveItem(false);
             }
         }
@@ -56,7 +57,10 @@ namespace br.com.bonus630.thefrog.Activators
         {
             IActivator activator;
             if (itemToActive.gameObject.TryGetComponent<IActivator>(out activator))
-                activator.Activate();
+                if (active)
+                    activator.Activate();
+                else
+                    activator.Deactive();
             else
                 itemToActive.SetActive(active);
         }
@@ -82,6 +86,11 @@ namespace br.com.bonus630.thefrog.Activators
         private void OnDestroy()
         {
             cameraControl.HourChanged -= Item_HourChanged;
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(pointToActive.transform.position, distance);
         }
     }
 }

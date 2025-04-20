@@ -36,11 +36,11 @@ namespace br.com.bonus630.thefrog.UI
         {
             Application.Quit();
         }
-        void Update()
-        {
-            if (Input.GetButtonDown("Jump"))
-                StartButton_clicked();
-        }
+        //void Update()
+        //{
+        //    if (Input.GetButtonDown("Jump"))
+        //        StartButton_clicked();
+        //}
       
         //public void OnMove(InputAction.CallbackContext context)
         //{

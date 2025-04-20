@@ -28,7 +28,7 @@ namespace br.com.bonus630.thefrog.Manager
         public Player GetPlayerScript { get { return GetPlayer.GetComponent<Player>(); } }
         public static GameManager Instance;
         public EventsManager eventManager;
-      
+
         public Vector3 StartGamePosition { get; private set; }
 
         //Scenes Names
@@ -47,6 +47,7 @@ namespace br.com.bonus630.thefrog.Manager
         public readonly string HeartContainerHUD = "HeartContainerHUD";
         public readonly string HeartHUD = "HeartHUD";
         public readonly string SkillsHUD = "SkillsHUD";
+        public readonly string PauseHUD = "PauseHUD";
 
 
         //Env Names
@@ -73,19 +74,18 @@ namespace br.com.bonus630.thefrog.Manager
                 Destroy(gameObject);
                 return;
             }
+            SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData.json");
 #if UNITY_EDITOR
             SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData-editor.json");
 #endif
-            SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData.json");
             playerStates = new PlayerStates(new PlayerPosition(gameObject.transform.position), new Datas(), new Datas(), new Datas());
             environmentStates = new EnvironmentStates(playerStates);
             //Debug
 #if UNITY_EDITOR
             //playerStates.HasFireball = true;
             playerStates.HasWallJump = true;
-            //playerStates.HasFireball = true;
-            //playerStates.Shurykens = 100;
-            //playerStates.Collectables = 31;
+            playerStates.Shurykens = 100;
+            playerStates.Collectables = 31;
             playerStates.HasGravity = true;
 
 #endif
@@ -100,18 +100,26 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void Update()
         {
-            if(PauseAction.WasPressedThisFrame())
+            if (PauseAction.WasPressedThisFrame())
             {
-               
-               Pause(Time.timeScale == 1 ? true : false);
+                if (SceneManager.GetActiveScene().name.Equals("SampleScene"))
+                {
+                    Pause(Time.timeScale == 1 ? true : false);
+                }
             }
         }
         private void Pause(bool pause)
         {
-            Time.timeScale = pause ? 0 : 1;
-            GameObject go = GameObject.Find("Pause");
+            if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
+            {
+                float vol = pause ? -80f : 0f;
+                musicSource.SetMasterVolume(vol);   
+                Time.timeScale = pause ? 0 : 1;
+                GameObject go = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
+                Debug.Log(go);
                 if (go != null)
-                go.SetActive(pause);
+                    go.SetActive(pause);
+            }
         }
         private void OnApplicationPause(bool pause)
         {
@@ -196,7 +204,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void LoadGame(StartType type)
         {
-           // Debug.LogWarning("LoadGame");
+            // Debug.LogWarning("LoadGame");
             eventManager.Reset();
             if (type == StartType.Start)
             {
@@ -279,11 +287,11 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
 
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
 
 #endif
             GameManager.Instance.UpdateScore();
@@ -314,12 +322,12 @@ namespace br.com.bonus630.thefrog.Manager
                         case GameEventName.Shuryken:
                             GameObject.Find("ShurikenChest").SetActive(false);
                             break;
-                        //case GameEventName.HeartContainer:
-                        //    GameObject.Find("HeartContainerChest").SetActive(false);
-                        //    break;
-                        //case GameEventName.Gravity:
-                        //    FindAnyObjectByType<NPCDuck>().Dancing();
-                        //    break;
+                            //case GameEventName.HeartContainer:
+                            //    GameObject.Find("HeartContainerChest").SetActive(false);
+                            //    break;
+                            //case GameEventName.Gravity:
+                            //    FindAnyObjectByType<NPCDuck>().Dancing();
+                            //    break;
                     }
                 }
 
@@ -343,28 +351,28 @@ namespace br.com.bonus630.thefrog.Manager
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(1).gameObject.GetComponentAtIndex(1);
                     if (eventManager.GetEvent(GameEventName.NPCFirstTalk).Completed)
                     {
-                       // FindAnyObjectByType<NPC_WallJump_Tutorial>().FirstTalk = true;
+                        // FindAnyObjectByType<NPC_WallJump_Tutorial>().FirstTalk = true;
                     }
-              
+
                     break;
                 //case GameEventName.NPCFirstTalk:
                 //    if (eventManager.GetEvent(GameEventName.KillPig).Completed)
                 //     //   FindAnyObjectByType<NPC_WallJump_Tutorial>().KillPig = true;
-                   
+
                 //    break;
                 case GameEventName.NPCTutorial:
                     playerStates.HasWallJump = true;
-                 
+
                     break;
                 case GameEventName.HeartContainer:
                     GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                     gameObject.SetActive(true);
                     break;
                 case GameEventName.Shuryken:
-                   GameObject o =GameObject.Find("ShurykenPoint");
-                    if(o!=null)
+                    GameObject o = GameObject.Find("ShurykenPoint");
+                    if (o != null)
                         o.SetActive(false);
-            
+
                     break;
                 case GameEventName.DuckPath:
                     //NPC_WallJump_Tutorial nPC_WallJump_Tutorial = FindAnyObjectByType<NPC_WallJump_Tutorial>();
@@ -409,7 +417,6 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void UpdatePlayer()
         {
-    
             if (GameManager.Instance.GetPlayer.TryGetComponent<Player>(out Player player))
             {
                 player.Speed += 0.1f;

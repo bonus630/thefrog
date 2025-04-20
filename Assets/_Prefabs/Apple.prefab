@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 1
+  itemID: Apple_052aab53
   collectableEffect: {fileID: 7954542212468892864}
   collectSFX: {fileID: 8300000, guid: ccb9b31174a3a43709a113a9c7cf4252, type: 3}
 --- !u!95 &2241149025178718032
@@ -174,7 +175,7 @@ AudioSource:
   m_GameObject: {fileID: 363796027601596152}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

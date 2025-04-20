@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace br.com.bonus630.thefrog.Caracters
     public class NPCVirtualGuy : NPCBase, INPC
     {
         [SerializeField] List<DialogueData> dialoguesData;
-        private int currentDialogue = 0;
+        [SerializeField] private int currentDialogue = 0;
         private int receivedApples = 0;
         private int prizeApplesAmount = 50;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,7 +19,7 @@ namespace br.com.bonus630.thefrog.Caracters
             base.Awake();
             receivedApples = GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples;
             currentDialogueData = dialogueData;
-            //Debug.Log(currentDialogueData.DialogueName);
+            Debug.Log("VirtualGuy Dialogue:"+GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
         }
         public override Transform GetTransform()
         {
@@ -30,7 +31,7 @@ namespace br.com.bonus630.thefrog.Caracters
             SetDialog(currentDialogue);
             //StartCoroutine(disableCollider());
         }
-
+      
         private void SetDialog(int dialog)
         {
             //Debug.Log("SetFinishDialogue: " + currentDialogue);
@@ -62,12 +63,15 @@ namespace br.com.bonus630.thefrog.Caracters
                         currentDialogue = 3;
                     break;
                 case 3:
-                    if (GameManager.Instance.PlayerStates.CollectablesID.Count >= 50)
+                    if (GameManager.Instance.PlayerStates.CollectablesID.Count >= 50 || receivedApples >= 50)
                     {
+                        Debug.Log("VirtualGuy apples:" + receivedApples);
                         currentDialogue = 4;
                     }
                     break;
                 case 4:
+                    if(this.dialoguesData[1].IsReaded)
+                        ChangePlayerHearts();
                     GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
                     GameManager.Instance.UpdatePlayer();
                     currentDialogue = 5;

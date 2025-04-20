@@ -19,6 +19,7 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] float LinearMaxY = 15;
         [SerializeField] private GameObject projectile;
         [SerializeField] private GameObject fireball;
+        [SerializeField] private Transform projectilesSpawPoint;
         [Header("Sounds")]
         [SerializeField] private AudioClip jumpSFX;
         [SerializeField] private AudioClip hitSFX;
@@ -117,10 +118,17 @@ namespace br.com.bonus630.thefrog.Caracters
             if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
             {
                 audioSource.PlayOneShot(Entrace);
-                rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
 #endif
         }
+        public void AddForce(Vector2 force,ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
+        {
+            StartCoroutine(RemoveInputs(time));
+            rb.AddForce(force,mode);
+        }
+        
         void FixedUpdate()
         {
             //       Debug.DrawLine(transform.position, Vector3.up * gravityDirection * 10);
@@ -232,7 +240,8 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             if (Time.time > nextLaunch)
             {
-                GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
+               // GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
+                GameObject bullet = Instantiate(fireball, projectilesSpawPoint.position, Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
                     projectilie.Launch(new Vector2(LookFor, 0));
@@ -285,7 +294,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public void OnAttack(InputAction.CallbackContext context)
         {
 
-            if (context.canceled)
+            if (context.performed)
             {
 
                 if (npc != null && Mathf.Abs(transform.position.x - npc.position.x) < 1.1f && wallCheck.IsFaceTo(npc))
@@ -657,9 +666,10 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             if (GameManager.Instance.PlayerStates.Shurykens > 0)
             {
-                GameObject projectileGO = Instantiate(projectile, new Vector2(rb.position.x + (0.12f * LookFor), rb.position.y - 0.07f), Quaternion.identity);
+               // GameObject projectileGO = Instantiate(projectile, new Vector2(rb.position.x + (0.12f * LookFor), rb.position.y - 0.07f), Quaternion.identity);
+                GameObject projectileGO = Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
                 Shuryken projectileScript = projectileGO.GetComponent<Shuryken>();
-                projectileScript.Launch(LookFor, 600f);
+                projectileScript.Launch(LookFor, 10f);
                 //animator.SetTrigger(launchHash);
                 audioSource.PlayOneShot(throwProjectileSFX);
                 ChangeNumberShurykens(-1);
@@ -694,10 +704,10 @@ namespace br.com.bonus630.thefrog.Caracters
                 canWallJump = false;
 
         }
-        private IEnumerator RemoveInputs()
+        private IEnumerator RemoveInputs(float time = 0.2f)
         {
             InputsOn = false;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(time);
             InputsOn = true;
         }
         private void KnockedUp()

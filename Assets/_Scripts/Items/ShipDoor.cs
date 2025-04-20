@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Items
         AudioSource audioSource;
         SpriteRenderer sprite;
         GameObject door;
-
+        BoxCollider2D boxCollider;
         Player player;
 
 
@@ -24,9 +24,27 @@ namespace br.com.bonus630.thefrog.Items
             audioSource = GetComponent<AudioSource>();
             anim = GetComponent<Animator>();
             door = transform.GetChild(0).gameObject;
+            boxCollider = GetComponent<BoxCollider2D>();
         }
-
-
+        //private void Update()
+        //{
+        //    var col = Physics2D.OverlapBox(transform.position, boxCollider.bounds.size, 0, 9);
+        //    Debug.Log(col.gameObject.name);
+        //    if(col && col.gameObject.TryGetComponent<Player>(out player) && player.inGround)
+        //    {
+        //        if (isOpen)
+        //        {
+        //            Close();
+        //        }
+        //        else
+        //            Open();
+        //    }
+        //}
+        //private void OnDrawGizmos()
+        //{
+        //    Gizmos.color = Color.blue;
+        //    Gizmos.DrawCube(transform.position, boxCollider.bounds.size);
+        //}
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))

@@ -135,7 +135,10 @@ MonoBehaviour:
   coll: {fileID: 8429849578468933170}
   speed: 4
   life: 1
+  repulse: {x: 0, y: 200}
+  repulseForce: 200
   xDirection: -1
+  enemyWeakenesses: 
   startTime: 1
   EndPoint: {x: 0, y: 0}
 --- !u!61 &8429849578468933170
@@ -193,7 +196,7 @@ AudioSource:
   m_GameObject: {fileID: 7125601330625030526}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2f4787f9664caea4797625a727e433ef, type: 3}
   m_Resource: {fileID: 8300000, guid: 2f4787f9664caea4797625a727e433ef, type: 3}
   m_PlayOnAwake: 1

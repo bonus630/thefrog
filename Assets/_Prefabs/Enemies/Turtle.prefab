@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: bottom
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -228,12 +228,15 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  coll: {fileID: 0}
-  speed: 100
+  coll: {fileID: 2786447139770745316}
+  speed: 60
   life: 1
   repulse: {x: 0, y: 200}
+  repulseForce: 200
   xDirection: -1
+  enemyWeakenesses: 
   Eyers: {fileID: 0}
+  eyeSize: {x: 0.2, y: 0.4}
   layerMaskProjectiles:
     serializedVersion: 2
     m_Bits: 4096
@@ -318,7 +321,7 @@ GameObject:
   m_Layer: 0
   m_Name: top
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -331,7 +334,7 @@ Transform:
   m_GameObject: {fileID: 8438911958896670054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.235, y: -0.044, z: 0}
+  m_LocalPosition: {x: -0.235, y: 0.067, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

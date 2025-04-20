@@ -1,21 +1,49 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 namespace br.com.bonus630.thefrog.Manager
 {
     public class MusicSource : MonoBehaviour
     {
         [SerializeField] AudioSource audioLeft;
         [SerializeField] AudioSource audioRight;
+        [SerializeField] AudioMixer mixer;
 
         [SerializeField] private AudioClip[] BackgroundMusics;
         [SerializeField] private AudioClip[] BackgroundMusicsRandom;
 
         private float fadDuration = 10f;
-        private float targetVolume = 0.31f;
+        private float targetVolume = 0.36f;
         private float silentTime;
         private bool leftTurn = true;
 
         private float savedTime = 0f; // Guarda o tempo da música antes de pausar
+
+    
+        /// <summary>
+        /// Global volume
+        /// </summary>
+        /// <param name="vol">-80 a 80</param>
+        public void SetMasterVolume(float vol)
+        {
+            mixer.SetFloat("MasterVolume", vol);
+        }
+        /// <summary>
+        /// Music volume
+        /// </summary>
+        /// <param name="vol">-80 a 80</param>
+        public void SetMusicVolume(float vol)
+        {
+            mixer.SetFloat("MusicVolume", vol);
+        }
+        /// <summary>
+        /// Music volume
+        /// </summary>
+        /// <param name="vol">-80 a 80</param>
+        public void SetSFXVolume(float vol)
+        {
+            mixer.SetFloat("SFXVolume", vol);
+        }
 
         private void Update()
         {
@@ -33,7 +61,7 @@ namespace br.com.bonus630.thefrog.Manager
                 //PlayFadIn(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
                 CrossFade(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
             }
-            if(leftTurn)
+            if (leftTurn)
             {
                 StartNewMusic(audioRight, audioLeft);
             }
@@ -41,13 +69,13 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 StartNewMusic(audioLeft, audioRight);
             }
-             //   Debug.Log("Left Time:" + (audioLeft.clip.length - audioLeft.time));
+            //   Debug.Log("Left Time:" + (audioLeft.clip.length - audioLeft.time));
         }
         private void StartNewMusic(AudioSource current, AudioSource next)
         {
             if (current.clip == null)
                 return;
-            if(current.clip.length - fadDuration - current.time <= 0 && !next.isPlaying)
+            if (current.clip.length - fadDuration - current.time <= 0 && !next.isPlaying)
             {
                 CrossFade(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
             }
@@ -61,7 +89,7 @@ namespace br.com.bonus630.thefrog.Manager
         //    audioRight.Play();
         //    //StartCoroutine(FadIn());
         //}
-        private void CrossFade(AudioClip clip,bool disableLoop = true)
+        private void CrossFade(AudioClip clip, bool disableLoop = true)
         {
             if (disableLoop)
             {
@@ -70,7 +98,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
             if (leftTurn)
             {
-                PlayFadIn(new AudioSource[] { audioLeft },clip);
+                PlayFadIn(new AudioSource[] { audioLeft }, clip);
                 //StopFadOut(new AudioSource[] { audioRight });
                 StartCoroutine(WaitToPlay(audioLeft, audioRight));
                 //audioRight.clip = audioLeft.clip;
@@ -82,7 +110,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 PlayFadIn(new AudioSource[] { audioRight }, clip);
                 StartCoroutine(WaitToPlay(audioRight, audioLeft));
-                
+
                 //StopFadOut(new AudioSource[] { audioLeft });
                 //audioLeft.clip = audioRight.clip;
                 //audioLeft.volume = targetVolume;
@@ -97,46 +125,39 @@ namespace br.com.bonus630.thefrog.Manager
                 audioLeft.loop = true;
             else
                 audioRight.loop = true;
-           CrossFade(BackgroundMusics[(int)music],false);
+            CrossFade(BackgroundMusics[(int)music], false);
         }
-    
+
         IEnumerator WaitToNext(float delay)
         {
             yield return new WaitForSeconds(delay - fadDuration);
             PlayFadIn(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
         }
 
-        private IEnumerator WaitToPlay(AudioSource toPlay,AudioSource nowPlaying)
+        private IEnumerator WaitToPlay(AudioSource toPlay, AudioSource nowPlaying)
         {
             while (toPlay.volume < targetVolume / 2)
             {
                 yield return null;
             }
-            StopFadOut (new AudioSource[] { nowPlaying });
-            //toPlay.clip = nowPlaying.clip;
-            //toPlay.volume = targetVolume;
-            //toPlay.time = nowPlaying.time;
-            //toPlay.Play();
-            Debug.Log("estamos no audios:"+toPlay.time);
+            StopFadOut(new AudioSource[] { nowPlaying });
+            //Debug.Log("Estamos no audio:" + toPlay.time);
         }
         public void PlayFadIn(AudioClip clip)
         {
-          //  Debug.Log("Audio");
+            // Debug.Log("Audio");
             PlayFadIn(new AudioSource[] { audioLeft, audioRight }, clip);
         }
 
         public void PlayFadIn(BackgroundMusic music)
         {
             AudioClip clip = BackgroundMusics[(int)music];
-
-
             PlayFadIn(new AudioSource[] { audioLeft, audioRight }, clip);
         }
 
         private void PlayFadIn(AudioSource[] channels, AudioClip clip)
         {
-           // StopAllCoroutines();
-         
+            // StopAllCoroutines();
             StartCoroutine(FadIn(channels, clip));
         }
 
@@ -211,7 +232,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void StopFadOut(AudioSource[] channels)
         {
-           // StopAllCoroutines();
+            // StopAllCoroutines();
             StartCoroutine(FadOut(channels));
         }
 

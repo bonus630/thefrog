@@ -1,8 +1,9 @@
+using br.com.bonus630.thefrog.Assets._Scripts.Enemies;
 using br.com.bonus630.thefrog.Caracters;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    public class EnemyGhost2 : EnemyGhost
+    public class EnemyGhost2 : EnemyGhostTrigger
     {
         private float invencibleTime = 2f;
         [SerializeField] private bool invencible = false;

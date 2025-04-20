@@ -26,7 +26,7 @@ namespace br.com.bonus630.thefrog.Items
         void Start()
         {
 
-            audioSource.PlayOneShot(launching);
+            
 
         }
 
@@ -41,6 +41,7 @@ namespace br.com.bonus630.thefrog.Items
         {
             if (rb != null)
             {
+                audioSource.PlayOneShot(launching);
                 rb.AddForce(direction * speed, ForceMode2D.Impulse);
             }
         }
@@ -67,8 +68,17 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            //audioSource.PlayOneShot(hitting);
-            //GetComponent<Animator>().SetTrigger("Hit");
+            Debug.Log("FireBall collision:"+collision.gameObject.name);
+            if (!remove)
+            {
+              
+                IEnemy enemy;
+                if (collision.gameObject.TryGetComponent<IEnemy>(out enemy))
+                {
+                    enemy.Hit(intensity);
+                    return;
+                }
+            }
         }
         public void Destroy()
         {

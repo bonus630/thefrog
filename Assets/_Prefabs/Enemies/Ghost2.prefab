@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8998761749784526965}
   - component: {fileID: 5790985268349055756}
   - component: {fileID: 524945707425761250}
-  - component: {fileID: 5488086158096477330}
-  - component: {fileID: 9206622854195805361}
-  m_Layer: 0
+  - component: {fileID: 3236150293698238406}
+  - component: {fileID: 3958046130765315823}
+  m_Layer: 6
   m_Name: Ghost2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,18 +130,18 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  coll: {fileID: 0}
+  coll: {fileID: 3236150293698238406}
   speed: 200
   life: 1
   repulse: {x: 0, y: 200}
-  repulseForce: 200
+  repulseForce: 20
   xDirection: -1
-  enemyWeakenesses: 
+  enemyWeakenesses: 01000000
   rotationSpeed: 20
   maxFollowTime: 5
   invencible: 0
---- !u!61 &5488086158096477330
-BoxCollider2D:
+--- !u!70 &3236150293698238406
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -170,32 +170,29 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.017313778, y: -0.023088396}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.14365387, y: 0.22446695}
-  m_EdgeRadius: 0
---- !u!58 &9206622854195805361
-CircleCollider2D:
+  m_Offset: {x: 0.01311478, y: -0.016612142}
+  m_Size: {x: 0.16261941, y: 0.25704634}
+  m_Direction: 0
+--- !u!50 &3958046130765315823
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6711853037050233409}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -203,22 +200,7 @@ CircleCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.32
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

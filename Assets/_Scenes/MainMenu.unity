@@ -3505,6 +3505,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f148e87ca30e01642b01049b9755f5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseAction:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f8488d8b-8fe8-4d5f-a07f-5b70ce607aff
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7a32a2c3-167b-49e3-8eba-fe56a52c8d3a
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c2c703fe-951e-4049-a1fa-ee04a2bd8137
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
+      m_Flags: 0
+    m_Flags: 0
   eventManager: {fileID: 2117192171}
 --- !u!4 &2117192173
 Transform:

@@ -29,21 +29,23 @@ namespace br.com.bonus630.thefrog.Activators
         }
         protected virtual void Active()
         {
-            //Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
-            active = true;
-            GetComponent<BoxCollider2D>().enabled = true;
-            GetComponent<CircleCollider2D>().enabled = true;
-            GetComponent<SpriteRenderer>().enabled = true;
-
+            ToggleState(true);
         }
         protected virtual void Deactive()
         {
-            //Debug.Log("Ghost: " + gameObject + " " + GetComponent<BoxCollider2D>());
-            active = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<CircleCollider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
-
+            ToggleState(false);
+        }
+        private void ToggleState(bool _active)
+        {
+            if (active == _active)
+                return;
+            active = _active;
+            if (TryGetComponent<BoxCollider2D>(out var bc))
+                bc.enabled = active; 
+            if (TryGetComponent<CircleCollider2D>(out var cc))
+                cc.enabled = active; 
+            if (TryGetComponent<SpriteRenderer>(out var sr))
+                sr.enabled = active;
         }
         protected override void Update()
         {
