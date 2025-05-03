@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6728808674888321345}
   - component: {fileID: 5516738429066546824}
+  - component: {fileID: 7046330707756410613}
   m_Layer: 0
   m_Name: ToKoar
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 256907313029535633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.21, y: -6.5, z: 0}
+  m_LocalPosition: {x: 11.21, y: -28.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66,7 +67,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 9.939854, y: 0.29775977}
+  m_Offset: {x: 14.178436, y: 1.1094036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,8 +77,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 33.240273, y: 3.4362187}
+  m_Size: {x: 54.343002, y: 8.666813}
   m_EdgeRadius: 0
+--- !u!114 &7046330707756410613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256907313029535633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204f1bef798789940b6d0d0e64f00153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fader: {fileID: 0}
+  newLocation: {x: 87, y: -66}
 --- !u!1 &757131271852616317
 GameObject:
   m_ObjectHideFlags: 0

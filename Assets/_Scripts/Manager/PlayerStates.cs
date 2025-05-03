@@ -33,6 +33,7 @@ namespace br.com.bonus630.thefrog.Manager
         //For Debug
         public int Shurykens;
         //Hearts é o maxlife
+        public int numDies = 0;
         public int Hearts = 2;
         public int Hour = 6;
         public int Collectables;

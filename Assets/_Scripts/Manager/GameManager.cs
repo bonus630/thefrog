@@ -292,6 +292,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
             GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
             GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
 
 #endif
             GameManager.Instance.UpdateScore();
@@ -321,7 +322,8 @@ namespace br.com.bonus630.thefrog.Manager
                         //    break;
                         case GameEventName.Shuryken:
                             GameObject.Find("ShurikenChest").SetActive(false);
-                            break;
+                            break; 
+                     
                             //case GameEventName.HeartContainer:
                             //    GameObject.Find("HeartContainerChest").SetActive(false);
                             //    break;
@@ -399,6 +401,9 @@ namespace br.com.bonus630.thefrog.Manager
                     break;
                 case GameEventName.FeatherTouch:
                     PlayerStates.FallsControl = true;
+                    break; 
+                case GameEventName.Dash:
+                    PlayerStates.HasDash = true;
                     break;
             }
         }

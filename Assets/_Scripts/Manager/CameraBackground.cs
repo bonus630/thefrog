@@ -14,6 +14,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] GameObject night;
         [SerializeField] GameObject sun;
         [SerializeField] GameObject sunLight;
+        [SerializeField] GameObject background2;
         [SerializeField] float cycleDurationMinutes = 1f; // Tempo que você quer que dure o ciclo inteiro (12 minutos)
         [SerializeField][Range(0, 24)] private int hour = 6;
 
@@ -300,6 +301,10 @@ namespace br.com.bonus630.thefrog.Manager
             rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
             if (overlay.transform.position.x + 24 < leftEdge.x)
                 overlay.transform.position = new Vector3(rightEdge.x + 24, rightEdge.y + 2, 0);
+        }
+        public void ChangeBackground()
+        {
+            background2.SetActive(true);
         }
     }
 }

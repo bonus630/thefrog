@@ -9,11 +9,15 @@ namespace br.com.bonus630.thefrog.Activators
             base.Update();
             if (frontColliding)
             {
-                xDirection *= -1;
-                transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y);
+                ChangeDirection();
             }
             rg.linearVelocityX = Time.deltaTime * speed * xDirection;
 
+        }
+        protected virtual void ChangeDirection()
+        {
+            xDirection *= -1;
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y);
         }
     }
 }

@@ -31,7 +31,8 @@ MonoBehaviour:
       sei se o que vi la perto da casa do \"Pato\" era minha Lagoa"
   - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
     Name: 
-    text: "Voc\xEA precisa fazer ..."
+    text: "Voc\xEA precisa fazer ... \xE9 tentar pular no ar"
   - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
-    text: Que Seja! Obrigado!
+    text: "Pular no ar, n\xE3o parece muito para quem \"cai para cima\"! Que Seja!
+      Obrigado!"

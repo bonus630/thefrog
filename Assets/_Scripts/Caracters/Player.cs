@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.LowLevel;
 using System.Threading;
 using UnityEngine.InputSystem;
 using System;
+using Unity.Collections;
 namespace br.com.bonus630.thefrog.Caracters
 {
 
@@ -20,6 +21,7 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] private GameObject projectile;
         [SerializeField] private GameObject fireball;
         [SerializeField] private Transform projectilesSpawPoint;
+        [field: SerializeField] public int CurrentLife { get; set; } = 2;
         [Header("Sounds")]
         [SerializeField] private AudioClip jumpSFX;
         [SerializeField] private AudioClip hitSFX;
@@ -28,6 +30,8 @@ namespace br.com.bonus630.thefrog.Caracters
         [Header("Effects")]
         [SerializeField] private ParticleSystem JumpDownParticles;
         [SerializeField] private ParticleSystem GravityParticles;
+        [SerializeField] private ParticleSystem DashParticles;
+
         //[Header("Inputs")]
         //[SerializeField] private InputAction moveAction;
 
@@ -39,21 +43,29 @@ namespace br.com.bonus630.thefrog.Caracters
         private br.com.bonus630.thefrog.DialogueSystem.DialogueSystem dialogueSystem;
 
         private int jumps = 2;
-        [field: SerializeField] public int CurrentLife { get; set; } = 2;
         private float doubleJumpForce;
         private Vector2 direction;
         private float invencibleTimer = 1.2f;
         public float gravityDirection = 1;
         private float timeInFastFall = 0;
-
         public bool inGround;
         private float acceleration = 0;
         private bool isJumping;
         private bool doubleJump;
         private bool readyToJump;
         private bool invencible;
+        private bool resetFastFall = false;
         private bool knockUp = false;
+        private float gravityScale = 4f;
         [SerializeField] private Vector2 knockUpForce;
+        private Vector2 DashSpeed = new Vector2(1, 0);
+
+        [SerializeField] float dashActiveMaxTime = 0.5f;
+        [SerializeField] float dashReloadMaxTime = 0.5f;
+        float dashActiveTimer = 0;
+        float dashReloadTimer = 0;
+
+
         public bool InputsOn { get; set; } = true;
         //private bool isStartJumpTimer;
 
@@ -67,13 +79,13 @@ namespace br.com.bonus630.thefrog.Caracters
 
         private readonly float wallSlideSpeed = -0.36f;
         private readonly float wallJumpXForce = 120f;
-        private  float wallJumpYForce = 220f;
+        private float wallJumpYForce = 220f;
         private readonly float maxTimeInFall = 0.6f;
 
 
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int WalkID = Animator.StringToHash("Walk");
-        protected readonly int RunID = Animator.StringToHash("Run");
+        //protected readonly int RunID = Animator.StringToHash("Run");
         protected readonly int JumpID = Animator.StringToHash("Jump");
         protected readonly int WallJumpID = Animator.StringToHash("WallJump");
         protected readonly int DoubleJumpID = Animator.StringToHash("DoubleJump");
@@ -123,23 +135,23 @@ namespace br.com.bonus630.thefrog.Caracters
             }
 #endif
         }
-        public void AddForce(Vector2 force,ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
+        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
             StartCoroutine(RemoveInputs(time));
-            rb.AddForce(force,mode);
+            rb.AddForce(force, mode);
         }
-        
         void FixedUpdate()
         {
             //       Debug.DrawLine(transform.position, Vector3.up * gravityDirection * 10);
             if (Mathf.Abs(rb.linearVelocityY * gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 timeInFastFall += Time.deltaTime;
-                if (GameManager.Instance.PlayerStates.FallsControl && Input.GetButtonDown("Jump"))
+                if (resetFastFall)
                 {
                     timeInFastFall = 0;
                     // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
                     rb.linearVelocityY = LinearMaxY * gravityDirection;
+                    resetFastFall = false;
                     JumpDownEffect();
                 }
                 if (timeInFastFall > maxTimeInFall)
@@ -183,7 +195,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
 
             //isWallSliding = !inGround && rb.linearVelocityY < 0 && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
-             isWallSliding = IsWallSliding();
+            isWallSliding = IsWallSliding();
             //Debug.Log("iswallSliding:" + isWallSliding);
             if (wallCheck.CheckGround())
             {
@@ -215,13 +227,13 @@ namespace br.com.bonus630.thefrog.Caracters
         private bool IsWallSliding()
         {
             bool falling = false;
-            if(gravityDirection == 1 && rb.linearVelocityY > 0)
+            if (gravityDirection == 1 && rb.linearVelocityY > 0)
                 falling = true;
-            if(gravityDirection == -1 && rb.linearVelocityY < 0)
+            if (gravityDirection == -1 && rb.linearVelocityY < 0)
                 falling = true;
             if (!falling)
                 return false;
-            return !inGround  && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
+            return !inGround && Mathf.Abs(direction.x) > 0 && wallCheck.RightWallCheck();
 
         }
         //private bool CheckGround()
@@ -240,7 +252,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             if (Time.time > nextLaunch)
             {
-               // GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
+                // GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
                 GameObject bullet = Instantiate(fireball, projectilesSpawPoint.position, Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
@@ -257,11 +269,28 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             direction = context.ReadValue<Vector2>();
         }
+        bool inDash = false;
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (GameManager.Instance.PlayerStates.HasDash)
+            {
+                if (context.started)
+                {
+                    Debug.Log("InDash true");
+                    inDash = true;
+                }
+                if (context.canceled)
+                {
+                    Debug.Log("InDash false");
+                    inDash = false;
+                }
+            }
+        }
         public void OnJump(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                if (inGround)
+                if (inGround && !inDash)
                 {
                     isJumping = true;
                     jumps--;
@@ -278,6 +307,8 @@ namespace br.com.bonus630.thefrog.Caracters
                 {
                     readyToJump = true;
                 }
+                if (timeInFastFall > 0)
+                    resetFastFall = true;
             }
             //if (context.performed)
             //    Debug.Log("Jump context perfomed"); 
@@ -575,6 +606,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
             JumpDownEffect();
             inGround = true;
+            airDash = false;
             doubleJump = false;
             anim.SetBool(JumpID, false);
             jumps = 2;
@@ -608,7 +640,10 @@ namespace br.com.bonus630.thefrog.Caracters
                 if (direction.x > 0)
                 {
                     if (transform.localScale.x < 0)
+                    {
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+                    }
                     if (wallCheck.RightWallCheck())
                     {
                         canMove = false;
@@ -623,7 +658,9 @@ namespace br.com.bonus630.thefrog.Caracters
                 if (direction.x < 0)
                 {
                     if (transform.localScale.x > 0)
+                    {
                         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                    }
                     if (wallCheck.RightWallCheck())
                         canMove = false;
                     else
@@ -637,9 +674,10 @@ namespace br.com.bonus630.thefrog.Caracters
 
 
             }
+            Dash(canMove);
             if (canMove)
             {
-                anim.SetBool(WalkID, true);
+                // anim.SetBool(WalkID, true);
                 //Vector3 moviment = new Vector3(direction, 0, 0);
                 //transform.position += moviment * Time.deltaTime * speed;
                 //if(Mathf.Abs(rb.linearVelocityX) < speed / 2)
@@ -647,26 +685,82 @@ namespace br.com.bonus630.thefrog.Caracters
                 //else 
                 // rb.linearVelocityX = speed * direction.x;
                 if (inGround)
-                    rb.linearVelocityX = acceleration;
+                    rb.linearVelocityX = acceleration * DashSpeed.x;
                 else
-                    rb.linearVelocityX = speed * direction.x;
+                    rb.linearVelocityX = speed * direction.x * DashSpeed.x;
 
             }
             else
             {
                 // if (inGround)
                 //  {
-                anim.SetBool(WalkID, false);
+                // anim.SetBool(WalkID, false);
                 //   }
                 rb.linearVelocityX = 0;
                 acceleration = 0f;
+            }
+
+            anim.SetFloat(WalkID, Mathf.Abs(rb.linearVelocityX));
+        }
+        bool airDash = false;
+        bool firstTimeInDashLoop = false;
+        private void Dash(bool canMove)
+        {
+            if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer > 0 && !firstTimeInDashLoop) || wallCheck.RightWallCheck())
+                inDash = false;
+            if (inDash)
+            {
+                if (!airDash)
+                {
+                    if (inGround)
+                        airDash = false;
+                    else
+                        airDash = true;
+                    // ParticleSystem.MainModule main = DashParticles.main;
+
+                    if (LookFor < 0)
+                    {
+                        DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
+                        DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                        // main.startSpeed = -6;
+                    }
+                    else
+                    {
+                        DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
+                        DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+                        //main.startSpeed = 6;
+                    }
+                    DashSpeed = new Vector2(8, 0);
+                    DashParticles.Play();
+                    Debug.Log("Dash here time: " + dashReloadMaxTime);
+                    // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
+                    rb.gravityScale = 0;
+                    firstTimeInDashLoop = true;
+                }
+                dashReloadTimer = dashReloadMaxTime;
+                dashActiveTimer += Time.deltaTime;
+            }
+            if (!inDash)
+            {
+                DashSpeed = new Vector2(1, 0);
+                if (this.gravityDirection > 0)
+                    rb.gravityScale = -this.gravityScale;
+                else 
+                    rb.gravityScale = this.gravityScale;
+                    dashReloadTimer -= Time.deltaTime;
+                dashActiveTimer -= Time.deltaTime;
+                if (dashReloadTimer < 0)
+                    dashReloadTimer = 0;
+                if (dashActiveTimer < 0)
+                    dashActiveTimer = 0;
+                firstTimeInDashLoop = false;
             }
         }
         public void Launch()
         {
             if (GameManager.Instance.PlayerStates.Shurykens > 0)
             {
-               // GameObject projectileGO = Instantiate(projectile, new Vector2(rb.position.x + (0.12f * LookFor), rb.position.y - 0.07f), Quaternion.identity);
+                // GameObject projectileGO = Instantiate(projectile, new Vector2(rb.position.x + (0.12f * LookFor), rb.position.y - 0.07f), Quaternion.identity);
                 GameObject projectileGO = Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
                 Shuryken projectileScript = projectileGO.GetComponent<Shuryken>();
                 projectileScript.Launch(LookFor, 10f);
@@ -680,7 +774,8 @@ namespace br.com.bonus630.thefrog.Caracters
             direction.x = 0;
             rb.linearVelocity = Vector2.zero;
             InputsOn = false;
-            anim.SetBool(WalkID, false);
+            anim.SetFloat(WalkID, 0);
+            //anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()
         {
@@ -746,6 +841,7 @@ namespace br.com.bonus630.thefrog.Caracters
             rb.gravityScale = 0;
             rb.bodyType = RigidbodyType2D.Static;
             footerCollider.isTrigger = true;
+            GameManager.Instance.PlayerStates.numDies++;
             GameManager.Instance.GameOver();
         }
         public bool FooterTouching(Collider2D collision)

@@ -13,7 +13,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] private AudioClip[] BackgroundMusicsRandom;
 
         private float fadDuration = 10f;
-        private float targetVolume = 0.36f;
+        private float targetVolume = 0.32f;
         private float silentTime;
         private bool leftTurn = true;
 

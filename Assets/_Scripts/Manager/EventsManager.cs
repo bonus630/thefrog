@@ -55,7 +55,10 @@ namespace br.com.bonus630.thefrog.Manager
             events.Add(appleTree);
             GameEvent featherTouch = new GameEvent(GameEventName.FeatherTouch, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(featherTouch);
+            events.Add(featherTouch);  
+            GameEvent Dash = new GameEvent(GameEventName.Dash, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(Dash);
 
         }
 
@@ -146,6 +149,7 @@ namespace br.com.bonus630.thefrog.Manager
         FeatherTouch,
         FireBall,
         AppleTreeFounded,
+        Dash,
         None
     }
 }
