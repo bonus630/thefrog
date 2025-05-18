@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] GameObject sun;
         [SerializeField] GameObject sunLight;
         [SerializeField] GameObject background2;
-        [SerializeField] float cycleDurationMinutes = 1f; // Tempo que você quer que dure o ciclo inteiro (12 minutos)
+        [field:SerializeField]public float CycleDurationMinutes { get; set; } = 1f; // Tempo que você quer que dure o ciclo inteiro (12 minutos)
         [SerializeField][Range(0, 24)] private int hour = 6;
 
         [SerializeField] Color corNoite = new Color(0.2f, 0.3f, 0.5f, 0.4f);     // Azul escuro, frio
@@ -54,8 +54,8 @@ namespace br.com.bonus630.thefrog.Manager
         void Awake()
         {
             filterSR = filter.GetComponent<SpriteRenderer>();
-            speed = 1f / (cycleDurationMinutes * 60f);
-            time = cycleDurationMinutes / 6f * 60f; //Duas horas de fad no ciclo, alterar para o 6f para 12 para 1 Hora
+            speed = 1f / (CycleDurationMinutes * 60f);
+            time = CycleDurationMinutes / 6f * 60f; //Duas horas de fad no ciclo, alterar para o 6f para 12 para 1 Hora
             initialHour = InitialTFromHour();
 
         }
@@ -84,6 +84,8 @@ namespace br.com.bonus630.thefrog.Manager
                 daySunOverlay.GetComponent<SpriteRenderer>().color = transparent;
                 overlay.GetComponent<SpriteRenderer>().color = transparent;
             }
+            //fazendo um teste com isso
+            CheckNight(hour);
         }
 
         float InitialTFromHour()
@@ -224,7 +226,7 @@ namespace br.com.bonus630.thefrog.Manager
             hour = _hour;
             HourChanged?.Invoke(hour);
             GameManager.Instance.PlayerStates.Hour = hour;
-            //Debug.Log("Hour: " + hour);
+           // Debug.Log("Hour: " + hour);
             //  Debug.Log("Tonight: " + isToNight + " ToDay: " + isToDay);
 
             if (_hour >= 17 && _hour < 19)

@@ -30,7 +30,7 @@ namespace br.com.bonus630.thefrog.Activators
         protected override void Start()
         {
             animator = GetComponent<Animator>();
-            coll = GetComponent<BoxCollider2D>();
+            coll = GetComponent<CircleCollider2D>();
             followTime = 5f;
             this.life = 5;
             //base.Start();
@@ -70,6 +70,10 @@ namespace br.com.bonus630.thefrog.Activators
         }
         public void DisableShield()
         {
+            foreach (var col in shield.GetComponents<Collider2D>())
+            {
+                col.enabled = false;
+            }
             shield.SetActive(false);
             animator.SetBool("Shield", false);
             shieldTimer = shieldDeativedTime;
@@ -80,12 +84,16 @@ namespace br.com.bonus630.thefrog.Activators
             animator.SetBool("Shield", true);
             coll.enabled = true;
             shield.SetActive(true);
+            foreach (var col in shield.GetComponents<Collider2D>())
+            {
+                col.enabled = true;
+            }
             // Debug.Log("Active shield");
         }
 
         protected new void OnCollisionEnter2D(Collision2D collision)
         {
-
+            Debug.Log("SKULL: colisão com " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
             {
                 Player player;

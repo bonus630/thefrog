@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
+  m_Name: NPCWoman
+  m_EditorClassIdentifier: 
+  DialogueName: Lamentos
+  Dialogues:
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: Quero ir embora desse lugar!
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Eu tamb\xE9m preciso sair daqui, tenho que encontrar o caminho da minha
+      lagoa!"
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: Veja esses "Transportes", o "Rei" de alguma maneira os desativaram!
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: Eles levavam diretamente para Alysky...
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "De algum tempo para c\xE1 o \"Rei\" come\xE7ou a ficar estanho, jogou
+      os transportes aqui, ca\xE7ou os Alysken, e se trancou no seu Castelo..."
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: Mais ou menos na epoca que o "Mago" apareceu no Reino
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "Ent\xE3o a cidade foi tomada por essa neblina"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: O mago...
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Acho que vou at\xE9 o Rei para conversarmos..."
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "O Rei n\xE3o est\xE1 recebendo ningu\xE9m, mas eu conhe\xE7o uma maneira
+      de descer a ponte levadi\xE7a. "
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "Mas uma vez a ponte no ch\xE3o, os porcos v\xE3o sair para acatacar quem
+      tentar entrar"
+  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Porcos novamente, n\xE3o se preocupe j\xE1 tenho experi\xEAncia com eles"
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "Que bom! Preste aten\xE7\xE3o..."
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "Logo a frente exite um duto de esgoto, por l\xE1 voc\xEA pode chegar a
+      sala de controle da ponte, mas vai precisar seguir o seguinte caminho: "
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: "{entrada}n\xE3o v\xE1 se perder!!!"
+  - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
+    Name: 
+    text: Se cuida!

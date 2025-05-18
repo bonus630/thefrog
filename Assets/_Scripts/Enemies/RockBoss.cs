@@ -28,9 +28,11 @@ namespace br.com.bonus630.Enemies
                 if (playerDirection != xDirection)
                     ChangeDirection();
                 followTime = 0f;
+                this.speed = 100f;
             }
             else
             {
+                this.speed = 80f;
                 followTime += Time.deltaTime;
             }
             if (frontColliding)
@@ -53,8 +55,9 @@ namespace br.com.bonus630.Enemies
             this.life = this.life - hit;
             if (life < 0.1f)
             {
-                stalagmiteScript.Active();
+                stalagmiteScript.Activate();
                 source.PlayOneShot(rockFalling);
+                FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
                 Destroy(gameObject, 0.2f);
             }
         }

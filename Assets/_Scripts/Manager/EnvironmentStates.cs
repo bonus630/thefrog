@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Manager
         public int NPCVirtualGuyApples;
         public int NPCVirtualGuyDialogue;
         public int NPC_WallJump_Tutorial;
-
+        public float GameTimeInSeconds;
         public EnvironmentStates()
         {
 

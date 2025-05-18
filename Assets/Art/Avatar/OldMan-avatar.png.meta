@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OldMan-avatar_0: 3071230195186364632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,6 +18,7 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            Debug.Log("SkullShield: colisão com " + collision.gameObject.name + ", shield ativo: " + gameObject.activeInHierarchy);
             if (collision.gameObject.CompareTag("Player"))
             {
                 Player player = collision.gameObject.GetComponent<Player>();

@@ -10,8 +10,8 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] GameObject from;
         [SerializeField] GameObject to;
         [SerializeField] bool Auto;
-
-
+        [SerializeField] float delayTime;
+        bool cancel = false;
 
         public override void Activate()
         {
@@ -20,7 +20,9 @@ namespace br.com.bonus630.thefrog.Environment
         private IEnumerator Acvation()
         {
 
-
+            yield return new WaitForSeconds(delayTime);
+            if(cancel)
+                yield break;
             SpriteRenderer render = null;
             Rigidbody2D rb = null;
             Player player = null;
@@ -50,16 +52,24 @@ namespace br.com.bonus630.thefrog.Environment
 
         public override void Deactive()
         {
-
+            cancel = true;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag(teleported.tag))
+            if (collision!=null && collision.CompareTag(teleported.tag))
             {
-
+                cancel = false;
                 if (Auto)
                     Activate();
+            }
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision != null && collision.CompareTag(teleported.tag))
+            {
+
+              Deactive();
             }
         }
     }

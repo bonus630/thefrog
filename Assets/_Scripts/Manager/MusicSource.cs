@@ -54,7 +54,7 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 silentTime = 0;
 
-            if (silentTime > 2f)
+            if (silentTime > 3f)
             {
                 audioLeft.loop = false;
                 audioRight.loop = false;
@@ -127,6 +127,14 @@ namespace br.com.bonus630.thefrog.Manager
                 audioRight.loop = true;
             CrossFade(BackgroundMusics[(int)music], false);
         }
+        public void CrossFade(BackgroundMusic music, bool inLoop)
+        {
+            if (leftTurn)
+                audioLeft.loop = inLoop;
+            else
+                audioRight.loop = inLoop;
+            CrossFade(BackgroundMusics[(int)music], !inLoop);
+        }
 
         IEnumerator WaitToNext(float delay)
         {
@@ -192,21 +200,25 @@ namespace br.com.bonus630.thefrog.Manager
             for (int i = 0; i < channels.Length; i++)
                 channels[i].volume = targetVolume; // Corrigido: channels[1] → channels[i]
         }
-        public void Play(BackgroundMusic music)
+        public void Play(BackgroundMusic music, bool inLoop = false)
         {
+            StopAllCoroutines();
             AudioClip clip = BackgroundMusics[(int)music];
             if (leftTurn)
             {
                 audioRight.Stop();
+                audioLeft.loop = inLoop;
                 Play(audioLeft, clip);
             }
             else
             {
                 audioLeft.Stop();
+                audioRight.loop = inLoop;
                 Play(audioRight, clip);
             }
             leftTurn = !leftTurn;
         }
+     
         private void Play(AudioSource audio, AudioClip clip)
         {
             audio.volume = targetVolume;
@@ -284,7 +296,10 @@ namespace br.com.bonus630.thefrog.Manager
         AppleTree = 6,
         Gravity = 7,
         Ship = 8,
-        MiniTour
+        MiniTour = 9,
+        DarkWind = 10,
+        GoodDayToDie = 11,
+        Ignition = 12
     }
 
 }

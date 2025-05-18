@@ -2,7 +2,7 @@ using br.com.bonus630.thefrog.Shared;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Items
 {
     public class Boxes : IActivator
     {
@@ -10,6 +10,7 @@ namespace br.com.bonus630.thefrog
         [SerializeField] SpriteRenderer spriteRenderer;
         //[SerializeField] GameObject[] pierces;
         [SerializeField] AudioSource audioSource;
+        [SerializeField] GameObject Item;
         public override void Activate()
         {
             
@@ -23,6 +24,12 @@ namespace br.com.bonus630.thefrog
         {
             spriteRenderer.enabled = false;
             audioSource.Play();
+            if (Item != null)
+            {
+                int i = Random.Range(2, 6);
+               for (;i > 0; i--)
+                    Instantiate(Item, new Vector2(transform.position.x, transform.position.y + 0.4f), Item.transform.rotation);
+            }
             for (int i = 0; i < transform.childCount; i++)
             {
                Rigidbody2D rb = transform.GetChild(i).gameObject.GetComponent<Rigidbody2D>();

@@ -6,13 +6,14 @@ using UnityEngine;
 namespace br.com.bonus630.thefrog.Environment
 {
     //Script altamenta acoplado, para a batalha
-    public class Stalagmite : MonoBehaviour
+    public class Stalagmite : IActivator
     {
         [SerializeField] float shakeTime = 0.05f;
         //  [SerializeField] Collider2D stupCollider;
         [SerializeField] GameObject stub;
         [SerializeField] GameObject _base;
         [SerializeField] ParticleSystem dust;
+        [SerializeField] bool dontDestroy = false;
         [field: SerializeField] bool autoDestroy { get; set; } = true;
         [field: SerializeField] bool actived { get; set; } = true;
 
@@ -34,14 +35,10 @@ namespace br.com.bonus630.thefrog.Environment
             tf = rb.GetComponent<Transform>();
             stub.GetComponent<CollisionRelay>().OnTriggerEnterAction += CheckTriggerEnter;
             if (actived)
-                Active();
+                Activate();
             // rb.gravityScale = 10f;
         }
-        public void Active()
-        {
-            dust.Play();
-            actived = true;
-        }
+    
         private void Update()
         {
             if (actived)
@@ -87,26 +84,34 @@ namespace br.com.bonus630.thefrog.Environment
         {
             stub.GetComponent<CollisionRelay>().OnTriggerEnterAction -= CheckTriggerEnter;
         }
+
         private void CheckTriggerEnter(Collider2D other)
         {
-
+            
             if (other.CompareTag("Ground"))
             {
                 
                 if (other.TryGetComponent<RockBoss>(out RockBoss boss))
                 {
                     boss.Hit(1);
+                 
                     Destroy(gameObject);
                 }
             }
             if(other.gameObject.CompareTag("Destroyable"))
             {
-                Destroy(other.gameObject);
+                if (other.TryGetComponent<IActivator>(out IActivator destroyable))
+                {
+                    destroyable.Deactive();
+                }
+                else
+                    Destroy(other.gameObject);
             }
             if (other.TryGetComponent<Player>(out Player player))
             {
                 player.Hit();
-                Destroy(gameObject);
+                if(!dontDestroy)
+                    Destroy(gameObject);
             }
             if (autoDestroy)
             {
@@ -116,5 +121,15 @@ namespace br.com.bonus630.thefrog.Environment
             }
         }
 
+        public override void Activate()
+        {
+            dust.Play();
+            actived = true;
+        }
+
+        public override void Deactive()
+        {
+            
+        }
     }
 }

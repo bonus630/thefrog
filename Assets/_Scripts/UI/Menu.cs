@@ -13,12 +13,11 @@ namespace br.com.bonus630.thefrog.UI
         [SerializeField] Button startButton;
         void Start()
         {
-            if (GameManager.Instance.CanContinue())
-                continueButton.gameObject.SetActive(true);
-           string[] joys = Input.GetJoystickNames();
-          var gamepad =  Gamepad.current;
-          //  Debug.Log(gamepad);
-           // startButton.Select();
+            continueButton.gameObject.SetActive(GameManager.Instance.CanContinue());
+            string[] joys = Input.GetJoystickNames();
+            var gamepad = Gamepad.current;
+            //  Debug.Log(gamepad);
+            // startButton.Select();
         }
 
         public void StartButton_clicked()
@@ -41,7 +40,7 @@ namespace br.com.bonus630.thefrog.UI
         //    if (Input.GetButtonDown("Jump"))
         //        StartButton_clicked();
         //}
-      
+
         //public void OnMove(InputAction.CallbackContext context)
         //{
         //    if(context.canceled)

@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Shared
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            
             OnCollisionEnterAction?.Invoke(collision);
         }
         private void OnTriggerEnter2D(Collider2D collision)

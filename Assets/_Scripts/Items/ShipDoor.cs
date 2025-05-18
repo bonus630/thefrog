@@ -99,6 +99,7 @@ namespace br.com.bonus630.thefrog.Items
             audioSource.PlayOneShot(closingAudio);
             anim.SetBool("Closed", true);
             isOpen = false;
+            Closed();
             if (isExit)
             {
                 door.SetActive(false);

@@ -3,7 +3,7 @@
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Assets.Scripts.Activators
+namespace br.com.bonus630.thefrog.Activators
 {
     public class FallingSpyke :  IActivator
     {

@@ -31,7 +31,7 @@ namespace br.com.bonus630.thefrog.Activators
             var eyesColliding = Physics2D.OverlapBox(topPoint.position,eyeSize,0,layerMaskProjectiles);
             if (eyesColliding)
             {
-                Debug.Log("Tartaruga olho:" + eyesColliding.name);
+               // Debug.Log("Tartaruga olho:" + eyesColliding.name);
                // Destroy(eyesColliding.collider.gameObject);
                 rg.gravityScale = 1;
                 rg.linearVelocityX = 0;

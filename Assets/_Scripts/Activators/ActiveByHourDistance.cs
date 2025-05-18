@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.Activators
         private bool firstActive = false;
         private int hour;
         private CameraBackground cameraControl;
-        private void LateUpdate()
+        private void Update()
         {
             playerDistance = Vector3.Distance(player.transform.position, pointToActive.transform.position);
             ActiveItem();

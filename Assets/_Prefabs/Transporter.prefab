@@ -134,10 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9421dbd86092cf54d9e2bb88312ed7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destine: {x: -26, y: 21}
+  destines: []
   travelDuration: 2
+  speed: 10
+  currentSpeed: 0
   OnSprite: {fileID: 955477813400596420, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
   OffSprite: {fileID: -6262087978637747557, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
+  stopOnPlayerOut: 0
+  stopMaxTime: 1
 --- !u!61 &8693344830195210584
 BoxCollider2D:
   m_ObjectHideFlags: 0
