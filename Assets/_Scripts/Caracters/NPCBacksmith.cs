@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 namespace br.com.bonus630.thefrog.Caracters
 {
     public class NPCBacksmith : NPCBase, INPC

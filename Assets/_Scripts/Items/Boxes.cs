@@ -1,5 +1,4 @@
 using br.com.bonus630.thefrog.Shared;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Items

@@ -1,7 +1,4 @@
-using System.Runtime.InteropServices.WindowsRuntime;
-using br.com.bonus630.thefrog.Caracters;
-using br.com.bonus630.thefrog.Activators;
-using Unity.VisualScripting;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
 {
@@ -52,8 +49,7 @@ namespace br.com.bonus630.thefrog.Items
                 remove = true;
                 audioSource.PlayOneShot(hitting);
                 GetComponent<Animator>().SetTrigger("Hit");
-                Player player;
-                if (collision.gameObject.TryGetComponent<Player>(out player))
+               if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
                 {
                     player.Hit();
                     return;

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
@@ -41,8 +41,8 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (autoPlay)
             {
-                Player player;
-                if (obj.TryGetComponent<Player>(out player))
+                IPlayer player;
+                if (obj.TryGetComponent<IPlayer>(out player))
                 {
                     player.ReadDialogue();
                     //  count++;

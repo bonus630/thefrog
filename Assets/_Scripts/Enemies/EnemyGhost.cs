@@ -1,6 +1,6 @@
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyGhost : EnemyBase
     {

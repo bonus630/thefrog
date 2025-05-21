@@ -1,7 +1,7 @@
 using System.Collections;
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
@@ -15,8 +15,8 @@ namespace br.com.bonus630.thefrog.Activators
         int dialogueIndex = 0;
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Player player;
-            if (collision.gameObject.TryGetComponent<Player>(out player))
+            IPlayer player;
+            if (collision.gameObject.TryGetComponent<IPlayer>(out player))
             {
                 
                 player.Alert();

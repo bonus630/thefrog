@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Collider2D))]
@@ -22,6 +22,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField][Range(-1, 1)] protected int xDirection = -1;
         [SerializeField] protected List<Elements> enemyWeakenesses;
         public bool IsEnable { get; set; } = true;
+        public bool IsDied { get;protected set; } = false;
 
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int WalkID = Animator.StringToHash("Walk");
@@ -51,8 +52,8 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player;
-                if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll))
+                IPlayer player;
+                if (collision.gameObject.TryGetComponent<IPlayer>(out player) && player.FooterTouching(coll))
                 {
                     Debug.Log("collision base");
                     player.KnockUp(repulse);
@@ -80,6 +81,7 @@ namespace br.com.bonus630.thefrog.Activators
             if (life < 0.1f)
                 Destroy(gameObject, 0.2f);
         }
+        public virtual void DestroySelf() { }
         public void Restore()
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -88,12 +90,5 @@ namespace br.com.bonus630.thefrog.Activators
             gameObject.layer = 6;
         }
     }
-    public enum Elements
-    {
-        Normal = 0,
-        Fire = 1,
-        Water = 2,
-        Earth = 4,
-        Wind = 8
-    }
+  
 }

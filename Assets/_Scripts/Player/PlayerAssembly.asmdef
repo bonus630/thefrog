@@ -1,0 +1,21 @@
+{
+    "name": "PlayerAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Player",
+    "references": [
+        "GUID:782c81596ddab8f49a0eb268618cf126",
+        "GUID:a37c6ecb4194e6842835e10e68b5f0b5",
+        "GUID:94a210d92345c9b4b9db97a592ed469a",
+        "GUID:7ab784e7d9f694c4590f26d9d16c71f4",
+        "GUID:e70222c9dafa45c43b3a46d233e07c05",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

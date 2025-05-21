@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
 
     public class Skull : EnemyGhost
@@ -96,9 +95,9 @@ namespace br.com.bonus630.thefrog.Activators
             Debug.Log("SKULL: colisão com " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player;
+                IPlayer player;
 
-                if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll))
+                if (collision.gameObject.TryGetComponent<IPlayer>(out player) && player.FooterTouching(coll))
                 {
                     //   Invoke(nameof(Restore), 0.5f);
                     //Vector3 re = player.transform.position - transform.position;

@@ -49,7 +49,10 @@ namespace br.com.bonus630.thefrog.Manager
             events.Add(duckPath);
             GameEvent fireBall = new GameEvent(GameEventName.FireBall, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(fireBall);
+            events.Add(fireBall); 
+            GameEvent playerCheckWall = new GameEvent(GameEventName.PlayerCheckWall, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(playerCheckWall);
             GameEvent appleTree = new GameEvent(GameEventName.AppleTreeFounded, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(appleTree);
@@ -139,6 +142,7 @@ namespace br.com.bonus630.thefrog.Manager
     {
         NPCFirstTalk,
         KillPig,
+        PlayerCheckWall,
         NPCTutorial,
         Shuryken,
         Gravity,

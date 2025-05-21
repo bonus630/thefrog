@@ -32,17 +32,21 @@ namespace br.com.bonus630.thefrog.Caracters
             MusicSource musicSource;
             musicSource = GameObject.Find("AudioManager").GetComponent<MusicSource>();
             musicSource.StopAll();
+            ScreenFader fader = FindAnyObjectByType<ScreenFader>();
+            yield return fader.FadeOut();
             musicSource.Play(BackgroundMusic.Gravity);
             yield return new WaitForEndOfFrame();
+            FindAnyObjectByType<CameraBackground>().InitializeDayByHour(24);
             GameManager.Instance.EventCompleted(GameEventName.Gravity);
             GameManager.Instance.UpdatePlayer();
+            yield return new WaitForSeconds(1.5f); 
+            yield return fader.FadeIn();
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 5f);
             musicTarget.Play();
             GameManager.Instance.GetPlayerScript.InputsOn = false;
             yield return new WaitForEndOfFrame();   
             Invoke(nameof(RestorePlayerInput), 5f);
             Time.timeScale = 0.5f;
-            FindAnyObjectByType<CameraBackground>().InitializeDayByHour(24);
         }
         private void RestorePlayerInput()
         {

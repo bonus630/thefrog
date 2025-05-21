@@ -1,4 +1,3 @@
-using br.com.bonus630.thefrog.Activators;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators

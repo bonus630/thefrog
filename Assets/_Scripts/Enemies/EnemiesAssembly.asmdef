@@ -1,0 +1,19 @@
+{
+    "name": "EnemiesAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Enemies",
+    "references": [
+        "GUID:a37c6ecb4194e6842835e10e68b5f0b5",
+        "GUID:782c81596ddab8f49a0eb268618cf126",
+        "GUID:19bdff81f4674f44a97a6785aa00bea1",
+        "GUID:7ab784e7d9f694c4590f26d9d16c71f4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

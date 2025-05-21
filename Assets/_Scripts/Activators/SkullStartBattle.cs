@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {

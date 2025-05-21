@@ -1,7 +1,6 @@
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyTurtle : EnemyBase
     {
@@ -45,7 +44,7 @@ namespace br.com.bonus630.thefrog.Activators
             //Debug.Log(collision.gameObject.layer);
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player = collision.gameObject.GetComponent<Player>();
+                IPlayer player = collision.gameObject.GetComponent<IPlayer>();
                 player.Hit();
                 player.KnockUp(new Vector2(200, 200));
                 return;

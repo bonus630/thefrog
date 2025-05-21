@@ -1,9 +1,8 @@
-﻿using br.com.bonus630.thefrog.Activators;
-using br.com.bonus630.thefrog.Environment;
+﻿using br.com.bonus630.thefrog.Environment;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 
-namespace br.com.bonus630.Enemies
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class RockBoss : EnemyToad
     {

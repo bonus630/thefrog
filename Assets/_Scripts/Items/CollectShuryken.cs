@@ -1,5 +1,4 @@
-using br.com.bonus630.thefrog.Caracters;
-using br.com.bonus630.thefrog.Activators;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
 {
@@ -19,8 +18,7 @@ namespace br.com.bonus630.thefrog.Items
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
-            Player player;
-            if (collision.gameObject.TryGetComponent<Player>(out player))
+            if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
             {
                 player.ChangeNumberShurykens(shurykens);
 

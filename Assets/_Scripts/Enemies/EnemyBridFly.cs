@@ -1,8 +1,7 @@
-using System.Collections;
-using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyBridFly : EnemyBase, IEnemy
     {
@@ -45,10 +44,8 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player;
-                if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll))
+               if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(coll))
                 {
-                    Debug.Log("collision base");
                     player.KnockUp(repulse);
                     Destroy(gameObject, 0.05f);
                     return;

@@ -1,12 +1,7 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using br.com.bonus630.thefrog.Manager;
-using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
+
 namespace br.com.bonus630.thefrog.Caracters
 {
     public class NPCWoman : NPCBase, INPC

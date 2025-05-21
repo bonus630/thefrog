@@ -1,4 +1,3 @@
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
@@ -20,7 +19,8 @@ namespace br.com.bonus630.thefrog.Activators
         private void OnTriggerExit2D(Collider2D collision)
         {
             if(collision.CompareTag("Player"))
-                FindAnyObjectByType<NPC_WallJump_Tutorial>().PlayerCheckWall = true;
+                GameManager.Instance.EventCompleted(GameEventName.PlayerCheckWall);
+                //FindAnyObjectByType<NPC_WallJump_Tutorial>().PlayerCheckWall = true;
         }
 
         protected override void OnEventCompleted(GameEvent obj)

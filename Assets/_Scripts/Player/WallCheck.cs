@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Caracters
+namespace br.com.bonus630.thefrog.Player
 {
     public class WallCheck : MonoBehaviour
     {

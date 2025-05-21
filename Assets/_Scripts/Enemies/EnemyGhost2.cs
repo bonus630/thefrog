@@ -1,7 +1,6 @@
-using br.com.bonus630.thefrog.Assets._Scripts.Enemies;
-using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyGhost2 : EnemyGhostTrigger
     {
@@ -43,10 +42,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                //Debug.Log("Ghost2 collision: ");
-                Player player;
-
-                if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll) && !invencible)
+                if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(coll) && !invencible)
                 {
                     player.KnockUp(repulse);
                     Hit(1);

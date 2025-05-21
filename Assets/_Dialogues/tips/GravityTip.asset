@@ -16,4 +16,5 @@ MonoBehaviour:
   Dialogues:
   - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
-    text: "Isso \xE9 estranho! Mas, que seja!"
+    text: "Isso \xE9 estranho! Me sinto mais forte, estou de ponta cabe\xE7a, e j\xE1
+      \xE9 noite! Mas, que seja!"

@@ -56,32 +56,35 @@ namespace br.com.bonus630.thefrog.Manager
             vCam.Follow = GameManager.Instance.GetPlayer.transform;
 
         }
-        public void ShakeCameraEffect()
+        public void ShakeCameraEffect(int times = 1)
         {
             Transform camera = GetActiveCamera().transform;
-            if(!camera.IsUnityNull())
+            if(camera!=null)
             {
-                StartCoroutine(shakeCamera(camera));
+                StartCoroutine(shakeCamera(camera,times));
             }
         }
-        private IEnumerator shakeCamera(Transform camera)
+        private IEnumerator shakeCamera(Transform camera,int times)
         {
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(359.809998f, -3.25690581e-12f, 0.0299978238f);
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(0.0900041908f, 2.60551389e-11f, 359.849976f);
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(359.869995f, -5.21103438e-11f, 359.5499880f);
-            camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f); 
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(359.809998f, -3.25690581e-12f, 0.0299978238f); 
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(0.0900041908f, 2.60551389e-11f, 359.849976f);
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f); 
-            yield return new WaitForEndOfFrame();
-            camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
+            for (int i = 0; i < times; i++)
+            {
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(359.809998f, -3.25690581e-12f, 0.0299978238f);
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(0.0900041908f, 2.60551389e-11f, 359.849976f);
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(359.869995f, -5.21103438e-11f, 359.5499880f);
+                camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(359.809998f, -3.25690581e-12f, 0.0299978238f);
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(0.0900041908f, 2.60551389e-11f, 359.849976f);
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
+                yield return new WaitForEndOfFrame();
+                camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
+            }
             yield return null;
         }
     }

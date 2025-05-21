@@ -1,0 +1,20 @@
+{
+    "name": "CaractersAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Caracters",
+    "references": [
+        "GUID:a37c6ecb4194e6842835e10e68b5f0b5",
+        "GUID:94a210d92345c9b4b9db97a592ed469a",
+        "GUID:782c81596ddab8f49a0eb268618cf126",
+        "GUID:516a5277b8c3b4f4c8cc86b77b1591ff",
+        "GUID:f16f61ebd7583ca40b5fefca2fb325cd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,5 +1,4 @@
 ﻿
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
@@ -16,7 +15,7 @@ namespace br.com.bonus630.thefrog.Items
         SpriteRenderer sprite;
         GameObject door;
         BoxCollider2D boxCollider;
-        Player player;
+        IPlayer player;
 
 
         private void Awake()
@@ -49,9 +48,9 @@ namespace br.com.bonus630.thefrog.Items
         {
             if (collision.CompareTag("Player"))
             {
-                if (collision.TryGetComponent<Player>(out player))
+                if (collision.TryGetComponent<IPlayer>(out player))
                 {
-                    if (!player.inGround)
+                    if (!player.InGround)
                         return;
                     if (isOpen)
                     {

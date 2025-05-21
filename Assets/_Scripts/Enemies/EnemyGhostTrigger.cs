@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using br.com.bonus630.thefrog.Activators;
-using br.com.bonus630.thefrog.Caracters;
-using br.com.bonus630.thefrog.Items;
+﻿using br.com.bonus630.thefrog.Items;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Assets._Scripts.Enemies
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyGhostTrigger : EnemyGhost
     {
@@ -21,16 +15,14 @@ namespace br.com.bonus630.thefrog.Assets._Scripts.Enemies
             filter.useTriggers = true;
 
             int count = Physics2D.OverlapCollider(GetComponent<Collider2D>(), filter, hits);
-            if(count > 0) Debug.Log("Projetéis detectados: " + count);
+            if (count > 0) Debug.Log("Projetéis detectados: " + count);
         }
-        protected  void OnTriggerEnter2D(Collider2D collision)
+        protected void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log("ghost trigger:" + collision.gameObject.layer);
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player;
-
-                if (collision.gameObject.TryGetComponent<Player>(out player))
+                if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
                 {
                     player.KnockUp(repulse);
                     player.Hit();

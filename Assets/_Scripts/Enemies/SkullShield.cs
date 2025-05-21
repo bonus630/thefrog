@@ -1,7 +1,6 @@
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class SkullShield :  IActivator
     {
@@ -21,7 +20,7 @@ namespace br.com.bonus630.thefrog.Activators
             Debug.Log("SkullShield: colisão com " + collision.gameObject.name + ", shield ativo: " + gameObject.activeInHierarchy);
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player = collision.gameObject.GetComponent<Player>();
+                IPlayer player = collision.gameObject.GetComponent<IPlayer>();
                 player.Hit();
                 player.KnockUp(collision.GetContact(0).normal * 200);
                 return;

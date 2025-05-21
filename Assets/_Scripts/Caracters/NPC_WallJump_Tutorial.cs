@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
-using TMPro;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Caracters
 {
@@ -52,6 +51,8 @@ namespace br.com.bonus630.thefrog.Caracters
 
             firstTalk = GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk);
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
+            playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);
+            GameManager.Instance.eventManager.GameEventCompleted += EventManager_GameEventCompleted;
             SetDialogue();
 
             if (GameManager.Instance.IsEventCompleted(GameEventName.NPCTutorial))
@@ -61,6 +62,12 @@ namespace br.com.bonus630.thefrog.Caracters
                 playerCheckWall = true;
                 GoToFinal();
             }
+        }
+
+        private void EventManager_GameEventCompleted(GameEvent obj)
+        {
+            if (obj.Name.Equals(GameEventName.PlayerCheckWall))
+                PlayerCheckWall = true;
         }
 
         //public void PrepareToNext()

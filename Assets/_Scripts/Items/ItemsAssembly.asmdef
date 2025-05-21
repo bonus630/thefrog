@@ -1,0 +1,17 @@
+{
+    "name": "ItemsAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Items",
+    "references": [
+        "GUID:a37c6ecb4194e6842835e10e68b5f0b5",
+        "GUID:782c81596ddab8f49a0eb268618cf126"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

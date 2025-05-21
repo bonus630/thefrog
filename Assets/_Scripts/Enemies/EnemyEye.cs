@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyEye : MonoBehaviour
     {

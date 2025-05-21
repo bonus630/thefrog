@@ -1,6 +1,5 @@
-using System.Collections;
-using br.com.bonus630.thefrog.Activators;
-using Cinemachine;
+using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 
@@ -20,25 +19,24 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            //Debug.Log("Break: " + collision.gameObject.name);
-            Pig pig;
-            if (collision.TryGetComponent<Pig>(out pig) && pig.IsDied)
+            if (collision.TryGetComponent<IEnemy>(out IEnemy pig) && pig.IsDied)
             {
-                pig.DestroyBoss();
+                pig.DestroySelf();
                 spriteRenderer.enabled = false;
                 effect.Play();
-                StartCoroutine(ShakeCam());
+                FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
+                //StartCoroutine(ShakeCam());
                 GetComponent<AudioSource>().PlayOneShot(wallBreak);
                 Destroy(gameObject, 1f);
 
             }
         }
-        IEnumerator ShakeCam()
-        {
-            yield return new WaitForEndOfFrame();
-            GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
-            yield return new WaitForEndOfFrame();
-        }
+        //IEnumerator ShakeCam()
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //    GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+        //    yield return new WaitForEndOfFrame();
+        //}
 
     }
 }

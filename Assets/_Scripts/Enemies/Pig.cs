@@ -1,8 +1,8 @@
-using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 
-namespace br.com.bonus630.thefrog.Activators
+namespace br.com.bonus630.thefrog.Enemies
 {
     public class Pig : EnemyBase
     {
@@ -14,8 +14,8 @@ namespace br.com.bonus630.thefrog.Activators
         //private bool inFury = false;
         //private bool start = false;
         private int flik = 0;
-        private CircleCollider2D collider2D;
-        public bool IsDied { get; private set; }
+        private new CircleCollider2D collider2D;
+      
 
 
 
@@ -62,9 +62,8 @@ namespace br.com.bonus630.thefrog.Activators
 
             if (collision.gameObject.CompareTag("Player"))
             {
-                Player player;
-
-                if (collision.gameObject.TryGetComponent<Player>(out player) && player.FooterTouching(coll))
+               
+                if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(coll))
                 {
                     // Debug.Log("Boss Collider " + gameObject.name);
                     Invoke(nameof(Restore), 0.5f);
@@ -103,7 +102,7 @@ namespace br.com.bonus630.thefrog.Activators
             speed /= 2;
             speed += 0.4f;
         }
-        public void DestroyBoss()
+        public override void DestroySelf()
         {
             rg.totalForce = Vector2.zero;
             rg.linearVelocityX = 0f;

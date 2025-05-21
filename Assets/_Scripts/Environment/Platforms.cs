@@ -1,4 +1,4 @@
-using br.com.bonus630.thefrog.Caracters;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Environment
 {
@@ -45,7 +45,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().FooterTouching(coll))
+            if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<IPlayer>().FooterTouching(coll))
             {
                 startCountdown = true;
             }

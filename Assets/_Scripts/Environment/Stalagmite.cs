@@ -1,6 +1,4 @@
-﻿using br.com.bonus630.Enemies;
-using br.com.bonus630.thefrog.Caracters;
-using br.com.bonus630.thefrog.Shared;
+﻿using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment
@@ -91,7 +89,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (other.CompareTag("Ground"))
             {
                 
-                if (other.TryGetComponent<RockBoss>(out RockBoss boss))
+                if (other.TryGetComponent<IEnemy>(out IEnemy boss))
                 {
                     boss.Hit(1);
                  
@@ -107,7 +105,7 @@ namespace br.com.bonus630.thefrog.Environment
                 else
                     Destroy(other.gameObject);
             }
-            if (other.TryGetComponent<Player>(out Player player))
+            if (other.TryGetComponent<IPlayer>(out IPlayer player))
             {
                 player.Hit();
                 if(!dontDestroy)

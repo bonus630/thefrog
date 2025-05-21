@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections;
+﻿using System.Collections;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 

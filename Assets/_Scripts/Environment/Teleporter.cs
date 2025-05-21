@@ -1,5 +1,4 @@
 using System.Collections;
-using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Environment
@@ -25,7 +24,7 @@ namespace br.com.bonus630.thefrog.Environment
                 yield break;
             SpriteRenderer render = null;
             Rigidbody2D rb = null;
-            Player player = null;
+            IPlayer player = null;
             if (teleported.TryGetComponent<SpriteRenderer>(out render))
             {
                 render.enabled = false;
@@ -34,9 +33,9 @@ namespace br.com.bonus630.thefrog.Environment
             {
                 rb.bodyType = RigidbodyType2D.Kinematic;
             }
-            if (teleported.TryGetComponent<Player>(out player))
+            if (teleported.TryGetComponent<IPlayer>(out player))
             {
-                player.InputOn = false;
+                player.InputsOn = false;
             }
             teleported.transform.position = to.transform.position;
             yield return new WaitForSeconds(0.1f);
@@ -45,7 +44,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (rb != null)
                 rb.bodyType = RigidbodyType2D.Dynamic;
             if(player!=null)
-                player.InputOn = true; 
+                player.InputsOn = true; 
 
 
         }
