@@ -17,7 +17,12 @@ namespace br.com.bonus630.thefrog.Activators
             circleCollider = GetComponent<CircleCollider2D>();
 
         }
-
+        void Reset()
+        {
+            Debug.Log("Activator reset");
+            circleCollider = GetComponent<CircleCollider2D>();
+            circleCollider.isTrigger = false;
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {

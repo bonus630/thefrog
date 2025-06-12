@@ -80,6 +80,12 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public void EnableShield()
         {
+            StartCoroutine(EnableShieldRoutine());
+        }
+        private IEnumerator EnableShieldRoutine()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
             animator.SetBool("Shield", true);
             coll.enabled = true;
             shield.SetActive(true);
@@ -102,11 +108,12 @@ namespace br.com.bonus630.thefrog.Enemies
                     //   Invoke(nameof(Restore), 0.5f);
                     //Vector3 re = player.transform.position - transform.position;
                     // repulse = re.normalized * repulseForce * -1;
-                    repulse = collision.GetContact(0).normal * repulseForce * -1;
-                    coll.enabled = false;
+                    repulse = repulseForce * -1 * collision.GetContact(0).normal;
+                    Debug.Log("Skull Repulse:" + repulse);
                     player.KnockUp(repulse);
+                   // coll.enabled = false;
                     this.life--;
-                    //  Debug.Log("Boss Collider " + gameObject.name + " Life: " + this.life);
+                      Debug.Log("Boss Collider :" +coll.enabled+" name: " + gameObject.name + " Life: " + this.life);
                     if (life < 1)
                     {
                         isDied = true;

@@ -21,7 +21,7 @@ public class SpriteSlicerWindow : EditorWindow
     private int slice = 0;
     private int directionY = -1;
 
-    [MenuItem("Window/Custom Sprite Slicer")]
+    [MenuItem("Tools/Custom Sprite Slicer")]
     public static void OpenWindow()
     {
 

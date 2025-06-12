@@ -193,7 +193,7 @@ public class Frogger : MonoBehaviour
         if (enabled && hitObstacle && !onPlatform)
         {
             if (other.name == "Car5" && MiniGameManager.Instance.lives == 1)
-                GameManager.Instance.LoadGame(StartType.New);
+                GameManager.Instance.LoadGame(SceneStartType.New);
             //SceneManager.LoadScene("SampleScene");
             Death();
         }

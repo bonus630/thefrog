@@ -34,9 +34,10 @@ namespace br.com.bonus630.thefrog.Manager
         public EventsManager eventManager;
 
         public Vector3 StartGamePosition { get; private set; }
-
+        public int ToPoint { get; set; }
         //Scenes Names
         public readonly string MainScene = "SampleScene";
+        public readonly string InternAreas = "InternAreas";
         public readonly string FroggerScene = "Frogger";
         public readonly string GameOverScene = "GameOver";
 
@@ -89,10 +90,11 @@ namespace br.com.bonus630.thefrog.Manager
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
             playerStates.HasGravity = true;
+            playerStates.HasWallJump = true;
             playerStates.Shurykens = 100;
-#endif
+//#endif
             DontDestroyOnLoad(gameObject);
         }
         private void Start()
@@ -115,6 +117,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         TextMeshProUGUI TimerText = null;
         float startTimer = 0;
+        public event Action TimeOverEvent;
         public void StartTimer(float Time)
         {
             if (TimerText == null)
@@ -134,6 +137,7 @@ namespace br.com.bonus630.thefrog.Manager
                 TimerText.text = time.ToString(@"hh\:mm\:ss");
             }
             TimerText.transform.parent.gameObject.SetActive(false);
+            TimeOverEvent?.Invoke();
         }
         private void Pause(bool pause)
         {
@@ -175,10 +179,69 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return PlayTimeInSeconds;
         }
+        private SceneStartType sceneStartType;
+        public void LoadGame(SceneStartType type)
+        {
+             Debug.LogWarning("LoadGame type:"+type);
+            sceneStartType = type;
+            if (type.Equals(SceneStartType.Intern))
+            {
+                StartCoroutine(ChangeScene(InternAreas));
+                return;
+            }
+            if (type == SceneStartType.Main)
+            {
+                StartCoroutine(ChangeScene(MainScene));
+                return;
+            }
+            eventManager.Reset();
+            if (type == SceneStartType.Start)
+            {
+                SceneManager.LoadScene(FroggerScene);
+            }
+            if (type == SceneStartType.New)
+            {
+                SceneManager.LoadScene(MainScene);
+            }
+            if (type == SceneStartType.Continue)
+            {
+                this.EnvironmentStates = LoadStates();
+                this.PlayerStates = this.EnvironmentStates.playerStates;
+                continueGame = true;
+                SceneManager.LoadScene(MainScene);
+                //ChangeGameToState(this.PlayerStates);
+            }
+        }
+      
+        private IEnumerator ChangeScene(string sceneName)
+        {
+            ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
+            if (se != null)
+            {
+                se.FadeOut(1f);
+                yield return new WaitForSeconds(1f);
+               // se.screenFader.fadeImage.color = Color.black;
+            }
+            
+            SceneManager.LoadScene(sceneName);
+            se = FindAnyObjectByType<ScreenEffects>();
+            if (se != null)
+            {
+                se.screenFader.fadeImage.color = Color.black;
+                se.FadeIn(1f);
+            }
+            yield return null;  
+        }
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             if (arg0.name.Equals(MainScene))
             {
+                if(sceneStartType.Equals(SceneStartType.Main))
+                {
+                    Debug.Log("Topoint index:" + ToPoint);
+                    GetPlayer.transform.position = GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>()[ToPoint];
+                    return;
+                }
                 StartCountingTime();
 #if UNITY_EDITOR
                 //ChangeGameToState(this.EnvironmentStates);
@@ -189,6 +252,13 @@ namespace br.com.bonus630.thefrog.Manager
                     LoadStartGamePoint();
                 else
                     ChangeGameToState(this.EnvironmentStates);
+            }
+            if (arg0.name.Equals(InternAreas))
+            {
+                Debug.Log("load scene");
+                Debug.Log("Point:" +ToPoint);
+                Debug.Log("Player:" +GetPlayer.name);
+                GetPlayer.transform.position = GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>()[ToPoint];
             }
 
         }
@@ -254,29 +324,7 @@ namespace br.com.bonus630.thefrog.Manager
                 StartCoroutine(RemoveHeart(hud, hearts));
             }
         }
-        public void LoadGame(StartType type)
-        {
-            // Debug.LogWarning("LoadGame");
-            eventManager.Reset();
-            if (type == StartType.Start)
-            {
-                SceneManager.LoadScene(FroggerScene);
-            }
-            if (type == StartType.New)
-            {
-                SceneManager.LoadScene(MainScene);
-
-
-            }
-            if (type == StartType.Continue)
-            {
-                this.EnvironmentStates = LoadStates();
-                this.PlayerStates = this.EnvironmentStates.playerStates;
-                continueGame = true;
-                SceneManager.LoadScene(MainScene);
-                //ChangeGameToState(this.PlayerStates);
-            }
-        }
+ 
 
         IEnumerator AddHeart(GameObject hud, int hearts)
         {
@@ -291,7 +339,6 @@ namespace br.com.bonus630.thefrog.Manager
 
             while (total > hud.transform.childCount)
             {
-
                 var gb = Instantiate(heart, rect, false);
                 //Debug.Log("Col: " + col + " Row: " + row);
                 float offsetX = (heartRect.sizeDelta.x + 0.5f) * col;
@@ -311,7 +358,6 @@ namespace br.com.bonus630.thefrog.Manager
             int toRemove = hearts;
             while (toRemove < 0)
             {
-
                 Destroy(hud.transform.GetChild(hud.transform.childCount - 1).gameObject);
                 toRemove++;
                 yield return new WaitForSeconds(0.05f);
@@ -323,8 +369,6 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void SaveStates()
         {
-            //Debug.Log("Save States");
-            // jairson esta vindo vazio 
             environmentStates.playerStates = this.PlayerStates;
             string jason = JsonUtility.ToJson(environmentStates);
             File.WriteAllText(SaveDataFilePath, jason);
@@ -488,11 +532,13 @@ namespace br.com.bonus630.thefrog.Manager
 
         }
     }
-    public enum StartType
+    public enum SceneStartType
     {
         Start,
         Continue,
-        New
+        New,
+        Intern,
+        Main
     }
 }
 

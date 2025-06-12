@@ -1,6 +1,7 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
+
 namespace br.com.bonus630.thefrog.Environment
 {
     public class Teleporter : IActivator
@@ -11,9 +12,10 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] bool Auto;
         [SerializeField] float delayTime;
         bool cancel = false;
-
+        
         public override void Activate()
         {
+        
             StartCoroutine(Acvation());
         }
         private IEnumerator Acvation()
@@ -56,6 +58,8 @@ namespace br.com.bonus630.thefrog.Environment
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (teleported == null)
+                return;
             if (collision!=null && collision.CompareTag(teleported.tag))
             {
                 cancel = false;
@@ -65,6 +69,8 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
+            if (teleported == null)
+                return;
             if (collision != null && collision.CompareTag(teleported.tag))
             {
 

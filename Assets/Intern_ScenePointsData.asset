@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c4fd6963bb5e4abe0500b84d0d1ff, type: 3}
+  m_Name: Intern_ScenePointsData
+  m_EditorClassIdentifier: 
+  SceneIndex: 6
+  PointsData:
+  - Name: GhostShipEntrace
+    Point: {x: 86.33, y: -119.850006, z: -0.31750426}
+    transform: {fileID: 0}
+  - Name: CaveEntrace
+    Point: {x: 50.17, y: 156.48, z: 0}
+    transform: {fileID: 0}
+  SceneType: 3

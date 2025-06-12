@@ -19,10 +19,7 @@ namespace br.com.bonus630.thefrog.Player
         public float RightDistance(Vector3 v) => Vector3.Distance(rightWallCheck.position, v);
         public float LeftDistance(Vector3 v) => Vector3.Distance(leftWallCheck.position, v);
 
-        public bool IsFaceTo(Transform target)
-        {
-            return RightDistance(target.position) < LeftDistance(target.position);
-        }
+        public bool IsFaceTo(Transform target) => RightDistance(target.position) < LeftDistance(target.position);
 
 
         private void OnDrawGizmos()

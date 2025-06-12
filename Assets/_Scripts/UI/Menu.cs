@@ -23,13 +23,13 @@ namespace br.com.bonus630.thefrog.UI
         public void StartButton_clicked()
         {
             if (text.text == "INICIAL")
-                GameManager.Instance.LoadGame(StartType.Start);
+                GameManager.Instance.LoadGame(SceneStartType.Start);
             else
-                GameManager.Instance.LoadGame(StartType.Continue);
+                GameManager.Instance.LoadGame(SceneStartType.Continue);
         }
         public void ContinueButton_clicked()
         {
-            GameManager.Instance.LoadGame(StartType.Continue);
+            GameManager.Instance.LoadGame(SceneStartType.Continue);
         }
         public void QuitButton_clicked()
         {

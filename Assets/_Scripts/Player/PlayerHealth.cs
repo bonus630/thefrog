@@ -47,14 +47,13 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-
             if (collision.gameObject.layer == 10)
                 Die();
             if (collision.gameObject.layer == 6)
             {
                 if (!player.FooterTouching(collision.collider))
                 {
-
+                    Debug.Log("Player Hit");
                     Hit();
                     player.knockUp = true;
                     player.knockUpForce = collision.GetContact(0).normal * 40 * -1;

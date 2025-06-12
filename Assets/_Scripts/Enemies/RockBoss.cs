@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] GameObject player;
         [SerializeField] bool followPlayer = false;
         [SerializeField] float followTime = 0f;
+        float directionChangeTimer = 0f;
 
         protected override void Start()
         {
@@ -24,7 +25,7 @@ namespace br.com.bonus630.thefrog.Enemies
             if (followPlayer)
             {
                 int playerDirection = (player.transform.position.x > transform.position.x) ? 1 : -1;
-                if (playerDirection != xDirection)
+                if (playerDirection != xDirection && directionChangeTimer > 0.5f)
                     ChangeDirection();
                 followTime = 0f;
                 this.speed = 100f;
@@ -34,6 +35,9 @@ namespace br.com.bonus630.thefrog.Enemies
                 this.speed = 80f;
                 followTime += Time.deltaTime;
             }
+            if (directionChangeTimer > 0.5f)
+                directionChangeTimer = 0f;
+            directionChangeTimer += Time.deltaTime;  
             if (frontColliding)
                 Debug.Log("FrontCollider:");
             if (frontColliding && followTime > 4f)
