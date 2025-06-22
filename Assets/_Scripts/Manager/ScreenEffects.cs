@@ -14,7 +14,14 @@ namespace br.com.bonus630.thefrog.Manager
                 screenFader = FindAnyObjectByType<ScreenFader>();
         }
 
-
+        public void GameObjectFocus(GameObject gameObject, float time = 1)
+        {
+            camerasController.GameObjectFocus(gameObject, time);
+        }
+        public void GameObjectsFocus(GameObject[] gameObjects, float time = 1)
+        {
+            camerasController.GameObjectsFocus(gameObjects, time);
+        }
         public void ScreenShake()
         {
             camerasController.ShakeCameraEffect();

@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Caracters
 {
+    [Tooltip("A generic NPC")]
     public class NpcBunny : NPCBase,INPC
     {
         public void CheckInitialDialogue(int dialogue)
@@ -22,6 +23,11 @@ namespace br.com.bonus630.thefrog.Caracters
         public override void Interact()
         {
             
+        }
+        public override void SetFinishDialogue()
+        {
+            dialogueCounter = 0;
+
         }
     }
 }

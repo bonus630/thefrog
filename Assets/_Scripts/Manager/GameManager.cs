@@ -34,6 +34,7 @@ namespace br.com.bonus630.thefrog.Manager
         public EventsManager eventManager;
 
         public Vector3 StartGamePosition { get; private set; }
+        public Vector3 PlayerStartPosition { get;  set; }
         public int ToPoint { get; set; }
         //Scenes Names
         public readonly string MainScene = "SampleScene";
@@ -90,22 +91,26 @@ namespace br.com.bonus630.thefrog.Manager
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
             playerStates.HasGravity = true;
+            playerStates.HasFireball = true;
             playerStates.HasWallJump = true;
+            playerStates.FallsControl = true;
             playerStates.Shurykens = 100;
-//#endif
+            eventManager.EventCompleted(GameEventName.FeatherTouch, true);
+#endif
             DontDestroyOnLoad(gameObject);
         }
         private void Start()
         {
             PauseAction.Enable();
         }
+
         private void Update()
         {
             if (PauseAction.WasPressedThisFrame())
             {
-                if (SceneManager.GetActiveScene().name.Equals("SampleScene"))
+                if (SceneManager.GetActiveScene().name.Equals("SampleScene")|| SceneManager.GetActiveScene().name.Equals("InternAreas"))
                 {
                     Pause(Time.timeScale == 1 ? true : false);
                 }
@@ -158,6 +163,7 @@ namespace br.com.bonus630.thefrog.Manager
         private void OnApplicationPause(bool pause)
         {
             Debug.Log("Pause:" + pause);
+            Pause(pause);
         }
 
         public void StartCountingTime()
@@ -182,7 +188,7 @@ namespace br.com.bonus630.thefrog.Manager
         private SceneStartType sceneStartType;
         public void LoadGame(SceneStartType type)
         {
-             Debug.LogWarning("LoadGame type:"+type);
+            Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
             {
@@ -212,7 +218,7 @@ namespace br.com.bonus630.thefrog.Manager
                 //ChangeGameToState(this.PlayerStates);
             }
         }
-      
+
         private IEnumerator ChangeScene(string sceneName)
         {
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
@@ -220,9 +226,9 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 se.FadeOut(1f);
                 yield return new WaitForSeconds(1f);
-               // se.screenFader.fadeImage.color = Color.black;
+                // se.screenFader.fadeImage.color = Color.black;
             }
-            
+
             SceneManager.LoadScene(sceneName);
             se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
@@ -230,16 +236,18 @@ namespace br.com.bonus630.thefrog.Manager
                 se.screenFader.fadeImage.color = Color.black;
                 se.FadeIn(1f);
             }
-            yield return null;  
+            yield return null;
         }
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             if (arg0.name.Equals(MainScene))
             {
-                if(sceneStartType.Equals(SceneStartType.Main))
+                if (sceneStartType.Equals(SceneStartType.Main))
                 {
-                    Debug.Log("Topoint index:" + ToPoint);
-                    GetPlayer.transform.position = GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>()[ToPoint];
+                     Debug.Log("Topoint index:" + ToPoint);
+                    GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
+                    ChangeGameToState(this.EnvironmentStates);
+                   // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                     return;
                 }
                 StartCountingTime();
@@ -251,14 +259,16 @@ namespace br.com.bonus630.thefrog.Manager
                 if (!continueGame)
                     LoadStartGamePoint();
                 else
+                {
                     ChangeGameToState(this.EnvironmentStates);
+                    PlayerStartPosition = playerStates.PlayerPosition.Position;
+                }
             }
             if (arg0.name.Equals(InternAreas))
             {
-                Debug.Log("load scene");
-                Debug.Log("Point:" +ToPoint);
-                Debug.Log("Player:" +GetPlayer.name);
-                GetPlayer.transform.position = GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>()[ToPoint];
+                GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
+                ChangeGameToState(this.EnvironmentStates);
+                //GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             }
 
         }
@@ -266,6 +276,7 @@ namespace br.com.bonus630.thefrog.Manager
         {
             StartGamePosition = GameObject.Find(StartPointBuilder).gameObject.transform.position;
             this.PlayerStates.PlayerPosition.Position = StartGamePosition;
+            PlayerStartPosition = StartGamePosition;
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates();
         }
@@ -324,7 +335,7 @@ namespace br.com.bonus630.thefrog.Manager
                 StartCoroutine(RemoveHeart(hud, hearts));
             }
         }
- 
+
 
         IEnumerator AddHeart(GameObject hud, int hearts)
         {
@@ -388,7 +399,7 @@ namespace br.com.bonus630.thefrog.Manager
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
 
 #endif
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);

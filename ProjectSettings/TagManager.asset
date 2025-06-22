@@ -45,10 +45,13 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: cave
+    uniqueID: 927582571
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: factory
+  - name: ghostship
     uniqueID: 3084524269
     locked: 0
   m_RenderingLayers:

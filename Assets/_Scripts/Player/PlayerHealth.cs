@@ -21,7 +21,11 @@ namespace br.com.bonus630.thefrog.Player
             base.Awake();
             invencibleTimer = invencibleTime;
             hitTime = invencibleTime - 0.517f;//tempo da animação de hit
+
             CurrentLife = GameManager.Instance.PlayerStates.Hearts;
+#if UNITY_EDITOR
+            CurrentLife = 20;
+#endif
         }
 
         private void FixedUpdate()
@@ -48,7 +52,10 @@ namespace br.com.bonus630.thefrog.Player
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == 10)
+            {
+                Debug.Log("PlayerHearth :" + collision.gameObject.name);
                 Die();
+            }
             if (collision.gameObject.layer == 6)
             {
                 if (!player.FooterTouching(collision.collider))

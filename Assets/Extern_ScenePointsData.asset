@@ -18,9 +18,12 @@ MonoBehaviour:
     Point: {x: 68, y: 110, z: 0}
     transform: {fileID: 0}
   - Name: CaveExit
-    Point: {x: 167.426, y: -62.418, z: 3.6824958}
+    Point: {x: 167.426, y: -62.418, z: 0}
     transform: {fileID: 0}
   - Name: GhostShipTimeOver
     Point: {x: 150.23, y: 106.03, z: 0}
+    transform: {fileID: 0}
+  - Name: HeartAreaExit
+    Point: {x: -9.604305, y: 4.2238827, z: 0}
     transform: {fileID: 0}
   SceneType: 4

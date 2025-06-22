@@ -3,10 +3,10 @@ using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class Activator : MonoBehaviour
     {
-        CircleCollider2D circleCollider;
+        Collider2D _collider;
         [SerializeField][Tooltip("Um IActivator item")] IActivator ItemToActive;
         [SerializeField][Tooltip("Um gameobject com multiplos IActivator ou para ativar e desativar")] GameObject GameObjectToActive;
         [SerializeField] float delayActiveTime = 0f;
@@ -14,14 +14,14 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] bool permanentActived = false;
         void Start()
         {
-            circleCollider = GetComponent<CircleCollider2D>();
+            _collider = GetComponent<Collider2D>();
 
         }
         void Reset()
         {
             Debug.Log("Activator reset");
-            circleCollider = GetComponent<CircleCollider2D>();
-            circleCollider.isTrigger = false;
+            _collider = GetComponent<Collider2D>();
+            _collider.isTrigger = false;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

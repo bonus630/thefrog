@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using br.com.bonus630.thefrog.Environment;
+using br.com.bonus630.thefrog.Manager;
 
 namespace br.com.bonus630.thefrog
 {

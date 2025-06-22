@@ -19,8 +19,8 @@ namespace br.com.bonus630.Activators
                     return;
                 var cam = FindAnyObjectByType<CameraBackground>();
                 cam.InitializeDayByHour(19);
-                GameManager.Instance.StartTimer(10);
-                //GameManager.Instance.StartTimer((11 * cam.CycleDurationMinutes * 60 / 12)-10);
+                //GameManager.Instance.StartTimer(10);
+                GameManager.Instance.StartTimer((11 * cam.CycleDurationMinutes * 60 / 12)-10);
                
                 GameManager.Instance.TimeOverEvent += () => { Debug.Log("teleporter ghostship activator name:" + teleporter.gameObject.name); teleporter.Activate(); };
             }

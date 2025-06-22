@@ -15,6 +15,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (isActived)
                 return;
             isActived = true;
+            //GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             GameManager.Instance.ToPoint = ToPoint;
             GameManager.Instance.LoadGame(scenePointsData.SceneType);
         }

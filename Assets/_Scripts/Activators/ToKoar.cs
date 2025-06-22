@@ -6,19 +6,26 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class ToKoar : MonoBehaviour
     {
+        [SerializeField] public ScreenEffects screenEffects;
+        [SerializeField] public Vector2 newLocation;
+        [SerializeField] float playerWaitTime = 0.001f;
+
         GameObject player;
+        bool actived = false;
 
         public void Awake()
         {
-            fader = FindAnyObjectByType<ScreenFader>(); 
+            screenEffects = FindAnyObjectByType<ScreenEffects>(); 
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log("feather touch" + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
             if (collision.CompareTag("Player") && GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
             {
+                actived = true;
                 Debug.Log("Collision to koar");
                 player = collision.gameObject;
+                //player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
                 StartCoroutine(PlayCutscene());
             }
         }
@@ -27,22 +34,29 @@ namespace br.com.bonus630.thefrog.Activators
             yield return new WaitForSeconds(0.2f);
             player.transform.position = new Vector3(91f, player.transform.position.y, 0);
         }
-        public ScreenFader fader;
-        public Vector2 newLocation;
        
 
 
         private IEnumerator PlayCutscene()
         {
-           // yield return new WaitForSeconds(0.2f);
-           // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
-            yield return fader.FadeOut();
+            GameManager.Instance.GetPlayerScript.InputsOn = false;
+            // yield return new WaitForSeconds(0.2f);
+            // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
+            screenEffects.FadeOut(1);
+            //GameManager.Instance.GetPlayerScript.ChangeGravity(0);
+          // GameObject.Find("Kaor").SetActive(true);
             FindAnyObjectByType<CameraBackground>().ChangeBackground();
             GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
             player.transform.position = newLocation;
+            yield return new WaitForSeconds(playerWaitTime);
+            GameManager.Instance.GetPlayerScript.RemoveGravity(true);
+            Debug.Log("PlayCutscene");
             yield return new WaitForSeconds(1.5f); // opcional, uma pausa dramática
-            yield return fader.FadeIn();
-            
+            screenEffects.FadeIn(1);
+            GameManager.Instance.GetPlayerScript.RemoveGravity(false);
+            yield return new WaitForSeconds(0.5f);
+       
+            GameManager.Instance.GetPlayerScript.FallsControl();
         }
     }
 }

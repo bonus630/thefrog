@@ -72,6 +72,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (collision.gameObject.TryGetComponent<INPC>(out npc))
                 {
+                    Debug.Log("NPC trigger enter");
                     dialogueSystem.DialogueData = npc.CurrentDialogueData;
                     collision.gameObject.TryGetComponent<IInteract>(out interacting);
                 }

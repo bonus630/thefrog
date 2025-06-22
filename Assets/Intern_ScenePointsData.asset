@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneIndex: 6
   PointsData:
-  - Name: GhostShipEntrace
-    Point: {x: 86.33, y: -119.850006, z: -0.31750426}
-    transform: {fileID: 0}
   - Name: CaveEntrace
+    Point: {x: 86.33, y: -119.850006, z: 0}
+    transform: {fileID: 0}
+  - Name: GhostShipEntrace
     Point: {x: 50.17, y: 156.48, z: 0}
+    transform: {fileID: 0}
+  - Name: HeartChest01
+    Point: {x: 208.09, y: -117.87, z: 0}
+    transform: {fileID: 0}
+  - Name: HeartChest02
+    Point: {x: 208.09, y: -164.89049, z: 0}
     transform: {fileID: 0}
   SceneType: 3

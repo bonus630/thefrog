@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -45,6 +46,7 @@ public class MiniGameManager : MonoBehaviour
     private void Start()
     {
         NewGame();
+       
     }
 
     private void NewGame()
@@ -86,7 +88,6 @@ public class MiniGameManager : MonoBehaviour
             time--;
             timeText.text = time.ToString();
         }
-
         frogger.Death();
     }
 
@@ -146,6 +147,8 @@ public class MiniGameManager : MonoBehaviour
         {
             SetLives(lives + 1);
             SetScore(score + 1000);
+            if (score >= 1000)
+                SceneManager.LoadScene("Credit");
             Invoke(nameof(NewLevel), 1f);
         }
         else

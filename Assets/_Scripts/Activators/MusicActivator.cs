@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Activators
         bool start = false;
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!start)
+            if (!start && collision.CompareTag("Player"))
             {
                 start = true;
                 if (sleepMusicSource)

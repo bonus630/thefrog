@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog
         [SerializeField] ScreenFader screenFader;
         [SerializeField] GameObject creditsCompose;
         [SerializeField] TextMeshProUGUI states;
+        [SerializeField] TextMeshProUGUI isEndText;
         [SerializeField] InputAction MenuAction;
 
         float timer = 0f;
@@ -23,9 +24,15 @@ namespace br.com.bonus630.thefrog
         int maxCompose = 0;
         bool showTurn = true;
         bool canMenu = false;
-       
+        private void Awake()
+        {
+            Debug.Log("Credit :" + GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
+            if (GameManager.Instance.EnvironmentStates.GameTimeInSeconds <= 0)
+                isEndText.gameObject.SetActive(true);
+        }
         void Start()
         {
+          
             maxCompose = creditsCompose.transform.childCount;
             MenuAction.Enable();
             MenuAction.performed += MenuAction_performed;
@@ -81,7 +88,7 @@ namespace br.com.bonus630.thefrog
            // }
             timer += Time.deltaTime;
             totalTime += Time.deltaTime;
-            if(totalTime > 237.5f)
+            if(totalTime > 225f)
             {
                 StartCoroutine(Exit());
             }
@@ -94,8 +101,9 @@ namespace br.com.bonus630.thefrog
         }
         IEnumerator Exit()
         {
-            screenFader.FadeOut();
-            yield return new WaitForSeconds(1);
+            screenFader.fadeDuration = 3f;
+            StartCoroutine(screenFader.FadeOut());
+            yield return new WaitForSeconds(3f);
             MenuButton_clicked();
 
         }

@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class CamerasController : MonoBehaviour
     {
         [SerializeField] List<GameObject> Cameras;
-     
+
 
         public int LastActiveCam { get; private set; }
         public int LastActiveConfiner { get; private set; }
@@ -27,44 +27,52 @@ namespace br.com.bonus630.thefrog.Manager
             return Cameras[index];
 
 
-            
+
         }
 
         public GameObject GetActiveCamera()
         {
-            if (Cameras[LastActiveCam]!=null && Cameras[LastActiveCam].activeSelf)
+            if (Cameras[LastActiveCam] != null && Cameras[LastActiveCam].activeSelf)
                 return Cameras[LastActiveCam];
             else
             {
-                for(int i = 0;i < Cameras.Count;i++)
+                for (int i = 0; i < Cameras.Count; i++)
                 {
                     if (Cameras[i].activeSelf)
                         return Cameras[i];
                 }
             }
-            return null;    
+            return null;
         }
         public void GameObjectFocus(GameObject gameObject, float time = 1f)
         {
-            StartCoroutine(gameObjectFocus(gameObject, time));
+            StartCoroutine(gameObjectFocus(new GameObject[] {gameObject }, time));
         }
-        private IEnumerator gameObjectFocus(GameObject gameObject, float time)
+        public void GameObjectsFocus(GameObject[] gameObjects, float time = 1f)
+        {
+            StartCoroutine(gameObjectFocus(gameObjects , time));
+        }
+        private IEnumerator gameObjectFocus(GameObject[] gameObjects, float time)
         {
             Cinemachine.CinemachineVirtualCamera vCam = GetActiveCamera().GetComponent<CinemachineVirtualCamera>();
-            vCam.Follow = gameObject.transform;
-            yield return new WaitForSeconds(time);
+            for (int i = 0; i < gameObjects.Length; i++)
+            {
+                vCam.Follow = gameObjects[i].transform;
+                yield return new WaitForSeconds(time);
+
+            }
             vCam.Follow = GameManager.Instance.GetPlayer.transform;
 
         }
         public void ShakeCameraEffect(int times = 1)
         {
             Transform camera = GetActiveCamera().transform;
-            if(camera!=null)
+            if (camera != null)
             {
-                StartCoroutine(shakeCamera(camera,times));
+                StartCoroutine(shakeCamera(camera, times));
             }
         }
-        private IEnumerator shakeCamera(Transform camera,int times)
+        private IEnumerator shakeCamera(Transform camera, int times)
         {
             for (int i = 0; i < times; i++)
             {

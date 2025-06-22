@@ -10,19 +10,17 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] MusicSource musicSource;
         [SerializeField] CamerasController camerasController;
-        
+
         bool start = false;
         int dialogueIndex = 0;
+        IPlayer player;
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            IPlayer player;
             if (collision.gameObject.TryGetComponent<IPlayer>(out player))
             {
-                
                 player.Alert();
-
                 musicSource.Sleep();
-                if(!start)
+                if (!start)
                     StartCoroutine(KoarStart());
                 start = true;
             }
@@ -32,17 +30,20 @@ namespace br.com.bonus630.thefrog.Activators
         {
 
             GameManager.Instance.GetPlayerScript.InputsOn = false;
+
+           // yield return new WaitForSeconds(1f);
             yield return new WaitForSeconds(4f);
             yield return new WaitForEndOfFrame();
             //Time.timeScale = 0.5f;
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f);
+            yield return new WaitForSeconds(0.5f);
             yield return new WaitForEndOfFrame();
-            Invoke(nameof(RestorePlayerInput), 2f);
+            Invoke(nameof(RestorePlayerInput), 3.5f);
             GameManager.Instance.GetPlayerScript.ChangeGravity(-1f);
             GameManager.Instance.PlayerStates.HasGravity = false;
             GameManager.Instance.PlayerStates.FallsControl = false;
-             dialogueIndex++;
-            
+            dialogueIndex++;
+
 
         }
         private void RestorePlayerInput()
@@ -50,12 +51,12 @@ namespace br.com.bonus630.thefrog.Activators
             Time.timeScale = 1f;
             GameManager.Instance.GetPlayerScript.InputsOn = true;
             musicSource.Sleep();
-            musicSource.CrossFade(BackgroundMusic.DarkWind);
-            Destroy(gameObject,1f);
+            musicSource.CrossFade(BackgroundMusic.DarkWind, true);
+            Destroy(gameObject, 1f);
         }
         public override DialogueData GetDialogue(int index = -1)
         {
-           return dialogues[dialogueIndex];
+            return dialogues[dialogueIndex];
         }
     }
 }

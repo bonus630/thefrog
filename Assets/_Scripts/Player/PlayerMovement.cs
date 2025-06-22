@@ -74,12 +74,7 @@ namespace br.com.bonus630.thefrog.Player
                 timeInFastFall += Time.deltaTime;
                 if (resetFastFall)
                 {
-                    Debug.Log("Foi aqui o danado 1");
-                    timeInFastFall = 0;
-                    // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
-                    rb.linearVelocityY = LinearMaxY * player.gravityDirection;
-                    resetFastFall = false;
-                    FallsControlEffect();
+                    FallsControl();
                 }
                 if (timeInFastFall > maxTimeInFall)
                     player.playerHealth.Die();
@@ -94,7 +89,15 @@ namespace br.com.bonus630.thefrog.Player
                 WallSliding();
 
         }
-
+        public void FallsControl()
+        {
+            Debug.Log("Foi aqui o danado 1");
+            timeInFastFall = 0;
+            // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
+            rb.linearVelocityY = LinearMaxY * player.gravityDirection;
+            resetFastFall = false;
+            FallsControlEffect();
+        }
         private bool IsWallSliding()
         {
             bool falling = false;
@@ -352,6 +355,7 @@ namespace br.com.bonus630.thefrog.Player
         public void FreezePlayerMove()
         {
             direction.x = 0;
+            rb.bodyType = RigidbodyType2D.Static;
             rb.linearVelocity = Vector2.zero;
             player.InputsOn = false;
             anim.SetFloat(WalkID, 0);
@@ -359,6 +363,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void UnFreezePlayerMove()
         {
+            rb.bodyType = RigidbodyType2D.Dynamic;
             player.InputsOn = true;
         }
         private void WallSliding()

@@ -5,6 +5,7 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Codice.Client.BaseCommands;
 namespace br.com.bonus630.thefrog.Player
 {
 
@@ -37,23 +38,11 @@ namespace br.com.bonus630.thefrog.Player
         public float gravityScale = 4f;
         public bool knockUp { get; set; } = false;
         [SerializeField] public Vector2 knockUpForce;
-
-
         public bool InGround { get; set; }
-
-
         public bool InputsOn { get; set; } = true;
         //private bool isStartJumpTimer;
-
-
         //private float jumpTimeCharger;
-
         //private bool teste;
-
-
-
-
-
         public float LookFor { get; set; } = 1;
 
         /// <summary>
@@ -67,7 +56,6 @@ namespace br.com.bonus630.thefrog.Player
 
         void Awake()
         {
-
             GetComponents();
             //jumpTimeCharger = startJumpTime;
         }
@@ -86,15 +74,19 @@ namespace br.com.bonus630.thefrog.Player
         {
             //states = GameManager.Instance.PlayerStates;
             //Debug
-//#if !UNITY_EDITOR
-//            transform.position = GameManager.Instance.PlayerStates.PlayerPosition.Position;
-//            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-//            {
-//                audioSource.PlayOneShot(Entrace);
-//                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-//                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-//            }
-//#endif
+            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
+            #if !UNITY_EDITOR
+            //Debug.Log(GameManager.Instance.ToString());
+            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
+            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
+            //transform.position = GameManager.Instance.PlayerStartPosition;
+            //if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            //{
+            //    audioSource.PlayOneShot(Entrace);
+            //    //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+            //    AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+            //}
+            #endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
@@ -116,7 +108,8 @@ namespace br.com.bonus630.thefrog.Player
             if (Input.GetKeyUp(KeyCode.W))
             {
                 ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
-                s.FadeOut();
+                s.ScreenShake();
+                //s.FadeOut();
                 Debug.Log(s);
                 //MusicSource m = FindAnyObjectByType<MusicSource>();
                 //m.CrossFade(BackgroundMusic.AppleTree);
@@ -221,6 +214,7 @@ namespace br.com.bonus630.thefrog.Player
 
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
+        
             this.gravityDirection = gravityDirection;
             //LinearMaxY *= -1;
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
@@ -253,6 +247,16 @@ namespace br.com.bonus630.thefrog.Player
             playerMovement.GravityChanged();
             rb.gravityScale *= -1;
 
+        }
+        public void RemoveGravity(bool remove)
+        {
+            if (remove)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.gravityScale = 0;
+            }
+            else
+                rb.gravityScale = this.gravityScale;
         }
         public void Alert()
         {
@@ -337,6 +341,11 @@ namespace br.com.bonus630.thefrog.Player
         public void ReadDialogue()
         {
             playerDialogue.ReadDialogue();
+        }
+
+        public void FallsControl()
+        {
+            playerMovement.FallsControl();
         }
     }
 }

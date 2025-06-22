@@ -45,7 +45,7 @@ namespace br.com.bonus630.thefrog.Manager
             mixer.SetFloat("SFXVolume", vol);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (sleep)
                 return;

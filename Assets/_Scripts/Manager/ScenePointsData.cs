@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Environment
+namespace br.com.bonus630.thefrog.Manager
 {
     [Serializable]
     public struct PointData

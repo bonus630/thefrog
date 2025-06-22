@@ -8,8 +8,17 @@ namespace br.com.bonus630.thefrog.Activators
     public class FallingSpyke :  IActivator
     {
         [SerializeField] Rigidbody2D rb;
+        AudioSource audioSource;
+
+
+        public void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         public override void Activate()
         {
+            audioSource.Play();
             rb.gravityScale = 1;
         }
 

@@ -33,6 +33,7 @@ namespace br.com.bonus630.thefrog.Environment
             }
             if (teleported.TryGetComponent<Rigidbody2D>(out rb))
             {
+                Debug.Log("TEleporter: ");
                 rb.bodyType = RigidbodyType2D.Kinematic;
             }
             if (teleported.TryGetComponent<IPlayer>(out player))

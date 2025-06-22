@@ -12,9 +12,13 @@ namespace br.com.bonus630.thefrog.Shared
         void ReadDialogue();
         void Alert();
         void Hit();
+        //mover algumas coisas para uma interface de automação do player fora do script player
+        //isso vai permitir melhor controle nas cutscenes
+        void FallsControl();
         void ChangeNumberShurykens(int Shurykens);
         void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f);
         void ChangeGravity(float gravityDirection, float speed = 0.05f);
+        void RemoveGravity(bool remove);
         void KnockUp(Vector2 repulse);
         bool FooterTouching(Collider2D coll);
 
