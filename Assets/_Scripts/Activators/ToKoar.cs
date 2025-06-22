@@ -11,11 +11,13 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] float playerWaitTime = 0.001f;
 
         GameObject player;
+        GameObject koar;
         bool actived = false;
 
         public void Awake()
         {
-            screenEffects = FindAnyObjectByType<ScreenEffects>(); 
+            screenEffects = FindAnyObjectByType<ScreenEffects>();
+            koar = GameObject.Find("KoarActivator").transform.GetChild(0).gameObject;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -25,6 +27,7 @@ namespace br.com.bonus630.thefrog.Activators
                 actived = true;
                 Debug.Log("Collision to koar");
                 player = collision.gameObject;
+                koar.SetActive(true);
                 //player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
                 StartCoroutine(PlayCutscene());
             }

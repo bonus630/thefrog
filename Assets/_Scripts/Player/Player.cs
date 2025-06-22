@@ -5,7 +5,6 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Codice.Client.BaseCommands;
 namespace br.com.bonus630.thefrog.Player
 {
 
@@ -75,18 +74,18 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-            #if !UNITY_EDITOR
+#if !UNITY_EDITOR
             //Debug.Log(GameManager.Instance.ToString());
             //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
-            //transform.position = GameManager.Instance.PlayerStartPosition;
-            //if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-            //{
-            //    audioSource.PlayOneShot(Entrace);
-            //    //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-            //    AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-            //}
-            #endif
+            transform.position = GameManager.Instance.PlayerStartPosition;
+            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            {
+                audioSource.PlayOneShot(Entrace);
+                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+            }
+#endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
