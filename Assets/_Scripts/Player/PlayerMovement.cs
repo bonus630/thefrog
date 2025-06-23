@@ -145,7 +145,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (rb.linearVelocityY > 0)
                 {
-                    Debug.Log("Jumps: " + jumps);
+                    //Debug.Log("Jumps: " + jumps);
                     rb.linearVelocityY *= 0.2f * player.gravityDirection;
                     doubleJump = true;
                     jumps--;

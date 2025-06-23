@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -74,6 +73,10 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private IEnumerator shakeCamera(Transform camera, int times)
         {
+            if (Gamepad.current!=null)
+            {
+                Gamepad.current.SetMotorSpeeds(0.5f, 0f);
+            }
             for (int i = 0; i < times; i++)
             {
                 yield return new WaitForEndOfFrame();
@@ -92,6 +95,10 @@ namespace br.com.bonus630.thefrog.Manager
                 camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
                 yield return new WaitForEndOfFrame();
                 camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
+            }
+            if (Gamepad.current != null)
+            {
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
             }
             yield return null;
         }

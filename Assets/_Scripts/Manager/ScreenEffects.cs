@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace br.com.bonus630.thefrog.Manager
 {
     public class ScreenEffects : MonoBehaviour

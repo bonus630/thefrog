@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UIElements;
 namespace br.com.bonus630.thefrog.Manager
 {
     public class CameraBackground : MonoBehaviour
     {
+        [SerializeField] DayNightCycleManager cycleManager;
         [SerializeField] GameObject filter;
         [SerializeField] GameObject overlay;
         [SerializeField] GameObject day;
@@ -15,7 +14,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] GameObject sun;
         [SerializeField] GameObject sunLight;
         [SerializeField] GameObject background2;
-        [field:SerializeField]public float CycleDurationMinutes { get; set; } = 1f; // Tempo que você quer que dure o ciclo inteiro (12 minutos)
+        [field: SerializeField] public float CycleDurationMinutes { get; set; } = 1f; 
         [SerializeField][Range(0, 24)] private int hour = 6;
 
         [SerializeField] Color corNoite = new Color(0.2f, 0.3f, 0.5f, 0.4f);     // Azul escuro, frio
@@ -29,273 +28,174 @@ namespace br.com.bonus630.thefrog.Manager
 
 
         public int Hour { get { return hour; } }
-
-        //float daySeconds = 720f;
-        // float currentHour = 0;
         float yAmplitude = 20f; // Altura máxima que o sol vai chegar
-        float speed;
-        float initialHour;
+                      
 
         SpriteRenderer filterSR;
         public event Action<int> HourChanged;
 
-        bool isToNight = false;
-        bool isToDay = false;
-
+        bool transitionToNight = false;
+        bool transitionToDay = false;
+        bool isDay = false;
+        bool isNight = false;
 
         Color transparent = new Color(1f, 1f, 1f, 0f);
+        Color white = new Color(1f, 1f, 1f, 1f);
         [SerializeField] Vector3 sunrisePosition; // Posição de início do sol (baixo no horizonte)
         [SerializeField] Vector3 sunsetPosition;  // Posição final do sol (baixo no outro lado)
 
         Vector3 leftEdge;
         Vector3 rightEdge;
 
-        float time;
+        float sunriseX;
+        float sunsetX;
+        float sunriseTime = 0.25f; // 6h
+        float morningTime = 0.33f; // 8h
+        float noonTime = 0.5f; // 12h
+        float sunsetTime = 0.75f;  // 18h
+        float eveningTime = 0.83f; // 20h
+
         void Awake()
         {
             filterSR = filter.GetComponent<SpriteRenderer>();
-            speed = 1f / (CycleDurationMinutes * 60f);
-            time = CycleDurationMinutes / 6f * 60f; //Duas horas de fad no ciclo, alterar para o 6f para 12 para 1 Hora
-            initialHour = InitialTFromHour();
+            cycleManager.cycleDurationMinutes = this.CycleDurationMinutes;
+            InitializeDayByHour(this.hour);
+            cycleManager.OnHourChanged += (h) => { this.hour = h; HourChanged?.Invoke(h); };
+
 
         }
-        //private void Start()
-        //{
-        //    bool isDay = true;
-        //    float x = 0;
-        //    float y = 0;
-        //    int _hour = calculateHour(out x, out y, out isDay);
-        //    CheckNight(_hour);
-        //}
+        private void Start()
+        {
+            sunriseX = sunrisePosition.x;
+            sunsetX = sunsetPosition.x;
+        }
         void FixedUpdate()
         {
-            SunMoviment();
-            ApplyFilter();
+            float t = cycleManager.cycleTime;
+
+            CheckTransition(t);
+            UpdateDayNightSprites(t);
+            ApplyFilter(t);
+            UpdateSunPosition(t);
             OverlayMovement();
         }
         public void InitializeDayByHour(int hour)
         {
+            cycleManager.InitializeByHour(hour);
             this.hour = hour;
+        }
+        private void UpdateDayNightSprites(float time)
+        {
+            Color resultColor = Color.white;
 
-            initialHour = InitialTFromHour();
-            if (initialHour > 1)
+            if (isDay && !transitionToDay)
+                resultColor = Color.white;
+            if (transitionToNight)
             {
-                day.GetComponent<SpriteRenderer>().color = transparent;
-                daySunOverlay.GetComponent<SpriteRenderer>().color = transparent;
-                overlay.GetComponent<SpriteRenderer>().color = transparent;
+                float t = Mathf.InverseLerp(sunsetTime, eveningTime, time);
+                resultColor = Color.Lerp(white, transparent, t);
             }
-            //fazendo um teste com isso
-            CheckNight(hour);
-        }
-
-        float InitialTFromHour()
-        {
-            float t = ((hour - 6f) / 12f);
-            if (t < 0f)
-                t += 2f;
-
-            return t;
-        }
-        public void GoToNight(bool now = false)
-        {
-            if (!isToNight)
+            if (isNight && !transitionToNight)
             {
-                isToNight = true;
-                StopAllCoroutines();
-                if (now)
-                    toNightNow(transparent);
-                else
-                    StartCoroutine(toNight(Color.white, transparent));
+                resultColor = transparent;
             }
-            //day.GetComponent<SpriteRenderer>().color = transparent;
-        }
-        public void GoToDay(bool now = false)
-        {
-            if (!isToDay)
+            if (transitionToDay)
             {
-                isToDay = true;
-                StopAllCoroutines();
-                if (now)
-                    toNightNow(Color.white);
-                else
-                    StartCoroutine(toNight(transparent, Color.white));
+                float t = Mathf.InverseLerp(sunriseTime, morningTime, time);
+                resultColor = Color.Lerp(transparent, white, t);
             }
+            // para noite passamos transparente, para dia passamos branco
+            day.GetComponent<SpriteRenderer>().color = resultColor;
+            daySunOverlay.GetComponent<SpriteRenderer>().color = resultColor;
+            overlay.GetComponent<SpriteRenderer>().color = resultColor;
         }
-        IEnumerator toNight(Color s, Color e)
-        {
-            float currentTime = 0;
-            while (currentTime < time)
-            {
-                currentTime += Time.deltaTime;
-                float t = Mathf.Clamp01(currentTime / time);
-                day.GetComponent<SpriteRenderer>().color = Color.Lerp(s, e, t);
-                daySunOverlay.GetComponent<SpriteRenderer>().color = Color.Lerp(s, e, t);
-                overlay.GetComponent<SpriteRenderer>().color = Color.Lerp(s, e, t);
-                yield return null;
-            }
-            toNightNow(e);
-
-        }
-        void toNightNow(Color e)
-        {
-            day.GetComponent<SpriteRenderer>().color = e;
-            daySunOverlay.GetComponent<SpriteRenderer>().color = e;
-            overlay.GetComponent<SpriteRenderer>().color = e;
-            isToNight = false;
-            isToDay = false;
-        }
-        void ApplyFilter()
+        private void ApplyFilter(float t)
         {
             Color corAtual;
 
-            if (hour < 6f)
+            if (t < sunriseTime) // 0h - 6h
             {
-                // Noite profunda
-                corAtual = corNoite;
+                corAtual = Color.Lerp(corNoite, corAmanhecer, t / sunriseTime);
             }
-            else if (hour < 12f)
+            else if (t < noonTime) // 6h - 12h
             {
-                // Amanhecer -> Meio-dia
-                float t = Mathf.InverseLerp(6f, 12f, hour);
-                corAtual = Color.Lerp(corAmanhecer, corMeioDia, t);
+                corAtual = Color.Lerp(corAmanhecer, corMeioDia, (t - sunriseTime) / sunriseTime);
             }
-            else if (hour < 18f)
+            else if (t < sunsetTime) // 12h - 18h
             {
-                // Meio-dia -> Anoitecer
-                float t = Mathf.InverseLerp(12f, 18f, hour);
-                corAtual = Color.Lerp(corMeioDia, corAnoitecer, t);
+                corAtual = Color.Lerp(corMeioDia, corAnoitecer, (t - noonTime) / sunriseTime);
             }
-            else
+            else // 18h - 24h
             {
-                // Anoitecer -> Noite
-                float t = Mathf.InverseLerp(18f, 24f, hour);
-                corAtual = Color.Lerp(corAnoitecer, corNoite, t);
+                corAtual = Color.Lerp(corAnoitecer, corNoite, (t - sunsetTime) / sunriseTime);
             }
 
-            // Aplica a cor no filtro (Image)
             filterSR.color = corAtual;
         }
-        float sunriseX;
-        float sunsetX;
-        float amplitude;
-        float rotation = 0;
-        void SunMoviment()
+
+        void CheckTransition(float time)
         {
-            bool isDay = true;
-            float x = 0;
-            float y = 0;
-            float angle = 0;
-            int _hour = calculateHour(out x, out y, out angle, out isDay);
-            if (_hour != hour)
-                CheckNight(_hour);
-            if (isDay)
+            if (time >= sunriseTime && time <= morningTime)
+                transitionToDay = true;
+            else if (time >= sunsetTime && time <= eveningTime)
+                transitionToNight = true;
+            else
             {
-                sun.GetComponent<SpriteRenderer>().enabled = true;
-                sunLight.GetComponent<Light2D>().enabled = true;
+                transitionToDay = false;
+                transitionToNight = false;
+            }
+            if (time >= sunriseTime && time < sunsetTime)
+            {
+                isDay = true;
+                isNight = false;
             }
             else
             {
-                sun.GetComponent<SpriteRenderer>().enabled = false;
-                sunLight.GetComponent<Light2D>().enabled = false;
+                isDay = false;
+                isNight = true;
             }
-            // if (sunriseX > 0)
-            // {
-            //    rotation = 90 * x / sunriseX - 180;
-           // Debug.Log("Sun anglex: " + x);
-            Vector3 v = (Vector3.zero - sunLight.transform.position).normalized;
-            angle = MathF.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
-           // Debug.Log("Sun angle2: " + angle);
-            sunLight.transform.rotation = Quaternion.RotateTowards(sunLight.transform.rotation, Quaternion.Euler(0, 0, angle), 500);
-            // }
+
+        }
+        public void UpdateSunPosition(float cycleTime)
+        {
+            // Considerando cycleTime no intervalo [0, 1] -> 0h até 24h
+            // Quando cycleTime = 0.25 (6h), queremos X = sunriseX
+            // Quando cycleTime = 0.75 (18h), queremos X = sunsetX
+
+            // Define o tempo do nascer e do pôr do sol
+
+
+            float dayProgress = Mathf.InverseLerp(sunriseTime, sunsetTime, cycleTime); // Progresso no período do dia
+            dayProgress = Mathf.Clamp01(dayProgress); // Garante que só movemos o sol entre nascer e pôr
+
+            // Movimento horizontal (interpolação simples entre sunrise e sunset)
+            float x = Mathf.Lerp(sunriseX, sunsetX, dayProgress);
+
+            // Movimento vertical (senoide ajustada para começar no horizonte)
+            float angle = Mathf.Lerp(0f, Mathf.PI, dayProgress); // 0 radianos ao nascer, PI radianos ao pôr
+            float y = Mathf.Sin(angle) * yAmplitude;
+
+            // Atualiza posição
             sun.transform.position = new Vector3(x, y, 0);
+
+            // Exibir ou ocultar o sol
+            bool isDay = cycleTime >= sunriseTime && cycleTime <= sunsetTime;
+            sun.GetComponent<SpriteRenderer>().enabled = isDay;
+            sunLight.GetComponent<Light2D>().enabled = isDay;
+            // Atualiza rotação do sol, acho que temos um bug aqui
+            Vector3 direction = (Vector3.zero - sunLight.transform.position).normalized;
+            float sunAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
+            sunLight.transform.rotation = Quaternion.RotateTowards(sunLight.transform.rotation, Quaternion.Euler(0, 0, sunAngle), 500 * Time.fixedDeltaTime);
         }
-        int calculateHour(out float x, out float y, out float angle, out bool isDay)
+
+
+        void SetAlpha(SpriteRenderer sr, float alpha)
         {
-            float t = Mathf.Repeat(initialHour + Time.time * speed, 2f);
-            x = Mathf.Lerp(sunriseX, sunsetX, t);
-            angle = t * Mathf.PI;
-            y = Mathf.Sin(angle) * amplitude;
-            int _hour = (Mathf.RoundToInt((angle * Mathf.Rad2Deg / 15)) + 6) % 24;
-            isDay = t < 1f;
-
-            return _hour;
+            Color c = sr.color;
+            c.a = alpha;
+            sr.color = c;
         }
-        void CheckNight(int _hour)
-        {
-            InvertSun();
-            hour = _hour;
-            HourChanged?.Invoke(hour);
-            GameManager.Instance.PlayerStates.Hour = hour;
-           // Debug.Log("Hour: " + hour);
-            //  Debug.Log("Tonight: " + isToNight + " ToDay: " + isToDay);
 
-            if (_hour >= 17 && _hour < 19)
-                GoToNight();
-            if (_hour >= 19 || _hour < 5)
-                GoToNight(true);
-            if (_hour >= 5 && _hour < 7)
-                GoToDay();
-            if (_hour >= 7 && _hour < 17)
-                GoToDay(true);
-        }
-        void SunMoviment2()
-        {
-            InvertSun();
-            float cycleDuration = 60f; // Tempo de UM ciclo de dia OU noite (ex: 60s se quiser 1min de dia + 1min de noite)
-            float t = Mathf.Repeat(Time.time * speed, cycleDuration * 2f); // Vai de 0 até 2
-
-            bool isDay = t < cycleDuration;
-
-            float progress = isDay ? t / cycleDuration : (2f * cycleDuration - t) / cycleDuration; // 0 → 1 (dia), 1 → 0 (noite)
-
-            // Movimento no eixo X: do nascer ao pôr do sol (ida e volta)
-            float x = Mathf.Lerp(sunriseX, sunsetX, progress);
-
-            // Movimento no eixo Y:
-            float angle;
-            float y;
-
-            if (isDay)
-            {
-                // Arco alto durante o dia
-                angle = progress * Mathf.PI;
-                y = Mathf.Sin(angle) * amplitude;
-            }
-            else
-            {
-                // Noite: você pode deixar y mais baixo ou negativo, como se sumisse
-                angle = progress * Mathf.PI;
-                y = -Mathf.Sin(angle) * amplitude * 0.5f; // Um arco mais baixo para noite
-            }
-
-            // Hora atual baseada no ciclo de 24 horas
-            int _hour = Mathf.RoundToInt(((t / (cycleDuration * 2f)) * 24f)) % 24;
-
-            if (_hour != hour)
-            {
-                hour = _hour;
-                HourChanged?.Invoke(hour);
-                //Debug.Log("Hour: " + _hour);
-            }
-
-            sun.transform.position = new Vector3(x, y, 0);
-        }
-        void InvertSun()
-        {
-            if (hour > 50)
-            {
-                // GoToNight();
-                sunriseX = sunsetPosition.x;
-                sunsetX = sunrisePosition.x;
-                amplitude = -yAmplitude;
-            }
-            else
-            {
-                sunriseX = sunrisePosition.x;
-                sunsetX = sunsetPosition.x;
-                amplitude = yAmplitude;
-            }
-        }
         void OverlayMovement()
         {
             overlay.transform.position += Vector3.left * Time.deltaTime;

@@ -73,19 +73,19 @@ namespace br.com.bonus630.thefrog.Player
         {
             //states = GameManager.Instance.PlayerStates;
             //Debug
-            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-#if !UNITY_EDITOR
-            //Debug.Log(GameManager.Instance.ToString());
-            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
-            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
-            transform.position = GameManager.Instance.PlayerStartPosition;
-            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-            {
-                audioSource.PlayOneShot(Entrace);
-                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-            }
-#endif
+//            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
+//#if !UNITY_EDITOR
+//            //Debug.Log(GameManager.Instance.ToString());
+//            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
+//            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
+//            transform.position = GameManager.Instance.PlayerStartPosition;
+//            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+//            {
+//                audioSource.PlayOneShot(Entrace);
+//                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+//                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+//            }
+//#endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {

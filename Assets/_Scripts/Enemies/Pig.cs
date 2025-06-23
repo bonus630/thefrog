@@ -23,9 +23,9 @@ namespace br.com.bonus630.thefrog.Enemies
         protected override void Start()
         {
             this.life = 5;
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
             this.life = 1;
-#endif
+//#endif
             this.repulse = Vector2.up * 300;
             adu = GetComponent<AudioSource>();
             collider2D = GetComponent<CircleCollider2D>();
@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog.Enemies
 
             if (collision.gameObject.CompareTag("Player"))
             {
-               
+              
                 if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(coll))
                 {
                     // Debug.Log("Boss Collider " + gameObject.name);
