@@ -46,7 +46,7 @@ namespace br.com.bonus630.thefrog.Activators
         private IEnumerator ToggleActivations(bool active, float time)
         {
             yield return new WaitForSeconds(time);
-            Debug.Log("time");
+          //  Debug.Log("time");
             if (ItemToActive != null)
                 ToggleActivator(ItemToActive, active);
             if (GameObjectToActive != null)

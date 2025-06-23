@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 namespace br.com.bonus630.thefrog.Manager
@@ -23,9 +24,32 @@ namespace br.com.bonus630.thefrog.Manager
         {
             camerasController.GameObjectsFocus(gameObjects, time);
         }
-        public void ScreenShake()
+        public void ScreenAndGamepadShake(int times = 1)
         {
-            camerasController.ShakeCameraEffect();
+            camerasController.ShakeCameraAndGamepadEffect(times,true);
+        }
+        public void ScreenShake(int times = 1)
+        {
+            camerasController.ShakeCameraAndGamepadEffect(times,false);
+        }
+        CameraShakeController shakeController;
+        public void StartCameraShake(float amplitude, float frequency)
+        {
+            if (shakeController != null)
+                shakeController.StopShake();
+            shakeController = new CameraShakeController(camerasController.GetActiveVirtualCamera());
+            shakeController.StartShake(amplitude, frequency);
+            
+        }
+        public void StopCameraShake()
+        {
+            if (shakeController != null)
+                shakeController.StopShake();
+        }
+        public void GamepadShake(float low = 0f, float hi = 0f)
+        {
+            if (Gamepad.current != null)
+                Gamepad.current.SetMotorSpeeds(low, hi);
         }
         public void FadeOut(float duration = 1f)
         {
@@ -37,5 +61,6 @@ namespace br.com.bonus630.thefrog.Manager
             screenFader.fadeDuration = duration;
             StartCoroutine(screenFader.FadeIn());
         }
+       
     }
 }

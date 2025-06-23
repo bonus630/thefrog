@@ -36,6 +36,18 @@ namespace br.com.bonus630.thefrog.Manager
         {
             cycleTime = hour / 24f;
         }
+        public float GetTimeUntil(float currentHour, float targetHour, float cycleDuration)
+        {
+            float currentCycleTime = currentHour / 24f;
+            float targetCycleTime = targetHour / 24f;
+
+            // Diferença cíclica (sempre positiva, respeitando o ciclo de 24h)
+            float cycleDifference = Mathf.Repeat(targetCycleTime - currentCycleTime, 1f);
+
+            // Tempo real que falta
+            return cycleDifference * cycleDuration;
+        }
+
     }
 
 }

@@ -1,6 +1,8 @@
-﻿using br.com.bonus630.thefrog.Environment;
+﻿using System.Collections;
+using br.com.bonus630.thefrog.Environment;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
+
 
 namespace br.com.bonus630.thefrog.Enemies
 {
@@ -13,6 +15,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] GameObject player;
         [SerializeField] bool followPlayer = false;
         [SerializeField] float followTime = 0f;
+        [SerializeField] ScreenEffects screenEffects;
         float directionChangeTimer = 0f;
 
         protected override void Start()
@@ -60,14 +63,28 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 stalagmiteScript.Activate();
                 source.PlayOneShot(rockFalling);
-                FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
-                Destroy(gameObject, 0.2f);
+                StartCoroutine(DestroySelf());
             }
         }
         public void PlayStepAudio()
         {
             source.PlayOneShot(walkAudio[Random.Range(0, walkAudio.Length)]);
+            screenEffects.StartCameraShake(0.5f,0.5f);
+            screenEffects.GamepadShake(0.2f);
         }
-
+        public void ResetMotor()
+        {
+            screenEffects.GamepadShake();
+            screenEffects.StopCameraShake();    
+        }
+        new IEnumerator DestroySelf()
+        {
+            screenEffects.StartCameraShake(2f, 2f);
+            screenEffects.GamepadShake(0.5f,0.5f);
+            yield return new WaitForSeconds(0.2f);
+            screenEffects.StopCameraShake();
+            screenEffects.GamepadShake();
+            Destroy(gameObject);
+        }
     }
 }

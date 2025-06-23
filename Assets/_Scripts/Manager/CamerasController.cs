@@ -43,6 +43,10 @@ namespace br.com.bonus630.thefrog.Manager
             }
             return null;
         }
+        public CinemachineVirtualCamera GetActiveVirtualCamera()
+        {
+            return GetActiveCamera().GetComponent<CinemachineVirtualCamera>();
+        }
         public void GameObjectFocus(GameObject gameObject, float time = 1f)
         {
             StartCoroutine(gameObjectFocus(new GameObject[] {gameObject }, time));
@@ -53,7 +57,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private IEnumerator gameObjectFocus(GameObject[] gameObjects, float time)
         {
-            Cinemachine.CinemachineVirtualCamera vCam = GetActiveCamera().GetComponent<CinemachineVirtualCamera>();
+            Cinemachine.CinemachineVirtualCamera vCam = GetActiveVirtualCamera();
             for (int i = 0; i < gameObjects.Length; i++)
             {
                 vCam.Follow = gameObjects[i].transform;
@@ -63,17 +67,26 @@ namespace br.com.bonus630.thefrog.Manager
             vCam.Follow = GameManager.Instance.GetPlayer.transform;
 
         }
-        public void ShakeCameraEffect(int times = 1)
+        public void ShakeCameraAndGamepadEffect(int times = 1,bool gamepadRumble = false)
         {
             Transform camera = GetActiveCamera().transform;
             if (camera != null)
             {
-                StartCoroutine(shakeCamera(camera, times));
+                StartCoroutine(shakeCamera(camera, times,gamepadRumble));
             }
         }
-        private IEnumerator shakeCamera(Transform camera, int times)
+        private IEnumerator ShakeCamera2(float frequency,float amplitude,float duration)
         {
-            if (Gamepad.current!=null)
+            CinemachineVirtualCamera cam = GetActiveVirtualCamera();
+            var noise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            noise.m_FrequencyGain = frequency;
+            noise.m_AmplitudeGain = amplitude;
+            yield return new WaitForSeconds(duration);
+            noise.m_AmplitudeGain = 0f;
+        }
+        private IEnumerator shakeCamera(Transform camera, int times,bool rumble)
+        {
+            if (rumble && Gamepad.current!=null)
             {
                 Gamepad.current.SetMotorSpeeds(0.5f, 0f);
             }

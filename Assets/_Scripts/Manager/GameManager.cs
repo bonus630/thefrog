@@ -152,7 +152,7 @@ namespace br.com.bonus630.thefrog.Manager
                 musicSource.SetMasterVolume(vol);
                 Time.timeScale = pause ? 0 : 1;
                 GameObject go = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
-                Debug.Log(go);
+               // Debug.Log(go);
                 if (go != null)
                 {
                     go.SetActive(pause);
@@ -162,7 +162,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void OnApplicationPause(bool pause)
         {
-            Debug.Log("Pause:" + pause);
+           // Debug.Log("Pause:" + pause);
             Pause(pause);
         }
 

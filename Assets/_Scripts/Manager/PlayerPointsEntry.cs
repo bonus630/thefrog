@@ -16,12 +16,12 @@ namespace br.com.bonus630.thefrog.Manager
 
         public override void Activate()
         {
-            Debug.Log("PlayerPointenttry");
+           // Debug.Log("PlayerPointenttry");
             ScenePointsData data = ScenePointsDatas.SingleOrDefault(s=>s.SceneIndex == sceneIndex);
-            Debug.Log("PlayerPointenttry "+data);
+           // Debug.Log("PlayerPointenttry "+data);
             if (data != null)
                 GameManager.Instance.PlayerStartPosition = data.PointsData[GameManager.Instance.ToPoint].Point;
-            Debug.Log("PlayerPointenttry :"+ GameManager.Instance.PlayerStartPosition);
+           // Debug.Log("PlayerPointenttry :"+ GameManager.Instance.PlayerStartPosition);
         }
 
         public override void Deactive()

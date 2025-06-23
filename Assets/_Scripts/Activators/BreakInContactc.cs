@@ -24,12 +24,25 @@ namespace br.com.bonus630.thefrog.Activators
                // Debug.Log("Breakincontactc triggerenter");
                 pig.DestroySelf();
                 spriteRenderer.enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
                 effect.Play();
                 GetComponent<AudioSource>().PlayOneShot(wallBreak);
-                screenEffects.ScreenShake();
-                Destroy(gameObject, 2.5f);
+
+                StartCoroutine(DestroyEffects());
+               
 
             }
+        }
+        IEnumerator DestroyEffects()
+        {
+            yield return new WaitForEndOfFrame();
+            screenEffects.StartCameraShake(2,2);
+            screenEffects.GamepadShake(0.5f, 0.1f);
+            yield return new WaitForSeconds(1f);
+            screenEffects.StopCameraShake();
+            screenEffects.GamepadShake(0f, 0f);
+            Destroy(gameObject);
+
         }
 
     }

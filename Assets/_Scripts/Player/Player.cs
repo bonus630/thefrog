@@ -73,19 +73,19 @@ namespace br.com.bonus630.thefrog.Player
         {
             //states = GameManager.Instance.PlayerStates;
             //Debug
-//            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-//#if !UNITY_EDITOR
-//            //Debug.Log(GameManager.Instance.ToString());
-//            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
-//            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
-//            transform.position = GameManager.Instance.PlayerStartPosition;
-//            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-//            {
-//                audioSource.PlayOneShot(Entrace);
-//                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-//                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-//            }
-//#endif
+            //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
+            //#if !UNITY_EDITOR
+            //            //Debug.Log(GameManager.Instance.ToString());
+            //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
+            //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
+            transform.position = GameManager.Instance.PlayerStartPosition;
+            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            {
+                audioSource.PlayOneShot(Entrace);
+                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+            }
+            //#endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
@@ -107,9 +107,11 @@ namespace br.com.bonus630.thefrog.Player
             if (Input.GetKeyUp(KeyCode.W))
             {
                 ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
-                s.ScreenShake();
+                StartCoroutine(DestroyEffects(s));
+                Debug.Log(s.camerasController);
+                //s.ScreenAndGamepadShake();
                 //s.FadeOut();
-                Debug.Log(s);
+                //Debug.Log(s);
                 //MusicSource m = FindAnyObjectByType<MusicSource>();
                 //m.CrossFade(BackgroundMusic.AppleTree);
                 // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
@@ -120,7 +122,17 @@ namespace br.com.bonus630.thefrog.Player
 #endif
 
         }
+        IEnumerator DestroyEffects(ScreenEffects screenEffects)
+        {
+            yield return new WaitForEndOfFrame();
+            screenEffects.StartCameraShake(2, 2);
+            screenEffects.GamepadShake(0.5f, 0.1f);
+            yield return new WaitForSeconds(1f);
+            screenEffects.StopCameraShake();
+            screenEffects.GamepadShake(0f, 0f);
+          
 
+        }
         //private bool CheckGround()
         //{
         //    RaycastHit2D raycastHit2D = Physics2D.Raycast(Vector2.zero, Vector2.down, 0.5f, LayerMask.GetMask(new string[] { "Ground", "Platform", "StaticPlatforms" }));
