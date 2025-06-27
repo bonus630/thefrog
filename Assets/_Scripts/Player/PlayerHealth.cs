@@ -36,12 +36,14 @@ namespace br.com.bonus630.thefrog.Player
                 if (invencibleTimer < hitTime)
                 {
                     flag = !flag;
-                    GetComponent<SpriteRenderer>().enabled = flag;
+                    anim.gameObject.SetActive(flag);
+                    //GetComponent<SpriteRenderer>().enabled = flag;
                 }
                 if (invencibleTimer < 0)
                 {
                     invencible = false;
-                    GetComponent<SpriteRenderer>().enabled = true;
+                    anim.gameObject.SetActive(true);
+                    //GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
             else
@@ -53,14 +55,14 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (collision.gameObject.layer == 10)
             {
-                Debug.Log("PlayerHearth :" + collision.gameObject.name);
+               // Debug.Log("PlayerHearth :" + collision.gameObject.name);
                 Die();
             }
             if (collision.gameObject.layer == 6)
             {
                 if (!player.FooterTouching(collision.collider))
                 {
-                    Debug.Log("Player Hit");
+                  //  Debug.Log("Player Hit");
                     Hit();
                     player.knockUp = true;
                     player.knockUpForce = collision.GetContact(0).normal * 40 * -1;
@@ -77,6 +79,10 @@ namespace br.com.bonus630.thefrog.Player
             anim.SetTrigger(HitID);
             audioSource.PlayOneShot(hitSFX);
             anim.SetInteger(LifeID, CurrentLife);
+            if(CurrentLife<=0)
+            {
+                Invoke(nameof(GameOver), 0.517f);
+            }
         }
         public void Die()
         {

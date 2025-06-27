@@ -55,7 +55,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 IPlayer player;
                 if (collision.gameObject.TryGetComponent<IPlayer>(out player) && player.FooterTouching(coll))
                 {
-                    Debug.Log("collision base");
+                   // Debug.Log("collision base");
                     player.KnockUp(repulse);
                     Hit(1);
                     return;

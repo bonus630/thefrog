@@ -5,6 +5,8 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Codice.CM.SEIDInfo;
+using UnityEngine.InputSystem.XInput;
 namespace br.com.bonus630.thefrog.Player
 {
 
@@ -29,7 +31,7 @@ namespace br.com.bonus630.thefrog.Player
 
         [Header("Others")]
         private Rigidbody2D rb;
-        private Animator anim;
+        [SerializeField] public Animator anim;
         public WallCheck WallCheck { get; private set; }
         private BoxCollider2D footerCollider;
         private AudioSource audioSource;
@@ -61,7 +63,7 @@ namespace br.com.bonus630.thefrog.Player
         private void GetComponents()
         {
             rb = GetComponent<Rigidbody2D>();
-            anim = GetComponent<Animator>();
+            //anim = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
             footerCollider = footer.GetComponent<BoxCollider2D>();
             WallCheck = GetComponent<WallCheck>();
@@ -71,6 +73,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
+            Debug.Log($"Gamepad: {Gamepad.current.GetType() == typeof(XInputControllerWindows)}");
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
@@ -130,8 +133,6 @@ namespace br.com.bonus630.thefrog.Player
             yield return new WaitForSeconds(1f);
             screenEffects.StopCameraShake();
             screenEffects.GamepadShake(0f, 0f);
-          
-
         }
         //private bool CheckGround()
         //{
@@ -304,13 +305,14 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (knockUp)
             {
-                Debug.Log("knocked: " + knockUpForce.y);
+               // Debug.Log("knocked: " + knockUpForce.y);
                 if (rb == null)
                 {
-                    Debug.LogError("Rigidbody2D está null no Build!");
+                   // Debug.LogError("Rigidbody2D está null no Build!");
                     return;
                 }
                 rb.AddForce(knockUpForce, ForceMode2D.Impulse);
+                playerMovement.TimeInFastFall = 0;
                 knockUp = false;
             }
         }

@@ -14,7 +14,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             player = GetComponent<Player>();
             rb = GetComponent<Rigidbody2D>();
-            anim = GetComponent<Animator>();
+            anim = player.anim;// GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
         }
 

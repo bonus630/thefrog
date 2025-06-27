@@ -1,0 +1,14 @@
+{
+    "name": "EffectsAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Effects",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

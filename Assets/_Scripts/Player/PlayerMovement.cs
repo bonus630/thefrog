@@ -1,4 +1,5 @@
 using System;
+using br.com.bonus630.thefrog.Effects;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,12 +21,12 @@ namespace br.com.bonus630.thefrog.Player
 
         public float Speed { get { return speed; } set { speed = value; } }
         public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
+        public float TimeInFastFall { get; set; } = 0;
 
         private int jumps = 2;
         private float doubleJumpForce;
         private Vector2 direction;
         private Vector2 DashSpeed = new Vector2(1, 0);
-        private float timeInFastFall = 0;
         private float acceleration = 0;
         private bool isJumping;
         private bool doubleJump;
@@ -33,6 +34,7 @@ namespace br.com.bonus630.thefrog.Player
         private bool resetFastFall = false;
         private bool isWallSliding;
         private bool canWallJump;
+        //private IEffects bounce;
 
         private readonly float wallSlideSpeed = -0.36f;
         private readonly float wallJumpXForce = 120f;
@@ -49,8 +51,13 @@ namespace br.com.bonus630.thefrog.Player
         {
             Speed = GameManager.Instance.PlayerStates.Speed;
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
+            
             base.Awake();
         }
+        //private void Start()
+        //{
+        //    bounce = new BounceEffect(anim.gameObject.transform);
+        //}
         private void Update()
         {
             isWallSliding = IsWallSliding();
@@ -71,12 +78,12 @@ namespace br.com.bonus630.thefrog.Player
             //       Debug.DrawLine(transform.position, Vector3.up * gravityDirection * 10);
             if (Mathf.Abs(rb.linearVelocityY * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
-                timeInFastFall += Time.deltaTime;
+                TimeInFastFall += Time.deltaTime;
                 if (resetFastFall)
                 {
                     FallsControl();
                 }
-                if (timeInFastFall > maxTimeInFall)
+                if (TimeInFastFall > maxTimeInFall)
                     player.playerHealth.Die();
             }
             if (player.InputsOn)
@@ -91,8 +98,8 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void FallsControl()
         {
-            Debug.Log("Foi aqui o danado 1");
-            timeInFastFall = 0;
+           // Debug.Log("Foi aqui o danado 1");
+            TimeInFastFall = 0;
             // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
             rb.linearVelocityY = LinearMaxY * player.gravityDirection;
             resetFastFall = false;
@@ -127,16 +134,16 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     canWallJump = true;
 
-                    Debug.Log("resetFastFall isWallSliding");
+                   // Debug.Log("resetFastFall isWallSliding");
                 }
                 if (doubleJump)
                 {
                     readyToJump = true;
                 }
-                if (GameManager.Instance.PlayerStates.FallsControl && timeInFastFall > 0)
+                if (GameManager.Instance.PlayerStates.FallsControl && TimeInFastFall > 0)
                 {
                     resetFastFall = true;
-                    Debug.Log("resetFastFall fallcontrol");
+                  //  Debug.Log("resetFastFall fallcontrol");
                 }
             }
             //if (context.performed)
@@ -163,12 +170,12 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (context.started)
                 {
-                    Debug.Log("InDash true");
+                    //Debug.Log("InDash true");
                     inDash = true;
                 }
                 if (context.canceled)
                 {
-                    Debug.Log("InDash false");
+                   // Debug.Log("InDash false");
                     inDash = false;
                 }
             }
@@ -206,7 +213,7 @@ namespace br.com.bonus630.thefrog.Player
             doubleJump = false;
             anim.SetBool(JumpID, false);
             jumps = 2;
-            timeInFastFall = 0;
+            TimeInFastFall = 0;
         }
         private float accelerationFactor = 0.4f;
         private void Move()
@@ -328,7 +335,7 @@ namespace br.com.bonus630.thefrog.Player
                     }
                     DashSpeed = new Vector2(8, 0);
                     DashParticles.Play();
-                    Debug.Log("Dash here time: " + dashReloadMaxTime);
+                   // Debug.Log("Dash here time: " + dashReloadMaxTime);
                     // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
                     rb.gravityScale = 0;
                     firstTimeInDashLoop = true;
@@ -373,7 +380,7 @@ namespace br.com.bonus630.thefrog.Player
             if (isWallSliding)
             {
                 rb.linearVelocityY = wallSlideSpeed;
-                timeInFastFall = 0;
+                TimeInFastFall = 0;
                 if (canWallJump)
                 {
                     rb.linearVelocity = Vector2.zero;
@@ -388,7 +395,10 @@ namespace br.com.bonus630.thefrog.Player
        
         public void JumpDownEffect()
         {
+           var  bounce = new BounceEffect(anim.gameObject.transform);
+            EffectManager.instance.AddEffect(bounce);
             JumpDownParticles.Play();
+            
         }
         public void FallsControlEffect()
         {

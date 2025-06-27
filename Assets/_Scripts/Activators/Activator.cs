@@ -19,9 +19,9 @@ namespace br.com.bonus630.thefrog.Activators
         }
         void Reset()
         {
-            Debug.Log("Activator reset");
+           // Debug.Log("Activator reset");
             _collider = GetComponent<Collider2D>();
-            _collider.isTrigger = false;
+            _collider.isTrigger = true;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

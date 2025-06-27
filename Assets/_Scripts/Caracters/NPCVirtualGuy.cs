@@ -113,7 +113,10 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public override Dictionary<string, string> GetDialogueVariables()
         {
-            return new Dictionary<string, string>() { { "{apples}", $"{prizeApplesAmount - receivedApples}" } };
+            int val = prizeApplesAmount - receivedApples;
+            if (val < 0)
+                val = 0;
+            return new Dictionary<string, string>() { { "{apples}", $"{val}" } };
         }
 
         public void CheckInitialDialogue(int dialogue)

@@ -11,6 +11,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] GameObject cloud2;
         [SerializeField] GameObject cloud3;
         [SerializeField] MusicSource musicSource;
+        [SerializeField] ScreenEffects screenEffects;
         bool build = false;
         float time = 2;
         private Color transparent = new Color(1f, 1f, 1f, 0f);
@@ -52,10 +53,12 @@ namespace br.com.bonus630.thefrog.Activators
         IEnumerator Build()
         {
             float currentTime = 0;
+            float gamepadShake = 0.2f;
             float x1 = cloud1.transform.position.x;
             float x2 = cloud2.transform.position.x;
             float x3 = cloud3.transform.position.x;
             stageBuilder.Build();
+            screenEffects.GamepadShake(gamepadShake, 0);
             while (currentTime < time)
             {
                 currentTime += Time.deltaTime;
@@ -66,8 +69,11 @@ namespace br.com.bonus630.thefrog.Activators
                 cloud2.transform.position = new Vector3(Mathf.Lerp(x2, x2 + 6, currentTime), cloud2.transform.position.y, 0);
                 cloud3.transform.position = new Vector3(Mathf.Lerp(x3, x3 + 6, currentTime), cloud3.transform.position.y, 0);
 
+                screenEffects.GamepadShake(gamepadShake, 0);
+                gamepadShake = Mathf.Lerp(0.2f,0,currentTime);
                 yield return new WaitForSeconds(0.05f);
             }
+            screenEffects.GamepadShake(0, 0);
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;

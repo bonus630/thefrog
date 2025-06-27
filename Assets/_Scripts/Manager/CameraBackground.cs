@@ -60,7 +60,7 @@ namespace br.com.bonus630.thefrog.Manager
             filterSR = filter.GetComponent<SpriteRenderer>();
             cycleManager.cycleDurationMinutes = this.CycleDurationMinutes;
             InitializeDayByHour(this.hour);
-            cycleManager.OnHourChanged += (h) => { this.hour = h; HourChanged?.Invoke(h); };
+            cycleManager.OnHourChanged += (h) => { this.hour = h;GameManager.Instance.PlayerStates.Hour = h; HourChanged?.Invoke(h); };
 
 
         }
