@@ -110,11 +110,9 @@ namespace br.com.bonus630.thefrog.Manager
         {
             if (PauseAction.WasPressedThisFrame())
             {
-                if (SceneManager.GetActiveScene().name.Equals("SampleScene")|| SceneManager.GetActiveScene().name.Equals("InternAreas"))
-                {
-                    Pause(Time.timeScale == 1 ? true : false);
-                }
-            }
+
+                Pause(Time.timeScale == 1 ? true : false);
+            }            
             if (_isCountingTime)
             {
                 PlayTimeInSeconds += Time.deltaTime;
@@ -146,17 +144,20 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void Pause(bool pause)
         {
-            if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
+            if (SceneManager.GetActiveScene().name.Equals("SampleScene") || SceneManager.GetActiveScene().name.Equals("InternAreas"))
             {
-                float vol = pause ? -80f : 0f;
-                musicSource.SetMasterVolume(vol);
-                Time.timeScale = pause ? 0 : 1;
-                GameObject go = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
-               // Debug.Log(go);
-                if (go != null)
+                if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
                 {
-                    go.SetActive(pause);
-                    go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.PlayerStates.Hour.ToString("00") + " HORAS";
+                    float vol = pause ? -80f : 0f;
+                    musicSource.SetMasterVolume(vol);
+                    Time.timeScale = pause ? 0 : 1;
+                    GameObject go = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
+                    // Debug.Log(go);
+                    if (go != null)
+                    {
+                        go.SetActive(pause);
+                        go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.PlayerStates.Hour.ToString("00") + " HORAS";
+                    }
                 }
             }
         }

@@ -1,0 +1,4134 @@
+fileFormatVersion: 2
+guid: 6c98ce48323ba2b49832803d50aa9ff3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8103158924219357722
+    second: chrono-trigger_0
+  - first:
+      213: -8907349601444868169
+    second: chrono-trigger_1
+  - first:
+      213: -713832790395292183
+    second: chrono-trigger_2
+  - first:
+      213: 1054810488090324287
+    second: chrono-trigger_3
+  - first:
+      213: -5462577858198746956
+    second: chrono-trigger_4
+  - first:
+      213: -1702813058726178243
+    second: chrono-trigger_5
+  - first:
+      213: 8441359426857710777
+    second: chrono-trigger_6
+  - first:
+      213: 6638742604715505407
+    second: chrono-trigger_7
+  - first:
+      213: 2113611430410899870
+    second: chrono-trigger_8
+  - first:
+      213: 5023895232320743194
+    second: chrono-trigger_9
+  - first:
+      213: 1872138869393390144
+    second: chrono-trigger_10
+  - first:
+      213: -6623400231509293143
+    second: chrono-trigger_11
+  - first:
+      213: 3021595790825381817
+    second: chrono-trigger_12
+  - first:
+      213: -8565623537261543133
+    second: chrono-trigger_13
+  - first:
+      213: -195657365517638819
+    second: chrono-trigger_14
+  - first:
+      213: 5973882362038078749
+    second: chrono-trigger_15
+  - first:
+      213: 5425195283650490725
+    second: chrono-trigger_16
+  - first:
+      213: -1932853564791165152
+    second: chrono-trigger_17
+  - first:
+      213: 4764301055158591139
+    second: chrono-trigger_18
+  - first:
+      213: -5474220048490819215
+    second: chrono-trigger_19
+  - first:
+      213: 1056529426252636865
+    second: chrono-trigger_20
+  - first:
+      213: 5498081181445109079
+    second: chrono-trigger_21
+  - first:
+      213: -7125639821297368982
+    second: chrono-trigger_22
+  - first:
+      213: -1510071971566652898
+    second: chrono-trigger_23
+  - first:
+      213: -4552053986091342821
+    second: chrono-trigger_24
+  - first:
+      213: 5889182311380188048
+    second: chrono-trigger_25
+  - first:
+      213: 6731451525170345482
+    second: chrono-trigger_26
+  - first:
+      213: 1548873469198523669
+    second: chrono-trigger_27
+  - first:
+      213: 3691517423538721551
+    second: chrono-trigger_28
+  - first:
+      213: -7735218809980302665
+    second: chrono-trigger_29
+  - first:
+      213: -4021823214120320773
+    second: chrono-trigger_30
+  - first:
+      213: -5950537615549496449
+    second: chrono-trigger_31
+  - first:
+      213: -1810523175880322120
+    second: chrono-trigger_32
+  - first:
+      213: -7297995210149613151
+    second: chrono-trigger_33
+  - first:
+      213: 8143361562717442194
+    second: chrono-trigger_34
+  - first:
+      213: -2276280907494559441
+    second: chrono-trigger_35
+  - first:
+      213: 1067333675547386626
+    second: chrono-trigger_36
+  - first:
+      213: 517059103627213061
+    second: chrono-trigger_37
+  - first:
+      213: -9098971371668372935
+    second: chrono-trigger_38
+  - first:
+      213: 7925839169244721894
+    second: chrono-trigger_39
+  - first:
+      213: -221822732586181121
+    second: chrono-trigger_40
+  - first:
+      213: -8570895319407883310
+    second: chrono-trigger_41
+  - first:
+      213: 8751680321992199770
+    second: chrono-trigger_42
+  - first:
+      213: 189761592900945003
+    second: chrono-trigger_43
+  - first:
+      213: -128987597338797119
+    second: chrono-trigger_44
+  - first:
+      213: 3172839078027799861
+    second: chrono-trigger_45
+  - first:
+      213: 8608404422036618095
+    second: chrono-trigger_46
+  - first:
+      213: -6492017241025444460
+    second: chrono-trigger_47
+  - first:
+      213: 15227930997877971
+    second: chrono-trigger_48
+  - first:
+      213: 935375098318724243
+    second: chrono-trigger_49
+  - first:
+      213: 2727883595957765185
+    second: chrono-trigger_50
+  - first:
+      213: -4178499733932524107
+    second: chrono-trigger_51
+  - first:
+      213: -62991412047647801
+    second: chrono-trigger_52
+  - first:
+      213: 1513170917977753522
+    second: chrono-trigger_53
+  - first:
+      213: 67483175417477346
+    second: chrono-trigger_54
+  - first:
+      213: -6925298787490822899
+    second: chrono-trigger_55
+  - first:
+      213: 3772742371557567148
+    second: chrono-trigger_56
+  - first:
+      213: 7358336546065090897
+    second: chrono-trigger_57
+  - first:
+      213: 7435312924077931675
+    second: chrono-trigger_58
+  - first:
+      213: -1086117250200536459
+    second: chrono-trigger_59
+  - first:
+      213: -8912607557992382794
+    second: chrono-trigger_60
+  - first:
+      213: 6131055424667865347
+    second: chrono-trigger_61
+  - first:
+      213: -1640731930006733683
+    second: chrono-trigger_62
+  - first:
+      213: 5103561425810106608
+    second: chrono-trigger_63
+  - first:
+      213: 8427799256547467305
+    second: chrono-trigger_64
+  - first:
+      213: 4044943492828201498
+    second: chrono-trigger_65
+  - first:
+      213: 9173718078941204656
+    second: chrono-trigger_66
+  - first:
+      213: -3142039091694833490
+    second: chrono-trigger_67
+  - first:
+      213: -5249800535297549846
+    second: chrono-trigger_68
+  - first:
+      213: 3743984818409170755
+    second: chrono-trigger_69
+  - first:
+      213: -6765082388936723947
+    second: chrono-trigger_70
+  - first:
+      213: -1145118598472291306
+    second: chrono-trigger_71
+  - first:
+      213: -2264936004565721946
+    second: chrono-trigger_72
+  - first:
+      213: 264893734241191405
+    second: chrono-trigger_73
+  - first:
+      213: 6886867689836635559
+    second: chrono-trigger_74
+  - first:
+      213: 7795938326858161036
+    second: chrono-trigger_75
+  - first:
+      213: -7987775290197850700
+    second: chrono-trigger_76
+  - first:
+      213: -1780390696442866440
+    second: chrono-trigger_77
+  - first:
+      213: 2511082397501759712
+    second: chrono-trigger_78
+  - first:
+      213: 7973451468599753783
+    second: chrono-trigger_79
+  - first:
+      213: -7259841985247085577
+    second: chrono-trigger_80
+  - first:
+      213: 8875007326568232668
+    second: chrono-trigger_81
+  - first:
+      213: -9095010077742739673
+    second: chrono-trigger_82
+  - first:
+      213: -381994071115593722
+    second: chrono-trigger_83
+  - first:
+      213: 5641230581255526200
+    second: chrono-trigger_84
+  - first:
+      213: -3311477131964455876
+    second: chrono-trigger_85
+  - first:
+      213: -498030877730344686
+    second: chrono-trigger_86
+  - first:
+      213: 9091390271220309304
+    second: chrono-trigger_87
+  - first:
+      213: 8998001845435163745
+    second: chrono-trigger_88
+  - first:
+      213: 8640887749009942700
+    second: chrono-trigger_89
+  - first:
+      213: 4934798620351513297
+    second: chrono-trigger_90
+  - first:
+      213: 1934139477301283979
+    second: chrono-trigger_91
+  - first:
+      213: 4118918498891167790
+    second: chrono-trigger_92
+  - first:
+      213: -1626191062296709727
+    second: chrono-trigger_93
+  - first:
+      213: 2396304083657398201
+    second: chrono-trigger_94
+  - first:
+      213: -8262656218771116725
+    second: chrono-trigger_95
+  - first:
+      213: 5884872507607282944
+    second: chrono-trigger_96
+  - first:
+      213: 1625364754911788533
+    second: chrono-trigger_97
+  - first:
+      213: 2507588565098025589
+    second: chrono-trigger_98
+  - first:
+      213: -1859746975461882736
+    second: chrono-trigger_99
+  - first:
+      213: 8385944361050343198
+    second: chrono-trigger_100
+  - first:
+      213: -7477520373526482452
+    second: chrono-trigger_101
+  - first:
+      213: -7824057197234398032
+    second: chrono-trigger_102
+  - first:
+      213: -7188578963437291104
+    second: chrono-trigger_103
+  - first:
+      213: -3078905605795666696
+    second: chrono-trigger_104
+  - first:
+      213: -7037894187866087424
+    second: chrono-trigger_105
+  - first:
+      213: -661693522509400214
+    second: chrono-trigger_106
+  - first:
+      213: 7970219765960344991
+    second: chrono-trigger_107
+  - first:
+      213: -5917561652980018110
+    second: chrono-trigger_108
+  - first:
+      213: -3353563179901780611
+    second: chrono-trigger_109
+  - first:
+      213: -8974194117030898322
+    second: chrono-trigger_110
+  - first:
+      213: -8451290190450140186
+    second: chrono-trigger_111
+  - first:
+      213: 7344411319103869037
+    second: chrono-trigger_112
+  - first:
+      213: -5340360731274515015
+    second: chrono-trigger_113
+  - first:
+      213: -3254427107017974405
+    second: chrono-trigger_114
+  - first:
+      213: -7844498320851041954
+    second: chrono-trigger_115
+  - first:
+      213: 1347429866452148719
+    second: chrono-trigger_116
+  - first:
+      213: 5850435575211906806
+    second: chrono-trigger_117
+  - first:
+      213: 5941459757742113873
+    second: chrono-trigger_118
+  - first:
+      213: 892632007450534823
+    second: chrono-trigger_119
+  - first:
+      213: 4844824225441002907
+    second: chrono-trigger_120
+  - first:
+      213: 1812749768805913456
+    second: chrono-trigger_121
+  - first:
+      213: -1980550189560393163
+    second: chrono-trigger_122
+  - first:
+      213: 2404833836786768256
+    second: chrono-trigger_123
+  - first:
+      213: -4545229287946451204
+    second: chrono-trigger_124
+  - first:
+      213: -3162121147592020978
+    second: chrono-trigger_125
+  - first:
+      213: -3649965070766332053
+    second: chrono-trigger_126
+  - first:
+      213: -3039347073438264850
+    second: chrono-trigger_127
+  - first:
+      213: 8388200234091521507
+    second: chrono-trigger_128
+  - first:
+      213: 7910439737822391681
+    second: chrono-trigger_129
+  - first:
+      213: -5805278963773157604
+    second: chrono-trigger_130
+  - first:
+      213: 5398199303274271249
+    second: chrono-trigger_131
+  - first:
+      213: 7644797473964430469
+    second: chrono-trigger_132
+  - first:
+      213: -4985718619360580353
+    second: chrono-trigger_133
+  - first:
+      213: -5104515551714802185
+    second: chrono-trigger_134
+  - first:
+      213: 6789318750310748268
+    second: chrono-trigger_135
+  - first:
+      213: -2287076801040680934
+    second: chrono-trigger_136
+  - first:
+      213: -5370013250741110573
+    second: chrono-trigger_137
+  - first:
+      213: 2303574118170566467
+    second: chrono-trigger_138
+  - first:
+      213: 4511081189856598172
+    second: chrono-trigger_139
+  - first:
+      213: 1032514839404815901
+    second: chrono-trigger_140
+  - first:
+      213: 3195541795621333377
+    second: chrono-trigger_141
+  - first:
+      213: -5082533294021361526
+    second: chrono-trigger_142
+  - first:
+      213: 4348096509610685683
+    second: chrono-trigger_143
+  - first:
+      213: 6232711547461115832
+    second: chrono-trigger_144
+  - first:
+      213: 599736075257806676
+    second: chrono-trigger_145
+  - first:
+      213: -8496194405789849565
+    second: chrono-trigger_146
+  - first:
+      213: -2952948831575370776
+    second: chrono-trigger_147
+  - first:
+      213: 4015987050198400530
+    second: chrono-trigger_148
+  - first:
+      213: -1347773939080415901
+    second: chrono-trigger_149
+  - first:
+      213: -3389490781444329646
+    second: chrono-trigger_150
+  - first:
+      213: -8652231009883444988
+    second: chrono-trigger_151
+  - first:
+      213: 966821180630343495
+    second: chrono-trigger_152
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: chrono-trigger_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 328
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a91a4fb14347070800000000000000
+      internalID: 8103158924219357722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 326
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf49ab0bbcb26480800000000000000
+      internalID: -8907349601444868169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_2
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 328
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e57673fbd4f716f0800000000000000
+      internalID: -713832790395292183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_3
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 328
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3deaffdc8073ae00800000000000000
+      internalID: 1054810488090324287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_4
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 328
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b8462441660134b0800000000000000
+      internalID: -5462577858198746956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_5
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 328
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32dab38b846e58e0800000000000000
+      internalID: -1702813058726178243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_6
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 328
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4bf3bacabb52570800000000000000
+      internalID: 8441359426857710777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_7
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 328
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6b155b93d812c50800000000000000
+      internalID: 6638742604715505407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_8
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 328
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91d8d6c56e055d10800000000000000
+      internalID: 2113611430410899870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_9
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 328
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a17a147981678b540800000000000000
+      internalID: 5023895232320743194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_10
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 328
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04af468f16c2bf910800000000000000
+      internalID: 1872138869393390144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_11
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 328
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a706abe494f414a0800000000000000
+      internalID: -6623400231509293143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_12
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 328
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf56f6dc5ddee920800000000000000
+      internalID: 3021595790825381817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_13
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 328
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3210dc586cac02980800000000000000
+      internalID: -8565623537261543133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_14
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 328
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d53e1a6a9a2e84df0800000000000000
+      internalID: -195657365517638819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_15
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 326
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d40477b5e77e250800000000000000
+      internalID: 5973882362038078749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_16
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 327
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 561bc17dd5a2a4b40800000000000000
+      internalID: 5425195283650490725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_17
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 326
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f66cb6cef1d25e0800000000000000
+      internalID: -1932853564791165152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_18
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 326
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ae1fbb31923e1240800000000000000
+      internalID: 4764301055158591139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_19
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 310
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171126b9ed9a704b0800000000000000
+      internalID: -5474220048490819215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_20
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 310
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c2298a5aeb89ae00800000000000000
+      internalID: 1056529426252636865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_21
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 310
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 755bb4654bb1d4c40800000000000000
+      internalID: 5498081181445109079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_22
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 308
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a604136f554ac1d90800000000000000
+      internalID: -7125639821297368982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_23
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 310
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e12fe75ea852b0be0800000000000000
+      internalID: -1510071971566652898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_24
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 310
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b14ef98740bd3d0c0800000000000000
+      internalID: -4552053986091342821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_25
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 310
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b74572c149ab150800000000000000
+      internalID: 5889182311380188048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_26
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 310
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a063a845f7bea6d50800000000000000
+      internalID: 6731451525170345482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_27
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 310
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51dda95c634be7510800000000000000
+      internalID: 1548873469198523669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_28
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 231
+        width: 55
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f03d038c987ea3330800000000000000
+      internalID: 3691517423538721551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_29
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 314
+        width: 33
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ba443ba97bf6a490800000000000000
+      internalID: -7735218809980302665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_30
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 315
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf040f4681d9f28c0800000000000000
+      internalID: -4021823214120320773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_31
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 314
+        width: 42
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f738292e0917b6da0800000000000000
+      internalID: -5950537615549496449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_32
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 271
+        width: 66
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b39a0c93cabfd6e0800000000000000
+      internalID: -1810523175880322120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_33
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 273
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1b786d50058ba90800000000000000
+      internalID: -7297995210149613151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_34
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 297
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 290d7572238030170800000000000000
+      internalID: 8143361562717442194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_35
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 298
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2178cb23960960e0800000000000000
+      internalID: -2276280907494559441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_36
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 297
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20360dba25eefce00800000000000000
+      internalID: 1067333675547386626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_37
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 297
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509f497e386fc2700800000000000000
+      internalID: 517059103627213061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_38
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 282
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9320242feb5f9b180800000000000000
+      internalID: -9098971371668372935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_39
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 283
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e275b54bbc3efd60800000000000000
+      internalID: 7925839169244721894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_40
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 282
+        width: 24
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd1815666debecf0800000000000000
+      internalID: -221822732586181121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_41
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 282
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db82a71e101e0980800000000000000
+      internalID: -8570895319407883310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_42
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 265
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e0f1c62e6347970800000000000000
+      internalID: 8751680321992199770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_43
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 266
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b648fd0d92b22a200800000000000000
+      internalID: 189761592900945003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_44
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 266
+        width: 29
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cb9030b67eb53ef0800000000000000
+      internalID: -128987597338797119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 232
+        width: 6
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53d235fb450380c20800000000000000
+      internalID: 3172839078027799861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_46
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 224
+        width: 66
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6bf46a6632377770800000000000000
+      internalID: 8608404422036618095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_47
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 223
+        width: 66
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49587f827b8b7e5a0800000000000000
+      internalID: -6492017241025444460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_48
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 250
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dceac9f8b9163000800000000000000
+      internalID: 15227930997877971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_49
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 251
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c980332be1bfc00800000000000000
+      internalID: 935375098318724243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_50
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 250
+        width: 42
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1448da57da36bd520800000000000000
+      internalID: 2727883595957765185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_51
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 234
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd33e071acf206c0800000000000000
+      internalID: -4178499733932524107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_52
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 235
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cbeffcf4a5302ff0800000000000000
+      internalID: -62991412047647801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_53
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 234
+        width: 26
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b7048aceecdff410800000000000000
+      internalID: 1513170917977753522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_54
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 217
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e8f21b279fbfe000800000000000000
+      internalID: 67483175417477346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_55
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 217
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d058a20d17564ef90800000000000000
+      internalID: -6925298787490822899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_56
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 217
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caae0c5b2397b5430800000000000000
+      internalID: 3772742371557567148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_57
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 217
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1590cfd3a101e1660800000000000000
+      internalID: 7358336546065090897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_58
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 223
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9c3981e5b98f2760800000000000000
+      internalID: 7435312924077931675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_59
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 223
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a7f5d8d165de0f0800000000000000
+      internalID: -1086117250200536459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_60
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 223
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bef663a5ae005480800000000000000
+      internalID: -8912607557992382794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_61
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 216
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3015f8dcc62e51550800000000000000
+      internalID: 6131055424667865347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_62
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 183
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8cbe4ca003fa39e0800000000000000
+      internalID: -1640731930006733683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 81
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f82cc2b31e73d640800000000000000
+      internalID: 5103561425810106608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_64
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 191
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92020dc75ce85f470800000000000000
+      internalID: 8427799256547467305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_65
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 191
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a128d8afca6822830800000000000000
+      internalID: 4044943492828201498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_66
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 166
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b09ed40df79f4f70800000000000000
+      internalID: 9173718078941204656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_67
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 166
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea07325e71c3564d0800000000000000
+      internalID: -3142039091694833490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_68
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 166
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae91fef4a36f427b0800000000000000
+      internalID: -5249800535297549846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_69
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 166
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 347ebb91b5e45f330800000000000000
+      internalID: 3743984818409170755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_70
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 166
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 512fc2309699d12a0800000000000000
+      internalID: -6765082388936723947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_71
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 166
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61cad58a3b8bb10f0800000000000000
+      internalID: -1145118598472291306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_72
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 166
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac1ed834b45190e0800000000000000
+      internalID: -2264936004565721946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_73
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 166
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de54ca4a2771da300800000000000000
+      internalID: 264893734241191405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_74
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 167
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a5e3dbfca1139f50800000000000000
+      internalID: 6886867689836635559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_75
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 167
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8bdb378a9cb03c60800000000000000
+      internalID: 7795938326858161036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_76
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 167
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b54d12d1b8b52190800000000000000
+      internalID: -7987775290197850700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_77
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f4dc113818ca47e0800000000000000
+      internalID: -1780390696442866440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_78
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e024d0e22829d220800000000000000
+      internalID: 2511082397501759712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_79
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c74b39dd367ae60800000000000000
+      internalID: 7973451468599753783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_80
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 151
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb71efbd2cdf3b90800000000000000
+      internalID: -7259841985247085577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_81
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 151
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6b617442c5a2b70800000000000000
+      internalID: 8875007326568232668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_82
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 151
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72fcb8f858808c180800000000000000
+      internalID: -9095010077742739673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_83
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60889dc8a62e2baf0800000000000000
+      internalID: -381994071115593722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_84
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 151
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8375ecb335da94e40800000000000000
+      internalID: 5641230581255526200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_85
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c34ed6be7154b02d0800000000000000
+      internalID: -3311477131964455876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_86
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 151
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211f4bd2e83a619f0800000000000000
+      internalID: -498030877730344686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_87
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83d578e884b1b2e70800000000000000
+      internalID: 9091390271220309304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_88
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 164e87541035fdc70800000000000000
+      internalID: 8998001845435163745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_89
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 151
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca823c750a99ae770800000000000000
+      internalID: 8640887749009942700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_90
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 151
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d2c324133deb7440800000000000000
+      internalID: 4934798620351513297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_91
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 151
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8c4a9a6b9177da10800000000000000
+      internalID: 1934139477301283979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_92
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2871314d86592930800000000000000
+      internalID: 4118918498891167790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_93
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5b3e248db9e69e0800000000000000
+      internalID: -1626191062296709727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_94
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b797303ed1614120800000000000000
+      internalID: 2396304083657398201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_95
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 151
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4da9fa42f5255d80800000000000000
+      internalID: -8262656218771116725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_96
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 005f464cd544ba150800000000000000
+      internalID: 5884872507607282944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_97
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fdf4fe02a47e8610800000000000000
+      internalID: 1625364754911788533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_98
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 572df71a38ebcc220800000000000000
+      internalID: 2507588565098025589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_99
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 151
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094cc7baaf9d036e0800000000000000
+      internalID: -1859746975461882736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_100
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17889a37fbd06470800000000000000
+      internalID: 8385944361050343198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_101
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 151
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce1353f76d28a3890800000000000000
+      internalID: -7477520373526482452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_102
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 151
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc5188ce6d5b6390800000000000000
+      internalID: -7824057197234398032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_103
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a9797cf4890d3c90800000000000000
+      internalID: -7188578963437291104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_104
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 151
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f4279d0aa78545d0800000000000000
+      internalID: -3078905605795666696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_105
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 151
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 000a4754680645e90800000000000000
+      internalID: -7037894187866087424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_106
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 151
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6776a04f3131d6f0800000000000000
+      internalID: -661693522509400214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_107
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f950ddb26a8eb9e60800000000000000
+      internalID: 7970219765960344991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_108
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 151
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24417a9770990eda0800000000000000
+      internalID: -5917561652980018110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_109
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 151
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7dff1a4e00c571d0800000000000000
+      internalID: -3353563179901780611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_110
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 101
+        width: 90
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6519f47ff1457380800000000000000
+      internalID: -8974194117030898322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_111
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 113
+        width: 17
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebd970495cf6ba80800000000000000
+      internalID: -8451290190450140186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_112
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 131
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d605b8fae279ce560800000000000000
+      internalID: 7344411319103869037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_113
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 131
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bdefe7953a33e5b0800000000000000
+      internalID: -5340360731274515015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_114
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 113
+        width: 50
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7d9ac2f9c3f5d2d0800000000000000
+      internalID: -3254427107017974405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_115
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 131
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e518680d65eb22390800000000000000
+      internalID: -7844498320851041954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_116
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 137
+        width: 50
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe1e1a5135803b210800000000000000
+      internalID: 1347429866452148719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_117
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 139
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f650d1a82ce03150800000000000000
+      internalID: 5850435575211906806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_118
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 137
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1544f73ab2e447250800000000000000
+      internalID: 5941459757742113873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_119
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 129
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3ab37d414436c00800000000000000
+      internalID: 892632007450534823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_120
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 130
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b953e9cc6f54c3340800000000000000
+      internalID: 4844824225441002907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_121
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 129
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07319547f4e282910800000000000000
+      internalID: 1812749768805913456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_122
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 130
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5329b63981ca384e0800000000000000
+      internalID: -1980550189560393163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_123
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 114
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 089d38912afaf5120800000000000000
+      internalID: 2404833836786768256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_124
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 115
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf600455b0a1ce0c0800000000000000
+      internalID: -4545229287946451204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_125
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 108
+        width: 74
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ce605e193ed14d0800000000000000
+      internalID: -3162121147592020978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_126
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 99
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67a3624b18b85dc0800000000000000
+      internalID: -3649965070766332053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_127
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 101
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1d69a90f112d5d0800000000000000
+      internalID: -3039347073438264850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_128
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 101
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5afd99bafd86470800000000000000
+      internalID: 8388200234091521507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_129
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 101
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18da90eb70787cd60800000000000000
+      internalID: 7910439737822391681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_130
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 101
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1fc0464a818f6fa0800000000000000
+      internalID: -5805278963773157604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_131
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 101
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1129c6a5aa14aea40800000000000000
+      internalID: 5398199303274271249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_132
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 101
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58414777cc6c71a60800000000000000
+      internalID: 7644797473964430469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_133
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 101
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc26f6c45b2fcab0800000000000000
+      internalID: -4985718619360580353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_134
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 33
+        width: 130
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5059d862e1929b0800000000000000
+      internalID: -5104515551714802185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_135
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 107
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60db2b9e61883e50800000000000000
+      internalID: 6789318750310748268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_136
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 81
+        width: 178
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18fee354cba240e0800000000000000
+      internalID: -2287076801040680934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_137
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 84
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d87f666661e975b0800000000000000
+      internalID: -5370013250741110573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_138
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 84
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34f1753a470f7ff10800000000000000
+      internalID: 2303574118170566467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_139
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 69
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c98595201749a9e30800000000000000
+      internalID: 4511081189856598172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_140
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d162b04a6ca345e00800000000000000
+      internalID: 1032514839404815901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_141
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 69
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1896ce81558d85c20800000000000000
+      internalID: 3195541795621333377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_142
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 69
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80c2c2c5e63779b0800000000000000
+      internalID: -5082533294021361526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_143
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f4f5700dba875c30800000000000000
+      internalID: 4348096509610685683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_144
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf15ed412a0f7650800000000000000
+      internalID: 6232711547461115832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_145
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 69
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f7abc68c0b25800800000000000000
+      internalID: 599736075257806676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_146
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 69
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3282c34e334771a80800000000000000
+      internalID: -8496194405789849565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_147
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 69
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e39b0edea40507d0800000000000000
+      internalID: -2952948831575370776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_148
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 17
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ef4adc1f6abb730800000000000000
+      internalID: 4015987050198400530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_149
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 19
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36535934ebebb4de0800000000000000
+      internalID: -1347773939080415901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_150
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 17
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25fac82b71c16f0d0800000000000000
+      internalID: -3389490781444329646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_151
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 33
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 409274decb91de780800000000000000
+      internalID: -8652231009883444988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chrono-trigger_152
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 5
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f9bc8cdb6da6d00800000000000000
+      internalID: 966821180630343495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      chrono-trigger_0: 8103158924219357722
+      chrono-trigger_1: -8907349601444868169
+      chrono-trigger_10: 1872138869393390144
+      chrono-trigger_100: 8385944361050343198
+      chrono-trigger_101: -7477520373526482452
+      chrono-trigger_102: -7824057197234398032
+      chrono-trigger_103: -7188578963437291104
+      chrono-trigger_104: -3078905605795666696
+      chrono-trigger_105: -7037894187866087424
+      chrono-trigger_106: -661693522509400214
+      chrono-trigger_107: 7970219765960344991
+      chrono-trigger_108: -5917561652980018110
+      chrono-trigger_109: -3353563179901780611
+      chrono-trigger_11: -6623400231509293143
+      chrono-trigger_110: -8974194117030898322
+      chrono-trigger_111: -8451290190450140186
+      chrono-trigger_112: 7344411319103869037
+      chrono-trigger_113: -5340360731274515015
+      chrono-trigger_114: -3254427107017974405
+      chrono-trigger_115: -7844498320851041954
+      chrono-trigger_116: 1347429866452148719
+      chrono-trigger_117: 5850435575211906806
+      chrono-trigger_118: 5941459757742113873
+      chrono-trigger_119: 892632007450534823
+      chrono-trigger_12: 3021595790825381817
+      chrono-trigger_120: 4844824225441002907
+      chrono-trigger_121: 1812749768805913456
+      chrono-trigger_122: -1980550189560393163
+      chrono-trigger_123: 2404833836786768256
+      chrono-trigger_124: -4545229287946451204
+      chrono-trigger_125: -3162121147592020978
+      chrono-trigger_126: -3649965070766332053
+      chrono-trigger_127: -3039347073438264850
+      chrono-trigger_128: 8388200234091521507
+      chrono-trigger_129: 7910439737822391681
+      chrono-trigger_13: -8565623537261543133
+      chrono-trigger_130: -5805278963773157604
+      chrono-trigger_131: 5398199303274271249
+      chrono-trigger_132: 7644797473964430469
+      chrono-trigger_133: -4985718619360580353
+      chrono-trigger_134: -5104515551714802185
+      chrono-trigger_135: 6789318750310748268
+      chrono-trigger_136: -2287076801040680934
+      chrono-trigger_137: -5370013250741110573
+      chrono-trigger_138: 2303574118170566467
+      chrono-trigger_139: 4511081189856598172
+      chrono-trigger_14: -195657365517638819
+      chrono-trigger_140: 1032514839404815901
+      chrono-trigger_141: 3195541795621333377
+      chrono-trigger_142: -5082533294021361526
+      chrono-trigger_143: 4348096509610685683
+      chrono-trigger_144: 6232711547461115832
+      chrono-trigger_145: 599736075257806676
+      chrono-trigger_146: -8496194405789849565
+      chrono-trigger_147: -2952948831575370776
+      chrono-trigger_148: 4015987050198400530
+      chrono-trigger_149: -1347773939080415901
+      chrono-trigger_15: 5973882362038078749
+      chrono-trigger_150: -3389490781444329646
+      chrono-trigger_151: -8652231009883444988
+      chrono-trigger_152: 966821180630343495
+      chrono-trigger_16: 5425195283650490725
+      chrono-trigger_17: -1932853564791165152
+      chrono-trigger_18: 4764301055158591139
+      chrono-trigger_19: -5474220048490819215
+      chrono-trigger_2: -713832790395292183
+      chrono-trigger_20: 1056529426252636865
+      chrono-trigger_21: 5498081181445109079
+      chrono-trigger_22: -7125639821297368982
+      chrono-trigger_23: -1510071971566652898
+      chrono-trigger_24: -4552053986091342821
+      chrono-trigger_25: 5889182311380188048
+      chrono-trigger_26: 6731451525170345482
+      chrono-trigger_27: 1548873469198523669
+      chrono-trigger_28: 3691517423538721551
+      chrono-trigger_29: -7735218809980302665
+      chrono-trigger_3: 1054810488090324287
+      chrono-trigger_30: -4021823214120320773
+      chrono-trigger_31: -5950537615549496449
+      chrono-trigger_32: -1810523175880322120
+      chrono-trigger_33: -7297995210149613151
+      chrono-trigger_34: 8143361562717442194
+      chrono-trigger_35: -2276280907494559441
+      chrono-trigger_36: 1067333675547386626
+      chrono-trigger_37: 517059103627213061
+      chrono-trigger_38: -9098971371668372935
+      chrono-trigger_39: 7925839169244721894
+      chrono-trigger_4: -5462577858198746956
+      chrono-trigger_40: -221822732586181121
+      chrono-trigger_41: -8570895319407883310
+      chrono-trigger_42: 8751680321992199770
+      chrono-trigger_43: 189761592900945003
+      chrono-trigger_44: -128987597338797119
+      chrono-trigger_45: 3172839078027799861
+      chrono-trigger_46: 8608404422036618095
+      chrono-trigger_47: -6492017241025444460
+      chrono-trigger_48: 15227930997877971
+      chrono-trigger_49: 935375098318724243
+      chrono-trigger_5: -1702813058726178243
+      chrono-trigger_50: 2727883595957765185
+      chrono-trigger_51: -4178499733932524107
+      chrono-trigger_52: -62991412047647801
+      chrono-trigger_53: 1513170917977753522
+      chrono-trigger_54: 67483175417477346
+      chrono-trigger_55: -6925298787490822899
+      chrono-trigger_56: 3772742371557567148
+      chrono-trigger_57: 7358336546065090897
+      chrono-trigger_58: 7435312924077931675
+      chrono-trigger_59: -1086117250200536459
+      chrono-trigger_6: 8441359426857710777
+      chrono-trigger_60: -8912607557992382794
+      chrono-trigger_61: 6131055424667865347
+      chrono-trigger_62: -1640731930006733683
+      chrono-trigger_63: 5103561425810106608
+      chrono-trigger_64: 8427799256547467305
+      chrono-trigger_65: 4044943492828201498
+      chrono-trigger_66: 9173718078941204656
+      chrono-trigger_67: -3142039091694833490
+      chrono-trigger_68: -5249800535297549846
+      chrono-trigger_69: 3743984818409170755
+      chrono-trigger_7: 6638742604715505407
+      chrono-trigger_70: -6765082388936723947
+      chrono-trigger_71: -1145118598472291306
+      chrono-trigger_72: -2264936004565721946
+      chrono-trigger_73: 264893734241191405
+      chrono-trigger_74: 6886867689836635559
+      chrono-trigger_75: 7795938326858161036
+      chrono-trigger_76: -7987775290197850700
+      chrono-trigger_77: -1780390696442866440
+      chrono-trigger_78: 2511082397501759712
+      chrono-trigger_79: 7973451468599753783
+      chrono-trigger_8: 2113611430410899870
+      chrono-trigger_80: -7259841985247085577
+      chrono-trigger_81: 8875007326568232668
+      chrono-trigger_82: -9095010077742739673
+      chrono-trigger_83: -381994071115593722
+      chrono-trigger_84: 5641230581255526200
+      chrono-trigger_85: -3311477131964455876
+      chrono-trigger_86: -498030877730344686
+      chrono-trigger_87: 9091390271220309304
+      chrono-trigger_88: 8998001845435163745
+      chrono-trigger_89: 8640887749009942700
+      chrono-trigger_9: 5023895232320743194
+      chrono-trigger_90: 4934798620351513297
+      chrono-trigger_91: 1934139477301283979
+      chrono-trigger_92: 4118918498891167790
+      chrono-trigger_93: -1626191062296709727
+      chrono-trigger_94: 2396304083657398201
+      chrono-trigger_95: -8262656218771116725
+      chrono-trigger_96: 5884872507607282944
+      chrono-trigger_97: 1625364754911788533
+      chrono-trigger_98: 2507588565098025589
+      chrono-trigger_99: -1859746975461882736
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

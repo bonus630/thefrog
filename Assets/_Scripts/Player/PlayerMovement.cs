@@ -202,11 +202,9 @@ namespace br.com.bonus630.thefrog.Player
                 isJumping = false;
 
             }
-
         }
         private void resetJump()
         {
-
             JumpDownEffect();
             player.InGround = true;
             airDash = false;

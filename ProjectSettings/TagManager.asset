@@ -11,6 +11,7 @@ TagManager:
   - Item
   - Tips
   - Destroyable
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

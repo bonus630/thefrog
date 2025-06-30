@@ -1,7 +1,9 @@
 using br.com.bonus630.thefrog.Manager;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 namespace br.com.bonus630.thefrog.UI
 {
@@ -9,11 +11,24 @@ namespace br.com.bonus630.thefrog.UI
     {
         [SerializeField] TextMeshProUGUI text;
 
-        [SerializeField] Button continueButton;
         [SerializeField] Button startButton;
+        [SerializeField] Button continueButton;
+        [SerializeField] Button controlsButton;
+        [SerializeField] Button goBackButton;
+
+        [SerializeField] GameObject buttons;
+        [SerializeField] GameObject control;
+
+
         void Start()
         {
-            continueButton.gameObject.SetActive(GameManager.Instance.CanContinue());
+            if(GameManager.Instance.CanContinue())
+            {
+                continueButton.gameObject.SetActive(true);
+                Vector2 pos = controlsButton.GetComponent<RectTransform>().anchoredPosition;
+                controlsButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(pos.x,pos.y-120);
+            }
+
             string[] joys = Input.GetJoystickNames();
             var gamepad = Gamepad.current;
             //  Debug.Log(gamepad);
@@ -34,6 +49,18 @@ namespace br.com.bonus630.thefrog.UI
         public void QuitButton_clicked()
         {
             Application.Quit();
+        }
+        public void ControlsButton_clicked()
+        {
+            control.SetActive(true);
+            buttons.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(goBackButton.gameObject);
+        }
+        public void GoBackButton_clicked()
+        {
+            control.SetActive(false);
+            buttons.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(controlsButton.gameObject);
         }
         //void Update()
         //{

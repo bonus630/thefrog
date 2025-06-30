@@ -5,8 +5,8 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Codice.CM.SEIDInfo;
 using UnityEngine.InputSystem.XInput;
+using System.Collections.Generic;
 namespace br.com.bonus630.thefrog.Player
 {
 
@@ -73,7 +73,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            Debug.Log($"Gamepad: {Gamepad.current.GetType() == typeof(XInputControllerWindows)}");
+            //Debug.Log($"Gamepad: {Gamepad.current.GetType() == typeof(XInputControllerWindows)}");
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
