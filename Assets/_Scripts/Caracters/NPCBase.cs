@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
@@ -30,18 +29,13 @@ namespace br.com.bonus630.thefrog.Caracters
                 currentDialogueData = value;
             }
         }
-        protected virtual void Update()
-        {
-
-        }
-        public bool ReadyToInteract(bool lookFor)
+        protected virtual void Update() {  }
+        public virtual bool ReadyToInteract(bool lookFor)
         {
             bool result = lookFor && playerTriggerEnter;
             TalkIcon.SetActive(result);
             return result;
         }
-
-
         protected virtual void Awake()
         {
             currentDialogueData = dialogueData;

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
   m_Name: WallJump
   m_EditorClassIdentifier: 
+  DialogueName: 
   Dialogues:
   - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
     Name: Desconhecido
@@ -29,10 +30,10 @@ MonoBehaviour:
   - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}
     Name: Desconhecido
     text: "Sem d\xFAvidas voc\xEA tem muito potencial."
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: Desconhecido
     text: "J\xE1 lhe falei que n\xE3o sei do que voc\xEA est\xE1 dizendo!!!"
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: Desconhecido
     text: Que seja!
   - Avatar: {fileID: 21300000, guid: 522baf863f6c0bf4fbb3e2cf819f1c5f, type: 3}

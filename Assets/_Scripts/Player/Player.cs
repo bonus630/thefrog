@@ -16,6 +16,8 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private GameObject projectile;
         [SerializeField] private GameObject fireball;
         [SerializeField] private Transform projectilesSpawPoint;
+        [SerializeField] private Transform projectilesSpawPoint2;
+       
         public int CurrentLife { get { return playerHealth.CurrentLife; } set { playerHealth.CurrentLife = value; } }
         [Header("Sounds")]
         [SerializeField] private AudioClip throwProjectileSFX;
@@ -77,7 +79,7 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-            //#if !UNITY_EDITOR
+            #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -88,7 +90,7 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-            //#endif
+            #endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
@@ -284,10 +286,13 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (GameManager.Instance.PlayerStates.Shurykens > 0)
             {
+                
+               // Vector3 position = new Vector3(projectilesSpawPoint.position.x.FlipIfNegative(playerMovement.GetWallSliding), projectilesSpawPoint.position.y, projectilesSpawPoint.position.z);
+              //  Debug.Log(position);
                 // GameObject projectileGO = Instantiate(projectile, new Vector2(rb.position.x + (0.12f * LookFor), rb.position.y - 0.07f), Quaternion.identity);
-                GameObject projectileGO = Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
+                GameObject projectileGO = playerMovement.GetWallSliding ? Instantiate(projectile, projectilesSpawPoint2.position, Quaternion.identity) :  Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
                 Shuryken projectileScript = projectileGO.GetComponent<Shuryken>();
-                projectileScript.Launch(LookFor, 10f);
+                projectileScript.Launch(LookFor.FlipIfNegative(playerMovement.GetWallSliding), 10f);
                 //animator.SetTrigger(launchHash);
                 audioSource.PlayOneShot(throwProjectileSFX);
                 ChangeNumberShurykens(-1);

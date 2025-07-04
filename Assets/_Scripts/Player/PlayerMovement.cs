@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.Player
         private bool doubleJump;
         private bool readyToJump;
         private bool resetFastFall = false;
-        private bool isWallSliding;
+        public bool GetWallSliding { get; private set; }
         private bool canWallJump;
         //private IEffects bounce;
 
@@ -60,7 +60,7 @@ namespace br.com.bonus630.thefrog.Player
         //}
         private void Update()
         {
-            isWallSliding = IsWallSliding();
+            GetWallSliding = IsWallSliding();
             if (player.WallCheck.CheckGround())
             {
                 if (!player.InGround)
@@ -130,7 +130,7 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     player.knockUpForce *= 10;
                 }
-                if (isWallSliding)
+                if (GetWallSliding)
                 {
                     canWallJump = true;
 
@@ -313,7 +313,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (!airDash)
                 {
-                    if (player.InGround || isWallSliding)
+                    if (player.InGround || GetWallSliding)
                         airDash = false;
                     else
                         airDash = true;
@@ -373,9 +373,9 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void WallSliding()
         {
-            anim.SetBool(WallJumpID, isWallSliding);
+            anim.SetBool(WallJumpID, GetWallSliding);
             // Debug.Log("IsWallSliding: " + isWallSliding);
-            if (isWallSliding)
+            if (GetWallSliding)
             {
                 rb.linearVelocityY = wallSlideSpeed;
                 TimeInFastFall = 0;

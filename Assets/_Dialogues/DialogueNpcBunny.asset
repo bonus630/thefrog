@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueName: bunny
   Dialogues:
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: Oi...
-  - Avatar: {fileID: -4626299607104563725, guid: 2d5c19ca1825c1a489751e1c500167d7, type: 3}
+  - Avatar: {fileID: 21300000, guid: 2d5c19ca1825c1a489751e1c500167d7, type: 3}
     Name: 
     text: "N\xE3o posso falar com voc\xEA agora.!"
-  - Avatar: {fileID: -4626299607104563725, guid: 2d5c19ca1825c1a489751e1c500167d7, type: 3}
+  - Avatar: {fileID: 21300000, guid: 2d5c19ca1825c1a489751e1c500167d7, type: 3}
     Name: 
     text: "Pegue o transporte da esquerda se gosta de ma\xE7\xE3s"
-  - Avatar: {fileID: -4626299607104563725, guid: 2d5c19ca1825c1a489751e1c500167d7, type: 3}
+  - Avatar: {fileID: 21300000, guid: 2d5c19ca1825c1a489751e1c500167d7, type: 3}
     Name: 
     text: Ou pegue o da direita para descer, mas cuidado com os "Olhos", eles sugam
       toda sua vida com um unico toque!
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: Que seja!

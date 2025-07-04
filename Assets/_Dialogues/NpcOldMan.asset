@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueName: 
   Dialogues:
-  - Avatar: {fileID: 3071230195186364632, guid: ed75078d366909744b2813ee110a2b01, type: 3}
+  - Avatar: {fileID: 21300000, guid: ed75078d366909744b2813ee110a2b01, type: 3}
     Name: 
     text: "Garoto pode ir at\xE9 aquele v\xE3o ali, um item muito importante para
       mim caiu l\xE1, eu sou muito velho para conseguir voltar de l\xE1!"
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: 'Tudo bem velho estranho!
 
 '
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: '-Melhor eu tomar cuidado.
 

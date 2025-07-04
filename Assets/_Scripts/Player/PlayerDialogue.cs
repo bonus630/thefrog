@@ -113,6 +113,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void ReadDialogue()
         {
+            dialogueSystem.DialoguePosition = GetDialogPosition();
             dialogueSystem.Next();
         }
         public void SetDialogue(DialogueData dialogue)
@@ -123,6 +124,20 @@ namespace br.com.bonus630.thefrog.Player
         public void ResetDialog()
         {
             dialogueSystem.ResetDialog();
+        }
+        private DialogPosition GetDialogPosition()
+        {
+            Camera cam = GameObject.Find("Hud").GetComponent<Canvas>().worldCamera;
+            Vector3 playerScreenPosition = cam.WorldToScreenPoint(player.transform.position);
+            Debug.Log("Contains : " + RectTransformUtility.RectangleContainsScreenPoint(dialogueSystem.dialogueUI.GetComponent<RectTransform>(), playerScreenPosition));
+            if(RectTransformUtility.RectangleContainsScreenPoint(dialogueSystem.dialogueUI.GetComponent<RectTransform>(), playerScreenPosition))
+            {
+                if (dialogueSystem.DialoguePosition.Equals(DialogPosition.Top))
+                    return DialogPosition.Bottom;
+                else
+                    return DialogPosition.Top;
+            }
+            return dialogueSystem.DialoguePosition;
         }
     }
 }

@@ -5055,7 +5055,7 @@ GameObject:
   m_Layer: 9
   m_Name: ProjectilesSpawPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -15119,6 +15119,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &6415481392691170859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592441022469554054}
+  m_Layer: 9
+  m_Name: ProjectilesSpawPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592441022469554054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415481392691170859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.128, y: -0.086, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2294317406190021175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7561228204408309722
 GameObject:
   m_ObjectHideFlags: 0
@@ -15306,6 +15337,7 @@ Transform:
   - {fileID: 1452755449514045419}
   - {fileID: 2123656540162972847}
   - {fileID: 2752393811781647289}
+  - {fileID: 592441022469554054}
   - {fileID: 7296432206426106572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15352,6 +15384,7 @@ MonoBehaviour:
   projectile: {fileID: 1645160297769326799, guid: 177f9eddf690fba41a5a8b89ed6a3ae1, type: 3}
   fireball: {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
   projectilesSpawPoint: {fileID: 2752393811781647289}
+  projectilesSpawPoint2: {fileID: 592441022469554054}
   throwProjectileSFX: {fileID: 8300000, guid: 201a1ed16928d26469ea8a000e8273e9, type: 3}
   Entrace: {fileID: 8300000, guid: a92bd6dc482692547bf604a90f54e2a1, type: 3}
   GravityParticles: {fileID: 5267456748424603697}

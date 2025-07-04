@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Enemies
@@ -8,7 +9,7 @@ namespace br.com.bonus630.thefrog.Enemies
         private Animator m_Animator;
         private Rigidbody2D m_Rigidbody;
         private AudioSource m_AudioSource;
-       
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -19,20 +20,30 @@ namespace br.com.bonus630.thefrog.Enemies
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.gameObject.name);
+           // 
             if (collision.CompareTag("SpawnPoint"))
                 return;
-            if(collision.CompareTag("Ground"))
+            m_Rigidbody.bodyType = RigidbodyType2D.Static;
+            if (collision.CompareTag("Ground"))
             {
                 m_Animator.SetTrigger(Ground);
-                m_Rigidbody.bodyType = RigidbodyType2D.Static;
                 m_AudioSource.Play();
             }
             else
             {
-                
+                if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
+                {Debug.Log(collision.gameObject.name);
+                    player.Hit();
+                }
+                RunGasAnimation();
             }
             Destroy(gameObject, 0.417f);
+        }
+
+        private void RunGasAnimation()
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            sr.enabled = false;
         }
     }
 }

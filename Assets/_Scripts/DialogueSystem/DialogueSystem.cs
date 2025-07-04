@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 namespace br.com.bonus630.thefrog.DialogueSystem
 {
     public class DialogueSystem : MonoBehaviour
@@ -10,10 +10,11 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         bool finished = false;
 
         TextAnimation textAnimation;
-        DialogUI dialogueUI;
+        public DialogUI dialogueUI { get; protected set;  }
         DialogStates state;
         public DialogueData DialogueData { get; set; }
         public Dictionary<string, string> DialogueVariables { get; set; }
+        public DialogPosition DialoguePosition { get; set; } = DialogPosition.Bottom;
         [SerializeField] InputAction interactAction;
         private void Awake()
         {
@@ -45,11 +46,10 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         }
         public void Next()
         {
-            // Debug.Log("Next");
             if (current == 0)
                 dialogueUI.Enable();
+            dialogueUI.SetPosition(DialoguePosition);
             dialogueUI.SetAvatar(DialogueData.Dialogues[current].Avatar);
-            //dialogueUI.SetName(dialogueData.Dialogues[current].Name);
             textAnimation.FullText = ReplaceVariables(DialogueData.Dialogues[current++].text);
             if (DialogueData.Count == current)
             {
@@ -108,6 +108,10 @@ namespace br.com.bonus630.thefrog.DialogueSystem
             current = 0;
             finished = false;
         }
+        private void SetPosition(DialogPosition position)
+        {
+            dialogueUI.SetPosition(position);
+        }
         //void OnTextFinish()
         //{
         //    Debug.Log("OnTextFinish");
@@ -120,4 +124,5 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         WAITING,
         TYPING
     }
+ 
 }

@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 namespace br.com.bonus630.thefrog.DialogueSystem
@@ -17,6 +16,9 @@ namespace br.com.bonus630.thefrog.DialogueSystem
 
         Color white = Color.white;
         Color transparent = Color.white;
+        float topPosition = 560f;
+        float bottomPosition = 90f;
+        public DialogPosition CurrentPosition { get; private set; } = DialogPosition.Bottom;
 
         private void Awake()
         {
@@ -42,16 +44,16 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         // Update is called once per frame
         void Update()
         {
-            if (open)
-            {
-                background.color = Color.Lerp(white, transparent, speed * Time.deltaTime);
-            }
-            else
-            {
+            //if (open)
+            //{
+            //    background.color = Color.Lerp(white, transparent, speed * Time.deltaTime);
+            //}
+            //else
+            //{
 
 
-                background.color = Color.Lerp(transparent, white, speed * Time.deltaTime);
-            }
+            //    background.color = Color.Lerp(transparent, white, speed * Time.deltaTime);
+            //}
 
         }
         public void SetAvatar(Sprite avatar)
@@ -67,22 +69,40 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         public void Enable()
         {
             //background.fillAmount = 0;
+           
             open = true;
-            background.gameObject.SetActive(true);
+           // background.gameObject.SetActive(true);
             avatar.gameObject.SetActive(true);
             text.gameObject.SetActive(true);
-            // background.color = white;
+            background.color = white;
 
         }
         public void Disable()
         {
             open = false;
             text.text = string.Empty;
-            background.gameObject.SetActive(false);
+           // background.gameObject.SetActive(false);
             avatar.gameObject.SetActive(false);
             text.gameObject.SetActive(false);
-            //  background.color = transparent;
+            background.color = transparent;
+            SetPosition(DialogPosition.Bottom);
             //name.text = string.Empty;
         }
+        public void SetPosition(DialogPosition position)
+        {
+            Debug.Log("Position :"+position);
+            GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, position==DialogPosition.Top ? topPosition : bottomPosition);
+            if(position!=CurrentPosition)
+            {
+                Debug.Log("Avatar " + GetComponent<RectTransform>().anchoredPosition);
+                avatar.GetComponent<RectTransform>().anchoredPosition = new Vector2(avatar.GetComponent<RectTransform>().anchoredPosition.x, avatar.GetComponent<RectTransform>().anchoredPosition.y * - 1);
+                CurrentPosition = position;
+            }
+        }
+    }
+    public enum DialogPosition 
+    {
+        Top, 
+        Bottom
     }
 }

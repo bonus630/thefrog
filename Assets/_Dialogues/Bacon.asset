@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
+  m_Name: Bacon
+  m_EditorClassIdentifier: 
+  DialogueName: 
+  Dialogues:
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: "Voc\xEA vai precisar."
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: "1 kg de barriga de porco sem pele\n40 g de sal\n10 g de a\xE7\xFAcar mascavo"
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: "Especiarias opcionais: pimenta-do-reino, alho em p\xF3, p\xE1prica, louro\nCura
+      #1 (opcional, para conserva\xE7\xE3o e cor rosada)"
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: 'Misture os ingredientes e esfregue na carne.
+
+
+'
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: "Coloque em um saco ou pote e leve \xE0 geladeira por 7 a 10 dias, virando
+      a cada 1 ou 2 dias."
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: "Ap\xF3s a cura, lave o excesso e seque com papel-toalha."
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: 'Opcional: defume por 2 a 3 horas a frio.'
+  - Avatar: {fileID: 21300000, guid: 292f3590638935e4793a53127c3df1fd, type: 3}
+    Name: 
+    text: Cozinhe ou fatie e frite como preferir.

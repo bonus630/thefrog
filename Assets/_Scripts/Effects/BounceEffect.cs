@@ -30,8 +30,8 @@ namespace br.com.bonus630.thefrog.Effects
                 // Curva de bounce (pode usar Mathf.Sin, Mathf.SmoothStep, etc)
                 // float bounce = Mathf.SmoothStep(originalScale.y, originalScale.y / 2, t);
                 float bounce = Mathf.Sin(t * Mathf.PI); // 0 → 1 → 0
-                Debug.Log($"Bounce : {bounce}");
-                Debug.Log($"OriginalScaleY : {originalScale.y}");
+                //Debug.Log($"Bounce : {bounce}");
+               // Debug.Log($"OriginalScaleY : {originalScale.y}");
                 // Aplica compressão no Y e estica no X
                 float scaleY = originalScale.y - bounceAmount * bounce;
                 float scaleX = originalScale.x + bounceAmount * bounce * 0.5f;

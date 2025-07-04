@@ -37,10 +37,10 @@ MonoBehaviour:
   - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
     Name: 
     text: "Ent\xE3o a cidade foi tomada por essa neblina"
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: O mago...
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: "Acho que vou at\xE9 o Rei para conversarmos..."
   - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}
@@ -51,7 +51,7 @@ MonoBehaviour:
     Name: 
     text: "Mas uma vez a ponte no ch\xE3o, os porcos v\xE3o sair para acatacar quem
       tentar entrar"
-  - Avatar: {fileID: -1434489415320646427, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: "Porcos novamente, n\xE3o se preocupe j\xE1 tenho experi\xEAncia com eles"
   - Avatar: {fileID: 21300000, guid: 9f4d6a1f3894f7b4494175bbe40aaaba, type: 3}

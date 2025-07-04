@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 249380413}
   - component: {fileID: 249380412}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: CopyRightsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5885,7 +5885,7 @@ GameObject:
   - component: {fileID: 984318115}
   - component: {fileID: 984318114}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SpritesText02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5930,11 +5930,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sprites\n\n* Pixel Adventure 1 e 2 - PixelFrog \n* Dream Ship - Enjil\n*
-    Castle Platformer - RottingPixels\n* Sunny Land Collection - Ansimuz\n* Kings
-    and Pigs - PixelFrog \n* Dark Dungeon - Raou\n* GothicVania Town - Ansimuz\n*
-    Pixel Phantasy Case - Szadiart\n* simpleUIpackToldi - Todigames\n* Gamepad -
-    lightUP\n \n"
+  m_text: "Sprites\n\n* simpleUIpackToldi - Todigames\n* Gamepad - lightUP\n* Knight
+    2D Pixel Art - Mattz Art\n \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6025,7 +6022,7 @@ GameObject:
   - component: {fileID: 1041630853}
   - component: {fileID: 1041630852}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: CreditsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6070,8 +6067,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Programer\n\n* Bonus630\n \nGame Designer\n\n* Bonus630\n\nLevel Designer\n\n*
-    Bonus630\n\nDirector\n\n* Bonus630"
+  m_text: "Programer\n* Bonus630\n \nGame Designer\n* Bonus630\n\nLevel Designer\n*
+    Bonus630\n\nDirector\n* Bonus630"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6198,7 +6195,7 @@ GameObject:
   - component: {fileID: 1277514218}
   - component: {fileID: 1277514217}
   m_Layer: 5
-  m_Name: Text (TMP) (7)
+  m_Name: InstructionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6334,7 +6331,7 @@ GameObject:
   - component: {fileID: 1462928376}
   - component: {fileID: 1462928375}
   m_Layer: 5
-  m_Name: Text (TMP) (6)
+  m_Name: FroggerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6460,6 +6457,145 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462928373}
+  m_CullTransparentMesh: 1
+--- !u!1 &1495262863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495262864}
+  - component: {fileID: 1495262866}
+  - component: {fileID: 1495262865}
+  m_Layer: 5
+  m_Name: SpritesText01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1495262864
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495262863}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1596307192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 844, y: 570}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1495262865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495262863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Sprites\n\n* Pixel Adventure 1 e 2 - PixelFrog \n* Dream Ship - Enjil\n*
+    Castle Platformer - RottingPixels\n* Sunny Land Collection - Ansimuz\n* Kings
+    and Pigs - PixelFrog \n* Dark Dungeon - Raou\n* GothicVania Town - Ansimuz\n*
+    Pixel Phantasy Case - Szadiart\n \n"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 22
+  m_fontSizeBase: 22
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1495262866
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495262863}
   m_CullTransparentMesh: 1
 --- !u!1 &1588782270
 GameObject:
@@ -6891,6 +7027,7 @@ RectTransform:
   m_Children:
   - {fileID: 1164505941}
   - {fileID: 2047394964}
+  - {fileID: 1495262864}
   - {fileID: 984318113}
   - {fileID: 1805672295}
   - {fileID: 2107116041}
@@ -6917,7 +7054,7 @@ GameObject:
   - component: {fileID: 1805672297}
   - component: {fileID: 1805672296}
   m_Layer: 5
-  m_Name: Text (TMP) (4)
+  m_Name: SoundsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7194,7 +7331,7 @@ GameObject:
   - component: {fileID: 2047394966}
   - component: {fileID: 2047394965}
   m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Name: ProductionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7330,7 +7467,7 @@ GameObject:
   - component: {fileID: 2107116043}
   - component: {fileID: 2107116042}
   m_Layer: 5
-  m_Name: Text (TMP) (5)
+  m_Name: MusicsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
