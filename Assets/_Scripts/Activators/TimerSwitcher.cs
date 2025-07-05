@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 namespace br.com.bonus630.thefrog.Activators
 {
     public class TimerSwitcher : MonoBehaviour

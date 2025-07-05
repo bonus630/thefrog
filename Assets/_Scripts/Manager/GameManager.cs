@@ -383,11 +383,21 @@ namespace br.com.bonus630.thefrog.Manager
         {
             environmentStates.playerStates = this.PlayerStates;
             string jason = JsonUtility.ToJson(environmentStates);
+#if UNITY_WEBGL
+            PlayerPrefs.SetString("TheFrogData", jason);
+            PlayerPrefs.Save();
+#else
             File.WriteAllText(SaveDataFilePath, jason);
+#endif
+
         }
         public EnvironmentStates LoadStates()
         {
+#if UNITY_WEBGL
+            string json = PlayerPrefs.GetString("TheFrogData",string.Empty);
+#else
             string json = File.ReadAllText(SaveDataFilePath);
+#endif
             environmentStates = JsonUtility.FromJson<EnvironmentStates>(json);
             return this.environmentStates;
         }

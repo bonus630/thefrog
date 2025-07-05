@@ -34,8 +34,12 @@ namespace br.com.bonus630.thefrog.Player
         private bool resetFastFall = false;
         public bool GetWallSliding { get; private set; }
         private bool canWallJump;
+        bool inDash = false;
+        bool airDash = false;
+        bool firstTimeInDashLoop = false;
         //private IEffects bounce;
 
+        private float accelerationFactor = 0.4f;
         private readonly float wallSlideSpeed = -0.36f;
         private readonly float wallJumpXForce = 120f;
         private float wallJumpYForce = 220f;
@@ -140,6 +144,7 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     readyToJump = true;
                 }
+                //ativa o controle de queda
                 if (GameManager.Instance.PlayerStates.FallsControl && TimeInFastFall > 0)
                 {
                     resetFastFall = true;
@@ -163,7 +168,6 @@ namespace br.com.bonus630.thefrog.Player
         {
             direction = context.ReadValue<Vector2>();
         }
-        bool inDash = false;
         public void HandlerDash(InputAction.CallbackContext context)
         {
             if (GameManager.Instance.PlayerStates.HasDash)
@@ -213,7 +217,6 @@ namespace br.com.bonus630.thefrog.Player
             jumps = 2;
             TimeInFastFall = 0;
         }
-        private float accelerationFactor = 0.4f;
         private void Move()
         {
             bool canMove = true;
@@ -303,8 +306,6 @@ namespace br.com.bonus630.thefrog.Player
 
             anim.SetFloat(WalkID, Mathf.Abs(rb.linearVelocityX));
         }
-        bool airDash = false;
-        bool firstTimeInDashLoop = false;
         private void Dash(bool canMove)
         {
             if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer > 0 && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())

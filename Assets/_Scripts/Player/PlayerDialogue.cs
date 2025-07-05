@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Player
         private INPC npc; 
         private IInteract interacting;
         private ITips tips = null;
+        private bool canInteract = false;
         protected override void Awake()
         {
             base.Awake();
@@ -20,8 +21,14 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Update()
         {
+            //temos que melhorar isso aqui
             if (interacting != null)
-                interacting.ReadyToInteract(Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && player.WallCheck.IsFaceTo(interacting.GetTransform()));
+            {
+                canInteract = Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && player.WallCheck.IsFaceTo(interacting.GetTransform());
+                interacting.ReadyToInteract(canInteract);
+            }
+            else
+                canInteract = false;
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
@@ -29,7 +36,7 @@ namespace br.com.bonus630.thefrog.Player
             if (context.performed)
             {
 
-                if (npc != null && Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && player.WallCheck.IsFaceTo(interacting.GetTransform()))
+                if (npc != null && canInteract)
                 {
 
                     if (interacting is INPC inpc)
@@ -50,7 +57,7 @@ namespace br.com.bonus630.thefrog.Player
 
 
                 }
-                else if (interacting != null && Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && player.WallCheck.IsFaceTo(interacting.GetTransform()))
+                else if (interacting != null && canInteract)
                 {
                     interacting.Interact();
                 }
