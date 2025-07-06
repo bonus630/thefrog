@@ -46,6 +46,7 @@ namespace br.com.bonus630.thefrog.Player
             Collider2D coll = Physics2D.OverlapBox(footerWallCheck.position,new Vector2(0.34f, 0.03f), 0, layer);
             if (coll != null)
             {
+                
                // Debug.Log("Coll: "+coll.);
                 return true;
             }

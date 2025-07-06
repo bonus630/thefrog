@@ -12,6 +12,9 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] float delayActiveTime = 0f;
         [SerializeField] float delayDeactiveTime = 0f;
         [SerializeField] bool permanentActived = false;
+        [SerializeField] bool onlyActive = false;
+        [SerializeField] bool onlyDeactive = false;
+        
         void Start()
         {
             _collider = GetComponent<Collider2D>();
@@ -26,6 +29,8 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (onlyDeactive)
+                return;
             if (other.CompareTag("Player"))
             {
                 StopAllCoroutines();
@@ -35,7 +40,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (permanentActived)
+            if (permanentActived || onlyActive)
                 return;
             if (collision.CompareTag("Player"))
             {

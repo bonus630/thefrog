@@ -377,7 +377,13 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public bool CanContinue()
         {
-            return File.Exists(SaveDataFilePath);
+#if UNITY_WEBGL
+           return PlayerPrefs.HasKey("TheFrogData");
+            
+#else
+           return File.Exists(SaveDataFilePath);
+#endif
+
         }
         public void SaveStates()
         {

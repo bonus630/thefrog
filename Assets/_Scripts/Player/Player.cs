@@ -286,10 +286,6 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (GameManager.Instance.PlayerStates.Shurykens > 0)
             {
-                
-               // Vector3 position = new Vector3(projectilesSpawPoint.position.x.FlipIfNegative(playerMovement.GetWallSliding), projectilesSpawPoint.position.y, projectilesSpawPoint.position.z);
-              //  Debug.Log(position);
-                // GameObject projectileGO = Instantiate(projectile, new Vector2(rb.position.x + (0.12f * LookFor), rb.position.y - 0.07f), Quaternion.identity);
                 GameObject projectileGO = playerMovement.GetWallSliding ? Instantiate(projectile, projectilesSpawPoint2.position, Quaternion.identity) :  Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
                 Shuryken projectileScript = projectileGO.GetComponent<Shuryken>();
                 projectileScript.Launch(LookFor.FlipIfNegative(playerMovement.GetWallSliding), 10f);
@@ -339,23 +335,20 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void KnockUp(Vector2 force)
         {
-            //Debug.Log("knock jump: " + Input.GetButtonDown("Jump"));
+            Debug.Log($"knock jump: {Input.GetButtonDown("Jump")} vector:{force} Gravity: {gravityDirection}");
             knockUp = true;
             if (Input.GetButtonDown("Jump"))
                 force *= 2;
+            if (gravityDirection == 1)
+                force *= -1;
             knockUpForce = force * 2;
         }
 
         public void ChangeNumberShurykens(int shurykens)
         {
             GameManager.Instance.PlayerStates.Shurykens += shurykens;
-            //GameManager.Instance.Shurykens = states.Shurykens;
             GameManager.Instance.UpdateShurykens();
         }
-        // float prevRigidibodyVelocity = 0;
-        // bool landing = false;
-
-
         public void ReadDialogue()
         {
             playerDialogue.ReadDialogue();

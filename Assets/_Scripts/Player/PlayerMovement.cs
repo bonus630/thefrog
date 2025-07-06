@@ -78,8 +78,6 @@ namespace br.com.bonus630.thefrog.Player
         }
         void FixedUpdate()
         {
-            // Debug.Log("Player RB speedY: " + rb.linearVelocityY);
-            //       Debug.DrawLine(transform.position, Vector3.up * gravityDirection * 10);
             if (Mathf.Abs(rb.linearVelocityY * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
@@ -138,7 +136,7 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     canWallJump = true;
 
-                   // Debug.Log("resetFastFall isWallSliding");
+                   //Debug.Log("resetFastFall isWallSliding");
                 }
                 if (doubleJump)
                 {
@@ -148,7 +146,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (GameManager.Instance.PlayerStates.FallsControl && TimeInFastFall > 0)
                 {
                     resetFastFall = true;
-                  //  Debug.Log("resetFastFall fallcontrol");
+                  //Debug.Log("resetFastFall fallcontrol");
                 }
             }
             //if (context.performed)
@@ -179,7 +177,7 @@ namespace br.com.bonus630.thefrog.Player
                 }
                 if (context.canceled)
                 {
-                   // Debug.Log("InDash false");
+                   //Debug.Log("InDash false");
                     inDash = false;
                 }
             }
@@ -189,12 +187,10 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (readyToJump && jumps > 0)
             {
-
                 rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
                 doubleJump = false;
                 readyToJump = false;
                 anim.SetTrigger(DoubleJumpID);
-
             }
         }
         private void Jump()
@@ -204,7 +200,6 @@ namespace br.com.bonus630.thefrog.Player
                 rb.linearVelocityY = jumpForce;
                 audioSource.PlayOneShot(jumpSFX);
                 isJumping = false;
-
             }
         }
         private void resetJump()
@@ -235,10 +230,10 @@ namespace br.com.bonus630.thefrog.Player
             }
             else
             {
-                //  Debug.Log("Move: "+direction);
+                //Debug.Log("Move: "+direction);
                 //Debug.Log("R: " + wallCheck.RightWallCheck() + " " + direction);
-                // Debug.Log("L: " + wallCheck.LeftWallCheck() + " " + direction);
-                // Debug.Log("Direction:" + direction);
+                //Debug.Log("L: " + wallCheck.LeftWallCheck() + " " + direction);
+                //Debug.Log("Direction:" + direction);
                 player.LookFor = direction.x < 0 ? -1 : 1;
 
                 if (direction.x > 0)
@@ -275,8 +270,6 @@ namespace br.com.bonus630.thefrog.Player
                     }
 
                 }
-
-
             }
             Dash(canMove);
             if (canMove)
@@ -375,7 +368,6 @@ namespace br.com.bonus630.thefrog.Player
         private void WallSliding()
         {
             anim.SetBool(WallJumpID, GetWallSliding);
-            // Debug.Log("IsWallSliding: " + isWallSliding);
             if (GetWallSliding)
             {
                 rb.linearVelocityY = wallSlideSpeed;

@@ -1,5 +1,6 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Caracters
 {
@@ -7,7 +8,7 @@ namespace br.com.bonus630.thefrog.Caracters
     {
        
         [SerializeField]AudioSource musicTarget;
-
+       
         protected override void Awake()
         {
             base.Awake();
@@ -41,12 +42,13 @@ namespace br.com.bonus630.thefrog.Caracters
             GameManager.Instance.UpdatePlayer();
             yield return new WaitForSeconds(1.5f); 
             yield return fader.FadeIn();
-            GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 5f);
+            GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 3f);
             musicTarget.Play();
             GameManager.Instance.GetPlayerScript.InputsOn = false;
             yield return new WaitForEndOfFrame();   
-            Invoke(nameof(RestorePlayerInput), 5f);
+            Invoke(nameof(RestorePlayerInput), 3f);
             Time.timeScale = 0.5f;
+         
         }
         private void RestorePlayerInput()
         {
