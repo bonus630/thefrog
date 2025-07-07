@@ -79,7 +79,7 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-            #if !UNITY_EDITOR
+            //#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -90,7 +90,7 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-            #endif
+            //#endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {

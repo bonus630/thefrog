@@ -68,9 +68,9 @@ namespace br.com.bonus630.thefrog.Manager
             if (moduleLimit == 0)
                 return true;
             int uses = moduleLimit * randomModules.Count;
-            if (endModule != null)
-                uses++;
-            return uses > count;
+            //if (endModule != null)
+            //    uses++;
+            return uses >= count;
            
         }
         public override void Activate()

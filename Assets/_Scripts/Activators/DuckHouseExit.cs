@@ -6,6 +6,7 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class DuckHouseExit : MonoBehaviour
     {
+        [SerializeField] Vector3 ExitPosition;
         bool active = false;
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -21,7 +22,7 @@ namespace br.com.bonus630.thefrog.Activators
             ScreenFader fader = FindAnyObjectByType<ScreenFader>();
             yield return fader.FadeOut();
             yield return new WaitForSeconds(0.1f);
-            GameManager.Instance.GetPlayer.transform.position = new Vector3(76.37f, 32.68f, 0);
+            GameManager.Instance.GetPlayer.transform.position = ExitPosition;
             yield return new WaitForSeconds(1f);
             yield return fader.FadeIn();
             yield return new WaitForSeconds(1f);

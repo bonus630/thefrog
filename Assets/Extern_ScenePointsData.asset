@@ -26,4 +26,7 @@ MonoBehaviour:
   - Name: HeartAreaExit
     Point: {x: -9.604305, y: 4.2238827, z: 0}
     transform: {fileID: 0}
+  - Name: DuckPackFinalExit
+    Point: {x: -0.05, y: -1.75, z: 0}
+    transform: {fileID: 0}
   SceneType: 4

@@ -26,4 +26,7 @@ MonoBehaviour:
   - Name: HeartChest02
     Point: {x: 208.09, y: -164.89049, z: 0}
     transform: {fileID: 0}
+  - Name: DuckPathEnd
+    Point: {x: 198.29, y: -209.13, z: 0}
+    transform: {fileID: 0}
   SceneType: 3

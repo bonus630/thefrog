@@ -87,6 +87,8 @@ MonoBehaviour:
   delayActiveTime: 0
   delayDeactiveTime: 0
   permanentActived: 0
+  onlyActive: 0
+  onlyDeactive: 0
 --- !u!114 &528079962817032162
 MonoBehaviour:
   m_ObjectHideFlags: 0
