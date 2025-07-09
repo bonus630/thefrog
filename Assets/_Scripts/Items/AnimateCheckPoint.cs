@@ -8,9 +8,10 @@ namespace br.com.bonus630.thefrog.Items
         private Animator anim;
         //  Color white;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public override void Start()
         {
             anim = GetComponent<Animator>();
+            base.Start();
             //  white = new Color(1, 1, 1, 0.5f);
         }
 

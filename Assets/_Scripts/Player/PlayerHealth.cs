@@ -92,7 +92,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void GameOver()
         {
-            player.InputsOn = false;
+            player.MoveInputOn = false;
             rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0;
             rb.bodyType = RigidbodyType2D.Static;

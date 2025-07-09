@@ -1,11 +1,10 @@
 ﻿using System;
-
-
 namespace br.com.bonus630.thefrog.Manager
 {
     [Serializable]
     public class EnvironmentStates
     {
+        public int index;
         public PlayerStates playerStates;
         public int NPCVirtualGuyApples;
         public int NPCVirtualGuyDialogue;

@@ -1,6 +1,9 @@
+using System;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -14,10 +17,10 @@ namespace br.com.bonus630.thefrog.UI
         [SerializeField] Button continueButton;
         [SerializeField] Button controlsButton;
         [SerializeField] Button goBackButton;
-
+     
         [SerializeField] GameObject buttons;
         [SerializeField] GameObject control;
-
+        [SerializeField] GameObject saves;
 
         void Start()
         {
@@ -43,12 +46,16 @@ namespace br.com.bonus630.thefrog.UI
         }
         public void ContinueButton_clicked()
         {
-            GameManager.Instance.LoadGame(SceneStartType.Continue);
+            //GameManager.Instance.LoadGame(SceneStartType.Continue);
+            buttons.SetActive(false);
+            saves.SetActive(true);
+
+           
         }
-        public void QuitButton_clicked()
-        {
-            Application.Quit();
-        }
+        //public void QuitButton_clicked()
+        //{
+        //    Application.Quit();
+        //}
         public void ControlsButton_clicked()
         {
             control.SetActive(true);
@@ -57,10 +64,16 @@ namespace br.com.bonus630.thefrog.UI
         }
         public void GoBackButton_clicked()
         {
+
             control.SetActive(false);
             buttons.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(controlsButton.gameObject);
+            saves.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(startButton.gameObject);
         }
+
+
+
+
         //void Update()
         //{
         //    if (Input.GetButtonDown("Jump"))

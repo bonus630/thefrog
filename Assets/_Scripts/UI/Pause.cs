@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using TMPro;
 using Unity.IntegerTime;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +8,7 @@ namespace br.com.bonus630.thefrog.UI
 {
     public class Pause : MonoBehaviour
     {
+        [SerializeField] TextMeshProUGUI hoursText;
         public int hour;
         public int prevHour;
         Vector2 direction;
@@ -15,6 +17,7 @@ namespace br.com.bonus630.thefrog.UI
         private void OnEnable()
         {
             this.hour = GameManager.Instance.PlayerStates.Hour;
+            hoursText.text = this.hour.ToString("00") + " HORAS";
             prevHour = hour;
         }
         private void OnDisable()
@@ -61,7 +64,7 @@ namespace br.com.bonus630.thefrog.UI
             this.hour++;
             if (this.hour > 23)
                 this.hour = 0;
-            transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = this.hour.ToString("00") + " HORAS";
+            hoursText.text = this.hour.ToString("00") + " HORAS";
           
         }
         public void DecreaseHour()
@@ -69,7 +72,7 @@ namespace br.com.bonus630.thefrog.UI
             this.hour--;
             if (this.hour < 0)
                 this.hour = 23;
-            transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = this.hour.ToString("00") + " HORAS";
+            hoursText.text = this.hour.ToString("00") + " HORAS";
         
         }
     }

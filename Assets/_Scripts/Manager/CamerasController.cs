@@ -9,7 +9,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class CamerasController : MonoBehaviour
     {
         [SerializeField] List<GameObject> Cameras;
-
+        [field: SerializeField] public GameObject ThumbCamera { get; protected set; }
 
         public int LastActiveCam { get; private set; }
         public int LastActiveConfiner { get; private set; }

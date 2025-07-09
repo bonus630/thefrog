@@ -38,7 +38,7 @@ namespace br.com.bonus630.thefrog.Environment
             }
             if (teleported.TryGetComponent<IPlayer>(out player))
             {
-                player.InputsOn = false;
+                player.MoveInputOn = false;
             }
             teleported.transform.position = to.transform.position;
             yield return new WaitForSeconds(0.1f);
@@ -47,7 +47,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (rb != null)
                 rb.bodyType = RigidbodyType2D.Dynamic;
             if(player!=null)
-                player.InputsOn = true; 
+                player.MoveInputOn = true; 
 
 
         }

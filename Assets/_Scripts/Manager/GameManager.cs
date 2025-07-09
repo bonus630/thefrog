@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using br.com.bonus630.thefrog.Shared;
+using br.com.bonus630.thefrog.Utils;
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -17,6 +18,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField] InputAction PauseAction;
+
         private TextMeshProUGUI scoreText;
         private bool continueGame = false;
         public float PlayTimeInSeconds { get; private set; }
@@ -34,7 +36,7 @@ namespace br.com.bonus630.thefrog.Manager
         public EventsManager eventManager;
 
         public Vector3 StartGamePosition { get; private set; }
-        public Vector3 PlayerStartPosition { get;  set; }
+        public Vector3 PlayerStartPosition { get; set; }
         public int ToPoint { get; set; }
         //Scenes Names
         public readonly string MainScene = "SampleScene";
@@ -54,11 +56,12 @@ namespace br.com.bonus630.thefrog.Manager
         public readonly string HeartHUD = "HeartHUD";
         public readonly string SkillsHUD = "SkillsHUD";
         public readonly string PauseHUD = "PauseHUD";
+        public readonly string SaveHUD = "SaveHUD";
         public readonly string TimerHUD = "TimerHUD";
 
 
         //Env Names
-        public string SaveDataFilePath { get; private set; }
+
 
         //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         //static void InitOnLoad()
@@ -82,10 +85,7 @@ namespace br.com.bonus630.thefrog.Manager
                 Destroy(gameObject);
                 return;
             }
-            SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData.json");
-#if UNITY_EDITOR
-            SaveDataFilePath = Path.Combine(Application.persistentDataPath, "FrogData-editor.json");
-#endif
+
             playerStates = new PlayerStates(new PlayerPosition(gameObject.transform.position), new Datas(), new Datas(), new Datas());
             environmentStates = new EnvironmentStates(playerStates);
             //Debug
@@ -112,7 +112,8 @@ namespace br.com.bonus630.thefrog.Manager
             {
 
                 Pause(Time.timeScale == 1 ? true : false);
-            }            
+            }
+            //Debug.Log("Counting time :" + PlayTimeInSeconds);
             if (_isCountingTime)
             {
                 PlayTimeInSeconds += Time.deltaTime;
@@ -144,6 +145,14 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void Pause(bool pause)
         {
+            TryPause(pause, PauseHUD, out GameObject go);
+
+        }
+        private bool TryPause(bool pause, string hudName,out GameObject go)
+        {
+            go = GameObject.Find(hudName).transform.GetChild(0).gameObject;
+            if (go == null)
+                return false;
             if (SceneManager.GetActiveScene().name.Equals("SampleScene") || SceneManager.GetActiveScene().name.Equals("InternAreas"))
             {
                 if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
@@ -151,19 +160,25 @@ namespace br.com.bonus630.thefrog.Manager
                     float vol = pause ? -80f : 0f;
                     musicSource.SetMasterVolume(vol);
                     Time.timeScale = pause ? 0 : 1;
-                    GameObject go = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
                     // Debug.Log(go);
-                    if (go != null)
-                    {
-                        go.SetActive(pause);
-                        go.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.PlayerStates.Hour.ToString("00") + " HORAS";
-                    }
+
+                    go.SetActive(pause);
+                    
+                    GetPlayerScript.AllInputsOn(!pause);
+                    return true;
+                    // Debug.Log("Pause " + pause);
                 }
             }
+            return false;
+        }
+       
+        public void OnCallSave(bool active)
+        {
+            TryPause(active,SaveHUD,out GameObject go);
         }
         private void OnApplicationPause(bool pause)
         {
-           // Debug.Log("Pause:" + pause);
+            // Debug.Log("Pause:" + pause);
             Pause(pause);
         }
 
@@ -187,7 +202,7 @@ namespace br.com.bonus630.thefrog.Manager
             return PlayTimeInSeconds;
         }
         private SceneStartType sceneStartType;
-        public void LoadGame(SceneStartType type)
+        public void LoadGame(SceneStartType type, int index = 0)
         {
             Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
@@ -212,7 +227,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
             if (type == SceneStartType.Continue)
             {
-                this.EnvironmentStates = LoadStates();
+                this.EnvironmentStates = LoadStates(index);
                 this.PlayerStates = this.EnvironmentStates.playerStates;
                 continueGame = true;
                 SceneManager.LoadScene(MainScene);
@@ -245,10 +260,10 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 if (sceneStartType.Equals(SceneStartType.Main))
                 {
-                     Debug.Log("Topoint index:" + ToPoint);
+                    Debug.Log("Topoint index:" + ToPoint);
                     GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
                     ChangeGameToState(this.EnvironmentStates);
-                   // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                    // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                     return;
                 }
                 StartCountingTime();
@@ -258,7 +273,7 @@ namespace br.com.bonus630.thefrog.Manager
 
 #endif
                 if (!continueGame)
-                    LoadStartGamePoint();
+                    LoadStartGamePoint(0);
                 else
                 {
                     ChangeGameToState(this.EnvironmentStates);
@@ -273,13 +288,13 @@ namespace br.com.bonus630.thefrog.Manager
             }
 
         }
-        private void LoadStartGamePoint()
+        private void LoadStartGamePoint(int index)
         {
             StartGamePosition = GameObject.Find(StartPointBuilder).gameObject.transform.position;
             this.PlayerStates.PlayerPosition.Position = StartGamePosition;
             PlayerStartPosition = StartGamePosition;
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
-            GameManager.Instance.SaveStates();
+            GameManager.Instance.SaveStates(index);
         }
         public void UpdateScore()
         {
@@ -377,35 +392,22 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public bool CanContinue()
         {
-#if UNITY_WEBGL
-           return PlayerPrefs.HasKey("TheFrogData");
-            
-#else
-           return File.Exists(SaveDataFilePath);
-#endif
+            SavesManager sm = new SavesManager();
+            return sm.CanContinue();
 
         }
-        public void SaveStates()
+        public void SaveStates(int index)
         {
-            environmentStates.playerStates = this.PlayerStates;
-            string jason = JsonUtility.ToJson(environmentStates);
-#if UNITY_WEBGL
-            PlayerPrefs.SetString("TheFrogData", jason);
-            PlayerPrefs.Save();
-#else
-            File.WriteAllText(SaveDataFilePath, jason);
-#endif
-
+            OnCallSave(false);
+            EnvironmentStates.GameTimeInSeconds = GetElapsedTime();
+            SavesManager sm = new SavesManager();
+            sm.Save(index, this.PlayerStates, this.EnvironmentStates, FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>());
         }
-        public EnvironmentStates LoadStates()
+        public EnvironmentStates LoadStates(int index)
         {
-#if UNITY_WEBGL
-            string json = PlayerPrefs.GetString("TheFrogData",string.Empty);
-#else
-            string json = File.ReadAllText(SaveDataFilePath);
-#endif
-            environmentStates = JsonUtility.FromJson<EnvironmentStates>(json);
-            return this.environmentStates;
+            SavesManager sm = new SavesManager();
+            SaveStates save = sm.Load(index);
+            return save.environmentStates;
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
@@ -463,11 +465,10 @@ namespace br.com.bonus630.thefrog.Manager
         public void GameOver()
         {
             StopCountingTime();
-            this.EnvironmentStates = LoadStates();
+            this.EnvironmentStates = LoadStates(0);
             this.PlayerStates = this.EnvironmentStates.playerStates;
             this.PlayerStates.numDies++;
-            EnvironmentStates.GameTimeInSeconds = GetElapsedTime();
-            SaveStates();
+            SaveStates(0);
             SceneManager.LoadScene(GameOverScene);
         }
         public void EventCompleted(GameEventName gameEvent, bool playSound = true)
@@ -559,15 +560,23 @@ namespace br.com.bonus630.thefrog.Manager
             this.playerStates.JumpForce += 0.1f;
 
         }
+
+        public void TesteThumb()
+        {
+            var t = new ThumbGenerator();
+            string file = t.CreateEncodeThumb(FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>(), GetPlayer, 0.1f);
+            byte[] buffert = Convert.FromBase64String(file);
+            File.WriteAllBytes(@"C:\Users\bonus630\Desktop\teste\p.png", buffert);
+        }
     }
     public enum SceneStartType
-    {
-        Start,
-        Continue,
-        New,
-        Intern,
-        Main
-    }
+{
+    Start,
+    Continue,
+    New,
+    Intern,
+    Main
+}
 }
 
 

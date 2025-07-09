@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private GameObject fireball;
         [SerializeField] private Transform projectilesSpawPoint;
         [SerializeField] private Transform projectilesSpawPoint2;
-       
+
         public int CurrentLife { get { return playerHealth.CurrentLife; } set { playerHealth.CurrentLife = value; } }
         [Header("Sounds")]
         [SerializeField] private AudioClip throwProjectileSFX;
@@ -40,9 +40,10 @@ namespace br.com.bonus630.thefrog.Player
         public float gravityDirection = 1;
         public float gravityScale = 4f;
         public bool knockUp { get; set; } = false;
+        public bool IsJumpPressed { get; set; }
         [SerializeField] public Vector2 knockUpForce;
         public bool InGround { get; set; }
-        public bool InputsOn { get; set; } = true;
+        private bool inputsOn  = true;
         //private bool isStartJumpTimer;
         //private float jumpTimeCharger;
         //private bool teste;
@@ -52,7 +53,7 @@ namespace br.com.bonus630.thefrog.Player
         /// private PlayerStates states;
         /// </summary>
         public GameObject FooterColliding { get { return footer; } protected set { footer = value; } }
-        public bool InputOn { get { return InputsOn; } set { InputsOn = value; } }
+        public bool MoveInputOn { get { return inputsOn; } set { inputsOn = value; } }
 
         public float Speed { get { return playerMovement.Speed; } set { playerMovement.Speed = value; } }
         public float JumpForce { get { return playerMovement.JumpForce; } set { playerMovement.JumpForce = value; } }
@@ -79,7 +80,7 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-            //#if !UNITY_EDITOR
+#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -90,7 +91,7 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-            //#endif
+#endif
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
@@ -101,7 +102,7 @@ namespace br.com.bonus630.thefrog.Player
         {
 
         }
-
+     
         private void Update()
         {
 
@@ -111,9 +112,11 @@ namespace br.com.bonus630.thefrog.Player
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-                ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
-                StartCoroutine(DestroyEffects(s));
-                Debug.Log(s.camerasController);
+             
+                //GameManager.Instance.TesteThumb();
+                //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
+                //StartCoroutine(DestroyEffects(s));
+                //Debug.Log(s.camerasController);
                 //s.ScreenAndGamepadShake();
                 //s.FadeOut();
                 //Debug.Log(s);
@@ -148,8 +151,10 @@ namespace br.com.bonus630.thefrog.Player
             currentBullet = fireball;
         }
 
-        private void LaunchSpirit()
+        public void LaunchSpirit()
         {
+            if (!GameManager.Instance.PlayerStates.HasFireball)
+                return;
             if (Time.time > nextLaunch)
             {
                 // GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
@@ -165,33 +170,9 @@ namespace br.com.bonus630.thefrog.Player
         {
 
         }
-        public void OnMove(InputAction.CallbackContext context)
-        {
-            playerMovement.HandlerMove(context);
-        }
-        public void OnDash(InputAction.CallbackContext context)
-        {
-            playerMovement.HandlerDash(context);
-        }
-        public void OnJump(InputAction.CallbackContext context)
-        {
-            playerMovement.HandlerJump(context);
-        }
-        public void OnAttack(InputAction.CallbackContext context)
-        {
-            playerDialogue.OnAttack(context);
-        }
-        public void OnSpirit(InputAction.CallbackContext context)
-        {
-            if (GameManager.Instance.PlayerStates.HasFireball)
-                LaunchSpirit();
-        }
-        public void OnHability(InputAction.CallbackContext context)
-        {
-            if (context.started)
-                if (InGround && GameManager.Instance.PlayerStates.HasGravity)
-                    ChangeGravity(this.gravityDirection * -1);
-        }
+   
+
+   
         private void OnCollisionEnter2D(Collision2D collision)
         {
             //if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
@@ -228,8 +209,9 @@ namespace br.com.bonus630.thefrog.Player
 
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
-        
-            this.gravityDirection = gravityDirection;
+            if (!InGround || !GameManager.Instance.PlayerStates.HasGravity)
+                return;
+                this.gravityDirection = gravityDirection;
             //LinearMaxY *= -1;
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
@@ -286,7 +268,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (GameManager.Instance.PlayerStates.Shurykens > 0)
             {
-                GameObject projectileGO = playerMovement.GetWallSliding ? Instantiate(projectile, projectilesSpawPoint2.position, Quaternion.identity) :  Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
+                GameObject projectileGO = playerMovement.GetWallSliding ? Instantiate(projectile, projectilesSpawPoint2.position, Quaternion.identity) : Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
                 Shuryken projectileScript = projectileGO.GetComponent<Shuryken>();
                 projectileScript.Launch(LookFor.FlipIfNegative(playerMovement.GetWallSliding), 10f);
                 //animator.SetTrigger(launchHash);
@@ -298,18 +280,18 @@ namespace br.com.bonus630.thefrog.Player
 
         public IEnumerator RemoveInputs(float time = 0.2f)
         {
-            InputsOn = false;
+            inputsOn = false;
             yield return new WaitForSeconds(time);
-            InputsOn = true;
+            inputsOn = true;
         }
         public void KnockedUp()
         {
             if (knockUp)
             {
-               // Debug.Log("knocked: " + knockUpForce.y);
+                // Debug.Log("knocked: " + knockUpForce.y);
                 if (rb == null)
                 {
-                   // Debug.LogError("Rigidbody2D está null no Build!");
+                    // Debug.LogError("Rigidbody2D está null no Build!");
                     return;
                 }
                 rb.AddForce(knockUpForce, ForceMode2D.Impulse);
@@ -335,10 +317,10 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void KnockUp(Vector2 force)
         {
-            Debug.Log($"knock jump: {Input.GetButtonDown("Jump")} vector:{force} Gravity: {gravityDirection}");
+
             knockUp = true;
-            if (Input.GetButtonDown("Jump"))
-                force *= 2;
+            if (IsJumpPressed)
+                force *= 1.5f;
             if (gravityDirection == 1)
                 force *= -1;
             knockUpForce = force * 2;
@@ -357,6 +339,14 @@ namespace br.com.bonus630.thefrog.Player
         public void FallsControl()
         {
             playerMovement.FallsControl();
+        }
+        public void AllInputsOn(bool inputOn = true, float delayTime = 0) => StartCoroutine(disablesAllInputs(inputOn,delayTime));
+        private IEnumerator disablesAllInputs(bool inputOn, float delayTime)
+        {
+            yield return new WaitForSeconds(delayTime);
+            GetComponent<PlayerInputHandler>().enabled = inputOn;
+            GetComponent<PlayerInput>().enabled = inputOn;
+           // Debug.Log("Disable inputs ");
         }
     }
 }

@@ -42,7 +42,7 @@ namespace br.com.bonus630.thefrog.Activators
 
         private IEnumerator PlayCutscene()
         {
-            GameManager.Instance.GetPlayerScript.InputsOn = false;
+            GameManager.Instance.GetPlayerScript.MoveInputOn = false;
             // yield return new WaitForSeconds(0.2f);
             // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
             screenEffects.FadeOut(1);

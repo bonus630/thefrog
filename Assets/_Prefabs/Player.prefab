@@ -15309,6 +15309,7 @@ GameObject:
   - component: {fileID: 67184509397144853}
   - component: {fileID: 6665103564999235141}
   - component: {fileID: 8871116419443922218}
+  - component: {fileID: 1712995329823639533}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -15618,8 +15619,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327294056038509239}
-        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Caracters.Player, Assembly-CSharp
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -15638,8 +15640,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327294056038509239}
-        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Caracters.Player, Assembly-CSharp
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
         m_MethodName: OnAttack
         m_Mode: 0
         m_Arguments:
@@ -15662,8 +15665,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Crouch[/XInputControllerWindows/buttonEast,/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327294056038509239}
-        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Caracters.Player, Assembly-CSharp
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -15690,8 +15694,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Sprint[/Keyboard/leftShift,/XInputControllerWindows/leftStickPress]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327294056038509239}
-        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Caracters.Player, Assembly-CSharp
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
         m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
@@ -15706,8 +15711,9 @@ MonoBehaviour:
     m_ActionName: Player/Dash
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327294056038509239}
-        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Caracters.Player, Assembly-CSharp
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
         m_MethodName: OnSpirit
         m_Mode: 0
         m_Arguments:
@@ -15722,8 +15728,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Spirit[/Keyboard/z,/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327294056038509239}
-        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Caracters.Player, Assembly-CSharp
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
         m_MethodName: OnHability
         m_Mode: 0
         m_Arguments:
@@ -15805,6 +15812,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1712995329823639533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620097102780067214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1504b89536ca6314c9dc645ab72c558f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8873583698127253809
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,14 @@
+{
+    "name": "UtilsAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Utils",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

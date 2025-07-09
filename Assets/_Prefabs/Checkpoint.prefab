@@ -170,3 +170,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0118e6adcc0b7f4db3ccfc5b328a444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveAction:
+    m_Name: Save
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: bdf2c181-19ee-4626-a89d-bff9002c8315
+    m_Processors: 
+    m_Interactions: Press(behavior=1)
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 91c3ab99-2e1f-4d33-8221-d82d2d7de419
+      m_Path: <Gamepad>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Save
+      m_Flags: 0
+    - m_Name: 
+      m_Id: b8b1ac27-fdf4-4a46-bcb7-9d53faeb02c9
+      m_Path: <Keyboard>/rightShift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Save
+      m_Flags: 0
+    m_Flags: 0

@@ -78,6 +78,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         void FixedUpdate()
         {
+           // Debug.Log("Input " + player.MoveInputOn);
             if (Mathf.Abs(rb.linearVelocityY * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
@@ -88,7 +89,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (TimeInFastFall > maxTimeInFall)
                     player.playerHealth.Die();
             }
-            if (player.InputsOn)
+            if (player.MoveInputOn)
                 Move();
             Jump();
             if (GameManager.Instance.PlayerStates.HasDoubleJump)
@@ -165,6 +166,7 @@ namespace br.com.bonus630.thefrog.Player
         public void HandlerMove(InputAction.CallbackContext context)
         {
             direction = context.ReadValue<Vector2>();
+           
         }
         public void HandlerDash(InputAction.CallbackContext context)
         {
@@ -356,14 +358,14 @@ namespace br.com.bonus630.thefrog.Player
             direction.x = 0;
             rb.bodyType = RigidbodyType2D.Static;
             rb.linearVelocity = Vector2.zero;
-            player.InputsOn = false;
+            player.MoveInputOn = false;
             anim.SetFloat(WalkID, 0);
             //anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
-            player.InputsOn = true;
+            player.MoveInputOn = true;
         }
         private void WallSliding()
         {

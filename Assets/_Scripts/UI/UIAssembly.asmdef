@@ -4,7 +4,8 @@
     "references": [
         "Unity.TextMeshPro",
         "ManagerAssembly",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "UtilsAssembly"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

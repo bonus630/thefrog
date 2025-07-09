@@ -21,7 +21,7 @@ namespace br.com.bonus630.thefrog.Activators
             screenEffects.GameObjectsFocus(gameObjects, time);
             if (disablePlayerMove)
             {
-                GameManager.Instance.GetPlayerScript.InputsOn = false;
+                GameManager.Instance.GetPlayerScript.MoveInputOn = false;
                 StartCoroutine(RenablePlayerInput(time * gameObjects.Length));
             }
         }
@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Activators
         private IEnumerator RenablePlayerInput(float time)
         {
             yield return new WaitForSeconds(time);
-            GameManager.Instance.GetPlayerScript.InputsOn = true;
+            GameManager.Instance.GetPlayerScript.MoveInputOn = true;
         }
     }
 }

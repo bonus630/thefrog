@@ -7,7 +7,7 @@ namespace br.com.bonus630.thefrog.Shared
         int CurrentLife { get; set; }
         float Speed { get; set; }
         float JumpForce { get; set; }
-        bool InputsOn { get; set; }
+        bool MoveInputOn { get; set; }
         bool InGround { get; set; }
         void ReadDialogue();
         void Alert();
@@ -21,6 +21,8 @@ namespace br.com.bonus630.thefrog.Shared
         void RemoveGravity(bool remove);
         void KnockUp(Vector2 repulse);
         bool FooterTouching(Collider2D coll);
+
+        void AllInputsOn(bool disables,float delayTime = 0);
 
     }
 }
