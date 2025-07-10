@@ -49,6 +49,13 @@ namespace br.com.bonus630.thefrog.Player
         public float Speed { get { return playerMovement.Speed; } set { playerMovement.Speed = value; } }
         public float JumpForce { get { return playerMovement.JumpForce; } set { playerMovement.JumpForce = value; } }
 
+        public float RigibodyGravityScale { get {  return rb.gravityScale; } set { rb.gravityScale = value; } } 
+        public float RigibodyLinearVelocityY { get {  return rb.linearVelocityY; } set { rb.linearVelocityY = value; } } 
+        public float RigibodyLinearVelocityX { get {  return rb.linearVelocityX; } set { rb.linearVelocityX = value; } } 
+        public Vector2 RigibodyLinearVelocity { get {  return rb.linearVelocity; } set { rb.linearVelocity = value; } }
+
+        public RigidbodyType2D RigibodyBodyType { get { return rb.bodyType; }set { rb.bodyType = value; } }
+
         void Awake()
         {
             GetComponents();
@@ -73,7 +80,7 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -84,16 +91,24 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-#else
-           // playerMovement.FallsControl();
-#endif
+//#else
+//           // playerMovement.FallsControl();
+//#endif
 
         }
-        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
+        //public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
+        //{
+        //   AddForce(force, mode, time);
+        //}
+        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f,bool removeInput = true)
         {
-            StartCoroutine(RemoveInputs(time));
+            if(removeInput)
+                StartCoroutine(RemoveInputs(time));
+            playerMovement.UseYvelocityLimit = false;
             rb.AddForce(force, mode);
+            Invoke(nameof(ReenableYVelocityLimit), 0.6f);
         }
+        private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = false;
         void FixedUpdate()
         {
 

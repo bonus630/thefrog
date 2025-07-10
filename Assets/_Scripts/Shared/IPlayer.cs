@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Shared
         //isso vai permitir melhor controle nas cutscenes
         void FallsControl();
         void ChangeNumberShurykens(int Shurykens);
-        void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f);
+        void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f,bool removeInput = true);
         void ChangeGravity(float gravityDirection, float speed = 0.05f);
         void RemoveGravity(bool remove);
         void KnockUp(Vector2 repulse);

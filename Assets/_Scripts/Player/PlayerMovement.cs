@@ -25,6 +25,7 @@ namespace br.com.bonus630.thefrog.Player
         public float Speed { get { return speed; } set { speed = value; } }
         public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
         public float TimeInFastFall { get; set; } = 0;
+        public bool UseYvelocityLimit { get; set; } = true;
 
         private int jumps = 2;
         private float doubleJumpForce;
@@ -40,6 +41,7 @@ namespace br.com.bonus630.thefrog.Player
         bool inDash = false;
         bool airDash = false;
         bool firstTimeInDashLoop = false;
+
         //private IEffects bounce;
 
         private float accelerationFactor = 0.4f;
@@ -92,7 +94,7 @@ namespace br.com.bonus630.thefrog.Player
         {
 
             // Debug.Log("Input " + player.MoveInputOn);
-            if (Mathf.Abs(rb.linearVelocityY * player.gravityDirection) > Mathf.Abs(LinearMaxY))
+            if (Mathf.Abs(player.RigibodyLinearVelocity.y * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
                 if (resetFastFall)
@@ -100,12 +102,15 @@ namespace br.com.bonus630.thefrog.Player
                     FallsControl();
                 }
                 player.playerHealth.PrepareFallDie = TimeInFastFall > maxTimeInFall;
-                Vector2 velocity = rb.linearVelocity;
-                Debug.Log("linearMaxY: " + LinearMaxY);
-                velocity.y = Mathf.Abs(LinearMaxY + 2) * player.gravityDirection;
-                rb.linearVelocity = velocity;
-               // if (FastFallParticles.isStopped)
-                    FastFallParticles.Play(rb);
+                if (UseYvelocityLimit)
+                {
+                    Vector2 velocity = player.RigibodyLinearVelocity;
+                    Debug.Log("linearMaxY: " + LinearMaxY);
+                    velocity.y = Mathf.Abs(LinearMaxY + 2) * player.gravityDirection;
+                    player.RigibodyLinearVelocity = velocity;
+                }
+                // if (FastFallParticles.isStopped)
+                FastFallParticles.Play();
             }
             else
             {
@@ -129,7 +134,7 @@ namespace br.com.bonus630.thefrog.Player
             player.playerFallControl.FallsControl(true);
 
         }
-      
+
 
         private bool IsWallSliding()
         {
@@ -139,9 +144,9 @@ namespace br.com.bonus630.thefrog.Player
         public bool IsFalling()
         {
             bool falling = false;
-            if (player.gravityDirection == 1 && rb.linearVelocityY > 0)
+            if (player.gravityDirection == 1 && player.RigibodyLinearVelocity.y > 0)
                 falling = true;
-            if (player.gravityDirection == -1 && rb.linearVelocityY < 0)
+            if (player.gravityDirection == -1 && player.RigibodyLinearVelocity.y < 0)
                 falling = true;
             return falling;
         }
@@ -179,10 +184,10 @@ namespace br.com.bonus630.thefrog.Player
             //    Debug.Log("Jump context perfomed"); 
             if (context.canceled)
             {
-                if (rb.linearVelocityY > 0)
+                if (player.RigibodyLinearVelocity.y > 0)
                 {
                     //Debug.Log("Jumps: " + jumps);
-                    rb.linearVelocityY *= 0.2f * player.gravityDirection;
+                    player.RigibodyLinearVelocityY *= 0.2f * player.gravityDirection;
                     doubleJump = true;
                     jumps--;
                 }
@@ -214,7 +219,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (readyToJump && jumps > 0)
             {
-                rb.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse);
+                player.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse,0,false);
                 doubleJump = false;
                 readyToJump = false;
                 anim.SetTrigger(DoubleJumpID);
@@ -224,7 +229,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (isJumping && coyouteTimer > 0)
             {
-                rb.linearVelocityY = jumpForce;
+                player.RigibodyLinearVelocityY = jumpForce;
                 audioSource.PlayOneShot(jumpSFX);
                 isJumping = false;
             }
@@ -311,9 +316,9 @@ namespace br.com.bonus630.thefrog.Player
                 //else 
                 // rb.linearVelocityX = speed * direction.x;
                 if (player.InGround)
-                    rb.linearVelocityX = acceleration * DashSpeed.x;
+                    player.RigibodyLinearVelocityX = acceleration * DashSpeed.x;
                 else
-                    rb.linearVelocityX = speed * direction.x * DashSpeed.x;
+                    player.RigibodyLinearVelocityX = speed * direction.x * DashSpeed.x;
 
             }
             else
@@ -322,11 +327,11 @@ namespace br.com.bonus630.thefrog.Player
                 //  {
                 // anim.SetBool(WalkID, false);
                 //   }
-                rb.linearVelocityX = 0;
+                player.RigibodyLinearVelocityX = 0;
                 acceleration = 0f;
             }
 
-            anim.SetFloat(WalkID, Mathf.Abs(rb.linearVelocityX));
+            anim.SetFloat(WalkID, Mathf.Abs(player.RigibodyLinearVelocityX));
         }
         private void Dash(bool canMove)
         {
@@ -358,7 +363,7 @@ namespace br.com.bonus630.thefrog.Player
                     DashParticles.Play();
                     // Debug.Log("Dash here time: " + dashReloadMaxTime);
                     // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
-                    rb.gravityScale = 0;
+                    player.RigibodyGravityScale = 0;
                     firstTimeInDashLoop = true;
                 }
                 dashReloadTimer = dashReloadMaxTime;
@@ -368,9 +373,9 @@ namespace br.com.bonus630.thefrog.Player
             {
                 DashSpeed = new Vector2(1, 0);
                 if (player.gravityDirection > 0)
-                    rb.gravityScale = -player.gravityScale;
+                    player.RigibodyGravityScale = -player.gravityScale;
                 else
-                    rb.gravityScale = player.gravityScale;
+                    player.RigibodyGravityScale = player.gravityScale;
                 dashReloadTimer -= Time.deltaTime;
                 dashActiveTimer -= Time.deltaTime;
                 if (dashReloadTimer < 0)
@@ -383,15 +388,15 @@ namespace br.com.bonus630.thefrog.Player
         public void FreezePlayerMove()
         {
             direction.x = 0;
-            rb.bodyType = RigidbodyType2D.Static;
-            rb.linearVelocity = Vector2.zero;
+            player.RigibodyBodyType = RigidbodyType2D.Static;
+            player.RigibodyLinearVelocity = Vector2.zero;
             player.MoveInputOn = false;
             anim.SetFloat(WalkID, 0);
             //anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()
         {
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            player.RigibodyBodyType = RigidbodyType2D.Dynamic;
             player.MoveInputOn = true;
         }
         private void WallSliding()
@@ -399,13 +404,13 @@ namespace br.com.bonus630.thefrog.Player
             anim.SetBool(WallJumpID, GetWallSliding);
             if (GetWallSliding)
             {
-                rb.linearVelocityY = wallSlideSpeed;
+                player.RigibodyLinearVelocityY = wallSlideSpeed;
                 TimeInFastFall = 0;
                 if (canWallJump)
                 {
-                    rb.linearVelocity = Vector2.zero;
-                    rb.AddForce(new Vector2(wallJumpXForce * direction.x * -1, wallJumpYForce), ForceMode2D.Impulse);
-                    StartCoroutine(player.RemoveInputs());
+                    player.RigibodyLinearVelocity = Vector2.zero;
+                    player.AddForce(new Vector2(wallJumpXForce * direction.x * -1, wallJumpYForce), ForceMode2D.Impulse, 0.2f);
+
                 }
             }
             else
@@ -420,7 +425,7 @@ namespace br.com.bonus630.thefrog.Player
             JumpDownParticles.Play();
 
         }
- 
+
 
         public void GravityChanged()
         {

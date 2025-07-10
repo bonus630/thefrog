@@ -26,12 +26,12 @@ namespace br.com.bonus630.thefrog.Player
             {
                 timer += Time.deltaTime;
                 player.playerMovement.TimeInFastFall = 0f;
-                rb.gravityScale = rb.gravityScale * 0.5f;
-                Vector2 velocity = rb.linearVelocity;
+                player.RigibodyGravityScale = player.RigibodyGravityScale * 0.5f;
+                Vector2 velocity = player.RigibodyLinearVelocity;
                 velocity.y *= 0.5f;
-                rb.linearVelocity = velocity;
-                Debug.Log("rb.gravityScale: " + rb.gravityScale);
-                Debug.Log("rb.velocity: " + rb.linearVelocity);
+                player.RigibodyLinearVelocity = velocity;
+                Debug.Log("rb.gravityScale: " + player.RigibodyGravityScale);
+                Debug.Log("rb.velocity: " + player.RigibodyLinearVelocity);
             }
             else
             {

@@ -95,9 +95,9 @@ namespace br.com.bonus630.thefrog.Player
         public void GameOver()
         {
             player.MoveInputOn = false;
-            rb.linearVelocity = Vector2.zero;
-            rb.gravityScale = 0;
-            rb.bodyType = RigidbodyType2D.Static;
+            player.RigibodyLinearVelocity = Vector2.zero;
+            player.RigibodyGravityScale = 0;
+            player.RigibodyBodyType = RigidbodyType2D.Static;
             player.FooterColliding.GetComponent<BoxCollider2D>().isTrigger = true;
 
             GameManager.Instance.GameOver();
