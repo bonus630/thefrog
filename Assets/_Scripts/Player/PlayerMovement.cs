@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using br.com.bonus630.thefrog.Effects;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
@@ -16,9 +17,11 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private AudioClip jumpSFX;
         [SerializeField] private ParticleSystem JumpDownParticles;
         [SerializeField] private ParticleSystem DashParticles;
+        [SerializeField] private ParticleSystem FastFallParticles;
         float dashActiveTimer = 0;
         float dashReloadTimer = 0;
-
+        float coyouteTime = 0.2f;
+        float coyouteTimer = 0;
         public float Speed { get { return speed; } set { speed = value; } }
         public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
         public float TimeInFastFall { get; set; } = 0;
@@ -55,7 +58,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             Speed = GameManager.Instance.PlayerStates.Speed;
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
-            
+
             base.Awake();
         }
         //private void Start()
@@ -75,10 +78,16 @@ namespace br.com.bonus630.thefrog.Player
                 player.InGround = false;
                 anim.SetBool(JumpID, true);
             }
+            if (player.InGround)
+                coyouteTimer = coyouteTime;
+            else
+                coyouteTimer -= Time.deltaTime;
+
         }
         void FixedUpdate()
         {
-           // Debug.Log("Input " + player.MoveInputOn);
+
+            // Debug.Log("Input " + player.MoveInputOn);
             if (Mathf.Abs(rb.linearVelocityY * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
@@ -86,8 +95,17 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     FallsControl();
                 }
-                if (TimeInFastFall > maxTimeInFall)
-                    player.playerHealth.Die();
+                player.playerHealth.PrepareFallDie = TimeInFastFall > maxTimeInFall;
+                Vector2 velocity = rb.linearVelocity;
+                Debug.Log("linearMaxY: " + LinearMaxY);
+                velocity.y = Mathf.Abs(LinearMaxY + 2) * player.gravityDirection;
+                rb.linearVelocity = velocity;
+               // if (FastFallParticles.isStopped)
+                    FastFallParticles.Play(rb);
+            }
+            else
+            {
+                FastFallParticles.Stop();
             }
             if (player.MoveInputOn)
                 Move();
@@ -99,15 +117,16 @@ namespace br.com.bonus630.thefrog.Player
                 WallSliding();
 
         }
+
         public void FallsControl()
         {
-           // Debug.Log("Foi aqui o danado 1");
-            TimeInFastFall = 0;
-            // Physics2D.Raycast(transform.position, Vector2.up * gravityDirection);
-            rb.linearVelocityY = LinearMaxY * player.gravityDirection;
             resetFastFall = false;
-            FallsControlEffect();
+            Debug.Log("Playermovement fallscontrol");
+            player.playerFallControl.FallsControl(true);
+
         }
+      
+
         private bool IsWallSliding()
         {
             bool falling = false;
@@ -137,7 +156,7 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     canWallJump = true;
 
-                   //Debug.Log("resetFastFall isWallSliding");
+                    //Debug.Log("resetFastFall isWallSliding");
                 }
                 if (doubleJump)
                 {
@@ -147,7 +166,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (GameManager.Instance.PlayerStates.FallsControl && TimeInFastFall > 0)
                 {
                     resetFastFall = true;
-                  //Debug.Log("resetFastFall fallcontrol");
+                    //Debug.Log("resetFastFall fallcontrol");
                 }
             }
             //if (context.performed)
@@ -166,7 +185,7 @@ namespace br.com.bonus630.thefrog.Player
         public void HandlerMove(InputAction.CallbackContext context)
         {
             direction = context.ReadValue<Vector2>();
-           
+
         }
         public void HandlerDash(InputAction.CallbackContext context)
         {
@@ -179,12 +198,12 @@ namespace br.com.bonus630.thefrog.Player
                 }
                 if (context.canceled)
                 {
-                   //Debug.Log("InDash false");
+                    //Debug.Log("InDash false");
                     inDash = false;
                 }
             }
         }
-       
+
         private void DoubleJump()
         {
             if (readyToJump && jumps > 0)
@@ -197,7 +216,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Jump()
         {
-            if (isJumping)
+            if (isJumping && coyouteTimer > 0)
             {
                 rb.linearVelocityY = jumpForce;
                 audioSource.PlayOneShot(jumpSFX);
@@ -213,6 +232,7 @@ namespace br.com.bonus630.thefrog.Player
             anim.SetBool(JumpID, false);
             jumps = 2;
             TimeInFastFall = 0;
+            player.playerFallControl.FallsControl(false);
         }
         private void Move()
         {
@@ -329,7 +349,7 @@ namespace br.com.bonus630.thefrog.Player
                     }
                     DashSpeed = new Vector2(8, 0);
                     DashParticles.Play();
-                   // Debug.Log("Dash here time: " + dashReloadMaxTime);
+                    // Debug.Log("Dash here time: " + dashReloadMaxTime);
                     // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
                     rb.gravityScale = 0;
                     firstTimeInDashLoop = true;
@@ -385,18 +405,15 @@ namespace br.com.bonus630.thefrog.Player
                 canWallJump = false;
 
         }
-       
+
         public void JumpDownEffect()
         {
-           var  bounce = new BounceEffect(anim.gameObject.transform);
+            var bounce = new BounceEffect(anim.gameObject.transform);
             EffectManager.instance.AddEffect(bounce);
             JumpDownParticles.Play();
-            
+
         }
-        public void FallsControlEffect()
-        {
-            Debug.Log("FallsControleEffect");
-        }
+ 
 
         public void GravityChanged()
         {

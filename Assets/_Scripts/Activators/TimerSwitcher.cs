@@ -1,7 +1,8 @@
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    public class TimerSwitcher : MonoBehaviour
+    public class TimerSwitcher :  IActivator
     {
 
         [SerializeField] ParticleSystem effects;
@@ -9,17 +10,24 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] AudioSource audioSource;
         [SerializeField] Animator animator;
         [SerializeField] float Timer;
+        [SerializeField] bool IsActived = true;
+        private bool useTimer = false;
 
         private float leftTime;
-        private bool useTimer = false;
         public bool IsOn { get; private set; } = true;
         private readonly int OnID = Animator.StringToHash("On");
+
+
 
         void Awake()
         {
             if (Timer > 0)
                 useTimer = true;
-
+            if (!IsActived)
+            {
+                IsOn = true;
+                Switch();
+            }
             leftTime = Timer;
         }
 
@@ -50,6 +58,20 @@ namespace br.com.bonus630.thefrog.Activators
 
             collider2.enabled = !collider2.enabled;
             animator.SetBool(OnID, collider2.enabled);
+        }
+
+        public override void Activate()
+        {
+            useTimer = false;
+            IsOn = false;
+            Switch();
+        }
+
+        public override void Deactive()
+        {
+            useTimer = false;
+            IsOn = true;
+            Switch();
         }
     }
 }

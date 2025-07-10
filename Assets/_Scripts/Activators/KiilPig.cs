@@ -1,10 +1,15 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
     public class KiilPig : MonoBehaviour
     {
         [SerializeField] MusicSource musicSource;
+        [SerializeField] IActivator fanToDisable;
+        [SerializeField] IActivator fanToEnable;
+
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player") && !GameManager.Instance.IsEventCompleted(GameEventName.KillPig))
@@ -21,6 +26,8 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.EventCompleted(GameEventName.KillPig);
             GameManager.Instance.UpdatePlayer();
             Destroy(GameObject.Find("BossActivator"));
+            fanToDisable.Deactive();
+            fanToEnable.Activate();
         }
 
     }

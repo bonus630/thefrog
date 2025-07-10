@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Utils;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,12 +19,15 @@ namespace br.com.bonus630.thefrog.UI
         [SerializeField] Button save03Button;
 
         [SerializeField] bool saveMode = true;
+
+        private List<SaveStates> list;
+        
         private void OnEnable()
         {
             if (ObjectToEnableDisable != null && ObjectToEnableDisable.activeInHierarchy)
                 ObjectToEnableDisable.SetActive(false);
             SavesManager sm = new SavesManager();
-            var list = sm.ListSaves();
+            list = sm.ListSaves();
 
             FillSaveButton(save01Button, list[0]);
             FillSaveButton(save02Button, list[1]);
@@ -71,20 +76,22 @@ namespace br.com.bonus630.thefrog.UI
         }
         private void LoadSave(int index)
         {
-           GameManager.Instance.LoadGame(SceneStartType.Continue, index);
+            Debug.Log("Load");
+            if (list[index-1]!=null)
+                GameManager.Instance.LoadGame(SceneStartType.Continue, index);
 
         }
         private void Save(int index)
         {
            GameManager.Instance.SaveStates(index);
-            GameManager.Instance.OnCallSave(false);
+           GameManager.Instance.OnCallSave(false);
             //gameObject.SetActive(false);
         }
 
         private void FillSaveButton(Button button, SaveStates saveStates)
         {
             GameObject thumb = button.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
-            GameObject time = button.gameObject.transform.GetChild(1).transform.GetChild(1).gameObject;
+            GameObject time  = button.gameObject.transform.GetChild(1).transform.GetChild(1).gameObject;
             GameObject hours = button.gameObject.transform.GetChild(1).transform.GetChild(2).gameObject;
 
             if (saveStates != null)

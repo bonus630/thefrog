@@ -25,11 +25,10 @@ namespace br.com.bonus630.thefrog.Player
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
 
-
-
         public PlayerDialogue playerDialogue { get; private set; }
         public PlayerHealth playerHealth { get; private set; }
         public PlayerMovement playerMovement { get; private set; }
+        public PlayerFallControl playerFallControl { get; private set; }
 
         [Header("Others")]
         private Rigidbody2D rb;
@@ -73,6 +72,8 @@ namespace br.com.bonus630.thefrog.Player
             playerDialogue = GetComponent<PlayerDialogue>();
             playerHealth = GetComponent<PlayerHealth>();
             playerMovement = GetComponent<PlayerMovement>();
+            playerFallControl = GetComponent<PlayerFallControl>();
+            
         }
         private void Start()
         {
@@ -91,7 +92,10 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
+#else
+           // playerMovement.FallsControl();
 #endif
+
         }
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         {
@@ -112,7 +116,7 @@ namespace br.com.bonus630.thefrog.Player
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-             
+                playerMovement.FallsControl();
                 //GameManager.Instance.TesteThumb();
                 //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
                 //StartCoroutine(DestroyEffects(s));
@@ -224,9 +228,7 @@ namespace br.com.bonus630.thefrog.Player
             }
             else
             {
-                Debug.Log(gravityDirection);
                 GravityParticles.Stop();
-
                 transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
                 rb.gravityScale *= -1;
                 knockUpForce *= -1;
@@ -348,5 +350,10 @@ namespace br.com.bonus630.thefrog.Player
             GetComponent<PlayerInput>().enabled = inputOn;
            // Debug.Log("Disable inputs ");
         }
+    }
+    enum PlayerGravityDirection
+    {
+        UP = 1,
+        DOWN = -1
     }
 }

@@ -145,36 +145,36 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void Pause(bool pause)
         {
-            TryPause(pause, PauseHUD, out GameObject go);
+            if (SceneManager.GetActiveScene().name.Equals("SampleScene") || SceneManager.GetActiveScene().name.Equals("InternAreas"))
+                TryPause(pause, PauseHUD, out GameObject go);
 
         }
-        private bool TryPause(bool pause, string hudName,out GameObject go)
+        private bool TryPause(bool pause, string hudName, out GameObject go)
         {
             go = GameObject.Find(hudName).transform.GetChild(0).gameObject;
             if (go == null)
                 return false;
-            if (SceneManager.GetActiveScene().name.Equals("SampleScene") || SceneManager.GetActiveScene().name.Equals("InternAreas"))
-            {
-                if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
-                {
-                    float vol = pause ? -80f : 0f;
-                    musicSource.SetMasterVolume(vol);
-                    Time.timeScale = pause ? 0 : 1;
-                    // Debug.Log(go);
 
-                    go.SetActive(pause);
-                    
-                    GetPlayerScript.AllInputsOn(!pause);
-                    return true;
-                    // Debug.Log("Pause " + pause);
-                }
+            if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
+            {
+                float vol = pause ? -80f : 0f;
+                musicSource.SetMasterVolume(vol);
+                Time.timeScale = pause ? 0 : 1;
+                // Debug.Log(go);
+
+                go.SetActive(pause);
+
+                GetPlayerScript.AllInputsOn(!pause);
+                return true;
+                // Debug.Log("Pause " + pause);
             }
+
             return false;
         }
-       
+
         public void OnCallSave(bool active)
         {
-            TryPause(active,SaveHUD,out GameObject go);
+            TryPause(active, SaveHUD, out GameObject go);
         }
         private void OnApplicationPause(bool pause)
         {
@@ -570,13 +570,13 @@ namespace br.com.bonus630.thefrog.Manager
         }
     }
     public enum SceneStartType
-{
-    Start,
-    Continue,
-    New,
-    Intern,
-    Main
-}
+    {
+        Start,
+        Continue,
+        New,
+        Intern,
+        Main
+    }
 }
 
 

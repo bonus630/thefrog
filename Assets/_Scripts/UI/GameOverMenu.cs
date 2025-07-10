@@ -1,5 +1,6 @@
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace br.com.bonus630.thefrog.UI
 {
@@ -7,6 +8,12 @@ namespace br.com.bonus630.thefrog.UI
     {
         [SerializeField] GameObject buttons;
         [SerializeField] GameObject saves;
+
+
+        private void OnEnable()
+        {
+            EventSystem.current.SetSelectedGameObject(transform.GetChild(0).transform.GetChild(0).gameObject);
+        }
 
         public void ContinueButton_clicked()
         {

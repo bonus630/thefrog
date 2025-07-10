@@ -253,6 +253,42 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 979509012900839800, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1545106514}
+    - target: {fileID: 979509012900839800, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save03Button_clicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 979509012900839800, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: br.com.bonus630.thefrog.UI.SaveLoadMenu, UIAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410236075935753627, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1545106514}
+    - target: {fileID: 5410236075935753627, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoBackButton_clicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410236075935753627, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: br.com.bonus630.thefrog.UI.SaveLoadMenu, UIAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783129565540652518, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1545106514}
+    - target: {fileID: 5783129565540652518, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save021Button_clicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783129565540652518, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: br.com.bonus630.thefrog.UI.SaveLoadMenu, UIAssembly
+      objectReference: {fileID: 0}
     - target: {fileID: 6487918285444866246, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -332,6 +368,18 @@ PrefabInstance:
     - target: {fileID: 6487918285444866246, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1545106514}
+    - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save01Button_clicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: br.com.bonus630.thefrog.UI.SaveLoadMenu, UIAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 8847231512967471811, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: saveMode
@@ -881,7 +929,7 @@ PrefabInstance:
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 93516428}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -892,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: br.com.bonus630.thefrog.UI.Menu, UIAssembly
+      value: br.com.bonus630.thefrog.UI.GameOverMenu, UIAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1003,6 +1051,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 843805403051188211, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
   m_PrefabInstance: {fileID: 147854498}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1545106514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8847231512967471811, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+  m_PrefabInstance: {fileID: 147854498}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545106512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36afae7c5d9569040b65cda23ec00b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1663783728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1196,18 +1255,18 @@ PrefabInstance:
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 93516428}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ContinueButton_clicked
+      value: LoadButton_clicked
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: br.com.bonus630.thefrog.UI.Menu, UIAssembly
+      value: br.com.bonus630.thefrog.UI.GameOverMenu, UIAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1335,7 +1394,7 @@ PrefabInstance:
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 93516428}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1346,7 +1405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: br.com.bonus630.thefrog.UI.Menu, UIAssembly
+      value: br.com.bonus630.thefrog.UI.GameOverMenu, UIAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 5759113113209287108, guid: 4cf6431e7e7436c45b36c5b20e50df50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

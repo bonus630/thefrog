@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Player
         private float hitTime;
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int LifeID = Animator.StringToHash("Life");
-
+        public bool PrepareFallDie { get; set; } = false;
         protected override void Awake()
         {
             base.Awake();
@@ -50,6 +50,8 @@ namespace br.com.bonus630.thefrog.Player
             {
                 invencibleTimer = invencibleTime;
             }
+            if (PrepareFallDie && player.InGround)
+                Die();
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
