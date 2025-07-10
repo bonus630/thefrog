@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
-using br.com.bonus630.thefrog.Shared;
-using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Items;
+using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XInput;
-using System.Collections.Generic;
 namespace br.com.bonus630.thefrog.Player
 {
 
@@ -43,14 +40,9 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] public Vector2 knockUpForce;
         public bool InGround { get; set; }
         private bool inputsOn  = true;
-        //private bool isStartJumpTimer;
-        //private float jumpTimeCharger;
-        //private bool teste;
+  
         public float LookFor { get; set; } = 1;
 
-        /// <summary>
-        /// private PlayerStates states;
-        /// </summary>
         public GameObject FooterColliding { get { return footer; } protected set { footer = value; } }
         public bool MoveInputOn { get { return inputsOn; } set { inputsOn = value; } }
 
@@ -351,7 +343,7 @@ namespace br.com.bonus630.thefrog.Player
            // Debug.Log("Disable inputs ");
         }
     }
-    enum PlayerGravityDirection
+    enum PlayerGravityDirection : int
     {
         UP = 1,
         DOWN = -1

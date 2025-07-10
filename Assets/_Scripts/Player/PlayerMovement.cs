@@ -53,6 +53,7 @@ namespace br.com.bonus630.thefrog.Player
         protected readonly int JumpID = Animator.StringToHash("Jump");
         protected readonly int WallJumpID = Animator.StringToHash("WallJump");
         protected readonly int DoubleJumpID = Animator.StringToHash("DoubleJump");
+        protected readonly int FallingID = Animator.StringToHash("Falling");
 
         protected override void Awake()
         {
@@ -81,7 +82,10 @@ namespace br.com.bonus630.thefrog.Player
             if (player.InGround)
                 coyouteTimer = coyouteTime;
             else
+            {
                 coyouteTimer -= Time.deltaTime;
+                anim.SetBool(FallingID, (IsFalling() && !player.playerFallControl.InFallControl));
+            }
 
         }
         void FixedUpdate()
@@ -129,15 +133,17 @@ namespace br.com.bonus630.thefrog.Player
 
         private bool IsWallSliding()
         {
+            bool falling = IsFalling();
+            return !player.InGround && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
+        }
+        public bool IsFalling()
+        {
             bool falling = false;
             if (player.gravityDirection == 1 && rb.linearVelocityY > 0)
                 falling = true;
             if (player.gravityDirection == -1 && rb.linearVelocityY < 0)
                 falling = true;
-            if (!falling)
-                return false;
-            return !player.InGround && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
-
+            return falling;
         }
         public void HandlerJump(InputAction.CallbackContext context)
         {
@@ -233,6 +239,7 @@ namespace br.com.bonus630.thefrog.Player
             jumps = 2;
             TimeInFastFall = 0;
             player.playerFallControl.FallsControl(false);
+            anim.SetBool(FallingID, false);
         }
         private void Move()
         {
