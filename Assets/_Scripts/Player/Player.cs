@@ -9,6 +9,8 @@ namespace br.com.bonus630.thefrog.Player
 
     public class Player : MonoBehaviour, IPlayer
     {
+        [SerializeField] private GameObject interactIcon;
+        [SerializeField] private GameObject bar;
         [SerializeField] private GameObject footer;
         [SerializeField] private GameObject projectile;
         [SerializeField] private GameObject fireball;
@@ -80,7 +82,7 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-//#if !UNITY_EDITOR
+#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -91,11 +93,14 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-//#else
+#else
+            var i = FindAnyObjectByType<CamerasController>();
+            i.ActiveCam(2);
 //           // playerMovement.FallsControl();
-//#endif
+#endif
 
         }
+    
         //public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         //{
         //   AddForce(force, mode, time);
@@ -123,7 +128,15 @@ namespace br.com.bonus630.thefrog.Player
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-                playerMovement.FallsControl();
+
+                //CreateBar(Color.green,0.4f);
+                //foreach (var c in g.GetComponents(typeof(IBarUI)))
+                //{
+                //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
+                //    (c as IBarUI).GoToValue(50);
+                //}
+             
+                //playerMovement.FallsControl();
                 //GameManager.Instance.TesteThumb();
                 //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
                 //StartCoroutine(DestroyEffects(s));
@@ -140,6 +153,18 @@ namespace br.com.bonus630.thefrog.Player
 
 #endif
 
+        }
+        public GameObject CreateBar(Color color, float value)
+        {
+            GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
+            var b = o.GetComponent<Getter>();
+            Follow follow = o.GetComponent<Follow>();
+            follow.Target = transform;
+            follow.Offset = Vector3.up * (0.4f * -gravityDirection);
+            IBarUI c = o.GetComponent<IBarUI>();
+            c.Value = value;
+            c.Color = color;
+            return o;
         }
         IEnumerator DestroyEffects(ScreenEffects screenEffects)
         {
@@ -265,12 +290,12 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void Alert()
         {
-            transform.GetChild(4).gameObject.SetActive(true);
+            interactIcon.SetActive(true);
             Invoke(nameof(Dealert), 2f);
         }
         private void Dealert()
         {
-            transform.GetChild(4).gameObject.SetActive(false);
+            interactIcon.SetActive(false);
         }
 
         public void Launch()

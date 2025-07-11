@@ -96,6 +96,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasFireball = true;
             playerStates.HasWallJump = true;
             playerStates.FallsControl = true;
+            playerStates.HasDash = true;
             playerStates.Shurykens = 100;
             eventManager.EventCompleted(GameEventName.FeatherTouch, true);
 #endif

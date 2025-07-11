@@ -5,7 +5,8 @@
         "Unity.TextMeshPro",
         "ManagerAssembly",
         "Unity.InputSystem",
-        "UtilsAssembly"
+        "UtilsAssembly",
+        "SharedAssembly"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using br.com.bonus630.thefrog.Effects;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -83,11 +84,12 @@ namespace br.com.bonus630.thefrog.Player
             }
             if (player.InGround)
                 coyouteTimer = coyouteTime;
-            else
+            else if(!GetWallSliding)
             {
                 coyouteTimer -= Time.deltaTime;
                 anim.SetBool(FallingID, (IsFalling() && !player.playerFallControl.InFallControl));
             }
+            DashBarController();
 
         }
         void FixedUpdate()
@@ -109,7 +111,8 @@ namespace br.com.bonus630.thefrog.Player
                     velocity.y = Mathf.Abs(LinearMaxY + 2) * player.gravityDirection;
                     player.RigibodyLinearVelocity = velocity;
                 }
-                // if (FastFallParticles.isStopped)
+                var m = FastFallParticles.main;
+                m.gravityModifierMultiplier = 0.5f * Mathf.Sign(player.RigibodyLinearVelocityY);
                 FastFallParticles.Play();
             }
             else
@@ -139,7 +142,7 @@ namespace br.com.bonus630.thefrog.Player
         private bool IsWallSliding()
         {
             bool falling = IsFalling();
-            return !player.InGround && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
+            return falling && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
         }
         public bool IsFalling()
         {
@@ -148,7 +151,7 @@ namespace br.com.bonus630.thefrog.Player
                 falling = true;
             if (player.gravityDirection == -1 && player.RigibodyLinearVelocity.y < 0)
                 falling = true;
-            return falling;
+            return falling && !player.InGround;
         }
         public void HandlerJump(InputAction.CallbackContext context)
         {
@@ -219,7 +222,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (readyToJump && jumps > 0)
             {
-                player.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse,0,false);
+                player.AddForce(Vector2.up * doubleJumpForce, ForceMode2D.Impulse, 0, false);
                 doubleJump = false;
                 readyToJump = false;
                 anim.SetTrigger(DoubleJumpID);
@@ -306,6 +309,7 @@ namespace br.com.bonus630.thefrog.Player
                 }
             }
             Dash(canMove);
+          
             if (canMove)
             {
                 // anim.SetBool(WalkID, true);
@@ -333,6 +337,7 @@ namespace br.com.bonus630.thefrog.Player
 
             anim.SetFloat(WalkID, Mathf.Abs(player.RigibodyLinearVelocityX));
         }
+        GameObject dashBar;
         private void Dash(bool canMove)
         {
             if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer > 0 && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())
@@ -383,6 +388,30 @@ namespace br.com.bonus630.thefrog.Player
                 if (dashActiveTimer < 0)
                     dashActiveTimer = 0;
                 firstTimeInDashLoop = false;
+            }
+           
+        }
+        private void DashBarController()
+        {
+            if (firstTimeInDashLoop && inDash)
+            {
+                dashBar = player.CreateBar(Color.blue, dashReloadMaxTime);
+                IBarUI c = dashBar.GetComponent<IBarUI>();
+                c.Value = 0;
+                c.MaxValue = dashReloadMaxTime;
+            }
+            else
+            {
+                if (dashBar != null)
+                {
+                    if (Mathf.Approximately(dashReloadTimer,0))
+                        Destroy(dashBar);
+                    else
+                    {
+                        IBarUI c = dashBar.GetComponent<IBarUI>();
+                        c.Value = dashReloadTimer;
+                    }
+                }
             }
         }
         public void FreezePlayerMove()

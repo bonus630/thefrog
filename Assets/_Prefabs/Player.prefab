@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 155941742952179389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.173, y: 0.251, z: 0}
-  m_LocalScale: {x: 0.452, y: 0.452, z: 1}
+  m_LocalPosition: {x: 0.179, y: 0.18, z: 0}
+  m_LocalScale: {x: 0.27221698, y: 0.27221698, z: 0.60225}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2294317406190021175}
@@ -20264,7 +20264,7 @@ Transform:
   m_GameObject: {fileID: 8143305507566220947}
   serializedVersion: 2
   m_LocalRotation: {x: -0.71855325, y: -0, z: -0, w: 0.6954719}
-  m_LocalPosition: {x: 0.049, y: -0.17, z: 0}
+  m_LocalPosition: {x: 0.049, y: -0.048, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20848,7 +20848,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.5
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -21210,8 +21210,66 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 0
-    m_Bursts: []
+    m_BurstCount: 1
+    m_Bursts:
+    - serializedVersion: 2
+      time: 0
+      countCurve:
+        serializedVersion: 2
+        minMaxState: 0
+        scalar: 3
+        minScalar: 30
+        maxCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+      cycleCount: 0
+      repeatInterval: 0.01
+      probability: 1
   SizeModule:
     enabled: 0
     curve:
@@ -22383,16 +22441,25 @@ ParticleSystem:
           time: 0
           value: 1
           inSlope: 0
-          outSlope: -0.8
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 0.2
+          time: 0.5020472
+          value: 0.44744653
+          inSlope: -0.32796568
+          outSlope: -0.32796568
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.3404913
+          outWeight: 0.49246508
+        - serializedVersion: 3
+          time: 0.89888144
+          value: 1
           inSlope: -0.8
-          outSlope: 0
+          outSlope: -0.8
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
@@ -25296,6 +25363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef447d21f5a88ec48abde3adf5356739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIcon: {fileID: 155941742952179389}
+  bar: {fileID: 1458090438773665340, guid: 1170835892bdf774387af78e32edf52c, type: 3}
   footer: {fileID: 8894308778311849379}
   projectile: {fileID: 1645160297769326799, guid: 177f9eddf690fba41a5a8b89ed6a3ae1, type: 3}
   fireball: {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
@@ -25348,7 +25417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.3
   jumpForce: 12.3
-  LinearMaxY: -15.5
+  LinearMaxY: -22
   dashActiveMaxTime: 0.18
   dashReloadMaxTime: 1.2
   jumpSFX: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
