@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             Speed = GameManager.Instance.PlayerStates.Speed;
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
-
+            dashReloadTimer = dashReloadMaxTime;
             base.Awake();
         }
         //private void Start()
@@ -90,12 +90,11 @@ namespace br.com.bonus630.thefrog.Player
                 anim.SetBool(FallingID, (IsFalling() && !player.playerFallControl.InFallControl));
             }
             DashBarController();
+           // Debug.Log($"DashReloadTime: {dashReloadTimer} inDash: {inDash}");
 
         }
         void FixedUpdate()
         {
-
-            // Debug.Log("Input " + player.MoveInputOn);
             if (Mathf.Abs(player.RigibodyLinearVelocity.y * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
@@ -107,8 +106,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (UseYvelocityLimit)
                 {
                     Vector2 velocity = player.RigibodyLinearVelocity;
-                    Debug.Log("linearMaxY: " + LinearMaxY);
-                    velocity.y = Mathf.Abs(LinearMaxY + 2) * player.gravityDirection;
+                    velocity.y = (Mathf.Abs(LinearMaxY) + 4) * player.gravityDirection;
                     player.RigibodyLinearVelocity = velocity;
                 }
                 var m = FastFallParticles.main;
@@ -127,7 +125,6 @@ namespace br.com.bonus630.thefrog.Player
             player.KnockedUp();
             if (GameManager.Instance.PlayerStates.HasWallJump)
                 WallSliding();
-
         }
 
         public void FallsControl()
@@ -340,7 +337,12 @@ namespace br.com.bonus630.thefrog.Player
         GameObject dashBar;
         private void Dash(bool canMove)
         {
-            if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer > 0 && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())
+            //Debug.Log(canMove);
+            //Debug.Log(dashActiveTimer >= dashActiveMaxTime);
+            //Debug.Log((dashReloadTimer < dashReloadMaxTime && !firstTimeInDashLoop));
+            //Debug.Log(player.WallCheck.RightWallCheck());
+           // if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer > 0 && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())
+            if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer < dashReloadMaxTime && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())
                 inDash = false;
             if (inDash)
             {
@@ -371,7 +373,8 @@ namespace br.com.bonus630.thefrog.Player
                     player.RigibodyGravityScale = 0;
                     firstTimeInDashLoop = true;
                 }
-                dashReloadTimer = dashReloadMaxTime;
+                //dashReloadTimer = dashReloadMaxTime;
+                dashReloadTimer = 0;
                 dashActiveTimer += Time.deltaTime;
             }
             if (!inDash)
@@ -381,10 +384,11 @@ namespace br.com.bonus630.thefrog.Player
                     player.RigibodyGravityScale = -player.gravityScale;
                 else
                     player.RigibodyGravityScale = player.gravityScale;
-                dashReloadTimer -= Time.deltaTime;
+                //dashReloadTimer -= Time.deltaTime;
+                dashReloadTimer += Time.deltaTime;
                 dashActiveTimer -= Time.deltaTime;
-                if (dashReloadTimer < 0)
-                    dashReloadTimer = 0;
+                //if (dashReloadTimer < 0)
+                //    dashReloadTimer = 0;
                 if (dashActiveTimer < 0)
                     dashActiveTimer = 0;
                 firstTimeInDashLoop = false;
@@ -395,16 +399,19 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (firstTimeInDashLoop && inDash)
             {
-                dashBar = player.CreateBar(Color.blue, dashReloadMaxTime);
+                if(dashBar==null)
+                    dashBar = player.CreateBar(Color.blue, dashReloadMaxTime);
                 IBarUI c = dashBar.GetComponent<IBarUI>();
                 c.Value = 0;
                 c.MaxValue = dashReloadMaxTime;
+             
             }
-            else
+            if(!inDash)
             {
                 if (dashBar != null)
                 {
-                    if (Mathf.Approximately(dashReloadTimer,0))
+                    Debug.Log("Reload Timer: " + dashReloadMaxTime);
+                    if (dashReloadTimer>=dashReloadMaxTime)
                         Destroy(dashBar);
                     else
                     {
@@ -460,6 +467,13 @@ namespace br.com.bonus630.thefrog.Player
         {
             jumpForce *= -1;
             wallJumpYForce *= -1;
+        }
+
+        internal void HandlerHability()
+        {
+            if (!player.InGround || !GameManager.Instance.PlayerStates.HasGravity)
+                return;
+            player.ChangeGravity(player.gravityDirection * -1);
         }
     }
 }

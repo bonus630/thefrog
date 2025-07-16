@@ -29,4 +29,10 @@ MonoBehaviour:
   - Name: DuckPackFinalExit
     Point: {x: -0.05, y: -1.75, z: 0}
     transform: {fileID: 0}
+  - Name: CastleSewerRealExit
+    Point: {x: 264.42648, y: -66.026276, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleSewerExit
+    Point: {x: 251.25648, y: -70.96627, z: 0}
+    transform: {fileID: 0}
   SceneType: 4

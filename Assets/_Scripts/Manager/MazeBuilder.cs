@@ -10,20 +10,19 @@ namespace br.com.bonus630.thefrog.Manager
     {
         [field: SerializeField] public List<int> CorrectPath { get; set; }
 
-        [SerializeField] GameObject entrace;
-        [SerializeField] GameObject exit;
+        [SerializeField] IActivator entrace;
+        [SerializeField] IActivator exit;
         [SerializeField] GameObject[] teleportPoints;
         [SerializeField] GameObject[] exitPoints;
+        [SerializeField] ScreenFader fader;
 
         int current = 0;
         bool blocked = false;
-        ScreenFader fader;
         Vector3 newPos;
         private void Start()
         {
-            fader = FindAnyObjectByType<ScreenFader>();
             fader.fadeDuration = 0.4f;
-            entrace.GetComponent<CircleCollider2D>().enabled = false;
+            //entrace.GetComponent<Collider2D>().enabled = false;
             for (int i = 0; i < teleportPoints.Length; i++)
             {
                 teleportPoints[i].GetComponent<CollisionRelayEx>().OnTriggerEnterAction += CheckTriggerEnter;
@@ -32,7 +31,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ActiveEntrace()
         {
-            entrace.GetComponent<CircleCollider2D>().enabled = true;
+            entrace.GetComponent<Collider2D>().enabled = true;
         }
         private void ChangeCurrent(int _value)
         {
@@ -50,39 +49,63 @@ namespace br.com.bonus630.thefrog.Manager
         {
             if (blocked)
                 return;
-            if (data.Collider.CompareTag("Player"))
+
+            if (!data.Collider.CompareTag("Player"))
+                return;
+
+            blocked = true;
+            Debug.Log("Data.index: " + data.Index);
+
+            bool isCorrect = CorrectPath[current] == data.Index;
+
+            if (isCorrect)
             {
-                blocked = true;
-                Debug.Log("Data.index: " + data.Index);
-                if (CorrectPath[current] == data.Index)
-                {
-                    current++;
-                }
+                current++;
+
                 if (current == CorrectPath.Count)
-                    newPos = exit.transform.position;
-                else
                 {
-                    List<GameObject> points = exitPoints.ToList();
-                    points.RemoveAt(data.Index);
-                    if (UnityEngine.Random.Range(0, 2) == 0 && CorrectPath[current - 1] != data.Index)
-                    {
-                        newPos = entrace.transform.position;
-                        current = 0;
-                    }
-                    else
-                        newPos = points[UnityEngine.Random.Range(0, points.Count)].transform.position;
+                    Exit();
+                    return;
                 }
-                StartCoroutine(ScreenFader(data.Collider.gameObject));
-                // data.Collider.gameObject.transform.position = newPos;
-                // 
             }
+            else
+            {
+                // Jogador errou o caminho. Com 50% de chance, faz rollback (volta 1 passo)
+                if (current > 0 &&
+                    UnityEngine.Random.Range(0, 2) == 0 &&
+                    CorrectPath[current - 1] != data.Index)
+                {
+                    current--; // ← rollback aqui
+                    Entrace(); // volta ao ponto de entrada
+                    //StartCoroutine(ScreenFader(data.Collider.gameObject));
+                    //return;
+                }
+            }
+
+            // Teleporta para uma nova posição aleatória (exceto a porta de entrada atual)
+            List<GameObject> points = exitPoints.ToList();
+            points.RemoveAt(data.Index);
+
+            newPos = points[UnityEngine.Random.Range(0, points.Count)].transform.position;
+
+            StartCoroutine(ScreenFader(data.Collider.gameObject));
         }
+
         private IEnumerator ScreenFader(GameObject obj)
         {
             yield return fader.FadeOut();
             obj.transform.position = newPos;
             yield return fader.FadeIn();
 
+        }
+        //preciso criar um game object para cada um dos metodos, com scene mover!
+        private void Exit()
+        {
+            exit.Activate();
+        }
+        private void Entrace()
+        {
+            entrace.Activate();
         }
     }
     public enum MazeDirections

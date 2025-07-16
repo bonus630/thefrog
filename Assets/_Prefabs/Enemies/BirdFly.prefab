@@ -269,4 +269,4 @@ MonoBehaviour:
   repulse: {x: 0, y: 200}
   repulseForce: 200
   xDirection: -1
-  enemyWeakenesses: 
+  enemyWeakenesses: 000000000100000008000000

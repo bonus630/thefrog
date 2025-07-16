@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Enemies
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-           // 
+           
             if (collision.CompareTag("SpawnPoint"))
                 return;
             m_Rigidbody.bodyType = RigidbodyType2D.Static;
@@ -32,7 +32,8 @@ namespace br.com.bonus630.thefrog.Enemies
             else
             {
                 if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
-                {Debug.Log(collision.gameObject.name);
+                {
+                    Debug.Log(collision.gameObject.name);
                     player.Hit();
                 }
                 RunGasAnimation();

@@ -4,6 +4,7 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 namespace br.com.bonus630.thefrog.Player
 {
 
@@ -86,6 +87,8 @@ namespace br.com.bonus630.thefrog.Player
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
+          
+            
             transform.position = GameManager.Instance.PlayerStartPosition;
             if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
             {
@@ -94,6 +97,8 @@ namespace br.com.bonus630.thefrog.Player
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
 #else
+            if(SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
+                transform.position = GameManager.Instance.PlayerStartPosition;
             var i = FindAnyObjectByType<CamerasController>();
             i.ActiveCam(2);
 //           // playerMovement.FallsControl();
@@ -129,7 +134,7 @@ namespace br.com.bonus630.thefrog.Player
             if (Input.GetKeyUp(KeyCode.W))
             {
 
-                //CreateBar(Color.green,0.4f);
+                CreateBar(Color.green,0.4f);
                 //foreach (var c in g.GetComponents(typeof(IBarUI)))
                 //{
                 //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
@@ -198,6 +203,10 @@ namespace br.com.bonus630.thefrog.Player
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
                     projectilie.Launch(new Vector2(LookFor, 0));
+                    GameObject bar = CreateBar(Color.green, 0);
+                    bar.GetComponent<IBarUI>().MaxValue = 100;
+                    bar.GetComponent<IBarUI>().GoToValue(100, 5);
+                    Destroy(bar, projectilie.ReloadTime());
                     nextLaunch = Time.time + projectilie.ReloadTime();
                 }
             }
@@ -245,9 +254,9 @@ namespace br.com.bonus630.thefrog.Player
 
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
-            if (!InGround || !GameManager.Instance.PlayerStates.HasGravity)
-                return;
-                this.gravityDirection = gravityDirection;
+            //if (!InGround || !GameManager.Instance.PlayerStates.HasGravity)
+            //    return;
+            this.gravityDirection = gravityDirection;
             //LinearMaxY *= -1;
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
@@ -381,6 +390,11 @@ namespace br.com.bonus630.thefrog.Player
             GetComponent<PlayerInputHandler>().enabled = inputOn;
             GetComponent<PlayerInput>().enabled = inputOn;
            // Debug.Log("Disable inputs ");
+        }
+        public void FreezePlayer()
+        {
+            AllInputsOn(true);
+            playerMovement.FreezePlayerMove();
         }
     }
     enum PlayerGravityDirection : int

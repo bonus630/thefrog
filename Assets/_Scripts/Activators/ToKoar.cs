@@ -13,11 +13,23 @@ namespace br.com.bonus630.thefrog.Activators
         GameObject player;
         GameObject koar;
         bool actived = false;
+        bool startCheckDistance = false;
 
         public void Awake()
         {
             screenEffects = FindAnyObjectByType<ScreenEffects>();
             koar = GameObject.Find("KoarActivator").transform.GetChild(0).gameObject;
+        }
+        void Update()
+        {
+            if(startCheckDistance)
+            {
+                if (Vector2.Distance(player.transform.position, newLocation) > 4.5)
+                {
+                    GameManager.Instance.GetPlayerScript.FallsControl();
+                    startCheckDistance = false;
+                }
+            }
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -30,6 +42,7 @@ namespace br.com.bonus630.thefrog.Activators
                 koar.SetActive(true);
                 //player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
                 StartCoroutine(PlayCutscene());
+           
             }
         }
         IEnumerator FixX()
@@ -45,21 +58,18 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.GetPlayerScript.MoveInputOn = false;
             // yield return new WaitForSeconds(0.2f);
             // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
-            screenEffects.FadeOut(1);
+            screenEffects.FadeOut(0.1f);
             //GameManager.Instance.GetPlayerScript.ChangeGravity(0);
-          // GameObject.Find("Kaor").SetActive(true);
+            // GameObject.Find("Kaor").SetActive(true);
+            yield return new WaitForSeconds(1);
             FindAnyObjectByType<CameraBackground>().ChangeBackground();
             GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
             player.transform.position = newLocation;
-            yield return new WaitForSeconds(playerWaitTime);
-            GameManager.Instance.GetPlayerScript.RemoveGravity(true);
-            Debug.Log("PlayCutscene");
-            yield return new WaitForSeconds(1.5f); // opcional, uma pausa dramática
             screenEffects.FadeIn(1);
-            GameManager.Instance.GetPlayerScript.RemoveGravity(false);
-            yield return new WaitForSeconds(0.5f);
-       
-            GameManager.Instance.GetPlayerScript.FallsControl();
+            yield return new WaitForEndOfFrame();
+            startCheckDistance = true;
+           
+  
         }
     }
 }

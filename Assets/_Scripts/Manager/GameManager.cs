@@ -18,13 +18,10 @@ namespace br.com.bonus630.thefrog.Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField] InputAction PauseAction;
-
         private TextMeshProUGUI scoreText;
         private bool continueGame = false;
         public float PlayTimeInSeconds { get; private set; }
         private bool _isCountingTime = false;
-        //public int Hour { get; set; }
-        //public int Shurykens { get; set; }
         private PlayerStates playerStates;
         public PlayerStates PlayerStates { get { return playerStates; } private set { playerStates = value; } }
 
@@ -183,6 +180,7 @@ namespace br.com.bonus630.thefrog.Manager
             Pause(pause);
         }
 
+
         public void StartCountingTime()
         {
             _isCountingTime = true;
@@ -205,7 +203,7 @@ namespace br.com.bonus630.thefrog.Manager
         private SceneStartType sceneStartType;
         public void LoadGame(SceneStartType type, int index = 0)
         {
-            Debug.LogWarning("LoadGame type:" + type);
+           // Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
             {
@@ -561,7 +559,21 @@ namespace br.com.bonus630.thefrog.Manager
             this.playerStates.JumpForce += 0.1f;
 
         }
-
+        //public void SetSceneData<T>(T data) where T : class, new()
+        //{
+        //    GameObject dataScene = Instantiate(DataScenePreserverGameObject);
+        //    DataScenePreserver.Instance.Set<T>(data);
+        //}
+        //public T GetSceneData<T>() where T : class, new()
+        //{
+        //    if(DataScenePreserver.Instance!=null)
+        //    {
+        //        T data = DataScenePreserver.Instance.Get<T>();
+        //        DataScenePreserver.Instance.Clear();
+        //        return data;
+        //    }
+        //    return null;
+        //}
         public void TesteThumb()
         {
             var t = new ThumbGenerator();

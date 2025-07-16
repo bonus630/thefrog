@@ -57,6 +57,8 @@ namespace br.com.bonus630.thefrog.Enemies
 
         protected virtual void FollowPlayer()
         {
+            if (Vector3.Distance(player.transform.position, transform.position) > 6)
+                return;
             followTime -= Time.deltaTime;
             moveFor = (player.transform.position - transform.position).normalized;
             //Debug.Log(moveFor);

@@ -23,19 +23,32 @@ namespace br.com.bonus630.thefrog.Player
                 return;
             if (timer < Time)
             {
-                timer += UnityEngine.Time.deltaTime;
+                //timer += UnityEngine.Time.deltaTime;
+                //player.playerMovement.TimeInFastFall = 0f;
+                //player.RigibodyGravityScale = player.RigibodyGravityScale * 0.5f;
+                //Vector2 velocity = player.RigibodyLinearVelocity;
+                //velocity.y *= 0.5f;
+                //player.RigibodyLinearVelocity = velocity;
+                ////Debug.Log("rb.gravityScale: " + player.RigibodyGravityScale);
+                ////Debug.Log("rb.velocity: " + player.RigibodyLinearVelocity);
+                ///  timer += UnityEngine.Time.deltaTime;
                 player.playerMovement.TimeInFastFall = 0f;
-                player.RigibodyGravityScale = player.RigibodyGravityScale * 0.5f;
+
+                float duration = Time;
+                float t = Mathf.Clamp01(timer / duration);
+                float minFactor = 0.2f; // não deixa passar de 30% da gravidade original
+                player.RigibodyGravityScale = Mathf.Lerp(player.gravityScale, player.gravityScale * minFactor, t);
+
                 Vector2 velocity = player.RigibodyLinearVelocity;
                 velocity.y *= 0.5f;
                 player.RigibodyLinearVelocity = velocity;
-                Debug.Log("rb.gravityScale: " + player.RigibodyGravityScale);
-                Debug.Log("rb.velocity: " + player.RigibodyLinearVelocity);
+                timer += UnityEngine.Time.deltaTime;
             }
             else
             {
                 timer = 0f;
                 FallsControl(false);
+                player.RemoveGravity(false);
             }
 
         }

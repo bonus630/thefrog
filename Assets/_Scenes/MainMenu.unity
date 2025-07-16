@@ -6176,6 +6176,7 @@ MonoBehaviour:
       m_Action: Pause
       m_Flags: 0
     m_Flags: 0
+  DataScenePreserverGameObject: {fileID: 6508510014505348081, guid: 446f9414170d8394d8bf8f0f70118a0b, type: 3}
   eventManager: {fileID: 2117192171}
 --- !u!4 &2117192173
 Transform:

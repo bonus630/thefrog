@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Shared
         Fire = 1,
         Water = 2,
         Earth = 4,
-        Wind = 8
+        Wind = 8,
+        Lighting = 16
     }
 }

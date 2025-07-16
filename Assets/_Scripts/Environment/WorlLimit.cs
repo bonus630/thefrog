@@ -25,7 +25,7 @@ namespace br.com.bonus630.thefrog.Environment
                 Next.GetComponent<Collider2D>().enabled = false;
                 Transform p = collision.transform;
                 ScreenEffects sf = FindAnyObjectByType<ScreenEffects>();
-                sf.FadeOut(0.1f);
+                sf.FadeOut(0.5f);
                 if (Horizontal)
                 {
                     p.position = new Vector3(p.position.x, Next.transform.position.y, p.position.z);
@@ -35,7 +35,7 @@ namespace br.com.bonus630.thefrog.Environment
                     p.position = new Vector3(Next.transform.position.x, p.position.y, p.position.z);
                 }
                 sf.FadeIn(0.2f);
-                Invoke(nameof(EnableNext), 0.1f);
+                Invoke(nameof(EnableNext), 1f);
             }
         }
         private void CheckType()

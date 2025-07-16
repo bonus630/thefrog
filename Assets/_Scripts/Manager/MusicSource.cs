@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.Manager
         private float silentTime;
         private bool leftTurn = true;
 
-        private float savedTime = 0f; // Guarda o tempo da música antes de pausar
+        public float SavedTime { get; set; } = 0f; // Guarda o tempo da música antes de pausar
 
     
         /// <summary>
@@ -270,16 +270,21 @@ namespace br.com.bonus630.thefrog.Manager
         {
             if (audioLeft.isPlaying)
             {
-                savedTime = audioLeft.time; // Salva o ponto atual da música
-                audioLeft.Pause();
-                audioRight.Pause();
+                SavedTime = audioLeft.time; // Salva o ponto atual da música
+               
             }
+            if (audioRight.isPlaying)
+            {
+                SavedTime = audioRight.time;
+            }
+            audioLeft.Pause();
+            audioRight.Pause();
         }
 
         public void ResumeMainMusic()
         {
-            audioLeft.time = savedTime;
-            audioRight.time = savedTime;
+            audioLeft.time = SavedTime;
+            audioRight.time = SavedTime;
             audioLeft.Play();
             audioRight.Play();
         }

@@ -174,7 +174,7 @@ MonoBehaviour:
   repulse: {x: 0, y: 200}
   repulseForce: 200
   xDirection: -1
-  enemyWeakenesses: 
+  enemyWeakenesses: 0100000008000000
 --- !u!95 &2289731615976831552
 Animator:
   serializedVersion: 7

@@ -4,79 +4,127 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.UI
 {
+    using UnityEngine;
+
+    using UnityEngine;
+
     public class BarUI : MonoBehaviour, IBarUI
     {
         [SerializeField] GameObject root;
         [SerializeField] GameObject barSprite;
 
-        [field: SerializeField] public Color Color { get { return barSprite.GetComponent<SpriteRenderer>().color; } set { barSprite.GetComponent<SpriteRenderer>().color = value; } }
+        [field: SerializeField]
+        public Color Color
+        {
+            get => barSprite.GetComponent<SpriteRenderer>().color;
+            set => barSprite.GetComponent<SpriteRenderer>().color = value;
+        }
+
         [SerializeField] Transform bar;
 
-        [SerializeField] float increment = 1;
-        private float value = 0;
+        private float currentValue = 0;       // valor exibido
         private float minValue = 0;
         private float maxValue = 100;
-        [field: SerializeField] public float Value { get { return this.value; } set { this.value = value; setValue(value); } }
-        [field: SerializeField] public float MinValue { get { return this.value; } set { this.value = value; calcIncrement(); } }
-        [field: SerializeField] public float MaxValue { get { return this.value; } set { this.value = value; calcIncrement(); } }
+        private float targetValue = 0;        // destino desejado
+        private float startValue = 0;
 
-        float tempValue;
-        float timeToUpdate = 0f;
-        float timer = 0f;
+        private float timeToUpdateTotal = 0f;
+        private float elapsedTime = 0f;
+        private bool isAnimating = false;
 
-
-        void setValue(float value)
+        [field: SerializeField]
+        public float MinValue
         {
-            // Debug.Log("SetValue: " + value);
-            tempValue = value;
-            bar.localScale = new Vector3(GetValue(tempValue), 1, 1);
-        }
-        void calcIncrement()
-        {
-            this.increment = (maxValue - minValue) / 100;
-        }
-        void Update()
-        {
-            bar.localScale = new Vector3(GetValue(tempValue), 1, 1);
-            if (timeToUpdate == 0)
+            get => minValue;
+            set
             {
-                tempValue = this.value;
+                minValue = value;
+                UpdateScale();
+            }
+        }
+
+        [field: SerializeField]
+        public float MaxValue
+        {
+            get => maxValue;
+            set
+            {
+                maxValue = value;
+                UpdateScale();
+            }
+        }
+
+        [field: SerializeField]
+        public float Value
+        {
+            get => targetValue;
+            set
+            {
+                // aplica imediatamente, sem animar
+                targetValue = Mathf.Clamp(value, minValue, maxValue);
+                currentValue = targetValue;
+                isAnimating = false;
+                UpdateScale();
+            }
+        }
+
+        //private void Start()
+        //{
+        //    currentValue = targetValue = minValue;
+        //    UpdateScale();
+        //}
+
+        private void Update()
+        {
+            if (!isAnimating)
                 return;
-            }
-            // Debug.Log("ScaleX: "+bar.localScale.x);
-            if (timer > timeToUpdate)
-            {
-                if (tempValue > (this.value))
-                {
-                    tempValue -= increment;
-                }
-                if (tempValue < (this.value))
-                {
-                    tempValue += increment;
-                }
-                timer = 0f;
-            }
-            else
-                timer += Time.deltaTime;
 
-                    
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / timeToUpdateTotal);
+            currentValue = Mathf.Lerp(startValue, targetValue, t);
+            UpdateScale();
+
+            if (t >= 1f)
+            {
+                isAnimating = false;
+            }
         }
 
-        private float GetValue(float value) => value / (MaxValue - MinValue);
+        private float GetNormalizedValue(float value)
+        {
+            if (Mathf.Approximately(maxValue, minValue)) return 0;
+            return Mathf.InverseLerp(minValue, maxValue, value);
+        }
+
+        private void UpdateScale()
+        {
+            float normalized = GetNormalizedValue(currentValue);
+            bar.localScale = new Vector3(normalized, 1, 1);
+        }
 
         public void GoToValue(float value, float time)
         {
-            this.value = value;
+            value = Mathf.Clamp(value, minValue, maxValue);
 
-            float diff = Mathf.Abs(value - tempValue);
-            if (diff != 0)
-                timeToUpdate = time / diff;
-            // Debug.Log("timetoupadar :"+timeToUpdate);
+            if (Mathf.Approximately(currentValue, value) || time <= 0)
+            {
+                // atualiza imediatamente se já está no destino ou tempo for zero
+                Value = value;
+                return;
+            }
+
+            startValue = currentValue;
+            targetValue = value;
+            elapsedTime = 0f;
+            timeToUpdateTotal = time;
+            isAnimating = true;
         }
+
         public void Destroy()
         {
             Destroy(gameObject);
         }
-
     }
+
+
 }
