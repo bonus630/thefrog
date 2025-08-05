@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] float distance;
         [SerializeField] bool ignoreDistanceAfterActive;
         [SerializeField] bool startActived = false;
+        [SerializeField] Color GizmoDistance = Color.red;
         public float playerDistance;
         private bool firstActive = false;
         private int hour;
@@ -89,7 +90,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = GizmoDistance;
             Gizmos.DrawWireSphere(pointToActive.transform.position, distance);
         }
     }

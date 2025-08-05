@@ -9,6 +9,7 @@ namespace br.com.bonus630.thefrog.Shared
         private List<T> values;
 
         public string Name { get => name; set => name = value; }
+        public bool Flag { get; set; }
         public float ExtraData { get => extraData; set => extraData = value; }
         public List<T> Values { get => values; set => values = value; }
     }

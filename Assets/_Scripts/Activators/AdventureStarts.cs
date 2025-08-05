@@ -15,8 +15,12 @@ namespace br.com.bonus630.thefrog.Activators
                 start = true;
                 musicSource.CrossFade(BackgroundMusic.AdventureStarts);
                 mStageBuilder.Build();
-              
+               
             }
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -76,6 +76,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (invencible)
                 return;
+            FindAnyObjectByType<ScreenEffects>().FashVignettePlayerDamage();
             GameManager.Instance.UpdateHeart(-1);
             invencible = true;
             anim.SetTrigger(HitID);

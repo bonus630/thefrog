@@ -29,5 +29,13 @@ namespace br.com.bonus630.thefrog.Environment
             // mazeBuilder.CorrectPath = go.GetComponent<DataScenePreserver>().Get<List<int>>();
         }
 
+        private void Update()
+        {
+            if(mazeBuilder !=null && mazeBuilder.Completed)
+            {
+                DataScenePreserver.Instance.Get<ListStorage<int>>("MAZE").Flag = true;
+            }
+        }
+
     }
 }

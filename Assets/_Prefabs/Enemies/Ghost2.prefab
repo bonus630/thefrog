@@ -137,8 +137,10 @@ MonoBehaviour:
   repulseForce: 20
   xDirection: -1
   enemyWeakenesses: 01000000
-  rotationSpeed: 20
+  rotationSpeed: 26
   maxFollowTime: 5
+  maxFollowDistance: 26
+  active: 1
   invencible: 0
 --- !u!70 &3236150293698238406
 CapsuleCollider2D:

@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Manager
     {
         [field:SerializeField]public ScreenFader screenFader { get; private set; }
         [field:SerializeField]public CamerasController camerasController { get; private set; }
+        [field:SerializeField]public VignetteManager vignetteManager { get; private set; }
 
 
         private void Awake()
@@ -62,5 +63,14 @@ namespace br.com.bonus630.thefrog.Manager
             StartCoroutine(screenFader.FadeIn());
         }
        
+        public void FashVignettePlayerDamage()
+        {
+            vignetteManager.FashVignette(0f, 0.6f, 1f, Color.red);
+        }
+        void OnDisable()
+        {
+            if (Gamepad.current != null)
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
     }
 }

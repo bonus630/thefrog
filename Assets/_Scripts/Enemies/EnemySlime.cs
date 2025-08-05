@@ -1,26 +1,32 @@
 using br.com.bonus630.thefrog.Shared;
+using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemySlime : MonoBehaviour
     {
+        [SerializeField] protected float maxFollowDistance = 6f;
         [SerializeField] GameObject blobInstante;
         [SerializeField] GameObject blobSpawn1;
         [SerializeField] GameObject blobSpawn2;
 
         Animator anin;
         float timer = 0;
+        protected GameObject player;
         private readonly int Run = Animator.StringToHash("Run");
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             anin = GetComponent<Animator>();
+            player = GameManager.Instance.GetPlayer;
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Vector3.Distance(player.transform.position, transform.position) > maxFollowDistance)
+                return;
             timer -=Time.deltaTime;
             if(timer < 0)
             {
@@ -53,6 +59,11 @@ namespace br.com.bonus630.thefrog.Enemies
                 }
 
             }
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, maxFollowDistance);
         }
     }
 }

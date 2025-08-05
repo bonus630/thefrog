@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         bool finished = false;
 
         TextAnimation textAnimation;
-        public DialogUI dialogueUI { get; protected set;  }
+        public DialogUI dialogueUI { get; protected set; }
         DialogStates state;
         public DialogueData DialogueData { get; set; }
         public Dictionary<string, string> DialogueVariables { get; set; }
@@ -28,8 +28,6 @@ namespace br.com.bonus630.thefrog.DialogueSystem
             state = DialogStates.DISABLED;
             interactAction.Enable();
         }
-
-        // Update is called once per frame
         void Update()
         {
             if (state == DialogStates.DISABLED)
@@ -48,13 +46,17 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         {
             if (current == 0)
                 dialogueUI.Enable();
+
             dialogueUI.SetPosition(DialoguePosition);
             dialogueUI.SetAvatar(DialogueData.Dialogues[current].Avatar);
             textAnimation.FullText = ReplaceVariables(DialogueData.Dialogues[current++].text);
+
+
             if (DialogueData.Count == current)
             {
                 finished = true;
                 current = 0;
+                dialogueUI.SetHaveMoreIcon(false);
             }
             textAnimation.StartTyping();
             state = DialogStates.TYPING;
@@ -74,7 +76,6 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         {
             if (interactAction.WasPressedThisFrame())
             {
-                //Debug.Log("Typing");
                 textAnimation.Skip();
                 state = DialogStates.WAITING;
             }
@@ -100,9 +101,10 @@ namespace br.com.bonus630.thefrog.DialogueSystem
 
             }
         }
+        int t = 0;
         public void ResetDialog()
         {
-            // Debug.Log("Resete");
+             Debug.Log("Resete "+(t++));
             dialogueUI.Disable();
             state = DialogStates.DISABLED;
             current = 0;
@@ -124,5 +126,5 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         WAITING,
         TYPING
     }
- 
+
 }

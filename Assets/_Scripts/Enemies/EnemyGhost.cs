@@ -6,17 +6,19 @@ namespace br.com.bonus630.thefrog.Enemies
     {
         [SerializeField] protected float rotationSpeed = 10f;
         [SerializeField] protected float maxFollowTime = 5f;
+        [SerializeField] protected float maxFollowDistance = 6f;
         protected float followTime = 0;
         protected Vector2 moveFor;
         protected GameObject player;
 
         private CameraBackground cameraControl;
         public GameObject Player { get { return player; } set { player = value; } }
-        protected bool active = true;
+        [SerializeField] protected bool active = true;
 
         protected override void Awake()
         {
             player = GameManager.Instance.GetPlayer;
+            Debug.Log("Enemy Ghost "+player);
             cameraControl = FindAnyObjectByType<CameraBackground>();
             cameraControl.HourChanged += Item_HourChanged;
         }
@@ -57,11 +59,11 @@ namespace br.com.bonus630.thefrog.Enemies
 
         protected virtual void FollowPlayer()
         {
-            if (Vector3.Distance(player.transform.position, transform.position) > 6)
+            if (Vector3.Distance(player.transform.position, transform.position) > maxFollowDistance)
                 return;
             followTime -= Time.deltaTime;
             moveFor = (player.transform.position - transform.position).normalized;
-            //Debug.Log(moveFor);
+            Debug.Log(moveFor);
             float playerAngle = Mathf.Atan2(moveFor.y, moveFor.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, playerAngle), rotationSpeed * Time.deltaTime);
             if (followTime > 0)
@@ -73,6 +75,11 @@ namespace br.com.bonus630.thefrog.Enemies
         private void OnDestroy()
         {
             cameraControl.HourChanged -= Item_HourChanged;
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, maxFollowDistance);
         }
     }
 }

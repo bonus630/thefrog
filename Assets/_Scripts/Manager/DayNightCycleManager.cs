@@ -12,7 +12,7 @@ namespace br.com.bonus630.thefrog.Manager
         public event Action<int> OnHourChanged;
 
         private float speed;
-        private int lastHour;
+        private int lastHour = -1;
 
         private void Awake()
         {

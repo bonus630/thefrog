@@ -9,19 +9,25 @@ namespace br.com.bonus630.thefrog.Manager
     public class MazeBuilder : MonoBehaviour
     {
         [field: SerializeField] public List<int> CorrectPath { get; set; }
-
+        
         [SerializeField] IActivator entrace;
         [SerializeField] IActivator exit;
         [SerializeField] GameObject[] teleportPoints;
         [SerializeField] GameObject[] exitPoints;
         [SerializeField] ScreenFader fader;
+        [SerializeField] GameObject Probs;
+        [SerializeField] GameObject Enemies;
 
+        public bool Completed { get; private set; }
         int current = 0;
         bool blocked = false;
+        
         Vector3 newPos;
         private void Start()
         {
             fader.fadeDuration = 0.4f;
+            Randomize(Probs);
+            Randomize(Enemies);
             //entrace.GetComponent<Collider2D>().enabled = false;
             for (int i = 0; i < teleportPoints.Length; i++)
             {
@@ -95,12 +101,24 @@ namespace br.com.bonus630.thefrog.Manager
         {
             yield return fader.FadeOut();
             obj.transform.position = newPos;
+            Randomize(Probs);
+            Randomize(Enemies);
             yield return fader.FadeIn();
 
         }
+
+        private void Randomize(GameObject o)
+        {
+            for (int i = 0; i < o.transform.childCount; i++)
+            {
+                o.transform.GetChild(i).gameObject.SetActive(UnityEngine.Random.Range(0, 2) == 0 ? true : false);
+            }
+        }
+
         //preciso criar um game object para cada um dos metodos, com scene mover!
         private void Exit()
         {
+            Completed = true;
             exit.Activate();
         }
         private void Entrace()

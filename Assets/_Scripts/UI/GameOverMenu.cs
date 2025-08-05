@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
+            Debug.Log("OnEnable");
             EventSystem.current.SetSelectedGameObject(transform.GetChild(0).transform.GetChild(0).gameObject);
         }
 

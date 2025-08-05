@@ -9,52 +9,43 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] GameObject Next;
         [SerializeField] bool Horizontal;
 
-        private void Awake()
-        {
-            CheckType();
-            GameManager.Instance.eventManager.GameEventCompleted += EventManager_GameEventCompleted;
-        }
-        private void OnDestroy() => GameManager.Instance.eventManager.GameEventCompleted -= EventManager_GameEventCompleted;
-        private void EventManager_GameEventCompleted(GameEvent obj) => CheckType();
+
      
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.CompareTag("Player"))
             {
-                Next.GetComponent<Collider2D>().enabled = false;
-                Transform p = collision.transform;
-                ScreenEffects sf = FindAnyObjectByType<ScreenEffects>();
-                sf.FadeOut(0.5f);
-                if (Horizontal)
+                if (GameManager.Instance.PlayerStates.FallsControl)
                 {
-                    p.position = new Vector3(p.position.x, Next.transform.position.y, p.position.z);
+                    Next.GetComponent<Collider2D>().enabled = false;
+                    Transform p = collision.transform;
+                    ScreenEffects sf = FindAnyObjectByType<ScreenEffects>();
+                    sf.FadeOut(0.5f);
+                    if (Horizontal)
+                    {
+                        p.position = new Vector3(p.position.x, Next.transform.position.y, p.position.z);
+                    }
+                    else
+                    {
+                        p.position = new Vector3(Next.transform.position.x, p.position.y, p.position.z);
+                    }
+                    sf.FadeIn(0.2f);
+                    Invoke(nameof(EnableNext), 1f);
                 }
                 else
                 {
-                    p.position = new Vector3(Next.transform.position.x, p.position.y, p.position.z);
+                    Die();
                 }
-                sf.FadeIn(0.2f);
-                Invoke(nameof(EnableNext), 1f);
             }
         }
-        private void CheckType()
+
+        private void Die()
         {
-            if (GameManager.Instance.PlayerStates.FallsControl)
-                TeleportCollider();
-            else
-                DieCollider();
+            GameManager.Instance.GetPlayerScript.CurrentLife = 1;
+            GameManager.Instance.GetPlayerScript.Hit();
         }
-        private void DieCollider()
-        {
-            gameObject.layer = 10;
-            gameObject.GetComponent<Collider2D>().isTrigger = false;
-        }
-        private void TeleportCollider()
-        {
-            gameObject.layer = 0;
-            gameObject.GetComponent<Collider2D>().isTrigger = true;
-        }
+      
         private void EnableNext() =>Next.GetComponent<Collider2D>().enabled = true;
     }
 }

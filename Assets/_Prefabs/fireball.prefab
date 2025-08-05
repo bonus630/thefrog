@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   intensity: 1
+  lifeTime: 4
   launching: {fileID: 8300000, guid: 7794ec3ee20c4d6449fa3856375abf8b, type: 3}
   hitting: {fileID: 8300000, guid: 443bb4ec63638d34a85f24118c13431d, type: 3}
 --- !u!58 &3035831052573965113

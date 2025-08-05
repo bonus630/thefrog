@@ -27,7 +27,8 @@ namespace br.com.bonus630.thefrog.Manager
 
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
-        public GameObject GetPlayer { get { return GameObject.Find("Player"); } }
+    
+        public GameObject GetPlayer { get {return GameObject.Find("Player"); } }
         public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
         public static GameManager Instance;
         public EventsManager eventManager;

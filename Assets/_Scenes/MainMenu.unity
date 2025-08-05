@@ -1696,7 +1696,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
+  m_UpdateRectTransformForStandalone: 1
   m_SortingLayerID: 0
   m_SortingOrder: 12
   m_TargetDisplay: 0
@@ -6176,7 +6176,6 @@ MonoBehaviour:
       m_Action: Pause
       m_Flags: 0
     m_Flags: 0
-  DataScenePreserverGameObject: {fileID: 6508510014505348081, guid: 446f9414170d8394d8bf8f0f70118a0b, type: 3}
   eventManager: {fileID: 2117192171}
 --- !u!4 &2117192173
 Transform:
@@ -6355,6 +6354,10 @@ PrefabInstance:
       propertyPath: saveMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8847231512967471811, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: callerButton
+      value: 
+      objectReference: {fileID: 729736056}
     - target: {fileID: 8847231512967471811, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: ObjectToEnableDisable
       value: 

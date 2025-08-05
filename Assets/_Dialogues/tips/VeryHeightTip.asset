@@ -16,6 +16,9 @@ MonoBehaviour:
   Dialogues:
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
+    text: "A Placa diz:\n \"A Grande Queda\""
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
     text: "Como estamos alto! como isso ser\xE1 poss\xEDvel?"
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 

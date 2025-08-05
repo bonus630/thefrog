@@ -136,7 +136,7 @@ MonoBehaviour:
   speed: 4
   life: 1
   repulse: {x: 0, y: 200}
-  repulseForce: 200
+  repulseForce: 100
   xDirection: -1
   enemyWeakenesses: 
   startTime: 1

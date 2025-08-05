@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
@@ -6,6 +7,7 @@ namespace br.com.bonus630.thefrog.Items
     {
         [SerializeField] float speed;
         [SerializeField] float intensity = 1;
+        [SerializeField] float lifeTime = 4f;
         [SerializeField] AudioClip launching;
         [SerializeField] AudioClip hitting;
 
@@ -30,7 +32,9 @@ namespace br.com.bonus630.thefrog.Items
         // Update is called once per frame
         void Update()
         {
-            //Debug.Log(transform.position.x);
+            if (lifeTime < 0)
+                Destroy(gameObject);
+            lifeTime -= Time.deltaTime;
         }
 
 
@@ -38,8 +42,10 @@ namespace br.com.bonus630.thefrog.Items
         {
             if (rb != null)
             {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                rb.rotation = angle;
                 audioSource.PlayOneShot(launching);
-                rb.AddForce(direction * speed, ForceMode2D.Impulse);
+                rb.AddForce(direction.normalized * speed, ForceMode2D.Impulse);
             }
         }
         private void OnCollisionEnter2D(Collision2D collision)

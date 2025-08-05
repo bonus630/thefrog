@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7d61a532e07cc41963e07a8eea66ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFollowDistance: 3
   blobInstante: {fileID: 906746186759364220, guid: 0922100b2b8739548b8cc0052d3059f4, type: 3}
   blobSpawn1: {fileID: 7312321832105029641}
   blobSpawn2: {fileID: 1429727895445912812}

@@ -60,7 +60,8 @@ namespace br.com.bonus630.thefrog.Caracters
                 firstTalk = true;
                 killPig = true;
                 playerCheckWall = true;
-                GoToFinal();
+                StartCoroutine(GoToFinalRoutine());
+                //GoToFinal();
             }
         }
 
@@ -177,7 +178,9 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
             GameManager.Instance.UpdatePlayer();
-            StartCoroutine(GoToFinalRoutine());
+            Instantiate(gameObject);
+            Destroy(gameObject);
+            //StartCoroutine(GoToFinalRoutine());
         }
         IEnumerator GoToFinalRoutine()
         {

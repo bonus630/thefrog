@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
 
         [SerializeField] Image background;
         [SerializeField] Image avatar;
+        [SerializeField] Image haveMoreIcon;
         //[SerializeField] Sprite sprite;
         [SerializeField] TextMeshProUGUI text;
         //TextMeshProUGUI name;
@@ -19,7 +20,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         float topPosition = 560f;
         float bottomPosition = 90f;
         public DialogPosition CurrentPosition { get; private set; } = DialogPosition.Bottom;
-
+    
         private void Awake()
         {
             white.a = 255;
@@ -50,8 +51,6 @@ namespace br.com.bonus630.thefrog.DialogueSystem
             //}
             //else
             //{
-
-
             //    background.color = Color.Lerp(transparent, white, speed * Time.deltaTime);
             //}
 
@@ -69,7 +68,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         public void Enable()
         {
             //background.fillAmount = 0;
-           
+            SetHaveMoreIcon(true);
             open = true;
            // background.gameObject.SetActive(true);
             avatar.gameObject.SetActive(true);
@@ -98,6 +97,10 @@ namespace br.com.bonus630.thefrog.DialogueSystem
                 avatar.GetComponent<RectTransform>().anchoredPosition = new Vector2(avatar.GetComponent<RectTransform>().anchoredPosition.x, avatar.GetComponent<RectTransform>().anchoredPosition.y * - 1);
                 CurrentPosition = position;
             }
+        }
+        public void SetHaveMoreIcon(bool value)
+        {
+            haveMoreIcon.gameObject.SetActive(value);
         }
     }
     public enum DialogPosition 

@@ -38,12 +38,15 @@ MonoBehaviour:
       o sil\xEAncio ainda escuta hist\xF3rias esquecidas."
   - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
     Name: 
-    text: "Dois extremos esquecidos por seus grandes perigos, dizem que ao LESTE 
-      \xE9 poss\xEDvel ver o caminho para Aelyria em algum ponto extremamente alto. "
+    text: Dois extremos esquecidos por seus grandes perigos.
   - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
     Name: 
-    text: "Reza a lenda  ao extremo OESTE \xE9 poss\xEDvel ver Kaor mas Grande Queda
-      \xE9 implacav\xE9l."
+    text: "Reza a lenda que ao LESTE  \xE9 poss\xEDvel ver o caminho para Aelyria
+      em algum ponto extremamente alto, chamado \"Vale das Nuvens\". "
+  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+    Name: 
+    text: " E ao extremo OESTE \xE9 poss\xEDvel ver Kaor mas \"Grande Queda\" \xE9
+      implacav\xE9l."
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: Mais doidisses

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52be2c715c14e24eb0e9d2b25d4a479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
   bullet: {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
   timeInterval: 2
 --- !u!61 &4595925585718239314
@@ -130,10 +130,10 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0

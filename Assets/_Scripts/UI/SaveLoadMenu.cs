@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.UI
         [SerializeField] Button save01Button;
         [SerializeField] Button save02Button;
         [SerializeField] Button save03Button;
-
+        [SerializeField] Button callerButton;
         [SerializeField] bool saveMode = true;
 
         private List<SaveStates> list;
@@ -44,6 +44,8 @@ namespace br.com.bonus630.thefrog.UI
         {
             if(ObjectToEnableDisable!=null && !ObjectToEnableDisable.activeInHierarchy)
                 ObjectToEnableDisable.SetActive(true);
+            if (callerButton != null)
+                EventSystem.current.SetSelectedGameObject(callerButton.gameObject);
         }
         public void Save01Button_clicked()
         {

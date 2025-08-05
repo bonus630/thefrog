@@ -16,5 +16,8 @@ MonoBehaviour:
   Dialogues:
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
+    text: "A placa diz:\n \"Vale da Nuvens\""
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
     text: Este parece ser o local mais alto, melhor eu esperar e observar, para tentar
       encontrar alguma pista
