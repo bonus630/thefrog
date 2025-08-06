@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
@@ -16,7 +17,7 @@ namespace br.com.bonus630.thefrog.Activators
         private float leftTime;
         public bool IsOn { get; private set; } = true;
         private readonly int OnID = Animator.StringToHash("On");
-
+        private  List<Effector2D> effectors= new List<Effector2D>();
 
 
         void Awake()
@@ -29,6 +30,7 @@ namespace br.com.bonus630.thefrog.Activators
                 Switch();
             }
             leftTime = Timer;
+            GetComponents<Effector2D>(effectors);
         }
 
         // Update is called once per frame
@@ -57,6 +59,10 @@ namespace br.com.bonus630.thefrog.Activators
                 audioSource.Play();
 
             collider2.enabled = !collider2.enabled;
+            for (int i = 0; i < effectors.Count; i++)
+            {
+                effectors[i].enabled = IsOn;
+            }
             animator.SetBool(OnID, collider2.enabled);
         }
 

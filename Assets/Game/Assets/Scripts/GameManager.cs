@@ -46,7 +46,7 @@ public class MiniGameManager : MonoBehaviour
     private void Start()
     {
         NewGame();
-       
+
     }
 
     private void NewGame()
@@ -60,9 +60,10 @@ public class MiniGameManager : MonoBehaviour
 
     private void NewLevel()
     {
+        Debug.Log("New level");
         for (int i = 0; i < homes.Length; i++)
         {
-            homes[i].enabled = false;
+            homes[i].ResetHome();
         }
 
         Respawn();
@@ -70,6 +71,7 @@ public class MiniGameManager : MonoBehaviour
 
     private void Respawn()
     {
+        Debug.Log("Respawn");
         frogger.Respawn();
 
         StopAllCoroutines();
@@ -142,26 +144,27 @@ public class MiniGameManager : MonoBehaviour
 
         int bonusPoints = time * 20;
         SetScore(score + bonusPoints + 50);
-
+        SetLives(lives + 1);
         if (Cleared())
         {
-            SetLives(lives + 1);
-            SetScore(score + 1000);
             if (score >= 1000)
                 SceneManager.LoadScene("Credit");
             Invoke(nameof(NewLevel), 1f);
         }
         else
         {
+
             Invoke(nameof(Respawn), 1f);
         }
     }
 
     private bool Cleared()
     {
+
+        Debug.Log("Home count: " + homes.Length);
         for (int i = 0; i < homes.Length; i++)
         {
-            if (!homes[i].enabled)
+            if (!homes[i].IsOccuped)
             {
                 return false;
             }

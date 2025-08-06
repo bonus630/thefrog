@@ -139,7 +139,18 @@ namespace br.com.bonus630.thefrog.Player
         private bool IsWallSliding()
         {
             bool falling = IsFalling();
-            return falling && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
+            bool prepareWall = falling && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
+            if (prepareWall)
+            {
+                Debug.Log("Player graviti:" + player.gravityDirection);
+                float angle = 0;
+                if (player.WallCheck.NearGround(out angle, player.gravityDirection))
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
         public bool IsFalling()
         {

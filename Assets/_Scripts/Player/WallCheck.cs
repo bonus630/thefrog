@@ -27,6 +27,7 @@ namespace br.com.bonus630.thefrog.Player
             Gizmos.DrawWireCube(leftWallCheck.position, new Vector3(size.x, size.y, 0));
             Gizmos.DrawWireCube(rightWallCheck.position, new Vector3(size.x, size.y, 0));
             Gizmos.DrawWireCube(footerWallCheck.position, new Vector3(0.34f, 0.03f, 0));
+            Gizmos.DrawLine(footerWallCheck.position, new Vector3(footerWallCheck.position.x, footerWallCheck.position.y - 1 * 0.5f,1));
         }
 
         private bool CheckWall(Vector2 side, LayerMask layer)
@@ -50,6 +51,20 @@ namespace br.com.bonus630.thefrog.Player
                // Debug.Log("Coll: "+coll.);
                 return true;
             }
+            return false;
+        }
+        public bool NearGround(out float groundAngle,float direction = -1)
+        {
+            LayerMask layer = LayerMask.GetMask(new string[] { "Ground", "Platform", "StaticPlatforms" });
+            var r = Physics2D.Linecast(footerWallCheck.position, new Vector2(footerWallCheck.position.x, footerWallCheck.position.y  + direction * 0.5f),layer);
+            
+            if (r.collider != null)
+            {
+                float angle = Mathf.Atan2(r.normal.x, r.normal.y) * Mathf.Rad2Deg;
+                groundAngle = angle - 90; 
+                return true;
+            }
+            groundAngle = 0;
             return false;
         }
     }

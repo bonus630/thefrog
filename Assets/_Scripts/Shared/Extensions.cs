@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace br.com.bonus630.thefrog.Shared
 {
     public static class Extensions
@@ -9,6 +11,11 @@ namespace br.com.bonus630.thefrog.Shared
         public static int FlipIfNegative(this int value, bool invert) => invert ? -value : value;
         public static float FlipIfNegative(this float value, bool invert) => invert ? -value : value;
 
+        public static void Toggle<T>(this T component) where T : Behaviour
+        {
+            if (component == null) return;
+            component.enabled = !component.enabled;
+        }
 
     }
 }

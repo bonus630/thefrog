@@ -6,30 +6,34 @@ public class Home : MonoBehaviour
     public GameObject frog;
 
     private BoxCollider2D boxCollider;
+    [field:SerializeField]public bool IsOccuped { get; private set; } = false;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    private void OnEnable()
+    public void Occupy()
     {
+        if (IsOccuped) return;
+        IsOccuped = true;
         frog.SetActive(true);
         boxCollider.enabled = false;
+        MiniGameManager.Instance.HomeOccupied();
     }
 
-    private void OnDisable()
+    public void ResetHome()
     {
+        IsOccuped = false;
         frog.SetActive(false);
         boxCollider.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!enabled && other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            enabled = true;
-            MiniGameManager.Instance.HomeOccupied();
+            Occupy();
         }
     }
 

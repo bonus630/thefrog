@@ -36,6 +36,9 @@ namespace br.com.bonus630.thefrog.Player
         public WallCheck WallCheck { get; private set; }
         private BoxCollider2D footerCollider;
         private AudioSource audioSource;
+          /// <summary>
+          /// -1 para normal, 1 para ponta cabeça
+          /// </summary>
         public float gravityDirection = 1;
         public float gravityScale = 4f;
         public bool knockUp { get; set; } = false;

@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] float speed;
         [SerializeField] float intensity = 1;
         [SerializeField] float lifeTime = 4f;
+        [SerializeField] bool removeByTime = false;
         [SerializeField] AudioClip launching;
         [SerializeField] AudioClip hitting;
 
@@ -32,7 +33,8 @@ namespace br.com.bonus630.thefrog.Items
         // Update is called once per frame
         void Update()
         {
-            if (lifeTime < 0)
+
+            if (lifeTime < 0 && removeByTime)
                 Destroy(gameObject);
             lifeTime -= Time.deltaTime;
         }
