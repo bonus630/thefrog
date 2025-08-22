@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Items;
 using UnityEngine;
+using br.com.bonus630.thefrog.Manager;
 
 namespace br.com.bonus630.thefrog.Enemies
 {
 
-    public class Skull : EnemyGhost
+    public sealed class Skull : EnemyGhost
     {
 
 
@@ -17,6 +18,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] float followMinTime = 1;
         [SerializeField] float followMaxTime = 3;
         [SerializeField] float shieldDeativedTime = 10f;
+        [SerializeField] GameObject ExitDoor;
         // [SerializeField] int spawnerLimiter = 1;
         // List<GameObject> spawnList = new List<GameObject>();    
         // CircleCollider2D circleColl;
@@ -28,6 +30,12 @@ namespace br.com.bonus630.thefrog.Enemies
 
         protected override void Start()
         {
+            if (GameManager.Instance.PlayerStates.HasFireball)
+            {
+                ExitDoor.SetActive(true);
+                Destroy(gameObject);
+                return;
+            }
             animator = GetComponent<Animator>();
             coll = GetComponent<CircleCollider2D>();
             followTime = 5f;
@@ -96,9 +104,9 @@ namespace br.com.bonus630.thefrog.Enemies
             // Debug.Log("Active shield");
         }
 
-        protected new void OnCollisionEnter2D(Collision2D collision)
+        private new void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("SKULL: colisão com " + collision.gameObject.name);
+            // Debug.Log("SKULL: colisão com " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
             {
                 IPlayer player;
@@ -108,12 +116,12 @@ namespace br.com.bonus630.thefrog.Enemies
                     //   Invoke(nameof(Restore), 0.5f);
                     //Vector3 re = player.transform.position - transform.position;
                     // repulse = re.normalized * repulseForce * -1;
-                    repulse = repulseForce * -1 * collision.GetContact(0).normal;
-                    Debug.Log("Skull Repulse:" + repulse);
+                    // repulse = repulseForce * -1 * collision.GetContact(0).normal;
+                    //Debug.Log("Skull Repulse:" + repulse);
                     player.KnockUp(repulse);
-                   // coll.enabled = false;
+                    // coll.enabled = false;
                     this.life--;
-                      Debug.Log("Boss Collider :" +coll.enabled+" name: " + gameObject.name + " Life: " + this.life);
+                    //  Debug.Log("Boss Collider :" +coll.enabled+" name: " + gameObject.name + " Life: " + this.life);
                     if (life < 1)
                     {
                         isDied = true;
@@ -125,7 +133,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 }
             }
         }
-        protected void Die()
+        private void Die()
         {
             transform.parent.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);

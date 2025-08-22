@@ -23,6 +23,7 @@ namespace br.com.bonus630.Activators
                 GameManager.Instance.StartTimer((11 * cam.CycleDurationMinutes * 60 / 12)-10);
                
                 GameManager.Instance.TimeOverEvent += () => { Debug.Log("teleporter ghostship activator name:" + teleporter.gameObject.name); teleporter.Activate(); };
+                actived = true;
             }
         }
 

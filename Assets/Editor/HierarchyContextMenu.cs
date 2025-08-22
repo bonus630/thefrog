@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace br.com.bonus630.thefrog
+namespace br.corp.bonus630.unity
 {
     public class HierarchyContextMenu
     {

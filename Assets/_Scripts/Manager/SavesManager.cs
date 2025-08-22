@@ -32,8 +32,8 @@ namespace br.com.bonus630.thefrog.Manager
             SaveStates saveStates = new SaveStates(index, environmentStates);
             if (index > 0)
             {
-                Utils.ThumbGenerator thumb = new Utils.ThumbGenerator();
-                saveStates.thumb = thumb.CreateEncodeThumb(camera, GameManager.Instance.GetPlayer, 0.1f);
+                Utils.ThumbGenerator thumb = new Utils.ThumbGenerator(0.1f);
+                saveStates.thumb = thumb.CreateEncodeThumb(camera, GameManager.Instance.GetPlayer);
             }
             string jason = JsonUtility.ToJson(saveStates);
 #if UNITY_WEBGL

@@ -1,0 +1,422 @@
+fileFormatVersion: 2
+guid: 6ae8a5b9eb8504249b1ff2e947ca2330
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 339942366345466848
+    second: cloud_pack_0
+  - first:
+      213: 6945413395277147501
+    second: cloud_pack_1
+  - first:
+      213: 331711777712060519
+    second: cloud_pack_2
+  - first:
+      213: -8240444132896894012
+    second: cloud_pack_3
+  - first:
+      213: -8198495760638104514
+    second: cloud_pack_4
+  - first:
+      213: 463604265220684605
+    second: cloud_pack_5
+  - first:
+      213: -1339382275702035499
+    second: cloud_pack_6
+  - first:
+      213: -2205968621511202913
+    second: cloud_pack_7
+  - first:
+      213: 3560624540379857806
+    second: cloud_pack_8
+  - first:
+      213: -3023178838495984421
+    second: cloud_pack_9
+  - first:
+      213: -6599589998163976191
+    second: cloud_pack_10
+  - first:
+      213: 7476476492050958997
+    second: cloud_pack_11
+  - first:
+      213: -4835022485915203808
+    second: cloud_pack_12
+  - first:
+      213: 5974362682695127282
+    second: cloud_pack_13
+  - first:
+      213: 984988389863854837
+    second: cloud_pack_14
+  - first:
+      213: -2398760030734939934
+    second: cloud_pack_15
+  - first:
+      213: 3631619824974129525
+    second: cloud_pack_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cloud_pack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 383
+        width: 384
+        height: 193
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e39026f7c7b7b400800000000000000
+      internalID: 339942366345466848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 335
+        width: 116
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6debb34fa0136060800000000000000
+      internalID: 6945413395277147501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_2
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 344
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7683756ba1a7a9400800000000000000
+      internalID: 331711777712060519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_3
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 344
+        width: 38
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c39a3b88bf04ad80800000000000000
+      internalID: -8240444132896894012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 384
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bb5d87f9d0f6600800000000000000
+      internalID: 463604265220684605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 384
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f09465d43339e250800000000000000
+      internalID: 5974362682695127282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 207
+        width: 384
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f218bdc8b16bad00800000000000000
+      internalID: 984988389863854837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 95
+        width: 384
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e883a21674e5bed0800000000000000
+      internalID: -2398760030734939934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_pack_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 384
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57969da5dfa166230800000000000000
+      internalID: 3631619824974129525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4f106b0c887540d4bb390ea15a0307a2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cloud_pack_0: 339942366345466848
+      cloud_pack_1: 6945413395277147501
+      cloud_pack_10: -6599589998163976191
+      cloud_pack_11: 7476476492050958997
+      cloud_pack_12: -4835022485915203808
+      cloud_pack_13: 5974362682695127282
+      cloud_pack_14: 984988389863854837
+      cloud_pack_15: -2398760030734939934
+      cloud_pack_16: 3631619824974129525
+      cloud_pack_2: 331711777712060519
+      cloud_pack_3: -8240444132896894012
+      cloud_pack_4: -8198495760638104514
+      cloud_pack_5: 463604265220684605
+      cloud_pack_6: -1339382275702035499
+      cloud_pack_7: -2205968621511202913
+      cloud_pack_8: 3560624540379857806
+      cloud_pack_9: -3023178838495984421
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -49,7 +49,7 @@ namespace br.com.bonus630.thefrog.Player
         private readonly float wallSlideSpeed = -0.36f;
         private readonly float wallJumpXForce = 120f;
         private float wallJumpYForce = 220f;
-        private readonly float maxTimeInFall = 0.6f;
+        private readonly float maxTimeInFall = 0.4f;
 
         protected readonly int WalkID = Animator.StringToHash("Walk");
         //protected readonly int RunID = Animator.StringToHash("Run");
@@ -130,6 +130,7 @@ namespace br.com.bonus630.thefrog.Player
         public void FallsControl()
         {
             resetFastFall = false;
+            player.playerHealth.PrepareFallDie = false;
             Debug.Log("Playermovement fallscontrol");
             player.playerFallControl.FallsControl(true);
 

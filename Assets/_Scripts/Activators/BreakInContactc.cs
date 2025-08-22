@@ -5,7 +5,7 @@ using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 
 {
-    public class BreakInContactc : MonoBehaviour
+    public sealed class BreakInContactc : MonoBehaviour
     {
         [SerializeField] private AudioClip wallBreak;
         [SerializeField] private ParticleSystem effect;

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Utils;
-using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,7 +35,7 @@ namespace br.com.bonus630.thefrog.UI
                 EventSystem.current.SetSelectedGameObject(goBackButton.gameObject);
             else
             {
-                Debug.Log("Ativando");
+                //Debug.Log("Ativando");
                 EventSystem.current.SetSelectedGameObject(save01Button.gameObject);
             }
         }
@@ -78,7 +77,7 @@ namespace br.com.bonus630.thefrog.UI
         }
         private void LoadSave(int index)
         {
-            Debug.Log("Load");
+            //Debug.Log("Load");
             if (list[index-1]!=null)
                 GameManager.Instance.LoadGame(SceneStartType.Continue, index);
 
@@ -98,7 +97,7 @@ namespace br.com.bonus630.thefrog.UI
 
             if (saveStates != null)
             {
-                ThumbGenerator thumbGenerator = new ThumbGenerator();
+                ThumbGenerator thumbGenerator = new ThumbGenerator(0.1f);
                 button.enabled = true;
                 thumb.SetActive(true);
                 hours.SetActive(true);

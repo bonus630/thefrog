@@ -396,6 +396,10 @@ namespace br.com.bonus630.thefrog.Manager
             return sm.CanContinue();
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index">Use zero to temp save</param>
         public void SaveStates(int index)
         {
             OnCallSave(false);
@@ -425,42 +429,44 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
+            Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
-            for (int i = 0; i < state.playerStates.CompletedGameEvents.Count; i++)
-            {
-                GameEventName name = GameEventName.None;
-                if (Enum.TryParse<GameEventName>(state.playerStates.CompletedGameEvents[i], true, out name))
-                {
-                    this.EventCompleted(name, false);
-                    switch (name)
-                    {
-                        //case GameEventName.NPCFirstTalk:
-                        //    FindAnyObjectByType<NPC_WallJump_Tutorial>().firstTalk = true;
-                        //    break;
-                        //case GameEventName.NPCTutorial:
-                        //    FindAnyObjectByType<NPC_WallJump_Tutorial>().GoToFinal();
-                        //    break;
-                        //case GameEventName.KillPig:
-                        //    FindAnyObjectByType<KiilPig>().ExecuteKillPig();
-                        //    if (IsEventCompleted(GameEventName.NPCFirstTalk))
-                        //    {
-                        //        FindAnyObjectByType<NPC_WallJump_Tutorial>().MoveToWallJump();
-                        //    }
-                        //    break;
-                        case GameEventName.Shuryken:
-                            GameObject.Find("ShurikenChest").SetActive(false);
-                            break;
+            eventManager.LoadEvents(GameManager.Instance.playerStates.CompletedGameEvents);
+            //for (int i = 0; i < state.playerStates.CompletedGameEvents.Count; i++)
+            //{
+            //    GameEventName name = GameEventName.None;
+            //    if (Enum.TryParse<GameEventName>(state.playerStates.CompletedGameEvents[i], true, out name))
+            //    {
+            //        this.EventCompleted(name, false);
+            //        switch (name)
+            //        {
+            //            //case GameEventName.NPCFirstTalk:
+            //            //    FindAnyObjectByType<NPC_WallJump_Tutorial>().firstTalk = true;
+            //            //    break;
+            //            //case GameEventName.NPCTutorial:
+            //            //    FindAnyObjectByType<NPC_WallJump_Tutorial>().GoToFinal();
+            //            //    break;
+            //            //case GameEventName.KillPig:
+            //            //    FindAnyObjectByType<KiilPig>().ExecuteKillPig();
+            //            //    if (IsEventCompleted(GameEventName.NPCFirstTalk))
+            //            //    {
+            //            //        FindAnyObjectByType<NPC_WallJump_Tutorial>().MoveToWallJump();
+            //            //    }
+            //            //    break;
+            //            case GameEventName.Shuryken:
+            //                GameObject.Find("ShurikenChest").SetActive(false);
+            //                break;
 
-                            //case GameEventName.HeartContainer:
-                            //    GameObject.Find("HeartContainerChest").SetActive(false);
-                            //    break;
-                            //case GameEventName.Gravity:
-                            //    FindAnyObjectByType<NPCDuck>().Dancing();
-                            //    break;
-                    }
-                }
+            //                //case GameEventName.HeartContainer:
+            //                //    GameObject.Find("HeartContainerChest").SetActive(false);
+            //                //    break;
+            //                //case GameEventName.Gravity:
+            //                //    FindAnyObjectByType<NPCDuck>().Dancing();
+            //                //    break;
+            //        }
+            //    }
 
-            }
+           // }
         }
         public void GameOver()
         {
@@ -577,8 +583,8 @@ namespace br.com.bonus630.thefrog.Manager
         //}
         public void TesteThumb()
         {
-            var t = new ThumbGenerator();
-            string file = t.CreateEncodeThumb(FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>(), GetPlayer, 0.1f);
+            var t = new ThumbGenerator(0.1f);
+            string file = t.CreateEncodeThumb(FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>(), GetPlayer);
             byte[] buffert = Convert.FromBase64String(file);
             File.WriteAllBytes(@"C:\Users\bonus630\Desktop\teste\p.png", buffert);
         }

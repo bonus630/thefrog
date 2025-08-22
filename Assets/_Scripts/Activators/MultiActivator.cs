@@ -21,8 +21,7 @@ namespace br.com.bonus630.thefrog.Activators
                 if (current >= activators.Length)
                 {
                     current = 0;
-                    if (!circularExecution)
-                        running = false;
+                    running = circularExecution;
                 }
                 currentTime = 0f;
             }

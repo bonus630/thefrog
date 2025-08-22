@@ -17,12 +17,13 @@ namespace br.com.bonus630.Environment
         private int chainAngleOffset = 0;
         public float speed = 0.1f;
         private int direction = 1;
+        private float bridgeBodyFineAngleAjust = -0.69f;
         // public Vector3 chainOffset = new Vector3(1, 1, 0);
 
         private void Start()
         {
             if (opened)
-                angle =0;
+                angle = 0;
             else
                 angle = -90;
         }
@@ -36,17 +37,24 @@ namespace br.com.bonus630.Environment
                     angle++;
                     direction = -1;
                     if (angle >= 0)
+                    {
+                        angle = 0;
                         operating = false;
+                    }
                 }
                 else
                 {
                     angle--;
                     direction = 1;
-                    if(angle <= -90)
+                    if (angle <= -90)
+                    {
+                        angle = -90;
                         operating = false;
+                    }
                 }
                 chain.transform.position += (new Vector3(direction, direction, 0)).normalized * speed * Time.deltaTime;
                 body.transform.rotation = Quaternion.Euler(0, 0, angle);
+                
                 // Vector3 worldOffset = body.transform.TransformDirection(chainOffset);
                // chain.transform.rotation = Quaternion.Euler(0, 0, angle + chainAngleOffset);
             }

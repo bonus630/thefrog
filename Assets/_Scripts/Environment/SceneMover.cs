@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] public int ToPoint;
         [SerializeField] public ScenePointsData scenePointsData;
+        [SerializeField] private bool useCurrentHour = true;
 
         bool isActived = false;
         public override void Activate()
@@ -16,6 +17,8 @@ namespace br.com.bonus630.thefrog.Environment
                 return;
             isActived = true;
             Debug.Log("Scenemover :" + ToPoint);
+            if(!useCurrentHour)
+                GameManager.Instance.EnvironmentStates.playerStates.Hour = scenePointsData.PointsData[ToPoint].Hour;
             GameManager.Instance.GetPlayerScript.FreezePlayer();
             GameManager.Instance.ToPoint = ToPoint;
             GameManager.Instance.LoadGame(scenePointsData.SceneType);

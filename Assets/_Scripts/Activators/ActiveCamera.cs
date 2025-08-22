@@ -1,10 +1,11 @@
 ﻿using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using Cinemachine;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
     [RequireComponent(typeof(Collider2D))]
-    public class ActiveCamera : MonoBehaviour
+    public class ActiveCamera : IActivator
     {
         [SerializeField] protected int cameraIndex;
         [SerializeField] protected int confinierIndex;
@@ -50,6 +51,16 @@ namespace br.com.bonus630.thefrog.Activators
             if (!string.IsNullOrEmpty(confiner))
                 camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(confiner).transform.GetChild(confinierIndex).gameObject.GetComponentAtIndex(1);
 
+        }
+
+        public override void Activate()
+        {
+            ChangeCamera();
+        }
+
+        public override void Deactive()
+        {
+            
         }
     }
 }

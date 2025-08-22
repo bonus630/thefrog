@@ -49,7 +49,7 @@ namespace br.com.bonus630.thefrog.Manager
             events.Add(duckPath);
             GameEvent fireBall = new GameEvent(GameEventName.FireBall, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(fireBall); 
+            events.Add(fireBall);
             GameEvent playerCheckWall = new GameEvent(GameEventName.PlayerCheckWall, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(playerCheckWall);
@@ -58,7 +58,7 @@ namespace br.com.bonus630.thefrog.Manager
             events.Add(appleTree);
             GameEvent featherTouch = new GameEvent(GameEventName.FeatherTouch, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(featherTouch);  
+            events.Add(featherTouch);
             GameEvent Dash = new GameEvent(GameEventName.Dash, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(Dash);
@@ -97,6 +97,26 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return events.FirstOrDefault(r => r.Name.Equals(eventName));
         }
+        public void LoadEvents(Datas eventsDatas)
+        {
+            for (int i = 0; i < eventsDatas.Count; i++)
+            {
+                if (!completedEvents.Contains(eventsDatas[i].ToString()))
+                {
+                    completedEvents.Add(eventsDatas[i].ToString());
+                    GameEventName eventName = GameEventName.None;
+                    if (Enum.TryParse(eventsDatas[i].ToString(), out eventName))
+                    {
+                        GameEvent eventGame = GetEvent(eventName);
+                        if (eventGame != null)
+                        {
+                            eventGame.Completed = true;
+                        }
+                    }
+                }
+            }
+        }
+
         public void Reset()
         {
             for (int i = 0; i < events.Count; i++)

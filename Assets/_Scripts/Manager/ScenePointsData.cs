@@ -9,6 +9,8 @@ namespace br.com.bonus630.thefrog.Manager
     public struct PointData
     {
         public string Name;
+        public string GameObjectName;
+        public int Hour;
         public Vector3 Point;
         [HideInInspector] public Transform transform;
     }

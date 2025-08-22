@@ -4,7 +4,7 @@ using Cinemachine;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    public class ActiveDuckPath : MonoBehaviour
+    public sealed class ActiveDuckPath : MonoBehaviour
     {
         [SerializeField] StageBuilder stageBuilder;
         [SerializeField] GameObject cloud1;

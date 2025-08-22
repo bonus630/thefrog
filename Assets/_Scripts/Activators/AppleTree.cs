@@ -2,7 +2,7 @@ using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    public class AppleTree : MonoBehaviour
+    public sealed class AppleTree : MonoBehaviour
     {
         [SerializeField] MusicSource musicSource;
         bool monitor = false;

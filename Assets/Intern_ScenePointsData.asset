@@ -15,21 +15,35 @@ MonoBehaviour:
   SceneIndex: 6
   PointsData:
   - Name: CaveEntrace
+    GameObjectName: 
     Point: {x: 86.33, y: -119.850006, z: 0}
     transform: {fileID: 0}
   - Name: GhostShipEntrace
+    GameObjectName: 
     Point: {x: 50.17, y: 156.48, z: 0}
     transform: {fileID: 0}
   - Name: HeartChest01
+    GameObjectName: 
     Point: {x: 208.09, y: -117.87, z: 0}
     transform: {fileID: 0}
   - Name: HeartChest02
+    GameObjectName: 
     Point: {x: 208.09, y: -164.89049, z: 0}
     transform: {fileID: 0}
   - Name: DuckPathEnd
+    GameObjectName: 
     Point: {x: 198.29, y: -209.13, z: 0}
     transform: {fileID: 0}
   - Name: CastleSewerEntry
+    GameObjectName: 
     Point: {x: 297.68, y: -153.41, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleEntry
+    GameObjectName: CastleEntryAreaStart
+    Point: {x: -35.9, y: -267.4, z: 0}
+    transform: {fileID: 0}
+  - Name: ScrollAltarEntry
+    GameObjectName: ScrollAltarEntry
+    Point: {x: 193.84999, y: -257.4, z: 0}
     transform: {fileID: 0}
   SceneType: 3

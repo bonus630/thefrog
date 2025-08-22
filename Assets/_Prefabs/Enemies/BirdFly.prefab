@@ -170,7 +170,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
+  MinDistance: 2
   MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
@@ -267,6 +267,6 @@ MonoBehaviour:
   speed: 0.05
   life: 1
   repulse: {x: 0, y: 200}
-  repulseForce: 200
+  repulseForce: 50
   xDirection: -1
   enemyWeakenesses: 000000000100000008000000

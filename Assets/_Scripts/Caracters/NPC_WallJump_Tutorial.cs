@@ -48,7 +48,10 @@ namespace br.com.bonus630.thefrog.Caracters
 
         private void CheckGameEvents()
         {
-
+            if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
+            {
+                Destroy(gameObject);
+            }
             firstTalk = GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk);
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
             playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);

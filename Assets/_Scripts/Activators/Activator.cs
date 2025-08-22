@@ -14,12 +14,14 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] bool permanentActived = false;
         [SerializeField] bool onlyActive = false;
         [SerializeField] bool onlyDeactive = false;
+       
         
         void Start()
         {
             _collider = GetComponent<Collider2D>();
 
         }
+    
         void Reset()
         {
            // Debug.Log("Activator reset");
@@ -33,8 +35,7 @@ namespace br.com.bonus630.thefrog.Activators
                 return;
             if (other.CompareTag("Player"))
             {
-                StopAllCoroutines();
-                StartCoroutine(ToggleActivations(true, delayActiveTime));
+                StartCoroutine(true,delayActiveTime);
             }
 
         }
@@ -44,9 +45,13 @@ namespace br.com.bonus630.thefrog.Activators
                 return;
             if (collision.CompareTag("Player"))
             {
-                StopAllCoroutines();
-                StartCoroutine(ToggleActivations(false, delayDeactiveTime));
+                StartCoroutine(false,delayDeactiveTime);
             }
+        }
+        private void StartCoroutine(bool active,float time)
+        {
+            StopAllCoroutines();
+            StartCoroutine(ToggleActivations(active, time));
         }
         private IEnumerator ToggleActivations(bool active, float time)
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Enemies
 {
-    public class RockBoss : EnemyToad
+    public sealed class RockBoss : EnemyToad
     {
         [SerializeField] AudioClip[] walkAudio;
         [SerializeField] AudioClip rockFalling;

@@ -12,6 +12,16 @@ namespace br.com.bonus630.thefrog.Environment
 
         void Start()
         {
+            Build();
+
+        }
+        private void OnValidate()
+        {
+            //ClearChain();
+            //Build();
+        }
+        public void Build()
+        {
             GameObject previousLink = null;
 
             for (int i = 0; i < linkCount; i++)
@@ -34,7 +44,14 @@ namespace br.com.bonus630.thefrog.Environment
                 previousLink = link;
             }
             endPoint.GetComponent<HingeJoint2D>().connectedBody = previousLink.GetComponent<Rigidbody2D>();
-
+        }
+        public void ClearChain()
+        {
+            
+            for (int i = 0;i < startPoint.transform.childCount;i++)
+            {
+                Destroy(startPoint.transform.GetChild(i).gameObject);
+            }
         }
     }
 

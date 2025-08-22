@@ -12,10 +12,13 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] protected bool autoPlay;
         [SerializeField] protected bool oneShot;
         [SerializeField] protected bool ciclily = true;
-        private int count = 0;
-        private BoxCollider2D boxCollider;
-        private void Awake()
+        [SerializeField] protected GameEventName RemoveInCompleted = GameEventName.None;
+        protected int count = 0;
+        protected BoxCollider2D boxCollider;
+        protected virtual void Awake()
         {
+            if (RemoveInCompleted != GameEventName.None && GameManager.Instance.IsEventCompleted(RemoveInCompleted))
+                    Destroy(gameObject);
             boxCollider = GetComponent<BoxCollider2D>();
             GameManager.Instance.eventManager.GameEventCompleted += OnEventCompleted;
         }
@@ -24,10 +27,11 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.eventManager.GameEventCompleted -= OnEventCompleted;
         }
 
-
+      
         protected virtual void OnEventCompleted(GameEvent obj)
         {
-
+            if(RemoveInCompleted != GameEventName.None && obj.Name==RemoveInCompleted)
+                Destroy(gameObject);
         }
         public virtual DialogueData GetDialogue(int index = -1)
         {

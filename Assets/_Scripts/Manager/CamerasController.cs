@@ -64,6 +64,7 @@ namespace br.com.bonus630.thefrog.Manager
                 yield return new WaitForSeconds(time);
 
             }
+            yield return new WaitForSeconds(time);
             vCam.Follow = GameManager.Instance.GetPlayer.transform;
 
         }

@@ -6,7 +6,8 @@ namespace br.com.bonus630.thefrog.Enemies
     {
         AudioSource m_AudioSource;
         float hooinkTime = 0f;
-
+        protected float runTime = 2f;
+        protected float maxRunTime = 2f;
         protected override void Start()
         {
             base.Start();
@@ -16,7 +17,7 @@ namespace br.com.bonus630.thefrog.Enemies
         protected override void Update()
         {
             base.Update();
-            if(hooinkTime < 0)
+            if (hooinkTime < 0)
             {
                 hooinkTime = Random.Range(1.5f, 4f);
             }

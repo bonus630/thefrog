@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Enemies
 {
-    public class Pig : EnemyBase
+    public sealed class Pig : EnemyBase
     {
         [SerializeField] private AudioClip pigSFX;
         [SerializeField] private AudioClip bossSFX;
@@ -107,7 +107,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = !gameObject.GetComponent<SpriteRenderer>().enabled;
             flik++;
-            if (flik < 11)
+            if (flik < 12)
                 Invoke(nameof(Appear), 0.1f);
             else
             {

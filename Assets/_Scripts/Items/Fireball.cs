@@ -1,9 +1,10 @@
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 namespace br.com.bonus630.thefrog.Items
 {
-    public class Fireball : IProjectilies
+    public class Fireball : IProjectilies, IElement
     {
         [SerializeField] float speed;
         [SerializeField] float intensity = 1;
@@ -11,6 +12,8 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] bool removeByTime = false;
         [SerializeField] AudioClip launching;
         [SerializeField] AudioClip hitting;
+        [SerializeField] Light2D light2D;
+        [SerializeField] GameObject FireSprite;
 
         AudioSource audioSource;
         //Vector3 direction;
@@ -33,7 +36,6 @@ namespace br.com.bonus630.thefrog.Items
         // Update is called once per frame
         void Update()
         {
-
             if (lifeTime < 0 && removeByTime)
                 Destroy(gameObject);
             lifeTime -= Time.deltaTime;
@@ -47,17 +49,20 @@ namespace br.com.bonus630.thefrog.Items
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 rb.rotation = angle;
                 audioSource.PlayOneShot(launching);
+                
                 rb.AddForce(direction.normalized * speed, ForceMode2D.Impulse);
             }
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
+           // Debug.Log("FireBall collision:" + collision.gameObject.name);
+            
             if (!remove)
             {
                 remove = true;
                 audioSource.PlayOneShot(hitting);
                 GetComponent<Animator>().SetTrigger("Hit");
-               if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
+                if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
                 {
                     player.Hit();
                     return;
@@ -68,14 +73,25 @@ namespace br.com.bonus630.thefrog.Items
                     enemy.Hit(intensity);
                     return;
                 }
+                if(collision.gameObject.TryGetComponent<IElement>(out IElement element))
+                {
+                    if(element.CanActiveBy().Equals(GetElement()))
+                    {
+                        element.ActiveBy(GetElement());
+                    }
+                    if(element.CanDeactiveBy().Equals(GetElement()))
+                    {
+                        element.DeactiveBy(GetElement());
+                    }
+
+                }
             }
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("FireBall collision:"+collision.gameObject.name);
+            //Debug.Log("FireBall trigger :"+collision.gameObject.name);
             if (!remove)
             {
-              
                 IEnemy enemy;
                 if (collision.gameObject.TryGetComponent<IEnemy>(out enemy))
                 {
@@ -91,8 +107,26 @@ namespace br.com.bonus630.thefrog.Items
         }
 
         public override Elements GetElement() => Elements.Fire;
-
+        public Elements CanActiveBy() => Elements.Fire;
+        public Elements CanDeactiveBy() => Elements.Water;
         public override float ReloadTime() => 5f;
+
+        public void ActiveBy(Elements element)
+        {
+            ActiveDeactive(true);
+        }
+
+        public void DeactiveBy(Elements element)
+        {
+            ActiveDeactive(false);
+        }
+        private void ActiveDeactive(bool active)
+        {
+            if (light2D != null)
+                light2D.gameObject.SetActive(active);
+            if (FireSprite != null)
+                FireSprite.gameObject.SetActive(active);
+        }
     }
 
 }

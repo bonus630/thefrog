@@ -24,6 +24,7 @@ namespace br.com.bonus630.thefrog.Manager
         public PlayerPosition PlayerPosition;
         public Datas CollectablesID;
         public Datas ChestsID;
+        public Datas CompletedGameEvents;
         public bool HasDoubleJump;
         public bool HasWallJump;
         public bool HasDash;
@@ -41,7 +42,6 @@ namespace br.com.bonus630.thefrog.Manager
         public float Speed = 4.3f;
         public float JumpForce = 12.3f;
 
-        public Datas CompletedGameEvents;
     }
     [System.Serializable]
     public class Datas

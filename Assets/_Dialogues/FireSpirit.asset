@@ -25,8 +25,12 @@ MonoBehaviour:
   - Avatar: {fileID: -1114070202486637157, guid: 1da0963372a94184ba991a81834bee0b, type: 3}
     Name: 
     text: "Bem, n\xE3o costumo frequentar locais com \xE1gua, j\xE1 que esse \xE9
-      dominio da minha irm\xE3o o \"Espirito da \xC1gua\", talvez eu posso te ajudar
-      a encontra-l\xF3, ele pode te ajudar..."
+      dominio da minha irm\xE3,  \"Espirito da \xC1gua\", talvez eu posso te ajudar
+      a encontra-l\xE1, ela certamente pode te ajudar..."
+  - Avatar: {fileID: -1114070202486637157, guid: 1da0963372a94184ba991a81834bee0b, type: 3}
+    Name: 
+    text: "Ent\xE3o vou com voc\xEA, com isso voc\xEA ser\xE1 capaz de usar meus
+      poderes de fogo"
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: Que Seja!

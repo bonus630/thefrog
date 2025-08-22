@@ -172,7 +172,7 @@ MonoBehaviour:
   speed: 100
   life: 1
   repulse: {x: 0, y: 200}
-  repulseForce: 100
+  repulseForce: 20
   xDirection: -1
   enemyWeakenesses: 0100000008000000
 --- !u!95 &2289731615976831552

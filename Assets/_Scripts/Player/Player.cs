@@ -102,13 +102,13 @@ namespace br.com.bonus630.thefrog.Player
 #else
             if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
                 transform.position = GameManager.Instance.PlayerStartPosition;
-            var i = FindAnyObjectByType<CamerasController>();
-            i.ActiveCam(2);
+            //var i = FindAnyObjectByType<CamerasController>();
+            //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
 #endif
 
         }
-    
+
         //public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
         //{
         //   AddForce(force, mode, time);
@@ -201,8 +201,8 @@ namespace br.com.bonus630.thefrog.Player
                 return;
             if (Time.time > nextLaunch)
             {
-                // GameObject bullet = Instantiate(fireball, new Vector2(rb.position.x + (0.8f * LookFor), rb.position.y - 0.07f), Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
-                GameObject bullet = Instantiate(fireball, projectilesSpawPoint.position, Quaternion.Euler(0, LookFor > 0 ? 0 : -180, 0));
+                GameObject bullet = Instantiate(fireball, projectilesSpawPoint.position, Quaternion.identity);
+
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
                     projectilie.Launch(new Vector2(LookFor, 0));
@@ -340,6 +340,7 @@ namespace br.com.bonus630.thefrog.Player
                     // Debug.LogError("Rigidbody2D está null no Build!");
                     return;
                 }
+                rb.linearVelocity = Vector2.zero;
                 rb.AddForce(knockUpForce, ForceMode2D.Impulse);
                 playerMovement.TimeInFastFall = 0;
                 knockUp = false;
