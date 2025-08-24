@@ -35,6 +35,7 @@ namespace br.com.bonus630.thefrog.Environment
             {
                 Debug.Log("TEleporter: ");
                 rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.linearVelocity = Vector2.zero;
             }
             if (teleported.TryGetComponent<IPlayer>(out player))
             {

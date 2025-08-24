@@ -9,17 +9,14 @@ namespace br.com.bonus630.thefrog.Environment
         public int linkCount = 12;
         public Transform startPoint;
         public Transform endPoint;  
+        public Transform parent;
 
         void Start()
         {
             Build();
 
         }
-        private void OnValidate()
-        {
-            //ClearChain();
-            //Build();
-        }
+      
         public void Build()
         {
             GameObject previousLink = null;
@@ -29,7 +26,7 @@ namespace br.com.bonus630.thefrog.Environment
                 GameObject prefabToUse = (i % 2 == 0) ? linkFrontPrefab : linkSidePrefab;
                 Vector3 position = startPoint.position - new Vector3(0, i * 0.15f, 0);
                 GameObject link = Instantiate(prefabToUse, position, Quaternion.identity);
-                link.transform.SetParent(startPoint, worldPositionStays: true);
+                link.transform.SetParent(parent, worldPositionStays: true);
                 link.name = i.ToString();
                 HingeJoint2D joint = link.GetComponent<HingeJoint2D>();
                 if (i == 0)

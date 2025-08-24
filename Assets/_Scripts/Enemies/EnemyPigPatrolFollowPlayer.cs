@@ -8,9 +8,10 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] private bool detectPlayer;
         float followDistance = 6f;
         float turnDistance = 3f;
-        
+        protected readonly int DeadID = Animator.StringToHash("Dead");
         protected override void Update()
         {
+        
             base.Update();
             Debug.DrawRay(new Vector3(transform.position.x - (0.1f * xDirection), transform.position.y - 0.1f, 0), Vector3.left * turnDistance * xDirection, Color.green);
             RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - (0.2f * xDirection), transform.position.y - 0.1f), Vector2.left * turnDistance * xDirection, turnDistance, playerLayer);
@@ -40,6 +41,20 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 runTime -= Time.deltaTime;
                 
+            }
+        }
+        public override void Hit(float hit)
+        {
+            animator.SetTrigger(HitID);
+            this.life = this.life - hit;
+        }
+        public void Dead()
+        {
+            animator.SetFloat(DeadID, this.life);
+            if (this.life <= 0)
+            {
+                xDirection = 0;
+                Destroy(gameObject, 0.66f);
             }
         }
     }

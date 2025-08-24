@@ -11,6 +11,7 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] float delayTime;
         [SerializeField] bool actived = true;
 
+        GameObject prevCollision = null;
 
         int OnID = Animator.StringToHash("On");
         private void Start()
@@ -20,6 +21,10 @@ namespace br.com.bonus630.thefrog.Environment
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            Debug.Log("Lever collision:" + collision.gameObject.name);
+            if (collision.gameObject == prevCollision)
+                return;
+            prevCollision = collision.gameObject;
             GetComponent<AudioSource>().Play();
             if (actived)
             {
@@ -40,6 +45,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         IEnumerator TurnOn()
         {
+            Debug.Log("Lever TurnOn");
             yield return new WaitForSeconds(delayTime);
             ItemToActive.Activate();
         }

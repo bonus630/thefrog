@@ -44,7 +44,7 @@ namespace br.com.bonus630.thefrog.Environment
         {
             gameObject.transform.GetChild((int)theme).gameObject.SetActive(true);
             if(direction!=0)
-                transform.localScale = new Vector3(direction * transform.localScale.x, transform.localScale.y);
+                transform.localScale = new Vector3(transform.localScale.x.FlipIfNegative(direction), transform.localScale.y);
             gameObject.transform.GetChild((int)theme).GetComponent<CollisionRelayEx>().OnTriggerEnterAction += RustStairs_OnTriggerEnterAction;
         }
     }

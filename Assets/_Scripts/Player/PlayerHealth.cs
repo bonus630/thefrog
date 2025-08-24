@@ -55,6 +55,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            Debug.Log("Player Hit Collision name: "+collision.gameObject.name);
             if (collision.gameObject.layer == 10)
             {
                // Debug.Log("PlayerHearth :" + collision.gameObject.name);
@@ -64,7 +65,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (!player.FooterTouching(collision.collider))
                 {
-                  //  Debug.Log("Player Hit");
+                   // Debug.Log("Player Hit");
                     Hit();
                     player.knockUp = true;
                     player.knockUpForce = collision.GetContact(0).normal * 40 * -1;
@@ -76,7 +77,6 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (invencible)
                 return;
-            FindAnyObjectByType<ScreenEffects>().FashVignettePlayerDamage();
             GameManager.Instance.UpdateHeart(-1);
             invencible = true;
             anim.SetTrigger(HitID);
@@ -86,6 +86,11 @@ namespace br.com.bonus630.thefrog.Player
             {
                 Invoke(nameof(GameOver), 0.517f);
             }
+            try
+            {
+                FindAnyObjectByType<ScreenEffects>().FashVignettePlayerDamage();
+            }
+            catch { }
         }
         public void Die()
         {
