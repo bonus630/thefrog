@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] Theme stairTheme = Theme.Neutral;
         [SerializeField] [Range(-1,1)] int direction = 1;
         [SerializeField] IActivator teleporter;
+        [SerializeField] GameObject Teleported;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
         private void Awake()
@@ -20,7 +21,8 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void RustStairs_OnTriggerEnterAction(ColliderData obj)
         {
-            teleporter.Activate();
+            if(obj.Collider.CompareTag(Teleported.tag))
+                teleporter.Activate();
         }
 
         void Start()
@@ -35,16 +37,12 @@ namespace br.com.bonus630.thefrog.Environment
             }
             SetTheme(stairTheme);
         }
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
         private void SetTheme(Theme theme)
         {
             gameObject.transform.GetChild((int)theme).gameObject.SetActive(true);
             if(direction!=0)
-                transform.localScale = new Vector3(transform.localScale.x.FlipIfNegative(direction), transform.localScale.y);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x).FlipIfNegative(direction), transform.localScale.y);
             gameObject.transform.GetChild((int)theme).GetComponent<CollisionRelayEx>().OnTriggerEnterAction += RustStairs_OnTriggerEnterAction;
         }
     }
@@ -54,6 +52,8 @@ namespace br.com.bonus630.thefrog.Environment
         Blue = 1,
         OrangeLarge=2,
         BlueLarge=3,
-        Neutral=4
+        Neutral=4,
+        PrisonExit = 5,
+        PrisonEntry=6
     }
 }

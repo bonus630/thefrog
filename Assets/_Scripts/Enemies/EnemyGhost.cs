@@ -63,7 +63,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 return;
             followTime -= Time.deltaTime;
             moveFor = (player.transform.position - transform.position).normalized;
-            Debug.Log(moveFor);
+           // Debug.Log(moveFor);
             float playerAngle = Mathf.Atan2(moveFor.y, moveFor.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, playerAngle), rotationSpeed * Time.deltaTime);
             if (followTime > 0)

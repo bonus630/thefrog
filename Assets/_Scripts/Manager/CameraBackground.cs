@@ -54,7 +54,13 @@ namespace br.com.bonus630.thefrog.Manager
         float noonTime = 0.5f; // 12h
         float sunsetTime = 0.75f;  // 18h
         float eveningTime = 0.83f; // 20h
-
+        private void OnValidate()
+        {
+            if (cycleManager != null)
+            {
+                InitializeDayByHour(hour);
+            }
+        }
         void Awake()
         {
             filterSR = filter.GetComponent<SpriteRenderer>();
@@ -208,6 +214,11 @@ namespace br.com.bonus630.thefrog.Manager
         public void ChangeBackground()
         {
             background2.SetActive(true);
+        }
+        public void RestoreBackground()
+        {
+            background2.SetActive(false);
+            
         }
     }
 }

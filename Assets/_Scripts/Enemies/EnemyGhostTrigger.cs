@@ -19,7 +19,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         protected void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("ghost trigger:" + collision.gameObject.layer);
+            //Debug.Log("ghost trigger:" + collision.gameObject.layer);
             if (collision.gameObject.CompareTag("Player"))
             {
                 if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))

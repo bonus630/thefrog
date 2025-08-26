@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Environment
             }
             if (teleported.TryGetComponent<Rigidbody2D>(out rb))
             {
-                Debug.Log("TEleporter: ");
+               // Debug.Log("TEleporter: ");
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 rb.linearVelocity = Vector2.zero;
             }
@@ -60,6 +60,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("Teleported tag + " + teleported.tag);
             if (teleported == null)
                 return;
             if (collision!=null && collision.CompareTag(teleported.tag))

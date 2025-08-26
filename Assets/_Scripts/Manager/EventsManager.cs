@@ -62,6 +62,9 @@ namespace br.com.bonus630.thefrog.Manager
             GameEvent Dash = new GameEvent(GameEventName.Dash, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(Dash);
+            GameEvent defeatWizard = new GameEvent(GameEventName.DefeatWizard, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(defeatWizard);
 
         }
 
@@ -174,6 +177,7 @@ namespace br.com.bonus630.thefrog.Manager
         FireBall,
         AppleTreeFounded,
         Dash,
+        DefeatWizard,
         None
     }
 }
