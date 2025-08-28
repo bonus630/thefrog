@@ -564,11 +564,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 213
-        y: 383
-        width: 6
-        height: 18
+        y: 368
+        width: 26
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -577,72 +577,6 @@ TextureImporter:
       bones: []
       spriteID: d5a6d756ff18dc930800000000000000
       internalID: 4165128164306938461
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: environment_11
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 378
-        width: 6
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01064fd5e03418bf0800000000000000
-      internalID: -323903969209065456
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: environment_12
-      rect:
-        serializedVersion: 2
-        x: 229
-        y: 367
-        width: 6
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e6944ac407199da0800000000000000
-      internalID: -5937689324370487578
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: environment_13
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 371
-        width: 6
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c541d37dbc01f1e0800000000000000
-      internalID: -2165935937957050944
       vertices: []
       indices: 
       edges: []
@@ -1844,7 +1778,7 @@ TextureImporter:
         width: 48
         height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1866,7 +1800,7 @@ TextureImporter:
         width: 66
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

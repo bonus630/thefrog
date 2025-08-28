@@ -1,0 +1,14 @@
+# Força Unity a usar LF em tudo que não for binário
+* text=auto eol=lf
+
+# Trata assets binários corretamente
+*.png binary
+*.jpg binary
+*.psd binary
+*.fbx binary
+*.prefab binary
+*.unity binary
+*.asset binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
