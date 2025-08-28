@@ -7,8 +7,9 @@ namespace br.com.bonus630.thefrog.Player
     {
         public void OnMove(InputAction.CallbackContext context)
         {
-            
-            player.playerMovement.HandlerMove(context);
+            Vector2 directions = context.ReadValue<Vector2>();
+            player.playerMovement.HandlerMove(directions);
+            player.playerSpiritController.SelectProjectile(directions.y);
         }
         public void OnDash(InputAction.CallbackContext context)
         {

@@ -25158,6 +25158,7 @@ GameObject:
   - component: {fileID: 1712995329823639533}
   - component: {fileID: 8871116419443922218}
   - component: {fileID: 2230491924721172614}
+  - component: {fileID: 912517909433977595}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -25368,6 +25369,7 @@ MonoBehaviour:
   footer: {fileID: 8894308778311849379}
   projectile: {fileID: 1645160297769326799, guid: 177f9eddf690fba41a5a8b89ed6a3ae1, type: 3}
   fireball: {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
+  lightningBolt: {fileID: 0}
   projectilesSpawPoint: {fileID: 2752393811781647289}
   projectilesSpawPoint2: {fileID: 592441022469554054}
   throwProjectileSFX: {fileID: 8300000, guid: 201a1ed16928d26469ea8a000e8273e9, type: 3}
@@ -25688,6 +25690,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wings: {fileID: 7261494873462529448}
+--- !u!114 &912517909433977595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620097102780067214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6e91ed7ef39654e8d8977f06ccd7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilies:
+  - {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
+  projectileSpawPoint: {fileID: 2909710817049657993}
 --- !u!1 &8873583698127253809
 GameObject:
   m_ObjectHideFlags: 0

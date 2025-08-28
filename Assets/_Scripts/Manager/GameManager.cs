@@ -418,7 +418,10 @@ namespace br.com.bonus630.thefrog.Manager
 #if UNITY_EDITOR
 
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWild.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());

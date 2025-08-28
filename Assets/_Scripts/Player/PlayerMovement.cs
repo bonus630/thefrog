@@ -205,9 +205,9 @@ namespace br.com.bonus630.thefrog.Player
                 }
             }
         }
-        public void HandlerMove(InputAction.CallbackContext context)
+        public void HandlerMove(Vector2 direction)
         {
-            direction = context.ReadValue<Vector2>();
+            this.direction = direction;
 
         }
         public void HandlerDash(InputAction.CallbackContext context)

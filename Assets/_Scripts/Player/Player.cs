@@ -15,6 +15,7 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private GameObject footer;
         [SerializeField] private GameObject projectile;
         [SerializeField] private GameObject fireball;
+        [SerializeField] private GameObject lightningBolt;
         [SerializeField] private Transform projectilesSpawPoint;
         [SerializeField] private Transform projectilesSpawPoint2;
 
@@ -29,6 +30,7 @@ namespace br.com.bonus630.thefrog.Player
         public PlayerHealth playerHealth { get; private set; }
         public PlayerMovement playerMovement { get; private set; }
         public PlayerFallControl playerFallControl { get; private set; }
+        public PlayerSpiritController playerSpiritController { get; private set; }
 
         [Header("Others")]
         private Rigidbody2D rb;
@@ -78,6 +80,7 @@ namespace br.com.bonus630.thefrog.Player
             playerHealth = GetComponent<PlayerHealth>();
             playerMovement = GetComponent<PlayerMovement>();
             playerFallControl = GetComponent<PlayerFallControl>();
+            playerSpiritController = GetComponent<PlayerSpiritController>();
             
         }
         private void Start()
@@ -136,8 +139,8 @@ namespace br.com.bonus630.thefrog.Player
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-
-                CreateBar(Color.green,0.4f);
+                GameManager.Instance.UpdatePlayer();
+                //CreateBar(Color.green,0.4f);
                 //foreach (var c in g.GetComponents(typeof(IBarUI)))
                 //{
                 //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
@@ -188,27 +191,27 @@ namespace br.com.bonus630.thefrog.Player
         //    RaycastHit2D raycastHit2D = Physics2D.Raycast(Vector2.zero, Vector2.down, 0.5f, LayerMask.GetMask(new string[] { "Ground", "Platform", "StaticPlatforms" }));
         //    Gizmos.DrawLine(Vector2.zero,new Vector2.down, 0.5f)
         //}
-        private GameObject currentBullet;
+       // private GameObject currentBullet = null;
         private float nextLaunch = 0f;
-        private void SelectProjectilie()
-        {
-            currentBullet = fireball;
-        }
+        //private void SelectProjectilie()
+        //{
+        //    currentBullet = fireball;
+        //}
 
         public void LaunchSpirit()
         {
-            if (!GameManager.Instance.PlayerStates.HasFireball)
+            if (playerSpiritController.CurrentProjectile == null)
                 return;
             if (Time.time > nextLaunch)
             {
-                GameObject bullet = Instantiate(fireball, projectilesSpawPoint.position, Quaternion.identity);
+                GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil, playerSpiritController.CurrentProjectile.SpawnPoint.transform.position, Quaternion.identity);
 
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
                     projectilie.Launch(new Vector2(LookFor, 0));
-                    GameObject bar = CreateBar(Color.green, 0);
+                    GameObject bar = CreateBar(playerSpiritController.CurrentProjectile.EffectColor, 0);
                     bar.GetComponent<IBarUI>().MaxValue = 100;
-                    bar.GetComponent<IBarUI>().GoToValue(100, 5);
+                    bar.GetComponent<IBarUI>().GoToValue(100, projectilie.ReloadTime());
                     Destroy(bar, projectilie.ReloadTime());
                     nextLaunch = Time.time + projectilie.ReloadTime();
                 }

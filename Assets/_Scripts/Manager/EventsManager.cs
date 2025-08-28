@@ -62,9 +62,18 @@ namespace br.com.bonus630.thefrog.Manager
             GameEvent Dash = new GameEvent(GameEventName.Dash, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(Dash);
+            GameEvent lightningBolt = new GameEvent(GameEventName.LightningBolt, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(lightningBolt);
             GameEvent defeatWizard = new GameEvent(GameEventName.DefeatWizard, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(defeatWizard);
+            events.Add(defeatWizard);  
+                GameEvent rollingWild = new GameEvent(GameEventName.RollingWild, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(rollingWild);
+            GameEvent purifyWater = new GameEvent(GameEventName.PurifyWater, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(purifyWater);
 
         }
 
@@ -178,6 +187,9 @@ namespace br.com.bonus630.thefrog.Manager
         AppleTreeFounded,
         Dash,
         DefeatWizard,
+        LightningBolt,
+        RollingWild,
+        PurifyWater,
         None
     }
 }

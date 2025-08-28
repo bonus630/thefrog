@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2892003304271206612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5568441930958129265}
+  m_Layer: 6
+  m_Name: sense
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5568441930958129265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892003304271206612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1223, y: -0.0917, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6808961557088527440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3620378356979824686
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +100,7 @@ Transform:
   m_Children:
   - {fileID: 3359745956895042044}
   - {fileID: 4550056376592713083}
+  - {fileID: 5568441930958129265}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5652652962236771255
@@ -114,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 10
   m_Sprite: {fileID: 5287780966827553206, guid: a5e4683055e277840b5b002e437baf69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -230,7 +262,7 @@ AudioSource:
   m_GameObject: {fileID: 4778285890427782511}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
   m_audioClip: {fileID: 8300000, guid: e05ffaf4afff03e48ac1df6190c86c6d, type: 3}
   m_Resource: {fileID: 8300000, guid: e05ffaf4afff03e48ac1df6190c86c6d, type: 3}
   m_PlayOnAwake: 0
@@ -379,10 +411,15 @@ MonoBehaviour:
   repulseForce: 200
   xDirection: -1
   enemyWeakenesses: 00000000
+  bodyCollider: {fileID: 7221884794571044310}
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
   detectPlayer: 0
+  jumpForce: 6
+  sense: {fileID: 5568441930958129265}
+  normalSpeed: 20
+  followSpeed: 80
 --- !u!1 &7773924650371975186
 GameObject:
   m_ObjectHideFlags: 0
