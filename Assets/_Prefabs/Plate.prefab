@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6002970731535098934}
   - component: {fileID: 8989921570083620122}
-  - component: {fileID: 3075787748926337822}
   - component: {fileID: 4258819378372350917}
+  - component: {fileID: 2435188272193335972}
+  - component: {fileID: -6047563683566861900}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Tips
@@ -89,24 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3075787748926337822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3963512097279164826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac90d10c0a295674eae6442572f63777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogues:
-  - {fileID: 11400000, guid: 49c7eee50ac1cdf4db1400712ca56d0c, type: 2}
-  autoPlay: 1
-  oneShot: 0
-  ciclily: 1
-  RemoveInCompleted: 14
 --- !u!61 &4258819378372350917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,3 +136,36 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.22, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &2435188272193335972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963512097279164826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd734fa1348f949804cea7583b5957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passwordReceiver: {fileID: 9039480941759632525, guid: 4c83a255410644540ac803f7b7a20c3b, type: 3}
+  fields: 4
+  password: 
+--- !u!114 &-6047563683566861900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963512097279164826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4991229bc9f864cae58cbca68885af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: 49c7eee50ac1cdf4db1400712ca56d0c, type: 2}
+  autoPlay: 1
+  oneShot: 1
+  ciclily: 1
+  RemoveInCompleted: 14

@@ -1,0 +1,48 @@
+using System.Collections.Generic;
+using System.Linq;
+using br.com.bonus630.thefrog.Shared;
+using UnityEngine;
+
+namespace br.com.bonus630.thefrog.Activators
+{
+    public class PasswordReceiver : MonoBehaviour
+    {
+        [SerializeField] IActivator ItemToActive;
+        [field:SerializeField] public List<int> Password { get; set; }
+        List<int> received;
+
+        [SerializeField] List<ActivatorSlot> activatorSlots;
+
+        private void Start()
+        {
+            received = new List<int>();
+            
+            for (int i = 0; i < activatorSlots.Count; i++)
+            {
+                activatorSlots[i].Activated += PasswordReceiver_Activated;
+            }
+        }
+
+        private void PasswordReceiver_Activated(int id, bool activade)
+        {
+            Debug.Log($"id: {id} ativo: {activade}");
+            if (activade && !received.Contains(id))
+                received.Add(id);
+            if (!activade && received.Contains(id))
+                received.Remove(id);
+            if(Password.SequenceEqual<int>(received))
+            {
+                Debug.Log("ativando gate");
+                ItemToActive.Activate();
+
+            }
+            else
+            {
+                Debug.Log("desativando gate");
+                ItemToActive.Deactive();
+            }
+           
+
+        }
+    }
+}

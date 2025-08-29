@@ -12,18 +12,23 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] bool actived = true;
 
         GameObject prevCollision = null;
-
         int OnID = Animator.StringToHash("On");
+        float timer = 1f;
+        float time = 0;
         private void Start()
         {
             GetComponent<Animator>().SetBool(OnID, actived);
         }
-
+        private void Update()
+        {
+            time+= Time.deltaTime;
+        }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Debug.Log("Lever collision:" + collision.gameObject.name);
-            if (collision.gameObject == prevCollision)
+            if (collision.gameObject == prevCollision && time < timer)
                 return;
+            time = 0f;
             prevCollision = collision.gameObject;
             GetComponent<AudioSource>().Play();
             if (actived)

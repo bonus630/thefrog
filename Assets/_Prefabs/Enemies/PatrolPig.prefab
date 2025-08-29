@@ -369,10 +369,11 @@ MonoBehaviour:
   coll: {fileID: 0}
   speed: 20
   life: 1
-  repulse: {x: 0, y: 200}
-  repulseForce: 200
+  repulse: {x: 0, y: 60}
+  repulseForce: 60
   xDirection: -1
   enemyWeakenesses: 
+  bodyCollider: {fileID: 0}
 --- !u!1001 &1768612666300803535
 PrefabInstance:
   m_ObjectHideFlags: 0

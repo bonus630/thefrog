@@ -46,6 +46,8 @@ namespace br.com.bonus630.thefrog.Enemies
                 bc.enabled = active; 
             if (TryGetComponent<CircleCollider2D>(out var cc))
                 cc.enabled = active; 
+            if (TryGetComponent<CapsuleCollider2D>(out var cp))
+                cp.enabled = active; 
             if (TryGetComponent<SpriteRenderer>(out var sr))
                 sr.enabled = active;
         }

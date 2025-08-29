@@ -407,8 +407,8 @@ MonoBehaviour:
   coll: {fileID: 7221884794571044310}
   speed: 20
   life: 1
-  repulse: {x: 0, y: 200}
-  repulseForce: 200
+  repulse: {x: 0, y: 60}
+  repulseForce: 60
   xDirection: -1
   enemyWeakenesses: 00000000
   bodyCollider: {fileID: 7221884794571044310}

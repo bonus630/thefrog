@@ -15,6 +15,11 @@ namespace br.com.bonus630.thefrog.Enemies
         float turnDistance = 3f;
         protected readonly int DeadID = Animator.StringToHash("Dead");
         protected readonly int JumpID = Animator.StringToHash("Jump");
+        protected override void Start()
+        {
+            base.Start();
+            normalSpeed = Random.Range(2,5) * 10;
+        }
         protected override void Update()
         {
         
