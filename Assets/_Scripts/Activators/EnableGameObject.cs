@@ -7,11 +7,13 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] GameObject externGameObject;
         [SerializeField] bool permanent = false;
+        [Tooltip("True for disable gameobject on active")]
+        [SerializeField] bool invert = false;
         public override void Activate()
         {
             if(externGameObject!=null)
-                externGameObject.SetActive(true);
-            gameObject.SetActive(true);
+                externGameObject.SetActive(invert ? false : true);
+            gameObject.SetActive(invert ? false : true);
         }
 
         public override void Deactive()
@@ -19,8 +21,8 @@ namespace br.com.bonus630.thefrog.Activators
             if (!permanent)
             {
                 if (externGameObject != null)
-                    externGameObject.SetActive(false);
-                gameObject.SetActive(false);
+                    externGameObject.SetActive(invert ? true : false);
+                gameObject.SetActive(invert ? true : false);
             }
         }
     }

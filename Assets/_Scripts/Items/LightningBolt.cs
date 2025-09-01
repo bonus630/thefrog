@@ -5,6 +5,10 @@ namespace br.com.bonus630.thefrog.Items
 {
     public class LightningBolt :  IProjectilies,IElement
     {
+        private void OnParticleCollision(GameObject other)
+        {
+            Debug.Log("Particles :" + other.name);
+        }
         public void ActiveBy(Elements element)
         {
             throw new System.NotImplementedException();
@@ -27,7 +31,7 @@ namespace br.com.bonus630.thefrog.Items
 
         public override Elements GetElement()
         {
-            return Elements.Lightning;
+            return Elements.Lightining;
         }
 
         public override void Launch(Vector2 direction)

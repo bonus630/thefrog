@@ -10,20 +10,25 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] Transform sense;
         [SerializeField] float normalSpeed = 20f;
         [SerializeField] float followSpeed = 80f;
+        [SerializeField] bool canJump = true;
 
         float followDistance = 6f;
         float turnDistance = 3f;
+        bool jump = false;
+        float safeFollowTurn = 0f;
         protected readonly int DeadID = Animator.StringToHash("Dead");
         protected readonly int JumpID = Animator.StringToHash("Jump");
         protected override void Start()
         {
             base.Start();
-            normalSpeed = Random.Range(2,5) * 10;
+            normalSpeed += Random.Range(0,4) * 10;
+            followSpeed += Random.Range(0,4) * 10;
         }
         protected override void Update()
         {
         
             base.Update();
+            safeFollowTurn -= Time.deltaTime;
             Debug.DrawRay(new Vector3(transform.position.x - (0.1f * xDirection), transform.position.y - 0.1f, 0), Vector3.left * turnDistance * xDirection, Color.green);
             RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - (0.2f * xDirection), transform.position.y - 0.1f), Vector2.left * turnDistance * xDirection, turnDistance, playerLayer);
 
@@ -34,19 +39,35 @@ namespace br.com.bonus630.thefrog.Enemies
 
             if (hitRight.collider != null)
             {
+                Debug.Log($"Pig Distance: {hitRight.distance}");
                 detectPlayer = true;
-                speed = 80f;
+                speed = followSpeed;
+                hooinkTime = 0.5f;
+                if (hitRight.distance > 1.8 && hitRight.distance < 2 && Random.value < 0.4f)
+                    Jump();
             }
             if(hitLeft.collider!=null)
             {
+               if(safeFollowTurn < 0)
                 ChangeDirection();
             }
             if (detectGround.collider == null)
-                ChangeDirection();
+            {
+                if (!jump && safeFollowTurn < 0)
+                {
+                    safeFollowTurn = 1f;
+                    ChangeDirection();
+                }
+            }
+            else
+            {
+                if(rg.linearVelocityY < 0.1f)
+                  jump = false;
+            }
             if (runTime < 0)
             {
                 runTime = maxRunTime;
-                speed = 20f;
+                speed = normalSpeed;
                 detectPlayer = false;
             }
             if (detectPlayer)
@@ -78,6 +99,9 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public void Jump()
         {
+            if (!canJump)
+                return;
+            jump = true;
             rg.linearVelocityY = jumpForce;
         }
     }

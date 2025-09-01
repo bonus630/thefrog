@@ -9,6 +9,6 @@ namespace br.com.bonus630.thefrog.Shared
         Water = 2,
         Earth = 4,
         Wind = 8,
-        Lightning = 16
+        Lightining = 16
     }
 }

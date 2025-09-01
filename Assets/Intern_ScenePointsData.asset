@@ -16,34 +16,47 @@ MonoBehaviour:
   PointsData:
   - Name: CaveEntrace
     GameObjectName: 
+    Hour: 0
     Point: {x: 86.33, y: -119.850006, z: 0}
     transform: {fileID: 0}
   - Name: GhostShipEntrace
     GameObjectName: 
+    Hour: 0
     Point: {x: 50.17, y: 156.48, z: 0}
     transform: {fileID: 0}
   - Name: HeartChest01
     GameObjectName: 
+    Hour: 0
     Point: {x: 208.09, y: -117.87, z: 0}
     transform: {fileID: 0}
   - Name: HeartChest02
     GameObjectName: 
+    Hour: 0
     Point: {x: 208.09, y: -164.89049, z: 0}
     transform: {fileID: 0}
   - Name: DuckPathEnd
     GameObjectName: 
+    Hour: 0
     Point: {x: 198.29, y: -209.13, z: 0}
     transform: {fileID: 0}
   - Name: CastleSewerEntry
     GameObjectName: 
+    Hour: 0
     Point: {x: 297.68, y: -153.41, z: 0}
     transform: {fileID: 0}
   - Name: CastleEntry
     GameObjectName: CastleEntryAreaStart
+    Hour: 0
     Point: {x: -35.9, y: -267.4, z: 0}
     transform: {fileID: 0}
   - Name: ScrollAltarEntry
     GameObjectName: ScrollAltarEntry
+    Hour: 0
     Point: {x: 193.84999, y: -257.4, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleLibrary
+    GameObjectName: PigSpawner
+    Hour: 0
+    Point: {x: -26.08, y: -301.06, z: 0}
     transform: {fileID: 0}
   SceneType: 3

@@ -6,7 +6,7 @@ namespace br.com.bonus630.thefrog.Enemies
     {
         [SerializeField]protected BoxCollider2D bodyCollider;
         AudioSource m_AudioSource;
-        float hooinkTime = 0f;
+        protected float hooinkTime = 0f;
         protected float runTime = 2f;
         protected float maxRunTime = 2f;
         protected override void Start()

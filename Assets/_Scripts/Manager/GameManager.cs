@@ -96,7 +96,8 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
-            eventManager.EventCompleted(GameEventName.FeatherTouch, true);
+            eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            eventManager.EventCompleted(GameEventName.LightningBolt,false);
 #endif
             DontDestroyOnLoad(gameObject);
         }
@@ -416,7 +417,7 @@ namespace br.com.bonus630.thefrog.Manager
         public void ChangeGameToState(EnvironmentStates state)
         {
 #if UNITY_EDITOR
-
+            //Aqui nao chama ao dar play normalmente, utilize o awake para debugar os eventos completos adicionados
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
             GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
             GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());

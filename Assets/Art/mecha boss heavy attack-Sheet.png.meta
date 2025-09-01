@@ -1,0 +1,655 @@
+fileFormatVersion: 2
+guid: eafbf3d186838c24096fb3f7cc4f67db
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1318014255309574849
+    second: mecha boss heavy attack-Sheet_0
+  - first:
+      213: 2341570807624879574
+    second: mecha boss heavy attack-Sheet_1
+  - first:
+      213: -8790816040146167086
+    second: mecha boss heavy attack-Sheet_2
+  - first:
+      213: 1823820092673587852
+    second: mecha boss heavy attack-Sheet_3
+  - first:
+      213: 8747611015850929296
+    second: mecha boss heavy attack-Sheet_4
+  - first:
+      213: -5625459111241061066
+    second: mecha boss heavy attack-Sheet_5
+  - first:
+      213: -4810499950166474445
+    second: mecha boss heavy attack-Sheet_6
+  - first:
+      213: 6216115477770536687
+    second: mecha boss heavy attack-Sheet_7
+  - first:
+      213: -7695260397763588609
+    second: mecha boss heavy attack-Sheet_8
+  - first:
+      213: 2472960986764994933
+    second: mecha boss heavy attack-Sheet_9
+  - first:
+      213: 4799718235077190920
+    second: mecha boss heavy attack-Sheet_10
+  - first:
+      213: 8773723220755760741
+    second: mecha boss heavy attack-Sheet_11
+  - first:
+      213: 6053642560958924933
+    second: mecha boss heavy attack-Sheet_12
+  - first:
+      213: -4753223430448282353
+    second: mecha boss heavy attack-Sheet_13
+  - first:
+      213: 3529982044478768629
+    second: mecha boss heavy attack-Sheet_14
+  - first:
+      213: 8986954530563621659
+    second: mecha boss heavy attack-Sheet_15
+  - first:
+      213: -2170647446193160708
+    second: mecha boss heavy attack-Sheet_16
+  - first:
+      213: 748061875029252836
+    second: mecha boss heavy attack-Sheet_17
+  - first:
+      213: 8685194138823307946
+    second: mecha boss heavy attack-Sheet_18
+  - first:
+      213: -5709247387243095424
+    second: mecha boss heavy attack-Sheet_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.0656902, y: 0.008658981}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c2d0a86bf68a4210800000000000000
+      internalID: 1318014255309574849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 35
+        width: 24
+        height: 29
+      alignment: 9
+      pivot: {x: 0.06568909, y: -0.001022602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ddc7ec4e3eee7020800000000000000
+      internalID: 2341570807624879574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 36
+        width: 24
+        height: 28
+      alignment: 9
+      pivot: {x: 0.06569036, y: 0.0074055535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da1841236fb00680800000000000000
+      internalID: -8790816040146167086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 34
+        width: 24
+        height: 30
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a770616b28f4910800000000000000
+      internalID: 1823820092673587852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 35
+        width: 24
+        height: 29
+      alignment: 9
+      pivot: {x: 0.18852489, y: 0.006238477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09ca6114fd1c56970800000000000000
+      internalID: 8747611015850929296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 36
+        width: 24
+        height: 28
+      alignment: 9
+      pivot: {x: 0.3508428, y: 0.0036452156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63dedf74eba5ee1b0800000000000000
+      internalID: -5625459111241061066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 35
+        width: 24
+        height: 29
+      alignment: 9
+      pivot: {x: 0.228007, y: 0.0026079374}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3310b4e48cbad3db0800000000000000
+      internalID: -4810499950166474445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 33
+        width: 24
+        height: 31
+      alignment: 9
+      pivot: {x: 0.2323939, y: -0.0060586007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe60257b714144650800000000000000
+      internalID: 6216115477770536687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 33
+        width: 24
+        height: 31
+      alignment: 9
+      pivot: {x: 0.2323939, y: 0.00073414465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd8b218071f43590800000000000000
+      internalID: -7695260397763588609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.228007, y: 0.0016398112}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 579e6874ae8b15220800000000000000
+      internalID: 2472960986764994933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.2323939, y: 0.005149333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 805adb70e460c9240800000000000000
+      internalID: 4799718235077190920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.228007, y: 0.005149333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5664ebab8c682c970800000000000000
+      internalID: 8773723220755760741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.14904277, y: 0.005149333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 588842be5dbd20450800000000000000
+      internalID: 6053642560958924933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.15342712, y: 0.005149333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0501124978290eb0800000000000000
+      internalID: -4753223430448282353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.15342712, y: 0.0016398112}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f50aa087f30df030800000000000000
+      internalID: 3529982044478768629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.15342712, y: 0.005149333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfd3c05f5af40e1e0800000000000000
+      internalID: -2170647446193160708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1412
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.228007, y: 0.005149333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea912bdf46a16a00800000000000000
+      internalID: 748061875029252836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1492
+        y: 34
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.31574503, y: 0.0016398112}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa23ed99d02088870800000000000000
+      internalID: 8685194138823307946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mecha boss heavy attack-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 35
+        width: 24
+        height: 29
+      alignment: 9
+      pivot: {x: 0.07007726, y: 0.006238477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a177794129295de47bf3fd132ab5a94c
+      internalID: 1693898281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1a02e2c7d62a7d341b1658af4a53cf5a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mecha boss heavy attack-Sheet_0: 1318014255309574849
+      mecha boss heavy attack-Sheet_1: 2341570807624879574
+      mecha boss heavy attack-Sheet_10: 4799718235077190920
+      mecha boss heavy attack-Sheet_11: 8773723220755760741
+      mecha boss heavy attack-Sheet_12: 6053642560958924933
+      mecha boss heavy attack-Sheet_13: -4753223430448282353
+      mecha boss heavy attack-Sheet_14: 3529982044478768629
+      mecha boss heavy attack-Sheet_15: 8986954530563621659
+      mecha boss heavy attack-Sheet_16: -2170647446193160708
+      mecha boss heavy attack-Sheet_17: 748061875029252836
+      mecha boss heavy attack-Sheet_18: 8685194138823307946
+      mecha boss heavy attack-Sheet_19: -5709247387243095424
+      mecha boss heavy attack-Sheet_2: -8790816040146167086
+      mecha boss heavy attack-Sheet_20: 1693898281
+      mecha boss heavy attack-Sheet_3: 1823820092673587852
+      mecha boss heavy attack-Sheet_4: 8747611015850929296
+      mecha boss heavy attack-Sheet_5: -5625459111241061066
+      mecha boss heavy attack-Sheet_6: -4810499950166474445
+      mecha boss heavy attack-Sheet_7: 6216115477770536687
+      mecha boss heavy attack-Sheet_8: -7695260397763588609
+      mecha boss heavy attack-Sheet_9: 2472960986764994933
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

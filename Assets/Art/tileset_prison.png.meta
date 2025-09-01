@@ -169,7 +169,7 @@ TextureImporter:
         width: 32
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -178,6 +178,50 @@ TextureImporter:
       bones: []
       spriteID: 43f72aac0186258469f9d0d59e4496f7
       internalID: 401694179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_prison_2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5325c45fa2ab21644943afd443e181ec
+      internalID: 1115096443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_prison_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba6f722ba8a2f247b04f7f8f98d5726
+      internalID: -1395393157
       vertices: []
       indices: 
       edges: []
@@ -198,6 +242,8 @@ TextureImporter:
     nameFileIdTable:
       tileset_prison_0: 1295111096350847609
       tileset_prison_1: 401694179
+      tileset_prison_2: 1115096443
+      tileset_prison_3: -1395393157
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

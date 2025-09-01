@@ -1,3 +1,4 @@
+using System;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnValidate()
         {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
+            for (int i = 0; i < Enum.GetValues(typeof(Theme)).Length; i++)
             {
                 gameObject.transform.GetChild(i).gameObject.SetActive(false);
             }

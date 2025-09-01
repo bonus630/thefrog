@@ -111,6 +111,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void LoadEvents(Datas eventsDatas)
         {
+            Debug.Log("eventos: " + eventsDatas.Count);
             for (int i = 0; i < eventsDatas.Count; i++)
             {
                 if (!completedEvents.Contains(eventsDatas[i].ToString()))

@@ -15,7 +15,8 @@ namespace br.com.bonus630.thefrog.Environment
         {
             int spawnIndex = Random.Range(0, SpawnPoints.Count);
             Transform point = SpawnPoints[spawnIndex];
-            Instantiate(RealGameObject, point);
+            if(RealGameObject!=null)
+                Instantiate(RealGameObject, point);
             SpawnPoints.RemoveAt(spawnIndex);
 
             while(SpawnPoints.Count > 0)

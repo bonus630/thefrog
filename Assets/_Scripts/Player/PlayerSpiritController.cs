@@ -77,9 +77,9 @@ namespace br.com.bonus630.thefrog.Player
                         if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall))
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.red, Elements.Fire));
                         break;
-                    case Elements.Lightning:
+                    case Elements.Lightining:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.white, Elements.Lightning));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.white, Elements.Lightining));
                         break;
                     case Elements.Wind:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWild))

@@ -54,4 +54,14 @@ MonoBehaviour:
     Hour: 0
     Point: {x: -3.27, y: -4.6, z: 0}
     transform: {fileID: 0}
+  - Name: PigFactory
+    GameObjectName: Spawner
+    Hour: 0
+    Point: {x: 27.77, y: 1.04, z: 0}
+    transform: {fileID: 0}
+  - Name: FactoryChamber
+    GameObjectName: FactorySmoke
+    Hour: 0
+    Point: {x: 25.81, y: 18.25, z: 0}
+    transform: {fileID: 0}
   SceneType: 4

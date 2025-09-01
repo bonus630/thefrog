@@ -58,6 +58,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public int Count => this.datas.Count;
         public bool Contains(string data) => this.datas.Contains(data);
+        public bool Remove(string data) => this.datas.Remove(data);
         public string this[int index] { get => this.datas[index]; set => this.datas[index] = value; }
 
     }

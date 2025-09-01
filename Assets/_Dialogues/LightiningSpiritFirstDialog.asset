@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
+  m_Name: LightiningSpiritFirstDialog
+  m_EditorClassIdentifier: 
+  DialogueName: 
+  Dialogues:
+  - Avatar: {fileID: 8744986193271972717, guid: b83fdde4d3fcb094b80fc7d457317264, type: 3}
+    Name: 
+    text: Por favor me ajude!
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: "Quem \xE9 voc\xEA?"
+  - Avatar: {fileID: 8744986193271972717, guid: b83fdde4d3fcb094b80fc7d457317264, type: 3}
+    Name: 
+    text: "Eu sou o espiritito dos Raios, fui aprisionado aqui para energizar essa
+      m\xE1quina!"
+  - Avatar: {fileID: 8744986193271972717, guid: b83fdde4d3fcb094b80fc7d457317264, type: 3}
+    Name: 
+    text: Tem uma alavanca acima que controla o mecanismo que me prende, eu cuidarei
+      do resto
+  - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
+    Name: 
+    text: Que Seja!
