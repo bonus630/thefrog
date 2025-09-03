@@ -44,7 +44,7 @@ namespace br.com.bonus630.thefrog.Player
         public void SelectProjectile(float direction)
         {
 
-            Debug.Log("Direction: " + direction);
+            //Debug.Log("Direction: " + direction);
             if(time > updateTime)
             {
                 time = 0;
@@ -88,6 +88,10 @@ namespace br.com.bonus630.thefrog.Player
                     case Elements.Water:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater))
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.blue, Elements.Water));
+                        break;
+                    case Elements.Earth:
+                        if (GameManager.Instance.IsEventCompleted(GameEventName.None))
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.magenta, Elements.Earth));
                         break;
                 }
             }

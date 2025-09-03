@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Player
@@ -55,20 +56,23 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Player Hit Collision name: "+collision.gameObject.name);
+            Debug.Log("Player Hit Collision name: " + collision.gameObject.name);
             if (collision.gameObject.layer == 10)
             {
-               // Debug.Log("PlayerHearth :" + collision.gameObject.name);
+                // Debug.Log("PlayerHearth :" + collision.gameObject.name);
                 Die();
             }
             if (collision.gameObject.layer == 6)
             {
                 if (!player.FooterTouching(collision.collider))
                 {
-                   // Debug.Log("Player Hit");
                     Hit();
-                    player.knockUp = true;
-                    player.knockUpForce = collision.GetContact(0).normal * 40 * -1;
+                    if (collision.collider.TryGetComponent<IEnemy>(out IEnemy enemy))
+                    {
+                        player.knockUp = true;
+                        player.knockUpForce = collision.GetContact(0).normal * enemy.KnockUpHitForce ;
+                       // Debug.Log("Player Hit: "+ enemy.KnockUpHitForce);
+                    }
                 }
             }
 
@@ -82,7 +86,7 @@ namespace br.com.bonus630.thefrog.Player
             anim.SetTrigger(HitID);
             audioSource.PlayOneShot(hitSFX);
             anim.SetInteger(LifeID, CurrentLife);
-            if(CurrentLife<=0)
+            if (CurrentLife <= 0)
             {
                 Invoke(nameof(GameOver), 0.517f);
             }
@@ -92,6 +96,7 @@ namespace br.com.bonus630.thefrog.Player
             }
             catch { }
         }
+
         public void Die()
         {
             player.playerMovement.FreezePlayerMove();

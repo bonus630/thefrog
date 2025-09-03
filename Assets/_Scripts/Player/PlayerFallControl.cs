@@ -56,8 +56,8 @@ namespace br.com.bonus630.thefrog.Player
         {
             InFallControl = inFallControl;
             wings.SetActive(InFallControl);
-            Debug.Log("Playerfallcontrol :" +inFallControl);
-            Debug.Log("Timer :" +timer);
+          //  Debug.Log("Playerfallcontrol :" +inFallControl);
+           // Debug.Log("Timer :" +timer);
         }
 
         public void FallsControlEffect()

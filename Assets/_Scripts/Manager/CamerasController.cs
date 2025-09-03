@@ -25,8 +25,6 @@ namespace br.com.bonus630.thefrog.Manager
             LastActiveCam = index;
             return Cameras[index];
 
-
-
         }
 
         public GameObject GetActiveCamera()
@@ -47,6 +45,7 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return GetActiveCamera().GetComponent<CinemachineVirtualCamera>();
         }
+      
         public void GameObjectFocus(GameObject gameObject, float time = 1f)
         {
             StartCoroutine(gameObjectFocus(new GameObject[] {gameObject }, time));

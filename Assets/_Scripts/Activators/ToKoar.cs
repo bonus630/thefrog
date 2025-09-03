@@ -13,8 +13,8 @@ namespace br.com.bonus630.thefrog.Activators
 
         [SerializeField] GameObject upGame;
         [SerializeField] GameObject downGame;
-
-        GameObject player;
+        [SerializeField] GameObject koarLimiter;
+        //GameObject player;
         GameObject koar;
         bool inProgress = false;
         bool startCheckDistance = false;
@@ -22,7 +22,7 @@ namespace br.com.bonus630.thefrog.Activators
         float timeLimit = 4f;
         float time = 0;
         int first = -1;
-
+        int last = -1;
         public void Awake()
         {
             screenEffects = FindAnyObjectByType<ScreenEffects>();
@@ -34,7 +34,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (startCheckDistance)
             {
-                if (Vector2.Distance(player.transform.position, newLocation) > 4.5)
+                if (Vector2.Distance(GameManager.Instance.GetPlayer.transform.position, newLocation) > 4.5)
                 {
                     GameManager.Instance.GetPlayerScript.FallsControl();
                     startCheckDistance = false;
@@ -52,9 +52,9 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (inProgress)
                 return;
-            Debug.Log("feather touch" + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
+           // Debug.Log("feather touch" + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
             inProgress = true;
-            Debug.Log("Collision to koar");
+            //Debug.Log("Collision to koar");
             koar.SetActive(true);
             if (GameManager.Instance.IsEventCompleted(GameEventName.DefeatWizard))
                 StartCoroutine(SimpleTransition());
@@ -64,6 +64,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Deactive()
         {
+            Debug.Log("ToKoar Deactive: ");
             if (inProgress)
                 return;
             inProgress = true;
@@ -72,6 +73,11 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void CheckEvent(ColliderData data)
         {
+            Debug.Log("first: " + first);
+            Debug.Log("ColliderData: " + data.Index);
+            if (data.Index == last)
+                return;
+            last = data.Index;
             if (!data.Collider.CompareTag("Player") || !GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
                 return;
 
@@ -80,7 +86,7 @@ namespace br.com.bonus630.thefrog.Activators
                 first = data.Index;
                 return;
             }
-            player = data.Collider.gameObject;
+           // player = data.Collider.gameObject;
             if (first < data.Index)
             {
                 Active();
@@ -101,23 +107,24 @@ namespace br.com.bonus630.thefrog.Activators
         IEnumerator FixX()
         {
             yield return new WaitForSeconds(0.2f);
-            player.transform.position = new Vector3(91f, player.transform.position.y, 0);
+            GameManager.Instance.GetPlayer.transform.position = new Vector3(91f, GameManager.Instance.GetPlayer.transform.position.y, 0);
         }
 
 
 
         private IEnumerator PlayCutscene()
         {
+            koarLimiter.SetActive(false);
             GameManager.Instance.GetPlayerScript.MoveInputOn = false;
             // yield return new WaitForSeconds(0.2f);
             // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
-            screenEffects.FadeOut(0.1f);
+            screenEffects.FadeOut(1f);
             //GameManager.Instance.GetPlayerScript.ChangeGravity(0);
             // GameObject.Find("Kaor").SetActive(true);
             yield return new WaitForSeconds(1);
             FindAnyObjectByType<CameraBackground>().ChangeBackground();
             GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
-            player.transform.position = newLocation;
+            GameManager.Instance.GetPlayer.transform.position = newLocation;
             screenEffects.FadeIn(1);
             yield return new WaitForEndOfFrame();
             startCheckDistance = true;

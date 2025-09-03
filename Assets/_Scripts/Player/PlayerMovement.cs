@@ -95,6 +95,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         void FixedUpdate()
         {
+            player.KnockedUpOnHit();
             if (Mathf.Abs(player.RigibodyLinearVelocity.y * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
@@ -122,7 +123,6 @@ namespace br.com.bonus630.thefrog.Player
             Jump();
             if (GameManager.Instance.PlayerStates.HasDoubleJump)
                 DoubleJump();
-            player.KnockedUp();
             if (GameManager.Instance.PlayerStates.HasWallJump)
                 WallSliding();
         }
@@ -131,7 +131,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             resetFastFall = false;
             player.playerHealth.PrepareFallDie = false;
-            Debug.Log("Playermovement fallscontrol");
+           // Debug.Log("Playermovement fallscontrol");
             player.playerFallControl.FallsControl(true);
 
         }
@@ -143,7 +143,7 @@ namespace br.com.bonus630.thefrog.Player
             bool prepareWall = falling && Mathf.Abs(direction.x) > 0 && player.WallCheck.RightWallCheck();
             if (prepareWall)
             {
-                Debug.Log("Player graviti:" + player.gravityDirection);
+                //Debug.Log("Player graviti:" + player.gravityDirection);
                 float angle = 0;
                 if (player.WallCheck.NearGround(out angle, player.gravityDirection))
                 {
@@ -194,7 +194,7 @@ namespace br.com.bonus630.thefrog.Player
             }
             //if (context.performed)
             //    Debug.Log("Jump context perfomed"); 
-            if (context.canceled)
+            if (!player.knockUp && context.canceled)
             {
                 if (player.RigibodyLinearVelocity.y > 0)
                 {

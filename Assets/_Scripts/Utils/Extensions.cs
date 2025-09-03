@@ -17,5 +17,6 @@ namespace br.com.bonus630.thefrog.Utils
             float y = Random.Range(bound.center.y - bound.size.y / 2,bound.center.y + bound.size.y / 2);
             return new Vector2(x,y);
         }
+    
     }
 }

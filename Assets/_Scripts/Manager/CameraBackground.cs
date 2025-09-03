@@ -87,7 +87,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void InitializeDayByHour(int hour)
         {
-            Debug.Log("InitializeDayByHour hour:" + hour);
+            //Debug.Log("InitializeDayByHour hour:" + hour);
             cycleManager.InitializeByHour(hour);
             this.hour = hour;
         }

@@ -46,7 +46,7 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 IPlayer player = collision.gameObject.GetComponent<IPlayer>();
                 player.Hit();
-                player.KnockUp(new Vector2(200, 200));
+                player.KnockUpOnJump(new Vector2(200, 200));
                 return;
             }
 

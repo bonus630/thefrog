@@ -22,7 +22,7 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 IPlayer player = collision.gameObject.GetComponent<IPlayer>();
                 player.Hit();
-                player.KnockUp(collision.GetContact(0).normal * 200);
+                player.KnockUpOnJump(collision.GetContact(0).normal * 200);
                 return;
             }
         }

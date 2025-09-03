@@ -29,17 +29,17 @@ namespace br.com.bonus630.thefrog.Enemies
         
             base.Update();
             safeFollowTurn -= Time.deltaTime;
-            Debug.DrawRay(new Vector3(transform.position.x - (0.1f * xDirection), transform.position.y - 0.1f, 0), Vector3.left * turnDistance * xDirection, Color.green);
+          //  Debug.DrawRay(new Vector3(transform.position.x - (0.1f * xDirection), transform.position.y - 0.1f, 0), Vector3.left * turnDistance * xDirection, Color.green);
             RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - (0.2f * xDirection), transform.position.y - 0.1f), Vector2.left * turnDistance * xDirection, turnDistance, playerLayer);
 
             RaycastHit2D detectGround = Physics2D.CircleCast(sense.position, 0.1f,Vector2.down,0.5f,layerMask);
 
-            Debug.DrawRay(new Vector3(transform.position.x + (1f * xDirection), transform.position.y - 0.1f, 0), Vector3.right * followDistance * xDirection, Color.blue);
+           // Debug.DrawRay(new Vector3(transform.position.x + (1f * xDirection), transform.position.y - 0.1f, 0), Vector3.right * followDistance * xDirection, Color.blue);
             RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x + (0.2f * xDirection), transform.position.y - 0.1f), Vector2.right * followDistance * xDirection, followDistance, playerLayer);
 
             if (hitRight.collider != null)
             {
-                Debug.Log($"Pig Distance: {hitRight.distance}");
+             //   Debug.Log($"Pig Distance: {hitRight.distance}");
                 detectPlayer = true;
                 speed = followSpeed;
                 hooinkTime = 0.5f;

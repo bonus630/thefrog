@@ -85,6 +85,8 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
+            GameManager.Instance.PlayerStates.HasGravity = GameManager.Instance.IsEventCompleted(GameEventName.Gravity);
+            GameManager.Instance.PlayerStates.FallsControl = GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch);
             //Debug.Log($"Gamepad: {Gamepad.current.GetType() == typeof(XInputControllerWindows)}");
             //states = GameManager.Instance.PlayerStates;
             //Debug
@@ -124,11 +126,9 @@ namespace br.com.bonus630.thefrog.Player
             rb.AddForce(force, mode);
             Invoke(nameof(ReenableYVelocityLimit), 0.6f);
         }
-        private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = false;
-        void FixedUpdate()
-        {
-
-        }
+        // private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = false;
+        private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = true;
+       
      
         private void Update()
         {
@@ -192,12 +192,12 @@ namespace br.com.bonus630.thefrog.Player
         //    Gizmos.DrawLine(Vector2.zero,new Vector2.down, 0.5f)
         //}
        // private GameObject currentBullet = null;
-        private float nextLaunch = 0f;
         //private void SelectProjectilie()
         //{
         //    currentBullet = fireball;
         //}
 
+        private float nextLaunch = 0f;
         public void LaunchSpirit()
         {
             if (playerSpiritController.CurrentProjectile == null)
@@ -217,13 +217,7 @@ namespace br.com.bonus630.thefrog.Player
                 }
             }
         }
-        private void CheckFall()
-        {
-
-        }
-   
-
-   
+      
         private void OnCollisionEnter2D(Collision2D collision)
         {
             //if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
@@ -255,7 +249,6 @@ namespace br.com.bonus630.thefrog.Player
             {
                 gameObject.transform.parent = null;
             }
-
         }
 
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
@@ -312,7 +305,6 @@ namespace br.com.bonus630.thefrog.Player
         {
             interactIcon.SetActive(false);
         }
-
         public void Launch()
         {
             if (GameManager.Instance.PlayerStates.Shurykens > 0)
@@ -326,25 +318,25 @@ namespace br.com.bonus630.thefrog.Player
             }
         }
 
-
         public IEnumerator RemoveInputs(float time = 0.2f)
         {
             inputsOn = false;
             yield return new WaitForSeconds(time);
             inputsOn = true;
         }
-        public void KnockedUp()
+        public void KnockedUpOnHit()
         {
             if (knockUp)
             {
-                // Debug.Log("knocked: " + knockUpForce.y);
                 if (rb == null)
                 {
                     // Debug.LogError("Rigidbody2D está null no Build!");
                     return;
                 }
+                 Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
-                rb.AddForce(knockUpForce, ForceMode2D.Impulse);
+                AddForce(knockUpForce, time: 0.2f);
+                //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
                 playerMovement.TimeInFastFall = 0;
                 knockUp = false;
             }
@@ -365,14 +357,13 @@ namespace br.com.bonus630.thefrog.Player
         {
             return footerCollider.IsTouching(collision);
         }
-        public void KnockUp(Vector2 force)
+        public void KnockUpOnJump(Vector2 force)
         {
-
             knockUp = true;
             if (IsJumpPressed)
-                force *= 1.5f;
+                force.y *= 1.5f;
             if (gravityDirection == 1)
-                force *= -1;
+                force.y *= -1;
             knockUpForce = force * 2;
         }
 
@@ -406,7 +397,7 @@ namespace br.com.bonus630.thefrog.Player
     }
     enum PlayerGravityDirection : int
     {
-        UP = 1,
-        DOWN = -1
+        UP = -1,
+        DOWN = 1
     }
 }

@@ -10,19 +10,21 @@ namespace br.com.bonus630.thefrog.Enemies
     {
         [SerializeField] protected Transform topPoint;
         [SerializeField] protected Transform downPoint;
-        [SerializeField] protected LayerMask layerMask;
         [SerializeField] protected Collider2D coll;
+        [SerializeField] protected LayerMask layerMask;
         [SerializeField] protected float speed = 200;
         [SerializeField] protected float life = 1;
-        [SerializeField] protected Vector2 repulse = Vector2.up * 200;
+        [field: SerializeField] public float KnockUpHitForce { get; set; } = 100f;
         [SerializeField] protected float repulseForce = 200;
+        [SerializeField] protected Vector2 repulse = Vector2.up * 200;
+        public bool IsEnable { get; set; } = true;
+        public bool IsDied { get;protected set; } = false;
+        [SerializeField][Range(-1, 1)] protected int xDirection = -1;
+        [SerializeField] protected List<Elements> enemyWeakenesses;
+
         protected Rigidbody2D rg;
         protected bool frontColliding;
         protected Animator animator;
-        [SerializeField][Range(-1, 1)] protected int xDirection = -1;
-        [SerializeField] protected List<Elements> enemyWeakenesses;
-        public bool IsEnable { get; set; } = true;
-        public bool IsDied { get;protected set; } = false;
 
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int WalkID = Animator.StringToHash("Walk");
@@ -56,7 +58,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 if (collision.gameObject.TryGetComponent<IPlayer>(out player) && player.FooterTouching(coll))
                 {
                    // Debug.Log("collision base");
-                    player.KnockUp(repulse);
+                    player.KnockUpOnJump(repulse);
                     Hit(1);
                     return;
                 }
@@ -69,6 +71,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public virtual void Hit(float hit)
         {
+            KnockUpHitForce = 80f;
             //Debug.Log("Collider Hit BASE " + gameObject.name);
             //animator.SetTrigger("Hit");
             animator.SetTrigger(HitID);

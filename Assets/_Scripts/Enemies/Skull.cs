@@ -118,7 +118,7 @@ namespace br.com.bonus630.thefrog.Enemies
                     // repulse = re.normalized * repulseForce * -1;
                     // repulse = repulseForce * -1 * collision.GetContact(0).normal;
                     //Debug.Log("Skull Repulse:" + repulse);
-                    player.KnockUp(repulse);
+                    player.KnockUpOnJump(repulse);
                     // coll.enabled = false;
                     this.life--;
                     //  Debug.Log("Boss Collider :" +coll.enabled+" name: " + gameObject.name + " Life: " + this.life);

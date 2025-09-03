@@ -1,4 +1,6 @@
-﻿namespace br.com.bonus630.thefrog.Shared
+﻿using System.Numerics;
+
+namespace br.com.bonus630.thefrog.Shared
 {
     public interface IEnemy
     {
@@ -6,6 +8,8 @@
         void DestroySelf();
 
         bool IsDied { get; }
+
+        float KnockUpHitForce { get; }
 
     }
 }

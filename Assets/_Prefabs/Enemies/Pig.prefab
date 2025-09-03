@@ -266,14 +266,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPoint: {fileID: 6374344127454742384}
   downPoint: {fileID: 8276259477472417033}
+  coll: {fileID: 2274174843404288792}
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  coll: {fileID: 2274174843404288792}
   speed: 200
   life: 10
-  repulse: {x: 0, y: 200}
+  <KnockUpHitForce>k__BackingField: 120
   repulseForce: 100
+  repulse: {x: 0, y: 200}
   xDirection: -1
   enemyWeakenesses: 
   pigSFX: {fileID: 8300000, guid: 5fd459ee560315b49a2f5a906f4788a8, type: 3}

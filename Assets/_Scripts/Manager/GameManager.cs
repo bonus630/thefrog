@@ -27,8 +27,8 @@ namespace br.com.bonus630.thefrog.Manager
 
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
-    
-        public GameObject GetPlayer { get {return GameObject.Find("Player"); } }
+        private GameObject player;
+        public GameObject GetPlayer { get { if (player == null) player = GameObject.Find("Player"); return player; }}
         public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
         public static GameManager Instance;
         public EventsManager eventManager;
@@ -96,6 +96,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
+            eventManager.EventCompleted(GameEventName.Gravity, false);
             eventManager.EventCompleted(GameEventName.FeatherTouch, false);
             eventManager.EventCompleted(GameEventName.LightningBolt,false);
 #endif
@@ -104,6 +105,7 @@ namespace br.com.bonus630.thefrog.Manager
         private void Start()
         {
             PauseAction.Enable();
+          
         }
 
         private void Update()

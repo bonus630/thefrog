@@ -44,7 +44,7 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(coll) && !invencible)
                 {
-                    player.KnockUp(repulse);
+                    player.KnockUpOnJump(repulse);
                     Hit(1);
                     return;
                 }

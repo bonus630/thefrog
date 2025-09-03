@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Shared
         void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f,bool removeInput = true);
         void ChangeGravity(float gravityDirection, float speed = 0.05f);
         void RemoveGravity(bool remove);
-        void KnockUp(Vector2 repulse);
+        void KnockUpOnJump(Vector2 repulse);
         bool FooterTouching(Collider2D coll);
 
         void AllInputsOn(bool disables,float delayTime = 0);

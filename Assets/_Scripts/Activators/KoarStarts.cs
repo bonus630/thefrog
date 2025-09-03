@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] MusicSource musicSource;
         [SerializeField] CamerasController camerasController;
-
+        [SerializeField] GameObject koarLimiter;
         bool start = false;
         int dialogueIndex = 0;
         IPlayer player;
@@ -42,6 +42,7 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.GetPlayerScript.ChangeGravity(-1f);
             GameManager.Instance.PlayerStates.HasGravity = false;
             GameManager.Instance.PlayerStates.FallsControl = false;
+            koarLimiter.SetActive(true);
             dialogueIndex++;
 
 
