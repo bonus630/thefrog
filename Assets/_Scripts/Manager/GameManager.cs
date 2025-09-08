@@ -19,9 +19,13 @@ namespace br.com.bonus630.thefrog.Manager
     {
         [SerializeField] InputAction PauseAction;
         private TextMeshProUGUI scoreText;
+        private TextMeshProUGUI TimerText = null;
+        public event Action TimeOverEvent;
         private bool continueGame = false;
-        public float PlayTimeInSeconds { get; private set; }
         private bool _isCountingTime = false;
+        float startTimer = 0;
+        public float PlayTimeInSeconds { get; private set; }
+        public int ToPoint { get; set; }
         private PlayerStates playerStates;
         public PlayerStates PlayerStates { get { return playerStates; } private set { playerStates = value; } }
 
@@ -29,13 +33,14 @@ namespace br.com.bonus630.thefrog.Manager
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
         private GameObject player;
         public GameObject GetPlayer { get { if (player == null) player = GameObject.Find("Player"); return player; }}
-        public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
+        private ScreenEffects screenEffects;
+        public ScreenEffects ScreenEffects { get { if (screenEffects == null) screenEffects = FindAnyObjectByType<ScreenEffects>(); return screenEffects; } }
         public static GameManager Instance;
         public EventsManager eventManager;
 
         public Vector3 StartGamePosition { get; private set; }
         public Vector3 PlayerStartPosition { get; set; }
-        public int ToPoint { get; set; }
+        public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
         //Scenes Names
         public readonly string MainScene = "SampleScene";
         public readonly string InternAreas = "InternAreas";
@@ -90,15 +95,17 @@ namespace br.com.bonus630.thefrog.Manager
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
 #if UNITY_EDITOR
-            playerStates.HasGravity = true;
-            playerStates.HasFireball = true;
-            playerStates.HasWallJump = true;
+            Time.timeScale = 0.5f;
+            //playerStates.HasGravity = true;
+            //playerStates.HasFireball = true;
+            //playerStates.HasWallJump = true;
+ //           playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
-            playerStates.Shurykens = 100;
-            eventManager.EventCompleted(GameEventName.Gravity, false);
-            eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            eventManager.EventCompleted(GameEventName.LightningBolt,false);
+            //playerStates.Shurykens = 100;
+            //eventManager.EventCompleted(GameEventName.Gravity, false);
+            //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            eventManager.EventCompleted(GameEventName.LightningBolt, false);
 #endif
             DontDestroyOnLoad(gameObject);
         }
@@ -112,7 +119,6 @@ namespace br.com.bonus630.thefrog.Manager
         {
             if (PauseAction.WasPressedThisFrame())
             {
-
                 Pause(Time.timeScale == 1 ? true : false);
             }
             //Debug.Log("Counting time :" + PlayTimeInSeconds);
@@ -121,9 +127,6 @@ namespace br.com.bonus630.thefrog.Manager
                 PlayTimeInSeconds += Time.deltaTime;
             }
         }
-        TextMeshProUGUI TimerText = null;
-        float startTimer = 0;
-        public event Action TimeOverEvent;
         public void StartTimer(float Time)
         {
             if (TimerText == null)
@@ -156,21 +159,15 @@ namespace br.com.bonus630.thefrog.Manager
             go = GameObject.Find(hudName).transform.GetChild(0).gameObject;
             if (go == null)
                 return false;
-
             if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
             {
                 float vol = pause ? -80f : 0f;
                 musicSource.SetMasterVolume(vol);
                 Time.timeScale = pause ? 0 : 1;
-                // Debug.Log(go);
-
                 go.SetActive(pause);
-
                 GetPlayerScript.AllInputsOn(!pause);
                 return true;
-                // Debug.Log("Pause " + pause);
             }
-
             return false;
         }
 
@@ -180,7 +177,6 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void OnApplicationPause(bool pause)
         {
-            // Debug.Log("Pause:" + pause);
             Pause(pause);
         }
 
@@ -421,14 +417,14 @@ namespace br.com.bonus630.thefrog.Manager
 #if UNITY_EDITOR
             //Aqui nao chama ao dar play normalmente, utilize o awake para debugar os eventos completos adicionados
             //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWild.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWild.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
+            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
+            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
+            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
 
 #endif
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
@@ -438,41 +434,7 @@ namespace br.com.bonus630.thefrog.Manager
             Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
             eventManager.LoadEvents(GameManager.Instance.playerStates.CompletedGameEvents);
-            //for (int i = 0; i < state.playerStates.CompletedGameEvents.Count; i++)
-            //{
-            //    GameEventName name = GameEventName.None;
-            //    if (Enum.TryParse<GameEventName>(state.playerStates.CompletedGameEvents[i], true, out name))
-            //    {
-            //        this.EventCompleted(name, false);
-            //        switch (name)
-            //        {
-            //            //case GameEventName.NPCFirstTalk:
-            //            //    FindAnyObjectByType<NPC_WallJump_Tutorial>().firstTalk = true;
-            //            //    break;
-            //            //case GameEventName.NPCTutorial:
-            //            //    FindAnyObjectByType<NPC_WallJump_Tutorial>().GoToFinal();
-            //            //    break;
-            //            //case GameEventName.KillPig:
-            //            //    FindAnyObjectByType<KiilPig>().ExecuteKillPig();
-            //            //    if (IsEventCompleted(GameEventName.NPCFirstTalk))
-            //            //    {
-            //            //        FindAnyObjectByType<NPC_WallJump_Tutorial>().MoveToWallJump();
-            //            //    }
-            //            //    break;
-            //            case GameEventName.Shuryken:
-            //                GameObject.Find("ShurikenChest").SetActive(false);
-            //                break;
-
-            //                //case GameEventName.HeartContainer:
-            //                //    GameObject.Find("HeartContainerChest").SetActive(false);
-            //                //    break;
-            //                //case GameEventName.Gravity:
-            //                //    FindAnyObjectByType<NPCDuck>().Dancing();
-            //                //    break;
-            //        }
-            //    }
-
-           // }
+     
         }
         public void GameOver()
         {

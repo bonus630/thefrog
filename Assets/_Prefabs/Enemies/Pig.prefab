@@ -273,10 +273,10 @@ MonoBehaviour:
   speed: 200
   life: 10
   <KnockUpHitForce>k__BackingField: 120
-  repulseForce: 100
-  repulse: {x: 0, y: 200}
+  repulseForce: 20
+  repulse: {x: 0, y: 100}
   xDirection: -1
-  enemyWeakenesses: 
+  enemyWeakenesses: 01000000
   pigSFX: {fileID: 8300000, guid: 5fd459ee560315b49a2f5a906f4788a8, type: 3}
   bossSFX: {fileID: 8300000, guid: 65a5f73431884e047a610147440febb0, type: 3}
 --- !u!58 &3306823746343457482

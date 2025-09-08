@@ -1,5 +1,4 @@
 using br.com.bonus630.thefrog.Manager;
-using UnityEditor.Search;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment
@@ -27,8 +26,10 @@ namespace br.com.bonus630.thefrog.Environment
         private void Change(bool b)
         {
             Debug.Log("Koar limiter: " + !b);
-            GameManager.Instance.PlayerStates.HasGravity = !b;
-            GameManager.Instance.PlayerStates.FallsControl = !b;
+            if(GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
+                GameManager.Instance.PlayerStates.HasGravity = !b;
+            if(GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
+                GameManager.Instance.PlayerStates.FallsControl = !b;
         }
     }
 }

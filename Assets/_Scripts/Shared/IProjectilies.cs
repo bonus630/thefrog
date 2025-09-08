@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Items
+namespace br.com.bonus630.thefrog.Shared
 {
     public abstract class IProjectilies : MonoBehaviour
     {

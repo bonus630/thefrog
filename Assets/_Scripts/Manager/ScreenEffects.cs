@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,7 +39,8 @@ namespace br.com.bonus630.thefrog.Manager
         {
             if (shakeController != null)
                 shakeController.StopShake();
-            shakeController = new CameraShakeController(camerasController.GetActiveVirtualCamera());
+           // shakeController = new CameraShakeController(camerasController.GetActiveVirtualCamera());
+            shakeController = new CameraShakeController(CameraUtils.GetActiveVirtualCamera2());
             shakeController.StartShake(amplitude, frequency);
             
         }

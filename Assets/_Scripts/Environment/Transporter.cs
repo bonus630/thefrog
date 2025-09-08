@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,17 +7,18 @@ namespace br.com.bonus630.thefrog.Environment
 {
     public class Transporter : MonoBehaviour
     {
-        [SerializeField] Vector2[] destines;
+        [SerializeField] private Vector2[] destines;
         [SerializeField] float travelDuration = 2f;
         [SerializeField] float speed = 10f;
         [SerializeField] float currentSpeed;
+        [SerializeField] float stopMaxTime = 1f;
         [SerializeField] Sprite OnSprite;
         [SerializeField] Sprite OffSprite;
         [SerializeField] bool stopOnPlayerOut = false;
-        [SerializeField] float stopMaxTime = 1f;
+        [SerializeField] public bool active = true;
         SpriteRenderer render;
 
-        bool going = false;
+        public bool going = false;
         bool playerOut = true;
         float time = 0;
         float stopTime = 0;
@@ -24,27 +26,51 @@ namespace br.com.bonus630.thefrog.Environment
         private Vector3 worldDestination;
         private Vector3 direction;
         private float totalDistance;
-        private List<Vector2> destinesIntern;
-
+        public List<Vector2> DestinesIntern { get; set; }
+        public event Action OnePass;
 
         int currentDestine = 1;
+        private Rigidbody2D rb;
+        [ContextMenu("Adicionar posição atual")]
+        private void AddCurrentPositionToStartPosition()
+        {
+            var list = new System.Collections.Generic.List<Vector2>();
+            list.Add(transform.position);
+            destines = list.ToArray();
+
+        }
 
         void Start()
         {
-            destinesIntern = new List<Vector2>();
-            destinesIntern.Add(transform.position);
-            destinesIntern.AddRange(destines);
+            TryGetComponent<Rigidbody2D>(out rb);
+            Init();
+        }
+        public void Init()
+        {
+            DestinesIntern = new List<Vector2>();
+            DestinesIntern.Add(transform.position);
+            DestinesIntern.AddRange(destines);
             SetPositions();
             render = GetComponent<SpriteRenderer>();
         }
-        private void SetPositions()
+        public void SetPositions()
         {
-            startPosition = transform.TransformPoint(transform.position);
-            worldDestination = new Vector3(destinesIntern[currentDestine].x, destinesIntern[currentDestine].y, transform.position.z);
+            if (!active) return;
+            // startPosition = transform.TransformPoint(transform.position);
+            startPosition = transform.position;
+            worldDestination = new Vector3(DestinesIntern[currentDestine].x, DestinesIntern[currentDestine].y, transform.position.z);
             direction = (worldDestination - startPosition).normalized;
             totalDistance = Vector3.Distance(startPosition, worldDestination);
         }
-        void Update()
+        private void Update()
+        {
+            UpdateTransform();
+        }
+        //private void FixedUpdate()
+        //{
+        //    UpdatePhysics();
+        //}
+        private void UpdateTransform()
         {
             if (going)
             {
@@ -57,43 +83,67 @@ namespace br.com.bonus630.thefrog.Environment
                 if (stopOnPlayerOut && playerOut)
                 {
                     stopTime += Time.deltaTime;
-                    if(stopTime>stopMaxTime)
+                    if (stopTime > stopMaxTime)
                     {
                         going = false;
                         render.sprite = OffSprite;
                     }
                 }
-                // transform.Translate(direction * Time.deltaTime * speed);
-                //time += Time.deltaTime;
-                //float t = Mathf.Clamp01(time / travelDuration); 
-                //Vector3 r = Vector3.Lerp(startPosition, worldDestination, t);
-                ////transform.position = r;
-                //transform.Translate(worldDestination,);
-
-                //if (t >= 1)
-                //{
-                //    if (currentDestine >= destines.Length)
-                //    {
-                //        going = false;
-                //        render.sprite = OffSprite;
-                //    }
-                //    else
-                //    {
-                //        currentDestine++;
-                //        SetPositions();
-
-                //    }
-                //}
-                // Debug.Log("Distance:" +  worldDestination);
+          
                 if (Vector3.Distance(transform.position, worldDestination) < 0.001f)
                 {
                     // Debug.Log("Estou aqui ");
-                    if (currentDestine >= destinesIntern.Count - 1)
+                    if (currentDestine >= DestinesIntern.Count - 1)
                     {
                         going = false;
                         render.sprite = OffSprite;
                         currentDestine = 1;
-                        destinesIntern.Reverse();
+                        DestinesIntern.Reverse();
+                        OnePass?.Invoke();
+                    }
+                    else
+                    {
+                        currentDestine++;
+                    }
+                    SetPositions();
+                }
+            }
+        }
+        private void UpdatePhysics()
+        {
+            if (going)
+            {
+                Vector3 currentPosition = transform.position;
+                float distanceToTarget = Vector3.Distance(currentPosition, worldDestination);
+
+                currentSpeed = CalculateSpeed(distanceToTarget);
+
+                Vector3 nextPosition = Vector3.MoveTowards(transform.position, worldDestination, currentSpeed * Time.deltaTime);
+
+                // 👉 Troque esta linha:
+                // transform.position = Vector3.MoveTowards(...);
+                // 👇 Por esta:
+                rb.MovePosition(nextPosition);
+
+                if (stopOnPlayerOut && playerOut)
+                {
+                    stopTime += Time.deltaTime;
+                    if (stopTime > stopMaxTime)
+                    {
+                        going = false;
+                        render.sprite = OffSprite;
+                    }
+                }
+
+                if (Vector3.Distance(transform.position, worldDestination) < 0.001f)
+                {
+                    if (currentDestine >= DestinesIntern.Count - 1)
+                    {
+                        going = false;
+                        render.sprite = OffSprite;
+                        currentDestine = 1;
+                        DestinesIntern.Reverse();
+                        OnePass?.Invoke();
                     }
                     else
                     {
@@ -116,6 +166,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (!active) return;
             if (collision.gameObject.CompareTag("Player"))
             {
                 going = true;
@@ -126,13 +177,14 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
+            if (!active) return;
             if (collision.gameObject.CompareTag("Player"))
             {
                 if (stopOnPlayerOut)
                 {
 
                     playerOut = true;
-                   
+
                 }
             }
         }

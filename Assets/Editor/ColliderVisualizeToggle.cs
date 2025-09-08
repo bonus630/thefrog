@@ -6,7 +6,7 @@ namespace br.corp.bonus630.unity
     [InitializeOnLoad] // garante que ativa junto com o Editor
     public static class ColliderVisualizerToggle
     {
-        private static bool enabled = true;
+        private static bool enabled = false;
 
         static ColliderVisualizerToggle()
         {

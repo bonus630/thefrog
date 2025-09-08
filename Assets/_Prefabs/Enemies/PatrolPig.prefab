@@ -77,9 +77,9 @@ GameObject:
   - component: {fileID: 5023389374661460303}
   - component: {fileID: 4381795471466666517}
   - component: {fileID: 808926060106070182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PatrolPig
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,14 +363,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPoint: {fileID: 3380446723125543659}
   downPoint: {fileID: 3802580908769843372}
+  coll: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
-  coll: {fileID: 0}
+    m_Bits: 320
   speed: 20
   life: 1
-  repulse: {x: 0, y: 60}
+  <KnockUpHitForce>k__BackingField: 40
   repulseForce: 60
+  repulse: {x: 0, y: 60}
   xDirection: -1
   enemyWeakenesses: 
   bodyCollider: {fileID: 0}

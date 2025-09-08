@@ -1,5 +1,6 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Shared;
+using Unity.VisualScripting.YamlDotNet.Serialization.NodeTypeResolvers;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
@@ -9,6 +10,8 @@ namespace br.com.bonus630.thefrog.Activators
         Collider2D _collider;
         [SerializeField][Tooltip("Um IActivator item")] IActivator ItemToActive;
         [SerializeField][Tooltip("Um gameobject com multiplos IActivator ou para ativar e desativar")] GameObject GameObjectToActive;
+        [SerializeField]
+        [Tooltip("Tag do objeto que ativará")] string Tag ;
         [SerializeField] float delayActiveTime = 0f;
         [SerializeField] float delayDeactiveTime = 0f;
         [SerializeField] bool permanentActived = false;
@@ -19,7 +22,7 @@ namespace br.com.bonus630.thefrog.Activators
         void Start()
         {
             _collider = GetComponent<Collider2D>();
-
+            Tag = string.IsNullOrEmpty(Tag) ? "Player" : Tag;
         }
     
         void Reset()
@@ -33,7 +36,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (onlyDeactive)
                 return;
-            if (other.CompareTag("Player"))
+            if (other.CompareTag(Tag))
             {
                 StartCoroutine(true,delayActiveTime);
             }
@@ -43,7 +46,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (permanentActived || onlyActive)
                 return;
-            if (collision.CompareTag("Player"))
+            if (collision.CompareTag(Tag))
             {
                 StartCoroutine(false,delayDeactiveTime);
             }

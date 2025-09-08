@@ -15,8 +15,8 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] protected float speed = 200;
         [SerializeField] protected float life = 1;
         [field: SerializeField] public float KnockUpHitForce { get; set; } = 100f;
-        [SerializeField] protected float repulseForce = 200;
-        [SerializeField] protected Vector2 repulse = Vector2.up * 200;
+        [SerializeField] protected float repulseForce = 100;
+        [SerializeField] protected Vector2 repulse = Vector2.up * 100;
         public bool IsEnable { get; set; } = true;
         public bool IsDied { get;protected set; } = false;
         [SerializeField][Range(-1, 1)] protected int xDirection = -1;

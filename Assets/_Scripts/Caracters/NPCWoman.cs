@@ -13,20 +13,33 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] MusicSource musicSource;
         [SerializeField] int mazeSteps = 5;
         [SerializeField] DialogueData secondDialogue;
+        [SerializeField] DialogueData thirdDialogue;
         List<int> mazeDirections = null;
         
         public void Start()
         {
+            if(GameManager.Instance.IsEventCompleted(GameEventName.LadyLaments))
+                Destroy(gameObject);
+           CheckDialogue();
+
+        }
+        public override DialogueData CurrentDialogueData { get { CheckDialogue(); return currentDialogueData; }  protected set => currentDialogueData = value; }
+        public void CheckInitialDialogue(int dialogue)
+        {
+
+        }
+        private void CheckDialogue()
+        {
             if (DataScenePreserver.Instance.Contains("MAZE"))
             {
                 mazeDirections = DataScenePreserver.Instance.Get<ListStorage<int>>("MAZE").Values;
-                this.CurrentDialogueData = secondDialogue;
+                this.currentDialogueData = secondDialogue;
+            }
+            if (GameManager.Instance.EnvironmentStates.Activeds.Contains("trans_0005"))
+            {
+                this.currentDialogueData = thirdDialogue;
             }
         }
-        public void CheckInitialDialogue(int dialogue)
-        {
-        }
-
         public override Transform GetTransform()
         {
             return transform;
@@ -38,6 +51,11 @@ namespace br.com.bonus630.thefrog.Caracters
 
         public override void SetFinishDialogue()
         {
+            if(this.CurrentDialogueData==thirdDialogue)
+            {
+                GameManager.Instance.ScreenEffects.FadeIn(10f);
+                GameManager.Instance.EventCompleted(GameEventName.LadyLaments);
+            }
             dialogueCounter = 0;
             musicSource.Play(BackgroundMusic.Ignition, true);
             Entrace.enabled = true;

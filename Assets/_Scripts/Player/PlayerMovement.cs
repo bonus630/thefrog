@@ -42,6 +42,8 @@ namespace br.com.bonus630.thefrog.Player
         bool inDash = false;
         bool airDash = false;
         bool firstTimeInDashLoop = false;
+        bool HasDoubleJump = false;
+        bool HasWallJump = false;
 
         //private IEffects bounce;
 
@@ -63,6 +65,8 @@ namespace br.com.bonus630.thefrog.Player
             Speed = GameManager.Instance.PlayerStates.Speed;
             jumpForce = GameManager.Instance.PlayerStates.JumpForce;
             dashReloadTimer = dashReloadMaxTime;
+            HasDoubleJump =    GameManager.Instance.PlayerStates.HasDoubleJump;
+            HasWallJump = GameManager.Instance.PlayerStates.HasWallJump;
             base.Awake();
         }
         //private void Start()
@@ -121,9 +125,9 @@ namespace br.com.bonus630.thefrog.Player
             if (player.MoveInputOn)
                 Move();
             Jump();
-            if (GameManager.Instance.PlayerStates.HasDoubleJump)
+            if (HasDoubleJump)
                 DoubleJump();
-            if (GameManager.Instance.PlayerStates.HasWallJump)
+            if (HasWallJump)
                 WallSliding();
         }
 
@@ -135,8 +139,6 @@ namespace br.com.bonus630.thefrog.Player
             player.playerFallControl.FallsControl(true);
 
         }
-
-
         private bool IsWallSliding()
         {
             bool falling = IsFalling();
@@ -226,7 +228,6 @@ namespace br.com.bonus630.thefrog.Player
                 }
             }
         }
-
         private void DoubleJump()
         {
             if (readyToJump && jumps > 0)
@@ -465,7 +466,6 @@ namespace br.com.bonus630.thefrog.Player
                 canWallJump = false;
 
         }
-
         public void JumpDownEffect()
         {
             var bounce = new BounceEffect(anim.gameObject.transform);
@@ -473,14 +473,11 @@ namespace br.com.bonus630.thefrog.Player
             JumpDownParticles.Play();
 
         }
-
-
         public void GravityChanged()
         {
             jumpForce *= -1;
             wallJumpYForce *= -1;
         }
-
         internal void HandlerHability()
         {
             if (!player.InGround || !GameManager.Instance.PlayerStates.HasGravity)

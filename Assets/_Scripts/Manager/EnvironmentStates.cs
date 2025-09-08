@@ -10,6 +10,7 @@ namespace br.com.bonus630.thefrog.Manager
         public int NPCVirtualGuyDialogue;
         public int NPC_WallJump_Tutorial;
         public float GameTimeInSeconds;
+        public Datas Activeds;
         public EnvironmentStates()
         {
 
@@ -17,6 +18,7 @@ namespace br.com.bonus630.thefrog.Manager
         public EnvironmentStates(PlayerStates _playerStates)
         {
             this.playerStates = _playerStates;
+            Activeds = new Datas();
         }
 
     }

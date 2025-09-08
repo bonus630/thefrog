@@ -45,7 +45,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void CheckTriggerExit(ColliderData data)
         {
-            if (data.Collider.CompareTag("Player"))
+            if (data.ColliderOther.CompareTag("Player"))
             {
                 Debug.Log("Data.index trigger exiti: " + data.Index);
                 blocked = false;
@@ -56,7 +56,7 @@ namespace br.com.bonus630.thefrog.Manager
             if (blocked)
                 return;
 
-            if (!data.Collider.CompareTag("Player"))
+            if (!data.ColliderOther.CompareTag("Player"))
                 return;
 
             blocked = true;
@@ -94,7 +94,7 @@ namespace br.com.bonus630.thefrog.Manager
 
             newPos = points[UnityEngine.Random.Range(0, points.Count)].transform.position;
 
-            StartCoroutine(ScreenFader(data.Collider.gameObject));
+            StartCoroutine(ScreenFader(data.ColliderOther.gameObject));
         }
 
         private IEnumerator ScreenFader(GameObject obj)

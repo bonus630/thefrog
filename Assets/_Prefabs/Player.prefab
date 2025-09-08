@@ -25704,6 +25704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilies:
   - {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
+  - {fileID: 5659226872111448139, guid: 2865e9bcdc885524aad009bf4ab0f8e4, type: 3}
   projectileSpawPoint: {fileID: 2909710817049657993}
 --- !u!1 &8873583698127253809
 GameObject:

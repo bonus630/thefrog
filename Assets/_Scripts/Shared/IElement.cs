@@ -1,7 +1,5 @@
-using UnityEngine;
-using br.com.bonus630.thefrog.Shared;
 
-namespace br.com.bonus630.thefrog.Items
+namespace br.com.bonus630.thefrog.Shared
 {
     public interface IElement 
     {

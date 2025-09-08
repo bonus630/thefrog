@@ -4,6 +4,7 @@ namespace br.com.bonus630.thefrog.Shared
 {
     public interface IBarUI
     {
+        int id { get; set; }
         Color Color { get; set; }
         float Value { get; set; }
         float MinValue { get; set; }

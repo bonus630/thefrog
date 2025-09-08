@@ -6,6 +6,7 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] private float fallingTime;
         [SerializeField] private bool respawnable;
+       
 
         private Animator anim;
         private Joint2D join;

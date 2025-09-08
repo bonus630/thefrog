@@ -78,7 +78,7 @@ namespace br.com.bonus630.thefrog.Activators
             if (data.Index == last)
                 return;
             last = data.Index;
-            if (!data.Collider.CompareTag("Player") || !GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
+            if (!data.ColliderOther.CompareTag("Player") || !GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
                 return;
 
             if (first == -1)

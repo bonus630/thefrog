@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1826388544409044134}
   - component: {fileID: 2061279089332739385}
   - component: {fileID: 4466160913316573550}
-  - component: {fileID: 285936264166160268}
+  - component: {fileID: 8486068648495266202}
   m_Layer: 0
   m_Name: Bar
   m_TagString: Untagged
@@ -52,11 +52,6 @@ MonoBehaviour:
   root: {fileID: 1458090438773665340}
   barSprite: {fileID: 1532386943091361935}
   bar: {fileID: 673011810319856290}
-  increment: 1
-  <Value>k__BackingField: 100
-  <MinValue>k__BackingField: 0
-  <MaxValue>k__BackingField: 100
-  <SelfRemove>k__BackingField: 1
 --- !u!114 &4466160913316573550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ComponentsCount: 4
---- !u!114 &285936264166160268
+--- !u!114 &8486068648495266202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

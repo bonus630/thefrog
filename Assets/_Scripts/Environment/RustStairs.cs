@@ -22,7 +22,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void RustStairs_OnTriggerEnterAction(ColliderData obj)
         {
-            if(obj.Collider.CompareTag(Teleported.tag))
+            if(obj.ColliderOther.CompareTag(Teleported.tag))
                 teleporter.Activate();
         }
 

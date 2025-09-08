@@ -1,13 +1,32 @@
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Enemies
 {
-    public class EnemyEye : MonoBehaviour
+    public class EnemyEye : MonoBehaviour , IElement
     {
         [SerializeField] float[] PositionX;
         [SerializeField] float speed;
         Vector2 destine;
         int current = 0;
+
+        public void ActiveBy(Elements element)
+        {
+            if (element.Equals(Elements.Lightining))
+                Destroy(gameObject);
+        }
+
+        public Elements CanActiveBy() => Elements.Lightining;
+
+        public Elements CanDeactiveBy() => Elements.Lightining;
+
+        public void DeactiveBy(Elements element)
+        {
+            
+        }
+
+        public Elements GetElement() => Elements.Lightining;
+
         private void Start()
         {
             destine = new Vector2(PositionX[current], transform.position.y);
@@ -21,6 +40,10 @@ namespace br.com.bonus630.thefrog.Enemies
                 destine = new Vector2(PositionX[current], transform.position.y);
                 transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y);
             }
+        }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Debug.Log("Eye collision");
         }
     }
 }

@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Caracters
         //[SerializeField] GameObject portal;
         private void Start()
         {
+            if (dialoguesData is null or { Count: 0})  return;
             if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall)&&this.dialoguesData.Count>1)
                 this.CurrentDialogueData = dialoguesData[1];
             else

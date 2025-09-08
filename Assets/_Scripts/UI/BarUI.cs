@@ -67,6 +67,7 @@ namespace br.com.bonus630.thefrog.UI
                 UpdateScale();
             }
         }
+        public int id { get; set; }
 
         //private void Start()
         //{

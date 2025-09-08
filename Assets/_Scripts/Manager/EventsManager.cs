@@ -74,6 +74,9 @@ namespace br.com.bonus630.thefrog.Manager
             GameEvent purifyWater = new GameEvent(GameEventName.PurifyWater, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(purifyWater);
+            GameEvent ladyLaments = new GameEvent(GameEventName.LadyLaments, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(ladyLaments);
 
         }
 
@@ -189,6 +192,7 @@ namespace br.com.bonus630.thefrog.Manager
         Dash,
         DefeatWizard,
         LightningBolt,
+        LadyLaments,
         RollingWild,
         PurifyWater,
         None

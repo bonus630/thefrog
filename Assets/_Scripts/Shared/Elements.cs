@@ -1,7 +1,36 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
+using UnityEngine.Events;
 
 namespace br.com.bonus630.thefrog.Shared
 {
+    public class Element : MonoBehaviour ,IElement
+    {
+        [SerializeField] Elements element;
+        [SerializeField] Elements activeBy;
+        [SerializeField] Elements deactiveBy;
+
+        [SerializeField] UnityEvent active;
+        [SerializeField] UnityEvent deactive;
+
+        public Elements GetElement() => element;
+
+        public Elements CanActiveBy() => activeBy;
+
+        public Elements CanDeactiveBy() => deactiveBy;
+
+        public void ActiveBy(Elements element)
+        {
+            active?.Invoke();
+        }
+
+        public void DeactiveBy(Elements element)
+        {
+            deactive?.Invoke();
+        }
+
+    }
+
     public enum Elements
     {
         Normal = 0,

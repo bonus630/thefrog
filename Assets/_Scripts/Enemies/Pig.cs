@@ -21,7 +21,7 @@ namespace br.com.bonus630.thefrog.Enemies
 #if UNITY_EDITOR
             this.life = 1;
 #endif
-            this.repulse = Vector2.up * 300;
+            //this.repulse = Vector2.up * 300;
             adu = GetComponent<AudioSource>();
             collider2D = GetComponent<CircleCollider2D>();
             base.Start();

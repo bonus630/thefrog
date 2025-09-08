@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using br.com.bonus630.thefrog.Items;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
@@ -85,8 +87,8 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            GameManager.Instance.PlayerStates.HasGravity = GameManager.Instance.IsEventCompleted(GameEventName.Gravity);
-            GameManager.Instance.PlayerStates.FallsControl = GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch);
+            //GameManager.Instance.PlayerStates.HasGravity = GameManager.Instance.IsEventCompleted(GameEventName.Gravity);
+            //GameManager.Instance.PlayerStates.FallsControl = GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch);
             //Debug.Log($"Gamepad: {Gamepad.current.GetType() == typeof(XInputControllerWindows)}");
             //states = GameManager.Instance.PlayerStates;
             //Debug
@@ -104,7 +106,7 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
             }
-#else
+//#else
             //if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
             //    transform.position = GameManager.Instance.PlayerStartPosition;
             //var i = FindAnyObjectByType<CamerasController>();
@@ -165,17 +167,28 @@ namespace br.com.bonus630.thefrog.Player
 #endif
 
         }
+        int bars = 0;
+       
         public GameObject CreateBar(Color color, float value)
         {
+
             GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
-            var b = o.GetComponent<Getter>();
+            // var b = o.GetComponent<Getter>();
             Follow follow = o.GetComponent<Follow>();
             follow.Target = transform;
-            follow.Offset = Vector3.up * (0.4f * -gravityDirection);
+            follow.Offset = Vector3.up * (0.4f  * -gravityDirection);
             IBarUI c = o.GetComponent<IBarUI>();
+            c.id = Random.Range(0,1000);
             c.Value = value;
             c.Color = color;
+            bars++;
             return o;
+        }
+        public void RemoveBar(GameObject bar, float time)
+        {
+            bars--;
+            Debug.Log("Bars+" + bars);
+            Destroy(bar, time);
         }
         IEnumerator DestroyEffects(ScreenEffects screenEffects)
         {
@@ -212,7 +225,7 @@ namespace br.com.bonus630.thefrog.Player
                     GameObject bar = CreateBar(playerSpiritController.CurrentProjectile.EffectColor, 0);
                     bar.GetComponent<IBarUI>().MaxValue = 100;
                     bar.GetComponent<IBarUI>().GoToValue(100, projectilie.ReloadTime());
-                    Destroy(bar, projectilie.ReloadTime());
+                    RemoveBar(bar, projectilie.ReloadTime());
                     nextLaunch = Time.time + projectilie.ReloadTime();
                 }
             }

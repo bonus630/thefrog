@@ -10,51 +10,77 @@ namespace br.com.bonus630.thefrog.Items
     {
         
         [SerializeField] LayerMask canHitLayers;
-        [SerializeField] AudioSource audio;
-        ParticleSystem ps;
+        [SerializeField] AudioSource audioSource;
+        [SerializeField] GameObject impactZone;
+        [SerializeField] float intensity = 1f;
+        bool hit = false;
+      //  ParticleSystem ps;
 
         private void Awake()
         {
-            ps = GetComponent<ParticleSystem>();
-            audio = GetComponent<AudioSource>();
+         //   ps = GetComponent<ParticleSystem>();
+            audioSource = GetComponent<AudioSource>();
+            //impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction += LightningBolt_OnTriggerEnterAction;
         }
 
-        private void OnParticleCollision(GameObject other)
-        {
-            Debug.Log("Particles :" + other.name);
-           // ps.Stop();
-        }
-        private void OnParticleSystemStopped()
-        {
-            Debug.Log("ParticleSystem terminou!");
-            // Aqui você pode chamar qualquer método
-           
-        }
+        //private void LightningBolt_OnTriggerEnterAction(ColliderData obj)
+        //{
+        //    Debug.Log("impactzone event:"+obj.GameObjectOwner.name);
+        //    Finish(obj.ColliderOther.gameObject);
+        //}
+
+        public Elements CanActiveBy() => Elements.Lightining;
+        public Elements CanDeactiveBy() => Elements.Water;
+        public override float ReloadTime() => 1f;
+
         public void ActiveBy(Elements element)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Elements CanActiveBy()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Elements CanDeactiveBy()
-        {
-            throw new System.NotImplementedException();
+            ActiveDeactive(true);
         }
 
         public void DeactiveBy(Elements element)
         {
-            throw new System.NotImplementedException();
+            ActiveDeactive(false);
         }
-
+        private void ActiveDeactive(bool active)
+        {
+       
+        }
         public override Elements GetElement()
         {
             return Elements.Lightining;
         }
 
+        private void Finish(GameObject other)
+        {
+            Debug.Log(other.name);
+            //if(other.TryGetComponent<SpriteRenderer>(out var render))
+            //{
+            //    render.color = Color.gray;
+            //}
+            if (hit)
+                return;
+            hit = true;
+            IEnemy enemy;
+            if (other.TryGetComponent<IEnemy>(out enemy))
+            {
+                enemy.Hit(intensity);
+                return;
+            }
+            if (other.TryGetComponent<IElement>(out IElement element))
+            {
+                if (element.CanActiveBy().Equals(GetElement()))
+                {
+                    element.ActiveBy(GetElement());
+                }
+                if (element.CanDeactiveBy().Equals(GetElement()))
+                {
+                    element.DeactiveBy(GetElement());
+                }
+
+            }
+            //Remove();
+        }
         public override void Launch(Vector2 direction)
         {
             
@@ -85,8 +111,8 @@ namespace br.com.bonus630.thefrog.Items
 
             // Tamanho do retângulo
             Vector2 size = new Vector2(
-                frontTop.x - playerPos.x,
-                frontTop.y - behindBottom.y
+                Mathf.Abs(frontTop.x - playerPos.x),
+                Mathf.Abs(frontTop.y - behindBottom.y)
             );
 
             Draw.Bounds2D(bounds, Color.red, 10f);
@@ -105,55 +131,61 @@ namespace br.com.bonus630.thefrog.Items
             for (int i = 0; i < hits.Length; i++)
             {
                 Debug.Log($"hits:{i} name:{hits[i].name} layer:{hits[i].gameObject.layer}");
-                if (hits[i].gameObject.layer == 6 && hits[i].Distance(GameManager.Instance.GetPlayer.GetComponent<Collider2D>()).distance < distance)
+                if (hits[i].Distance(GameManager.Instance.GetPlayer.GetComponent<Collider2D>()).distance < distance)
                     index = i;
             }
             Debug.Log("Index:" + index);
-            Vector2 projectilePos;
-            if (index != -1)
-            {
+            //utilizar esse código para um raio que encontre um teto 
+            //Vector2 projectilePos;
+            //if (index != -1) 
+            //{
 
-                RaycastHit2D hit2D = Physics2D.Linecast(hits[index].gameObject.transform.position, new Vector2(hits[index].gameObject.transform.position.x, frontTop.y), LayerMask.GetMask("Ground"));
+            //    RaycastHit2D hit2D = Physics2D.Linecast(hits[index].gameObject.transform.position, new Vector2(hits[index].gameObject.transform.position.x, frontTop.y), LayerMask.GetMask("Ground"));
 
-                Debug.DrawLine(hits[index].gameObject.transform.position, new Vector2(hits[index].gameObject.transform.position.x, frontTop.y), Color.yellow, 5f);
-                if (hit2D.collider == null)
-                {
-                    Debug.Log("null:" + index);
-                    projectilePos = new Vector2(hits[index].gameObject.transform.position.x, frontTop.y - 4);
-                }
-                else
-                {
-                    projectilePos = new Vector2(hits[index].gameObject.transform.position.x, hit2D.point.y - 1);
-                }
+            //    Debug.DrawLine(hits[index].gameObject.transform.position, new Vector2(hits[index].gameObject.transform.position.x, frontTop.y), Color.yellow, 5f);
+            //    if (hit2D.collider == null)
+            //    {
+            //        Debug.Log("null:" + index);
+            //        projectilePos = new Vector2(hits[index].gameObject.transform.position.x, frontTop.y - 4);
+            //    }
+            //    else
+            //    {
+            //        projectilePos = new Vector2(hits[index].gameObject.transform.position.x, hit2D.point.y - 1);
+            //    }
+            //}
+            //else
+            // projectilePos = direction.x > 0 ? bounds.topRight : bounds.topLeft;
+            //transform.position = projectilePos;
+            float posX = playerPos.x +(2f * direction.x) ;
+            float posY = playerPos.y;
+            if (index > -1) {
+                posX = hits[index].gameObject.transform.position.x;
+                posY = hits[index].gameObject.transform.position.y;
             }
-            else
-                projectilePos = direction.x > 0 ? bounds.topRight : bounds.topLeft;
-            transform.position = projectilePos;
+            transform.position = new Vector2(posX, posY);
             // Debug.Log("Camera: "+Camera.main.name);
-            Debug.Log("lightining position: " + projectilePos);
+          //  Debug.Log("lightining position: " + projectilePos);
             Debug.Log("lightining direction: " + direction);
-            ps.Play();
-            audio.Play();
-        }
-
-        public override float ReloadTime() => 1f;
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+           // ps.Play();
+            audioSource.Play();
         }
         public void Remove()
         {
+            Debug.Log("Lightining remover:");
+           // impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= LightningBolt_OnTriggerEnterAction;
             Destroy(gameObject);
         }
-
+        public void Impact()
+        {
+            Debug.Log("Lightining impact:");
+            Collider2D  raycastHit = Physics2D.OverlapCircle(gameObject.transform.position,0.2f,canHitLayers);
+            if (raycastHit != null)
+            {
+                Debug.Log("Lightining impact: " + raycastHit.name);
+                Finish(raycastHit.gameObject);
+            }
+            //impactZone.SetActive(true);
+        }
         public Vector3 GetProjectileSpawnPoint(Vector3 origin, float raycastDistance, LayerMask targetLayer, float fixedY)
         {
             RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.right, raycastDistance, targetLayer);

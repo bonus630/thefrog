@@ -16,34 +16,34 @@ MonoBehaviour:
   Dialogues:
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
-    text: Um pergaminho, com uma linguagem estranha, estanhamente posso ler.
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+    text: O que tem a me dizer dona pedra!
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: Dizem que acima das nuvens, onde a luz se dissolve em bruma dourada, flutua
       Aelyria, a Cidade Suspensa. Suas torres brancas tocam as estrelas,
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: "e suas ilhas de pedra navegam pelo c\xE9u como folhas ao vento. \xC9 um
       lugar onde rios sobem e os ecos caminham sem sombra."
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: "Mas os antigos avisam: \xE9 perigoso pairar pelas nuvens ao cair da noite.
       Alguns que sobem demais n\xE3o voltam\u2026 "
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: "desaparecem entre as n\xE9voas que escondem Aelyria."
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: "E abaixo, nas ra\xEDzes do mundo, repousam as ru\xEDnas de Kaor, onde
       o sil\xEAncio ainda escuta hist\xF3rias esquecidas."
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: Dois extremos esquecidos por seus grandes perigos.
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: "Reza a lenda que ao LESTE  \xE9 poss\xEDvel ver o caminho para Aelyria
       em algum ponto extremamente alto, chamado \"Vale das Nuvens\". "
-  - Avatar: {fileID: 897710771807637462, guid: 4a7abf98f421d3e419d216ffaed62dff, type: 3}
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
     text: " E ao extremo OESTE \xE9 poss\xEDvel ver Kaor mas \"Grande Queda\" \xE9
       implacav\xE9l."

@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Caracters
         protected int dialogueCounter = 0;
         protected bool playerTriggerEnter = false;
        // protected List<GameEventName> gameEvents;
-        public DialogueData CurrentDialogueData
+        public virtual DialogueData CurrentDialogueData
         {
             get
             {
