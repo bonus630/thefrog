@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Enemies
         float followDistance = 6f;
         float turnDistance = 3f;
         bool jump = false;
-        float safeFollowTurn = 0f;
+        float safeFollowTurn = 1f;
         protected readonly int DeadID = Animator.StringToHash("Dead");
         protected readonly int JumpID = Animator.StringToHash("Jump");
         protected override void Start()
@@ -53,6 +53,7 @@ namespace br.com.bonus630.thefrog.Enemies
             }
             if (detectGround.collider == null)
             {
+                Debug.Log("Pig change");    
                 if (!jump && safeFollowTurn < 0)
                 {
                     safeFollowTurn = 1f;

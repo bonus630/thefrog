@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 namespace br.com.bonus630.thefrog.Shared
 {
     public interface IElement 
@@ -7,6 +9,7 @@ namespace br.com.bonus630.thefrog.Shared
         Elements CanActiveBy();
         Elements CanDeactiveBy();
 
+        Color GetElementColor();
         void ActiveBy(Elements element);
         void DeactiveBy(Elements element);
 

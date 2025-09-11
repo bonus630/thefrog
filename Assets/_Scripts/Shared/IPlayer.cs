@@ -22,6 +22,7 @@ namespace br.com.bonus630.thefrog.Shared
         void RemoveGravity(bool remove);
         void KnockUpOnJump(Vector2 repulse);
         bool FooterTouching(Collider2D coll);
+        bool BodyTouching(Collider2D coll);
 
         void AllInputsOn(bool disables,float delayTime = 0);
 

@@ -5940,7 +5940,9 @@ MonoBehaviour:
     *
     FX036 - NYKNCK
 
-    * Old Hero - Atari Boy'
+    * Old Hero - Atari Boy
+
+    * Glowing ball - LVGames '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6096,7 +6098,7 @@ MonoBehaviour:
     * Art of Scrolls
     - BigWander
 
-    *Sci-fi lab mecha boss - Foozle'
+    * Sci-fi lab mecha boss - Foozle'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3962948963989777312}
   - component: {fileID: 9116702748624442103}
   - component: {fileID: 8383937675207970543}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: lightningBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

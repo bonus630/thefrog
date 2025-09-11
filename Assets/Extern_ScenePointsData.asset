@@ -64,4 +64,14 @@ MonoBehaviour:
     Hour: 0
     Point: {x: 25.81, y: 18.25, z: 0}
     transform: {fileID: 0}
+  - Name: CastleLeftTower
+    GameObjectName: BlueBird (8)
+    Hour: 0
+    Point: {x: 248.89, y: -57.11, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleRightTower
+    GameObjectName: BlueBird (8)
+    Hour: 0
+    Point: {x: 267.06, y: -57.59, z: 0}
+    transform: {fileID: 0}
   SceneType: 4

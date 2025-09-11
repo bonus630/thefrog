@@ -99,7 +99,11 @@ namespace br.com.bonus630.thefrog.Player
         }
         void FixedUpdate()
         {
-            player.KnockedUpOnHit();
+            if (player.knockUp)
+            {
+                player.KnockedUpOnHit();
+                airDash = false;
+            }
             if (Mathf.Abs(player.RigibodyLinearVelocity.y * player.gravityDirection) > Mathf.Abs(LinearMaxY))
             {
                 TimeInFastFall += Time.deltaTime;
@@ -238,8 +242,14 @@ namespace br.com.bonus630.thefrog.Player
                 anim.SetTrigger(DoubleJumpID);
             }
         }
+#if UNITY_EDITOR
+        float distance = 0f;
+#endif
         private void Jump()
         {
+#if UNITY_EDITOR
+            distance = player.transform.position.x;
+#endif
             if (isJumping && coyouteTimer > 0)
             {
                 player.RigibodyLinearVelocityY = jumpForce;
@@ -249,6 +259,10 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void resetJump()
         {
+#if UNITY_EDITOR
+            distance = player.transform.position.x - distance;
+            Debug.Log("Jump Distance:" + distance);
+#endif      
             JumpDownEffect();
             player.InGround = true;
             airDash = false;

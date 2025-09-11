@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5252877267614515093}
   - component: {fileID: -5748055920661723129}
   - component: {fileID: 9083627508951997224}
+  - component: {fileID: 2965829854323807814}
   m_Layer: 12
   m_Name: torch-C-01
   m_TagString: Untagged
@@ -197,6 +198,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2965829854323807814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767265821771570616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9c78f1e819a5840b6a0d72ece8ebdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6304042347086993402
 GameObject:
   m_ObjectHideFlags: 0

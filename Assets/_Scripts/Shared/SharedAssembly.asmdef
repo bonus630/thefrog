@@ -1,7 +1,9 @@
 {
     "name": "SharedAssembly",
     "rootNamespace": "br.com.bonus630.thefrog.Shared",
-    "references": [],
+    "references": [
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

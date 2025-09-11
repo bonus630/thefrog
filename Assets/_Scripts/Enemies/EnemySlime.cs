@@ -15,23 +15,22 @@ namespace br.com.bonus630.thefrog.Enemies
         float timer = 0;
         protected GameObject player;
         private readonly int Run = Animator.StringToHash("Run");
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             anin = GetComponent<Animator>();
             player = GameManager.Instance.GetPlayer;
+            timer = Random.Range(1f, 3f);
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Vector3.Distance(player.transform.position, transform.position) > maxFollowDistance)
                 return;
-            timer -=Time.deltaTime;
-            if(timer < 0)
+            timer -= Time.deltaTime;
+            if (timer < 0)
             {
                 anin.SetTrigger(Run);
-                timer = Random.Range(1f,3f);
+                timer = Random.Range(1f, 3f);
             }
         }
         public void Blob1()
@@ -44,7 +43,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         private void Blob(GameObject blocSpawn)
         {
-            Instantiate(blobInstante,blocSpawn.transform.position,blobInstante.transform.rotation);
+            Instantiate(blobInstante, blocSpawn.transform.position, blobInstante.transform.rotation);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

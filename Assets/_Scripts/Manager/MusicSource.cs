@@ -58,7 +58,6 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 audioLeft.loop = false;
                 audioRight.loop = false;
-                //PlayFadIn(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
                 CrossFade(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
             }
             if (leftTurn)

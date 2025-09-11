@@ -25672,6 +25672,27 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712995329823639533}
+        m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
+          PlayerAssembly
+        m_MethodName: OnSpirit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 14f09139-3a17-4c8c-b4bf-c3da97fe0daa
+    m_ActionName: 'Player/Select[/XInputControllerWindows/select,/Keyboard/rightShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99f131b0-bebf-4504-bfbc-636fe0d66033
+    m_ActionName: 'Global/InteractUP[/XInputControllerWindows/dpad/up,/Keyboard/upArrow,/XInputControllerWindows/leftStick/up]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -25705,6 +25726,7 @@ MonoBehaviour:
   projectilies:
   - {fileID: 6953179859457840315, guid: 89f47c55a35407345b1603503e915647, type: 3}
   - {fileID: 5659226872111448139, guid: 2865e9bcdc885524aad009bf4ab0f8e4, type: 3}
+  - {fileID: 3241511269339411312, guid: d89727c895ddeb3418f4798650222dad, type: 3}
   projectileSpawPoint: {fileID: 2909710817049657993}
 --- !u!1 &8873583698127253809
 GameObject:

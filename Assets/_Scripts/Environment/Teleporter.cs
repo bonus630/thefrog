@@ -11,6 +11,9 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] GameObject to;
         [SerializeField] bool Auto;
         [SerializeField] float delayTime;
+        [SerializeField] IActivator ActiveOnArrival;
+        //[SerializeField] IActivator ActiveOnArrival;
+
         bool cancel = false;
         
         public override void Activate()
@@ -48,7 +51,9 @@ namespace br.com.bonus630.thefrog.Environment
             if (rb != null)
                 rb.bodyType = RigidbodyType2D.Dynamic;
             if(player!=null)
-                player.MoveInputOn = true; 
+                player.MoveInputOn = true;
+            if (ActiveOnArrival != null)
+                ActiveOnArrival.Activate();
 
 
         }

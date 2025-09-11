@@ -56,7 +56,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Player Hit Collision name: " + collision.gameObject.name);
+          //  Debug.Log("Player Hit Collision name: " + collision.gameObject.name);
             if (collision.gameObject.layer == 10)
             {
                 // Debug.Log("PlayerHearth :" + collision.gameObject.name);

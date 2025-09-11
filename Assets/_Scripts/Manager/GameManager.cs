@@ -95,17 +95,19 @@ namespace br.com.bonus630.thefrog.Manager
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
 #if UNITY_EDITOR
-            Time.timeScale = 0.5f;
+            //Time.timeScale = 0.5f;
             //playerStates.HasGravity = true;
-            //playerStates.HasFireball = true;
-            //playerStates.HasWallJump = true;
+            playerStates.HasFireball = true;
+            playerStates.HasWallJump = true;
  //           playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
-            //playerStates.Shurykens = 100;
+            playerStates.Shurykens = 100;
             //eventManager.EventCompleted(GameEventName.Gravity, false);
             //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
             eventManager.EventCompleted(GameEventName.LightningBolt, false);
+            eventManager.EventCompleted(GameEventName.FireBall, false);
+            eventManager.EventCompleted(GameEventName.RollingWild, false);
 #endif
             DontDestroyOnLoad(gameObject);
         }
@@ -350,7 +352,10 @@ namespace br.com.bonus630.thefrog.Manager
                 StartCoroutine(RemoveHeart(hud, hearts));
             }
         }
-
+        public void UpdateProjectil(Color color)
+        {
+            Debug.Log("Projectil color:" + color);
+        }
 
         IEnumerator AddHeart(GameObject hud, int hearts)
         {

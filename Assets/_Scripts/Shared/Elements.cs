@@ -9,6 +9,7 @@ namespace br.com.bonus630.thefrog.Shared
         [SerializeField] Elements element;
         [SerializeField] Elements activeBy;
         [SerializeField] Elements deactiveBy;
+        [SerializeField] Color elementColor;
 
         [SerializeField] UnityEvent active;
         [SerializeField] UnityEvent deactive;
@@ -29,6 +30,7 @@ namespace br.com.bonus630.thefrog.Shared
             deactive?.Invoke();
         }
 
+        public Color GetElementColor() => elementColor;
     }
 
     public enum Elements

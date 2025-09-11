@@ -16,8 +16,8 @@ namespace br.com.bonus630.thefrog.Player
         int currentIndex = 0;
         List<ProjectilData> avaliableProjectilies = new();
 
-        float updateTime = 0.4f;
-        float time = 0f;
+       // float updateTime = 0.4f;
+     //   float time = 0f;
         float count = 0f;
         public ProjectilData CurrentProjectile { get; private set; }
 
@@ -38,16 +38,16 @@ namespace br.com.bonus630.thefrog.Player
         // Update is called once per frame
         void Update()
         {
-            time += Time.deltaTime;
+         //   time += Time.deltaTime;
         }
 
         public void SelectProjectile(float direction)
         {
 
             //Debug.Log("Direction: " + direction);
-            if(time > updateTime)
-            {
-                time = 0;
+          //  if(time > updateTime)
+          //  {
+            //    time = 0;
                 if (direction < 0)
                     currentIndex--;
                 if(currentIndex < 0)
@@ -56,9 +56,10 @@ namespace br.com.bonus630.thefrog.Player
                     currentIndex++;
                 if (currentIndex >= avaliableProjectilies.Count)
                     currentIndex = 0;
+            Debug.Log("current:" + currentIndex);
                 SetCurrentProjectil();
-                time = 0;
-            }
+         //       time = 0;
+          //  }
         }
         private void CheckProjectil()
         {
@@ -75,15 +76,15 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     case Elements.Fire:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.red, Elements.Fire));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.red,  Elements.Fire));
                         break;
                     case Elements.Lightining:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.white, Elements.Lightining));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.white, Elements.Lightining));
                         break;
                     case Elements.Wind:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWild))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.green, Elements.Wind));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.green,  Elements.Wind));
                         break;
                     case Elements.Water:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater))
@@ -91,7 +92,7 @@ namespace br.com.bonus630.thefrog.Player
                         break;
                     case Elements.Earth:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.None))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.magenta, Elements.Earth));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.magenta,  Elements.Earth));
                         break;
                 }
             }
@@ -100,7 +101,11 @@ namespace br.com.bonus630.thefrog.Player
         private void SetCurrentProjectil()
         {
             if (avaliableProjectilies.Count > 0)
+            {
                 CurrentProjectile = avaliableProjectilies[currentIndex];
+                GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor);
+            }
+
         }
        
     }

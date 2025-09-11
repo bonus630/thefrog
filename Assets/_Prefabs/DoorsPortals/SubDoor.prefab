@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4160852123102047632}
   - component: {fileID: 6821171340216439083}
   - component: {fileID: 6223908249495479589}
-  - component: {fileID: 6246192029605267769}
   - component: {fileID: 834438747437952452}
+  - component: {fileID: 5009686909732015808}
   m_Layer: 0
   m_Name: SubDoor
   m_TagString: Untagged
@@ -104,23 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToPoint: 0
   scenePointsData: {fileID: 11400000, guid: 5f0f79fe62625ef4fbc1b46cc2aef1a1, type: 2}
---- !u!114 &6246192029605267769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5980362043888676393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e77d11c9bc22b4ca917f6ba0b65148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemToActive: {fileID: 6223908249495479589}
-  GameObjectToActive: {fileID: 0}
-  delayActiveTime: 0
-  delayDeactiveTime: 0
-  permanentActived: 0
+  useCurrentHour: 1
 --- !u!61 &834438747437952452
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,3 +151,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.33241302, y: 0.47171134}
   m_EdgeRadius: 0
+--- !u!114 &5009686909732015808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5980362043888676393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0340855bff14048a04fc38b83e8e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upAction:
+    m_Name: Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2253dc86-f803-4a01-bcff-13e65a551799
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  teleporter: {fileID: 6223908249495479589}

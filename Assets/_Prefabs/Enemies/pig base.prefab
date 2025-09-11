@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: repulseForce
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 3359745956895042044, guid: a2403c5dc5d0ba64fa1194382d220cac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.017
+      objectReference: {fileID: 0}
     - target: {fileID: 4778285890427782511, guid: a2403c5dc5d0ba64fa1194382d220cac, type: 3}
       propertyPath: m_Name
       value: pig base

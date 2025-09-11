@@ -90,8 +90,8 @@ GameObject:
   - component: {fileID: 8055169050220186741}
   - component: {fileID: 1765040736246625093}
   - component: {fileID: 1213057851704490043}
-  - component: {fileID: 842750293092294149}
   - component: {fileID: 1394574726552382947}
+  - component: {fileID: 842750293092294149}
   - component: {fileID: 3434798417993356912}
   m_Layer: 0
   m_Name: ShipDoor
@@ -227,7 +227,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.015035428, y: 0.0034332424}
+  m_Offset: {x: -0.015035428, y: -0.0028155893}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -237,25 +237,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.12992914, y: 0.3131335}
+  m_Size: {x: 0.12992914, y: 0.32563117}
   m_EdgeRadius: 0
---- !u!114 &842750293092294149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109232665979645552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56ec949baf603c489c99097a2bd7dfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleported: {fileID: 0}
-  from: {fileID: 0}
-  to: {fileID: 0}
-  Auto: 0
-  delayTime: 0
 --- !u!114 &1394574726552382947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,10 +251,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c768aa0f95a4b9c41a234e52dd1a43e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleporter: {fileID: 842750293092294149}
+  inside: 0
   openingAudio: {fileID: 8300000, guid: bdd0737e8fb7a67419c91e68679863b9, type: 3}
   closingAudio: {fileID: 8300000, guid: 2baf7d90a80573a4e964324c8adc4f6e, type: 3}
   isOpen: 1
   isExit: 0
+--- !u!114 &842750293092294149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109232665979645552}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56ec949baf603c489c99097a2bd7dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleported: {fileID: 0}
+  from: {fileID: 0}
+  to: {fileID: 0}
+  Auto: 0
+  delayTime: 0
+  ActiveOnArrival: {fileID: 0}
 --- !u!82 &3434798417993356912
 AudioSource:
   m_ObjectHideFlags: 0

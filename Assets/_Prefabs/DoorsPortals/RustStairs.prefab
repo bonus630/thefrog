@@ -149,38 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 5
   colliderName: PrisonExit
---- !u!1 &1217070452527757914
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7692292499662279413}
-  m_Layer: 0
-  m_Name: Exit
-  m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7692292499662279413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217070452527757914}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.191, y: -0.087, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7620924250686454006}
-  m_Father: {fileID: 708628548523258002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712336912939511794
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +187,7 @@ Transform:
   - {fileID: 569559386482588098}
   - {fileID: 9039001522367418770}
   - {fileID: 961373030373522290}
-  - {fileID: 7692292499662279413}
+  - {fileID: 7620924250686454006}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2064903175389781479
@@ -255,6 +223,7 @@ MonoBehaviour:
   to: {fileID: 0}
   Auto: 0
   delayTime: 0
+  ActiveOnArrival: {fileID: 0}
 --- !u!1 &1749861930193258826
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,12 +835,12 @@ GameObject:
   - component: {fileID: 8008717432244346194}
   - component: {fileID: 2301001976362992309}
   m_Layer: 0
-  m_Name: CameraActive
+  m_Name: Exit
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: 7cba34d70552e144586a4d3ce4a33de5, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7620924250686454006
 Transform:
   m_ObjectHideFlags: 0
@@ -881,11 +850,11 @@ Transform:
   m_GameObject: {fileID: 6612800815610963482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.6697497, y: -33.39925, z: 0}
+  m_LocalPosition: {x: 0, y: -0.121, z: 0}
   m_LocalScale: {x: 0.125, y: 0.125, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7692292499662279413}
+  m_Father: {fileID: 708628548523258002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8573908529463040978
 BoxCollider2D:
@@ -921,7 +890,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.2254486, y: 0.750824}
+  m_Offset: {x: -0.02371931, y: 0.83055806}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -931,7 +900,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.4508972, y: 1.8485413}
+  m_Size: {x: 2.121995, y: 2.0080094}
   m_EdgeRadius: 0
 --- !u!114 &8456457887203597617
 MonoBehaviour:
@@ -962,6 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemToActive: {fileID: 8008717432244346194}
   GameObjectToActive: {fileID: 0}
+  Tag: Player
   delayActiveTime: 0
   delayDeactiveTime: 0
   permanentActived: 1

@@ -1,10 +1,11 @@
 ﻿
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
 {
 
-    public class ShipDoor : MonoBehaviour, IInteract
+    public class ShipDoor : Door, IInteract
     {
         [SerializeField] AudioClip openingAudio;
         [SerializeField] AudioClip closingAudio;
@@ -16,11 +17,11 @@ namespace br.com.bonus630.thefrog.Items
         SpriteRenderer sprite;
         GameObject door;
         BoxCollider2D boxCollider;
-        IPlayer player;
 
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             audioSource = GetComponent<AudioSource>();
             anim = GetComponent<Animator>();
             door = transform.GetChild(0).gameObject;
@@ -45,17 +46,30 @@ namespace br.com.bonus630.thefrog.Items
         //    Gizmos.color = Color.blue;
         //    Gizmos.DrawCube(transform.position, boxCollider.bounds.size);
         //}
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected override void Update()
         {
+            if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && inside && isOpen)
+            {
+                var p = GameManager.Instance.GetPlayerScript;
+                if(p.InGround && p.BodyTouching(boxCollider))
+                    Close();
+            }
+        }
+        protected override void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log($"EXIT {collision.name} | CompareTag={collision.CompareTag("Player")}");
             if (collision.CompareTag("Player"))
             {
+                
                 if (collision.TryGetComponent<IPlayer>(out player))
                 {
+                    Debug.Log("ipayer: "+player.InGround);
+                    inside = true;
                     if (!player.InGround)
                         return;
                     if (isOpen)
                     {
-                        Close();
+                        //Close();
                     }
                     else
                         Open();
@@ -82,10 +96,9 @@ namespace br.com.bonus630.thefrog.Items
 
         public void Closed()
         {
-            if (TryGetComponent<IActivator>(out IActivator tele))
+            if (teleporter!=null)
             {
-                tele.Activate();
-
+                teleporter.Activate();
             }
 
         }
@@ -112,11 +125,11 @@ namespace br.com.bonus630.thefrog.Items
             audioSource.PlayOneShot(openingAudio);
             anim.SetBool("Closed", false);
             isOpen = true;
-            Invoke(nameof(EnablesDoor), 0.5f);
+            Invoke(nameof(EnablesDoor), 0.1f);
         }
         private void EnablesDoor()
         {
-            transform.GetChild(0).gameObject.SetActive(isOpen);
+            door.SetActive(isOpen);
         }
 
         public void Interact()

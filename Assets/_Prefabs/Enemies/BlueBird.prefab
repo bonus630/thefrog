@@ -163,14 +163,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPoint: {fileID: 0}
   downPoint: {fileID: 0}
+  coll: {fileID: 4884585578473435601}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  coll: {fileID: 4884585578473435601}
   speed: 0
   life: 2
-  repulse: {x: 0, y: 200}
+  <KnockUpHitForce>k__BackingField: 100
   repulseForce: 100
+  repulse: {x: 0, y: 200}
   xDirection: -1
   enemyWeakenesses: 01000000
   audioSource: {fileID: 219184905113432843}
@@ -195,8 +196,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 6
+  MinDistance: 3
+  MaxDistance: 8
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

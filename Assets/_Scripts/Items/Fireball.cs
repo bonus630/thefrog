@@ -55,7 +55,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-           // Debug.Log("FireBall collision:" + collision.gameObject.name);
+            Debug.Log("FireBall collision:" + collision.gameObject.name);
             
             if (!remove)
             {
@@ -89,7 +89,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            //Debug.Log("FireBall trigger :"+collision.gameObject.name);
+            Debug.Log("FireBall trigger :"+collision.gameObject.name);
             if (!remove)
             {
                 IEnemy enemy;
@@ -97,6 +97,18 @@ namespace br.com.bonus630.thefrog.Items
                 {
                     enemy.Hit(intensity);
                     return;
+                }
+                if (collision.gameObject.TryGetComponent<IElement>(out IElement element))
+                {
+                    if (element.CanActiveBy().Equals(GetElement()))
+                    {
+                        element.ActiveBy(GetElement());
+                    }
+                    if (element.CanDeactiveBy().Equals(GetElement()))
+                    {
+                        element.DeactiveBy(GetElement());
+                    }
+
                 }
             }
         }
@@ -110,7 +122,7 @@ namespace br.com.bonus630.thefrog.Items
         public Elements CanActiveBy() => Elements.Fire;
         public Elements CanDeactiveBy() => Elements.Water;
         public override float ReloadTime() => 5f;
-
+        public Color GetElementColor() => Color.red;
         public void ActiveBy(Elements element)
         {
             ActiveDeactive(true);

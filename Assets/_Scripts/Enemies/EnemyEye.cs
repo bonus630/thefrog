@@ -19,6 +19,7 @@ namespace br.com.bonus630.thefrog.Enemies
         public Elements CanActiveBy() => Elements.Lightining;
 
         public Elements CanDeactiveBy() => Elements.Lightining;
+        public Color GetElementColor() => Color.white;
 
         public void DeactiveBy(Elements element)
         {

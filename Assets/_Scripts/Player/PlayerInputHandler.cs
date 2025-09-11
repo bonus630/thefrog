@@ -9,7 +9,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             Vector2 directions = context.ReadValue<Vector2>();
             player.playerMovement.HandlerMove(directions);
-            player.playerSpiritController.SelectProjectile(directions.y);
+           // player.playerSpiritController.SelectProjectile(directions.y);
         }
         public void OnDash(InputAction.CallbackContext context)
         {
@@ -36,6 +36,11 @@ namespace br.com.bonus630.thefrog.Player
             if (context.started)
                 player.playerMovement.HandlerHability();
                
+        }
+        public void OnSelect(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+                player.playerSpiritController.SelectProjectile(1);
         }
     }
 }

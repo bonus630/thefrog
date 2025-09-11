@@ -346,7 +346,9 @@ namespace br.com.bonus630.thefrog.Player
                     // Debug.LogError("Rigidbody2D está null no Build!");
                     return;
                 }
-                 Debug.Log("knocked hit: " + knockUpForce);
+                //vou resetar o airDash aqui, mas não é o lugar certo para isso
+                //playerMovement.airDash
+                //Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
                 AddForce(knockUpForce, time: 0.2f);
                 //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
@@ -369,6 +371,10 @@ namespace br.com.bonus630.thefrog.Player
         public bool FooterTouching(Collider2D collision)
         {
             return footerCollider.IsTouching(collision);
+        }
+        public bool BodyTouching(Collider2D collision)
+        {
+            return GetComponent<CapsuleCollider2D>().IsTouching(collision);
         }
         public void KnockUpOnJump(Vector2 force)
         {

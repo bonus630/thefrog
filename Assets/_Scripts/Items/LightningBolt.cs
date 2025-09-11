@@ -8,17 +8,17 @@ namespace br.com.bonus630.thefrog.Items
 {
     public class LightningBolt : IProjectilies, IElement
     {
-        
+
         [SerializeField] LayerMask canHitLayers;
         [SerializeField] AudioSource audioSource;
         [SerializeField] GameObject impactZone;
         [SerializeField] float intensity = 1f;
         bool hit = false;
-      //  ParticleSystem ps;
+        //  ParticleSystem ps;
 
         private void Awake()
         {
-         //   ps = GetComponent<ParticleSystem>();
+            //   ps = GetComponent<ParticleSystem>();
             audioSource = GetComponent<AudioSource>();
             //impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction += LightningBolt_OnTriggerEnterAction;
         }
@@ -31,6 +31,7 @@ namespace br.com.bonus630.thefrog.Items
 
         public Elements CanActiveBy() => Elements.Lightining;
         public Elements CanDeactiveBy() => Elements.Water;
+        public Color GetElementColor() => Color.white;
         public override float ReloadTime() => 1f;
 
         public void ActiveBy(Elements element)
@@ -44,7 +45,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void ActiveDeactive(bool active)
         {
-       
+
         }
         public override Elements GetElement()
         {
@@ -83,7 +84,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         public override void Launch(Vector2 direction)
         {
-            
+
             // ps.Simulate(1f, true, true);
             //float y = Camera.main.ViewportToWorldPoint(Vector3.up).y;
             //float x = Camera.main.ViewportToWorldPoint(Vector3.right * direction).x;
@@ -156,29 +157,30 @@ namespace br.com.bonus630.thefrog.Items
             //else
             // projectilePos = direction.x > 0 ? bounds.topRight : bounds.topLeft;
             //transform.position = projectilePos;
-            float posX = playerPos.x +(2f * direction.x) ;
+            float posX = playerPos.x + (2f * direction.x);
             float posY = playerPos.y;
-            if (index > -1) {
+            if (index > -1)
+            {
                 posX = hits[index].gameObject.transform.position.x;
                 posY = hits[index].gameObject.transform.position.y;
             }
             transform.position = new Vector2(posX, posY);
             // Debug.Log("Camera: "+Camera.main.name);
-          //  Debug.Log("lightining position: " + projectilePos);
+            //  Debug.Log("lightining position: " + projectilePos);
             Debug.Log("lightining direction: " + direction);
-           // ps.Play();
+            // ps.Play();
             audioSource.Play();
         }
         public void Remove()
         {
             Debug.Log("Lightining remover:");
-           // impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= LightningBolt_OnTriggerEnterAction;
+            // impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= LightningBolt_OnTriggerEnterAction;
             Destroy(gameObject);
         }
         public void Impact()
         {
             Debug.Log("Lightining impact:");
-            Collider2D  raycastHit = Physics2D.OverlapCircle(gameObject.transform.position,0.2f,canHitLayers);
+            Collider2D raycastHit = Physics2D.OverlapCircle(gameObject.transform.position, 0.2f, canHitLayers);
             if (raycastHit != null)
             {
                 Debug.Log("Lightining impact: " + raycastHit.name);
