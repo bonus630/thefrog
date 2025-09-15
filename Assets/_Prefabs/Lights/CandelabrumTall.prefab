@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367ea49d5ca31d84883fdd2d834ce8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GetElement>k__BackingField: 1
+  <ElementColor>k__BackingField: {r: 1, g: 0.41411152, b: 0, a: 1}
   off: 0
 --- !u!82 &2600329110518177177
 AudioSource:

@@ -1,3 +1,5 @@
+using System.Collections;
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,9 +39,11 @@ namespace br.com.bonus630.thefrog.Items
 
         protected virtual void Update()
         {
-            if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && player != null && player.InGround)
+            if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && inside)
             {
-                teleporter.Activate();
+                var p = GameManager.Instance.GetPlayerScript;
+                if (p.InGround && p.BodyTouching(doorCollider))
+                    teleporter.Activate();
             }
         }
 
@@ -50,10 +54,10 @@ namespace br.com.bonus630.thefrog.Items
         }
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            Debug.Log("doot trigger exit");
+            Debug.Log("doot trigger exit:" + collision.name);
             if (collision.CompareTag("Player") && player != null)
             {
-                Debug.Log("doot trigger exit tag player: "+player.InGround);
+                Debug.Log("doot trigger exit tag player: " + player.InGround);
                 if (!player.BodyTouching(this.doorCollider))
                 {
                     Debug.Log("doot trigger exit tag player body: " + player.InGround);
@@ -61,6 +65,13 @@ namespace br.com.bonus630.thefrog.Items
                     player = null;
                 }
             }
+            
         }
+
+        private void OnDestroy()
+        {
+            GlobalActions.Disable();
+        }
+
     }
 }

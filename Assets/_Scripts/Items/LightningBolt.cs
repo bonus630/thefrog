@@ -8,7 +8,8 @@ namespace br.com.bonus630.thefrog.Items
 {
     public class LightningBolt : IProjectilies, IElement
     {
-
+        [field: SerializeField] public override Elements GetElement { get; set; } = Elements.Lightining;
+        [field: SerializeField] public Color ElementColor { get; set; } = Color.white;
         [SerializeField] LayerMask canHitLayers;
         [SerializeField] AudioSource audioSource;
         [SerializeField] GameObject impactZone;
@@ -31,7 +32,7 @@ namespace br.com.bonus630.thefrog.Items
 
         public Elements CanActiveBy() => Elements.Lightining;
         public Elements CanDeactiveBy() => Elements.Water;
-        public Color GetElementColor() => Color.white;
+      
         public override float ReloadTime() => 1f;
 
         public void ActiveBy(Elements element)
@@ -47,10 +48,7 @@ namespace br.com.bonus630.thefrog.Items
         {
 
         }
-        public override Elements GetElement()
-        {
-            return Elements.Lightining;
-        }
+        
 
         private void Finish(GameObject other)
         {
@@ -70,13 +68,13 @@ namespace br.com.bonus630.thefrog.Items
             }
             if (other.TryGetComponent<IElement>(out IElement element))
             {
-                if (element.CanActiveBy().Equals(GetElement()))
+                if (element.CanActiveBy().Equals(GetElement))
                 {
-                    element.ActiveBy(GetElement());
+                    element.ActiveBy(GetElement);
                 }
-                if (element.CanDeactiveBy().Equals(GetElement()))
+                if (element.CanDeactiveBy().Equals(GetElement))
                 {
-                    element.DeactiveBy(GetElement());
+                    element.DeactiveBy(GetElement);
                 }
 
             }

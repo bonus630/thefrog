@@ -54,13 +54,31 @@ namespace br.com.bonus630.thefrog.Player
             if (PrepareFallDie && player.InGround)
                 Die();
         }
+#if UNITY_EDITOR
+        int cont = 0;
+#endif
         private void OnCollisionEnter2D(Collision2D collision)
         {
           //  Debug.Log("Player Hit Collision name: " + collision.gameObject.name);
             if (collision.gameObject.layer == 10)
             {
+#if UNITY_EDITOR
+                if(collision.gameObject.name == "123")
+                {
+                    if (cont == 0)
+                        Debug.LogWarning("Passou ");
+                    else
+                        cont = 0;
+                }
+                else
+                {
+                    cont++;
+                }
+                    Debug.LogWarning("Die in: " + collision.gameObject.name);
+#else
                 // Debug.Log("PlayerHearth :" + collision.gameObject.name);
                 Die();
+#endif
             }
             if (collision.gameObject.layer == 6)
             {

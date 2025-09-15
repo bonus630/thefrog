@@ -34,7 +34,7 @@ namespace br.com.bonus630.thefrog.Enemies
             {
                 if (collision.gameObject.TryGetComponent<IProjectilies>(out IProjectilies p))
                 {
-                    if (enemyWeakenesses.Contains(p.GetElement()))
+                    if (enemyWeakenesses.Contains(p.GetElement))
                     {
                         Hit(2);
                     }

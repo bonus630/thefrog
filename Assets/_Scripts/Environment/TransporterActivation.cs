@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Environment
         void Start()
         {
             render = GetComponent<SpriteRenderer>();
-            if(GameManager.Instance.EnvironmentStates.Activeds.Contains(ID))
+            if(GameManager.Instance.IsActived(ID))
             {
                 VisualActivation();
                 transform.position = startPosition[startPosition.Count -1];

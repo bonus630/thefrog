@@ -16,8 +16,8 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private GameObject bar;
         [SerializeField] private GameObject footer;
         [SerializeField] private GameObject projectile;
-        [SerializeField] private GameObject fireball;
-        [SerializeField] private GameObject lightningBolt;
+        //[SerializeField] private GameObject fireball;
+        //[SerializeField] private GameObject lightningBolt;
         [SerializeField] private Transform projectilesSpawPoint;
         [SerializeField] private Transform projectilesSpawPoint2;
 
@@ -199,16 +199,6 @@ namespace br.com.bonus630.thefrog.Player
             screenEffects.StopCameraShake();
             screenEffects.GamepadShake(0f, 0f);
         }
-        //private bool CheckGround()
-        //{
-        //    RaycastHit2D raycastHit2D = Physics2D.Raycast(Vector2.zero, Vector2.down, 0.5f, LayerMask.GetMask(new string[] { "Ground", "Platform", "StaticPlatforms" }));
-        //    Gizmos.DrawLine(Vector2.zero,new Vector2.down, 0.5f)
-        //}
-       // private GameObject currentBullet = null;
-        //private void SelectProjectilie()
-        //{
-        //    currentBullet = fireball;
-        //}
 
         private float nextLaunch = 0f;
         public void LaunchSpirit()
@@ -217,11 +207,14 @@ namespace br.com.bonus630.thefrog.Player
                 return;
             if (Time.time > nextLaunch)
             {
-                GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil, playerSpiritController.CurrentProjectile.SpawnPoint.transform.position, Quaternion.identity);
+              //  GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil, playerSpiritController.CurrentProjectile.SpawnPoint.transform.position, Quaternion.identity);
+              GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil,
+                  playerMovement.GetWallSliding ?  playerSpiritController.CurrentProjectile.SpawnPoint2.transform.position : playerSpiritController.CurrentProjectile.SpawnPoint.transform.position,
+                  Quaternion.identity);
 
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
-                    projectilie.Launch(new Vector2(LookFor, 0));
+                    projectilie.Launch(new Vector2(LookFor.FlipIfNegative(playerMovement.GetWallSliding), 0));
                     GameObject bar = CreateBar(playerSpiritController.CurrentProjectile.EffectColor, 0);
                     bar.GetComponent<IBarUI>().MaxValue = 100;
                     bar.GetComponent<IBarUI>().GoToValue(100, projectilie.ReloadTime());

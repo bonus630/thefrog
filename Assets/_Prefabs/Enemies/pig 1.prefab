@@ -238,10 +238,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -401,14 +401,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPoint: {fileID: 4550056376592713083}
   downPoint: {fileID: 3359745956895042044}
+  coll: {fileID: 7221884794571044310}
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  coll: {fileID: 7221884794571044310}
   speed: 20
   life: 1
-  repulse: {x: 0, y: 60}
+  <KnockUpHitForce>k__BackingField: 40
   repulseForce: 60
+  repulse: {x: 0, y: 60}
   xDirection: -1
   enemyWeakenesses: 00000000
   bodyCollider: {fileID: 7221884794571044310}
@@ -416,10 +417,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   detectPlayer: 0
-  jumpForce: 6
+  jumpForce: 10
   sense: {fileID: 5568441930958129265}
   normalSpeed: 20
   followSpeed: 80
+  canJump: 1
 --- !u!1 &7773924650371975186
 GameObject:
   m_ObjectHideFlags: 0

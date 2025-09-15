@@ -375,6 +375,7 @@ MonoBehaviour:
   xDirection: -1
   enemyWeakenesses: 
   bodyCollider: {fileID: 0}
+  weapon: {fileID: 3225522463856637047}
 --- !u!1001 &1768612666300803535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,6 +445,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e347bd1befec1bb4096e56a4bf15ba80, type: 3}
+--- !u!1 &3225522463856637047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3767265821771570616, guid: e347bd1befec1bb4096e56a4bf15ba80, type: 3}
+  m_PrefabInstance: {fileID: 1768612666300803535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7822990093396824304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8366430076405610815, guid: e347bd1befec1bb4096e56a4bf15ba80, type: 3}

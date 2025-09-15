@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             anim = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            if (GameManager.Instance.IsOpened(ID))
+            if (GameManager.Instance.IsActived(ID))
                 Activate();
         }
 
@@ -35,10 +35,7 @@ namespace br.com.bonus630.thefrog.Activators
             anim.SetBool(OpenedID, Opened);
             audioSource.Play();
             transform.GetChild(0).gameObject.SetActive(!Opened);
-            if (Opened)
-                GameManager.Instance.PlayerStates.ChestsID.Add(ID);
-            else
-                GameManager.Instance.PlayerStates.ChestsID.Remove(ID);
+            GameManager.Instance.SetActived(ID, open);
         }
     }
 }

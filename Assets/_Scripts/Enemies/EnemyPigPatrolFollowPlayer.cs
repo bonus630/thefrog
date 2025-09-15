@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Enemies
         float turnDistance = 3f;
         bool jump = false;
         float safeFollowTurn = 1f;
-        protected readonly int DeadID = Animator.StringToHash("Dead");
+       
         protected readonly int JumpID = Animator.StringToHash("Jump");
         protected override void Start()
         {
@@ -87,6 +87,8 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             animator.SetTrigger(HitID);
             this.life = this.life - hit;
+            if (this.life < 0.1f)
+                Dead();
         }
         public override void Dead()
         {

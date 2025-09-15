@@ -211,12 +211,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa739d9633d63f24fae4953419622733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 16
   intensity: 1
   lifeTime: 4
   removeByTime: 1
   launching: {fileID: 8300000, guid: 7794ec3ee20c4d6449fa3856375abf8b, type: 3}
   hitting: {fileID: 8300000, guid: 443bb4ec63638d34a85f24118c13431d, type: 3}
+  light2D: {fileID: 0}
+  FireSprite: {fileID: 0}
 --- !u!58 &3035831052573965113
 CircleCollider2D:
   m_ObjectHideFlags: 0

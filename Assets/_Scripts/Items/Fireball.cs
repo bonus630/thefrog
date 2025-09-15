@@ -47,6 +47,13 @@ namespace br.com.bonus630.thefrog.Items
             if (rb != null)
             {
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                if(direction.x < 0)
+                {
+                    Vector3 scale = transform.localScale;
+                    scale.x = -Mathf.Abs(scale.x);
+                    transform.localScale = scale;
+                    angle += 180;
+                }
                 rb.rotation = angle;
                 audioSource.PlayOneShot(launching);
                 
@@ -75,13 +82,13 @@ namespace br.com.bonus630.thefrog.Items
                 }
                 if(collision.gameObject.TryGetComponent<IElement>(out IElement element))
                 {
-                    if(element.CanActiveBy().Equals(GetElement()))
+                    if(element.CanActiveBy().Equals(GetElement))
                     {
-                        element.ActiveBy(GetElement());
+                        element.ActiveBy(GetElement);
                     }
-                    if(element.CanDeactiveBy().Equals(GetElement()))
+                    if(element.CanDeactiveBy().Equals(GetElement))
                     {
-                        element.DeactiveBy(GetElement());
+                        element.DeactiveBy(GetElement);
                     }
 
                 }
@@ -100,13 +107,13 @@ namespace br.com.bonus630.thefrog.Items
                 }
                 if (collision.gameObject.TryGetComponent<IElement>(out IElement element))
                 {
-                    if (element.CanActiveBy().Equals(GetElement()))
+                    if (element.CanActiveBy().Equals(GetElement))
                     {
-                        element.ActiveBy(GetElement());
+                        element.ActiveBy(GetElement);
                     }
-                    if (element.CanDeactiveBy().Equals(GetElement()))
+                    if (element.CanDeactiveBy().Equals(GetElement))
                     {
-                        element.DeactiveBy(GetElement());
+                        element.DeactiveBy(GetElement);
                     }
 
                 }
@@ -118,11 +125,13 @@ namespace br.com.bonus630.thefrog.Items
             Destroy(gameObject);
         }
 
-        public override Elements GetElement() => Elements.Fire;
+        [field: SerializeField] public override Elements GetElement { get; set; } = Elements.Fire;
+        [field: SerializeField] public Color ElementColor { get; set; } = Color.red;
+        
         public Elements CanActiveBy() => Elements.Fire;
         public Elements CanDeactiveBy() => Elements.Water;
         public override float ReloadTime() => 5f;
-        public Color GetElementColor() => Color.red;
+       
         public void ActiveBy(Elements element)
         {
             ActiveDeactive(true);

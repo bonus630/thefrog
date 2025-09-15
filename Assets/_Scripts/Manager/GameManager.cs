@@ -18,6 +18,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField] InputAction PauseAction;
+       
         private TextMeshProUGUI scoreText;
         private TextMeshProUGUI TimerText = null;
         public event Action TimeOverEvent;
@@ -96,14 +97,14 @@ namespace br.com.bonus630.thefrog.Manager
             Instance = this;
 #if UNITY_EDITOR
             //Time.timeScale = 0.5f;
-            //playerStates.HasGravity = true;
+            playerStates.HasGravity = true;
             playerStates.HasFireball = true;
             playerStates.HasWallJump = true;
  //           playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
-            //eventManager.EventCompleted(GameEventName.Gravity, false);
+            eventManager.EventCompleted(GameEventName.Gravity, false);
             //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
             eventManager.EventCompleted(GameEventName.LightningBolt, false);
             eventManager.EventCompleted(GameEventName.FireBall, false);
@@ -114,7 +115,7 @@ namespace br.com.bonus630.thefrog.Manager
         private void Start()
         {
             PauseAction.Enable();
-          
+            //Time.timeScale = 0.5f;
         }
 
         private void Update()
@@ -331,6 +332,17 @@ namespace br.com.bonus630.thefrog.Manager
         public bool IsOpened(string chestID)
         {
             return playerStates.ChestsID.Contains(chestID);
+        }
+        public bool IsActived(string ActivatorID)
+        {
+            return environmentStates.Activeds.Contains(ActivatorID);
+        }
+        public void SetActived(string ActivatorID,bool actived)
+        {
+            if (actived)
+                GameManager.Instance.EnvironmentStates.Activeds.Add(ActivatorID);
+            else
+                GameManager.Instance.EnvironmentStates.Activeds.Remove(ActivatorID);
         }
         private void UpdateHearts(int hearts)
         {

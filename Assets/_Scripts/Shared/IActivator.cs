@@ -7,6 +7,5 @@ namespace br.com.bonus630.thefrog.Shared
         public abstract void Activate();
         public abstract void Deactive();
 
-
     }
 }

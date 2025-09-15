@@ -5,7 +5,7 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class ActiveByHourDistance : MonoBehaviour
     {
-        [SerializeField] GameObject player;
+        
         [SerializeField] GameObject pointToActive;
         [SerializeField][Tooltip("GameObject ou IActivator")] GameObject itemToActive;
         [SerializeField] int startHour;
@@ -18,6 +18,7 @@ namespace br.com.bonus630.thefrog.Activators
         private bool firstActive = false;
         private int hour;
         private CameraBackground cameraControl;
+        private GameObject player;
         private void Update()
         {
             playerDistance = Vector3.Distance(player.transform.position, pointToActive.transform.position);
@@ -33,6 +34,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Start()
         {
+            player = GameManager.Instance.GetPlayer;
         }
         private void Item_HourChanged(int hour)
         {

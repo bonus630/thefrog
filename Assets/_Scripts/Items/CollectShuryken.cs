@@ -7,7 +7,9 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] private int shurykens = 1;
         public int Shurykens { get { return shurykens; } }
 
-        public override Elements GetElement() => Elements.Normal;
+        public override Elements GetElement { get; set; } = Elements.Normal;
+
+        
 
         public override void Launch(Vector2 direction)
         {

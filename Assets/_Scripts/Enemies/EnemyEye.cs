@@ -5,6 +5,8 @@ namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyEye : MonoBehaviour , IElement
     {
+        [field: SerializeField] public Elements GetElement { get; set; } = Elements.Lightining;
+        [field: SerializeField] public Color ElementColor { get; set; }= Color.white;
         [SerializeField] float[] PositionX;
         [SerializeField] float speed;
         Vector2 destine;
@@ -19,14 +21,14 @@ namespace br.com.bonus630.thefrog.Enemies
         public Elements CanActiveBy() => Elements.Lightining;
 
         public Elements CanDeactiveBy() => Elements.Lightining;
-        public Color GetElementColor() => Color.white;
+        
 
         public void DeactiveBy(Elements element)
         {
             
         }
 
-        public Elements GetElement() => Elements.Lightining;
+       
 
         private void Start()
         {

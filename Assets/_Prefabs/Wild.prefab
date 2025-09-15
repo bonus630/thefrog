@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3049872570924286118}
   - component: {fileID: 7190693222073059538}
   - component: {fileID: 6095734201642599366}
-  m_Layer: 0
+  - component: {fileID: -9083018229671583280}
+  m_Layer: 12
   m_Name: Wild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +49,7 @@ AreaEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 973641
+    m_Bits: 974665
   m_UseGlobalAngle: 0
   m_ForceAngle: 90
   m_ForceMagnitude: 1000
@@ -68,10 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ade086f90a9a64ca0d486d3af90318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GetElement>k__BackingField: 8
+  <ElementColor>k__BackingField: {r: 0, g: 1, b: 0, a: 1}
   canHitLayers:
     serializedVersion: 2
-    m_Bits: 0
-  audioSource: {fileID: 0}
+    m_Bits: 1024
+  audioSource: {fileID: 7190693222073059538}
   intensity: 0
 --- !u!82 &7190693222073059538
 AudioSource:
@@ -221,6 +224,33 @@ PolygonCollider2D:
       - {x: 0.1, y: -0.2}
       - {x: 1, y: 7}
   m_UseDelaunayMesh: 0
+--- !u!50 &-9083018229671583280
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241511269339411312}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8243499155702375080
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +262,7 @@ GameObject:
   - component: {fileID: 1641254771132889099}
   - component: {fileID: 6656304436645032736}
   - component: {fileID: 1304073551187298835}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

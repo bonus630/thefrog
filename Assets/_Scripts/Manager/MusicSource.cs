@@ -54,7 +54,7 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 silentTime = 0;
 
-            if (silentTime > 3f)
+            if (silentTime > 0.5f)
             {
                 audioLeft.loop = false;
                 audioRight.loop = false;

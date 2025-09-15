@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Player
     {
         [SerializeField] List<GameObject> projectilies;
         [SerializeField] GameObject projectileSpawPoint;
+        [SerializeField] GameObject projectileSpawPoint2;
 
         int currentIndex = 0;
         List<ProjectilData> avaliableProjectilies = new();
@@ -19,7 +20,7 @@ namespace br.com.bonus630.thefrog.Player
        // float updateTime = 0.4f;
      //   float time = 0f;
         float count = 0f;
-        public ProjectilData CurrentProjectile { get; private set; }
+        [field:SerializeField]public ProjectilData CurrentProjectile { get; private set; }
 
  
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -69,30 +70,30 @@ namespace br.com.bonus630.thefrog.Player
                 IProjectilies p = projectile.GetComponent<IProjectilies>();
                 if (p == null)
                     return;
-                var el = p.GetElement();
+                var el = p.GetElement;
                 if (avaliableProjectilies.Contains(new ProjectilData(el)))
                     return;
                 switch (el)
                 {
                     case Elements.Fire:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.red,  Elements.Fire));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2,Color.red,  Elements.Fire));
                         break;
                     case Elements.Lightining:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.white, Elements.Lightining));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.white, Elements.Lightining));
                         break;
                     case Elements.Wind:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWild))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.green,  Elements.Wind));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.green,  Elements.Wind));
                         break;
                     case Elements.Water:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, Color.blue, Elements.Water));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.blue, Elements.Water));
                         break;
                     case Elements.Earth:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.None))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,Color.magenta,  Elements.Earth));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.magenta,  Elements.Earth));
                         break;
                 }
             }
@@ -114,13 +115,15 @@ namespace br.com.bonus630.thefrog.Player
     {
         public GameObject Projectil;
         public GameObject SpawnPoint;
+        public GameObject SpawnPoint2;
         public Color EffectColor;
         public Elements Element;
 
-        public ProjectilData(GameObject projectil, GameObject spawnPoint, Color effectColor, Elements element)
+        public ProjectilData(GameObject projectil, GameObject spawnPoint, GameObject spawnPoint2, Color effectColor, Elements element)
         {
             Projectil = projectil;
             SpawnPoint = spawnPoint;
+            SpawnPoint2 = spawnPoint2;
             EffectColor = effectColor;
             Element = element;
         }

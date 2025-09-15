@@ -13,6 +13,12 @@ namespace br.com.bonus630.thefrog.Items
 
         private void Update()
         {
+            if(rb.linearVelocityX < 1f)
+            {
+               
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+                rb.linearVelocityY = 0.01f;
+            }
             //Debug.Log("Shuryken: " + rb.linearVelocityX);
 
             //if (Mathf.Approximately(rigidbody.linearVelocityX, 0) && Mathf.Approximately(rigidbody.linearVelocityY, 0) && canClone)

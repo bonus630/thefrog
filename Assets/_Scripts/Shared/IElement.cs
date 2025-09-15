@@ -5,11 +5,13 @@ namespace br.com.bonus630.thefrog.Shared
 {
     public interface IElement 
     {
-        Elements GetElement();
+        Elements GetElement { get; }
+
         Elements CanActiveBy();
         Elements CanDeactiveBy();
 
-        Color GetElementColor();
+        Color ElementColor { get; }
+
         void ActiveBy(Elements element);
         void DeactiveBy(Elements element);
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] IActivator ItemToActive;
         [SerializeField] float delayTime;
         [SerializeField] bool actived = true;
-
+        [SerializeField] string LevelID;
         GameObject prevCollision = null;
         int OnID = Animator.StringToHash("On");
         float timer = 1f;
@@ -18,6 +19,8 @@ namespace br.com.bonus630.thefrog.Environment
         private void Start()
         {
             GetComponent<Animator>().SetBool(OnID, actived);
+            if(GameManager.Instance.IsActived(this.LevelID))
+               SetActive(true);
         }
         private void Update()
         {
@@ -39,8 +42,7 @@ namespace br.com.bonus630.thefrog.Environment
             {
                 StartCoroutine(TurnOn());
             }
-            actived = !actived;
-            GetComponent<Animator>().SetBool(OnID,actived);
+            SetActive(!actived);
         }
 
         IEnumerator TurnOff()
@@ -53,6 +55,12 @@ namespace br.com.bonus630.thefrog.Environment
             Debug.Log("Lever TurnOn");
             yield return new WaitForSeconds(delayTime);
             ItemToActive.Activate();
+        }
+        private void SetActive(bool actived)
+        {
+            this.actived = actived;
+            GetComponent<Animator>().SetBool(OnID, actived);
+            GameManager.Instance.SetActived(this.LevelID, actived);
         }
     }
 }

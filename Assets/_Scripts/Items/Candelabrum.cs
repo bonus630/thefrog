@@ -6,6 +6,8 @@ namespace br.com.bonus630.thefrog.Items
     [RequireComponent(typeof(Animator))]
     public class Candelabrum : IActivator, IElement
     {
+        [field: SerializeField] public Elements GetElement { get; set; } = Elements.Fire;
+        [field: SerializeField] public Color ElementColor { get; set; } = Color.red;
         [SerializeField] private bool off = false;
         private readonly int OffID = Animator.StringToHash("Off");
         private Animator anim;
@@ -26,12 +28,9 @@ namespace br.com.bonus630.thefrog.Items
             anim.SetBool(OffID, off);
         }
 
-        public Elements GetElement() => Elements.Fire;
-
         public Elements CanActiveBy() => Elements.Fire;
 
-        public Color GetElementColor() => Color.red;
-
+    
         public Elements CanDeactiveBy() => Elements.Water;
 
         public void ActiveBy(Elements element)

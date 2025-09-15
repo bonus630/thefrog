@@ -6,15 +6,15 @@ namespace br.com.bonus630.thefrog.Shared
 {
     public class Element : MonoBehaviour ,IElement
     {
-        [SerializeField] Elements element;
+        [field: SerializeField]public Elements GetElement { get; set; } 
+        [field: SerializeField] public Color ElementColor { get; set; }
         [SerializeField] Elements activeBy;
         [SerializeField] Elements deactiveBy;
-        [SerializeField] Color elementColor;
 
         [SerializeField] UnityEvent active;
         [SerializeField] UnityEvent deactive;
 
-        public Elements GetElement() => element;
+      
 
         public Elements CanActiveBy() => activeBy;
 
@@ -30,7 +30,7 @@ namespace br.com.bonus630.thefrog.Shared
             deactive?.Invoke();
         }
 
-        public Color GetElementColor() => elementColor;
+     
     }
 
     public enum Elements

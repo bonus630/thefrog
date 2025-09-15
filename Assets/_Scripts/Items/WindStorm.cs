@@ -1,4 +1,5 @@
 using System.Linq;
+using br.com.bonus630.thefrog.Effects;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
@@ -8,7 +9,8 @@ namespace br.com.bonus630.thefrog.Items
 {
     public class WindStorm : IProjectilies, IElement
     {
-
+        [field: SerializeField] public override Elements GetElement { get; set; } = Elements.Wind;
+        [field: SerializeField] public Color ElementColor { get; set; } = Color.green;
         [SerializeField] LayerMask canHitLayers;
         [SerializeField] AudioSource audioSource;
         //[SerializeField] GameObject impactZone;
@@ -39,7 +41,7 @@ namespace br.com.bonus630.thefrog.Items
 
         public Elements CanActiveBy() => Elements.Wind;
         public Elements CanDeactiveBy() => Elements.Earth;
-        public Color GetElementColor() => Color.green;
+       
         public override float ReloadTime() => 1.5f;
 
         public void ActiveBy(Elements element)
@@ -55,9 +57,6 @@ namespace br.com.bonus630.thefrog.Items
         {
 
         }
-        public override Elements GetElement() => Elements.Wind;
-
-
         public override void Launch(Vector2 direction)
         {
             Vector3 playerPos = GameManager.Instance.GetPlayer.transform.position;
@@ -89,15 +88,17 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("WindStorm collision: " + collision.gameObject.name);
             if(collision.TryGetComponent<IElement>(out IElement el))
             {
-                Color color = el.GetElementColor();
+                Color color = el.ElementColor;
                 color = new Color(color.r,color.g,color.b,0.45f);
-                spriteRenderer.color = color;
-                if(el.CanActiveBy()== GetElement())
-                    el.ActiveBy(GetElement());
-                if(el.CanDeactiveBy()== GetElement())
-                    el.DeactiveBy(GetElement());
+                EffectManager.instance.AddEffect(new ColorEffect(spriteRenderer,spriteRenderer.color, color, 4f));
+               // StartCoroutine(StaticsRoutines.LerpColor(spriteRenderer, spriteRenderer.color, color, 4f));
+                if(el.CanActiveBy()== GetElement)
+                    el.ActiveBy(GetElement);
+                if(el.CanDeactiveBy()== GetElement)
+                    el.DeactiveBy(GetElement);
             }
         }
     }

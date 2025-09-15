@@ -51,8 +51,14 @@ namespace br.com.bonus630.thefrog.Manager
         {
 
         }
+        /// <summary>
+        /// Add if not contains
+        /// </summary>
+        /// <param name="data"></param>
         public void Add(string data)
         {
+            if (string.IsNullOrEmpty(data))
+                return;
             if (!this.datas.Contains(data))
                 this.datas.Add(data);
         }

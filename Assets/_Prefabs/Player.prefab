@@ -25728,6 +25728,7 @@ MonoBehaviour:
   - {fileID: 5659226872111448139, guid: 2865e9bcdc885524aad009bf4ab0f8e4, type: 3}
   - {fileID: 3241511269339411312, guid: d89727c895ddeb3418f4798650222dad, type: 3}
   projectileSpawPoint: {fileID: 2909710817049657993}
+  projectileSpawPoint2: {fileID: 6415481392691170859}
 --- !u!1 &8873583698127253809
 GameObject:
   m_ObjectHideFlags: 0
