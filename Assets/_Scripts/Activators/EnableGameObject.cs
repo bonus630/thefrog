@@ -14,6 +14,7 @@ namespace br.com.bonus630.thefrog.Activators
             if(externGameObject!=null)
                 externGameObject.SetActive(invert ? false : true);
             gameObject.SetActive(invert ? false : true);
+
         }
 
         public override void Deactive()

@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog
             int num = 0;
             num += GameManager.Instance.IsEventCompleted(GameEventName.FireBall) ? 1 : 0;
             num += GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt) ? 1 : 0;
-            num += GameManager.Instance.IsEventCompleted(GameEventName.RollingWild) ? 1 : 0;
+            num += GameManager.Instance.IsEventCompleted(GameEventName.RollingWind) ? 1 : 0;
             num += GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater) ? 1 : 0;
 
             return $"{num}/2";

@@ -18,3 +18,6 @@ MonoBehaviour:
     Name: 
     text: "As vezes quando um \"Transporte\" para, basta dar uma descarga el\xE9trica
       nele."
+  - Avatar: {fileID: 5162751897782688819, guid: d6215c72fb184e946b225acf0121a335, type: 3}
+    Name: 
+    text: "Mas este est\xE1 acabado!"

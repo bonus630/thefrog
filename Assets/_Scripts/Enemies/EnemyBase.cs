@@ -26,6 +26,7 @@ namespace br.com.bonus630.thefrog.Enemies
         protected bool frontColliding;
         protected Animator animator;
 
+
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int WalkID = Animator.StringToHash("Walk");
         protected readonly int RunID = Animator.StringToHash("Run");
@@ -92,6 +93,7 @@ namespace br.com.bonus630.thefrog.Enemies
             coll.enabled = true;
             gameObject.layer = 6;
         }
+
     }
   
 }

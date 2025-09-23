@@ -17,6 +17,17 @@ namespace br.com.bonus630.thefrog.Utils
             float y = Random.Range(bound.center.y - bound.size.y / 2,bound.center.y + bound.size.y / 2);
             return new Vector2(x,y);
         }
-    
+
+        public static bool ContainsChildren(this Transform transform, string childrenName)
+        {
+            if (transform.childCount == 0)
+                return false;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).CompareTag(childrenName))
+                    return true;
+            }
+            return false;
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace br.com.bonus630.thefrog.Items
     [RequireComponent(typeof(Animator))]
     public class Candelabrum : IActivator, IElement
     {
+        [SerializeField] IActivator ItemToActive;
         [field: SerializeField] public Elements GetElement { get; set; } = Elements.Fire;
         [field: SerializeField] public Color ElementColor { get; set; } = Color.red;
         [SerializeField] private bool off = false;
@@ -14,12 +15,20 @@ namespace br.com.bonus630.thefrog.Items
         public override void Activate()
         {
             anim.SetBool(OffID, false);
+            off = false;
+            Actived = true;
             GetComponent<AudioSource>().Play();
+            if(ItemToActive!=null)
+                ItemToActive.Activate();
         }
 
         public override void Deactive()
         {
-            anim.SetBool(OffID, false);
+            off = true;
+            Actived = false;
+            anim.SetBool(OffID, true);
+            if (ItemToActive != null)
+                ItemToActive.Deactive();
         }
 
         void Start()

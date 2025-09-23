@@ -25,7 +25,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void Change(bool b)
         {
-            Debug.Log("Koar limiter: " + !b);
+           // Debug.Log("Koar limiter: " + !b);
             if(GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
                 GameManager.Instance.PlayerStates.HasGravity = !b;
             if(GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))

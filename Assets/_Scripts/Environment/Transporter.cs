@@ -7,7 +7,7 @@ namespace br.com.bonus630.thefrog.Environment
 {
     public class Transporter : MonoBehaviour
     {
-        [SerializeField] private Vector2[] destines;
+        public Vector2[] destines;
         [SerializeField] float travelDuration = 2f;
         [SerializeField] float speed = 10f;
         [SerializeField] float currentSpeed;

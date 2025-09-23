@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
-    public class BatSpawner : MonoBehaviour
+    public class BatSpawner : IActivator
     {
         [SerializeField] private List<GameObject> spawnerPoints;
         [SerializeField] private GameObject bat;
@@ -32,6 +33,14 @@ namespace br.com.bonus630.thefrog.Activators
             }
         }
 
+        public override void Activate()
+        {
+            startBattle = true;
+        }
 
+        public override void Deactive()
+        {
+            startBattle=false;
+        }
     }
 }

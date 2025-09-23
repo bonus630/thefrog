@@ -68,7 +68,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameEvent defeatWizard = new GameEvent(GameEventName.DefeatWizard, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(defeatWizard);  
-                GameEvent rollingWild = new GameEvent(GameEventName.RollingWild, false, false);
+                GameEvent rollingWild = new GameEvent(GameEventName.RollingWind, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(rollingWild);
             GameEvent purifyWater = new GameEvent(GameEventName.PurifyWater, false, false);
@@ -77,6 +77,9 @@ namespace br.com.bonus630.thefrog.Manager
             GameEvent ladyLaments = new GameEvent(GameEventName.LadyLaments, false, false);
             //fireBall.Requires = new List<GameEvent>() { secondEvent };
             events.Add(ladyLaments);
+            GameEvent prisioner = new GameEvent(GameEventName.PrisionerTip, false, false);
+            //fireBall.Requires = new List<GameEvent>() { secondEvent };
+            events.Add(prisioner);
 
         }
 
@@ -193,8 +196,9 @@ namespace br.com.bonus630.thefrog.Manager
         DefeatWizard,
         LightningBolt,
         LadyLaments,
-        RollingWild,
+        RollingWind,
         PurifyWater,
+        PrisionerTip,
         None
     }
 }

@@ -63,6 +63,7 @@ namespace br.com.bonus630.thefrog.Items
         {
             transform.localPosition = destine;
             IsOpened = opened;
+            this.Actived = IsOpened;
             doorCollider.enabled = IsOpened;
             GameManager.Instance.SetActived(this.DoorID, opened);
         }

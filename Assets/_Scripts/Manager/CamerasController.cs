@@ -57,6 +57,13 @@ namespace br.com.bonus630.thefrog.Manager
         private IEnumerator gameObjectFocus(GameObject[] gameObjects, float time)
         {
             Cinemachine.CinemachineVirtualCamera vCam = GetActiveVirtualCamera();
+            CinemachineConfiner confiner;
+            bool confinerEnabled = true;
+            if (vCam.TryGetComponent<CinemachineConfiner>(out confiner))
+            {
+                confinerEnabled = confiner.enabled;
+                confiner.enabled = false;
+            }
             for (int i = 0; i < gameObjects.Length; i++)
             {
                 vCam.Follow = gameObjects[i].transform;
@@ -64,6 +71,10 @@ namespace br.com.bonus630.thefrog.Manager
 
             }
             yield return new WaitForSeconds(time);
+            if(confiner!=null)
+            {
+                confiner.enabled = confinerEnabled;
+            }
             vCam.Follow = GameManager.Instance.GetPlayer.transform;
 
         }
@@ -109,7 +120,7 @@ namespace br.com.bonus630.thefrog.Manager
                 yield return new WaitForEndOfFrame();
                 camera.rotation = Quaternion.Euler(0.32999754f, 0, 0.149999827f);
             }
-            if (Gamepad.current != null)
+            if (rumble && Gamepad.current != null)
             {
                 Gamepad.current.SetMotorSpeeds(0f, 0f);
             }

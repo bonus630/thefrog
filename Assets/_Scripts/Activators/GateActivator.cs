@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             anim = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            if (GameManager.Instance.IsActived(ID))
+            if (GameManager.Instance.IsActived(ID) || Opened)
                 Activate();
         }
 

@@ -37,6 +37,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         private void Transporter_OnePass()
         {
+            transporter.destines = startPosition.ToArray();
             transporter.Init();
             transporter.OnePass -= Transporter_OnePass;
             GameManager.Instance.EnvironmentStates.Activeds.Add(ID);

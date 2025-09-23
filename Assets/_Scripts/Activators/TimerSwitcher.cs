@@ -59,7 +59,7 @@ namespace br.com.bonus630.thefrog.Activators
                 audioSource.Play();
 
             collider2.enabled = !collider2.enabled;
-            Debug.Log("Effectors:" + effectors.Count);
+           // Debug.Log("Effectors:" + effectors.Count);
             for (int i = 0; i < effectors.Count; i++)
             {
                 effectors[i].enabled = IsOn;

@@ -54,13 +54,13 @@ namespace br.com.bonus630.thefrog.Items
         }
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            Debug.Log("doot trigger exit:" + collision.name);
+          //  Debug.Log("doot trigger exit:" + collision.name);
             if (collision.CompareTag("Player") && player != null)
             {
-                Debug.Log("doot trigger exit tag player: " + player.InGround);
+            //    Debug.Log("doot trigger exit tag player: " + player.InGround);
                 if (!player.BodyTouching(this.doorCollider))
                 {
-                    Debug.Log("doot trigger exit tag player body: " + player.InGround);
+             //       Debug.Log("doot trigger exit tag player body: " + player.InGround);
                     inside = false;
                     player = null;
                 }

@@ -164,6 +164,32 @@ namespace br.com.bonus630.thefrog.Player
                 //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
             }
 
+            if (Input.anyKeyDown)
+            {
+                switch (true)
+                {
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
+                        Time.timeScale = 0.1f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
+                        Time.timeScale = 0.2f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
+                        Time.timeScale = 0.3f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
+                        Time.timeScale = 0.4f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
+                        Time.timeScale = 0.5f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
+                        Time.timeScale = 1f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
+                        Time.timeScale = 1.5f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
+                        Time.timeScale = 2f; break;
+                    case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
+                        Time.timeScale = 3f; break;
+                }
+                Debug.LogWarning("Time Scale: " + Time.timeScale);
+            }
+
 #endif
 
         }
@@ -356,6 +382,10 @@ namespace br.com.bonus630.thefrog.Player
         public void Hit()
         {
             playerHealth.Hit();
+        }
+        public void Hit(int damage)
+        {
+            playerHealth.Hit(damage);
         }
         public void GameOver()
         {

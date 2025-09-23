@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Shared
         void ReadDialogue();
         void Alert();
         void Hit();
+        void Hit(int damage);
         void FreezePlayer();
         //mover algumas coisas para uma interface de automação do player fora do script player
         //isso vai permitir melhor controle nas cutscenes

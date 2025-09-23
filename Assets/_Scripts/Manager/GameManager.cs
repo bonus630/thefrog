@@ -105,10 +105,13 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
             eventManager.EventCompleted(GameEventName.Gravity, false);
-            //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            eventManager.EventCompleted(GameEventName.FeatherTouch, false);
             eventManager.EventCompleted(GameEventName.LightningBolt, false);
             eventManager.EventCompleted(GameEventName.FireBall, false);
-            eventManager.EventCompleted(GameEventName.RollingWild, false);
+            eventManager.EventCompleted(GameEventName.RollingWind, false);
+            eventManager.EventCompleted(GameEventName.PrisionerTip, false);
+            eventManager.EventCompleted(GameEventName.LadyLaments, false);
+
 #endif
             DontDestroyOnLoad(gameObject);
         }

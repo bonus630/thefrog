@@ -30,22 +30,26 @@ namespace br.com.bonus630.thefrog.Enemies
         public override void Hit(float hit)
         {
             this.life = this.life - hit;
+            if (weapon != null)
+            {
+                weapon.transform.parent = null;
+                if (weapon.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+                {
+                    rb.gravityScale = 10;
+                    rb.AddForce(new Vector2(2 * xDirection, 10));
+                }
+            }
             if (this.life < 0.1f)
                 Dead();
         }
         public virtual void Dead()
         {
             animator.SetFloat(DeadID, this.life);
-            if(weapon!=null)
-            {
-                if(weapon.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
-                {
-                    rb.gravityScale = 10;
-                }
-            }
+        
             if (this.life <= 0)
             {
                 xDirection = 0;
+                rg.gravityScale = 0;
                 bodyCollider.enabled = false;
                 Destroy(gameObject, 0.66f);
             }

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4014965546606759290}
   - component: {fileID: 4361088115658829290}
   - component: {fileID: 8603316936697830112}
-  - component: {fileID: 8969248701738300596}
+  - component: {fileID: 2993790641072116072}
   m_Layer: 3
   m_Name: NPC_prisonier
   m_TagString: NPC
@@ -246,7 +246,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.4147678, y: 0.24241619}
   m_EdgeRadius: 0
---- !u!114 &8969248701738300596
+--- !u!114 &2993790641072116072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5985588561183965939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9602f231bb34998439f2dcd16e5e3021, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fb6fcfa90e5d10488f7437568ce2732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TalkIcon: {fileID: 1044102837420720138}

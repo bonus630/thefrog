@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
+using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 namespace br.com.bonus630.thefrog.Activators
@@ -55,9 +56,10 @@ namespace br.com.bonus630.thefrog.Activators
            // Debug.Log("feather touch" + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
             inProgress = true;
             //Debug.Log("Collision to koar");
+            
             koar.SetActive(true);
-            if (GameManager.Instance.IsEventCompleted(GameEventName.DefeatWizard))
-                StartCoroutine(SimpleTransition());
+            if (GameManager.Instance.IsEventCompleted(GameEventName.LadyLaments))
+                StartCoroutine(SimpleTransition(true));
             else
                 StartCoroutine(PlayCutscene());
 
@@ -78,9 +80,8 @@ namespace br.com.bonus630.thefrog.Activators
             if (data.Index == last)
                 return;
             last = data.Index;
-            if (!data.ColliderOther.CompareTag("Player") || !GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
+            if (!CheckToContinue(data.ColliderOther))
                 return;
-
             if (first == -1)
             {
                 first = data.Index;
@@ -89,15 +90,28 @@ namespace br.com.bonus630.thefrog.Activators
            // player = data.Collider.gameObject;
             if (first < data.Index)
             {
+               
                 Active();
             }
             else
             {
+                
                 Deactive();
             }
 
             first = -1;
 
+        }
+        private bool CheckToContinue(Collider2D coll)
+        {
+            if (!GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
+                return false;
+            if (!coll.CompareTag("Player"))
+            {
+                if(!coll.transform.ContainsChildren("Player"))
+                    return false;
+            }
+            return true;
         }
         private void ResetTimer()
         {
@@ -123,7 +137,7 @@ namespace br.com.bonus630.thefrog.Activators
             // GameObject.Find("Kaor").SetActive(true);
             yield return new WaitForSeconds(1);
             FindAnyObjectByType<CameraBackground>().ChangeBackground();
-            GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
+            //GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
             GameManager.Instance.GetPlayer.transform.position = newLocation;
             screenEffects.FadeIn(1);
             yield return new WaitForEndOfFrame();
@@ -133,18 +147,19 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private IEnumerator SimpleTransition(bool toKoar = false)
         {
+            Debug.Log("Simple transition, to koar: "+toKoar);
             screenEffects.FadeOut(0.1f);
-            yield return new WaitForSeconds(1);
-            float ligth = 0.6f;
+            yield return new WaitForSeconds(0.1f);
+          //  float ligth = 0.6f;
             if (toKoar)
             {
                 FindAnyObjectByType<CameraBackground>().ChangeBackground();
-                ligth = 0.2f;
+               // ligth = 0.2f;
             }
             else
                 FindAnyObjectByType<CameraBackground>().RestoreBackground();
-            GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = ligth;
-            screenEffects.FadeIn(1);
+           // GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = ligth;
+            screenEffects.FadeIn(0.1f);
             yield return new WaitForEndOfFrame();
             inProgress = false;
         }

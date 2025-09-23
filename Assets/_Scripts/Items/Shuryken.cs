@@ -38,7 +38,7 @@ namespace br.com.bonus630.thefrog.Items
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            Debug.Log("shury layer: "+gameObject.layer);
+            //Debug.Log("shury layer: "+gameObject.layer);
         }
         public void Launch(float direction, float force)
         {
@@ -47,7 +47,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         protected new void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Collider Shyruken: " + collision.gameObject.name);
+            //Debug.Log("Collider Shyruken: " + collision.gameObject.name);
             if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
             {
                 player.ChangeNumberShurykens(Shurykens);
@@ -63,7 +63,7 @@ namespace br.com.bonus630.thefrog.Items
         bool hitWall = false;
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Collision Shyruken 2: " + collision.gameObject.name);
+           // Debug.Log("Collision Shyruken 2: " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
                 return;
             if (collision.gameObject.layer == 8)

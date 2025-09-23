@@ -7,9 +7,9 @@ namespace br.com.bonus630.thefrog.Activators
 {
     public class CameraFocus : IActivator
     {
-        [SerializeField] GameObject[] gameObjects;
+        public GameObject[] gameObjects;
         [SerializeField] ScreenEffects screenEffects;
-        [SerializeField] float time = 0.5f;
+        public float time = 0.5f;
         [SerializeField] bool disablePlayerMove = false;
         [SerializeField] bool oneTime = false;
         int runtime = 0;

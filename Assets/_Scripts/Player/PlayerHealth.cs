@@ -95,11 +95,11 @@ namespace br.com.bonus630.thefrog.Player
             }
 
         }
-        public void Hit()
+        public void Hit(int damage = 1)
         {
             if (invencible)
                 return;
-            GameManager.Instance.UpdateHeart(-1);
+            GameManager.Instance.UpdateHeart(-damage);
             invencible = true;
             anim.SetTrigger(HitID);
             audioSource.PlayOneShot(hitSFX);

@@ -1,0 +1,736 @@
+fileFormatVersion: 2
+guid: e71178c1e5391b94f8a86b4a35c59dae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4795801882768314371
+    second: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+      Avatar Aang_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_0
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 900
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3001e83376c1e8240800000000000000
+      internalID: 4795801882768314371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_1
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 900
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acaaba503666e524789d6ecacc30a9a2
+      internalID: 2060327790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 900
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18e10658b38b82d4fbd866e4730a38fe
+      internalID: 1880559034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_3
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 900
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9498432656dfa93468d7513247b50454
+      internalID: 1996000746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_4
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 900
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8e08ac06faec544aa086d142d76386
+      internalID: -1787829119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_5
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 900
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4426fcacd4af1a948911060a8fbccd61
+      internalID: 600928161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_6
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 900
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d1ef82aa47bd648aca6ed026c61c12
+      internalID: -1093694912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_7
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 900
+        width: 28
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe6f6abe8f5b0154d96e532dbb6a845e
+      internalID: -839600351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1478
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bfc415341b07f1489c05e892809555e
+      internalID: 1325685764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1478
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4485a85c3af6384ba64907622a41c18
+      internalID: 2140472395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_10
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1478
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc14704db12ee744f97a9717dab43c98
+      internalID: 1277736217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 1478
+        width: 26
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b797a3bb060daa247a8c35621b57967d
+      internalID: 813039189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_12
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 1478
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09eed6d8335c5f34a8d3296702b33d0d
+      internalID: 988775177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_13
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1478
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6228dc1b668067468d1646065e4168a
+      internalID: -2034474337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_14
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1478
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f68fd6c756ab3341a1b9434a11d07f0
+      internalID: 30671641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_15
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1478
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef3ab1c6fa32d6644b33367ef68781a9
+      internalID: 1355513698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_16
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 1469
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f47c502b6e5c21b41abc7e76a733e456
+      internalID: 781715578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_17
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1395
+        width: 218
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7288e7823b1a0a49a00d83338e090d1
+      internalID: -153538167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_18
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1326
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbedf7bba881c5489571cde2ef2d0d1
+      internalID: 2134572833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_19
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1326
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a502af6837a94164ba08a7eead63162a
+      internalID: 1821263700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_20
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 1326
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: debf6306be47fce4b87113230177e30d
+      internalID: -192339411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_21
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 1326
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3870241998e00c4b82697db09855ef0
+      internalID: 1046786847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_22
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 1326
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9d7b72f9f5d3a46b0deea31984bd03
+      internalID: 1685316015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_23
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1326
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34023da8e1d13df4b915f3d9e08d059f
+      internalID: 796114856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 537c62daee2ff294da48443e66ff8850
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_0: 4795801882768314371
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_1: 2060327790
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_10: 1277736217
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_11: 813039189
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_12: 988775177
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_13: -2034474337
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_14: 30671641
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_15: 1355513698
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_16: 781715578
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_17: -153538167
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_18: 2134572833
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_19: 1821263700
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_2: 1880559034
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_20: -192339411
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_21: 1046786847
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_22: 1685316015
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_23: 796114856
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_3: 1996000746
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_4: -1787829119
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_5: 600928161
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_6: -1093694912
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_7: -839600351
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_8: 1325685764
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_9: 2140472395
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

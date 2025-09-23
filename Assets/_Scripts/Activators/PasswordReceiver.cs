@@ -5,18 +5,20 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
 {
+    
     public class PasswordReceiver : MonoBehaviour
     {
         [SerializeField] IActivator ItemToActive;
         [field: SerializeField] public List<int> Password { get; set; }
         List<int> received;
-
         [SerializeField] List<ActivatorSlot> activatorSlots;
+        [field:SerializeField] public int ID { get; set; }
 
+        AudioSource audioSource;
         private void Start()
         {
             received = new List<int>();
-
+            audioSource = GetComponent<AudioSource>();
             for (int i = 0; i < activatorSlots.Count; i++)
             {
                 activatorSlots[i].Activated += PasswordReceiver_Activated;
@@ -34,9 +36,10 @@ namespace br.com.bonus630.thefrog.Activators
                 received.Remove(id);
             if (Password.SequenceEqual<int>(received))
             {
+                if(audioSource!=null)
+                    audioSource.Play();
                 if (!ItemToActive.Actived)
                     ItemToActive.Activate();
-
             }
             else
             {

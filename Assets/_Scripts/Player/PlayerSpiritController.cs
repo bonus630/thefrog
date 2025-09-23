@@ -84,7 +84,7 @@ namespace br.com.bonus630.thefrog.Player
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.white, Elements.Lightining));
                         break;
                     case Elements.Wind:
-                        if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWild))
+                        if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWind))
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.green,  Elements.Wind));
                         break;
                     case Elements.Water:

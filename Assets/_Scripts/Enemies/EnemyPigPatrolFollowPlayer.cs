@@ -53,7 +53,7 @@ namespace br.com.bonus630.thefrog.Enemies
             }
             if (detectGround.collider == null)
             {
-                Debug.Log("Pig change");    
+               // Debug.Log("Pig change");    
                 if (!jump && safeFollowTurn < 0)
                 {
                     safeFollowTurn = 1f;
@@ -96,6 +96,7 @@ namespace br.com.bonus630.thefrog.Enemies
             if (this.life <= 0)
             {
                 xDirection = 0;
+                rg.gravityScale = 0;
                 bodyCollider.enabled = false;
                 Destroy(gameObject, 0.66f);
             }
