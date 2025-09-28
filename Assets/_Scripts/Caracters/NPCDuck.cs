@@ -44,7 +44,7 @@ namespace br.com.bonus630.thefrog.Caracters
             yield return fader.FadeIn();
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 3f);
             musicTarget.Play();
-            GameManager.Instance.GetPlayerScript.MoveInputOn = false;
+            GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
             yield return new WaitForEndOfFrame();   
             Invoke(nameof(RestorePlayerInput), 3f);
             Time.timeScale = 0.5f;
@@ -53,7 +53,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private void RestorePlayerInput()
         {
             Time.timeScale = 1f;
-            GameManager.Instance.GetPlayerScript.MoveInputOn = true;
+            GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0);
         }
         public override void Interact()
         {

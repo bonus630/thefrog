@@ -19,7 +19,7 @@ MonoBehaviour:
     text: "A Placa diz:\n \"A Grande Queda\""
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
-    text: Bem aquele cara estralho disse que agora posso cair de qualquer altura...
+    text: Bem aquele cara estranho disse que agora posso cair de qualquer altura...
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: Mas ele disse outra coisa, o que era mesmo?

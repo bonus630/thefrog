@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Items
         [field: SerializeField] public Color ElementColor { get; set; } = Color.green;
         [SerializeField] LayerMask canHitLayers;
         [SerializeField] AudioSource audioSource;
+        [SerializeField] bool isPermanent = false;
         //[SerializeField] GameObject impactZone;
         [SerializeField] float intensity = 0f;
         //   bool hit = false;
@@ -31,6 +32,8 @@ namespace br.com.bonus630.thefrog.Items
 
         private void Update()
         {
+            if (isPermanent)
+                return;
             time-= Time.deltaTime;
             if (time <= 0)
             {
@@ -42,7 +45,7 @@ namespace br.com.bonus630.thefrog.Items
         public Elements CanActiveBy() => Elements.Wind;
         public Elements CanDeactiveBy() => Elements.Earth;
        
-        public override float ReloadTime() => 1.5f;
+        public override float ReloadTime() => 1.4f;
 
         public void ActiveBy(Elements element)
         {
@@ -60,7 +63,7 @@ namespace br.com.bonus630.thefrog.Items
         public override void Launch(Vector2 direction)
         {
             Vector3 playerPos = GameManager.Instance.GetPlayer.transform.position;
-            float posX = playerPos.x + (2f * direction.x);
+            float posX = playerPos.x + (1.8f * direction.x);
             float posY = playerPos.y;
             transform.position = new Vector2(posX, posY);
             audioSource.Play();

@@ -53,7 +53,7 @@ namespace br.com.bonus630.thefrog
             TimeSpan time = TimeSpan.FromSeconds(GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
             string text = time.ToString(@"hh\:mm\:ss");
             result = $"Estatisticas\n\r\n\r*Tempo de Jogo {text}\n\r*Mortes {GameManager.Instance.PlayerStates.numDies}\n\r " +
-                $"* Maçãs {GameManager.Instance.PlayerStates.Collectables}/55\n\r*Corações {GameManager.Instance.PlayerStates.Hearts}/13\n\r" +
+                $"* Maçãs {GameManager.Instance.PlayerStates.Collectables}/56\n\r*Corações {GameManager.Instance.PlayerStates.Hearts}/13\n\r" +
                 $"* Espiritos {GetSpiritsStates()}";
             return result;
         }
@@ -65,7 +65,7 @@ namespace br.com.bonus630.thefrog
             num += GameManager.Instance.IsEventCompleted(GameEventName.RollingWind) ? 1 : 0;
             num += GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater) ? 1 : 0;
 
-            return $"{num}/2";
+            return $"{num}/3";
 
         }
         void Update()

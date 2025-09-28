@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
+using UnityEngine.UI;
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -24,6 +25,8 @@ namespace br.com.bonus630.thefrog.Manager
         public event Action TimeOverEvent;
         private bool continueGame = false;
         private bool _isCountingTime = false;
+        private bool gamePaused = false;
+        public event Action GameStatesRestaured;
         float startTimer = 0;
         public float PlayTimeInSeconds { get; private set; }
         public int ToPoint { get; set; }
@@ -62,6 +65,7 @@ namespace br.com.bonus630.thefrog.Manager
         public readonly string PauseHUD = "PauseHUD";
         public readonly string SaveHUD = "SaveHUD";
         public readonly string TimerHUD = "TimerHUD";
+        public readonly string SpiritHUD = "SpiritHUD";
 
 
         //Env Names
@@ -106,11 +110,12 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.Shurykens = 100;
             eventManager.EventCompleted(GameEventName.Gravity, false);
             eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            eventManager.EventCompleted(GameEventName.LightningBolt, false);
             eventManager.EventCompleted(GameEventName.FireBall, false);
+            eventManager.EventCompleted(GameEventName.LightningBolt, false);
             eventManager.EventCompleted(GameEventName.RollingWind, false);
-            eventManager.EventCompleted(GameEventName.PrisionerTip, false);
-            eventManager.EventCompleted(GameEventName.LadyLaments, false);
+            //  eventManager.EventCompleted(GameEventName.PrisionerTip, false);
+            //  eventManager.EventCompleted(GameEventName.LadyLaments, false);
+            //  eventManager.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
             DontDestroyOnLoad(gameObject);
@@ -154,7 +159,7 @@ namespace br.com.bonus630.thefrog.Manager
             TimerText.transform.parent.gameObject.SetActive(false);
             TimeOverEvent?.Invoke();
         }
-        private void Pause(bool pause)
+        public void Pause(bool pause)
         {
             if (SceneManager.GetActiveScene().name.Equals("SampleScene") || SceneManager.GetActiveScene().name.Equals("InternAreas"))
                 TryPause(pause, PauseHUD, out GameObject go);
@@ -162,6 +167,14 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private bool TryPause(bool pause, string hudName, out GameObject go)
         {
+            if(gamePaused)
+            {
+                var pauseHud = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
+                if(pauseHud!=null) pauseHud.SetActive(false);
+                var saveHud = GameObject.Find(SaveHUD).transform.GetChild(0).gameObject;
+                if (saveHud != null) saveHud.SetActive(false);
+                gamePaused = false;
+            }
             go = GameObject.Find(hudName).transform.GetChild(0).gameObject;
             if (go == null)
                 return false;
@@ -172,6 +185,7 @@ namespace br.com.bonus630.thefrog.Manager
                 Time.timeScale = pause ? 0 : 1;
                 go.SetActive(pause);
                 GetPlayerScript.AllInputsOn(!pause);
+                gamePaused = pause;
                 return true;
             }
             return false;
@@ -235,6 +249,9 @@ namespace br.com.bonus630.thefrog.Manager
                 this.EnvironmentStates = LoadStates(index);
                 this.PlayerStates = this.EnvironmentStates.playerStates;
                 continueGame = true;
+                //vamos colocar a carga dos eventos completos aqui, não sei se é o melhor lugar, mas parece resolver o problema dos eventos carregarem após a cena
+                //já estar carregada
+                eventManager.LoadEvents(GameManager.Instance.playerStates.CompletedGameEvents);
                 SceneManager.LoadScene(MainScene);
                 //ChangeGameToState(this.PlayerStates);
             }
@@ -367,8 +384,14 @@ namespace br.com.bonus630.thefrog.Manager
                 StartCoroutine(RemoveHeart(hud, hearts));
             }
         }
-        public void UpdateProjectil(Color color)
+        public void UpdateProjectil(Color color,Sprite sprite)
         {
+            Image image = GameObject.Find(SpiritHUD).transform.GetChild(0).GetComponent<Image>();
+            image.gameObject.SetActive(true);
+            image.sprite = sprite;
+            image = GameObject.Find(SpiritHUD).transform.GetChild(1).GetComponent<Image>();
+            image.gameObject.SetActive(true);
+            image.color = color;
             Debug.Log("Projectil color:" + color);
         }
 
@@ -453,8 +476,8 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.UpdateShurykens();
             Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
-            eventManager.LoadEvents(GameManager.Instance.playerStates.CompletedGameEvents);
-     
+            
+            GameStatesRestaured?.Invoke();
         }
         public void GameOver()
         {

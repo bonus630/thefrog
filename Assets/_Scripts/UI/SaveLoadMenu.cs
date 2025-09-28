@@ -73,7 +73,8 @@ namespace br.com.bonus630.thefrog.UI
         }
         public void GoBackButtonDisableParent_clicked()
         {
-            gameObject.transform.parent.gameObject.SetActive(false);
+            GameManager.Instance.Pause(false);
+           // gameObject.transform.parent.gameObject.SetActive(false);
         }
         private void LoadSave(int index)
         {

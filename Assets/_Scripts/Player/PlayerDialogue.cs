@@ -1,6 +1,7 @@
 using br.com.bonus630.thefrog.Caracters;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Shared;
+using br.com.bonus630.thefrog.Utils;    
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -134,17 +135,49 @@ namespace br.com.bonus630.thefrog.Player
         }
         private DialogPosition GetDialogPosition()
         {
-            Camera cam = GameObject.Find("Hud").GetComponent<Canvas>().worldCamera;
-            Vector3 playerScreenPosition = cam.WorldToScreenPoint(player.transform.position);
-            Debug.Log("Contains : " + RectTransformUtility.RectangleContainsScreenPoint(dialogueSystem.dialogueUI.GetComponent<RectTransform>(), playerScreenPosition));
-            if(RectTransformUtility.RectangleContainsScreenPoint(dialogueSystem.dialogueUI.GetComponent<RectTransform>(), playerScreenPosition))
+           // Camera cam = GameObject.Find("Hud").GetComponent<Canvas>().worldCamera;
+          //  Debug.Log("Camera: " + cam);
+            // Usando o método utilitário para verificar se o player está sobre a UI de diálogo
+            bool isOverlapping = Utils.UIHelper.IsGameObjectInsideUI(player.gameObject, dialogueSystem.dialogueUI.Rect);
+            Debug.Log("Contains : " + isOverlapping);
+            if (isOverlapping)
             {
-                if (dialogueSystem.DialoguePosition.Equals(DialogPosition.Top))
-                    return DialogPosition.Bottom;
-                else
+               if(dialogueSystem.DialoguePosition == DialogPosition.Bottom)
                     return DialogPosition.Top;
+
             }
-            return dialogueSystem.DialoguePosition;
+            return DialogPosition.Bottom;
         }
+        //private DialogPosition GetDialogPosition()
+        //{
+        //    // Obtém a câmera usada pelo Canvas do HUD
+        //    Camera cam = GameObject.Find("Hud").GetComponent<Canvas>().worldCamera;
+        //    // Obtém a posição do player em coordenadas de tela
+        //    Vector3 playerScreenPosition = cam.WorldToScreenPoint(player.transform.position);
+
+        //    // Obtém o RectTransform da UI de diálogo
+        //    RectTransform dialogRect = dialogueSystem.dialogueUI.Rect;
+
+        //    // Converte a posição da tela para o espaço do canvas
+        //    Canvas canvas = dialogRect.GetComponentInParent<Canvas>();
+        //    Vector2 localPoint;
+        //    bool inside = RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        //        dialogRect, playerScreenPosition, canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : cam, out localPoint
+        //    );
+
+        //    // Verifica se o ponto local está dentro do retângulo da caixa de diálogo
+        //    bool contains = inside && dialogRect.rect.Contains(localPoint);
+        //    Debug.Log("Contains : " + contains);
+
+        //    if (contains)
+        //    {
+        //        // Se já está no topo, muda para baixo, senão muda para cima
+        //        if (dialogueSystem.DialoguePosition.Equals(DialogPosition.Top))
+        //            return DialogPosition.Bottom;
+        //        else
+        //            return DialogPosition.Top;
+        //    }
+        //    return dialogueSystem.DialoguePosition;
+        //}
     }
 }

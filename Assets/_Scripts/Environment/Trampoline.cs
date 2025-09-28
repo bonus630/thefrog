@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Environment
 {
@@ -23,18 +24,22 @@ namespace br.com.bonus630.thefrog.Environment
         {
             if (collision.transform.parent != null && collision.transform.parent.gameObject.layer == 13)
                 collision.transform.SetParent(null);
-            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector2 direction = transform.up.normalized;
-                float massFactor = rb.mass;
-                float gravityFactor = rb.gravityScale;
-                float adjustedForce = force * massFactor * gravityFactor;
 
-                rb.AddForce(direction * adjustedForce, ForceMode2D.Impulse);
-               // rb.AddForce(force * direction, ForceMode2D.Impulse);
-                anim.SetTrigger("active");
-                audioSource.PlayOneShot(boingSFX);
+            if (collision.gameObject.TryGetComponent<IForcible>(out IForcible forcible))
+            {
+                Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 direction = transform.up.normalized;
+                    float massFactor = rb.mass;
+                    float gravityFactor = rb.gravityScale;
+                    float adjustedForce = force * massFactor * gravityFactor;
+
+                    forcible.AddForce(direction * adjustedForce, ForceMode2D.Impulse,0.5f,false);
+                    // rb.AddForce(force * direction, ForceMode2D.Impulse);
+                    anim.SetTrigger("active");
+                    audioSource.PlayOneShot(boingSFX);
+                }
             }
             //Debug.Log(rb);
         }

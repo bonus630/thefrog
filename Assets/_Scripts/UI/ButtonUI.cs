@@ -5,26 +5,45 @@ using UnityEngine.UI;
 
 namespace br.com.bonus630.thefrog.UI
 {
-    public class ButtonUI : MonoBehaviour
+    public class ButtonUI : MonoBehaviour, ISelectHandler, IDeselectHandler, IEventSystemHandler
     {
         [SerializeField] GameObject Image;
         [SerializeField] AudioSource au;
-        bool isPlayed = false;
+        private Button btn;
+        // bool isPlayed = false;
 
-        private void Update()
+        private void Awake()
         {
-            bool isSelected = EventSystem.current.currentSelectedGameObject == gameObject;
-            Image.SetActive(isSelected);
-            if (isSelected && !isPlayed)
-            {
-                au.Play();
-            }
-            else if (!isSelected && isPlayed)
-            {
-                isPlayed = false;
-            }
-
-
+            btn = GetComponent<Button>();
+            btn.onClick.AddListener(OnClick);
         }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            Image.SetActive(false);
+        }
+
+        public void OnSelect(BaseEventData eventData)
+        {
+            Image.SetActive(true);
+            au.Play();
+        }
+        private void OnClick()
+        {
+            Image.SetActive(false);
+        }
+        //private void Update()
+        //{
+        //    bool isSelected = EventSystem.current.currentSelectedGameObject == gameObject;
+        //    Image.SetActive(isSelected);
+        //    if (isSelected && !isPlayed)
+        //    {
+        //        au.Play();
+        //    }
+        //    else if (!isSelected && isPlayed)
+        //    {
+        //        isPlayed = false;
+        //    }
+        //}
     }
 }

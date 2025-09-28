@@ -129,25 +129,27 @@ namespace br.com.bonus630.thefrog.Activators
         private IEnumerator PlayCutscene()
         {
             koarLimiter.SetActive(false);
-            GameManager.Instance.GetPlayerScript.MoveInputOn = false;
+            //GameManager.Instance.GetPlayerScript.MoveInputOn = false;
+            GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
             // yield return new WaitForSeconds(0.2f);
             // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
             screenEffects.FadeOut(1f);
             //GameManager.Instance.GetPlayerScript.ChangeGravity(0);
             // GameObject.Find("Kaor").SetActive(true);
             yield return new WaitForSeconds(1);
-            FindAnyObjectByType<CameraBackground>().ChangeBackground();
+           // FindAnyObjectByType<CameraBackground>().ChangeBackground();
             //GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
             GameManager.Instance.GetPlayer.transform.position = newLocation;
             screenEffects.FadeIn(1);
             yield return new WaitForEndOfFrame();
+            GameManager.Instance.EventCompleted(GameEventName.KoarFounded);
             startCheckDistance = true;
             inProgress = false;
 
         }
         private IEnumerator SimpleTransition(bool toKoar = false)
         {
-            Debug.Log("Simple transition, to koar: "+toKoar);
+            Debug.Log("Simple transition, to koar: "+ toKoar);
             screenEffects.FadeOut(0.1f);
             yield return new WaitForSeconds(0.1f);
           //  float ligth = 0.6f;

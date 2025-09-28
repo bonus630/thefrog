@@ -17,10 +17,14 @@ namespace br.com.bonus630.thefrog.DialogueSystem
 
         Color white = Color.white;
         Color transparent = Color.white;
-        float topPosition = 560f;
-        float bottomPosition = 90f;
+        [SerializeField] float topPosition = 560f;
+        [SerializeField] float bottomPosition = 90f;
         public DialogPosition CurrentPosition { get; private set; } = DialogPosition.Bottom;
-    
+
+        public RectTransform Rect { get; set; }
+        private RectTransform avatarRect;
+        public float avatarOffset = 50f;  // espaço entre avatar e caixa
+
         private void Awake()
         {
             white.a = 255;
@@ -34,6 +38,8 @@ namespace br.com.bonus630.thefrog.DialogueSystem
             //background = transform.GetChild(0).GetComponent<Image>();
             //name = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
             //text = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            Rect = GetComponent<RectTransform>();
+            avatarRect = avatar.GetComponent<RectTransform>();
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -87,17 +93,45 @@ namespace br.com.bonus630.thefrog.DialogueSystem
             SetPosition(DialogPosition.Bottom);
             //name.text = string.Empty;
         }
+        //meu codigo
         public void SetPosition(DialogPosition position)
         {
-            Debug.Log("Position :"+position);
-            GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, position==DialogPosition.Top ? topPosition : bottomPosition);
-            if(position!=CurrentPosition)
+            Debug.Log("Position :" + position);
+            GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, position == DialogPosition.Top ? topPosition : bottomPosition);
+            if (position != CurrentPosition)
             {
                 Debug.Log("Avatar " + GetComponent<RectTransform>().anchoredPosition);
-                avatar.GetComponent<RectTransform>().anchoredPosition = new Vector2(avatar.GetComponent<RectTransform>().anchoredPosition.x, avatar.GetComponent<RectTransform>().anchoredPosition.y * - 1);
+                avatar.GetComponent<RectTransform>().anchoredPosition = new Vector2(avatar.GetComponent<RectTransform>().anchoredPosition.x, avatar.GetComponent<RectTransform>().anchoredPosition.y * -1);
                 CurrentPosition = position;
             }
         }
+        //chatgpt codigo
+        //public void SetPosition(DialogPosition position)
+        //{
+        //    // Caixa sobe ou desce
+        //    float y = (position == DialogPosition.Top) ? topPosition : bottomPosition;
+        //    rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, y);
+        //    Debug.Log("Dialog y:" + y);
+        //    // Avatar sempre acompanha a caixa
+        //    if (position == DialogPosition.Top)
+        //    {
+        //        // Player embaixo -> Caixa em cima -> Avatar abaixo da caixa
+        //        avatarRect.anchoredPosition = new Vector2(
+        //            avatarRect.anchoredPosition.x,
+        //            -Mathf.Abs(avatarOffset)
+        //        );
+        //    }
+        //    else
+        //    {
+        //        // Player em cima -> Caixa embaixo -> Avatar acima da caixa
+        //        avatarRect.anchoredPosition = new Vector2(
+        //            avatarRect.anchoredPosition.x,
+        //            Mathf.Abs(avatarOffset)
+        //        );
+        //    }
+
+        //    CurrentPosition = position;
+        //}
         public void SetHaveMoreIcon(bool value)
         {
             haveMoreIcon.gameObject.SetActive(value);

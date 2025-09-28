@@ -43,9 +43,12 @@ namespace br.com.bonus630.thefrog.Caracters
             player = GameObject.Find("Player");
             animator = GetComponent<Animator>();
             box = GetComponent<BoxCollider2D>();
+            
+        }
+        protected override void OnGameStatesRestaured()
+        {
             CheckGameEvents();
         }
-
         private void CheckGameEvents()
         {
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
@@ -132,6 +135,8 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void SetDialogue()
         {
+            
+            Debug.Log($"SetDialogue- CurrentDialog:{currentDialogue} firstTalk:{firstTalk} killPig:{killPig} playerCheckWall:{playerCheckWall}");
             if (!wallJump)
             {
 
@@ -147,6 +152,11 @@ namespace br.com.bonus630.thefrog.Caracters
                         currentDialogue = 5;
                     else
                         currentDialogue = 6;
+                }
+                if(firstTalk && killPig && playerCheckWall)
+                {
+                    prevDialogue = 0;
+                    currentDialogue = 6;
                 }
             }
 

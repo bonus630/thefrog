@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
-using NUnit.Framework;
+using System.Text;
 using UnityEngine;
+using br.com.bonus630.thefrog.Utils;
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -27,6 +29,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         public void Save(int index, PlayerStates playerStates, EnvironmentStates environmentStates,Camera camera)
         {
+           
             //Debug.Log("game time: " + environmentStates.GameTimeInSeconds);
             environmentStates.playerStates = playerStates;
             SaveStates saveStates = new SaveStates(index, environmentStates);
@@ -36,10 +39,14 @@ namespace br.com.bonus630.thefrog.Manager
                 saveStates.thumb = thumb.CreateEncodeThumb(camera, GameManager.Instance.GetPlayer);
             }
             string jason = JsonUtility.ToJson(saveStates);
+           
+            jason = Cripter.Encrypt(jason);
 #if UNITY_WEBGL
+    
             PlayerPrefs.SetString(FileName(index), jason);
             PlayerPrefs.Save();
 #else
+        
             File.WriteAllText(FilePath(index), jason);
 #endif
         }
@@ -66,6 +73,7 @@ namespace br.com.bonus630.thefrog.Manager
             if (File.Exists(FilePath(index)))
             {
                 string json = File.ReadAllText(FilePath(index));
+                json = Cripter.Decrypt(json);
                 return JsonUtility.FromJson<SaveStates>(json);
             }
 #endif

@@ -75,6 +75,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   audioSource: {fileID: 7190693222073059538}
+  isPermanent: 0
   intensity: 0
 --- !u!82 &7190693222073059538
 AudioSource:
@@ -219,10 +220,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1, y: 7}
+    - - {x: -1.15, y: 4.5}
       - {x: -0.1, y: -0.2}
       - {x: 0.1, y: -0.2}
-      - {x: 1, y: 7}
+      - {x: 1.15, y: 4.5}
   m_UseDelaunayMesh: 0
 --- !u!50 &-9083018229671583280
 Rigidbody2D:
@@ -278,8 +279,8 @@ Transform:
   m_GameObject: {fileID: 8243499155702375080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.66, z: 0}
-  m_LocalScale: {x: 5.987087, y: 13.194616, z: 1}
+  m_LocalPosition: {x: -0.013, y: 2.499, z: 0}
+  m_LocalScale: {x: 5.987087, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3366515108797111066}

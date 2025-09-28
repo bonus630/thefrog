@@ -44,13 +44,18 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         }
         public void Next()
         {
+            if (state != DialogStates.WAITING && state != DialogStates.DISABLED)
+                return;
+            dialogueUI.SetPosition(DialoguePosition);
             if (current == 0)
                 dialogueUI.Enable();
 
-            dialogueUI.SetPosition(DialoguePosition);
             dialogueUI.SetAvatar(DialogueData.Dialogues[current].Avatar);
-            textAnimation.FullText = ReplaceVariables(DialogueData.Dialogues[current++].text);
-
+            //verificar aqui
+           // Debug.Log("Current Dialog System: " + current);
+           
+           textAnimation.FullText = ReplaceVariables(DialogueData.Dialogues[current].text);
+            current++;
 
             if (DialogueData.Count == current)
             {

@@ -125,6 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367ea49d5ca31d84883fdd2d834ce8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemToActive: {fileID: 0}
+  <GetElement>k__BackingField: 1
+  <ElementColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
   off: 0
 --- !u!61 &7039150766717551216
 BoxCollider2D:
@@ -227,7 +230,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000ed1adab7
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 3
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3

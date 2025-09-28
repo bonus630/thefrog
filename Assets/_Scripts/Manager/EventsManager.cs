@@ -23,10 +23,9 @@ namespace br.com.bonus630.thefrog.Manager
             events.Add(killPig);
             GameEvent firtEvent = new GameEvent(GameEventName.NPCTutorial, false, false);
             firtEvent.Requires = new List<GameEvent>()
-        {
-            previewEvent,
-
-        };
+            {
+                previewEvent,
+            };
             events.Add(firtEvent);
 
             GameEvent secondEvent = new GameEvent(GameEventName.Shuryken, false, false);
@@ -47,39 +46,21 @@ namespace br.com.bonus630.thefrog.Manager
             GameEvent duckPath = new GameEvent(GameEventName.DuckPath, false, false);
             duckPath.Requires = new List<GameEvent>() { secondEvent };
             events.Add(duckPath);
-            GameEvent fireBall = new GameEvent(GameEventName.FireBall, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(fireBall);
-            GameEvent playerCheckWall = new GameEvent(GameEventName.PlayerCheckWall, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(playerCheckWall);
-            GameEvent appleTree = new GameEvent(GameEventName.AppleTreeFounded, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(appleTree);
-            GameEvent featherTouch = new GameEvent(GameEventName.FeatherTouch, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(featherTouch);
-            GameEvent Dash = new GameEvent(GameEventName.Dash, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(Dash);
-            GameEvent lightningBolt = new GameEvent(GameEventName.LightningBolt, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(lightningBolt);
-            GameEvent defeatWizard = new GameEvent(GameEventName.DefeatWizard, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(defeatWizard);  
-                GameEvent rollingWild = new GameEvent(GameEventName.RollingWind, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(rollingWild);
-            GameEvent purifyWater = new GameEvent(GameEventName.PurifyWater, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(purifyWater);
-            GameEvent ladyLaments = new GameEvent(GameEventName.LadyLaments, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(ladyLaments);
-            GameEvent prisioner = new GameEvent(GameEventName.PrisionerTip, false, false);
-            //fireBall.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(prisioner);
+
+            events.Add(new GameEvent(GameEventName.FireBall));
+            events.Add(new GameEvent(GameEventName.PlayerCheckWall));
+            
+            events.Add(new GameEvent(GameEventName.AppleTreeFounded));
+            events.Add(new GameEvent(GameEventName.FeatherTouch));
+            events.Add(new GameEvent(GameEventName.KoarFounded));
+            events.Add(new GameEvent(GameEventName.Dash));
+            events.Add(new GameEvent(GameEventName.LightningBolt));
+           
+            events.Add(new GameEvent(GameEventName.DefeatWizard));
+            events.Add(new GameEvent(GameEventName.RollingWind));
+            events.Add(new GameEvent(GameEventName.PurifyWater));
+            events.Add(new GameEvent(GameEventName.LadyLaments));
+            events.Add(new GameEvent(GameEventName.PrisionerTip));
 
         }
 
@@ -120,19 +101,21 @@ namespace br.com.bonus630.thefrog.Manager
             Debug.Log("eventos: " + eventsDatas.Count);
             for (int i = 0; i < eventsDatas.Count; i++)
             {
-                if (!completedEvents.Contains(eventsDatas[i].ToString()))
-                {
-                    completedEvents.Add(eventsDatas[i].ToString());
+               // if (!completedEvents.Contains(eventsDatas[i].ToString()))
+               // {
+                    //completedEvents.Add(eventsDatas[i].ToString());
                     GameEventName eventName = GameEventName.None;
                     if (Enum.TryParse(eventsDatas[i].ToString(), out eventName))
                     {
                         GameEvent eventGame = GetEvent(eventName);
                         if (eventGame != null)
                         {
-                            eventGame.Completed = true;
+                            EventCompleted(eventGame.Name, false);
+                            //eventGame.Completed = true;
+                            Debug.Log("Evento carregado como verdadeiro: " + eventGame.Name);
                         }
                     }
-                }
+                //}
             }
         }
 
@@ -153,7 +136,12 @@ namespace br.com.bonus630.thefrog.Manager
             Unlocked = unlocked;
             Completed = completed;
         }
-
+        public GameEvent(GameEventName name)
+        {
+            Name = name;
+            Unlocked = false;
+            Completed = false;
+        }
         public GameEventName Name { get; set; }
         public bool Unlocked { get; set; }
         public bool Completed { get; set; }
@@ -192,6 +180,7 @@ namespace br.com.bonus630.thefrog.Manager
         FeatherTouch,
         FireBall,
         AppleTreeFounded,
+        KoarFounded,
         Dash,
         DefeatWizard,
         LightningBolt,

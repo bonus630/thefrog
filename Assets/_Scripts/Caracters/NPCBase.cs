@@ -40,6 +40,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             currentDialogueData = dialogueData;
             GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;   
+            GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;  
             //Debug.Log(currentDialogueData.DialogueName);
         }
         protected virtual void OnDestroy()
@@ -94,7 +95,10 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public abstract void Interact();
         public abstract Transform GetTransform();
+        protected virtual void OnGameStatesRestaured()
+        {
 
+        }
         public virtual Dictionary<string, string> GetDialogueVariables()
         {
             return null;

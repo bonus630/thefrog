@@ -16,14 +16,14 @@ namespace br.com.bonus630.thefrog.Items
         private bool inside = false;
 
         
-        private void OnValidate()
-        {
-            for (int i = 0; i < Enum.GetValues(typeof(Theme)).Length; i++)
-            {
-                gameObject.transform.GetChild(i).gameObject.SetActive(false);
-            }
-            SetTheme(stairTheme);
-        }
+        //private void OnValidate()
+        //{
+        //    for (int i = 0; i < Enum.GetValues(typeof(Theme)).Length; i++)
+        //    {
+        //        gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        //    }
+        //    SetTheme(stairTheme);
+        //}
         private void Awake()
         {
             GlobalActions = new InputSystem_Actions();
@@ -43,6 +43,7 @@ namespace br.com.bonus630.thefrog.Items
         {
                 gameObject.transform.GetChild((int)stairTheme).GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= RustStairs_OnTriggerEnterAction;
                 gameObject.transform.GetChild((int)stairTheme).GetComponent<CollisionRelayEx>().OnTriggerExitAction -= RustStairs_OnTriggerExitAction;
+                GlobalActions.Disable();
         }
         private void RustStairs_OnTriggerEnterAction(ColliderData obj)
         {

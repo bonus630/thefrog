@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 namespace br.com.bonus630.thefrog.Player
 {
 
-    public class Player : MonoBehaviour, IPlayer
+    public class Player : MonoBehaviour, IPlayer,IForcible
     {
         [SerializeField] private GameObject interactIcon;
         [SerializeField] private GameObject bar;
@@ -41,7 +41,7 @@ namespace br.com.bonus630.thefrog.Player
         private BoxCollider2D footerCollider;
         private AudioSource audioSource;
           /// <summary>
-          /// -1 para normal, 1 para ponta cabeça
+          /// -1 para normal, 1 para ponta cabeï¿½a
           /// </summary>
         public float gravityDirection = 1;
         public float gravityScale = 4f;
@@ -120,15 +120,43 @@ namespace br.com.bonus630.thefrog.Player
         //{
         //   AddForce(force, mode, time);
         //}
-        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f,bool removeInput = true)
-        {
-            if(removeInput)
-                StartCoroutine(RemoveInputs(time));
-            playerMovement.UseYvelocityLimit = false;
-            rb.AddForce(force, mode);
-            Invoke(nameof(ReenableYVelocityLimit), 0.6f);
-        }
+        //public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f,bool removeInput = true)
+        //{
+        //    if(removeInput)
+        //        StartCoroutine(RemoveInputs(time));
+        //    playerMovement.UseYvelocityLimit = false;
+        //    rb.AddForce(force, mode);
+        //    Invoke(nameof(ReenableYVelocityLimit), 0.6f);
+        //}
         // private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = false;
+        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f, bool removeInput = true)
+        {
+            rb.AddForce(force, ForceMode2D.Impulse);
+            StartCoroutine(IgnoreDampingForDuration(time,removeInput));
+        }
+
+        IEnumerator IgnoreDampingForDuration(float duration,bool removeInput)
+        {
+            playerMovement.IgnoreDamping = true;
+            if(removeInput)
+                inputsOn = false;
+            float timer = 0f;
+            playerMovement.UseYvelocityLimit = false;
+            //    rb.AddForce(force, mode);
+            Invoke(nameof(ReenableYVelocityLimit), 0.6f);
+            while (timer < duration)
+            {
+                // se a velocidade jï¿½ caiu, pode desligar antes
+                if (Mathf.Abs(rb.linearVelocity.x) < 0.1f)
+                    break;
+
+                timer += Time.fixedDeltaTime; // usa ciclo da fï¿½sica
+                yield return new WaitForFixedUpdate();
+            }
+            inputsOn = true;
+            playerMovement.IgnoreDamping = false;
+        
+        }
         private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = true;
        
      
@@ -362,14 +390,14 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (rb == null)
                 {
-                    // Debug.LogError("Rigidbody2D está null no Build!");
+                    // Debug.LogError("Rigidbody2D estï¿½ null no Build!");
                     return;
                 }
-                //vou resetar o airDash aqui, mas não é o lugar certo para isso
+                //vou resetar o airDash aqui, mas nï¿½o ï¿½ o lugar certo para isso
                 //playerMovement.airDash
                 //Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
-                AddForce(knockUpForce, time: 0.2f);
+                AddForce(knockUpForce);
                 //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
                 playerMovement.TimeInFastFall = 0;
                 knockUp = false;
@@ -429,7 +457,7 @@ namespace br.com.bonus630.thefrog.Player
             yield return new WaitForSeconds(delayTime);
             GetComponent<PlayerInputHandler>().enabled = inputOn;
             GetComponent<PlayerInput>().enabled = inputOn;
-           // Debug.Log("Disable inputs ");
+            Debug.Log("Disable inputs :"+ inputOn);
         }
         public void FreezePlayer()
         {
@@ -437,9 +465,9 @@ namespace br.com.bonus630.thefrog.Player
             playerMovement.FreezePlayerMove();
         }
     }
-    enum PlayerGravityDirection : int
+    public enum PlayerGravityDirection : short
     {
-        UP = -1,
-        DOWN = 1
+        DOWN = -1,
+        UP = 1
     }
 }

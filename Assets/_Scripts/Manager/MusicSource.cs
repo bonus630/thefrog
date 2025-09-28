@@ -12,9 +12,13 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] private AudioClip[] BackgroundMusics;
         [SerializeField] private AudioClip[] BackgroundMusicsRandom;
 
+
+        [field: SerializeField] public float MaxSilentTime { get; set; } = 1f;
+
         private float fadDuration = 10f;
         private float targetVolume = 0.32f;
         private float silentTime;
+
         private bool leftTurn = true;
 
         public float SavedTime { get; set; } = 0f; // Guarda o tempo da música antes de pausar
@@ -54,7 +58,7 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 silentTime = 0;
 
-            if (silentTime > 0.5f)
+            if (silentTime > MaxSilentTime)
             {
                 audioLeft.loop = false;
                 audioRight.loop = false;

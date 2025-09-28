@@ -29,10 +29,10 @@ namespace br.com.bonus630.thefrog.Activators
         private IEnumerator KoarStart()
         {
 
-            GameManager.Instance.GetPlayerScript.MoveInputOn = false;
-
-           // yield return new WaitForSeconds(1f);
-            yield return new WaitForSeconds(4f);
+            // GameManager.Instance.GetPlayerScript.MoveInputOn = false;
+            GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
+             // yield return new WaitForSeconds(1f);
+             yield return new WaitForSeconds(4f);
             yield return new WaitForEndOfFrame();
             //Time.timeScale = 0.5f;
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f);
@@ -50,7 +50,8 @@ namespace br.com.bonus630.thefrog.Activators
         private void RestorePlayerInput()
         {
             Time.timeScale = 1f;
-            GameManager.Instance.GetPlayerScript.MoveInputOn = true;
+            GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0);
+            //GameManager.Instance.GetPlayerScript.MoveInputOn = true;
             musicSource.Sleep();
             musicSource.CrossFade(BackgroundMusic.DarkWind, true);
             Destroy(gameObject, 1f);

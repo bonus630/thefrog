@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPoint: {fileID: 3380446723125543659}
   downPoint: {fileID: 3802580908769843372}
-  coll: {fileID: 0}
+  coll: {fileID: 5378251040894896566}
   layerMask:
     serializedVersion: 2
     m_Bits: 320

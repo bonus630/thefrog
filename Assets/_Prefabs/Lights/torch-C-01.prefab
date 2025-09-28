@@ -135,6 +135,8 @@ MonoBehaviour:
   hitting: {fileID: 0}
   light2D: {fileID: 0}
   FireSprite: {fileID: 0}
+  <GetElement>k__BackingField: 1
+  <ElementColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
 --- !u!58 &-5748055920661723129
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -265,7 +267,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000ed1adab7
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 3
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3

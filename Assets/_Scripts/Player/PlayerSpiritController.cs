@@ -22,7 +22,13 @@ namespace br.com.bonus630.thefrog.Player
         float count = 0f;
         [field:SerializeField]public ProjectilData CurrentProjectile { get; private set; }
 
+        [SerializeField] Sprite FireSprite;
+        [SerializeField] Sprite LightningSprite;
+        [SerializeField] Sprite WindSprite;
+        [SerializeField] Sprite WaterSprite;
+        [SerializeField] Sprite EarthrSprite;
  
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -77,23 +83,23 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     case Elements.Fire:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2,Color.red,  Elements.Fire));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2,Color.red,  Elements.Fire,FireSprite));
                         break;
                     case Elements.Lightining:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.white, Elements.Lightining));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.white, Elements.Lightining,LightningSprite));
                         break;
                     case Elements.Wind:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWind))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.green,  Elements.Wind));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.green,  Elements.Wind,WindSprite));
                         break;
                     case Elements.Water:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.blue, Elements.Water));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.blue, Elements.Water,WaterSprite));
                         break;
                     case Elements.Earth:
                         if (GameManager.Instance.IsEventCompleted(GameEventName.None))
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.magenta,  Elements.Earth));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.magenta,  Elements.Earth, EarthrSprite));
                         break;
                 }
             }
@@ -104,7 +110,7 @@ namespace br.com.bonus630.thefrog.Player
             if (avaliableProjectilies.Count > 0)
             {
                 CurrentProjectile = avaliableProjectilies[currentIndex];
-                GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor);
+                GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor,CurrentProjectile.hud);
             }
 
         }
@@ -118,6 +124,7 @@ namespace br.com.bonus630.thefrog.Player
         public GameObject SpawnPoint2;
         public Color EffectColor;
         public Elements Element;
+        public Sprite hud;
 
         public ProjectilData(GameObject projectil, GameObject spawnPoint, GameObject spawnPoint2, Color effectColor, Elements element)
         {
@@ -126,6 +133,11 @@ namespace br.com.bonus630.thefrog.Player
             SpawnPoint2 = spawnPoint2;
             EffectColor = effectColor;
             Element = element;
+        }
+        public ProjectilData(GameObject projectil, GameObject spawnPoint, GameObject spawnPoint2, Color effectColor, Elements element,Sprite hud)
+            :this(projectil,spawnPoint,spawnPoint2,effectColor,element)
+        {
+            this.hud = hud;
         }
         public ProjectilData(Elements element)
         {

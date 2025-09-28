@@ -11,7 +11,6 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] protected int confinierIndex;
         [SerializeField] protected CamerasController controller;
 
-
         public int CameraIndex { get { return cameraIndex; } }
         public int ConfinierIndex { get { return confinierIndex; } }
 
@@ -29,7 +28,6 @@ namespace br.com.bonus630.thefrog.Activators
                     return string.Empty;
             }
         }
-
 
         protected virtual void Start()
         {

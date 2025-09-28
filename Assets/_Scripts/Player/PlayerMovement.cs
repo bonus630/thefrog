@@ -27,6 +27,7 @@ namespace br.com.bonus630.thefrog.Player
         public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
         public float TimeInFastFall { get; set; } = 0;
         public bool UseYvelocityLimit { get; set; } = true;
+        public bool IgnoreDamping { get; set; } = false;
 
         private int jumps = 2;
         private float doubleJumpForce;
@@ -200,12 +201,15 @@ namespace br.com.bonus630.thefrog.Player
             }
             //if (context.performed)
             //    Debug.Log("Jump context perfomed"); 
-            if (!player.knockUp && context.canceled)
+            if (context.canceled && !player.knockUp && !IgnoreDamping)
             {
-                if (player.RigibodyLinearVelocity.y > 0)
+                if ((player.gravityDirection.Equals(PlayerGravityDirection.DOWN) && player.RigibodyLinearVelocity.y > 0) ||
+                    (player.gravityDirection.Equals(PlayerGravityDirection.UP)   && player.RigibodyLinearVelocity.y < 0))
                 {
-                    //Debug.Log("Jumps: " + jumps);
-                    player.RigibodyLinearVelocityY *= 0.2f * player.gravityDirection;
+                    Debug.Log("Jumps: " + jumps);
+                    Debug.Log("Player.RigibodylinearVelocityY: " + player.RigibodyLinearVelocity.y);
+                    Debug.Log("GravityDirection: " + player.gravityDirection);
+                    player.RigibodyLinearVelocityY *= 0.2f;
                     doubleJump = true;
                     jumps--;
                 }
@@ -276,7 +280,7 @@ namespace br.com.bonus630.thefrog.Player
         private void Move()
         {
             bool canMove = true;
-            if (direction.x == 0)
+            if (direction.x == 0 && !IgnoreDamping)
             {
                 if (acceleration > 0)
                     acceleration -= accelerationFactor;
@@ -453,14 +457,14 @@ namespace br.com.bonus630.thefrog.Player
             direction.x = 0;
             player.RigibodyBodyType = RigidbodyType2D.Static;
             player.RigibodyLinearVelocity = Vector2.zero;
-            player.MoveInputOn = false;
+            player.AllInputsOn(false);
             anim.SetFloat(WalkID, 0);
             //anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()
         {
             player.RigibodyBodyType = RigidbodyType2D.Dynamic;
-            player.MoveInputOn = true;
+            player.AllInputsOn(true);
         }
         private void WallSliding()
         {
@@ -499,4 +503,5 @@ namespace br.com.bonus630.thefrog.Player
             player.ChangeGravity(player.gravityDirection * -1);
         }
     }
+    
 }
