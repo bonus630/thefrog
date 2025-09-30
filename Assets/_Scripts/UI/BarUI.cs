@@ -1,19 +1,16 @@
+using System;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 
 namespace br.com.bonus630.thefrog.UI
 {
-    using UnityEngine;
-
-    using UnityEngine;
-
     public class BarUI : MonoBehaviour, IBarUI
     {
         [SerializeField] GameObject root;
         [SerializeField] GameObject barSprite;
 
-        [field: SerializeField]
+       public event Action<GameObject,bool> BarDestroyed;    
         public Color Color
         {
             get => barSprite.GetComponent<SpriteRenderer>().color;
@@ -32,7 +29,7 @@ namespace br.com.bonus630.thefrog.UI
         private float elapsedTime = 0f;
         private bool isAnimating = false;
 
-        [field: SerializeField]
+
         public float MinValue
         {
             get => minValue;
@@ -43,7 +40,7 @@ namespace br.com.bonus630.thefrog.UI
             }
         }
 
-        [field: SerializeField]
+
         public float MaxValue
         {
             get => maxValue;
@@ -54,7 +51,7 @@ namespace br.com.bonus630.thefrog.UI
             }
         }
 
-        [field: SerializeField]
+
         public float Value
         {
             get => targetValue;
@@ -69,6 +66,7 @@ namespace br.com.bonus630.thefrog.UI
         }
         public int id { get; set; }
 
+  
         //private void Start()
         //{
         //    currentValue = targetValue = minValue;
@@ -119,12 +117,29 @@ namespace br.com.bonus630.thefrog.UI
             elapsedTime = 0f;
             timeToUpdateTotal = time;
             isAnimating = true;
+          
         }
 
-        public void Destroy()
+        public void DestroyBar()
         {
             Destroy(gameObject);
         }
+
+        public void DestroyBar(float time)
+        {
+            Destroy(gameObject, time);
+        }
+
+        private void OnDestroy()
+        {
+            OnBarDestroyed();
+        }
+
+        private void OnBarDestroyed()
+        {
+            BarDestroyed?.Invoke(gameObject,true);
+        }
+
     }
 
 

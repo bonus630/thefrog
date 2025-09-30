@@ -27,6 +27,7 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private AudioClip Entrace;
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
+        [field:SerializeField] public BarManager barManager { get; set; }
 
         public PlayerDialogue playerDialogue { get; private set; }
         public PlayerHealth playerHealth { get; private set; }
@@ -104,7 +105,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 audioSource.PlayOneShot(Entrace);
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-                AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+                AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
             }
 //#else
             //if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
@@ -154,7 +155,8 @@ namespace br.com.bonus630.thefrog.Player
                 yield return new WaitForFixedUpdate();
             }
             inputsOn = true;
-            playerMovement.IgnoreDamping = false;
+            if(duration > 0 && !removeInput)
+                playerMovement.IgnoreDamping = false;
         
         }
         private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = true;
@@ -222,28 +224,28 @@ namespace br.com.bonus630.thefrog.Player
 
         }
         int bars = 0;
-       
-        public GameObject CreateBar(Color color, float value)
-        {
 
-            GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
-            // var b = o.GetComponent<Getter>();
-            Follow follow = o.GetComponent<Follow>();
-            follow.Target = transform;
-            follow.Offset = Vector3.up * (0.4f  * -gravityDirection);
-            IBarUI c = o.GetComponent<IBarUI>();
-            c.id = Random.Range(0,1000);
-            c.Value = value;
-            c.Color = color;
-            bars++;
-            return o;
-        }
-        public void RemoveBar(GameObject bar, float time)
-        {
-            bars--;
-            Debug.Log("Bars+" + bars);
-            Destroy(bar, time);
-        }
+        //public GameObject CreateBar(Color color, float value)
+        //{
+
+        //    GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
+        //    // var b = o.GetComponent<Getter>();
+        //    Follow follow = o.GetComponent<Follow>();
+        //    follow.Target = transform;
+        //    follow.Offset = Vector3.up * (0.4f * -gravityDirection);
+        //    IBarUI c = o.GetComponent<IBarUI>();
+        //    c.id = Random.Range(0, 1000);
+        //    c.Value = value;
+        //    c.Color = color;
+        //    bars++;
+        //    return o;
+        //}
+        //public void RemoveBar(GameObject bar, float time)
+        //{
+        //    bars--;
+        //    Debug.Log("Bars+" + bars);
+        //    Destroy(bar, time);
+        //}
         IEnumerator DestroyEffects(ScreenEffects screenEffects)
         {
             yield return new WaitForEndOfFrame();
@@ -268,11 +270,13 @@ namespace br.com.bonus630.thefrog.Player
 
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
+                    if (gravityDirection.Equals((float)PlayerGravityDirection.UP))
+                        projectilie.ChangeDirectionY();
                     projectilie.Launch(new Vector2(LookFor.FlipIfNegative(playerMovement.GetWallSliding), 0));
-                    GameObject bar = CreateBar(playerSpiritController.CurrentProjectile.EffectColor, 0);
-                    bar.GetComponent<IBarUI>().MaxValue = 100;
-                    bar.GetComponent<IBarUI>().GoToValue(100, projectilie.ReloadTime());
-                    RemoveBar(bar, projectilie.ReloadTime());
+                    IBarUI bar = barManager.CreateBar(playerSpiritController.CurrentProjectile.EffectColor, 0,transform,gravityDirection);
+                    bar.MaxValue = 100;
+                    bar.GoToValue(100, projectilie.ReloadTime());
+                    bar.DestroyBar(projectilie.ReloadTime());
                     nextLaunch = Time.time + projectilie.ReloadTime();
                 }
             }

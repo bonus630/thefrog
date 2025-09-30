@@ -148,6 +148,10 @@ namespace br.com.bonus630.thefrog.Items
             if (FireSprite != null)
                 FireSprite.gameObject.SetActive(active);
         }
+        public override void ChangeDirectionY()
+        {
+        
+        }
     }
 
 }

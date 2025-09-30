@@ -104,6 +104,11 @@ namespace br.com.bonus630.thefrog.Items
                     el.DeactiveBy(GetElement);
             }
         }
+        public override void ChangeDirectionY()
+        {
+            transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+            GetComponent<AreaEffector2D>().forceAngle = 270;
+        }
     }
 }
 

@@ -116,7 +116,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (UseYvelocityLimit)
                 {
                     Vector2 velocity = player.RigibodyLinearVelocity;
-                    velocity.y = (Mathf.Abs(LinearMaxY) + 4) * player.gravityDirection;
+                    velocity.y = (Mathf.Abs(LinearMaxY) + 0.1f) * player.gravityDirection;
                     player.RigibodyLinearVelocity = velocity;
                 }
                 var m = FastFallParticles.main;
@@ -203,12 +203,9 @@ namespace br.com.bonus630.thefrog.Player
             //    Debug.Log("Jump context perfomed"); 
             if (context.canceled && !player.knockUp && !IgnoreDamping)
             {
-                if ((player.gravityDirection.Equals(PlayerGravityDirection.DOWN) && player.RigibodyLinearVelocity.y > 0) ||
-                    (player.gravityDirection.Equals(PlayerGravityDirection.UP)   && player.RigibodyLinearVelocity.y < 0))
+                if ((player.gravityDirection.Equals((float)PlayerGravityDirection.DOWN) && player.RigibodyLinearVelocity.y > 0) ||
+                    (player.gravityDirection.Equals((float)PlayerGravityDirection.UP)   && player.RigibodyLinearVelocity.y < 0))
                 {
-                    Debug.Log("Jumps: " + jumps);
-                    Debug.Log("Player.RigibodylinearVelocityY: " + player.RigibodyLinearVelocity.y);
-                    Debug.Log("GravityDirection: " + player.gravityDirection);
                     player.RigibodyLinearVelocityY *= 0.2f;
                     doubleJump = true;
                     jumps--;
@@ -265,10 +262,11 @@ namespace br.com.bonus630.thefrog.Player
         {
 #if UNITY_EDITOR
             distance = player.transform.position.x - distance;
-            Debug.Log("Jump Distance:" + distance);
+          //  Debug.Log("Jump Distance:" + distance);
 #endif      
             JumpDownEffect();
             player.InGround = true;
+            IgnoreDamping = false;
             airDash = false;
             doubleJump = false;
             anim.SetBool(JumpID, false);
@@ -430,9 +428,14 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (firstTimeInDashLoop && inDash)
             {
-                if(dashBar==null)
-                    dashBar = player.CreateBar(Color.blue, dashReloadMaxTime);
-                IBarUI c = dashBar.GetComponent<IBarUI>();
+                IBarUI c = null;
+                if (dashBar == null)
+                {
+                    c = player.barManager.CreateBar(Color.blue, dashReloadMaxTime,player.transform, player.gravityDirection);
+                    dashBar = c.gameObject;
+                }
+                else
+                    c = dashBar.GetComponent<IBarUI>();
                 c.Value = 0;
                 c.MaxValue = dashReloadMaxTime;
              
@@ -443,7 +446,8 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     Debug.Log("Reload Timer: " + dashReloadMaxTime);
                     if (dashReloadTimer>=dashReloadMaxTime)
-                        Destroy(dashBar);
+                        dashBar.GetComponent<IBarUI>().DestroyBar();
+                    // Destroy(dashBar);
                     else
                     {
                         IBarUI c = dashBar.GetComponent<IBarUI>();

@@ -199,5 +199,11 @@ namespace br.com.bonus630.thefrog.Items
             // Se nada for detectado, retorna um ponto padrão
             return new Vector3(origin.x + raycastDistance, fixedY, 0f);
         }
+
+        public override void ChangeDirectionY()
+        {
+            transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+           
+        }
     }
 }

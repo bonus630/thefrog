@@ -43,7 +43,7 @@ namespace br.com.bonus630.thefrog.Caracters
             player = GameObject.Find("Player");
             animator = GetComponent<Animator>();
             box = GetComponent<BoxCollider2D>();
-            
+            this.CurrentDialogueData = dialoguesData[0];
         }
         protected override void OnGameStatesRestaured()
         {

@@ -104,7 +104,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasGravity = true;
             playerStates.HasFireball = true;
             playerStates.HasWallJump = true;
- //           playerStates.HasDoubleJump = true;
+            //           playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
@@ -459,15 +459,15 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             //Aqui nao chama ao dar play normalmente, utilize o awake para debugar os eventos completos adicionados
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWild.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
-            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
-            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
-            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWind.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
+            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
 
 #endif
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);

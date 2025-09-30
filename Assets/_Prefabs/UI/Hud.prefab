@@ -1753,7 +1753,7 @@ MonoBehaviour:
   text: {fileID: 8016701525124097558}
   speed: 0.05
   open: 0
-  topPosition: 630
+  topPosition: 580
   bottomPosition: 130
   avatarOffset: 50
 --- !u!1 &5988426488546691236

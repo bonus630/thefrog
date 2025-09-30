@@ -54,9 +54,9 @@ namespace br.com.bonus630.thefrog.Manager
         private string FilePath(int index)
         {
 #if UNITY_EDITOR
-            return Path.Combine(Application.persistentDataPath, $"{FileName(index)}-editor.json");
+            return Path.Combine(Application.persistentDataPath, $"{FileName(index)}-editor.dat");
 #else
-            return Path.Combine(Application.persistentDataPath, $"{FileName(index)}.json");
+            return Path.Combine(Application.persistentDataPath, $"{FileName(index)}.dat");
 #endif
         }
         

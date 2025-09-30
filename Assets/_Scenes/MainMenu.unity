@@ -4705,7 +4705,7 @@ MonoBehaviour:
   m_text: THE FROG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
-  m_sharedMaterial: {fileID: -5307079874678429431, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
+  m_sharedMaterial: {fileID: -8722573922416251172, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6499,6 +6499,10 @@ PrefabInstance:
       propertyPath: ObjectToEnableDisable
       value: 
       objectReference: {fileID: 1258123335}
+    - target: {fileID: 9198299373449358798, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

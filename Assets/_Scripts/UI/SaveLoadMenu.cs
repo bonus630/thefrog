@@ -95,7 +95,7 @@ namespace br.com.bonus630.thefrog.UI
             GameObject thumb = button.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
             GameObject time  = button.gameObject.transform.GetChild(1).transform.GetChild(1).gameObject;
             GameObject hours = button.gameObject.transform.GetChild(1).transform.GetChild(2).gameObject;
-
+ Debug.Log("saveStates: " + saveStates);
             if (saveStates != null)
             {
                 ThumbGenerator thumbGenerator = new ThumbGenerator(0.1f);
@@ -103,6 +103,7 @@ namespace br.com.bonus630.thefrog.UI
                 thumb.SetActive(true);
                 hours.SetActive(true);
                 Sprite sprite = thumbGenerator.DecodeThumb(saveStates.thumb);
+               
                 thumb.GetComponent<Image>().sprite = sprite;
                 time.GetComponent<TextMeshProUGUI>().text = TimeSpan.FromSeconds(saveStates.environmentStates.GameTimeInSeconds).ToString(@"hh\:mm\:ss");
                 hours.GetComponent<TextMeshProUGUI>().text = saveStates.environmentStates.playerStates.Hour.ToString("00") + " HORAS";

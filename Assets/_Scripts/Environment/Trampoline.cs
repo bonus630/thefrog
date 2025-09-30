@@ -35,7 +35,7 @@ namespace br.com.bonus630.thefrog.Environment
                     float gravityFactor = rb.gravityScale;
                     float adjustedForce = force * massFactor * gravityFactor;
 
-                    forcible.AddForce(direction * adjustedForce, ForceMode2D.Impulse,0.5f,false);
+                    forcible.AddForce(direction * adjustedForce, ForceMode2D.Impulse,0f,false);
                     // rb.AddForce(force * direction, ForceMode2D.Impulse);
                     anim.SetTrigger("active");
                     audioSource.PlayOneShot(boingSFX);

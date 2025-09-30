@@ -26,6 +26,7 @@ namespace br.com.bonus630.thefrog.Shared
         bool BodyTouching(Collider2D coll);
 
         void AllInputsOn(bool disables,float delayTime = 0);
+      
 
     }
 }

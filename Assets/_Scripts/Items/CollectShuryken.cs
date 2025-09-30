@@ -9,7 +9,10 @@ namespace br.com.bonus630.thefrog.Items
 
         public override Elements GetElement { get; set; } = Elements.Normal;
 
-        
+        public override void ChangeDirectionY()
+        {
+            
+        }
 
         public override void Launch(Vector2 direction)
         {
@@ -26,5 +29,6 @@ namespace br.com.bonus630.thefrog.Items
 
             }
         }
+
     }
 }
