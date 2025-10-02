@@ -214,7 +214,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.005299896, y: 0.01832999}
+  m_Offset: {x: 0.00008792803, y: 0.013356615}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -224,7 +224,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.16229248, y: 0.12140957}
+  m_Size: {x: 0.15151682, y: 0.111462824}
   m_EdgeRadius: 0
 --- !u!50 &5110012280076710747
 Rigidbody2D:
@@ -407,12 +407,13 @@ MonoBehaviour:
     m_Bits: 256
   speed: 20
   life: 1
-  <KnockUpHitForce>k__BackingField: 40
-  repulseForce: 60
-  repulse: {x: 0, y: 60}
+  <KnockUpHitForce>k__BackingField: 60
+  repulseForce: 80
+  repulse: {x: 0, y: 80}
   xDirection: -1
   enemyWeakenesses: 00000000
   bodyCollider: {fileID: 7221884794571044310}
+  weapon: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 512

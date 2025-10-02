@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +16,7 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
-            this.hour = GameManager.Instance.PlayerStates.Hour;
+            this.hour = ServiceLocator.Get<DayNightCycleManager>().Hour;
             hoursText.text = this.hour.ToString("00") + " HORAS";
             prevHour = hour;
         }

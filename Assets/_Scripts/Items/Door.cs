@@ -11,8 +11,9 @@ namespace br.com.bonus630.thefrog.Items
     {
         [SerializeField] protected IActivator teleporter;
         [SerializeField] protected bool inside = false;
-        protected InputSystem_Actions GlobalActions;
+        //protected InputSystem_Actions GlobalActions;
         protected Collider2D doorCollider;
+        protected InputAction InteractUp;
         //[SerializeField] AudioClip openingAudio;
         //[SerializeField] AudioClip closingAudio;
         // [SerializeField] bool isOpen = true;
@@ -25,11 +26,20 @@ namespace br.com.bonus630.thefrog.Items
         //BoxCollider2D boxCollider;
         protected IPlayer player;
 
+        private void Start()
+        {
+            var input = ServiceLocator.Get<PlayerInput>();
+            var globalMap = input.actions.FindActionMap("Global", true);
+            InteractUp = globalMap.FindAction("InteractUP", true);
+            InteractUp.Enable();
+            Debug.Log("InteractUO:" + InteractUp);
+        }
 
         protected virtual void Awake()
         {
-            GlobalActions = new InputSystem_Actions();
-            GlobalActions.Enable();
+          
+           // GlobalActions = new InputSystem_Actions();
+           // GlobalActions.Enable();
             doorCollider = GetComponent<Collider2D>();
             //audioSource = GetComponent<AudioSource>();
             //anim = GetComponent<Animator>();
@@ -39,9 +49,10 @@ namespace br.com.bonus630.thefrog.Items
 
         protected virtual void Update()
         {
-            if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && inside)
+           // if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && inside)
+           if(InteractUp.WasPressedThisFrame() && inside)
             {
-                var p = GameManager.Instance.GetPlayerScript;
+                var p = ServiceLocator.Get<IPlayer>();
                 if (p.InGround && p.BodyTouching(doorCollider))
                     teleporter.Activate();
             }
@@ -70,7 +81,7 @@ namespace br.com.bonus630.thefrog.Items
 
         private void OnDestroy()
         {
-            GlobalActions.Disable();
+            InteractUp.Disable();
         }
 
     }

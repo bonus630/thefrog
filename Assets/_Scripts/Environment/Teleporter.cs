@@ -65,7 +65,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Teleported tag + " + teleported.tag);
+           // Debug.Log("Teleported tag + " + teleported.tag);
             if (teleported == null)
                 return;
             if (collision!=null && collision.CompareTag(teleported.tag))

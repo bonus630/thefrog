@@ -39,7 +39,7 @@ namespace br.com.bonus630.thefrog.Caracters
             yield return new WaitForEndOfFrame();
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(24);
             GameManager.Instance.EventCompleted(GameEventName.Gravity);
-            GameManager.Instance.UpdatePlayer();
+            GameManager.Instance.GetPlayerScript.UpdatePlayer();
             yield return new WaitForSeconds(1.5f); 
             yield return fader.FadeIn();
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 3f);

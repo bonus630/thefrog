@@ -73,7 +73,7 @@ namespace br.com.bonus630.thefrog.Caracters
                     if(this.dialoguesData[1].IsReaded)
                         ChangePlayerHearts();
                     GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
-                    GameManager.Instance.UpdatePlayer();
+                    GameManager.Instance.GetPlayerScript.UpdatePlayer();
                     currentDialogue = 5;
                     //GetComponent<BoxCollider2D>().enabled = false;
                     break;

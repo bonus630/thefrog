@@ -103,6 +103,8 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public void Dead()
         {
+            gameObject.tag = "Untagged";
+            gameObject.layer = 0;
             animator.SetFloat(DeadID, this.life);
             if (this.life <= 0)
             {

@@ -16,44 +16,44 @@ namespace br.com.bonus630.thefrog.Enemies
         float turnDistance = 3f;
         bool jump = false;
         float safeFollowTurn = 1f;
-       
+
         protected readonly int JumpID = Animator.StringToHash("Jump");
         protected override void Start()
         {
             base.Start();
-            normalSpeed += Random.Range(0,4) * 10;
-            followSpeed += Random.Range(0,4) * 10;
+            normalSpeed += Random.Range(0, 4) * 10;
+            followSpeed += Random.Range(0, 4) * 10;
         }
         protected override void Update()
         {
-        
+
             base.Update();
             safeFollowTurn -= Time.deltaTime;
-          //  Debug.DrawRay(new Vector3(transform.position.x - (0.1f * xDirection), transform.position.y - 0.1f, 0), Vector3.left * turnDistance * xDirection, Color.green);
+            //  Debug.DrawRay(new Vector3(transform.position.x - (0.1f * xDirection), transform.position.y - 0.1f, 0), Vector3.left * turnDistance * xDirection, Color.green);
             RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - (0.2f * xDirection), transform.position.y - 0.1f), Vector2.left * turnDistance * xDirection, turnDistance, playerLayer);
 
-            RaycastHit2D detectGround = Physics2D.CircleCast(sense.position, 0.1f,Vector2.down,0.5f,layerMask);
+            RaycastHit2D detectGround = Physics2D.CircleCast(sense.position, 0.1f, Vector2.down, 0.5f, layerMask);
 
-           // Debug.DrawRay(new Vector3(transform.position.x + (1f * xDirection), transform.position.y - 0.1f, 0), Vector3.right * followDistance * xDirection, Color.blue);
+            // Debug.DrawRay(new Vector3(transform.position.x + (1f * xDirection), transform.position.y - 0.1f, 0), Vector3.right * followDistance * xDirection, Color.blue);
             RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x + (0.2f * xDirection), transform.position.y - 0.1f), Vector2.right * followDistance * xDirection, followDistance, playerLayer);
 
             if (hitRight.collider != null)
             {
-             //   Debug.Log($"Pig Distance: {hitRight.distance}");
+                //   Debug.Log($"Pig Distance: {hitRight.distance}");
                 detectPlayer = true;
                 speed = followSpeed;
                 hooinkTime = 0.5f;
                 if (hitRight.distance > 1.8 && hitRight.distance < 2 && Random.value < 0.4f)
                     Jump();
             }
-            if(hitLeft.collider!=null)
+            if (hitLeft.collider != null)
             {
-               if(safeFollowTurn < 0)
-                ChangeDirection();
+                if (safeFollowTurn < 0)
+                    ChangeDirection();
             }
             if (detectGround.collider == null)
             {
-               // Debug.Log("Pig change");    
+                // Debug.Log("Pig change");    
                 if (!jump && safeFollowTurn < 0)
                 {
                     safeFollowTurn = 1f;
@@ -62,8 +62,8 @@ namespace br.com.bonus630.thefrog.Enemies
             }
             else
             {
-                if(rg.linearVelocityY < 0.1f)
-                  jump = false;
+                if (rg.linearVelocityY < 0.1f)
+                    jump = false;
             }
             if (runTime < 0)
             {
@@ -74,15 +74,15 @@ namespace br.com.bonus630.thefrog.Enemies
             if (detectPlayer)
             {
                 runTime -= Time.deltaTime;
-                
+
             }
-            if(Input.GetKeyDown("q"))
+            if (Input.GetKeyDown("q"))
             {
                 Jump();
             }
-           // Debug.Log($"chao {detectGround.GetContacts(new ContactPoint2D[4])}");
+            // Debug.Log($"chao {detectGround.GetContacts(new ContactPoint2D[4])}");
         }
-     
+
         public override void Hit(float hit)
         {
             animator.SetTrigger(HitID);
@@ -92,9 +92,12 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public override void Dead()
         {
+
             animator.SetFloat(DeadID, this.life);
             if (this.life <= 0)
             {
+                gameObject.tag = "Untagged";
+                gameObject.layer = 0;
                 xDirection = 0;
                 rg.gravityScale = 0;
                 bodyCollider.enabled = false;

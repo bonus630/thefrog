@@ -370,8 +370,8 @@ MonoBehaviour:
   speed: 20
   life: 1
   <KnockUpHitForce>k__BackingField: 40
-  repulseForce: 60
-  repulse: {x: 0, y: 60}
+  repulseForce: 80
+  repulse: {x: 0, y: 80}
   xDirection: -1
   enemyWeakenesses: 
   bodyCollider: {fileID: 0}

@@ -458,11 +458,11 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void FreezePlayerMove()
         {
-            direction.x = 0;
-            player.RigibodyBodyType = RigidbodyType2D.Static;
             player.RigibodyLinearVelocity = Vector2.zero;
             player.AllInputsOn(false);
             anim.SetFloat(WalkID, 0);
+            direction.x = 0;
+            player.RigibodyBodyType = RigidbodyType2D.Static;
             //anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()
@@ -502,7 +502,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         internal void HandlerHability()
         {
-            if (!player.InGround || !GameManager.Instance.PlayerStates.HasGravity)
+            if (!player.InGround || !player.playerManager.PlayerStates.HasGravity)
                 return;
             player.ChangeGravity(player.gravityDirection * -1);
         }

@@ -5,14 +5,15 @@ namespace br.com.bonus630.thefrog.Shared
     public interface IPlayer
     {
         int CurrentLife { get; set; }
-        float Speed { get; set; }
-        float JumpForce { get; set; }
+      //  float Speed { get; set; }
+     //   float JumpForce { get; set; }
         bool MoveInputOn { get; set; }
         bool InGround { get; set; }
         void ReadDialogue();
         void Alert();
         void Hit();
         void Hit(int damage);
+        void UpdatePlayer();
         void FreezePlayer();
         //mover algumas coisas para uma interface de automação do player fora do script player
         //isso vai permitir melhor controle nas cutscenes

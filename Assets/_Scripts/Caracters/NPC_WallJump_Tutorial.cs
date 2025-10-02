@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Caracters
 {
@@ -59,7 +60,8 @@ namespace br.com.bonus630.thefrog.Caracters
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
             playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);
             GameManager.Instance.eventManager.GameEventCompleted += EventManager_GameEventCompleted;
-            SetDialogue();
+            //fd
+                SetDialogue();
 
             if (GameManager.Instance.IsEventCompleted(GameEventName.NPCTutorial))
             {
@@ -190,7 +192,8 @@ namespace br.com.bonus630.thefrog.Caracters
         public void GoToFinal()
         {
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
-            GameManager.Instance.UpdatePlayer();
+            ServiceLocator.Get<IPlayer>().UpdatePlayer();
+            //GameManager.Instance.GetPlayerScript.UpdatePlayer();
             Instantiate(gameObject);
             Destroy(gameObject);
             //StartCoroutine(GoToFinalRoutine());
@@ -247,6 +250,10 @@ namespace br.com.bonus630.thefrog.Caracters
         IEnumerator EnableAnimator()
         {
             yield return new WaitForSeconds(0.1f);
+            while(Vector2.Distance(point2.transform.position, player.transform.position) < 15f)
+            {
+                yield return null;
+            }
             animator.enabled = true;
             box.enabled = true;
         }
@@ -268,7 +275,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public override Dictionary<string, string> GetDialogueVariables()
         {
             string msg = string.Empty;
-            switch(GameManager.Instance.PlayerStates.Hour)
+            switch(ServiceLocator.Get<DayNightCycleManager>().Hour)
             {
                 case < 6:
                     msg = ", mas aguarde até o amanhecer";

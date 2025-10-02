@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Activators
             //FindAnyObjectByType<NPC_WallJump_Tutorial>().KillPig = true;
             musicSource.CrossFade(BackgroundMusic.PigIsDefead);
             GameManager.Instance.EventCompleted(GameEventName.KillPig);
-            GameManager.Instance.UpdatePlayer();
+            GameManager.Instance.GetPlayerScript.UpdatePlayer();
             Destroy(GameObject.Find("BossActivator"));
             fanToDisable.Deactive();
             fanToEnable.Activate();

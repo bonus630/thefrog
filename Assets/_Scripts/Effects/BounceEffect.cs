@@ -2,7 +2,7 @@
 
 namespace br.com.bonus630.thefrog.Effects
 {
-    public class BounceEffect :  IEffects
+    public class BounceEffect : IEffects
     {
         private Vector3 originalScale;
         private float bounceTimer = 0f;
@@ -46,6 +46,14 @@ namespace br.com.bonus630.thefrog.Effects
             }
         }
 
-      
+        public void Activate()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Deactivate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

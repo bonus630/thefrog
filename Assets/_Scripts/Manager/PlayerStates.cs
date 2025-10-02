@@ -5,10 +5,7 @@ namespace br.com.bonus630.thefrog.Manager
     [System.Serializable]
     public class PlayerStates
     {
-        public PlayerStates()
-        {
-
-        }
+        public PlayerStates(){ }
         public PlayerStates(PlayerPosition playerPosition, Datas CollectablesID)
         {
             this.PlayerPosition = playerPosition;
@@ -30,6 +27,10 @@ namespace br.com.bonus630.thefrog.Manager
         public bool HasDash;
         public bool HasGravity;
         public bool HasFireball;
+        public bool HasLightning;
+        public bool HasWind;
+        public bool HasWater;
+        public bool HasEarth;
         public bool FallsControl;
         //For Debug
         public int Shurykens;

@@ -45,7 +45,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             GameObject camera = controller.ActiveCam(cameraIndex);
             string confiner = ConfinerName(cameraIndex);
-            Debug.Log($"Index camera:{cameraIndex} confiner:{confinierIndex} name:{confiner}");
+           // Debug.Log($"Index camera:{cameraIndex} confiner:{confinierIndex} name:{confiner}");
             // Debug.Log("Collider camera Activator:" + GameObject.Find(confiner).transform.childCount);
             if (!string.IsNullOrEmpty(confiner))
                 camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(confiner).transform.GetChild(confinierIndex).gameObject.GetComponentAtIndex(1);

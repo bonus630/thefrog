@@ -27,7 +27,8 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private AudioClip Entrace;
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
-        [field:SerializeField] public BarManager barManager { get; set; }
+        public BarManager barManager { get; set; }
+        public PlayerManager playerManager { get; set; }
 
         public PlayerDialogue playerDialogue { get; private set; }
         public PlayerHealth playerHealth { get; private set; }
@@ -84,7 +85,11 @@ namespace br.com.bonus630.thefrog.Player
             playerMovement = GetComponent<PlayerMovement>();
             playerFallControl = GetComponent<PlayerFallControl>();
             playerSpiritController = GetComponent<PlayerSpiritController>();
-            
+            barManager = GetComponent<BarManager>();
+            playerManager = GetComponent<PlayerManager>();
+            ServiceLocator.Register<PlayerInput>(GetComponent<PlayerInput>());
+            ServiceLocator.Register<IPlayer>(this);
+            ServiceLocator.Register("Player", gameObject);
         }
         private void Start()
         {
@@ -171,7 +176,7 @@ namespace br.com.bonus630.thefrog.Player
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W))
             {
-                GameManager.Instance.UpdatePlayer();
+                GameManager.Instance.GetPlayerScript.UpdatePlayer();
                 //CreateBar(Color.green,0.4f);
                 //foreach (var c in g.GetComponents(typeof(IBarUI)))
                 //{
@@ -193,7 +198,11 @@ namespace br.com.bonus630.thefrog.Player
                 //GameManager.Instance.UpdatePlayer();
                 //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
             }
-
+            if(Input.GetKeyUp(KeyCode.T))
+            {
+                GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
+                //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
+            }
             if (Input.anyKeyDown)
             {
                 switch (true)
@@ -225,27 +234,6 @@ namespace br.com.bonus630.thefrog.Player
         }
         int bars = 0;
 
-        //public GameObject CreateBar(Color color, float value)
-        //{
-
-        //    GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
-        //    // var b = o.GetComponent<Getter>();
-        //    Follow follow = o.GetComponent<Follow>();
-        //    follow.Target = transform;
-        //    follow.Offset = Vector3.up * (0.4f * -gravityDirection);
-        //    IBarUI c = o.GetComponent<IBarUI>();
-        //    c.id = Random.Range(0, 1000);
-        //    c.Value = value;
-        //    c.Color = color;
-        //    bars++;
-        //    return o;
-        //}
-        //public void RemoveBar(GameObject bar, float time)
-        //{
-        //    bars--;
-        //    Debug.Log("Bars+" + bars);
-        //    Destroy(bar, time);
-        //}
         IEnumerator DestroyEffects(ScreenEffects screenEffects)
         {
             yield return new WaitForEndOfFrame();
@@ -284,12 +272,7 @@ namespace br.com.bonus630.thefrog.Player
       
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            //if (collision.gameObject.layer == 8 || collision.gameObject.layer == 17)
-            //{
-            //    if (FooterTouching(collision.collider))
-            //        //Debug.Log("Reset jump");
-            //        resetJump();
-            //}
+  
             if (collision.gameObject.layer == 13)
             {
                 if (FooterTouching(collision.collider))
@@ -301,14 +284,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
-            //if (collision.gameObject.layer == 8 || collision.gameObject.layer == 13 || collision.gameObject.layer == 17)
-            //{
-            //    if (!FooterTouching(collision.collider))
-            //    {
-            //        inGround = false;
-            //        anim.SetBool(JumpID, true);
-            //    }
-            //}
+
             if (collision.gameObject.layer == 13)
             {
                 gameObject.transform.parent = null;
@@ -317,8 +293,6 @@ namespace br.com.bonus630.thefrog.Player
 
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
-            //if (!InGround || !GameManager.Instance.PlayerStates.HasGravity)
-            //    return;
             this.gravityDirection = gravityDirection;
             //LinearMaxY *= -1;
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
@@ -371,7 +345,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void Launch()
         {
-            if (GameManager.Instance.PlayerStates.Shurykens > 0)
+            if (playerManager.PlayerStates.Shurykens > 0)
             {
                 GameObject projectileGO = playerMovement.GetWallSliding ? Instantiate(projectile, projectilesSpawPoint2.position, Quaternion.identity) : Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);
                 Shuryken projectileScript = projectileGO.GetComponent<Shuryken>();
@@ -401,7 +375,7 @@ namespace br.com.bonus630.thefrog.Player
                 //playerMovement.airDash
                 //Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
-                AddForce(knockUpForce);
+                AddForce(knockUpForce,time:0.2f,removeInput:false);
                 //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
                 playerMovement.TimeInFastFall = 0;
                 knockUp = false;
@@ -443,8 +417,7 @@ namespace br.com.bonus630.thefrog.Player
 
         public void ChangeNumberShurykens(int shurykens)
         {
-            GameManager.Instance.PlayerStates.Shurykens += shurykens;
-            GameManager.Instance.UpdateShurykens();
+            playerManager.UpdateShurykens(shurykens);
         }
         public void ReadDialogue()
         {
@@ -467,6 +440,14 @@ namespace br.com.bonus630.thefrog.Player
         {
             AllInputsOn(true);
             playerMovement.FreezePlayerMove();
+        }
+        public void UpdatePlayer()
+        {
+            playerManager.UpdatePlayer(() =>
+            {
+                this.Speed += 0.1f;
+                this.JumpForce += 0.1f;
+            });
         }
     }
     public enum PlayerGravityDirection : short

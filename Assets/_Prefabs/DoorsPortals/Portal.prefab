@@ -36,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 347613142538160605}
+  - {fileID: 8714521529936624248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &466328968033987418
@@ -226,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToPoint: 7
   scenePointsData: {fileID: 11400000, guid: c1b2c93e4908a274ca9a79e992e0ed94, type: 2}
+  useCurrentHour: 1
 --- !u!70 &6790499070788865936
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -277,11 +279,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemToActive: {fileID: 3132364062227651874}
   GameObjectToActive: {fileID: 0}
+  Tag: 
   delayActiveTime: 0
   delayDeactiveTime: 0
   permanentActived: 0
   onlyActive: 0
   onlyDeactive: 0
+--- !u!1 &5107849555666307977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8714521529936624248}
+  m_Layer: 0
+  m_Name: BlackHole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8714521529936624248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107849555666307977}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2027073169926083197}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5514964497821176307
 GameObject:
   m_ObjectHideFlags: 0

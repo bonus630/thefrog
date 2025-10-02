@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Environment
         private List<GameObject> instances = new List<GameObject>();
         void Start()
         {
-
+            
         }
 
         // Update is called once per frame
@@ -35,7 +35,7 @@ namespace br.com.bonus630.thefrog.Environment
                 timer += Time.deltaTime;
                 if (timer > spawnerTime)
                 {
-                    for (int i = 0; i < instances.Count; i++)
+                    for (int i = instances.Count - 1; i >= 0; i--)
                     {
                         if (instances[i] == null)
                         { instances.RemoveAt(i); }

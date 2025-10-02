@@ -4,7 +4,7 @@ namespace br.com.bonus630.thefrog.Enemies
 {
     public class EnemyPigPatrol : EnemyToad
     {
-        [SerializeField]protected BoxCollider2D bodyCollider;
+        [SerializeField] protected BoxCollider2D bodyCollider;
         [SerializeField] protected GameObject weapon;
         AudioSource m_AudioSource;
         protected float hooinkTime = 0f;
@@ -45,9 +45,10 @@ namespace br.com.bonus630.thefrog.Enemies
         public virtual void Dead()
         {
             animator.SetFloat(DeadID, this.life);
-        
             if (this.life <= 0)
             {
+                gameObject.tag = "Untagged";
+                gameObject.layer = 0;
                 xDirection = 0;
                 rg.gravityScale = 0;
                 bodyCollider.enabled = false;

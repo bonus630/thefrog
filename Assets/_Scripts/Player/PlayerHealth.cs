@@ -23,9 +23,9 @@ namespace br.com.bonus630.thefrog.Player
             invencibleTimer = invencibleTime;
             hitTime = invencibleTime - 0.517f;//tempo da animação de hit
 
-            CurrentLife = GameManager.Instance.PlayerStates.Hearts;
+            CurrentLife = player.playerManager.PlayerStates.Hearts;
 #if UNITY_EDITOR
-            CurrentLife = 20;
+            CurrentLife = 200;
 #endif
         }
 

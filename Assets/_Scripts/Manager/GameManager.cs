@@ -35,9 +35,9 @@ namespace br.com.bonus630.thefrog.Manager
 
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
-        private GameObject player;
+        [SerializeField] private GameObject player;
         public GameObject GetPlayer { get { if (player == null) player = GameObject.Find("Player"); return player; }}
-        private ScreenEffects screenEffects;
+        [SerializeField]private ScreenEffects screenEffects;
         public ScreenEffects ScreenEffects { get { if (screenEffects == null) screenEffects = FindAnyObjectByType<ScreenEffects>(); return screenEffects; } }
         public static GameManager Instance;
         public EventsManager eventManager;
@@ -138,7 +138,7 @@ namespace br.com.bonus630.thefrog.Manager
                 PlayTimeInSeconds += Time.deltaTime;
             }
         }
-        public void StartTimer(float Time)
+        public void StartTimer(float Time,Action callback)
         {
             if (TimerText == null)
             {
@@ -146,9 +146,9 @@ namespace br.com.bonus630.thefrog.Manager
             }
             TimerText.transform.parent.gameObject.SetActive(true);
             startTimer = GetElapsedTime();
-            StartCoroutine(startTimerCouroutine(Time));
+            StartCoroutine(startTimerCouroutine(Time,callback));
         }
-        private IEnumerator startTimerCouroutine(float Time)
+        private IEnumerator startTimerCouroutine(float Time,Action callback)
         {
             while (startTimer + Time > GetElapsedTime())
             {
@@ -157,6 +157,7 @@ namespace br.com.bonus630.thefrog.Manager
                 TimerText.text = time.ToString(@"hh\:mm\:ss");
             }
             TimerText.transform.parent.gameObject.SetActive(false);
+            callback?.Invoke();
             TimeOverEvent?.Invoke();
         }
         public void Pause(bool pause)
@@ -251,7 +252,7 @@ namespace br.com.bonus630.thefrog.Manager
                 continueGame = true;
                 //vamos colocar a carga dos eventos completos aqui, não sei se é o melhor lugar, mas parece resolver o problema dos eventos carregarem após a cena
                 //já estar carregada
-                eventManager.LoadEvents(GameManager.Instance.playerStates.CompletedGameEvents);
+                eventManager.LoadEvents(this.PlayerStates.CompletedGameEvents);
                 SceneManager.LoadScene(MainScene);
                 //ChangeGameToState(this.PlayerStates);
             }
@@ -510,10 +511,10 @@ namespace br.com.bonus630.thefrog.Manager
                 //     //   FindAnyObjectByType<NPC_WallJump_Tutorial>().KillPig = true;
 
                 //    break;
-                case GameEventName.NPCTutorial:
-                    playerStates.HasWallJump = true;
+                //case GameEventName.NPCTutorial:
+                //    playerStates.HasWallJump = true;
 
-                    break;
+                //    break;
                 case GameEventName.HeartContainer:
                     GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                     gameObject.SetActive(true);
@@ -532,14 +533,14 @@ namespace br.com.bonus630.thefrog.Manager
                     break;
                 case GameEventName.Gravity:
                     var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
-                    PlayerStates.HasGravity = true;
+                    //PlayerStates.HasGravity = true;
                     hud.SetActive(true);
                     break;
-                case GameEventName.FireBall:
-                    //var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
-                    PlayerStates.HasFireball = true;
-                    //hud.SetActive(true);
-                    break;
+                //case GameEventName.FireBall:
+                //    //var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
+                //    PlayerStates.HasFireball = true;
+                //    //hud.SetActive(true);
+                  //  break;
                 case GameEventName.MysticScroll:
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(3).gameObject.GetComponentAtIndex(1);
@@ -547,12 +548,12 @@ namespace br.com.bonus630.thefrog.Manager
                     gameObject.SetActive(true);
 
                     break;
-                case GameEventName.FeatherTouch:
-                    PlayerStates.FallsControl = true;
-                    break;
-                case GameEventName.Dash:
-                    PlayerStates.HasDash = true;
-                    break;
+                //case GameEventName.FeatherTouch:
+                //    PlayerStates.FallsControl = true;
+                //    break;
+                //case GameEventName.Dash:
+                //    PlayerStates.HasDash = true;
+                //    break;
             }
         }
         public bool IsEventCompleted(GameEventName gameEvent)
@@ -568,15 +569,15 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 text.color = Color.gray;
         }
-        public void UpdatePlayer()
-        {
+        //public void UpdatePlayer()
+        //{
 
-            GetPlayerScript.Speed += 0.1f;
-            GetPlayerScript.JumpForce += 0.1f;
-            this.PlayerStates.Speed += 0.1f;
-            this.playerStates.JumpForce += 0.1f;
+        //    GetPlayerScript.Speed += 0.1f;
+        //    GetPlayerScript.JumpForce += 0.1f;
+        //    this.PlayerStates.Speed += 0.1f;
+        //    this.playerStates.JumpForce += 0.1f;
 
-        }
+        //}
         //public void SetSceneData<T>(T data) where T : class, new()
         //{
         //    GameObject dataScene = Instantiate(DataScenePreserverGameObject);

@@ -87,6 +87,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             //xDirection = -1;
             IsDied = true;
+            
             // Destroy(gameObject, 2f);
         }
         private void ToWalk()

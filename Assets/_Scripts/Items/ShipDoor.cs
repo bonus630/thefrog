@@ -48,7 +48,7 @@ namespace br.com.bonus630.thefrog.Items
         //}
         protected override void Update()
         {
-            if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && inside && isOpen)
+            if (InteractUp.WasPressedThisFrame() && inside && isOpen)
             {
                 var p = GameManager.Instance.GetPlayerScript;
                 if(p.InGround && p.BodyTouching(boxCollider))

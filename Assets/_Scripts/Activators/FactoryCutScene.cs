@@ -18,6 +18,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] Tilemap foreground;
         [SerializeField] GameObject explosion;
 
+
         AudioSource AudioSource;
         BoxCollider2D col;
 
@@ -25,6 +26,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             AudioSource = GetComponent<AudioSource>();
             col = GetComponent<BoxCollider2D>();
+          
         }
 
         public override void Activate()
@@ -85,9 +87,11 @@ namespace br.com.bonus630.thefrog.Activators
         bool timeOver = false;
         public void EndScene()
         {
-            StartCoroutine(EndSceneCoroutine()); GameManager.Instance.StartTimer(15f);
-
-            GameManager.Instance.TimeOverEvent += () => { timeOver = true; };
+            screenEffects.StopCameraShake();
+            screenEffects.GamepadShake();
+            StartCoroutine(EndSceneCoroutine()); 
+            GameManager.Instance.StartTimer(15f, () => { timeOver = true; });
+            //GameManager.Instance.TimeOverEvent += ;
         }
         IEnumerator EndSceneCoroutine()
         {

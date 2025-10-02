@@ -29,6 +29,16 @@ namespace br.com.bonus630.thefrog.Effects
             if (t >= 1f)
                 IsFinished = true;
         }
+
+        public void Activate()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Deactivate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }

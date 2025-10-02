@@ -82,23 +82,23 @@ namespace br.com.bonus630.thefrog.Player
                 switch (el)
                 {
                     case Elements.Fire:
-                        if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall))
+                        if (player.playerManager.PlayerStates.HasFireball)
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2,Color.red,  Elements.Fire,FireSprite));
                         break;
                     case Elements.Lightining:
-                        if (GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
+                        if (player.playerManager.PlayerStates.HasLightning)
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.white, Elements.Lightining,LightningSprite));
                         break;
                     case Elements.Wind:
-                        if (GameManager.Instance.IsEventCompleted(GameEventName.RollingWind))
+                        if (player.playerManager.PlayerStates.HasWind)
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.green,  Elements.Wind,WindSprite));
                         break;
                     case Elements.Water:
-                        if (GameManager.Instance.IsEventCompleted(GameEventName.PurifyWater))
+                        if (player.playerManager.PlayerStates.HasWater)
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.blue, Elements.Water,WaterSprite));
                         break;
                     case Elements.Earth:
-                        if (GameManager.Instance.IsEventCompleted(GameEventName.None))
+                        if (player.playerManager.PlayerStates.HasEarth)
                             avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.magenta,  Elements.Earth, EarthrSprite));
                         break;
                 }

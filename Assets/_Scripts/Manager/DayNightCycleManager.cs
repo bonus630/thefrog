@@ -11,6 +11,9 @@ namespace br.com.bonus630.thefrog.Manager
         [Tooltip("Hora virtual baseada no ciclo.")]public float currentHour { get; private set; }  
         public event Action<int> OnHourChanged;
 
+        public int Hour { get; private set; }
+
+
         private float speed;
         private int lastHour = -1;
 
@@ -28,6 +31,7 @@ namespace br.com.bonus630.thefrog.Manager
             if (hourInt != lastHour)
             {
                 lastHour = hourInt;
+                Hour = lastHour;
                 OnHourChanged?.Invoke(lastHour);
             }
         }

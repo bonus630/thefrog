@@ -34,6 +34,17 @@ public class MoveToCameraView
                 t.position = targetPos;
             }
         }
+        [MenuItem("GameObject/Distance between %#d", false, 0)] // Ctrl+Shift+d de atalho
+        static void DebugDistance()
+        {
+            if (Selection.transforms.Length != 2)
+            {
+                Debug.LogWarning("Selecione dois objetos.");
+                return;
+            }
+            Debug.Log($"Distância \"{Selection.gameObjects[0].name} e {Selection.gameObjects[1].name}\": " +
+                $"{Vector3.Distance(Selection.gameObjects[0].transform.position,Selection.gameObjects[1].transform.position)}");
+        }
     }
 
 
