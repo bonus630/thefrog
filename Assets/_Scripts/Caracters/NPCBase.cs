@@ -46,6 +46,7 @@ namespace br.com.bonus630.thefrog.Caracters
         protected virtual void OnDestroy()
         {
             GameManager.Instance.eventManager.GameEventCompleted -= OnGameEventCompleted;
+            GameManager.Instance.GameStatesRestaured -= OnGameStatesRestaured;
         }
         protected virtual void OnGameEventCompleted(GameEvent gameEvent)
         {

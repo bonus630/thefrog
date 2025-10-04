@@ -17,16 +17,21 @@ namespace br.com.bonus630.thefrog.Player
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int LifeID = Animator.StringToHash("Life");
         public bool PrepareFallDie { get; set; } = false;
+
+        private void Start()
+        {
+            CurrentLife = player.playerManager.PlayerStates.Hearts;
+#if UNITY_EDITOR
+            CurrentLife = 18;
+            GameManager.Instance.UpdateHeart(18);
+#endif
+        }
+
         protected override void Awake()
         {
             base.Awake();
             invencibleTimer = invencibleTime;
             hitTime = invencibleTime - 0.517f;//tempo da animação de hit
-
-            CurrentLife = player.playerManager.PlayerStates.Hearts;
-#if UNITY_EDITOR
-            CurrentLife = 200;
-#endif
         }
 
         private void FixedUpdate()

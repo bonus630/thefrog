@@ -1,4 +1,5 @@
 using System;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
@@ -19,6 +20,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void Awake()
         {
+            ServiceLocator.Register<DayNightCycleManager>(this);
             speed = 1f / (cycleDurationMinutes * 60f);
         }
 

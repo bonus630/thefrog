@@ -19,7 +19,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField] InputAction PauseAction;
-       
+
         private TextMeshProUGUI scoreText;
         private TextMeshProUGUI TimerText = null;
         public event Action TimeOverEvent;
@@ -36,8 +36,8 @@ namespace br.com.bonus630.thefrog.Manager
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
         [SerializeField] private GameObject player;
-        public GameObject GetPlayer { get { if (player == null) player = GameObject.Find("Player"); return player; }}
-        [SerializeField]private ScreenEffects screenEffects;
+        public GameObject GetPlayer { get { if (player == null) player = GameObject.Find("Player"); return player; } }
+        [SerializeField] private ScreenEffects screenEffects;
         public ScreenEffects ScreenEffects { get { if (screenEffects == null) screenEffects = FindAnyObjectByType<ScreenEffects>(); return screenEffects; } }
         public static GameManager Instance;
         public EventsManager eventManager;
@@ -101,18 +101,21 @@ namespace br.com.bonus630.thefrog.Manager
             Instance = this;
 #if UNITY_EDITOR
             //Time.timeScale = 0.5f;
-            playerStates.HasGravity = true;
-            playerStates.HasFireball = true;
-            playerStates.HasWallJump = true;
-            //           playerStates.HasDoubleJump = true;
-            playerStates.FallsControl = true;
-            playerStates.HasDash = true;
-            playerStates.Shurykens = 100;
-            eventManager.EventCompleted(GameEventName.Gravity, false);
-            eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            eventManager.EventCompleted(GameEventName.FireBall, false);
-            eventManager.EventCompleted(GameEventName.LightningBolt, false);
-            eventManager.EventCompleted(GameEventName.RollingWind, false);
+            //playerStates.HasGravity = true;
+            //playerStates.HasFireball = true;
+            //playerStates.HasWallJump = true;
+            ////           playerStates.HasDoubleJump = true;
+            //playerStates.FallsControl = true;
+            //playerStates.HasDash = true;
+            //playerStates.Shurykens = 100;
+            //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
+            //eventManager.EventCompleted(GameEventName.KillPig, false);
+            //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
+            // eventManager.EventCompleted(GameEventName.Gravity, false);
+            // eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            //  eventManager.EventCompleted(GameEventName.FireBall, false);
+            // eventManager.EventCompleted(GameEventName.LightningBolt, false);
+            //  eventManager.EventCompleted(GameEventName.RollingWind, false);
             //  eventManager.EventCompleted(GameEventName.PrisionerTip, false);
             //  eventManager.EventCompleted(GameEventName.LadyLaments, false);
             //  eventManager.EventCompleted(GameEventName.KoarFounded, false);
@@ -138,7 +141,7 @@ namespace br.com.bonus630.thefrog.Manager
                 PlayTimeInSeconds += Time.deltaTime;
             }
         }
-        public void StartTimer(float Time,Action callback)
+        public void StartTimer(float Time, Action callback)
         {
             if (TimerText == null)
             {
@@ -146,9 +149,9 @@ namespace br.com.bonus630.thefrog.Manager
             }
             TimerText.transform.parent.gameObject.SetActive(true);
             startTimer = GetElapsedTime();
-            StartCoroutine(startTimerCouroutine(Time,callback));
+            StartCoroutine(startTimerCouroutine(Time, callback));
         }
-        private IEnumerator startTimerCouroutine(float Time,Action callback)
+        private IEnumerator startTimerCouroutine(float Time, Action callback)
         {
             while (startTimer + Time > GetElapsedTime())
             {
@@ -168,10 +171,10 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private bool TryPause(bool pause, string hudName, out GameObject go)
         {
-            if(gamePaused)
+            if (gamePaused)
             {
                 var pauseHud = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
-                if(pauseHud!=null) pauseHud.SetActive(false);
+                if (pauseHud != null) pauseHud.SetActive(false);
                 var saveHud = GameObject.Find(SaveHUD).transform.GetChild(0).gameObject;
                 if (saveHud != null) saveHud.SetActive(false);
                 gamePaused = false;
@@ -224,7 +227,7 @@ namespace br.com.bonus630.thefrog.Manager
         private SceneStartType sceneStartType;
         public void LoadGame(SceneStartType type, int index = 0)
         {
-           // Debug.LogWarning("LoadGame type:" + type);
+            // Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
             {
@@ -358,7 +361,7 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return environmentStates.Activeds.Contains(ActivatorID);
         }
-        public void SetActived(string ActivatorID,bool actived)
+        public void SetActived(string ActivatorID, bool actived)
         {
             if (actived)
                 GameManager.Instance.EnvironmentStates.Activeds.Add(ActivatorID);
@@ -370,22 +373,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
             StartCoroutine(AddHeart(hud, hearts - 1));
         }
-        public void UpdateHeart(int hearts)
-        {
-            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
-            GetPlayerScript.CurrentLife += hearts;
-            if (hearts > 0)
-            {
-                playerStates.Hearts += hearts;
-                StartCoroutine(AddHeart(hud, hearts));
-            }
-
-            if (hearts < 0)
-            {
-                StartCoroutine(RemoveHeart(hud, hearts));
-            }
-        }
-        public void UpdateProjectil(Color color,Sprite sprite)
+        public void UpdateProjectil(Color color, Sprite sprite)
         {
             Image image = GameObject.Find(SpiritHUD).transform.GetChild(0).GetComponent<Image>();
             image.gameObject.SetActive(true);
@@ -395,7 +383,22 @@ namespace br.com.bonus630.thefrog.Manager
             image.color = color;
             Debug.Log("Projectil color:" + color);
         }
+        int maxColHearts = 10;
+        public void UpdateHeart(int hearts)
+        {
+            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+            GetPlayerScript.CurrentLife += hearts;
+            this.PlayerStates.Hearts += hearts;
+            if (hearts > 0)
+            {
+                StartCoroutine(AddHeart(hud, hearts));
+            }
 
+            if (hearts < 0)
+            {
+                StartCoroutine(RemoveHeart(hud, hearts));
+            }
+        }
         IEnumerator AddHeart(GameObject hud, int hearts)
         {
             int heartCount = hud.transform.childCount;
@@ -404,7 +407,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameObject lastHeart = hud.transform.GetChild(heartCount - 1).gameObject;
             var rect = hud.GetComponent<RectTransform>();
             var heartRect = heart.GetComponent<RectTransform>();
-            int col = heartCount % 5;
+            int col = heartCount % maxColHearts;
             int row = heartCount / 5;
 
             while (total > hud.transform.childCount)
@@ -415,7 +418,7 @@ namespace br.com.bonus630.thefrog.Manager
                 float offsetY = (-heartRect.sizeDelta.y - 0.5f) * row;
                 gb.GetComponent<RectTransform>().anchoredPosition = gb.GetComponent<RectTransform>().anchoredPosition + new Vector2(offsetX, offsetY);
                 col++;
-                if (col > 4)
+                if (col >= maxColHearts)
                 {
                     row++;
                     col = 0;
@@ -460,15 +463,15 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             //Aqui nao chama ao dar play normalmente, utilize o awake para debugar os eventos completos adicionados
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWind.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
-            GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWind.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
+            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
+            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
+            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
+            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
 
 #endif
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
@@ -477,7 +480,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.UpdateShurykens();
             Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
-            
+
             GameStatesRestaured?.Invoke();
         }
         public void GameOver()
@@ -540,7 +543,7 @@ namespace br.com.bonus630.thefrog.Manager
                 //    //var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
                 //    PlayerStates.HasFireball = true;
                 //    //hud.SetActive(true);
-                  //  break;
+                //  break;
                 case GameEventName.MysticScroll:
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(3).gameObject.GetComponentAtIndex(1);
@@ -548,12 +551,12 @@ namespace br.com.bonus630.thefrog.Manager
                     gameObject.SetActive(true);
 
                     break;
-                //case GameEventName.FeatherTouch:
-                //    PlayerStates.FallsControl = true;
-                //    break;
-                //case GameEventName.Dash:
-                //    PlayerStates.HasDash = true;
-                //    break;
+                    //case GameEventName.FeatherTouch:
+                    //    PlayerStates.FallsControl = true;
+                    //    break;
+                    //case GameEventName.Dash:
+                    //    PlayerStates.HasDash = true;
+                    //    break;
             }
         }
         public bool IsEventCompleted(GameEventName gameEvent)

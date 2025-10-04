@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
+using UnityEngine.Playables;
 namespace br.com.bonus630.thefrog.Caracters
 {
     public class NPC_WallJump_Tutorial : NPCBase, INPC
@@ -16,6 +18,9 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] GameObject point2;
         [SerializeField] GameObject point3;
         [SerializeField] GameObject point4;
+
+        [SerializeField] GameObject dummy;
+        [SerializeField] PlayableDirector director;
 
         [SerializeField] private int currentDialogue = 0;
         [SerializeField] private int prevDialogue = 0;
@@ -31,6 +36,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public bool killPig = false;
         [SerializeField] private bool playerCheckWall = false;
         public bool wallJump = false;
+        public bool finalRoute = false;
         public bool isFarAwayFromNPC = false;
         private Coroutine courotine;
 
@@ -55,59 +61,31 @@ namespace br.com.bonus630.thefrog.Caracters
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
             {
                 Destroy(gameObject);
+                return;
             }
             firstTalk = GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk);
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
             playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);
-            GameManager.Instance.eventManager.GameEventCompleted += EventManager_GameEventCompleted;
-            //fd
-                SetDialogue();
-
+            // GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             if (GameManager.Instance.IsEventCompleted(GameEventName.NPCTutorial))
             {
                 firstTalk = true;
                 killPig = true;
                 playerCheckWall = true;
-                StartCoroutine(GoToFinalRoutine());
+                finalRoute = true;
                 //GoToFinal();
+            }
+            SetDialogue();
+            SetFinishDialogue();
+            if (firstTalk && killPig && playerCheckWall)
+            {
+                if (finalRoute)
+                    StartCoroutine(GoToFinalRoutine());
+                else
+                    MoveToWallJump();
             }
         }
 
-        private void EventManager_GameEventCompleted(GameEvent obj)
-        {
-            if (obj.Name.Equals(GameEventName.PlayerCheckWall))
-                PlayerCheckWall = true;
-        }
-
-        //public void PrepareToNext()
-        //{
-        //    player = GameObject.Find("Player");
-        //    CanGoToNext = true;
-        //}
-
-        //public void SetEvent(GameEvent gameEvent)
-        //{
-        //    Debug.Log(gameEvent.Name);
-        //    if (gameEvent.Name.Equals(GameEventName.NPCFirstTalk) && IsFirstDialogue)
-        //        this.CurrentDialogueData = dialoguesData[0];
-        //    else if (gameEvent.Name.Equals(GameEventName.NPCTutorial) && IsFirstDialogue)
-        //        this.CurrentDialogueData = dialoguesData[1];
-        //    else
-        //        this.CurrentDialogueData = dialogueData;
-        //}
-        //private DialogueData GetByName(string name)
-        //{
-        //    return dialoguesData.FirstOrDefault(r => r.DialogueName.Equals(name));
-        //}
-
-        //public void SetConditionsWallJump(bool firstTalk = false,bool killPig = false,bool playerCheckWall = false, bool isFarAwayFromNPC = false)
-        //{
-        //    this.firstTalk = firstTalk;
-        //    this.killPig = killPig;
-        //    this.playerCheckWall = playerCheckWall;
-        //    this.isFarAwayFromNPC = isFarAwayFromNPC;
-        //    SetDialogue();
-        //}
         public override void SetFinishDialogue()
         {
             Debug.Log("Npc currentDialogue: " + currentDialogue);
@@ -132,12 +110,14 @@ namespace br.com.bonus630.thefrog.Caracters
                 IsFirstDialogue = false;
 
             }
-            if (firstTalk && killPig && playerCheckWall && (prevDialogue == 0 || prevDialogue == 2) && courotine == null)
+            if (firstTalk && killPig && playerCheckWall && (prevDialogue == 0 || prevDialogue == 2) && courotine == null && !finalRoute)
+            {
                 courotine = StartCoroutine(GoToWallJump());
+            }
         }
         private void SetDialogue()
         {
-            
+
             Debug.Log($"SetDialogue- CurrentDialog:{currentDialogue} firstTalk:{firstTalk} killPig:{killPig} playerCheckWall:{playerCheckWall}");
             if (!wallJump)
             {
@@ -155,7 +135,7 @@ namespace br.com.bonus630.thefrog.Caracters
                     else
                         currentDialogue = 6;
                 }
-                if(firstTalk && killPig && playerCheckWall)
+                if (firstTalk && killPig && playerCheckWall && !finalRoute)
                 {
                     prevDialogue = 0;
                     currentDialogue = 6;
@@ -165,8 +145,12 @@ namespace br.com.bonus630.thefrog.Caracters
             this.CurrentDialogueData = dialoguesData[currentDialogue];
             GameManager.Instance.EnvironmentStates.NPC_WallJump_Tutorial = currentDialogue;
         }
+
         protected override void OnGameEventCompleted(GameEvent gameEvent)
         {
+            Debug.Log("[EventComplet][npc walljump]:" + gameEvent.Name);
+            if (gameEvent.Name.Equals(GameEventName.PlayerCheckWall))
+                PlayerCheckWall = true;
             if (gameEvent.Name.Equals(GameEventName.NPCFirstTalk))
             {
                 firstTalk = true;
@@ -182,6 +166,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 firstTalk = true;
                 killPig = true;
                 playerCheckWall = true;
+                finalRoute = true;
                 StartCoroutine(GoToFinalRoutine());
             }
             if (gameEvent.Name.Equals(GameEventName.DuckPath))
@@ -193,9 +178,16 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
             ServiceLocator.Get<IPlayer>().UpdatePlayer();
+            finalRoute = true;
+            StartCoroutine(EnableAnimator());
             //GameManager.Instance.GetPlayerScript.UpdatePlayer();
-            Instantiate(gameObject);
-            Destroy(gameObject);
+            //  var g = Instantiate(gameObject);
+            // g.GetComponent<Animator>().enabled = true;
+            //  g.GetComponent<Animator>().SetTrigger("Idle");
+            //  g.GetComponent<BoxCollider2D>().enabled = true;
+            //   g.GetComponent<NPC_WallJump_Tutorial>().currentDialogueData = dialoguesData[3];
+            //   Debug.Log("Nova instancia do npc:" + g);
+            //   Destroy(gameObject, 0.2f);
             //StartCoroutine(GoToFinalRoutine());
         }
         IEnumerator GoToFinalRoutine()
@@ -211,6 +203,8 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private IEnumerator GoToWallJump()
         {
+            //if (finalRoute)
+            //    yield return null;
             Debug.Log("Coroutine walljump started!");
             bool run = true;
             while (run)
@@ -225,9 +219,9 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             MoveToWallJump();
         }
-        public void MoveToWallJump()
+        public void MoveToWallJump([CallerMemberName] string caller = "")
         {
-            Debug.Log("Coroutine MoveTowalljump");
+            Debug.Log("Coroutine MoveTowalljump: " + caller);
             IsFirstDialogue = true;
             animator.enabled = false;
             transform.position = point2.transform.position;
@@ -241,21 +235,27 @@ namespace br.com.bonus630.thefrog.Caracters
         private void StartWallJumpTutorial()
         {
             Debug.Log("Npc currentDialogue: " + currentDialogue);
+            TalkIcon.SetActive(false);
+            ServiceLocator.Get<IPlayer>().AllInputsOn(true, 1f);
+            ChangeDummy(true);
             box.enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
             //  GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
-            animator.enabled = true;
+            animator.enabled = false;
+            StartCoroutine(GoToFinalRoutine());
             // animator.applyRootMotion = false;
-            animator.SetTrigger("StartTutorial");
+            // animator.SetTrigger("StartTutorial");
         }
         IEnumerator EnableAnimator()
         {
             yield return new WaitForSeconds(0.1f);
-            while(Vector2.Distance(point2.transform.position, player.transform.position) < 15f)
+            while (Vector2.Distance(point2.transform.position, player.transform.position) < 5f)
             {
                 yield return null;
             }
             animator.enabled = true;
             box.enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;
         }
         public override void Interact()
         {
@@ -275,7 +275,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public override Dictionary<string, string> GetDialogueVariables()
         {
             string msg = string.Empty;
-            switch(ServiceLocator.Get<DayNightCycleManager>().Hour)
+            switch (ServiceLocator.Get<DayNightCycleManager>().Hour)
             {
                 case < 6:
                     msg = ", mas aguarde até o amanhecer";
@@ -287,10 +287,11 @@ namespace br.com.bonus630.thefrog.Caracters
                     msg = ", mas você não tem muito tempo";
                     break;
             }
-            return new Dictionary<string, string>() { { "{hours}",  msg} };
+            return new Dictionary<string, string>() { { "{hours}", msg } };
         }
         public void Dash()
         {
+            Debug.Log("Npc_tutorial Dash:");
             animator.enabled = true;
             animator.SetTrigger("DashDemonstration");
             //transform.position = point4.transform.position;
@@ -305,6 +306,23 @@ namespace br.com.bonus630.thefrog.Caracters
         public void CheckInitialDialogue(int dialogue)
         {
             currentDialogue = dialogue;
+        }
+
+        private void ChangeDummy(bool activeDummy = true)
+        {
+            Debug.Log("Dummy:" + activeDummy);
+            dummy.SetActive(activeDummy);
+            //box.enabled = !activeDummy;
+            //GetComponent<SpriteRenderer>().enabled = !activeDummy;
+            if (activeDummy)
+            {
+                director.Play();
+                director.stopped += (d) =>
+                {
+                    ChangeDummy(false);
+                    GoToFinal();
+                };
+            }
         }
     }
 }

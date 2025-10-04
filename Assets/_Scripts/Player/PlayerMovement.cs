@@ -23,8 +23,8 @@ namespace br.com.bonus630.thefrog.Player
         float dashReloadTimer = 0;
         float coyouteTime = 0.2f;
         float coyouteTimer = 0;
-        public float Speed { get { return speed; } set { speed = value; } }
-        public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
+       // public float Speed { get { return speed; } set { speed = value; } }
+       // public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
         public float TimeInFastFall { get; set; } = 0;
         public bool UseYvelocityLimit { get; set; } = true;
         public bool IgnoreDamping { get; set; } = false;
@@ -43,8 +43,8 @@ namespace br.com.bonus630.thefrog.Player
         bool inDash = false;
         bool airDash = false;
         bool firstTimeInDashLoop = false;
-        bool HasDoubleJump = false;
-        bool HasWallJump = false;
+      //  bool HasDoubleJump = false;
+       // bool HasWallJump = false;
 
         //private IEffects bounce;
 
@@ -63,11 +63,11 @@ namespace br.com.bonus630.thefrog.Player
 
         protected override void Awake()
         {
-            Speed = GameManager.Instance.PlayerStates.Speed;
-            jumpForce = GameManager.Instance.PlayerStates.JumpForce;
+           // Speed = player.playerManager.PlayerStates.Speed;
+          //  jumpForce = player.playerManager.PlayerStates.JumpForce;
             dashReloadTimer = dashReloadMaxTime;
-            HasDoubleJump =    GameManager.Instance.PlayerStates.HasDoubleJump;
-            HasWallJump = GameManager.Instance.PlayerStates.HasWallJump;
+          //  HasDoubleJump = player.playerManager.PlayerStates.HasDoubleJump;
+          //  HasWallJump = player.playerManager.PlayerStates.HasWallJump;
             base.Awake();
         }
         //private void Start()
@@ -130,9 +130,9 @@ namespace br.com.bonus630.thefrog.Player
             if (player.MoveInputOn)
                 Move();
             Jump();
-            if (HasDoubleJump)
+            if (player.playerManager.PlayerStates.HasDoubleJump)
                 DoubleJump();
-            if (HasWallJump)
+            if (player.playerManager.PlayerStates.HasWallJump)
                 WallSliding();
         }
 

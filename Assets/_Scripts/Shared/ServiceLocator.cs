@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Codice.CM.SEIDInfo;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
@@ -23,6 +22,7 @@ namespace br.com.bonus630.thefrog.Shared
                 cache[typeof(T)] = instance;
                 return instance;
             }
+            Debug.LogWarning($"[ServiceLocator] Nenhum objeto do tipo {typeof(T).Name} encontrado!");
             return null;
         }
         public static GameObject Get(string name)

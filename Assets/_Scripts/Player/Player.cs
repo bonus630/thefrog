@@ -58,8 +58,8 @@ namespace br.com.bonus630.thefrog.Player
         public GameObject FooterColliding { get { return footer; } protected set { footer = value; } }
         public bool MoveInputOn { get { return inputsOn; } set { inputsOn = value; } }
 
-        public float Speed { get { return playerMovement.Speed; } set { playerMovement.Speed = value; } }
-        public float JumpForce { get { return playerMovement.JumpForce; } set { playerMovement.JumpForce = value; } }
+        //public float Speed { get { return playerMovement.Speed; } set { playerMovement.Speed = value; } }
+       // public float JumpForce { get { return playerMovement.JumpForce; } set { playerMovement.JumpForce = value; } }
 
         public float RigibodyGravityScale { get {  return rb.gravityScale; } set { rb.gravityScale = value; } } 
         public float RigibodyLinearVelocityY { get {  return rb.linearVelocityY; } set { rb.linearVelocityY = value; } } 
@@ -87,6 +87,7 @@ namespace br.com.bonus630.thefrog.Player
             playerSpiritController = GetComponent<PlayerSpiritController>();
             barManager = GetComponent<BarManager>();
             playerManager = GetComponent<PlayerManager>();
+            Debug.Log("Player getcomponentes:"+playerManager.PlayerStates);
             ServiceLocator.Register<PlayerInput>(GetComponent<PlayerInput>());
             ServiceLocator.Register<IPlayer>(this);
             ServiceLocator.Register("Player", gameObject);
@@ -443,11 +444,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void UpdatePlayer()
         {
-            playerManager.UpdatePlayer(() =>
-            {
-                this.Speed += 0.1f;
-                this.JumpForce += 0.1f;
-            });
+            playerManager.UpdatePlayer();
         }
     }
     public enum PlayerGravityDirection : short

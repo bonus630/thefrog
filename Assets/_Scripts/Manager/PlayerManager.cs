@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private Dictionary<GameEventName, Action> eventActions = new();
 
-        private void Start()
+        private void Awake()
         {
             eventActions.Add(GameEventName.Gravity, () => { PlayerStates.HasGravity = true; });
             eventActions.Add(GameEventName.Dash, () => { PlayerStates.HasDash = true; });
@@ -19,23 +19,26 @@ namespace br.com.bonus630.thefrog.Manager
             eventActions.Add(GameEventName.RollingWind, () => { PlayerStates.HasWind = true; });
             eventActions.Add(GameEventName.NPCTutorial, () => { PlayerStates.HasWallJump = true; });
             eventActions.Add(GameEventName.FeatherTouch, () => { PlayerStates.FallsControl = true; });
+            this.PlayerStates = GameManager.Instance.PlayerStates;
             GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;
         }
 
         private void OnGameStatesRestaured()
         {
+            Debug.Log("[PlayerManager] ongamerestaured:");
             this.PlayerStates = GameManager.Instance.PlayerStates;
         }
 
         private void OnGameEventCompleted(GameEvent obj)
         {
+            Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
             if (eventActions.TryGetValue(obj.Name, out Action action))
                 action?.Invoke();
         }
-        public void UpdatePlayer(Action callback)
+        public void UpdatePlayer()
         {
-            callback.Invoke();
+          
             this.PlayerStates.Speed += 0.1f;
             this.PlayerStates.JumpForce += 0.1f;
         }

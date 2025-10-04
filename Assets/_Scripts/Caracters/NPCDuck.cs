@@ -42,7 +42,7 @@ namespace br.com.bonus630.thefrog.Caracters
             GameManager.Instance.GetPlayerScript.UpdatePlayer();
             yield return new WaitForSeconds(1.5f); 
             yield return fader.FadeIn();
-            GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 3f);
+            GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 0.5f);
             musicTarget.Play();
             GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
             yield return new WaitForEndOfFrame();   

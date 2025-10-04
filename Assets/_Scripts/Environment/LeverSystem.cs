@@ -11,7 +11,7 @@ namespace br.com.bonus630.thefrog.Environment
         IEnumerator Drop()
         {
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
       
             Rib.GetComponent<Rigidbody2D>().gravityScale = 1;
 
