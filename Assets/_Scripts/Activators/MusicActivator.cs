@@ -9,8 +9,9 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] MusicSource musicSource;
         [SerializeField] BackgroundMusic music;
         [SerializeField] bool sleepMusicSource = false;
-        [SerializeField] AudioSource extraAudioSource;
         [SerializeField] bool looping = false;
+        [SerializeField] bool instantePlay = false;
+        [SerializeField] AudioSource extraAudioSource;
         [SerializeField] AudioClip clip;
        
         bool start = false;
@@ -19,6 +20,14 @@ namespace br.com.bonus630.thefrog.Activators
             if (!start && collision.CompareTag("Player"))
             {
                 start = true;
+                if(instantePlay)
+                {
+                    if(clip!=null)
+                        musicSource.InstantPlay(clip, looping);
+                    else
+                        musicSource.InstantPlay(music, looping);
+                    return;
+                }
                 if (sleepMusicSource)
                 {
                     musicSource.Sleep();

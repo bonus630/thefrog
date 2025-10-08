@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -14,9 +14,12 @@ namespace br.com.bonus630.thefrog.Items
 
         Animator anim;
         AudioSource audioSource;
-        SpriteRenderer sprite;
         GameObject door;
         BoxCollider2D boxCollider;
+
+
+        bool inOperation = false;
+        //talvez mudar para algo no  IInteract
 
 
         protected override void Awake()
@@ -27,126 +30,118 @@ namespace br.com.bonus630.thefrog.Items
             door = transform.GetChild(0).gameObject;
             boxCollider = GetComponent<BoxCollider2D>();
         }
-        //private void Update()
-        //{
-        //    var col = Physics2D.OverlapBox(transform.position, boxCollider.bounds.size, 0, 9);
-        //    Debug.Log(col.gameObject.name);
-        //    if(col && col.gameObject.TryGetComponent<Player>(out player) && player.inGround)
-        //    {
-        //        if (isOpen)
-        //        {
-        //            Close();
-        //        }
-        //        else
-        //            Open();
-        //    }
-        //}
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.blue;
-        //    Gizmos.DrawCube(transform.position, boxCollider.bounds.size);
-        //}
+        int cont = 0;
         protected override void Update()
         {
-            if (InteractUp.WasPressedThisFrame() && inside && isOpen)
+            if (InteractUp.WasPressedThisFrame() && inside )
             {
-                var p = GameManager.Instance.GetPlayerScript;
-                if(p.InGround && p.BodyTouching(boxCollider))
-                    Close();
+                if (player == null)
+                    player = ServiceLocator.Get<IPlayer>();
+                Debug.Log($"[DoorShip] inGround:{player.InGround} touching:{player.BodyTouching(boxCollider)}");
+                inside = player.BodyTouching(boxCollider);
+                if (!inside)
+                    return;
+                if (isOpen)
+                {
+                    Debug.Log($"[DoorShip] inside:{inside} isOpen:{isOpen}");
+                    //var p = GameManager.Instance.GetPlayerScript;
+                    if (player.InGround && player.BodyTouching(boxCollider))
+                    {
+                        Close();
+                        return;
+                    }
+                }
+                else
+                    Open();
+                
             }
+
         }
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log($"EXIT {collision.name} | CompareTag={collision.CompareTag("Player")}");
+            Debug.Log($"[DoorShip] EXIT {collision.name} | CompareTag={collision.CompareTag("Player")}");
             if (collision.CompareTag("Player"))
             {
-                
                 if (collision.TryGetComponent<IPlayer>(out player))
                 {
-                    Debug.Log("ipayer: "+player.InGround);
+                    Debug.Log("ipayer: " + player.InGround);
                     inside = true;
                     if (!player.InGround)
                         return;
-                    if (isOpen)
-                    {
-                        //Close();
-                    }
-                    else
-                        Open();
                 }
             }
         }
-        //private void Update()
-        //{
-        //    if (canOperate && player !=null && player.inGround)
-        //    {
-        //        if (isOpen)
-        //        {
-        //            Close();
-        //        }
-        //        else
-        //            Open();
-        //    }
-        //}
-        //private void OnTriggerExit2D(Collider2D collision)
-        //{
-        //    if (collision.CompareTag("Player"))
-        //        canOperate = false;
-        //}
-
+        //Método chamado pela animação
         public void Closed()
         {
-            if (teleporter!=null)
+            if (isExit)
+                return;
+            player.AllInputsOn(true, 0);
+            //return;
+            if (teleporter != null)
             {
                 teleporter.Activate();
             }
-
         }
+
         public void Opened()
         {
             door.SetActive(true);
-
         }
         public void Close()
         {
+            Debug.Log("[ShipDoor] cont:" + cont++);
+            if (!isExit)
+            {
+                player.AllInputsOn(false, 0);
+                Debug.Log($"[DoorShip] iplayer:{player}");
+                GetComponent<SpriteRenderer>().sortingOrder = 11;
+            }
             audioSource.PlayOneShot(closingAudio);
             anim.SetBool("Closed", true);
             isOpen = false;
+           // inOperation = true;
             Closed();
-            if (isExit)
-            {
-                door.SetActive(false);
-                GetComponent<BoxCollider2D>().enabled = false;
-            }
-            Invoke(nameof(EnablesDoor), 0.5f);
+           // if (isExit)
+          //  {
+                door.SetActive(isOpen);
+                //GetComponent<BoxCollider2D>().enabled = false;
+          //  }
+            StartCoroutine(EnablesDoor());
         }
         public void Open()
         {
+            Debug.Log("[ShipDoor] cont:" + cont++);
             audioSource.PlayOneShot(openingAudio);
             anim.SetBool("Closed", false);
             isOpen = true;
-            Invoke(nameof(EnablesDoor), 0.1f);
+            Invoke(nameof(EnablesDoor2), 0.1f);
         }
-        private void EnablesDoor()
+        private IEnumerator EnablesDoor()
+        {
+            //while (player.BodyTouching(boxCollider))
+            {
+                Debug.Log($"[DoorShip] Enumerator touching:{player.BodyTouching(boxCollider)}");
+                yield return new WaitForSeconds(0.1f);
+            }
+            GetComponent<SpriteRenderer>().sortingOrder = 9;
+            Debug.Log("Chegamos");
+           // door.SetActive(isOpen);
+        }
+        private void EnablesDoor2()
         {
             door.SetActive(isOpen);
         }
 
         public void Interact()
         {
-            if (!isOpen)
-                Open();
+            //if (!isOpen)
+            //    Open();
         }
 
-        public bool ReadyToInteract(bool lookFor)
-        {
-            return true;
-        }
+        public bool ReadyToInteract(bool lookFor) => true;
 
-        public Transform GetTransform()
-        {
-            return transform;
-        }
+        public Transform GetTransform() => transform;
     }
 }
 

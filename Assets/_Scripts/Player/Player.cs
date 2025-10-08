@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 namespace br.com.bonus630.thefrog.Player
 {
-
+    [DefaultExecutionOrder(-1)]
     public class Player : MonoBehaviour, IPlayer,IForcible
     {
         [SerializeField] private GameObject interactIcon;
@@ -100,7 +100,7 @@ namespace br.com.bonus630.thefrog.Player
             //states = GameManager.Instance.PlayerStates;
             //Debug
             //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -119,7 +119,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-#endif
+//#endif
 
         }
 
@@ -204,6 +204,22 @@ namespace br.com.bonus630.thefrog.Player
                 GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
                 //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
             }
+            if (Input.GetKeyUp(KeyCode.Alpha9))
+                GameManager.Instance.UpdateMaxHearts(1);
+            if (Input.GetKeyUp(KeyCode.Alpha8))
+                GameManager.Instance.UpdateHeart(-1);
+            if (Input.GetKeyUp(KeyCode.Alpha1))
+                GameManager.Instance.SaveStates(1);
+            if (Input.GetKeyUp(KeyCode.Alpha2)) 
+            {
+                 GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha7))
+            {
+                GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_"+Random.Range(0,10000));
+                GameManager.Instance.PlayerStates.Collectables++;
+                GameManager.Instance.UpdateScore();
+            } 
             if (Input.anyKeyDown)
             {
                 switch (true)
@@ -424,18 +440,27 @@ namespace br.com.bonus630.thefrog.Player
         {
             playerDialogue.ReadDialogue();
         }
-
+        public void CancelDialogue()
+        {
+            playerDialogue.CancelDialogue();
+        }
         public void FallsControl()
         {
             playerMovement.FallsControl();
         }
-        public void AllInputsOn(bool inputOn = true, float delayTime = 0) => StartCoroutine(disablesAllInputs(inputOn,delayTime));
-        private IEnumerator disablesAllInputs(bool inputOn, float delayTime)
+        public void AllInputsOn(bool inputOn = true, float delayTime = 0,bool autoSwitch = false, float switchTime = 0) => StartCoroutine(disablesAllInputs(inputOn,delayTime,autoSwitch,switchTime));
+        private IEnumerator disablesAllInputs(bool inputOn, float delayTime, bool autoSwitch, float switchTime)
         {
             yield return new WaitForSeconds(delayTime);
             GetComponent<PlayerInputHandler>().enabled = inputOn;
-            GetComponent<PlayerInput>().enabled = inputOn;
+            //GetComponent<PlayerInput>().enabled = inputOn;
             Debug.Log("Disable inputs :"+ inputOn);
+            if(autoSwitch)
+            {
+                yield return new WaitForSeconds(switchTime);
+                GetComponent<PlayerInputHandler>().enabled = !inputOn;
+            //    GetComponent<PlayerInput>().enabled = !inputOn;
+            }
         }
         public void FreezePlayer()
         {

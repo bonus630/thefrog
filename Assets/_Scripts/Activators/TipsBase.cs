@@ -91,7 +91,10 @@ namespace br.com.bonus630.thefrog.Activators
             }
             return true;
         }
-
+        private void OnDisable()
+        {
+            ServiceLocator.Get<IPlayer>().CancelDialogue();
+        }
         public void ReadTips()
         {
 

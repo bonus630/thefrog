@@ -25161,6 +25161,7 @@ GameObject:
   - component: {fileID: 912517909433977595}
   - component: {fileID: 3540986201880000921}
   - component: {fileID: 1151959965755703110}
+  - component: {fileID: 5568101765153628795}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -25375,8 +25376,6 @@ MonoBehaviour:
   throwProjectileSFX: {fileID: 8300000, guid: 201a1ed16928d26469ea8a000e8273e9, type: 3}
   Entrace: {fileID: 8300000, guid: a92bd6dc482692547bf604a90f54e2a1, type: 3}
   GravityParticles: {fileID: 5267456748424603697}
-  <barManager>k__BackingField: {fileID: 3540986201880000921}
-  <playerManager>k__BackingField: {fileID: 1151959965755703110}
   anim: {fileID: 1346750905149390656}
   gravityDirection: -1
   gravityScale: 4
@@ -25763,6 +25762,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c9e93cd195768459a9a58bb91cdf58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5568101765153628795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620097102780067214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1235a38bfedc6e64ba917f0a06548982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comment: Player
+  noteColor: {r: 0, g: 1, b: 0.028357267, a: 1}
 --- !u!1 &8873583698127253809
 GameObject:
   m_ObjectHideFlags: 0

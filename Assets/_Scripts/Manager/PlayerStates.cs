@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -34,8 +36,9 @@ namespace br.com.bonus630.thefrog.Manager
         public bool FallsControl;
         //For Debug
         public int Shurykens;
-        //Hearts é o maxlife
         public int numDies = 0;
+        //MaxHearts é o maxlife
+        public int MaxHearts = 2;
         public int Hearts = 2;
         public int Hour = 6;
         public int Collectables;
@@ -67,6 +70,8 @@ namespace br.com.bonus630.thefrog.Manager
         public bool Contains(string data) => this.datas.Contains(data);
         public bool Remove(string data) => this.datas.Remove(data);
         public string this[int index] { get => this.datas[index]; set => this.datas[index] = value; }
+        
+       
 
     }
     [System.Serializable]

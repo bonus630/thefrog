@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,8 +40,13 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void OnSelect(InputAction.CallbackContext context)
         {
-            if(context.performed)
-                player.playerSpiritController.SelectProjectile(1);
+            if (context.performed)
+            {
+                if (GameManager.Instance.GamePaused)
+                    GameManager.Instance.OnCallSave(true);
+                else
+                    player.playerSpiritController.SelectProjectile(1);
+            }
         }
     }
 }

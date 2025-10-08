@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Manager
 {
     public class ScreenFader : MonoBehaviour
     {

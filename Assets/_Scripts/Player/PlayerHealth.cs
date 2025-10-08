@@ -128,7 +128,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void GameOver()
         {
-            player.MoveInputOn = false;
+            player.AllInputsOn(false);
             player.RigibodyLinearVelocity = Vector2.zero;
             player.RigibodyGravityScale = 0;
             player.RigibodyBodyType = RigidbodyType2D.Static;

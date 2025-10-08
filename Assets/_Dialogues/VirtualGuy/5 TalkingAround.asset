@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 952607ffee8a03242a8f9d6155c28800, type: 3}
-  m_Name: VirtualGuyLastRequest
+  m_Name: 5 TalkingAround
   m_EditorClassIdentifier: 
   DialogueName: 
   Dialogues:
   - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
     Name: 
-    text: "Nossa muito bom, voc\xEA conseguiu! Consiga mais {apples} ma\xE7\xE3s
-      e traga at\xE9 min, vou te ensinar algo especial!"
+    text: "N\xE3o tenho mais nada para oferecer! Voc\xEA ainda tem muito pot\xEAncial,
+      talvez encontre mais ensinamentos na cidade de Aelyria"

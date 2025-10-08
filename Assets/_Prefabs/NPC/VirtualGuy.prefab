@@ -268,7 +268,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ebce0557582adc74e94e533b957c2ec1, type: 2}
   - {fileID: 11400000, guid: c26681605d859c84b90786a86b708161, type: 2}
   - {fileID: 11400000, guid: c76d71790ca14c34dbb4f40f386992f4, type: 2}
+  - {fileID: 11400000, guid: c6ce1045833bc314ca03e2bc71821482, type: 2}
   currentDialogue: 0
+  receivedApples: 0
 --- !u!1001 &4648170346513388958
 PrefabInstance:
   m_ObjectHideFlags: 0

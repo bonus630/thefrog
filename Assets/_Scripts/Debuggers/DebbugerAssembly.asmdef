@@ -1,0 +1,16 @@
+{
+    "name": "DebbugerAssembly",
+    "rootNamespace": "br.com.bonus630.thefrog.Debuggers",
+    "references": [
+        ""
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

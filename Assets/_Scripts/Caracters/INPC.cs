@@ -7,6 +7,10 @@ namespace br.com.bonus630.thefrog.Caracters
     {
         DialogueData CurrentDialogueData { get; }
         /// <summary>
+        /// Faz a checagem da lista de dialogos para setar o dialogo adequado, este método auxilia na persistência 
+        /// </summary>
+        void CheckDialogs();
+        /// <summary>
         /// Retorna para o player verdadeiro caso o npc tenha mais falas
         /// </summary>
         /// <returns></returns>

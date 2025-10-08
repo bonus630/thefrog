@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,12 +13,28 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
-            Debug.Log("OnEnable");
-            EventSystem.current.SetSelectedGameObject(transform.GetChild(0).transform.GetChild(0).gameObject);
+            StartCoroutine(WaitAndSelect());
+        }
+
+        IEnumerator WaitAndSelect()
+        {
+            GameObject firstButton = transform.GetChild(0).GetChild(0).gameObject;
+
+            // Espera até o EventSystem e o InputSystemUIInputModule estarem prontos
+            while (EventSystem.current == null ||
+                   EventSystem.current.currentInputModule == null ||
+                   !firstButton.activeInHierarchy)
+            {
+                yield return null;
+            }
+
+            yield return new WaitForEndOfFrame(); // garante que layout UI foi atualizado
+            EventSystem.current.SetSelectedGameObject(firstButton);
         }
 
         public void ContinueButton_clicked()
         {
+            Debug.Log("[GameOverMenu] continue button clicked");
             GameManager.Instance.LoadGame(SceneStartType.Continue);
         }
         public void LoadButton_clicked()

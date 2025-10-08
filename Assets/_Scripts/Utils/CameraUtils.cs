@@ -161,7 +161,9 @@ namespace br.com.bonus630.thefrog.Utils
             this.bottomLeft = center + new Vector2(-halfSize.x, -halfSize.y);
             this.bottomRight = center + new Vector2(halfSize.x, -halfSize.y);
         }
-
+        public bool Contains(Vector2 point)=>
+             point.x >= topLeft.x && point.x <= topRight.x && point.y <= topLeft.y && point.y >= bottomLeft.y;
+        
         // Construtor: só tamanho, assume centro na origem
         public CameraBounds2D(Vector2 size)
             : this(Vector2.zero, size)

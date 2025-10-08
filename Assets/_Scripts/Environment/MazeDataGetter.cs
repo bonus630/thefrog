@@ -10,30 +10,23 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] MazeBuilder mazeBuilder;
         [SerializeField] MusicSource musicSource;
+        private readonly string MAZE = "MAZE";
         void Start()
         {
-            //Debug.Log(mazeBuilder);
-            var li = DataScenePreserver.Instance.Get<ListStorage<int>>("MAZE");
-           // var li = GameManager.Instance.GetSceneData<ListStorage<int>>();
-            //Debug.Log("Directions li:" + li.Values.Count);
+            if (!DataScenePreserver.Instance.Contains(MAZE))
+                return;
+            var li = DataScenePreserver.Instance.Get<ListStorage<int>>(MAZE);
             mazeBuilder.CorrectPath = li.Values;
-            //Debug.Log("Directions g:" + mazeBuilder.CorrectPath.Count);
-            
             musicSource.Play(BackgroundMusic.Ignition, true);
             musicSource.SavedTime = li.ExtraData;
             musicSource.ResumeMainMusic();
-            //musicSource.SavedTime = li.ExtraData;
-            //musicSource.ResumeMainMusic();
-            // var go = GameObject.Find("DataScenePreserver");
-            //
-            // mazeBuilder.CorrectPath = go.GetComponent<DataScenePreserver>().Get<List<int>>();
         }
 
         private void Update()
         {
             if(mazeBuilder !=null && mazeBuilder.Completed)
             {
-                DataScenePreserver.Instance.Get<ListStorage<int>>("MAZE").Flag = true;
+                DataScenePreserver.Instance.Get<ListStorage<int>>(MAZE).Flag = true;
             }
         }
 

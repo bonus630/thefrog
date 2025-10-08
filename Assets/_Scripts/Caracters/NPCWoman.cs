@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] DialogueData secondDialogue;
         [SerializeField] DialogueData thirdDialogue;
         List<int> mazeDirections = null;
-        
+        private readonly string MAZE = "MAZE";
         public void Start()
         {
             if(GameManager.Instance.IsEventCompleted(GameEventName.LadyLaments))
@@ -23,16 +23,21 @@ namespace br.com.bonus630.thefrog.Caracters
            CheckDialogue();
 
         }
-        public override DialogueData CurrentDialogueData { get { CheckDialogue(); return currentDialogueData; }  protected set => currentDialogueData = value; }
+        public override DialogueData CurrentDialogueData { 
+            get { 
+                CheckDialogue(); 
+                return currentDialogueData;
+            }  
+            protected set => currentDialogueData = value; }
         public void CheckInitialDialogue(int dialogue)
         {
 
         }
         private void CheckDialogue()
         {
-            if (DataScenePreserver.Instance.Contains("MAZE"))
+            if (DataScenePreserver.Instance.Contains(MAZE))
             {
-                mazeDirections = DataScenePreserver.Instance.Get<ListStorage<int>>("MAZE").Values;
+                mazeDirections = DataScenePreserver.Instance.Get<ListStorage<int>>(MAZE).Values;
                 this.currentDialogueData = secondDialogue;
             }
             if (GameManager.Instance.EnvironmentStates.Activeds.Contains("trans_0005"))
@@ -40,10 +45,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 this.currentDialogueData = thirdDialogue;
             }
         }
-        public override Transform GetTransform()
-        {
-            return transform;
-        }
+        public override Transform GetTransform() => transform;
 
         public override void Interact()
         {
@@ -59,8 +61,6 @@ namespace br.com.bonus630.thefrog.Caracters
             dialogueCounter = 0;
             musicSource.Play(BackgroundMusic.Ignition, true);
             Entrace.enabled = true;
-            // mazeBuilder.ActiveEntrace();
-
         }
         public override Dictionary<string, string> GetDialogueVariables()
         {
@@ -73,15 +73,14 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void FillPath()
         {
-            Debug.Log("MAZE PATH FILL");
+            Debug.Log("[MAZE] PATH FILL");
             mazeDirections = new List<int>();
             for (int i = 0; i < mazeSteps; i++)
             {
-
                 mazeDirections.Add(UnityEngine.Random.Range(0, 4));
             }
             ListStorage<int> li = new() { Values = mazeDirections };
-            DataScenePreserver.Instance.Set<ListStorage<int>>("MAZE", li);
+            DataScenePreserver.Instance.Set<ListStorage<int>>(MAZE, li);
         }
     }
 }

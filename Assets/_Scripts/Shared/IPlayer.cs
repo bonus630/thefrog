@@ -10,6 +10,7 @@ namespace br.com.bonus630.thefrog.Shared
         bool MoveInputOn { get; set; }
         bool InGround { get; set; }
         void ReadDialogue();
+        void CancelDialogue();
         void Alert();
         void Hit();
         void Hit(int damage);
@@ -26,7 +27,7 @@ namespace br.com.bonus630.thefrog.Shared
         bool FooterTouching(Collider2D coll);
         bool BodyTouching(Collider2D coll);
 
-        void AllInputsOn(bool disables,float delayTime = 0);
+        void AllInputsOn(bool inputOn, float delayTime = 0, bool autoSwitch = false, float switchTime = 0);
       
 
     }

@@ -351,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Andarilho do C\xE9u"
+  m_text: ANDARILHO DO CEU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5ba60d531df208499b051863933ad36, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -940,6 +940,7 @@ GameObject:
   - component: {fileID: 3936411417431500442}
   - component: {fileID: 6855500308838494274}
   - component: {fileID: 5223406440422347992}
+  - component: {fileID: 5081186573893831078}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1004,6 +1005,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5081186573893831078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530199128349616618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53aaac49c42fd544b8629163a96fad9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3628834246561447280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,10 +1357,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5160787714417761991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 81, y: -0.000030517578}
-  m_SizeDelta: {x: 261.543, y: 74.617}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 47, y: 34}
+  m_SizeDelta: {x: 100, y: 74.617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6803293149218713296
 CanvasRenderer:
@@ -1380,7 +1393,7 @@ MonoBehaviour:
   m_text: 0:00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5ba60d531df208499b051863933ad36, type: 2}
-  m_sharedMaterial: {fileID: -5307079874678429431, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
+  m_sharedMaterial: {fileID: 3212994028090282401, guid: a5ba60d531df208499b051863933ad36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1789,8 +1802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -14}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6010298881299232912
 GameObject:
@@ -2084,7 +2097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 59.639946, y: 372.81998}
+  m_AnchoredPosition: {x: -0.0000076293945, y: 504}
   m_SizeDelta: {x: 471.55, y: 174.35999}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2154950775725101117
@@ -2118,7 +2131,7 @@ MonoBehaviour:
   m_text: 00 HORAS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5ba60d531df208499b051863933ad36, type: 2}
-  m_sharedMaterial: {fileID: -5307079874678429431, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
+  m_sharedMaterial: {fileID: 3212994028090282401, guid: a5ba60d531df208499b051863933ad36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2390,7 +2403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.64, y: -11.42}
+  m_AnchoredPosition: {x: 0.0000076293945, y: -0.0000019073486}
   m_SizeDelta: {x: 471.55, y: 174.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &497518161212460781
@@ -2424,7 +2437,7 @@ MonoBehaviour:
   m_text: PAUSE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5ba60d531df208499b051863933ad36, type: 2}
-  m_sharedMaterial: {fileID: -5307079874678429431, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
+  m_sharedMaterial: {fileID: 3212994028090282401, guid: a5ba60d531df208499b051863933ad36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -34,7 +34,7 @@ namespace br.com.bonus630.thefrog.Environment
         [ContextMenu("Adicionar posição atual")]
         private void AddCurrentPositionToStartPosition()
         {
-            var list = new System.Collections.Generic.List<Vector2>();
+            var list = destines.ToList();
             list.Add(transform.position);
             destines = list.ToArray();
 

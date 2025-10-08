@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-100)]
     public class GameManager : MonoBehaviour
     {
         [SerializeField] InputAction PauseAction;
@@ -23,10 +23,10 @@ namespace br.com.bonus630.thefrog.Manager
         private TextMeshProUGUI scoreText;
         private TextMeshProUGUI TimerText = null;
         public event Action TimeOverEvent;
+        public event Action GameStatesRestaured;
         private bool continueGame = false;
         private bool _isCountingTime = false;
         private bool gamePaused = false;
-        public event Action GameStatesRestaured;
         float startTimer = 0;
         public float PlayTimeInSeconds { get; private set; }
         public int ToPoint { get; set; }
@@ -45,6 +45,9 @@ namespace br.com.bonus630.thefrog.Manager
         public Vector3 StartGamePosition { get; private set; }
         public Vector3 PlayerStartPosition { get; set; }
         public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
+
+        public bool GamePaused { get => gamePaused;private set => gamePaused = value; }
+
         //Scenes Names
         public readonly string MainScene = "SampleScene";
         public readonly string InternAreas = "InternAreas";
@@ -108,6 +111,7 @@ namespace br.com.bonus630.thefrog.Manager
             //playerStates.FallsControl = true;
             //playerStates.HasDash = true;
             //playerStates.Shurykens = 100;
+            eventManager.EventCompleted(GameEventName.HeartContainer, false);
             //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
             //eventManager.EventCompleted(GameEventName.KillPig, false);
             //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
@@ -171,13 +175,19 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private bool TryPause(bool pause, string hudName, out GameObject go)
         {
-            if (gamePaused)
+            
+            if (GamePaused)
             {
                 var pauseHud = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
-                if (pauseHud != null) pauseHud.SetActive(false);
+                if (pauseHud != null)
+                {
+                    if (hudName.Equals(SaveHUD) && pauseHud.activeInHierarchy)
+                        SceneManager.LoadScene("MainMenu");
+                    pauseHud.SetActive(false);
+                }
                 var saveHud = GameObject.Find(SaveHUD).transform.GetChild(0).gameObject;
                 if (saveHud != null) saveHud.SetActive(false);
-                gamePaused = false;
+                GamePaused = false;
             }
             go = GameObject.Find(hudName).transform.GetChild(0).gameObject;
             if (go == null)
@@ -189,7 +199,7 @@ namespace br.com.bonus630.thefrog.Manager
                 Time.timeScale = pause ? 0 : 1;
                 go.SetActive(pause);
                 GetPlayerScript.AllInputsOn(!pause);
-                gamePaused = pause;
+                GamePaused = pause;
                 return true;
             }
             return false;
@@ -252,6 +262,8 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 this.EnvironmentStates = LoadStates(index);
                 this.PlayerStates = this.EnvironmentStates.playerStates;
+                if (index == 0)
+                    this.PlayerStates.Hearts = this.playerStates.MaxHearts;
                 continueGame = true;
                 //vamos colocar a carga dos eventos completos aqui, não sei se é o melhor lugar, mas parece resolver o problema dos eventos carregarem após a cena
                 //já estar carregada
@@ -368,20 +380,26 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 GameManager.Instance.EnvironmentStates.Activeds.Remove(ActivatorID);
         }
-        private void UpdateHearts(int hearts)
-        {
-            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
-            StartCoroutine(AddHeart(hud, hearts - 1));
-        }
         public void UpdateProjectil(Color color, Sprite sprite)
         {
-            Image image = GameObject.Find(SpiritHUD).transform.GetChild(0).GetComponent<Image>();
-            image.gameObject.SetActive(true);
-            image.sprite = sprite;
-            image = GameObject.Find(SpiritHUD).transform.GetChild(1).GetComponent<Image>();
-            image.gameObject.SetActive(true);
-            image.color = color;
-            Debug.Log("Projectil color:" + color);
+            GameObject hud = GameObject.Find(SpiritHUD);
+            if (hud != null)
+            {
+                hud.SetActive(true); // garante que o pai está ativo
+
+                Image image = hud.transform.GetChild(0).GetComponent<Image>();
+                image.gameObject.SetActive(true);
+                image.sprite = sprite;
+
+                image = hud.transform.GetChild(1).GetComponent<Image>();
+                image.gameObject.SetActive(true);
+                image.color = color;
+            }
+            else
+            {
+                Debug.LogWarning("HUD não encontrado!");
+            }
+     
         }
         int maxColHearts = 10;
         public void UpdateHeart(int hearts)
@@ -389,6 +407,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
             GetPlayerScript.CurrentLife += hearts;
             this.PlayerStates.Hearts += hearts;
+            
             if (hearts > 0)
             {
                 StartCoroutine(AddHeart(hud, hearts));
@@ -399,6 +418,16 @@ namespace br.com.bonus630.thefrog.Manager
                 StartCoroutine(RemoveHeart(hud, hearts));
             }
         }
+        public void UpdateMaxHearts(int hearts)
+        {
+            this.PlayerStates.MaxHearts += hearts;
+            UpdateHeart(hearts);
+        }
+        private void UpdateHearts(int hearts)
+        {
+            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+            StartCoroutine(AddHeart(hud, hearts - 1));
+        }
         IEnumerator AddHeart(GameObject hud, int hearts)
         {
             int heartCount = hud.transform.childCount;
@@ -408,7 +437,7 @@ namespace br.com.bonus630.thefrog.Manager
             var rect = hud.GetComponent<RectTransform>();
             var heartRect = heart.GetComponent<RectTransform>();
             int col = heartCount % maxColHearts;
-            int row = heartCount / 5;
+            int row = heartCount / maxColHearts;
 
             while (total > hud.transform.childCount)
             {

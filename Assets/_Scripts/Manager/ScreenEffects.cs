@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,7 +18,10 @@ namespace br.com.bonus630.thefrog.Manager
             if(screenFader==null)
                 screenFader = FindAnyObjectByType<ScreenFader>();
         }
-
+        private void Start()
+        {
+            ServiceLocator.Register<ScreenEffects>(this);
+        }
         public void GameObjectFocus(GameObject gameObject, float time = 1)
         {
             camerasController.GameObjectFocus(gameObject, time);

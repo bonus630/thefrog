@@ -89,6 +89,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
            // background.gameObject.SetActive(false);
             avatar.gameObject.SetActive(false);
             text.gameObject.SetActive(false);
+            SetHaveMoreIcon(false);
             background.color = transparent;
             SetPosition(DialogPosition.Bottom);
             //name.text = string.Empty;

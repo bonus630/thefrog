@@ -23,6 +23,8 @@ namespace br.com.bonus630.thefrog.Player
         float dashReloadTimer = 0;
         float coyouteTime = 0.2f;
         float coyouteTimer = 0;
+        float jumpBufferTime = 0.2f;
+        float jumpBufferTimer = 0;
        // public float Speed { get { return speed; } set { speed = value; } }
        // public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
         public float TimeInFastFall { get; set; } = 0;

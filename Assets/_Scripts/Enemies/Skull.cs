@@ -135,7 +135,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         private void Die()
         {
-            transform.parent.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            transform.parent.Find("FireSpirit").gameObject.SetActive(true);
             Destroy(gameObject);
             //Debug.Log("Boss die");
         }

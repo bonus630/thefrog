@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1533507646206142768}
   - component: {fileID: 4912231814979096312}
   - component: {fileID: 1677198436284915494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NPCWorker
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.049795136, y: -0.014130563}
+  m_Offset: {x: 0.06925147, y: -0.0407051}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -171,7 +171,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.35535684, y: 0.3917389}
+  m_Size: {x: 0.36389858, y: 0.33858982}
   m_EdgeRadius: 0
 --- !u!1 &7939218056444105649
 GameObject:

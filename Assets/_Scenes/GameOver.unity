@@ -370,6 +370,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1545106514}
@@ -380,6 +384,10 @@ PrefabInstance:
     - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: br.com.bonus630.thefrog.UI.SaveLoadMenu, UIAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233635904066446161, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8847231512967471811, guid: 294103e31abca4c47ac10bd723a3eb92, type: 3}
       propertyPath: saveMode
@@ -711,7 +719,7 @@ MonoBehaviour:
   m_text: GAME OVER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
-  m_sharedMaterial: {fileID: -5307079874678429431, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
+  m_sharedMaterial: {fileID: -8722573922416251172, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

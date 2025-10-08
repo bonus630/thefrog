@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
-using br.com.bonus630.thefrog.Items;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace br.com.bonus630.thefrog.Player
 {
@@ -17,19 +14,17 @@ namespace br.com.bonus630.thefrog.Player
         int currentIndex = 0;
         List<ProjectilData> avaliableProjectilies = new();
 
-       // float updateTime = 0.4f;
-     //   float time = 0f;
-        float count = 0f;
-        [field:SerializeField]public ProjectilData CurrentProjectile { get; private set; }
+        // float updateTime = 0.4f;
+        //   float time = 0f;
+        int count = 0;
+        [field: SerializeField] public ProjectilData CurrentProjectile { get; private set; }
 
         [SerializeField] Sprite FireSprite;
         [SerializeField] Sprite LightningSprite;
         [SerializeField] Sprite WindSprite;
         [SerializeField] Sprite WaterSprite;
         [SerializeField] Sprite EarthrSprite;
- 
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             CheckProjectil();
@@ -40,33 +35,35 @@ namespace br.com.bonus630.thefrog.Player
         private void EventManager_GameEventCompleted(GameEvent obj)
         {
             CheckProjectil();
+            if (count - 1 > -1)
+                currentIndex = count - 1;
+            SetCurrentProjectil();
         }
 
-        // Update is called once per frame
         void Update()
         {
-         //   time += Time.deltaTime;
+            //   time += Time.deltaTime;
         }
 
         public void SelectProjectile(float direction)
         {
 
             //Debug.Log("Direction: " + direction);
-          //  if(time > updateTime)
-          //  {
+            //  if(time > updateTime)
+            //  {
             //    time = 0;
-                if (direction < 0)
-                    currentIndex--;
-                if(currentIndex < 0)
-                    currentIndex = avaliableProjectilies.Count-1;
-                if (direction > 0)
-                    currentIndex++;
-                if (currentIndex >= avaliableProjectilies.Count)
-                    currentIndex = 0;
+            if (direction < 0)
+                currentIndex--;
+            if (currentIndex < 0)
+                currentIndex = avaliableProjectilies.Count - 1;
+            if (direction > 0)
+                currentIndex++;
+            if (currentIndex >= avaliableProjectilies.Count)
+                currentIndex = 0;
             Debug.Log("current:" + currentIndex);
-                SetCurrentProjectil();
-         //       time = 0;
-          //  }
+            SetCurrentProjectil();
+            //       time = 0;
+            //  }
         }
         private void CheckProjectil()
         {
@@ -83,23 +80,23 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     case Elements.Fire:
                         if (player.playerManager.PlayerStates.HasFireball)
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2,Color.red,  Elements.Fire,FireSprite));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.red, Elements.Fire, FireSprite));
                         break;
                     case Elements.Lightining:
                         if (player.playerManager.PlayerStates.HasLightning)
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.white, Elements.Lightining,LightningSprite));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.white, Elements.Lightining, LightningSprite));
                         break;
                     case Elements.Wind:
                         if (player.playerManager.PlayerStates.HasWind)
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.green,  Elements.Wind,WindSprite));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.green, Elements.Wind, WindSprite));
                         break;
                     case Elements.Water:
                         if (player.playerManager.PlayerStates.HasWater)
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.blue, Elements.Water,WaterSprite));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.blue, Elements.Water, WaterSprite));
                         break;
                     case Elements.Earth:
                         if (player.playerManager.PlayerStates.HasEarth)
-                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint,projectileSpawPoint2, Color.magenta,  Elements.Earth, EarthrSprite));
+                            avaliableProjectilies.Add(new(projectile, projectileSpawPoint, projectileSpawPoint2, Color.magenta, Elements.Earth, EarthrSprite));
                         break;
                 }
             }
@@ -110,11 +107,12 @@ namespace br.com.bonus630.thefrog.Player
             if (avaliableProjectilies.Count > 0)
             {
                 CurrentProjectile = avaliableProjectilies[currentIndex];
-                GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor,CurrentProjectile.hud);
+                Debug.Log("[PlayerSpiritController] SetCurrentProjectil color:" + CurrentProjectile.EffectColor);
+                GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor, CurrentProjectile.hud);
             }
 
         }
-       
+
     }
     [SerializeField]
     public class ProjectilData
@@ -134,8 +132,8 @@ namespace br.com.bonus630.thefrog.Player
             EffectColor = effectColor;
             Element = element;
         }
-        public ProjectilData(GameObject projectil, GameObject spawnPoint, GameObject spawnPoint2, Color effectColor, Elements element,Sprite hud)
-            :this(projectil,spawnPoint,spawnPoint2,effectColor,element)
+        public ProjectilData(GameObject projectil, GameObject spawnPoint, GameObject spawnPoint2, Color effectColor, Elements element, Sprite hud)
+            : this(projectil, spawnPoint, spawnPoint2, effectColor, element)
         {
             this.hud = hud;
         }
@@ -144,20 +142,17 @@ namespace br.com.bonus630.thefrog.Player
             Element = element;
         }
 
-        // Equals seguro para listas e Contains
         public bool Equals(ProjectilData other)
         {
             if (other == null) return false;
             return this.Element == other.Element;
         }
 
-        // Sobrescrevendo Equals do object
         public override bool Equals(object obj)
         {
             return Equals(obj as ProjectilData);
         }
 
-        // Sempre sobrescreva GetHashCode quando sobrescrever Equals
         public override int GetHashCode()
         {
             return Element.GetHashCode();

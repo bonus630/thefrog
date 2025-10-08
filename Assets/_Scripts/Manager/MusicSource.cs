@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.Audio;
 namespace br.com.bonus630.thefrog.Manager
@@ -22,8 +23,10 @@ namespace br.com.bonus630.thefrog.Manager
         private bool leftTurn = true;
 
         public float SavedTime { get; set; } = 0f; // Guarda o tempo da música antes de pausar
+        public bool SavedLoop { get; private set; } = false; //Guarda o loop
 
-    
+        private AudioClip savedClip;
+
         /// <summary>
         /// Global volume
         /// </summary>
@@ -51,7 +54,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void LateUpdate()
         {
-            if (sleep)
+            if (IsSleeping)
                 return;
             if (!audioLeft.isPlaying && !audioRight.isPlaying)
                 silentTime += Time.deltaTime;
@@ -83,45 +86,26 @@ namespace br.com.bonus630.thefrog.Manager
                 CrossFade(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
             }
         }
-        //private void PlayFadIn()
-        //{
-        //    StopAllCoroutines();
-        //    audioLeft.volume = 0f;
-        //    audioRight.volume = 0f;
-        //    audioLeft.Play();
-        //    audioRight.Play();
-        //    //StartCoroutine(FadIn());
-        //}
+
         private void CrossFade(AudioClip clip, bool disableLoop = true)
         {
             if (disableLoop)
             {
-                audioLeft.loop = false;
-                audioRight.loop = false;
+                WakeUp();
             }
             if (leftTurn)
             {
                 PlayFadIn(new AudioSource[] { audioLeft }, clip);
-                //StopFadOut(new AudioSource[] { audioRight });
                 StartCoroutine(WaitToPlay(audioLeft, audioRight));
-                //audioRight.clip = audioLeft.clip;
-                //audioRight.volume = targetVolume;
-                //audioRight.time = audioLeft.time;
-                //audioRight.Play();
             }
             else
             {
                 PlayFadIn(new AudioSource[] { audioRight }, clip);
                 StartCoroutine(WaitToPlay(audioRight, audioLeft));
-
-                //StopFadOut(new AudioSource[] { audioLeft });
-                //audioLeft.clip = audioRight.clip;
-                //audioLeft.volume = targetVolume;
-                //audioLeft.time = audioRight.time;
-                //audioLeft.Play();
             }
             leftTurn = !leftTurn;
         }
+        //Este é um metodo publico
         public void CrossFade(BackgroundMusic music)
         {
             if (leftTurn)
@@ -130,6 +114,7 @@ namespace br.com.bonus630.thefrog.Manager
                 audioRight.loop = true;
             CrossFade(BackgroundMusics[(int)music], false);
         }
+        //Este é um metodo publico
         public void CrossFade(BackgroundMusic music, bool inLoop)
         {
             if (leftTurn)
@@ -154,12 +139,13 @@ namespace br.com.bonus630.thefrog.Manager
             StopFadOut(new AudioSource[] { nowPlaying });
             //Debug.Log("Estamos no audio:" + toPlay.time);
         }
+        //Este é um metodo publico
         public void PlayFadIn(AudioClip clip)
         {
             // Debug.Log("Audio");
             PlayFadIn(new AudioSource[] { audioLeft, audioRight }, clip);
         }
-
+       //Este é um metodo publico
         public void PlayFadIn(BackgroundMusic music)
         {
             AudioClip clip = BackgroundMusics[(int)music];
@@ -175,7 +161,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private IEnumerator FadIn(AudioSource[] channels, AudioClip clip)
         {
-            sleep = false;
+            IsSleeping = false;
             if (!clip.loadState.Equals(AudioDataLoadState.Loaded))
             {
                 clip.LoadAudioData();
@@ -203,9 +189,16 @@ namespace br.com.bonus630.thefrog.Manager
             for (int i = 0; i < channels.Length; i++)
                 channels[i].volume = targetVolume; // Corrigido: channels[1] → channels[i]
         }
+        //Este é um metodo publico
+        /// <summary>
+        /// Utilize este método para tocar uma música das musicas pre definidas
+        /// </summary>
+        /// <param name="music"></param>
+        /// <param name="inLoop">Se passar verdadeiro, método wakeup deve ser chamado para continuar o fluxo do musicsource</param>
         public void Play(BackgroundMusic music, bool inLoop = false)
         {
             StopAllCoroutines();
+            IsSleeping = true;
             AudioClip clip = BackgroundMusics[(int)music];
             if (leftTurn)
             {
@@ -221,7 +214,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
             leftTurn = !leftTurn;
         }
-     
+
         private void Play(AudioSource audio, AudioClip clip)
         {
             audio.volume = targetVolume;
@@ -235,15 +228,24 @@ namespace br.com.bonus630.thefrog.Manager
             audioLeft.Stop();
             audioRight.Stop();
         }
-        private bool sleep = false;
+        public bool IsSleeping { get; set; } = false;
+        
+        /// <summary>
+        /// Faz o MusicSource deixar de controlar o fluxo das faixas de musica, e para todas músicas em execução
+        /// </summary>
         public void Sleep()
         {
-            sleep = true;
+            IsSleeping = true;
             StopAll();
         }
+        /// <summary>
+        /// Reabilita o MusicSource para controlar o fluxo das musicas, todos loops são desativados
+        /// </summary>
         public void WakeUp()
         {
-            sleep = false;
+            IsSleeping = false;
+            audioLeft.loop = false;
+            audioRight.loop = false;
         }
         public void StopFadOut(AudioSource[] channels)
         {
@@ -269,30 +271,136 @@ namespace br.com.bonus630.thefrog.Manager
                 channels[i].Stop(); // Corrigido: channels[1] → channels[i]
         }
 
+        public void InstantPlay(BackgroundMusic music, bool loop = false)
+        {
+            AudioClip clip = BackgroundMusicsRandom[(int)music];
+            InstantPlay(clip, false);
+        }
+        public void InstantPlay(AudioClip clip, bool loop = false)
+        {
+            if (loop)
+                Sleep();
+            StopAllCoroutines();
+            AudioSource active = leftTurn ? audioLeft : audioRight;
+            AudioSource inactive = leftTurn ? audioRight : audioLeft;
+
+            inactive.Stop();
+
+            active.clip = clip;
+            active.time = SavedTime;
+            active.loop = loop;
+            active.volume = targetVolume; // ou targetVolume se tiver
+            active.Play();
+
+            leftTurn = !leftTurn;
+        }
+        public bool IsPlaying(AudioClip clip)
+        {
+            if (audioLeft.isPlaying && audioLeft.clip == clip)
+                return true;
+            if (audioRight.isPlaying && audioRight.clip == clip)
+                return true;
+            return false;
+        }
+        public bool IsPlaying(BackgroundMusic music) => IsPlaying(BackgroundMusics[(int)music]);
+
         public void PauseMainMusic()
         {
-            if (audioLeft.isPlaying)
-            {
-                SavedTime = audioLeft.time; // Salva o ponto atual da música
-               
-            }
-            if (audioRight.isPlaying)
-            {
-                SavedTime = audioRight.time;
-            }
+            SavePosition();
             audioLeft.Pause();
             audioRight.Pause();
+        }
+        private void SavePosition()
+        {
+
+            if (audioLeft.isPlaying)
+            {
+                SavedTime = audioLeft.time;
+                SavedLoop = audioLeft.loop;
+                savedClip = audioLeft.clip;
+            }
+            else if (audioRight.isPlaying)
+            {
+                SavedTime = audioRight.time;
+                SavedLoop = audioRight.loop;
+                savedClip = audioRight.clip;
+            }
         }
 
         public void ResumeMainMusic()
         {
-            audioLeft.time = SavedTime;
-            audioRight.time = SavedTime;
-            audioLeft.Play();
-            audioRight.Play();
+            if (audioLeft.clip != null)
+            {
+                audioLeft.clip = savedClip;
+                audioLeft.time = SavedTime;
+                audioLeft.loop = SavedLoop;
+                audioLeft.Play();
+            }
+
+            if (audioRight.clip != null)
+            {
+                audioRight.clip = savedClip;
+                audioRight.time = SavedTime;
+                audioRight.loop = SavedLoop;
+                audioRight.Play();
+            }
+        }
+        public void PreserveMusic(string key)
+        {
+            SavePosition();
+
+            var musicData = new MusicData()
+            {
+                Clip = savedClip,
+                Time = SavedTime,
+                Loop = SavedLoop
+            };
+
+            DataScenePreserver.Instance.Set(key, musicData);
+        }
+
+        public void RestoreMusic(string key)
+        {
+            if (!DataScenePreserver.Instance.Contains(key))
+                return;
+
+            var musicData = DataScenePreserver.Instance.Get<MusicData>(key);
+            Debug.Log($"[MusicData] clip:{musicData.Clip}, Time:{musicData.Time}, Loop:{musicData.Loop}");
+            if (musicData.Clip != null)
+            {
+                InstantPlay(musicData.Clip, musicData.Loop);
+                savedClip = musicData.Clip;
+                SavedTime = musicData.Time;
+                SavedLoop = musicData.Loop;
+                ResumeMainMusic();
+            }
         }
     }
+    public class MusicData
+    {
+        public MusicData()
+        {
 
+        }
+        public MusicData(BackgroundMusic music, float time, bool loop = false)
+        {
+            Music = music;
+            Time = time;
+            Loop = loop;
+        }
+        public MusicData(AudioClip clip, float time, bool loop = false)
+        {
+            Clip = clip;
+            Time = time;
+            Loop = loop;
+        }
+        public AudioClip Clip { get; set; }
+
+        public BackgroundMusic Music { get; set; }
+        public float Time { get; set; }
+        public bool Loop { get; set; }
+
+    }
     public enum BackgroundMusic
     {
         AdventureStarts = 0,

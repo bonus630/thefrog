@@ -5,17 +5,15 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-10)]
     public class DataScenePreserver : MonoBehaviour
     {
         public static DataScenePreserver Instance;
-
-        //IDataHolder dataHolder;
         private Dictionary<string, IDataHolder> holders = new();
-        
+
         public void Awake()
         {
-            if(Instance!=null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
                 return;
@@ -62,19 +60,6 @@ namespace br.com.bonus630.thefrog.Manager
         public void Remove(string key) => holders.Remove(key);
 
         public void Clear() => holders.Clear();
-        //public T Get<T>() where T : class, new()
-        //{
-        //    if (dataHolder is DataHolder<T> typed)
-        //    {
-        //        return typed.GetData();
-        //    }
-        //    return default;
-        //}
-        //public void Set<T>(T data) where T : class,new()
-        //{
-        //    dataHolder = new DataHolder<T>(data);
 
-        //}
-       
     }
 }

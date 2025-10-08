@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Caracters
     {
         [SerializeField] List<DialogueData> dialoguesData;
         [SerializeField] private int currentDialogue = 0;
-        private int receivedApples = 0;
+        [SerializeField]private int receivedApples = 0;
         private int prizeApplesAmount = 50;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -18,7 +18,9 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             base.Awake();
             receivedApples = GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples;
-            currentDialogueData = dialogueData;
+            currentDialogue = GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue;
+            CheckDialogs();
+            
             Debug.Log("VirtualGuy Dialogue:"+GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
         }
         public override Transform GetTransform()
@@ -31,7 +33,20 @@ namespace br.com.bonus630.thefrog.Caracters
             SetDialog(currentDialogue);
             //StartCoroutine(disableCollider());
         }
-      
+        public override void CheckDialogs()
+        {
+            //currentDialogueData = dialoguesData[currentDialogue];
+            if (currentDialogue == 1 && GameManager.Instance.IsEventCompleted(GameEventName.HeartContainer))
+                currentDialogue = 2;
+            if ((currentDialogue == 1 || currentDialogue == 2) && GameManager.Instance.PlayerStates.Collectables == 0)
+            {
+                //não posso alterar o indice do dialogo aqui
+                currentDialogueData = dialoguesData[6];
+                return;
+            }
+            currentDialogueData = dialoguesData[currentDialogue];
+           
+        }
         private void SetDialog(int dialog)
         {
             //Debug.Log("SetFinishDialogue: " + currentDialogue);
@@ -49,7 +64,6 @@ namespace br.com.bonus630.thefrog.Caracters
                     else
                     {
                         currentDialogue = 1;
-
                     }
                     break;
                 case 1:
@@ -80,6 +94,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 case 5:
                     GetComponent<BoxCollider2D>().enabled = false;
                     break;
+              
             }
             GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue = currentDialogue;
             this.CurrentDialogueData = dialoguesData[currentDialogue];
@@ -90,15 +105,15 @@ namespace br.com.bonus630.thefrog.Caracters
             int amount = GameManager.Instance.PlayerStates.Collectables / 10;
             GetApples(amount * 10);
 
-            GameManager.Instance.UpdateHeart(amount);
+            GameManager.Instance.UpdateMaxHearts(amount);
             GameManager.Instance.EventCompleted(GameEventName.None);
         }
         private void GetApples(int apples)
         {
             GameManager.Instance.PlayerStates.Collectables -= apples;
             GameManager.Instance.UpdateScore();
-            GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples = apples;
             receivedApples += apples;
+            GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples = receivedApples;
         }
         IEnumerator disableCollider()
         {

@@ -40,8 +40,13 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Founded()
         {
-            musicSource.StopAll();
-            musicSource.Play(BackgroundMusic.AppleTree);
+            if (musicSource.IsPlaying(BackgroundMusic.AppleTree))
+                musicSource.IsSleeping = true;
+            else
+            {
+                musicSource.StopAll();
+                musicSource.Play(BackgroundMusic.AppleTree, true);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -49,17 +54,20 @@ namespace br.com.bonus630.thefrog.Activators
             if (collision.CompareTag("Player"))
             {
                 monitor = true;
-                if (!isFound)
-                {
+               // if (!isFound)
+              //  {
                     Founded();
-                }
-                isFound = true;
+             //   }
+              //  isFound = true;
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
+            {
                 monitor = false;
+                musicSource.WakeUp();
+            }
         }
     }
 }

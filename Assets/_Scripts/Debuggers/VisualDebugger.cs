@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog.Utils
+namespace br.com.bonus630.thefrog.Debuggers
 {
   
     public class UIDebugVisualizer : MonoBehaviour

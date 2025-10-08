@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-100)]
     public class EventsManager : MonoBehaviour
     {
 

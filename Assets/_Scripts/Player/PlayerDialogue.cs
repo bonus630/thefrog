@@ -45,13 +45,13 @@ namespace br.com.bonus630.thefrog.Player
 
                         if (inpc.HaveMoreDialogue())
                         {
+                            inpc.CheckDialogs();
                             dialogueSystem.DialogueData = inpc.CurrentDialogueData;
                             dialogueSystem.DialogueVariables = inpc.GetDialogueVariables();
                             dialogueSystem.Next();
                         }
                         else
                         {
-
                             inpc.SetFinishDialogue();
                         }
                     }
@@ -72,6 +72,7 @@ namespace br.com.bonus630.thefrog.Player
 
                     player.Launch();
                 }
+                
             }
         }
         private void OnTriggerEnter2D(Collider2D collision)
@@ -123,6 +124,13 @@ namespace br.com.bonus630.thefrog.Player
         {
             dialogueSystem.DialoguePosition = GetDialogPosition();
             dialogueSystem.Next();
+        }
+        public void CancelDialogue()
+        {
+            npc = null;
+            interacting = null;
+            tips = null;
+            dialogueSystem.ResetDialog(); 
         }
         public void SetDialogue(DialogueData dialogue)
         {

@@ -38,13 +38,28 @@ namespace br.com.bonus630.thefrog.UI
                 //Debug.Log("Ativando");
                 EventSystem.current.SetSelectedGameObject(save01Button.gameObject);
             }
+           // save01Button.onClick.AddListener(() => Save01Button_clicked());
         }
+        //IEnumerator WaitAndSelect()
+        //{
+   
+        //    while (EventSystem.current == null ||
+        //           EventSystem.current.currentInputModule == null ||
+        //           !save01Button.activeInHierarchy)
+        //    {
+        //        yield return null;
+        //    }
+
+        //    yield return new WaitForEndOfFrame(); // garante que layout UI foi atualizado
+        //    EventSystem.current.SetSelectedGameObject(firstButton);
+        //}
         private void OnDisable()
         {
             if(ObjectToEnableDisable!=null && !ObjectToEnableDisable.activeInHierarchy)
                 ObjectToEnableDisable.SetActive(true);
             if (callerButton != null)
                 EventSystem.current.SetSelectedGameObject(callerButton.gameObject);
+            //save01Button.onClick.RemoveAllListeners();
         }
         public void Save01Button_clicked()
         {

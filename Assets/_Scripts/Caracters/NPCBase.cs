@@ -14,7 +14,11 @@ namespace br.com.bonus630.thefrog.Caracters
         protected bool IsFirstDialogue = true;
         protected int dialogueCounter = 0;
         protected bool playerTriggerEnter = false;
-       // protected List<GameEventName> gameEvents;
+
+        public virtual void CheckDialogs()
+        {
+
+        }
         public virtual DialogueData CurrentDialogueData
         {
             get
