@@ -475,12 +475,19 @@ namespace br.com.bonus630.thefrog.Manager
         /// 
         /// </summary>
         /// <param name="index">Use zero to temp save</param>
-        public void SaveStates(int index)
+        public bool SaveStates(int index)
         {
-            OnCallSave(false);
-            EnvironmentStates.GameTimeInSeconds = GetElapsedTime();
-            SavesManager sm = new SavesManager();
-            sm.Save(index, this.PlayerStates, this.EnvironmentStates, FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>());
+            try
+            {
+               // OnCallSave(false);
+                EnvironmentStates.GameTimeInSeconds = GetElapsedTime();
+                SavesManager sm = new SavesManager();
+                return sm.Save(index, this.PlayerStates, this.EnvironmentStates, FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>());
+            }
+            catch
+            {
+                return false;
+            }
         }
         public EnvironmentStates LoadStates(int index)
         {

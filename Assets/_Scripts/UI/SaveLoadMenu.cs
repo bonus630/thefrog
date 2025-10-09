@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Utils;
@@ -19,6 +20,7 @@ namespace br.com.bonus630.thefrog.UI
         [SerializeField] Button callerButton;
         [SerializeField] bool saveMode = true;
 
+        public event Action SaveSucess;
         private List<SaveStates> list;
         
         private void OnEnable()
@@ -60,6 +62,7 @@ namespace br.com.bonus630.thefrog.UI
             if (callerButton != null)
                 EventSystem.current.SetSelectedGameObject(callerButton.gameObject);
             //save01Button.onClick.RemoveAllListeners();
+      
         }
         public void Save01Button_clicked()
         {
@@ -100,11 +103,12 @@ namespace br.com.bonus630.thefrog.UI
         }
         private void Save(int index)
         {
-           GameManager.Instance.SaveStates(index);
-           GameManager.Instance.OnCallSave(false);
+           if(GameManager.Instance.SaveStates(index))
+                SaveSucess?.Invoke();
+
             //gameObject.SetActive(false);
         }
-
+    
         private void FillSaveButton(Button button, SaveStates saveStates)
         {
             GameObject thumb = button.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;

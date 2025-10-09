@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class SavesManager
     {
         private readonly string fileName = "TheFrogData";
-      //  public static SavesManager Instance;
+        //  public static SavesManager Instance;
         //public string SaveDataFilePath { get; private set; }
         public bool CanContinue()
         {
@@ -18,7 +18,7 @@ namespace br.com.bonus630.thefrog.Manager
             return PlayerPrefs.HasKey(FileName(0));
 
 #else
-           return File.Exists(FilePath(0));
+            return File.Exists(FilePath(0));
 #endif
         }
         public SavesManager()
@@ -27,28 +27,39 @@ namespace br.com.bonus630.thefrog.Manager
             //    SavesManager.Instance = new SavesManager(); 
         }
 
-        public void Save(int index, PlayerStates playerStates, EnvironmentStates environmentStates,Camera camera)
+        public bool Save(int index, PlayerStates playerStates, EnvironmentStates environmentStates, Camera camera)
         {
-           
-            //Debug.Log("game time: " + environmentStates.GameTimeInSeconds);
-            environmentStates.playerStates = playerStates;
-            SaveStates saveStates = new SaveStates(index, environmentStates);
-            if (index > 0)
+
+            try
             {
-                Utils.ThumbGenerator thumb = new Utils.ThumbGenerator(0.1f);
-                saveStates.thumb = thumb.CreateEncodeThumb(camera, GameManager.Instance.GetPlayer);
-            }
-            string jason = JsonUtility.ToJson(saveStates);
-           
-            jason = Cripter.Encrypt(jason);
+                environmentStates.playerStates = playerStates;
+                SaveStates saveStates = new SaveStates(index, environmentStates);
+
+                if (index > 0)
+                {
+                    Utils.ThumbGenerator thumb = new Utils.ThumbGenerator(0.1f);
+                    saveStates.thumb = thumb.CreateEncodeThumb(camera, GameManager.Instance.GetPlayer);
+                }
+
+                string json = JsonUtility.ToJson(saveStates);
+                json = Cripter.Encrypt(json);
+
 #if UNITY_WEBGL
-    
-            PlayerPrefs.SetString(FileName(index), jason);
-            PlayerPrefs.Save();
+        PlayerPrefs.SetString(FileName(index), json);
+        PlayerPrefs.Save();
+
+        // PlayerPrefs não lança erro, então checamos se foi salvo mesmo
+        return PlayerPrefs.GetString(FileName(index)) == json;
 #else
-        
-            File.WriteAllText(FilePath(index), jason);
+                File.WriteAllText(FilePath(index), json);
+                return File.Exists(FilePath(index)); // Checa se o arquivo realmente foi gravado
 #endif
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Erro ao salvar: {e}");
+                return false;
+            }
         }
         private string FileName(int index) => $"{fileName}{index}";
         private string FilePath(int index)
@@ -59,7 +70,7 @@ namespace br.com.bonus630.thefrog.Manager
             return Path.Combine(Application.persistentDataPath, $"{FileName(index)}.dat");
 #endif
         }
-        
+
         public SaveStates Load(int index)
         {
 #if UNITY_WEBGL
@@ -77,7 +88,7 @@ namespace br.com.bonus630.thefrog.Manager
                 return JsonUtility.FromJson<SaveStates>(json);
             }
 #endif
-           return null;
+            return null;
         }
 
         public List<SaveStates> ListSaves()
