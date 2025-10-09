@@ -76,7 +76,8 @@ namespace br.com.bonus630.thefrog.Caracters
                 //GoToFinal();
             }
             SetDialogue();
-            SetFinishDialogue();
+            //Vamos ver se isso nao vai dar problemas
+           // SetFinishDialogue();
             if (firstTalk && killPig && playerCheckWall)
             {
                 if (finalRoute)

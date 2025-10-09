@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine.UI;
+using br.com.bonus630.thefrog.Debuggers;
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -256,6 +257,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
             if (type == SceneStartType.New)
             {
+                SaveStates(0);
                 SceneManager.LoadScene(MainScene);
             }
             if (type == SceneStartType.Continue)
@@ -333,6 +335,7 @@ namespace br.com.bonus630.thefrog.Manager
             PlayerStartPosition = StartGamePosition;
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates(index);
+            DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
         }
         public void UpdateScore()
         {
