@@ -10,11 +10,12 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] bool Horizontal;
 
 
-     
+
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.CompareTag("Player"))
+            Debug.Log("[Worllimit] " + name);
+            if (collision.CompareTag("Player"))
             {
                 if (GameManager.Instance.PlayerStates.FallsControl)
                 {
@@ -38,6 +39,20 @@ namespace br.com.bonus630.thefrog.Environment
                     Die();
                 }
             }
+            else
+            {
+                Debug.Log("[Worllimit] "+name);
+                Next.GetComponent<Collider2D>().enabled = false;
+                Transform p = collision.transform;
+                if (Horizontal)
+                {
+                    p.position = new Vector3(p.position.x, Next.transform.position.y, p.position.z);
+                }
+                else
+                {
+                    p.position = new Vector3(Next.transform.position.x, p.position.y, p.position.z);
+                }
+            }
         }
 
         private void Die()
@@ -45,7 +60,7 @@ namespace br.com.bonus630.thefrog.Environment
             GameManager.Instance.GetPlayerScript.CurrentLife = 1;
             GameManager.Instance.GetPlayerScript.Hit();
         }
-      
-        private void EnableNext() =>Next.GetComponent<Collider2D>().enabled = true;
+
+        private void EnableNext() => Next.GetComponent<Collider2D>().enabled = true;
     }
 }

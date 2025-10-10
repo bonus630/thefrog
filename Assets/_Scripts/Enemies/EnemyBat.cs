@@ -19,7 +19,7 @@ namespace br.com.bonus630.thefrog.Enemies
             base.Start();
             Invoke(nameof(StartFly), 1);
             audioSource = GetComponent<AudioSource>();
-            repulse = Vector2.up * 140;
+            Repulse = Vector2.up * 140;
         }
         protected override void Update()
         {

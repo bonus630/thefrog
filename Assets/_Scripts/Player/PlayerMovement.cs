@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Player
 
         private int jumps = 2;
         private float doubleJumpForce;
-        private Vector2 direction;
+        public Vector2 direction;
         private Vector2 DashSpeed = new Vector2(1, 0);
         private float acceleration = 0;
         private bool isJumping;

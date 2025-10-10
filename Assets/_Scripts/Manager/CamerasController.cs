@@ -59,6 +59,7 @@ namespace br.com.bonus630.thefrog.Manager
             Cinemachine.CinemachineVirtualCamera vCam = GetActiveVirtualCamera();
             CinemachineConfiner confiner;
             bool confinerEnabled = true;
+            Transform startFollow = vCam.Follow;
             if (vCam.TryGetComponent<CinemachineConfiner>(out confiner))
             {
                 confinerEnabled = confiner.enabled;
@@ -75,7 +76,8 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 confiner.enabled = confinerEnabled;
             }
-            vCam.Follow = GameManager.Instance.GetPlayer.transform;
+            vCam.Follow = startFollow;
+            //vCam.Follow = GameManager.Instance.GetPlayer.transform.Find("Camera");
 
         }
         public void ShakeCameraAndGamepadEffect(int times = 1,bool gamepadRumble = false)

@@ -49,6 +49,7 @@ namespace br.com.bonus630.thefrog.Activators
         public void Switch()
         {
             IsOn = !IsOn;
+            IsActived = IsOn;
             if (effects.isPlaying)
                 effects.Stop();
             else

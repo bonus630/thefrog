@@ -14,9 +14,10 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] protected LayerMask layerMask;
         [SerializeField] protected float speed = 200;
         [SerializeField] protected float life = 1;
-        [field: SerializeField] public float KnockUpHitForce { get; set; } = 100f;
+        [field: SerializeField][Tooltip("Repulso no acerto no player")] public Vector2 KnockUpHitForce { get; set; } = Vector2.right * 100;
         [SerializeField] protected float repulseForce = 100;
-        [SerializeField] protected Vector2 repulse = Vector2.up * 100;
+        [SerializeField][Tooltip("Antigo não usar")] protected float repulse;
+        [field:SerializeField][Tooltip("Repulso no pulo do player")] public Vector2 Repulse { get; set; } = Vector2.up * 100;
         public bool IsEnable { get; set; } = true;
         public bool IsDied { get;protected set; } = false;
         [SerializeField][Range(-1, 1)] protected int xDirection = -1;
@@ -59,7 +60,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 if (collision.gameObject.TryGetComponent<IPlayer>(out player) && player.FooterTouching(coll))
                 {
                    // Debug.Log("collision base");
-                    player.KnockUpOnJump(repulse);
+                    player.KnockUpOnJump(Repulse);
                     Hit(1);
                     return;
                 }
@@ -72,7 +73,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public virtual void Hit(float hit)
         {
-            KnockUpHitForce = 80f;
+            KnockUpHitForce = new Vector2(80f,0);
             //Debug.Log("Collider Hit BASE " + gameObject.name);
             //animator.SetTrigger("Hit");
             animator.SetTrigger(HitID);

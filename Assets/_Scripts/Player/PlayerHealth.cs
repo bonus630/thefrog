@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Debuggers;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -92,9 +93,13 @@ namespace br.com.bonus630.thefrog.Player
                     Hit();
                     if (collision.collider.TryGetComponent<IEnemy>(out IEnemy enemy))
                     {
-                        player.knockUp = true;
-                        player.knockUpForce = collision.GetContact(0).normal * enemy.KnockUpHitForce ;
-                       // Debug.Log("Player Hit: "+ enemy.KnockUpHitForce);
+                        player.AddForce(Vector2.Scale(collision.GetContact(0).normal , enemy.KnockUpHitForce),time:0.05f,removeInput:true);
+                        //player.knockUp = true;
+                        //player.playerMovement.direction = collision.GetContact(0).normal;
+                        //player.knockUpForce = new Vector2(collision.GetContact(0).normal.x * enemy.KnockUpHitForce,60) ;
+                        //player.playerMovement.direction = Vector2.zero;
+                        //  DebugUtils.Log("contact Enemy: "+ collision.GetContact(0).normal);
+                        //DebugUtils.Log("contact Player: "+ .GetContact(0).normal);
                     }
                 }
             }

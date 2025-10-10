@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
 {
@@ -9,7 +9,7 @@ namespace br.com.bonus630.thefrog.Shared
 
         bool IsDied { get; }
 
-        float KnockUpHitForce { get; }
+        Vector2 KnockUpHitForce { get; }
 
     }
 }

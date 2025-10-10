@@ -61,7 +61,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 {
                     // Debug.Log("Boss Collider " + gameObject.name);
                     Invoke(nameof(Restore), 0.5f);
-                    player.KnockUpOnJump(repulse);
+                    player.KnockUpOnJump(Repulse);
                     animator.SetTrigger(HitID);
                     this.life--;
                     adu.PlayOneShot(pigSFX);

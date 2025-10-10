@@ -133,7 +133,7 @@ namespace br.com.bonus630.thefrog.Enemies
         private void HornyHitPlayer(IPlayer player, int damage, float knockHitForce)
         {
             player.Hit(damage);
-            KnockUpHitForce = knockHitForce;
+            KnockUpHitForce = new Vector2(knockHitForce,10);
         }
         protected override void OnCollisionEnter2D(Collision2D collision)
         {
