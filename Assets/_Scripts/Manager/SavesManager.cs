@@ -77,7 +77,7 @@ namespace br.com.bonus630.thefrog.Manager
             if (PlayerPrefs.HasKey(FileName(index)))
             {
                 string json = PlayerPrefs.GetString(FileName(index), string.Empty);
-                return JsonUtility.FromJson<SaveStates>(json);
+                return JsonUtility.FromJson<SaveStates>(Cripter.Decrypt(json));
             }
 
 #else

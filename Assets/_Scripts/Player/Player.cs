@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using br.com.bonus630.thefrog.Debuggers;
 using br.com.bonus630.thefrog.Items;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
@@ -163,7 +164,7 @@ namespace br.com.bonus630.thefrog.Player
             inputsOn = true;
             if (duration > 0 && !removeInput)
                 playerMovement.IgnoreDamping = false;
-
+            DebugUtils.Log("InputsOn: " + inputsOn);
         }
         private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = true;
 
@@ -390,7 +391,7 @@ namespace br.com.bonus630.thefrog.Player
                 }
                 //vou resetar o airDash aqui, mas n�o � o lugar certo para isso
                 //playerMovement.airDash
-                //Debug.Log("knocked hit: " + knockUpForce);
+                Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
                 AddForce(knockUpForce, time: 0.2f, removeInput: false);
                 //rb.AddForce(knockUpForce, ForceMode2D.Impulse);

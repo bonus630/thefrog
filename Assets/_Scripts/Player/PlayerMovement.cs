@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using br.com.bonus630.thefrog.Debuggers;
 using br.com.bonus630.thefrog.Effects;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
@@ -282,6 +283,7 @@ namespace br.com.bonus630.thefrog.Player
             bool canMove = true;
             if (direction.x == 0 && !IgnoreDamping)
             {
+            
                 if (acceleration > 0)
                     acceleration -= accelerationFactor;
                 if (acceleration < 0)

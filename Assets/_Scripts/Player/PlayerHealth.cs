@@ -93,13 +93,8 @@ namespace br.com.bonus630.thefrog.Player
                     Hit();
                     if (collision.collider.TryGetComponent<IEnemy>(out IEnemy enemy))
                     {
-                        player.AddForce(Vector2.Scale(collision.GetContact(0).normal , enemy.KnockUpHitForce),time:0.05f,removeInput:true);
-                        //player.knockUp = true;
-                        //player.playerMovement.direction = collision.GetContact(0).normal;
-                        //player.knockUpForce = new Vector2(collision.GetContact(0).normal.x * enemy.KnockUpHitForce,60) ;
-                        //player.playerMovement.direction = Vector2.zero;
-                        //  DebugUtils.Log("contact Enemy: "+ collision.GetContact(0).normal);
-                        //DebugUtils.Log("contact Player: "+ .GetContact(0).normal);
+                        player.knockUp = true;
+                        player.knockUpForce = Vector2.Scale(collision.GetContact(0).normal, enemy.KnockUpHitForce);
                     }
                 }
             }
