@@ -105,25 +105,25 @@ namespace br.com.bonus630.thefrog.Manager
             Instance = this;
 #if UNITY_EDITOR
             //Time.timeScale = 0.5f;
-            //playerStates.HasGravity = true;
-            //playerStates.HasFireball = true;
-            //playerStates.HasWallJump = true;
-            ////           playerStates.HasDoubleJump = true;
-            //playerStates.FallsControl = true;
-            //playerStates.HasDash = true;
-            //playerStates.Shurykens = 100;
+            playerStates.HasGravity = true;
+            playerStates.HasFireball = true;
+            playerStates.HasWallJump = true;
+            //           playerStates.HasDoubleJump = true;
+            playerStates.FallsControl = true;
+            playerStates.HasDash = true;
+            playerStates.Shurykens = 100;
             eventManager.EventCompleted(GameEventName.HeartContainer, false);
-            //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
-            //eventManager.EventCompleted(GameEventName.KillPig, false);
-            //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
-            // eventManager.EventCompleted(GameEventName.Gravity, false);
-            // eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            //  eventManager.EventCompleted(GameEventName.FireBall, false);
-            // eventManager.EventCompleted(GameEventName.LightningBolt, false);
-            //  eventManager.EventCompleted(GameEventName.RollingWind, false);
-            //  eventManager.EventCompleted(GameEventName.PrisionerTip, false);
-            //  eventManager.EventCompleted(GameEventName.LadyLaments, false);
-            //  eventManager.EventCompleted(GameEventName.KoarFounded, false);
+            eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
+            eventManager.EventCompleted(GameEventName.KillPig, false);
+            eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
+            eventManager.EventCompleted(GameEventName.Gravity, false);
+            eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            eventManager.EventCompleted(GameEventName.FireBall, false);
+            eventManager.EventCompleted(GameEventName.LightningBolt, false);
+            eventManager.EventCompleted(GameEventName.RollingWind, false);
+            eventManager.EventCompleted(GameEventName.PrisionerTip, false);
+            eventManager.EventCompleted(GameEventName.LadyLaments, false);
+            eventManager.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
             DontDestroyOnLoad(gameObject);

@@ -43,13 +43,13 @@ namespace br.com.bonus630.thefrog.Manager
 
                 string json = JsonUtility.ToJson(saveStates);
                 json = Cripter.Encrypt(json);
+                Debug.Log($"Tamanho do JSON (bytes): {System.Text.Encoding.UTF8.GetByteCount(json)}");
 
 #if UNITY_WEBGL
-        PlayerPrefs.SetString(FileName(index), json);
-        PlayerPrefs.Save();
-
-        // PlayerPrefs não lança erro, então checamos se foi salvo mesmo
-        return PlayerPrefs.GetString(FileName(index)) == json;
+                PlayerPrefs.SetString(FileName(index), json);
+                PlayerPrefs.Save();
+                // PlayerPrefs não lança erro, então checamos se foi salvo mesmo
+                return PlayerPrefs.GetString(FileName(index)) == json;
 #else
                 File.WriteAllText(FilePath(index), json);
                 return File.Exists(FilePath(index)); // Checa se o arquivo realmente foi gravado
@@ -73,12 +73,14 @@ namespace br.com.bonus630.thefrog.Manager
 
         public SaveStates Load(int index)
         {
-#if UNITY_WEBGL
-            if (PlayerPrefs.HasKey(FileName(index)))
+            try
             {
-                string json = PlayerPrefs.GetString(FileName(index), string.Empty);
-                return JsonUtility.FromJson<SaveStates>(Cripter.Decrypt(json));
-            }
+#if UNITY_WEBGL
+                if (PlayerPrefs.HasKey(FileName(index)))
+                {
+                    string json = PlayerPrefs.GetString(FileName(index), string.Empty);
+                    return JsonUtility.FromJson<SaveStates>(Cripter.Decrypt(json));
+                }
 
 #else
             if (File.Exists(FilePath(index)))
@@ -87,7 +89,14 @@ namespace br.com.bonus630.thefrog.Manager
                 json = Cripter.Decrypt(json);
                 return JsonUtility.FromJson<SaveStates>(json);
             }
+            
+            
 #endif
+            }
+            catch
+            {
+                Debug.Log("Failed load save: " + index);
+            }
             return null;
         }
 

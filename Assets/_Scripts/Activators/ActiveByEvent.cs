@@ -8,7 +8,7 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] IActivator ItemToActive;
         [SerializeField] GameEventName GameEvent;
-        [SerializeField] bool Activing = true;
+        [SerializeField][Tooltip("Desmarque para desativar")] bool Activing = true;
         void Start()
         {
             if (GameManager.Instance.IsEventCompleted(GameEvent))

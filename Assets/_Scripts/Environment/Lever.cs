@@ -18,9 +18,8 @@ namespace br.com.bonus630.thefrog.Environment
         float time = 0;
         private void Start()
         {
-            GetComponent<Animator>().SetBool(OnID, actived);
             if(GameManager.Instance.IsActived(this.LevelID))
-               SetActive(true);
+                SetActive(true,false);
         }
         private void Update()
         {
@@ -33,7 +32,29 @@ namespace br.com.bonus630.thefrog.Environment
                 return;
             time = 0f;
             prevCollision = collision.gameObject;
-            GetComponent<AudioSource>().Play();
+            SetActive(!actived);
+        }
+
+        IEnumerator TurnOff()
+        {
+            yield return new WaitForSeconds(delayTime);
+            //SetActive(false);
+            ItemToActive.Deactive();
+        }
+        IEnumerator TurnOn()
+        {
+            Debug.Log("Lever TurnOn");
+            yield return new WaitForSeconds(delayTime);
+            //SetActive(true);
+            ItemToActive.Activate();
+        }
+        private void SetActive(bool actived,bool playAudio = true)
+        {
+            this.actived = actived;
+            GetComponent<Animator>().SetBool(OnID, actived);
+            GameManager.Instance.SetActived(this.LevelID, actived);
+            if(playAudio)
+                GetComponent<AudioSource>().Play();
             if (actived)
             {
                 StartCoroutine(TurnOff());
@@ -42,25 +63,6 @@ namespace br.com.bonus630.thefrog.Environment
             {
                 StartCoroutine(TurnOn());
             }
-            SetActive(!actived);
-        }
-
-        IEnumerator TurnOff()
-        {
-            yield return new WaitForSeconds(delayTime);
-            ItemToActive.Deactive();
-        }
-        IEnumerator TurnOn()
-        {
-            Debug.Log("Lever TurnOn");
-            yield return new WaitForSeconds(delayTime);
-            ItemToActive.Activate();
-        }
-        private void SetActive(bool actived)
-        {
-            this.actived = actived;
-            GetComponent<Animator>().SetBool(OnID, actived);
-            GameManager.Instance.SetActived(this.LevelID, actived);
         }
     }
 }

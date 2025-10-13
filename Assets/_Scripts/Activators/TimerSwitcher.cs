@@ -22,15 +22,20 @@ namespace br.com.bonus630.thefrog.Activators
 
         void Awake()
         {
+            GetComponents<Effector2D>(effectors);
             if (Timer > 0)
                 useTimer = true;
-            if (!IsActived)
+            if (IsActived)
+            {
+                IsOn = true;
+                Switch();
+            }
+            else
             {
                 IsOn = true;
                 Switch();
             }
             leftTime = Timer;
-            GetComponents<Effector2D>(effectors);
         }
 
         // Update is called once per frame
@@ -41,6 +46,7 @@ namespace br.com.bonus630.thefrog.Activators
                 leftTime -= Time.deltaTime;
                 if (leftTime < 0)
                 {
+                    IsOn = !IsOn;
                     Switch();
                     leftTime = Timer;
                 }
@@ -48,18 +54,20 @@ namespace br.com.bonus630.thefrog.Activators
         }
         public void Switch()
         {
-            IsOn = !IsOn;
+           
             IsActived = IsOn;
-            if (effects.isPlaying)
-                effects.Stop();
-            else
+            if (IsOn)
+            {
                 effects.Play();
-            if (audioSource.isPlaying)
-                audioSource.Stop();
-            else
                 audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+                effects.Stop();
+            }
 
-            collider2.enabled = !collider2.enabled;
+            collider2.enabled = IsOn;
            // Debug.Log("Effectors:" + effectors.Count);
             for (int i = 0; i < effectors.Count; i++)
             {
