@@ -59,4 +59,29 @@ MonoBehaviour:
     Hour: 0
     Point: {x: -26.08, y: -301.06, z: 0}
     transform: {fileID: 0}
+  - Name: CastleRightTowerWindow
+    GameObjectName: WindowExit
+    Hour: 0
+    Point: {x: 127.54, y: -256.63, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleLeftTowerWindow
+    GameObjectName: WindowExit
+    Hour: 0
+    Point: {x: -86.45, y: -257.63, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleLeftTowerRoof
+    GameObjectName: Roof
+    Hour: 0
+    Point: {x: 8.42, y: -241.88, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleRightTowerRoof
+    GameObjectName: Roof
+    Hour: 0
+    Point: {x: 70.38, y: -241.09, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleCenterRoof
+    GameObjectName: CastleEntryRoofs
+    Hour: 0
+    Point: {x: 38.8, y: -242.4, z: 0}
+    transform: {fileID: 0}
   SceneType: 3

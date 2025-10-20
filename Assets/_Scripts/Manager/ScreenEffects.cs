@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void Start()
         {
-            ServiceLocator.Register<ScreenEffects>(this);
+            ServiceLocator.Instance.Register<ScreenEffects>(this);
         }
         public void GameObjectFocus(GameObject gameObject, float time = 1)
         {

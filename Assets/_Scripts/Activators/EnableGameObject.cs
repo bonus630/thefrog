@@ -1,4 +1,5 @@
-﻿using br.com.bonus630.thefrog.Shared;
+﻿using System;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
@@ -9,11 +10,14 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] bool permanent = false;
         [Tooltip("True for disable gameobject on active")]
         [SerializeField] bool invert = false;
+        [SerializeField] enableType enableType = enableType.Self;
         public override void Activate()
         {
-            if(externGameObject!=null)
+            Debug.Log($"[EnableGameObject] name:{externGameObject.name} enable:{!invert}");
+            if(externGameObject!=null && enableType.HasFlag(enableType.Extern))
                 externGameObject.SetActive(invert ? false : true);
-            gameObject.SetActive(invert ? false : true);
+            if(enableType.HasFlag(enableType.Self))
+                gameObject.SetActive(invert ? false : true);
 
         }
 
@@ -21,10 +25,17 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (!permanent)
             {
-                if (externGameObject != null)
+                if (externGameObject != null && enableType.HasFlag(enableType.Extern))
                     externGameObject.SetActive(invert ? true : false);
-                gameObject.SetActive(invert ? true : false);
+                if (enableType.HasFlag(enableType.Self))
+                    gameObject.SetActive(invert ? true : false);
             }
         }
+    }
+    [Flags]
+    public enum enableType
+    {
+        Extern = 0b0001,
+        Self   = 0b0010
     }
 }

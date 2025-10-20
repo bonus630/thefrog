@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void Awake()
         {
-            ServiceLocator.Register<DayNightCycleManager>(this);
+            ServiceLocator.Instance.Register<DayNightCycleManager>(this);
             speed = 1f / (cycleDurationMinutes * 60f);
         }
 

@@ -89,9 +89,9 @@ namespace br.com.bonus630.thefrog.Player
             barManager = GetComponent<BarManager>();
             playerManager = GetComponent<PlayerManager>();
             Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
-            ServiceLocator.Register<PlayerInput>(GetComponent<PlayerInput>());
-            ServiceLocator.Register<IPlayer>(this);
-            ServiceLocator.Register("Player", gameObject);
+            ServiceLocator.Instance.Register<PlayerInput>(GetComponent<PlayerInput>());
+            ServiceLocator.Instance.Register<IPlayer>(this);
+            ServiceLocator.Instance.Register("Player", gameObject);
         }
         private void Start()
         {

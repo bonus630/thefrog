@@ -115,15 +115,14 @@ namespace br.com.bonus630.thefrog.Manager
             eventManager.EventCompleted(GameEventName.HeartContainer, false);
             eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
             eventManager.EventCompleted(GameEventName.KillPig, false);
-            eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
-            eventManager.EventCompleted(GameEventName.Gravity, false);
-            eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            eventManager.EventCompleted(GameEventName.FireBall, false);
-            eventManager.EventCompleted(GameEventName.LightningBolt, false);
-            eventManager.EventCompleted(GameEventName.RollingWind, false);
-            eventManager.EventCompleted(GameEventName.PrisionerTip, false);
-            eventManager.EventCompleted(GameEventName.LadyLaments, false);
-            eventManager.EventCompleted(GameEventName.KoarFounded, false);
+            //eventManager.EventCompleted(GameEventName.Gravity, false);
+            //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            //eventManager.EventCompleted(GameEventName.FireBall, false);
+            //eventManager.EventCompleted(GameEventName.LightningBolt, false);
+            //eventManager.EventCompleted(GameEventName.RollingWind, false);
+            //eventManager.EventCompleted(GameEventName.PrisionerTip, false);
+            //eventManager.EventCompleted(GameEventName.LadyLaments, false);
+            //eventManager.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
             DontDestroyOnLoad(gameObject);
@@ -277,6 +276,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private IEnumerator ChangeScene(string sceneName)
         {
+            //ServiceLocator.ClearCache();
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
             {
@@ -335,7 +335,7 @@ namespace br.com.bonus630.thefrog.Manager
             PlayerStartPosition = StartGamePosition;
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates(index);
-            DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
+           // DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
         }
         public void UpdateScore()
         {
@@ -641,6 +641,18 @@ namespace br.com.bonus630.thefrog.Manager
             string file = t.CreateEncodeThumb(FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>(), GetPlayer);
             byte[] buffert = Convert.FromBase64String(file);
             File.WriteAllBytes(@"C:\Users\bonus630\Desktop\teste\p.png", buffert);
+        }
+
+        public void ResetEnvironment()
+        {
+            GameManager.Instance.eventManager.Reset();
+            GameManager.Instance.PlayerStates.CollectablesID.Clear();
+            GameManager.Instance.PlayerStates.ChestsID.Clear();
+            GameManager.Instance.EnvironmentStates.Activeds.Clear();
+            GameManager.Instance.environmentStates.NPCVirtualGuyApples = 0;
+            GameManager.Instance.environmentStates.NPCVirtualGuyDialogue = 0;
+            GameManager.Instance.environmentStates.NPC_WallJump_Tutorial = 0;
+            GameManager.Instance.PlayerStates.PlayerPosition.Position = StartGamePosition;
         }
     }
     public enum SceneStartType

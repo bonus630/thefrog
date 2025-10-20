@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Environment
             yield return new WaitForSeconds(delayTime);
             if (cancel)
                 yield break;
-            var screenFx = ServiceLocator.Get<ScreenEffects>().screenFader;
+            var screenFx = ServiceLocator.Instance.Get<ScreenEffects>().screenFader;
             if (fade && screenFx != null)
             {
                 Debug.Log("[Teleporter] screenFx:" + screenFx);

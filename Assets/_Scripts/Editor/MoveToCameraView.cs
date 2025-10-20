@@ -24,12 +24,9 @@ public class MoveToCameraView
             }
 
             Camera cam = sceneView.camera;
-
             Undo.RecordObjects(Selection.transforms, "Move To Camera View");
-
             foreach (Transform t in Selection.transforms)
             {
-                // pega a posição central da câmera (um pouco à frente do plano near)
                 Vector3 targetPos = cam.transform.position + cam.transform.forward * 5f;
                 t.position = targetPos;
             }

@@ -16,11 +16,11 @@ namespace br.com.bonus630.thefrog.Items
 
         private void Start()
         {
-            var input = ServiceLocator.Get<PlayerInput>();
+            var input = ServiceLocator.Instance.Get<PlayerInput>();
             var globalMap = input.actions.FindActionMap("Global", true);
             InteractUp = globalMap.FindAction("InteractUP", true);
             InteractUp.Enable();
-            player = ServiceLocator.Get<IPlayer>();
+            player = ServiceLocator.Instance.Get<IPlayer>();
         }
 
         protected virtual void Awake()
@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.Items
         {
             if (InteractUp.WasPressedThisFrame() && inside)
             {
-                Debug.Log("[DoorBase]");
+                Debug.Log("[DoorBase] player:"+player);
                 if (player.InGround && player.BodyTouching(doorCollider))
                     teleporter.Activate();
             }

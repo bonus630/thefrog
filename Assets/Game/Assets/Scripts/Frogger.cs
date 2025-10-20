@@ -188,7 +188,14 @@ public class Frogger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         bool hitObstacle = other.gameObject.layer == LayerMask.NameToLayer("Obstacle");
+        bool hitBarrier = other.gameObject.layer == LayerMask.NameToLayer("Barrier");
         bool onPlatform = transform.parent != null;
+
+        if(enabled && onPlatform && hitBarrier)
+        {
+            Death();
+            transform.parent = null;
+        }
 
         if (enabled && hitObstacle && !onPlatform)
         {

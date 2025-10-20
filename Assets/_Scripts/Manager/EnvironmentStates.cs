@@ -5,6 +5,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class EnvironmentStates
     {
         public int index;
+        public int run = 1;
         public PlayerStates playerStates;
         public int NPCVirtualGuyApples;
         public int NPCVirtualGuyDialogue;

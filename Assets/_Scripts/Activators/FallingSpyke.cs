@@ -19,6 +19,7 @@ namespace br.com.bonus630.thefrog.Activators
         public override void Activate()
         {
             audioSource.Play();
+            rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = 1;
         }
 

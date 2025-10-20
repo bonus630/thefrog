@@ -20,7 +20,8 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] GameObject point4;
 
         [SerializeField] GameObject dummy;
-        [SerializeField] PlayableDirector director;
+        [SerializeField] PlayableDirector goToWallCutscene;
+        [SerializeField] PlayableDirector wallJumpCutscene;
 
         [SerializeField] private int currentDialogue = 0;
         [SerializeField] private int prevDialogue = 0;
@@ -58,6 +59,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void CheckGameEvents()
         {
+            Debug.Log("[walljump] gravity:" + GameManager.Instance.IsEventCompleted(GameEventName.Gravity));
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
             {
                 Destroy(gameObject);
@@ -113,7 +115,8 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             if (firstTalk && killPig && playerCheckWall && (prevDialogue == 0 || prevDialogue == 2) && courotine == null && !finalRoute)
             {
-                courotine = StartCoroutine(GoToWallJump());
+                GoToWallJumpScene();
+                //courotine = StartCoroutine(GoToWallJump());
             }
         }
         private void SetDialogue()
@@ -178,7 +181,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public void GoToFinal()
         {
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
-            ServiceLocator.Get<IPlayer>().UpdatePlayer();
+            ServiceLocator.Instance.Get<IPlayer>().UpdatePlayer();
             finalRoute = true;
             StartCoroutine(EnableAnimator());
             //GameManager.Instance.GetPlayerScript.UpdatePlayer();
@@ -201,6 +204,11 @@ namespace br.com.bonus630.thefrog.Caracters
             SetDialogue();
             yield return null;
             StartCoroutine(EnableAnimator());
+        }
+        private void GoToWallJumpScene()
+        {
+            MoveToWallJump();
+            goToWallCutscene.Play();
         }
         private IEnumerator GoToWallJump()
         {
@@ -237,7 +245,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             Debug.Log("Npc currentDialogue: " + currentDialogue);
             TalkIcon.SetActive(false);
-            ServiceLocator.Get<IPlayer>().AllInputsOn(true, 1f);
+            ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(true, 1f);
             ChangeDummy(true);
             box.enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
@@ -276,7 +284,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public override Dictionary<string, string> GetDialogueVariables()
         {
             string msg = string.Empty;
-            switch (ServiceLocator.Get<DayNightCycleManager>().Hour)
+            switch (ServiceLocator.Instance.Get<DayNightCycleManager>().Hour)
             {
                 case < 6:
                     msg = ", mas aguarde até o amanhecer";
@@ -312,16 +320,16 @@ namespace br.com.bonus630.thefrog.Caracters
         private void ChangeDummy(bool activeDummy = true)
         {
             Debug.Log("Dummy:" + activeDummy);
-            dummy.SetActive(activeDummy);
+            //dummy.SetActive(activeDummy);
             //box.enabled = !activeDummy;
             //GetComponent<SpriteRenderer>().enabled = !activeDummy;
             if (activeDummy)
             {
-                director.Play();
-                director.stopped += (d) =>
+                wallJumpCutscene.Play();
+                wallJumpCutscene.stopped += (d) =>
                 {
-                    ChangeDummy(false);
                     GoToFinal();
+                   // ChangeDummy(false);
                 };
             }
         }

@@ -4,11 +4,27 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
 {
-    public static class ServiceLocator
+    [CreateAssetMenu(fileName = "ServiceLocator", menuName = "Services/ServiceLocator")]
+    public class ServiceLocator : ScriptableObject
     {
-        private static Dictionary<Type, object> cache = new();
-        private static Dictionary<string, GameObject> gameObjectsCache = new ();
-        public static T Get<T>() where T : class
+        private  Dictionary<Type, object> cache = new();
+        private  Dictionary<string, GameObject> gameObjectsCache = new ();
+        private static ServiceLocator _instance;
+        public static ServiceLocator Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    // Tenta carregar da pasta Resources
+                    _instance = Resources.Load<ServiceLocator>("ServiceLocator");
+                    if (_instance == null)
+                        Debug.LogError("[ServiceLocator] Nenhum ServiceLocator encontrado em Resources!");
+                }
+                return _instance;
+            }
+        }
+        public  T Get<T>() where T : class
         {
             if (cache.TryGetValue(typeof(T), out object obj))
             {
@@ -25,7 +41,7 @@ namespace br.com.bonus630.thefrog.Shared
             Debug.LogWarning($"[ServiceLocator] Nenhum objeto do tipo {typeof(T).Name} encontrado!");
             return null;
         }
-        public static GameObject Get(string name)
+        public  GameObject Get(string name)
         {
             if (gameObjectsCache.TryGetValue(name, out GameObject obj))
                if(obj != null)
@@ -39,18 +55,22 @@ namespace br.com.bonus630.thefrog.Shared
             }
             return null;
         }
-        public static void Register<T>(T obj) where T : class
+        public  void Register<T>(T obj) where T : class
         {
             if (obj == null) 
                 return;
             cache[typeof(T)] = obj;
         }
-        public static void Register(string name, GameObject obj)
+        public  void Register(string name, GameObject obj)
         {
             if (obj != null && !string.IsNullOrEmpty(name))
                 gameObjectsCache[name] = obj;
         }
-        public static void ClearCache() => cache.Clear();
+        public  void ClearCache()
+        {
+            cache.Clear();
+            gameObjectsCache.Clear();
+        }
     
 
 

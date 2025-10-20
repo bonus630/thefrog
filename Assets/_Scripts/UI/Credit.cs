@@ -24,15 +24,18 @@ namespace br.com.bonus630.thefrog
         int maxCompose = 0;
         bool showTurn = true;
         bool canMenu = false;
+        bool fakeEnd = false;
+
         private void Awake()
         {
             Debug.Log("Credit :" + GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
             if (GameManager.Instance.EnvironmentStates.GameTimeInSeconds <= 0)
-                isEndText.gameObject.SetActive(true);
+                fakeEnd = true;
+            isEndText.gameObject.SetActive(fakeEnd);
         }
         void Start()
         {
-          
+
             maxCompose = creditsCompose.transform.childCount;
             MenuAction.Enable();
             MenuAction.performed += MenuAction_performed;
@@ -45,14 +48,26 @@ namespace br.com.bonus630.thefrog
         private void MenuAction_performed(InputAction.CallbackContext obj)
         {
             if (canMenu)
-                SceneManager.LoadScene("MainMenu");
+            {
+                if (fakeEnd)
+                    SceneManager.LoadScene("MainMenu");
+                else
+                    NewGamePlus();
+            }
+        }
+        private void NewGamePlus()
+        {
+            GameManager.Instance.ResetEnvironment();
+            GameManager.Instance.EnvironmentStates.run++;
+            GameManager.Instance.SaveStates(0);
+            GameManager.Instance.LoadGame(SceneStartType.Continue, 0);
         }
         private string GetStatesString()
         {
             string result = string.Empty;
             TimeSpan time = TimeSpan.FromSeconds(GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
             string text = time.ToString(@"hh\:mm\:ss");
-            result = $"Estatisticas\n\r\n\r*Tempo de Jogo {text}\n\r*Mortes {GameManager.Instance.PlayerStates.numDies}\n\r " +
+            result = $"Estatisticas\n\r\n\r*Concluído {GameManager.Instance.EnvironmentStates.run}\n\r*Tempo de Jogo {text}\n\r*Mortes {GameManager.Instance.PlayerStates.numDies}\n\r " +
                 $"* Maçãs {GameManager.Instance.PlayerStates.Collectables}/56\n\r*Corações {GameManager.Instance.PlayerStates.Hearts}/13\n\r" +
                 $"* Espiritos {GetSpiritsStates()}";
             return result;
@@ -70,12 +85,12 @@ namespace br.com.bonus630.thefrog
         }
         void Update()
         {
-            if(showTurn && timer > turnOnTime)
+            if (showTurn && timer > turnOnTime)
             {
                 timer = 0f;
                 showTurn = false;
             }
-            if(!showTurn && timer > turnOffTime)
+            if (!showTurn && timer > turnOffTime)
             {
                 timer = 0f;
                 currentCompose++;
@@ -84,7 +99,7 @@ namespace br.com.bonus630.thefrog
             if (currentCompose >= maxCompose)
             {
                 currentCompose = 0;
-                canMenu = true; 
+                canMenu = true;
             }
             //if (showTurn)
             //{
@@ -95,20 +110,25 @@ namespace br.com.bonus630.thefrog
             //if(!showTurn)
             //{
             //    StartCoroutine(screenFader.FadeOut());
-                creditsCompose.transform.GetChild(currentCompose).gameObject.SetActive(showTurn);
-           // }
+            creditsCompose.transform.GetChild(currentCompose).gameObject.SetActive(showTurn);
+            // }
             timer += Time.deltaTime;
             totalTime += Time.deltaTime;
-            if(totalTime > 225f)
+            if (totalTime > 225f)
             {
                 StartCoroutine(Exit());
             }
-            
+
         }
         public void MenuButton_clicked()
         {
-            if(canMenu)
-                SceneManager.LoadScene("MainMenu");
+            if (canMenu)
+            {
+                if (fakeEnd)
+                    SceneManager.LoadScene("MainMenu");
+                else
+                    NewGamePlus();
+            }
         }
         IEnumerator Exit()
         {
