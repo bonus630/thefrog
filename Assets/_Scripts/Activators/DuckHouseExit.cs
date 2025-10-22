@@ -20,7 +20,9 @@ namespace br.com.bonus630.thefrog.Activators
         private IEnumerator Teleport()
         {
             ScreenFader fader = FindAnyObjectByType<ScreenFader>();
-            yield return fader.FadeOut();
+           // yield return fader.FadeOut();
+            yield return new WaitForSeconds(1f);
+            FindAnyObjectByType<CameraBackground>().InitializeDayByHour(24);
             yield return new WaitForSeconds(0.1f);
             GameManager.Instance.GetPlayer.transform.position = ExitPosition;
             yield return new WaitForSeconds(1f);

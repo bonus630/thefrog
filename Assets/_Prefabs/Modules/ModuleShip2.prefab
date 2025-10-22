@@ -84,6 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemToActive: {fileID: 528079962817032162}
   GameObjectToActive: {fileID: 0}
+  Tag: 
   delayActiveTime: 0
   delayDeactiveTime: 0
   permanentActived: 0
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToPoint: 0
   scenePointsData: {fileID: 11400000, guid: c1b2c93e4908a274ca9a79e992e0ed94, type: 2}
+  useCurrentHour: 1
 --- !u!1001 &5611609704700480264
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -96,6 +96,39 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return events.FirstOrDefault(r => r.Name.Equals(eventName));
         }
+        public bool AnyEventCompleted(GameEventName events)
+        {
+            if (events == GameEventName.None)
+                return false;
+
+            foreach (var ev in this.events)
+            {
+                if (ev.Completed && (events & ev.Name) != 0)
+                    return true;
+            }
+
+            return false;
+        }
+        public bool AllEventsCompleted(GameEventName events)
+        {
+            if (events == GameEventName.None)
+                return false;
+
+            foreach (GameEventName flag in Enum.GetValues(typeof(GameEventName)))
+            {
+                if (flag == GameEventName.None)
+                    continue;
+
+                if (events.HasFlag(flag))
+                {
+                    var ev = GetEvent(flag);
+                    if (ev == null || !ev.Completed)
+                        return false;
+                }
+            }
+
+            return true;
+        }
         public void LoadEvents(Datas eventsDatas)
         {
             Debug.Log("eventos: " + eventsDatas.Count);
@@ -165,29 +198,31 @@ namespace br.com.bonus630.thefrog.Manager
             return HashCode.Combine(Name);
         }
     }
+    [Flags]
     public enum GameEventName
     {
-        NPCFirstTalk,
-        KillPig,
-        PlayerCheckWall,
-        NPCTutorial,
-        Shuryken,
-        Gravity,
-        Teleport,
-        HeartContainer,
-        DuckPath,
-        MysticScroll,
-        FeatherTouch,
-        FireBall,
-        AppleTreeFounded,
-        KoarFounded,
-        Dash,
-        DefeatWizard,
-        LightningBolt,
-        LadyLaments,
-        RollingWind,
-        PurifyWater,
-        PrisionerTip,
-        None
+        NPCFirstTalk=       0x1,
+        KillPig=            0x2,
+        PlayerCheckWall=    0x4,
+        NPCTutorial=        0x8,
+        Shuryken=           0x10,
+        Gravity=            0x20,
+        Teleport=           0x40,
+        HeartContainer=     0x80,
+        DuckPath=           0x100,      
+        MysticScroll=       0x200,
+        FeatherTouch=       0x400,
+        FireBall=           0x800,
+        AppleTreeFounded=   0x1000,
+        KoarFounded=        0x2000,
+        Dash=               0x4000,
+        DefeatWizard=       0x8000,
+        LightningBolt=      0x10000,
+        LadyLaments=        0x20000,
+        RollingWind=        0x40000,
+        PurifyWater=        0x80000,
+        PrisionerTip=       0x100000,
+        None = 0
+     
     }
 }

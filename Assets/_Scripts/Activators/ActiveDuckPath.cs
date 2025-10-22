@@ -52,6 +52,8 @@ namespace br.com.bonus630.thefrog.Activators
         }
         IEnumerator Build()
         {
+            musicSource.StopAll();
+            musicSource.InstantPlay(BackgroundMusic.DuckPath,false);
             float currentTime = 0;
             float gamepadShake = 0.2f;
             float x1 = cloud1.transform.position.x;
@@ -77,7 +79,6 @@ namespace br.com.bonus630.thefrog.Activators
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
-            musicSource.CrossFade(BackgroundMusic.DuckPath);
 
         }
     }

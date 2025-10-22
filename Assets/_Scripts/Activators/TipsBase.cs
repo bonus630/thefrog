@@ -17,8 +17,8 @@ namespace br.com.bonus630.thefrog.Activators
         protected BoxCollider2D boxCollider;
         protected virtual void Awake()
         {
-            if (RemoveInCompleted != GameEventName.None && GameManager.Instance.IsEventCompleted(RemoveInCompleted))
-                    Destroy(gameObject);
+            if (RemoveInCompleted != GameEventName.None && GameManager.Instance.eventManager.AnyEventCompleted(RemoveInCompleted))
+                Destroy(gameObject);
             boxCollider = GetComponent<BoxCollider2D>();
             GameManager.Instance.eventManager.GameEventCompleted += OnEventCompleted;
         }
@@ -29,10 +29,10 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.eventManager.GameEventCompleted -= OnEventCompleted;
         }
 
-      
+
         protected virtual void OnEventCompleted(GameEvent obj)
         {
-            if(RemoveInCompleted != GameEventName.None && obj.Name==RemoveInCompleted)
+            if (RemoveInCompleted != GameEventName.None && obj.Name == RemoveInCompleted)
                 Destroy(gameObject);
         }
         public virtual DialogueData GetDialogue(int index = -1)
@@ -91,10 +91,16 @@ namespace br.com.bonus630.thefrog.Activators
             }
             return true;
         }
-        private void OnDisable()
-        {
-            ServiceLocator.Instance.Get<IPlayer>().CancelDialogue();
-        }
+        //private void OnDisable()
+        //{
+        //    ServiceLocator.Instance.GetAsync<IPlayer>(p =>
+        //        {
+        //            if (p != null && ((MonoBehaviour)p).gameObject != null)
+        //            {
+        //                p.CancelDialogue();
+        //            }
+        //        });
+        //}
         public void ReadTips()
         {
 

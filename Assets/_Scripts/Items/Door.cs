@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Items
             var globalMap = input.actions.FindActionMap("Global", true);
             InteractUp = globalMap.FindAction("InteractUP", true);
             InteractUp.Enable();
-            player = ServiceLocator.Instance.Get<IPlayer>();
+            ServiceLocator.Instance.GetAsync<IPlayer>(p => player = p);
         }
 
         protected virtual void Awake()
@@ -32,12 +32,41 @@ namespace br.com.bonus630.thefrog.Items
         {
             if (InteractUp.WasPressedThisFrame() && inside)
             {
+                player = ServiceLocator.Instance.Get<IPlayer>();
                 Debug.Log("[DoorBase] player:"+player);
                 if (player.InGround && player.BodyTouching(doorCollider))
                     teleporter.Activate();
             }
         }
+        //private int lastPlayerId = 0;
 
+        //protected virtual void Update()
+        //{
+        //    if (InteractUp.WasPressedThisFrame() && inside)
+        //    {
+        //        if (player is MonoBehaviour mb)
+        //        {
+        //            if (mb == null)
+        //            {
+        //                Debug.LogWarning("[Door] Player foi destruído, referência inválida.");
+        //                inside = false;
+        //                player = null;
+        //                return;
+        //            }
+
+        //            if (mb.GetInstanceID() != lastPlayerId)
+        //            {
+        //                Debug.Log($"[Door] Player mudou! ID antigo: {lastPlayerId}, novo: {mb.GetInstanceID()}");
+        //                lastPlayerId = mb.GetInstanceID();
+        //            }
+        //        }
+
+        //        Debug.Log($"[Door] Player hash: {player?.GetHashCode()}, ID: {((player as MonoBehaviour)?.GetInstanceID() ?? -1)}");
+
+        //        if (player != null && player.InGround && player.BodyTouching(doorCollider))
+        //            teleporter.Activate();
+        //    }
+        //}
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent<IPlayer>(out player))
@@ -53,7 +82,7 @@ namespace br.com.bonus630.thefrog.Items
                 {
                     //       Debug.Log("doot trigger exit tag player body: " + player.InGround);
                     inside = false;
-                    player = null;
+                    //player = null;
                 }
             }
 

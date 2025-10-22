@@ -13,6 +13,7 @@ using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine.UI;
 using br.com.bonus630.thefrog.Debuggers;
+using System.Runtime.CompilerServices;
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -276,7 +277,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private IEnumerator ChangeScene(string sceneName)
         {
-            //ServiceLocator.ClearCache();
+            ServiceLocator.Instance.ResetService();
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
             {
@@ -600,7 +601,14 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public bool IsEventCompleted(GameEventName gameEvent)
         {
-            return eventManager.GetEvent(gameEvent).Completed;
+            try
+            {
+                return eventManager.GetEvent(gameEvent).Completed;
+            }
+            catch
+            {
+                return false;
+            }
         }
         private int currentSkill = 0;
         public void ActiveSkill(bool active)

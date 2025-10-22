@@ -65,6 +65,11 @@ namespace br.com.bonus630.thefrog.Caracters
                 Destroy(gameObject);
                 return;
             }
+            if (GameManager.Instance.IsEventCompleted(GameEventName.DuckPath))
+            {
+                Dash();
+                return;
+            }
             firstTalk = GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk);
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
             playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);
