@@ -185,6 +185,15 @@ namespace br.com.bonus630.thefrog.Shared
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Vision"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e30f25d-1e88-4cc8-992e-a58821b5f625"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Spirit"",
                     ""type"": ""Button"",
                     ""id"": ""136db623-2449-4448-a8aa-4ae123bf6078"",
@@ -683,6 +692,28 @@ namespace br.com.bonus630.thefrog.Shared
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee7bd73a-c2ac-423f-a08a-5d3b53781aa5"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad;Joystick"",
+                    ""action"": ""Vision"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0e2482f-f6ba-4fd9-a88c-ae691698affc"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Vision"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1359,6 +1390,15 @@ namespace br.com.bonus630.thefrog.Shared
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""c72482b9-0fb7-4aec-8514-a4ca07a71c7a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1408,12 +1448,45 @@ namespace br.com.bonus630.thefrog.Shared
                 },
                 {
                     ""name"": """",
-                    ""id"": ""60119906-e686-4aa6-8806-cab7ee8fdce0"",
-                    ""path"": ""<Joystick>/stick/up"",
+                    ""id"": ""ff69814a-171a-45d0-8d0e-444f5736c021"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""InteractDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e35518a-2be7-48fd-aa93-ca3cf8ee6582"",
+                    ""path"": ""<Joystick>/stick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
-                    ""action"": ""InteractUP"",
+                    ""action"": ""InteractDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb3cbd37-84d6-443b-9beb-8d579a2bc427"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""InteractDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cc281d1-737e-4f52-8592-2443a0cd6b6c"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""InteractDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1495,6 +1568,7 @@ namespace br.com.bonus630.thefrog.Shared
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+            m_Player_Vision = m_Player.FindAction("Vision", throwIfNotFound: true);
             m_Player_Spirit = m_Player.FindAction("Spirit", throwIfNotFound: true);
             m_Player_Hability = m_Player.FindAction("Hability", throwIfNotFound: true);
             m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
@@ -1513,6 +1587,7 @@ namespace br.com.bonus630.thefrog.Shared
             // Global
             m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
             m_Global_InteractUP = m_Global.FindAction("InteractUP", throwIfNotFound: true);
+            m_Global_InteractDown = m_Global.FindAction("InteractDown", throwIfNotFound: true);
         }
 
         ~@InputSystem_Actions()
@@ -1605,6 +1680,7 @@ namespace br.com.bonus630.thefrog.Shared
         private readonly InputAction m_Player_Next;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Dash;
+        private readonly InputAction m_Player_Vision;
         private readonly InputAction m_Player_Spirit;
         private readonly InputAction m_Player_Hability;
         private readonly InputAction m_Player_Select;
@@ -1659,6 +1735,10 @@ namespace br.com.bonus630.thefrog.Shared
             /// Provides access to the underlying input action "Player/Dash".
             /// </summary>
             public InputAction @Dash => m_Wrapper.m_Player_Dash;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Vision".
+            /// </summary>
+            public InputAction @Vision => m_Wrapper.m_Player_Vision;
             /// <summary>
             /// Provides access to the underlying input action "Player/Spirit".
             /// </summary>
@@ -1727,6 +1807,9 @@ namespace br.com.bonus630.thefrog.Shared
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Vision.started += instance.OnVision;
+                @Vision.performed += instance.OnVision;
+                @Vision.canceled += instance.OnVision;
                 @Spirit.started += instance.OnSpirit;
                 @Spirit.performed += instance.OnSpirit;
                 @Spirit.canceled += instance.OnSpirit;
@@ -1777,6 +1860,9 @@ namespace br.com.bonus630.thefrog.Shared
                 @Dash.started -= instance.OnDash;
                 @Dash.performed -= instance.OnDash;
                 @Dash.canceled -= instance.OnDash;
+                @Vision.started -= instance.OnVision;
+                @Vision.performed -= instance.OnVision;
+                @Vision.canceled -= instance.OnVision;
                 @Spirit.started -= instance.OnSpirit;
                 @Spirit.performed -= instance.OnSpirit;
                 @Spirit.canceled -= instance.OnSpirit;
@@ -2019,6 +2105,7 @@ namespace br.com.bonus630.thefrog.Shared
         private readonly InputActionMap m_Global;
         private List<IGlobalActions> m_GlobalActionsCallbackInterfaces = new List<IGlobalActions>();
         private readonly InputAction m_Global_InteractUP;
+        private readonly InputAction m_Global_InteractDown;
         /// <summary>
         /// Provides access to input actions defined in input action map "Global".
         /// </summary>
@@ -2034,6 +2121,10 @@ namespace br.com.bonus630.thefrog.Shared
             /// Provides access to the underlying input action "Global/InteractUP".
             /// </summary>
             public InputAction @InteractUP => m_Wrapper.m_Global_InteractUP;
+            /// <summary>
+            /// Provides access to the underlying input action "Global/InteractDown".
+            /// </summary>
+            public InputAction @InteractDown => m_Wrapper.m_Global_InteractDown;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -2063,6 +2154,9 @@ namespace br.com.bonus630.thefrog.Shared
                 @InteractUP.started += instance.OnInteractUP;
                 @InteractUP.performed += instance.OnInteractUP;
                 @InteractUP.canceled += instance.OnInteractUP;
+                @InteractDown.started += instance.OnInteractDown;
+                @InteractDown.performed += instance.OnInteractDown;
+                @InteractDown.canceled += instance.OnInteractDown;
             }
 
             /// <summary>
@@ -2077,6 +2171,9 @@ namespace br.com.bonus630.thefrog.Shared
                 @InteractUP.started -= instance.OnInteractUP;
                 @InteractUP.performed -= instance.OnInteractUP;
                 @InteractUP.canceled -= instance.OnInteractUP;
+                @InteractDown.started -= instance.OnInteractDown;
+                @InteractDown.performed -= instance.OnInteractDown;
+                @InteractDown.canceled -= instance.OnInteractDown;
             }
 
             /// <summary>
@@ -2253,6 +2350,13 @@ namespace br.com.bonus630.thefrog.Shared
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnDash(InputAction.CallbackContext context);
             /// <summary>
+            /// Method invoked when associated input action "Vision" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnVision(InputAction.CallbackContext context);
+            /// <summary>
             /// Method invoked when associated input action "Spirit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -2366,6 +2470,13 @@ namespace br.com.bonus630.thefrog.Shared
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnInteractUP(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "InteractDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnInteractDown(InputAction.CallbackContext context);
         }
     }
 }

@@ -196,7 +196,7 @@ namespace br.com.bonus630.thefrog.Player
                     readyToJump = true;
                 }
                 //ativa o controle de queda
-                if (GameManager.Instance.PlayerStates.FallsControl && TimeInFastFall > 0)
+                if (player.playerManager.PlayerStates.FallsControl && TimeInFastFall > 0)
                 {
                     resetFastFall = true;
                     //Debug.Log("resetFastFall fallcontrol");
@@ -222,7 +222,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void HandlerDash(InputAction.CallbackContext context)
         {
-            if (GameManager.Instance.PlayerStates.HasDash)
+            if (player.playerManager.PlayerStates.HasDash)
             {
                 if (context.started)
                 {

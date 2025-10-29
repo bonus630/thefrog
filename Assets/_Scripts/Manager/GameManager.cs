@@ -105,17 +105,17 @@ namespace br.com.bonus630.thefrog.Manager
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
 #if UNITY_EDITOR
-            //Time.timeScale = 0.5f;
-            playerStates.HasGravity = true;
-            playerStates.HasFireball = true;
-            playerStates.HasWallJump = true;
-            //           playerStates.HasDoubleJump = true;
-            playerStates.FallsControl = true;
-            playerStates.HasDash = true;
-            playerStates.Shurykens = 100;
-            eventManager.EventCompleted(GameEventName.HeartContainer, false);
-            eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
-            eventManager.EventCompleted(GameEventName.KillPig, false);
+            ////Time.timeScale = 0.5f;
+            //playerStates.HasGravity = true;
+            //playerStates.HasFireball = true;
+            //playerStates.HasWallJump = true;
+            ////           playerStates.HasDoubleJump = true;
+            //playerStates.FallsControl = true;
+            //playerStates.HasDash = true;
+            //playerStates.Shurykens = 100;
+            //eventManager.EventCompleted(GameEventName.HeartContainer, false);
+            //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
+            //eventManager.EventCompleted(GameEventName.KillPig, false);
             //eventManager.EventCompleted(GameEventName.Gravity, false);
             //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
             //eventManager.EventCompleted(GameEventName.FireBall, false);
@@ -301,7 +301,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 if (sceneStartType.Equals(SceneStartType.Main))
                 {
-                    Debug.Log("Topoint index:" + ToPoint);
+                    //Debug.Log("Topoint index:" + ToPoint);
                     GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
                     ChangeGameToState(this.EnvironmentStates);
                     // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -349,7 +349,7 @@ namespace br.com.bonus630.thefrog.Manager
                 score.SetActive(true);
                 image.SetActive(true);
             }
-            scoreText.text = playerStates.Collectables.ToString("0000");
+            scoreText.text = playerStates.Collectables.ToString("000");
         }
         public void UpdateShurykens()
         {
@@ -518,7 +518,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
-            Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
+           // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
 
             GameStatesRestaured?.Invoke();
@@ -543,21 +543,8 @@ namespace br.com.bonus630.thefrog.Manager
                 case GameEventName.KillPig:
                     CinemachineConfiner confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(1).gameObject.GetComponentAtIndex(1);
-                    if (eventManager.GetEvent(GameEventName.NPCFirstTalk).Completed)
-                    {
-                        // FindAnyObjectByType<NPC_WallJump_Tutorial>().FirstTalk = true;
-                    }
-
                     break;
-                //case GameEventName.NPCFirstTalk:
-                //    if (eventManager.GetEvent(GameEventName.KillPig).Completed)
-                //     //   FindAnyObjectByType<NPC_WallJump_Tutorial>().KillPig = true;
-
-                //    break;
-                //case GameEventName.NPCTutorial:
-                //    playerStates.HasWallJump = true;
-
-                //    break;
+         
                 case GameEventName.HeartContainer:
                     GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                     gameObject.SetActive(true);
@@ -569,21 +556,15 @@ namespace br.com.bonus630.thefrog.Manager
 
                     break;
                 case GameEventName.DuckPath:
-                    //NPC_WallJump_Tutorial nPC_WallJump_Tutorial = FindAnyObjectByType<NPC_WallJump_Tutorial>();
-                    //nPC_WallJump_Tutorial.Dash();
+
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(2).gameObject.GetComponentAtIndex(1);
                     break;
                 case GameEventName.Gravity:
                     var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
-                    //PlayerStates.HasGravity = true;
                     hud.SetActive(true);
                     break;
-                //case GameEventName.FireBall:
-                //    //var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
-                //    PlayerStates.HasFireball = true;
-                //    //hud.SetActive(true);
-                //  break;
+
                 case GameEventName.MysticScroll:
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(3).gameObject.GetComponentAtIndex(1);
@@ -591,12 +572,7 @@ namespace br.com.bonus630.thefrog.Manager
                     gameObject.SetActive(true);
 
                     break;
-                    //case GameEventName.FeatherTouch:
-                    //    PlayerStates.FallsControl = true;
-                    //    break;
-                    //case GameEventName.Dash:
-                    //    PlayerStates.HasDash = true;
-                    //    break;
+
             }
         }
         public bool IsEventCompleted(GameEventName gameEvent)
@@ -661,6 +637,11 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.environmentStates.NPCVirtualGuyDialogue = 0;
             GameManager.Instance.environmentStates.NPC_WallJump_Tutorial = 0;
             GameManager.Instance.PlayerStates.PlayerPosition.Position = StartGamePosition;
+        }
+        private void OnApplicationQuit()
+        {
+            Debug.Log("Application Quit");
+            PlayerPrefs.Save();
         }
     }
     public enum SceneStartType

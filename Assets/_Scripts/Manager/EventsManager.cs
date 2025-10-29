@@ -61,6 +61,7 @@ namespace br.com.bonus630.thefrog.Manager
             events.Add(new GameEvent(GameEventName.PurifyWater));
             events.Add(new GameEvent(GameEventName.LadyLaments));
             events.Add(new GameEvent(GameEventName.PrisionerTip));
+            events.Add(new GameEvent(GameEventName.MagicGlass));
 
         }
 
@@ -222,6 +223,7 @@ namespace br.com.bonus630.thefrog.Manager
         RollingWind=        0x40000,
         PurifyWater=        0x80000,
         PrisionerTip=       0x100000,
+        MagicGlass=         0x200000,
         None = 0
      
     }

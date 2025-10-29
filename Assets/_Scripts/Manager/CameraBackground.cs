@@ -66,7 +66,9 @@ namespace br.com.bonus630.thefrog.Manager
             filterSR = filter.GetComponent<SpriteRenderer>();
             cycleManager.cycleDurationMinutes = this.CycleDurationMinutes;
             InitializeDayByHour(this.hour);
-            cycleManager.OnHourChanged += (h) => { this.hour = h;GameManager.Instance.PlayerStates.Hour = h; HourChanged?.Invoke(h); };
+            //cycleManager.OnHourChanged += (h) => { this.hour = h;GameManager.Instance.PlayerStates.Hour = h; HourChanged?.Invoke(h); };
+            //mudar para eliminar esse aclopamento,espero que funcione ainda
+            cycleManager.OnHourChanged += (h) => { this.hour = h; HourChanged?.Invoke(h); };
 
 
         }

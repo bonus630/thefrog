@@ -30,7 +30,7 @@ namespace br.com.bonus630.thefrog.Items
 
         protected virtual void Update()
         {
-            if (InteractUp.WasPressedThisFrame() && inside)
+            if (inside && InteractUp.WasPressedThisFrame())
             {
                 player = ServiceLocator.Instance.Get<IPlayer>();
                 Debug.Log("[DoorBase] player:"+player);

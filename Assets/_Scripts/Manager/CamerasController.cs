@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -127,6 +128,14 @@ namespace br.com.bonus630.thefrog.Manager
                 Gamepad.current.SetMotorSpeeds(0f, 0f);
             }
             yield return null;
+        }
+
+        internal void SetOffSet(Vector2 offsetXY)
+        {
+            Cinemachine.CinemachineVirtualCamera vCam = GetActiveVirtualCamera();
+            var transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
+            Vector3 offset = transposer.m_FollowOffset;
+            transposer.m_FollowOffset = new Vector3(offsetXY.x,  offsetXY.y, offset.z);
         }
     }
 }

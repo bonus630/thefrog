@@ -27,6 +27,7 @@ namespace br.com.bonus630.thefrog.Manager
         public bool HasDoubleJump;
         public bool HasWallJump;
         public bool HasDash;
+        public bool HasVision;
         public bool HasGravity;
         public bool HasFireball;
         public bool HasLightning;

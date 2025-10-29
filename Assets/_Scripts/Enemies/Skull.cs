@@ -39,7 +39,7 @@ namespace br.com.bonus630.thefrog.Enemies
             animator = GetComponent<Animator>();
             coll = GetComponent<CircleCollider2D>();
             followTime = 5f;
-            this.life = 5;
+            //this.life = 5;
             //base.Start();
             //circleColl = GetComponent<CircleCollider2D>();
         }

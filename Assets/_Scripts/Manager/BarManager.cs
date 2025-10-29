@@ -11,15 +11,14 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] GameObject bar;
         [SerializeField] Vector3 offset = Vector3.up * 0.4f;
         [SerializeField] float height;
-
+       
+        
         public IBarUI CreateBar(Color color, float value,Transform transform, float gravityDirection)
         {
-            Debug.Log("Criando uma barra");
+           // Debug.Log("Criando uma barra");
             GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
-            // var b = o.GetComponent<Getter>();
             Follow follow = o.GetComponent<Follow>();
             follow.Target = transform;
-            //follow.Offset = Vector3.up * (0.4f * -gravityDirection);
             follow.Offset = offset * -gravityDirection;
             IBarUI c = o.GetComponent<IBarUI>();
             c.id = Random.Range(0, 1000);
@@ -32,19 +31,21 @@ namespace br.com.bonus630.thefrog.Manager
                 c.BarDestroyed -= handler;
             };
             c.BarDestroyed += handler;
-            // bars++;
             bars.Add(o);
             ReOrderBars(o, gravityDirection);
-           // height = o.GetComponent<SpriteRenderer>().bounds.size.y;
             return c;
         }
-      
+        public void ChangeBarDirection(float gravityDirection)
+        {
+          
+            ReOrderBars(bar, gravityDirection);
+        }
         private void RemoveBar(GameObject bar,float gravityDirection)
         {
             bars.Remove(bar);
             ReOrderBars(bar, gravityDirection);
         }
-
+        
         private void ReOrderBars(GameObject bar,float gravityDirection)
         {
             for (int i = 0; i < bars.Count; i++)

@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Items
         {
             if (ba != null)
             {
-                Debug.Log("effect blackhole");
+               // Debug.Log("effect blackhole");
                 ba.Deactivate();
                 ba = null;
             }

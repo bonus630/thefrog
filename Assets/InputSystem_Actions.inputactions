@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -90,6 +91,15 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "bcdbdd89-75e3-4f6c-935f-a42814d799e5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Vision",
+                    "type": "Button",
+                    "id": "9e30f25d-1e88-4cc8-992e-a58821b5f625",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -594,6 +604,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee7bd73a-c2ac-423f-a08a-5d3b53781aa5",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Joystick",
+                    "action": "Vision",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0e2482f-f6ba-4fd9-a88c-ae691698affc",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Vision",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1270,6 +1302,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "InteractDown",
+                    "type": "Button",
+                    "id": "c72482b9-0fb7-4aec-8514-a4ca07a71c7a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1319,12 +1360,45 @@
                 },
                 {
                     "name": "",
-                    "id": "60119906-e686-4aa6-8806-cab7ee8fdce0",
-                    "path": "<Joystick>/stick/up",
+                    "id": "ff69814a-171a-45d0-8d0e-444f5736c021",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "InteractDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e35518a-2be7-48fd-aa93-ca3cf8ee6582",
+                    "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
-                    "action": "InteractUP",
+                    "action": "InteractDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb3cbd37-84d6-443b-9beb-8d579a2bc427",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "InteractDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cc281d1-737e-4f52-8592-2443a0cd6b6c",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "InteractDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

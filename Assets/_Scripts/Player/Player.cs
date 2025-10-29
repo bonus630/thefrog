@@ -28,6 +28,7 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private AudioClip Entrace;
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
+        [SerializeField] private VisionController visionController;
         public BarManager barManager { get; set; }
         public PlayerManager playerManager { get; set; }
 
@@ -88,7 +89,7 @@ namespace br.com.bonus630.thefrog.Player
             playerSpiritController = GetComponent<PlayerSpiritController>();
             barManager = GetComponent<BarManager>();
             playerManager = GetComponent<PlayerManager>();
-            Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
+            //Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
             ServiceLocator.Instance.Register<PlayerInput>(GetComponent<PlayerInput>());
             ServiceLocator.Instance.Register<IPlayer>(this);
             ServiceLocator.Instance.Register("Player", gameObject);
@@ -114,9 +115,9 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
             }
-//#else
-            //if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
-            //    transform.position = GameManager.Instance.PlayerStartPosition;
+#else
+            if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
+                transform.position = GameManager.Instance.PlayerStartPosition;
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
@@ -164,7 +165,7 @@ namespace br.com.bonus630.thefrog.Player
             inputsOn = true;
             if (duration > 0 && !removeInput)
                 playerMovement.IgnoreDamping = false;
-            DebugUtils.Log("InputsOn: " + inputsOn);
+           // DebugUtils.Log("InputsOn: " + inputsOn);
         }
         private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = true;
 
@@ -309,9 +310,17 @@ namespace br.com.bonus630.thefrog.Player
             }
         }
 
+        public void ActiveVision()
+        {
+            Debug.Log("[Player] HasVision:" + playerManager.PlayerStates.HasVision);
+            if (playerManager.PlayerStates.HasVision)
+                visionController.ActiveVision(barManager, gravityDirection);
+        }
+        
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
             this.gravityDirection = gravityDirection;
+            barManager.ChangeBarDirection(this.gravityDirection);
             //LinearMaxY *= -1;
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
@@ -330,7 +339,6 @@ namespace br.com.bonus630.thefrog.Player
                 knockUpForce *= -1;
                 playerMovement.GravityChanged();
             }
-
         }
         private IEnumerator ChangeGravityIenumerator(float speed)
         {
@@ -391,7 +399,7 @@ namespace br.com.bonus630.thefrog.Player
                 }
                 //vou resetar o airDash aqui, mas n�o � o lugar certo para isso
                 //playerMovement.airDash
-                Debug.Log("knocked hit: " + knockUpForce);
+               // Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
                 AddForce(knockUpForce, time: 0.2f, removeInput: false);
                 //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
@@ -455,7 +463,7 @@ namespace br.com.bonus630.thefrog.Player
             yield return new WaitForSeconds(delayTime);
             GetComponent<PlayerInputHandler>().enabled = inputOn;
             GetComponent<PlayerInput>().enabled = inputOn;
-            Debug.Log("Disable inputs :" + inputOn);
+           //Debug.Log("Disable inputs :" + inputOn);
             if (autoSwitch)
             {
                 yield return new WaitForSeconds(switchTime);

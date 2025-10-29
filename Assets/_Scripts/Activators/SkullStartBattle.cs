@@ -5,6 +5,7 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] GameObject skull;
         [SerializeField] GameObject turtleSpawner;
+        [SerializeField] GameObject door;
         bool start = false;
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -18,6 +19,7 @@ namespace br.com.bonus630.thefrog.Activators
                 //var confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                 // confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(GameManager.Instance.CameraContainer).transform.GetChild(5).gameObject.GetComponentAtIndex(1);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                door.SetActive(false);
                 //Destroy(gameObject);
             }
         }

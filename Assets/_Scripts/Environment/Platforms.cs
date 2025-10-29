@@ -6,6 +6,7 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] private float fallingTime;
         [SerializeField] private bool respawnable;
+        [SerializeField]private float restoreTime = 10f;
        
 
         private Animator anim;
@@ -14,7 +15,7 @@ namespace br.com.bonus630.thefrog.Environment
         private bool isFalling = false;
         private bool startCountdown = false;
         private float time;
-        private float restoreTime = 10f;
+        
         private Vector2 initialPosition;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -37,11 +38,16 @@ namespace br.com.bonus630.thefrog.Environment
                 if (time < 0)
                     DisablePlatform();
             }
-            if (isFalling && respawnable)
+            if (isFalling)
             {
                 restoreTime -= Time.deltaTime;
                 if (restoreTime < 0)
-                    EnablePlatform();
+                {
+                    if (respawnable)
+                        EnablePlatform();
+                    else
+                        Destroy(gameObject);
+                }
             }
         }
         private void OnCollisionEnter2D(Collision2D collision)
@@ -69,6 +75,11 @@ namespace br.com.bonus630.thefrog.Environment
             join.enabled = false;
             // coll.isTrigger = true;
             isFalling = true;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).parent = null;
+            }
         }
         private void EnablePlatform()
         {

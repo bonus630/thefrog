@@ -51,8 +51,8 @@ namespace br.com.bonus630.thefrog.Shared
         }
         public void GetAsync<T>(Action<T> onAvailableCallBack) where T : class
         {
-            Debug.Log($"[ServiceLocator] Instance hash: {GetHashCode()} | Method: GetAsync<{typeof(T).Name}>");
-            Debug.Log($"[{Time.time:F3}] GetAsync<{typeof(T).Name}> chamado.");
+            //Debug.Log($"[ServiceLocator] Instance hash: {GetHashCode()} | Method: GetAsync<{typeof(T).Name}>");
+           // Debug.Log($"[{Time.time:F3}] GetAsync<{typeof(T).Name}> chamado.");
             if (cache.TryGetValue(typeof(T), out var instance) && instance != null)
             {
                 onAvailableCallBack?.Invoke((T)instance);
@@ -92,8 +92,8 @@ namespace br.com.bonus630.thefrog.Shared
         }
         public void Register<T>(T obj) where T : class
         {
-            Debug.Log($"[ServiceLocator] Instance hash: {GetHashCode()} | Method: Register<{typeof(T).Name}>");
-            Debug.Log($"[{Time.time:F3}] Register<{typeof(T).Name}> chamado.");
+           // Debug.Log($"[ServiceLocator] Instance hash: {GetHashCode()} | Method: Register<{typeof(T).Name}>");
+          //  Debug.Log($"[{Time.time:F3}] Register<{typeof(T).Name}> chamado.");
             if (obj == null)
                 return;
             cache[typeof(T)] = obj;

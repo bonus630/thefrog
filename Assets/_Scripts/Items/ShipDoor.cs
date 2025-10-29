@@ -17,6 +17,7 @@ namespace br.com.bonus630.thefrog.Items
         GameObject door;
         BoxCollider2D boxCollider;
 
+        SpriteRenderer sr;
 
         bool inOperation = false;
         //talvez mudar para algo no  IInteract
@@ -29,11 +30,14 @@ namespace br.com.bonus630.thefrog.Items
             anim = GetComponent<Animator>();
             door = transform.GetChild(0).gameObject;
             boxCollider = GetComponent<BoxCollider2D>();
+            sr = GetComponent<SpriteRenderer>();
+            if (teleporter == null)
+                isExit = true;
         }
         int cont = 0;
         protected override void Update()
         {
-            if (InteractUp.WasPressedThisFrame() && inside )
+            if (InteractUp.WasPressedThisFrame() && inside)
             {
                 if (player == null)
                     player = ServiceLocator.Instance.Get<IPlayer>();
@@ -53,7 +57,7 @@ namespace br.com.bonus630.thefrog.Items
                 }
                 else
                     Open();
-                
+
             }
 
         }
@@ -96,18 +100,13 @@ namespace br.com.bonus630.thefrog.Items
                 player.AllInputsOn(false, 0);
                 Debug.Log($"[DoorShip] iplayer:{player}");
                 GetComponent<SpriteRenderer>().sortingOrder = 11;
+                StartCoroutine(EnablesDoor());
             }
             audioSource.PlayOneShot(closingAudio);
             anim.SetBool("Closed", true);
             isOpen = false;
-           // inOperation = true;
             Closed();
-           // if (isExit)
-          //  {
-                door.SetActive(isOpen);
-                //GetComponent<BoxCollider2D>().enabled = false;
-          //  }
-            StartCoroutine(EnablesDoor());
+            door.SetActive(isOpen);
         }
         public void Open()
         {
@@ -119,14 +118,13 @@ namespace br.com.bonus630.thefrog.Items
         }
         private IEnumerator EnablesDoor()
         {
-            //while (player.BodyTouching(boxCollider))
+            while (player.BodyTouching(boxCollider))
             {
                 Debug.Log($"[DoorShip] Enumerator touching:{player.BodyTouching(boxCollider)}");
                 yield return new WaitForSeconds(0.1f);
             }
             GetComponent<SpriteRenderer>().sortingOrder = 9;
             Debug.Log("Chegamos");
-           // door.SetActive(isOpen);
         }
         private void EnablesDoor2()
         {

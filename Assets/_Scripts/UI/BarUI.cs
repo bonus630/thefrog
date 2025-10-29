@@ -26,7 +26,7 @@ namespace br.com.bonus630.thefrog.UI
         private float startValue = 0;
 
         private float timeToUpdateTotal = 0f;
-        private float elapsedTime = 0f;
+        public float ElapsedTime { get; set; } = 0f;
         private bool isAnimating = false;
 
 
@@ -64,6 +64,7 @@ namespace br.com.bonus630.thefrog.UI
                 UpdateScale();
             }
         }
+        public float CurrentValue => currentValue;
         public int id { get; set; }
 
   
@@ -78,8 +79,8 @@ namespace br.com.bonus630.thefrog.UI
             if (!isAnimating)
                 return;
 
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / timeToUpdateTotal);
+            ElapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(ElapsedTime / timeToUpdateTotal);
             currentValue = Mathf.Lerp(startValue, targetValue, t);
             UpdateScale();
 
@@ -114,7 +115,7 @@ namespace br.com.bonus630.thefrog.UI
 
             startValue = currentValue;
             targetValue = value;
-            elapsedTime = 0f;
+            ElapsedTime = 0f;
             timeToUpdateTotal = time;
             isAnimating = true;
           

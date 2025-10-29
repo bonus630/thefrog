@@ -48,5 +48,11 @@ namespace br.com.bonus630.thefrog.Player
                     player.playerSpiritController.SelectProjectile(1);
             }
         }
+        public void OnVision(InputAction.CallbackContext context)
+        {
+            Debug.Log("[Player input] context:" + context);
+            if(context.performed)
+                player.ActiveVision();
+        }
     }
 }

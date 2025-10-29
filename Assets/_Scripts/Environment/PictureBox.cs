@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment
@@ -12,10 +13,11 @@ namespace br.com.bonus630.thefrog.Environment
 
         float time = 0;
         bool spawning = false;
-
+        IHourProvider hourProvider;
         void Start()
         {
-            hour = GameManager.Instance.PlayerStates.Hour;
+            hourProvider = ServiceLocator.Instance.Get<IHourProvider>();
+            hour = hourProvider.Hour;
             CheckHour(); 
         }
        
@@ -25,7 +27,7 @@ namespace br.com.bonus630.thefrog.Environment
             if(time > 4)
             {
                 time = 0;
-                hour = GameManager.Instance.PlayerStates.Hour;
+                hour = hourProvider.Hour;
                 CheckHour();
                 if (spawning && ghost != null && ghostInstance == null)
                     ghostInstance = Instantiate(ghost,picture.transform.position,Quaternion.identity);

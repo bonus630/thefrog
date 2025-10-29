@@ -8,6 +8,11 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] GameObject Rib;
 
+        private void Start()
+        {
+            if(GameManager.Instance.IsEventCompleted(GameEventName.DuckPath))
+                Rib.GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
         IEnumerator Drop()
         {
 
@@ -19,13 +24,13 @@ namespace br.com.bonus630.thefrog.Environment
 
         public override void Activate()
         {
-
+            GameManager.Instance.EventCompleted(GameEventName.DuckPath);
+            StartCoroutine(Drop());
         }
 
         public override void Deactive()
         {
-            GameManager.Instance.EventCompleted(GameEventName.DuckPath);
-            StartCoroutine(Drop());
+           
         }
     }
 }

@@ -34,6 +34,9 @@ MonoBehaviour:
     text: "desaparecem entre as n\xE9voas que escondem Aelyria."
   - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
     Name: 
+    text: "A vis\xE3o de clarivid\xEAncia pode ajudar na jornada"
+  - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}
+    Name: 
     text: "E abaixo, nas ra\xEDzes do mundo, repousam as ru\xEDnas de Kaor, onde
       o sil\xEAncio ainda escuta hist\xF3rias esquecidas."
   - Avatar: {fileID: 3467794410143443174, guid: 3af56f8ce91200841bf692389dc6546e, type: 3}

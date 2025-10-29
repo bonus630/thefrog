@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void OnDestroy()
         {
-            Debug.Log($"OnDestroy {name} | GameManager.Instance = {GameManager.Instance}");
+           // Debug.Log($"OnDestroy {name} | GameManager.Instance = {GameManager.Instance}");
 
             GameManager.Instance.eventManager.GameEventCompleted -= OnEventCompleted;
         }

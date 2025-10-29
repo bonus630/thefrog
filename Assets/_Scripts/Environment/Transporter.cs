@@ -39,6 +39,14 @@ namespace br.com.bonus630.thefrog.Environment
             destines = list.ToArray();
 
         }
+        [ContextMenu("Adicionar posição local atual")]
+        private void AddCurrentLocalPositionToStartPosition()
+        {
+            var list = destines.ToList();
+            list.Add(transform.localPosition);
+            destines = list.ToArray();
+
+        }
 
         void Start()
         {

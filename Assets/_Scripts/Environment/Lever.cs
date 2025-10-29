@@ -18,8 +18,10 @@ namespace br.com.bonus630.thefrog.Environment
         float time = 0;
         private void Start()
         {
-            if(GameManager.Instance.IsActived(this.LevelID))
-                SetActive(true,false);
+            if (GameManager.Instance.IsActived(this.LevelID))
+                SetActive(true, false);
+            else
+                SetActive(false,false);
         }
         private void Update()
         {
@@ -57,11 +59,11 @@ namespace br.com.bonus630.thefrog.Environment
                 GetComponent<AudioSource>().Play();
             if (actived)
             {
-                StartCoroutine(TurnOff());
+                StartCoroutine(TurnOn());
             }
             else
             {
-                StartCoroutine(TurnOn());
+                StartCoroutine(TurnOff());
             }
         }
     }

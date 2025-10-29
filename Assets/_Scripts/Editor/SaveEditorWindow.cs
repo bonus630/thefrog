@@ -51,6 +51,10 @@ namespace br.corp.bonus630.unity
             {
                 SaveToFile();
             }
+            if (GUILayout.Button("Start Game"))
+            {
+                StartGame();
+            }
             EditorGUILayout.EndHorizontal();
 
             if (save == null)
@@ -204,6 +208,12 @@ namespace br.corp.bonus630.unity
                 System.IO.File.WriteAllText(path, json);
                 Debug.Log("Save salvo em arquivo: " + path);
             }
+        }
+        private void StartGame()
+        {
+            
+            GameManager.Instance.SaveStates(0);
+            GameManager.Instance.LoadGame(SceneStartType.Continue);
         }
 
     }

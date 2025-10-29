@@ -5,7 +5,7 @@ using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
 
-    public class DayNightCycleManager : MonoBehaviour
+    public class DayNightCycleManager : MonoBehaviour, IHourProvider
     {
         [Tooltip("Tempo que você quer que dure o ciclo inteiro (12 minutos)")]public float cycleDurationMinutes = 1f;
         [Tooltip("Valor entre 0 e 1 que define o estado do ciclo.")]public float cycleTime { get; private set; } 
@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void Awake()
         {
-            ServiceLocator.Instance.Register<DayNightCycleManager>(this);
+            ServiceLocator.Instance.Register<IHourProvider>(this);
             speed = 1f / (cycleDurationMinutes * 60f);
         }
 

@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
@@ -8,14 +9,15 @@ namespace br.com.bonus630.thefrog.Activators
         bool monitor = false;
         bool active = false;
         bool isFound = false;
+        IHourProvider hourProvider;
         void Start()
         {
-
+            hourProvider = ServiceLocator.Instance.Get<IHourProvider>();
         }
 
         void Update()
         {
-            if (monitor && (GameManager.Instance.PlayerStates.Hour > 19 || GameManager.Instance.PlayerStates.Hour < 6))
+            if (monitor && (hourProvider.Hour > 19 || hourProvider.Hour < 6))
             {
                 gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 gameObject.transform.GetChild(1).gameObject.SetActive(false);

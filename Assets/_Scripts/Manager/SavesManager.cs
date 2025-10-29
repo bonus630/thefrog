@@ -43,7 +43,7 @@ namespace br.com.bonus630.thefrog.Manager
 
                 string json = JsonUtility.ToJson(saveStates);
                 json = Cripter.Encrypt(json);
-                Debug.Log($"Tamanho do JSON (bytes): {System.Text.Encoding.UTF8.GetByteCount(json)}");
+               // Debug.Log($"Tamanho do JSON (bytes): {System.Text.Encoding.UTF8.GetByteCount(json)}");
 
 #if UNITY_WEBGL
                 PlayerPrefs.SetString(FileName(index), json);

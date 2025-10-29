@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
@@ -19,14 +20,16 @@ namespace br.com.bonus630.thefrog.Manager
             eventActions.Add(GameEventName.RollingWind, () => { PlayerStates.HasWind = true; });
             eventActions.Add(GameEventName.NPCTutorial, () => { PlayerStates.HasWallJump = true; });
             eventActions.Add(GameEventName.FeatherTouch, () => { PlayerStates.FallsControl = true; });
+            eventActions.Add(GameEventName.MagicGlass, () => { PlayerStates.HasVision = true; });
             this.PlayerStates = GameManager.Instance.PlayerStates;
             GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;
+            ServiceLocator.Instance.GetAsync<IHourProvider>(HourProviderCallBack);
         }
 
         private void OnGameStatesRestaured()
         {
-            Debug.Log("[PlayerManager] ongamerestaured:");
+           // Debug.Log("[PlayerManager] ongamerestaured:");
             this.PlayerStates = GameManager.Instance.PlayerStates;
         }
 
@@ -38,7 +41,6 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void UpdatePlayer()
         {
-          
             this.PlayerStates.Speed += 0.1f;
             this.PlayerStates.JumpForce += 0.1f;
         }
@@ -46,6 +48,11 @@ namespace br.com.bonus630.thefrog.Manager
         {
             this.PlayerStates.Shurykens += shurykens;
             GameManager.Instance.UpdateShurykens();
+        }
+        private void HourProviderCallBack(IHourProvider hourProvider)
+        {
+            PlayerStates.Hour = hourProvider.Hour;
+            hourProvider.OnHourChanged += (hour) => { PlayerStates.Hour = hour; };
         }
     }
 }

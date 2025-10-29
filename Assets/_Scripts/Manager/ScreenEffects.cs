@@ -68,7 +68,10 @@ namespace br.com.bonus630.thefrog.Manager
             screenFader.fadeDuration = duration;
             StartCoroutine(screenFader.FadeIn());
         }
-       
+        public void CameraOffSet(Vector2 offsetXY)
+        {
+            camerasController.SetOffSet(offsetXY);
+        }
         public void FashVignettePlayerDamage()
         {
             vignetteManager.FashVignette(0f, 0.6f, 1f, Color.red);

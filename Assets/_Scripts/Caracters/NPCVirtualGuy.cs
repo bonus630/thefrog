@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Caracters
     {
         [SerializeField] List<DialogueData> dialoguesData;
         [SerializeField] private int currentDialogue = 0;
-        [SerializeField]private int receivedApples = 0;
+        [SerializeField] private int receivedApples = 0;
         private int prizeApplesAmount = 50;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -20,8 +20,8 @@ namespace br.com.bonus630.thefrog.Caracters
             receivedApples = GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples;
             currentDialogue = GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue;
             CheckDialogs();
-            
-            Debug.Log("VirtualGuy Dialogue:"+GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
+
+            Debug.Log("VirtualGuy Dialogue:" + GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
         }
         public override Transform GetTransform()
         {
@@ -45,7 +45,8 @@ namespace br.com.bonus630.thefrog.Caracters
                 return;
             }
             currentDialogueData = dialoguesData[currentDialogue];
-           
+            Debug.Log("[NpcVirtualGuy] awake current dialogue: " + currentDialogue);
+
         }
         private void SetDialog(int dialog)
         {
@@ -82,9 +83,11 @@ namespace br.com.bonus630.thefrog.Caracters
                         Debug.Log("VirtualGuy apples:" + receivedApples);
                         currentDialogue = 4;
                     }
+                    else
+                        currentDialogue = 2;
                     break;
                 case 4:
-                    if(this.dialoguesData[1].IsReaded)
+                    if (this.dialoguesData[1].IsReaded)
                         ChangePlayerHearts();
                     GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
                     GameManager.Instance.GetPlayerScript.UpdatePlayer();
@@ -94,14 +97,14 @@ namespace br.com.bonus630.thefrog.Caracters
                 case 5:
                     GetComponent<BoxCollider2D>().enabled = false;
                     break;
-              
+
             }
             GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue = currentDialogue;
             this.CurrentDialogueData = dialoguesData[currentDialogue];
         }
         private void ChangePlayerHearts()
         {
-            //Debug.Log("CnangeHearts");
+            Debug.Log("CnangeHearts");
             int amount = GameManager.Instance.PlayerStates.Collectables / 10;
             GetApples(amount * 10);
 

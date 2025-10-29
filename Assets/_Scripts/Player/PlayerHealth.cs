@@ -80,7 +80,7 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     cont++;
                 }
-                    Debug.LogWarning("Die in: " + collision.gameObject.name);
+              //      Debug.LogWarning("Die in: " + collision.gameObject.name);
 #else
                 // Debug.Log("PlayerHearth :" + collision.gameObject.name);
                 Die();

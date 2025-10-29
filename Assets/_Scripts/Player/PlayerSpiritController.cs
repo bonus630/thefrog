@@ -107,7 +107,7 @@ namespace br.com.bonus630.thefrog.Player
             if (avaliableProjectilies.Count > 0)
             {
                 CurrentProjectile = avaliableProjectilies[currentIndex];
-                Debug.Log("[PlayerSpiritController] SetCurrentProjectil color:" + CurrentProjectile.EffectColor);
+               // Debug.Log("[PlayerSpiritController] SetCurrentProjectil color:" + CurrentProjectile.EffectColor);
                 GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor, CurrentProjectile.hud);
             }
 

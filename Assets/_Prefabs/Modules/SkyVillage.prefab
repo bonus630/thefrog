@@ -971,10 +971,12 @@ MonoBehaviour:
   travelDuration: 2
   speed: 10
   currentSpeed: 0
+  stopMaxTime: 1
   OnSprite: {fileID: 955477813400596420, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
   OffSprite: {fileID: -6262087978637747557, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
   stopOnPlayerOut: 1
-  stopMaxTime: 1
+  active: 1
+  going: 0
 --- !u!61 &6388250300584173146
 BoxCollider2D:
   m_ObjectHideFlags: 0

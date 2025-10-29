@@ -14,7 +14,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("[Worllimit] " + name);
+            //Debug.Log("[Worllimit] " + name);
             if (collision.CompareTag("Player"))
             {
                 if (GameManager.Instance.PlayerStates.FallsControl)
@@ -41,7 +41,7 @@ namespace br.com.bonus630.thefrog.Environment
             }
             else
             {
-                Debug.Log("[Worllimit] "+name);
+                //Debug.Log("[Worllimit] "+name);
                 Next.GetComponent<Collider2D>().enabled = false;
                 Transform p = collision.transform;
                 if (Horizontal)
