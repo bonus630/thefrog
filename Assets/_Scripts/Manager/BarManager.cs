@@ -15,11 +15,12 @@ namespace br.com.bonus630.thefrog.Manager
         
         public IBarUI CreateBar(Color color, float value,Transform transform, float gravityDirection)
         {
-           // Debug.Log("Criando uma barra");
+            Debug.Log("Criando uma barra: "+gravityDirection);
             GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
             Follow follow = o.GetComponent<Follow>();
             follow.Target = transform;
-            follow.Offset = offset * -gravityDirection;
+            offset = GetOffset(yDir: -gravityDirection);
+            follow.Offset = offset;
             IBarUI c = o.GetComponent<IBarUI>();
             c.id = Random.Range(0, 1000);
             c.Value = value;
@@ -37,7 +38,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeBarDirection(float gravityDirection)
         {
-          
+            offset = GetOffset(yDir: -gravityDirection);
             ReOrderBars(bar, gravityDirection);
         }
         private void RemoveBar(GameObject bar,float gravityDirection)
@@ -45,7 +46,10 @@ namespace br.com.bonus630.thefrog.Manager
             bars.Remove(bar);
             ReOrderBars(bar, gravityDirection);
         }
-        
+        private Vector3 GetOffset(float xDir = 1,float yDir = 1)
+        {
+            return new Vector3(Mathf.Abs(offset.x) * xDir, Mathf.Abs(offset.y) * yDir, offset.z);
+        }
         private void ReOrderBars(GameObject bar,float gravityDirection)
         {
             for (int i = 0; i < bars.Count; i++)

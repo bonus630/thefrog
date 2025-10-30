@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
 {
     public interface IPlayer
     {
+        event Action<float> GravityChanged;
         int CurrentLife { get; set; }
       //  float Speed { get; set; }
      //   float JumpForce { get; set; }

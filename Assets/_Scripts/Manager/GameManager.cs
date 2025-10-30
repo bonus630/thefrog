@@ -106,8 +106,9 @@ namespace br.com.bonus630.thefrog.Manager
             Instance = this;
 #if UNITY_EDITOR
             ////Time.timeScale = 0.5f;
-            //playerStates.HasGravity = true;
-            //playerStates.HasFireball = true;
+            playerStates.HasGravity = true;
+            playerStates.HasVision = true;
+            playerStates.HasFireball = true;
             //playerStates.HasWallJump = true;
             ////           playerStates.HasDoubleJump = true;
             //playerStates.FallsControl = true;
@@ -116,14 +117,15 @@ namespace br.com.bonus630.thefrog.Manager
             //eventManager.EventCompleted(GameEventName.HeartContainer, false);
             //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
             //eventManager.EventCompleted(GameEventName.KillPig, false);
-            //eventManager.EventCompleted(GameEventName.Gravity, false);
+            eventManager.EventCompleted(GameEventName.Gravity, false);
             //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            //eventManager.EventCompleted(GameEventName.FireBall, false);
+            eventManager.EventCompleted(GameEventName.FireBall, false);
             //eventManager.EventCompleted(GameEventName.LightningBolt, false);
             //eventManager.EventCompleted(GameEventName.RollingWind, false);
             //eventManager.EventCompleted(GameEventName.PrisionerTip, false);
             //eventManager.EventCompleted(GameEventName.LadyLaments, false);
             //eventManager.EventCompleted(GameEventName.KoarFounded, false);
+            eventManager.EventCompleted(GameEventName.MagicGlass, false);
 
 #endif
             DontDestroyOnLoad(gameObject);
@@ -501,19 +503,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-#if UNITY_EDITOR
-            //Aqui nao chama ao dar play normalmente, utilize o awake para debugar os eventos completos adicionados
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.HeartContainer.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FireBall.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.LightningBolt.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.RollingWind.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.PurifyWater.ToString());
-            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.Gravity.ToString());
-            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.KillPig.ToString());
-            ////GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.NPCFirstTalk.ToString());
-            //GameManager.Instance.playerStates.CompletedGameEvents.Add(GameEventName.FeatherTouch.ToString());
 
-#endif
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);

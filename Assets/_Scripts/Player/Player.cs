@@ -70,6 +70,7 @@ namespace br.com.bonus630.thefrog.Player
 
         public RigidbodyType2D RigibodyBodyType { get { return rb.bodyType; } set { rb.bodyType = value; } }
 
+        public event System.Action<float> GravityChanged;
         void Awake()
         {
             GetComponents();
@@ -320,7 +321,7 @@ namespace br.com.bonus630.thefrog.Player
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
             this.gravityDirection = gravityDirection;
-            barManager.ChangeBarDirection(this.gravityDirection);
+         
             //LinearMaxY *= -1;
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
@@ -337,6 +338,8 @@ namespace br.com.bonus630.thefrog.Player
                 transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
                 rb.gravityScale *= -1;
                 knockUpForce *= -1;
+                GravityChanged?.Invoke(this.gravityDirection);
+                barManager.ChangeBarDirection(this.gravityDirection);
                 playerMovement.GravityChanged();
             }
         }
@@ -346,6 +349,8 @@ namespace br.com.bonus630.thefrog.Player
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
             var m = GravityParticles.main;
             m.gravityModifierMultiplier = -1;
+            GravityChanged?.Invoke(this.gravityDirection);
+            barManager.ChangeBarDirection(this.gravityDirection);
             playerMovement.GravityChanged();
             rb.gravityScale *= -1;
 

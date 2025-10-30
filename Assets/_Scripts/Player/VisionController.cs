@@ -16,6 +16,7 @@ namespace br.com.bonus630.thefrog.Player
         bool activeVision = false;
         float activeVisionBarValue = 0;
         float ElapseTime = 0f;
+        float gravityDirection;
         IBarUI activeVisionBar;
         float maxValue = 100;
 
@@ -33,6 +34,13 @@ namespace br.com.bonus630.thefrog.Player
             interactUp.Enable();
             interactDown.Enable();
             effects = ServiceLocator.Instance.Get<ScreenEffects>();
+            ServiceLocator.Instance.Get<IPlayer>().GravityChanged += VisionController_GravityChanged;
+        }
+
+        private void VisionController_GravityChanged(float obj)
+        {
+            this.gravityDirection = obj;
+            Debug.Log("graviti" + obj);
         }
 
         private void Update()
@@ -43,38 +51,46 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     case bool _ when interactUp.IsPressed():
 
-                        offsetY += 0.05f;
-                        if (offsetY >= maxOffSetY)
-                            offsetY = maxOffSetY;
+                        offsetY += 0.05f; 
+                        offsetY = Mathf.Clamp(offsetY, -maxOffSetY, maxOffSetY);
                         break;
                     case bool _ when interactDown.IsPressed():
 
-                        offsetY -= 0.05f;
-                        if (MathF.Abs(offsetY) >= maxOffSetY)
-                            offsetY = -maxOffSetY;
+                        offsetY -= 0.05f; 
+                        offsetY = Mathf.Clamp(offsetY, -maxOffSetY, maxOffSetY);
                         break;
                     default:
-                        offsetY = 0;
+                        if (offsetY > 0)
+                            offsetY -= 0.1f;
+                        else if(offsetY < 0)
+                            offsetY += 0.1f;
+                        if (offsetY >= -0.1f && offsetY <= 0.1f)
+                            offsetY = 0;
                     break;
                 }
                 MoveVision();
             }
             
         }
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.Get<IPlayer>().GravityChanged -= VisionController_GravityChanged;
+        }
         private void MoveVision()
         {
             Vector2 offset;
             if (activeVision)
-                offset = Vector2.up * offsetY;
+                offset = Vector2.up  * offsetY;
             else
                 offset = Vector2.zero;
             effects.CameraOffSet(offset);
-            transform.localPosition = offset / 2;
+            transform.localPosition = offset / 2 * -gravityDirection;
 
 
         }
         public void ActiveVision(BarManager barManager, float gravityDirection)
         {
+            this.gravityDirection = gravityDirection;
             if (Time.time > nextVisionTime && !activeVision)
             {
                 Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
