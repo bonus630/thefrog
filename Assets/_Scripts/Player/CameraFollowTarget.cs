@@ -37,30 +37,7 @@ namespace br.com.bonus630.thefrog.Player
             CalcOffsetY();
             transform.position = player.transform.position + (new Vector3(offsetX, offsetY, 0));
         }
-        //private void CalcOffsetY()
-        //{
-        //    if (Mathf.Sign(playerFallDirection) == Mathf.Sign(player.RigibodyLinearVelocityY))
-        //    {
-        //        timerY += Time.deltaTime;
-        //    }
-        //    else
-        //    {
-        //        timerY -= Time.deltaTime;
-        //    }
-        //    if (timerY < 0)
-        //    {
-        //        timerY = 0;
-        //        playerLookFor *= -1;
-        //    }
-        //    if (timerX > limitTime)
-        //    {
-        //        timerX = limitTime;
-        //    }
-        //    if (player.RigibodyLinearVelocityY > -rbSpeedTolerance && player.RigibodyLinearVelocityY < rbSpeedTolerance)
-        //        playerFallDirection = 0;
-        //    offsetY = velocityY.Evaluate(timerY) * playerFallDirection;
 
-        //}
         private void CalcOffsetY()
         {
             float rbY = player.RigibodyLinearVelocityY;

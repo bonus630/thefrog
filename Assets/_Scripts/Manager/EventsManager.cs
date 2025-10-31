@@ -132,7 +132,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void LoadEvents(Datas eventsDatas)
         {
-            Debug.Log("eventos: " + eventsDatas.Count);
+           // Debug.Log("eventos: " + eventsDatas.Count);
             for (int i = 0; i < eventsDatas.Count; i++)
             {
                // if (!completedEvents.Contains(eventsDatas[i].ToString()))
@@ -146,7 +146,7 @@ namespace br.com.bonus630.thefrog.Manager
                         {
                             EventCompleted(eventGame.Name, false);
                             //eventGame.Completed = true;
-                            Debug.Log("Evento carregado como verdadeiro: " + eventGame.Name);
+                           // Debug.Log("Evento carregado como verdadeiro: " + eventGame.Name);
                         }
                     }
                 //}

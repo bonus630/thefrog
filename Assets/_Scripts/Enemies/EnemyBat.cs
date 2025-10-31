@@ -11,9 +11,6 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] private Vector2 EndPoint;
         protected readonly int StartFlyID = Animator.StringToHash("StartFly");
 
-
-
-
         protected override void Start()
         {
             base.Start();

@@ -71,7 +71,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         public void Remove()
         {
-            Debug.Log("Lightining remover:");
+           // Debug.Log("Lightining remover:");
             // impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= LightningBolt_OnTriggerEnterAction;
             Destroy(gameObject,4f);
         }
@@ -91,7 +91,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("WindStorm collision: " + collision.gameObject.name);
+           // Debug.Log("WindStorm collision: " + collision.gameObject.name);
             if(collision.TryGetComponent<IElement>(out IElement el))
             {
                 Color color = el.ElementColor;

@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Lever collision:" + collision.gameObject.name);
+           // Debug.Log("Lever collision:" + collision.gameObject.name);
             if (collision.gameObject == prevCollision && time < timer)
                 return;
             time = 0f;
@@ -45,7 +45,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         IEnumerator TurnOn()
         {
-            Debug.Log("Lever TurnOn");
+            //Debug.Log("Lever TurnOn");
             yield return new WaitForSeconds(delayTime);
             //SetActive(true);
             ItemToActive.Activate();

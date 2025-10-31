@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.tests
+
 {
     public class testeSeno : MonoBehaviour
     {

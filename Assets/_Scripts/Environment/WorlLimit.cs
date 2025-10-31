@@ -8,10 +8,6 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] GameObject Next;
         [SerializeField] bool Horizontal;
-
-
-
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             //Debug.Log("[Worllimit] " + name);

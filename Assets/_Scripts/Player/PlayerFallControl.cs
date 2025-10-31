@@ -9,7 +9,6 @@ namespace br.com.bonus630.thefrog.Player
         public float Time { get; set; } = 2f;
         float timer = 0f;
 
-
         void Start()
         {
            // FallsControl(false);
@@ -23,15 +22,7 @@ namespace br.com.bonus630.thefrog.Player
                 return;
             if (timer < Time)
             {
-                //timer += UnityEngine.Time.deltaTime;
-                //player.playerMovement.TimeInFastFall = 0f;
-                //player.RigibodyGravityScale = player.RigibodyGravityScale * 0.5f;
-                //Vector2 velocity = player.RigibodyLinearVelocity;
-                //velocity.y *= 0.5f;
-                //player.RigibodyLinearVelocity = velocity;
-                ////Debug.Log("rb.gravityScale: " + player.RigibodyGravityScale);
-                ////Debug.Log("rb.velocity: " + player.RigibodyLinearVelocity);
-                ///  timer += UnityEngine.Time.deltaTime;
+
                 player.playerMovement.TimeInFastFall = 0f;
 
                 float duration = Time;
@@ -56,8 +47,6 @@ namespace br.com.bonus630.thefrog.Player
         {
             InFallControl = inFallControl;
             wings.SetActive(InFallControl);
-          //  Debug.Log("Playerfallcontrol :" +inFallControl);
-           // Debug.Log("Timer :" +timer);
         }
 
         public void FallsControlEffect()

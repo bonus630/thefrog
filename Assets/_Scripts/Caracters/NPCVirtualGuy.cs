@@ -21,7 +21,7 @@ namespace br.com.bonus630.thefrog.Caracters
             currentDialogue = GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue;
             CheckDialogs();
 
-            Debug.Log("VirtualGuy Dialogue:" + GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
+           // Debug.Log("VirtualGuy Dialogue:" + GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
         }
         public override Transform GetTransform()
         {
@@ -45,7 +45,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 return;
             }
             currentDialogueData = dialoguesData[currentDialogue];
-            Debug.Log("[NpcVirtualGuy] awake current dialogue: " + currentDialogue);
+            //Debug.Log("[NpcVirtualGuy] awake current dialogue: " + currentDialogue);
 
         }
         private void SetDialog(int dialog)
@@ -104,7 +104,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void ChangePlayerHearts()
         {
-            Debug.Log("CnangeHearts");
+            //Debug.Log("CnangeHearts");
             int amount = GameManager.Instance.PlayerStates.Collectables / 10;
             GetApples(amount * 10);
 

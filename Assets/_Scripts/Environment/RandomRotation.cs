@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Environment
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class RandomRotation : MonoBehaviour

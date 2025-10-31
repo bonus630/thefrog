@@ -5,7 +5,6 @@ using System.Text;
 
 namespace br.com.bonus630.thefrog.Utils
 {
-
     public static class Cripter
     {
         private static readonly byte[] Key = Encoding.UTF8.GetBytes("12345678901234567890123456789012"); // 32 bytes para AES-256

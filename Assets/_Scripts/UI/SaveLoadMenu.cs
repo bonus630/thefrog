@@ -114,7 +114,7 @@ namespace br.com.bonus630.thefrog.UI
             GameObject thumb = button.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
             GameObject time  = button.gameObject.transform.GetChild(1).transform.GetChild(1).gameObject;
             GameObject hours = button.gameObject.transform.GetChild(1).transform.GetChild(2).gameObject;
- Debug.Log("saveStates: " + saveStates);
+ //Debug.Log("saveStates: " + saveStates);
             if (saveStates != null)
             {
                 ThumbGenerator thumbGenerator = new ThumbGenerator(0.1f);

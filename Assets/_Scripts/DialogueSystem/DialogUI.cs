@@ -97,11 +97,11 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         //meu codigo
         public void SetPosition(DialogPosition position)
         {
-            Debug.Log("Position :" + position);
+           // Debug.Log("Position :" + position);
             GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, position == DialogPosition.Top ? topPosition : bottomPosition);
             if (position != CurrentPosition)
             {
-                Debug.Log("Avatar " + GetComponent<RectTransform>().anchoredPosition);
+               // Debug.Log("Avatar " + GetComponent<RectTransform>().anchoredPosition);
                 avatar.GetComponent<RectTransform>().anchoredPosition = new Vector2(avatar.GetComponent<RectTransform>().anchoredPosition.x, avatar.GetComponent<RectTransform>().anchoredPosition.y * -1);
                 CurrentPosition = position;
             }

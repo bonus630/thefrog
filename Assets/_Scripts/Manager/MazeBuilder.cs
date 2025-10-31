@@ -60,7 +60,7 @@ namespace br.com.bonus630.thefrog.Manager
                 return;
 
             blocked = true;
-            Debug.Log("Data.index: " + data.Index);
+           // Debug.Log("Data.index: " + data.Index);
 
             bool isCorrect = CorrectPath[current] == data.Index;
 

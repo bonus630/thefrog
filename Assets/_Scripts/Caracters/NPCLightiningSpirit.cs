@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         public override void SetFinishDialogue()
         {
-            Debug.Log(this.CurrentDialogueData.name);
+           // Debug.Log(this.CurrentDialogueData.name);
             if(this.CurrentDialogueData.name.Equals("LightiningSpiritLast"))
             {
                 GameManager.Instance.EventCompleted(GameEventName.LightningBolt);

@@ -109,7 +109,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
         int t = 0;
         public void ResetDialog()
         {
-             Debug.Log("Resete "+(t++));
+           //  Debug.Log("Resete "+(t++));
             dialogueUI.Disable();
             state = DialogStates.DISABLED;
             current = 0;

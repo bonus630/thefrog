@@ -7,13 +7,6 @@ namespace br.com.bonus630.Environment
     internal class DownBridge : IActivator
     {
 
-        //[SerializeField] GameObject body;
-       // [SerializeField] GameObject chain;
-        
-
-       // [SerializeField] bool opened  = false;
-        //[SerializeField]private bool operating = false;
-       // private float angle = 0;
         private int chainAngleOffset = 0;
         public float speed = 0.1f;
         private int direction = 1;
@@ -68,18 +61,8 @@ namespace br.com.bonus630.Environment
           
 
                 chainConnectorWall.position = Vector3.Lerp(start, end, t);
-            Debug.Log("V:" + chainConnectorWall.position);
-            //Vector3 rotatedOffset = new Vector3(
-            //    wallInitialOffset.x * Mathf.Cos(angleRad) - wallInitialOffset.y * Mathf.Sin(angleRad),
-            //    wallInitialOffset.x * Mathf.Sin(angleRad) + wallInitialOffset.y * Mathf.Cos(angleRad),
-            //    0f
-            //);
-
-            //chainConnectorWall.position = chainConnectorBody.position + rotatedOffset;
-
-
-
-            //// 4) Finaliza operação
+            //Debug.Log("V:" + chainConnectorWall.position);
+           //// 4) Finaliza operação
             if (Mathf.Approximately(angle, targetAngle))
             {
                 angle = targetAngle;
@@ -184,7 +167,7 @@ namespace br.com.bonus630.Environment
 
         public override void Activate()
         {
-            Debug.Log("Ponto ativa, abrindo");
+           // Debug.Log("Ponto ativa, abrindo");
             opened = true;
             operating = true;
             t = 0f;
@@ -198,7 +181,7 @@ namespace br.com.bonus630.Environment
 
         public override void Deactive()
         {
-            Debug.Log("Ponto desativada, fechando");
+           // Debug.Log("Ponto desativada, fechando");
             opened = false;
             operating = true;
             t = 0f;

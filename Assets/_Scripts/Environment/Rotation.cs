@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Environment
 {
     public class Rotation : MonoBehaviour
     {
@@ -13,12 +13,7 @@ namespace br.com.bonus630.thefrog
         }
         void Update()
         {
-           // Debug.Log("[Rotation] time: " + time);
-          //  float clamp = Mathf.Clamp01(time);
-           // Debug.Log("[Rotation] clamp: " + clamp);
             float ping = Mathf.PingPong(time,2f);
-         //   Debug.Log("[Rotation] ping: " + ping);
-            //Vector3 v = new Vector3(currentScale.x - 0.5f, currentScale.y - 0.5f, currentScale.z);
             Vector3 v = new Vector3(currentScale.x - ping, currentScale.y - ping, currentScale.z);
             if (time>0.5f)
             {
@@ -26,10 +21,7 @@ namespace br.com.bonus630.thefrog
 
             }
             time += Time.deltaTime; 
-            //Mathf.PingPong
             transform.localScale = v;
-            // Vector3 toScale = Vector3.Lerp(currentScale, v, ping);
-            //transform.localScale = toScale;
         }
     }
 }

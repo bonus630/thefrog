@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.Enemies
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("SkullShield: colisão com " + collision.gameObject.name + ", shield ativo: " + gameObject.activeInHierarchy);
+           // Debug.Log("SkullShield: colisão com " + collision.gameObject.name + ", shield ativo: " + gameObject.activeInHierarchy);
             if (collision.gameObject.CompareTag("Player"))
             {
                 IPlayer player = collision.gameObject.GetComponent<IPlayer>();

@@ -66,7 +66,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Deactive()
         {
-            Debug.Log("ToKoar Deactive: ");
+           // Debug.Log("ToKoar Deactive: ");
             if (inProgress)
                 return;
             inProgress = true;
@@ -75,8 +75,8 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void CheckEvent(ColliderData data)
         {
-            Debug.Log("first: " + first);
-            Debug.Log("ColliderData: " + data.Index);
+           // Debug.Log("first: " + first);
+            //Debug.Log("ColliderData: " + data.Index);
             if (data.Index == last)
                 return;
             last = data.Index;
@@ -149,7 +149,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private IEnumerator SimpleTransition(bool toKoar = false)
         {
-            Debug.Log("Simple transition, to koar: "+ toKoar);
+           // Debug.Log("Simple transition, to koar: "+ toKoar);
             screenEffects.FadeOut(0.1f);
             yield return new WaitForSeconds(0.1f);
           //  float ligth = 0.6f;

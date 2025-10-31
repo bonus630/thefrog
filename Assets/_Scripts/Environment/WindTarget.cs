@@ -14,10 +14,10 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] CameraFocus cameraFocus;
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Collision target: " + collision.gameObject.layer);
+            //Debug.Log("Collision target: " + collision.gameObject.layer);
             if (collision.gameObject.layer == 12)
             {
-                Debug.Log("Collision target");
+                //Debug.Log("Collision target");
                 passwordGenerator.Activate();
                 for (int i = 0; i < candelablus.Count; i++)
                 {
@@ -30,7 +30,7 @@ namespace br.com.bonus630.thefrog.Environment
         private IEnumerator RunDemo()
         {
 
-            Debug.Log(passwordGenerator.password.Count);
+           // Debug.Log(passwordGenerator.password.Count);
             List<GameObject> order = new List<GameObject>();
 
             for (int i = 0; i < passwordGenerator.password.Count; i++)

@@ -81,7 +81,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (collision.gameObject.TryGetComponent<INPC>(out npc))
                 {
-                    Debug.Log("NPC trigger enter");
+                   // Debug.Log("NPC trigger enter");
                     dialogueSystem.DialogueData = npc.CurrentDialogueData;
                     collision.gameObject.TryGetComponent<IInteract>(out interacting);
                 }
@@ -89,7 +89,7 @@ namespace br.com.bonus630.thefrog.Player
             if (collision.gameObject.CompareTag("Item"))
             {
                 collision.gameObject.TryGetComponent<IInteract>(out interacting);
-                Debug.Log("Item trigger enter:" + interacting);
+                //Debug.Log("Item trigger enter:" + interacting);
             }
             if (collision.gameObject.CompareTag("Tips"))
             {
@@ -103,14 +103,14 @@ namespace br.com.bonus630.thefrog.Player
         {
             if (collision.gameObject.CompareTag("NPC"))
             {
-                Debug.Log("NPC trigger exit");
+                //Debug.Log("NPC trigger exit");
                 npc = null;
                 interacting = null;
                 dialogueSystem.ResetDialog();//movendo para playerdialogue
             }
             if (collision.gameObject.CompareTag("Item"))
             {
-                Debug.Log("Item trigger exit");
+               // Debug.Log("Item trigger exit");
                 interacting = null;
             }
             if (collision.gameObject.CompareTag("Tips"))
@@ -144,7 +144,7 @@ namespace br.com.bonus630.thefrog.Player
         private DialogPosition GetDialogPosition()
         {
             bool isOverlapping = Utils.UIHelper.IsGameObjectInsideUI(player.gameObject, dialogueSystem.dialogueUI.Rect);
-            Debug.Log("Contains : " + isOverlapping);
+            //Debug.Log("Contains : " + isOverlapping);
             if (isOverlapping)
             {
                if(dialogueSystem.DialoguePosition == DialogPosition.Bottom)

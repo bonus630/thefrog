@@ -68,7 +68,7 @@ namespace br.com.bonus630.thefrog.Enemies
             //}
             if (detectGround.collider == null)
             {
-                Debug.Log("Pig change");
+                //Debug.Log("Pig change");
                 if (safeFollowTurn < 0)
                 {
                     safeFollowTurn = 1f;
@@ -116,7 +116,7 @@ namespace br.com.bonus630.thefrog.Enemies
         public void Attack()
         { 
             Collider2D[] colls = Physics2D.OverlapCircleAll(bite.position, 0.04f, playerLayer);
-            Debug.Log("Snake bite coll: " + colls.Length);
+            //Debug.Log("Snake bite coll: " + colls.Length);
             foreach (var coll in colls)
             {
                 if (coll.gameObject.TryGetComponent<IPlayer>(out IPlayer player))

@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Manager
         
         public IBarUI CreateBar(Color color, float value,Transform transform, float gravityDirection)
         {
-            Debug.Log("Criando uma barra: "+gravityDirection);
+           // Debug.Log("Criando uma barra: "+gravityDirection);
             GameObject o = Instantiate(bar, transform.position, bar.transform.rotation);
             Follow follow = o.GetComponent<Follow>();
             follow.Target = transform;

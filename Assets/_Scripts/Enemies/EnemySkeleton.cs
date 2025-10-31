@@ -87,15 +87,15 @@ namespace br.com.bonus630.thefrog.Enemies
             //Vector2 center = new Vector2(0.566f, 0.032f);
             Collider2D[] hits = Physics2D.OverlapCircleAll(AttackPoint.position, 0.2f, playerLayer);
             
-            Debug.Log("Contagem de hits: " + hits.Length);
+           // Debug.Log("Contagem de hits: " + hits.Length);
             for (int i = 0; i < hits.Length; i++)
             {
-                Debug.Log("Hit name: " + hits[i].name);
+               // Debug.Log("Hit name: " + hits[i].name);
                 if (hits[i].CompareTag("Player"))
                 {
                     if(hits[i].gameObject.TryGetComponent<IPlayer>(out IPlayer player))
                     {
-                        Debug.Log("Hit player: " + player);
+                       // Debug.Log("Hit player: " + player);
                         player.Hit(2);
                         return;
                     }

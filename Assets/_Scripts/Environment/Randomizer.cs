@@ -27,10 +27,6 @@ namespace br.com.bonus630.thefrog.Environment
                 Instantiate(FakerGameobjects[fakerIndex], point);
                 SpawnPoints.RemoveAt(spawnIndex);
             }
-
-
         }
-
-    
     }
 }

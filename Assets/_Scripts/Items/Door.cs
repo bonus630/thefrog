@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Items
             if (inside && InteractUp.WasPressedThisFrame())
             {
                 player = ServiceLocator.Instance.Get<IPlayer>();
-                Debug.Log("[DoorBase] player:"+player);
+                //Debug.Log("[DoorBase] player:"+player);
                 if (player.InGround && player.BodyTouching(doorCollider))
                     teleporter.Activate();
             }

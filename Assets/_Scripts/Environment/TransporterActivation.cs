@@ -19,7 +19,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (startPosition == null)
                 startPosition = new();
             startPosition.Add(transform.position);
-            Debug.Log($"StartPosition agora tem {startPosition.Count} elementos");
+            //Debug.Log($"StartPosition agora tem {startPosition.Count} elementos");
         }
         void Start()
         {
@@ -50,7 +50,7 @@ namespace br.com.bonus630.thefrog.Environment
                 return;
             time = Time.time + 0.1f;
             active = !active;
-            Debug.Log("Estou no transporter toggle: " + gameObject.name+" "+active);
+          //  Debug.Log("Estou no transporter toggle: " + gameObject.name+" "+active);
             
             if (active)
             {

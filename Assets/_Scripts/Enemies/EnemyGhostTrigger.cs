@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Enemies
             filter.useTriggers = true;
 
             int count = Physics2D.OverlapCollider(GetComponent<Collider2D>(), filter, hits);
-            if (count > 0) Debug.Log("Projetéis detectados: " + count);
+            //if (count > 0) Debug.Log("Projetéis detectados: " + count);
         }
         protected void OnTriggerEnter2D(Collider2D collision)
         {

@@ -448,7 +448,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 if (dashBar != null)
                 {
-                    Debug.Log("Reload Timer: " + dashReloadMaxTime);
+                    //Debug.Log("Reload Timer: " + dashReloadMaxTime);
                     if (dashReloadTimer>=dashReloadMaxTime)
                         dashBar.GetComponent<IBarUI>().DestroyBar();
                     // Destroy(dashBar);

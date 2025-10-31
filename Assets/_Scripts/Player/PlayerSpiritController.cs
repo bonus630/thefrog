@@ -60,7 +60,7 @@ namespace br.com.bonus630.thefrog.Player
                 currentIndex++;
             if (currentIndex >= avaliableProjectilies.Count)
                 currentIndex = 0;
-            Debug.Log("current:" + currentIndex);
+           // Debug.Log("current:" + currentIndex);
             SetCurrentProjectil();
             //       time = 0;
             //  }

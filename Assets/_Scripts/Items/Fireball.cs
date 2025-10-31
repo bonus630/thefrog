@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("FireBall collision:" + collision.gameObject.name);
+           // Debug.Log("FireBall collision:" + collision.gameObject.name);
             
             if (!remove)
             {
@@ -96,7 +96,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("FireBall trigger :"+collision.gameObject.name);
+           // Debug.Log("FireBall trigger :"+collision.gameObject.name);
             if (!remove)
             {
                 IEnemy enemy;

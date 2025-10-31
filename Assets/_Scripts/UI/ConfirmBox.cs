@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.UI
         }
         IEnumerator ConfirmSave()
         {
-            Debug.Log("123 " + menu.gameObject);
+           // Debug.Log("123 " + menu.gameObject);
             menu.transform.parent.gameObject.SetActive(false);
             confirmBoxUI.SetActive(true);
             yield return new WaitForSecondsRealtime(1.5f);

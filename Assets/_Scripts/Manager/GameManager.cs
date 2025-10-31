@@ -483,7 +483,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-            Debug.Log("[GameManager] ChangeGameToState");
+           // Debug.Log("[GameManager] ChangeGameToState");
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
@@ -579,7 +579,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void OnApplicationQuit()
         {
-            Debug.Log("Application Quit");
+           // Debug.Log("Application Quit");
             PlayerPrefs.Save();
         }
         #region testes e debugs

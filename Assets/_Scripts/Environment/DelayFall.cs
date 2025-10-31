@@ -1,7 +1,8 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
-namespace br.com.bonus630.thefrog
+
+namespace br.com.bonus630.thefrog.Environment
 {
     [RequireComponent(typeof(Rigidbody2D),typeof(AudioSource),typeof(Collider2D))]
     
@@ -25,12 +26,11 @@ namespace br.com.bonus630.thefrog
                 GetComponent<AudioSource>().PlayOneShot(fallSound);
             GetComponent<Rigidbody2D>().gravityScale = 1f;
         }
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.IsInLayerMask(collisionLayers))
             {
-                Debug.Log("[DelayFall] collision: " + collision.gameObject.name);   
+                //Debug.Log("[DelayFall] collision: " + collision.gameObject.name);   
                 float removeTime = 0;
                 if (crashSound != null)
                 {

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Shared;
-using Codice.Client.BaseCommands.Merge;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment

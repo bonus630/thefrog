@@ -73,7 +73,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void FillPath()
         {
-            Debug.Log("[MAZE] PATH FILL");
+           //Debug.Log("[MAZE] PATH FILL");
             mazeDirections = new List<int>();
             for (int i = 0; i < mazeSteps; i++)
             {

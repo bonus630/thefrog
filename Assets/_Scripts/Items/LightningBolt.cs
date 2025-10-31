@@ -52,7 +52,7 @@ namespace br.com.bonus630.thefrog.Items
 
         private void Finish(GameObject other)
         {
-            Debug.Log(other.name);
+           // Debug.Log(other.name);
             //if(other.TryGetComponent<SpriteRenderer>(out var render))
             //{
             //    render.color = Color.gray;
@@ -129,11 +129,11 @@ namespace br.com.bonus630.thefrog.Items
             int index = -1;
             for (int i = 0; i < hits.Length; i++)
             {
-                Debug.Log($"hits:{i} name:{hits[i].name} layer:{hits[i].gameObject.layer}");
+              //  Debug.Log($"hits:{i} name:{hits[i].name} layer:{hits[i].gameObject.layer}");
                 if (hits[i].Distance(GameManager.Instance.GetPlayer.GetComponent<Collider2D>()).distance < distance)
                     index = i;
             }
-            Debug.Log("Index:" + index);
+          //  Debug.Log("Index:" + index);
             //utilizar esse código para um raio que encontre um teto 
             //Vector2 projectilePos;
             //if (index != -1) 
@@ -165,19 +165,19 @@ namespace br.com.bonus630.thefrog.Items
             transform.position = new Vector2(posX, posY);
             // Debug.Log("Camera: "+Camera.main.name);
             //  Debug.Log("lightining position: " + projectilePos);
-            Debug.Log("lightining direction: " + direction);
+          //  Debug.Log("lightining direction: " + direction);
             // ps.Play();
             audioSource.Play();
         }
         public void Remove()
         {
-            Debug.Log("Lightining remover:");
+           // Debug.Log("Lightining remover:");
             // impactZone.GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= LightningBolt_OnTriggerEnterAction;
             Destroy(gameObject);
         }
         public void Impact()
         {
-            Debug.Log("Lightining impact:");
+           // Debug.Log("Lightining impact:");
             Collider2D raycastHit = Physics2D.OverlapCircle(gameObject.transform.position, 0.2f, canHitLayers);
             if (raycastHit != null)
             {

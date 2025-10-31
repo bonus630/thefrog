@@ -89,7 +89,7 @@ namespace br.com.bonus630.thefrog.Enemies
         private void WallCollision()
         {
             cancelUpdate = true;
-            Debug.Log("wall collision");
+            //Debug.Log("wall collision");
             if(speed >  maxSpeed)
             {
                 this.life -= 2;

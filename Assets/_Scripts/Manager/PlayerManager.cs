@@ -35,7 +35,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void OnGameEventCompleted(GameEvent obj)
         {
-            Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
+           // Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
             if (eventActions.TryGetValue(obj.Name, out Action action))
                 action?.Invoke();
         }

@@ -64,7 +64,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void CheckGameEvents()
         {
-            Debug.Log("[walljump] gravity:" + GameManager.Instance.IsEventCompleted(GameEventName.Gravity));
+           // Debug.Log("[walljump] gravity:" + GameManager.Instance.IsEventCompleted(GameEventName.Gravity));
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
             {
                 Destroy(gameObject);
@@ -101,7 +101,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         public override void SetFinishDialogue()
         {
-            Debug.Log("Npc currentDialogue: " + currentDialogue);
+           // Debug.Log("Npc currentDialogue: " + currentDialogue);
             dialogueCounter = 0;
             if (IsFirstDialogue)
             {
@@ -132,7 +132,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private void SetDialogue()
         {
 
-            Debug.Log($"SetDialogue- CurrentDialog:{currentDialogue} firstTalk:{firstTalk} killPig:{killPig} playerCheckWall:{playerCheckWall}");
+           // Debug.Log($"SetDialogue- CurrentDialog:{currentDialogue} firstTalk:{firstTalk} killPig:{killPig} playerCheckWall:{playerCheckWall}");
             if (!wallJump)
             {
 
@@ -162,7 +162,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         protected override void OnGameEventCompleted(GameEvent gameEvent)
         {
-            Debug.Log("[EventComplet][npc walljump]:" + gameEvent.Name);
+           // Debug.Log("[EventComplet][npc walljump]:" + gameEvent.Name);
             if (gameEvent.Name.Equals(GameEventName.PlayerCheckWall))
                 PlayerCheckWall = true;
             if (gameEvent.Name.Equals(GameEventName.NPCFirstTalk))
@@ -244,7 +244,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public void MoveToWallJump([CallerMemberName] string caller = "")
         {
            
-            Debug.Log("Coroutine MoveTowalljump: " + caller);
+           // Debug.Log("Coroutine MoveTowalljump: " + caller);
             IsFirstDialogue = true;
             animator.enabled = false;
             transform.position = point2.transform.position;
@@ -258,7 +258,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void StartWallJumpTutorial()
         {
-            Debug.Log("Npc currentDialogue: " + currentDialogue);
+           // Debug.Log("Npc currentDialogue: " + currentDialogue);
             TalkIcon.SetActive(false);
             ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(true, 1f);
             box.enabled = false;
@@ -333,7 +333,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         private void ChangeDummy(bool activeDummy = true)
         {
-            Debug.Log("Dummy:" + activeDummy);
+           // Debug.Log("Dummy:" + activeDummy);
             //dummy.SetActive(activeDummy);
             //box.enabled = !activeDummy;
             //GetComponent<SpriteRenderer>().enabled = !activeDummy;

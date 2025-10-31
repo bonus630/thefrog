@@ -18,7 +18,7 @@ namespace br.com.bonus630.thefrog.Enemies
         protected override void Awake()
         {
             player = GameManager.Instance.GetPlayer;
-            Debug.Log("Enemy Ghost "+player);
+            //Debug.Log("Enemy Ghost "+player);
             cameraControl = FindAnyObjectByType<CameraBackground>();
             cameraControl.HourChanged += Item_HourChanged;
         }

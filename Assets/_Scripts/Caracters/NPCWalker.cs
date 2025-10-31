@@ -67,7 +67,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public override bool ReadyToInteract(bool lookFor)
         {
-            Debug.Log("walker interaction");
+            //Debug.Log("walker interaction");
             bool result = lookFor && playerTriggerEnter;
             TalkIcon.SetActive(result);
             if (isWalker && !(lastInteractTime > 0))

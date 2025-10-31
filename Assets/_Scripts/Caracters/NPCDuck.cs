@@ -52,7 +52,7 @@ namespace br.com.bonus630.thefrog.Caracters
             yield return fader.FadeOut();
             yield return new WaitForSeconds(1);
             Invoke(nameof(RestorePlayerInput), 3f);
-            Debug.Log($"[NPCDuck] time: {(Time.realtimeSinceStartup - time):F3}");
+           // Debug.Log($"[NPCDuck] time: {(Time.realtimeSinceStartup - time):F3}");
 
         }
         //private IEnumerator SkyWalkerLearned()

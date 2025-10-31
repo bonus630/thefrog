@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
 {
+    //precisamos generalizar essa interface, desmembra-lá para melhor reaproveitamento
     public interface IPlayer
     {
         event Action<float> GravityChanged;

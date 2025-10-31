@@ -93,8 +93,8 @@ namespace br.com.bonus630.thefrog.Player
             this.gravityDirection = gravityDirection;
             if (Time.time > nextVisionTime && !activeVision)
             {
-                Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
-                Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
+                //Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
+               //Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
                 activeVisionBar = barManager.CreateBar(Color.magenta, 0, barManager.transform, gravityDirection);
                 activeVisionBar.BarDestroyed += ActiveVisonBar_BarDestroyed;
                 activeVisionBar.MaxValue = maxValue;
@@ -128,7 +128,7 @@ namespace br.com.bonus630.thefrog.Player
             StartCoroutine(VisionRecover());
             nextVisionTime = 0;
             MoveVision();
-            Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
+            //Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
             GetComponent<SpriteMask>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -148,8 +148,8 @@ namespace br.com.bonus630.thefrog.Player
                     ElapseTime = 0;
                 if (activeVisionBarValue < 0)
                     activeVisionBarValue = 0;
-                Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
-                Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
+               // Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
+               // Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
             }
         }
     }

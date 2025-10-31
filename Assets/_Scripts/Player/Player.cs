@@ -7,7 +7,7 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+
 namespace br.com.bonus630.thefrog.Player
 {
     [DefaultExecutionOrder(-1)]
@@ -313,7 +313,7 @@ namespace br.com.bonus630.thefrog.Player
 
         public void ActiveVision()
         {
-            Debug.Log("[Player] HasVision:" + playerManager.PlayerStates.HasVision);
+          //  Debug.Log("[Player] HasVision:" + playerManager.PlayerStates.HasVision);
             if (playerManager.PlayerStates.HasVision)
                 visionController.ActiveVision(barManager, gravityDirection);
         }
@@ -326,7 +326,7 @@ namespace br.com.bonus630.thefrog.Player
             GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
             {
-                Debug.Log(gravityDirection);
+               // Debug.Log(gravityDirection);
                 var m = GravityParticles.main;
                 m.gravityModifierMultiplier = 0;
                 GravityParticles.Play();

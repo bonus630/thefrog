@@ -63,11 +63,11 @@ namespace br.com.bonus630.thefrog.Environment
             {
                 Vector2 targetPosition = new Vector2(to.transform.position.x, to.transform.position.y);
                 var cam = Camera.main.transform;
-                Debug.Log("[Teleporter] cam:" + cam);
+               // Debug.Log("[Teleporter] cam:" + cam);
                 int frameLimiter = 90;
                 while (cam.position.Distance2D(targetPosition) > 0.2f && (frameLimiter--) >= 0)
                 {
-                    Debug.Log("[Teleporter] cam distance:" + cam.position.Distance2D(targetPosition));
+                   // Debug.Log("[Teleporter] cam distance:" + cam.position.Distance2D(targetPosition));
                     yield return null;
                 }
 

@@ -41,13 +41,13 @@ namespace br.com.bonus630.thefrog.Items
             {
                 if (player == null)
                     player = ServiceLocator.Instance.Get<IPlayer>();
-                Debug.Log($"[DoorShip] inGround:{player.InGround} touching:{player.BodyTouching(boxCollider)}");
+                //Debug.Log($"[DoorShip] inGround:{player.InGround} touching:{player.BodyTouching(boxCollider)}");
                 inside = player.BodyTouching(boxCollider);
                 if (!inside)
                     return;
                 if (isOpen)
                 {
-                    Debug.Log($"[DoorShip] inside:{inside} isOpen:{isOpen}");
+                    //Debug.Log($"[DoorShip] inside:{inside} isOpen:{isOpen}");
                     //var p = GameManager.Instance.GetPlayerScript;
                     if (player.InGround && player.BodyTouching(boxCollider))
                     {
@@ -63,7 +63,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log($"[DoorShip] EXIT {collision.name} | CompareTag={collision.CompareTag("Player")}");
+           // Debug.Log($"[DoorShip] EXIT {collision.name} | CompareTag={collision.CompareTag("Player")}");
             if (collision.CompareTag("Player"))
             {
                 if (collision.TryGetComponent<IPlayer>(out player))
@@ -94,11 +94,11 @@ namespace br.com.bonus630.thefrog.Items
         }
         public void Close()
         {
-            Debug.Log("[ShipDoor] cont:" + cont++);
+            //Debug.Log("[ShipDoor] cont:" + cont++);
             if (!isExit)
             {
                 player.AllInputsOn(false, 0);
-                Debug.Log($"[DoorShip] iplayer:{player}");
+                //Debug.Log($"[DoorShip] iplayer:{player}");
                 GetComponent<SpriteRenderer>().sortingOrder = 11;
                 StartCoroutine(EnablesDoor());
             }
@@ -110,7 +110,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         public void Open()
         {
-            Debug.Log("[ShipDoor] cont:" + cont++);
+            //Debug.Log("[ShipDoor] cont:" + cont++);
             audioSource.PlayOneShot(openingAudio);
             anim.SetBool("Closed", false);
             isOpen = true;
@@ -124,7 +124,7 @@ namespace br.com.bonus630.thefrog.Items
                 yield return new WaitForSeconds(0.1f);
             }
             GetComponent<SpriteRenderer>().sortingOrder = 9;
-            Debug.Log("Chegamos");
+            //Debug.Log("Chegamos");
         }
         private void EnablesDoor2()
         {
