@@ -1,28 +1,29 @@
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Shared;
+using Codice.Client.BaseCommands.Merge;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment
 {
     public class Spawner : IActivator
     {
-        [SerializeField] private List<GameObject> spawnerPoints;
-        [SerializeField] private List<GameObject> spawnerTypes;
-        [SerializeField] private bool randomPoints = true;
-        [SerializeField] private bool randomTypes = true;
-        [SerializeField] private float spawnerTime = 2;
-        [SerializeField] private bool running = true;
+        [SerializeField] protected List<GameObject> spawnerPoints;
+        [SerializeField] protected List<GameObject> spawnerTypes;
+        [SerializeField] protected bool randomPoints = true;
+        [SerializeField] protected bool randomTypes = true;
+        [SerializeField] protected float spawnerTime = 2;
+        [SerializeField] protected bool running = true;
         [SerializeField][Tooltip("Use 0 to infinity")] private int limit = 2;
 
         public float SpawnerTime { get { return spawnerTime; } set { spawnerTime = value; } }
         public bool Running { get { return running; } set { running = value; } }
         //public bool startBattle { get; set; }
-        private float timer = 0;
-        private int currentPoint = 0;
-        private int currentType = 0;
+        protected float timer = 0;
+        protected int currentPoint = 0;
+        protected int currentType = 0;
 
-        private List<GameObject> instances = new List<GameObject>();
-        void Start()
+        protected List<GameObject> instances = new List<GameObject>();
+        protected virtual void Start()
         {
             
         }
@@ -42,7 +43,7 @@ namespace br.com.bonus630.thefrog.Environment
                     }
                     if (instances.Count < limit || limit == 0)
                     {
-                        instances.Add(Instantiate(spawnerTypes[currentType], spawnerPoints[currentPoint].transform.position, spawnerTypes[currentType].transform.rotation));
+                        instances.Add(Instantiate(spawnerTypes[currentType], GetPoint(), spawnerTypes[currentType].transform.rotation));
                         timer = 0;
                         CurrentPoint();
                         CurrentType();
@@ -50,7 +51,7 @@ namespace br.com.bonus630.thefrog.Environment
                 }
             }
         }
-        private void CurrentPoint()
+        protected virtual void CurrentPoint()
         {
             if (randomPoints)
             {
@@ -64,7 +65,7 @@ namespace br.com.bonus630.thefrog.Environment
                     currentPoint = 0;
             }
         }
-        private void CurrentType()
+        protected virtual void CurrentType()
         {
             if (randomTypes)
             {
@@ -79,7 +80,10 @@ namespace br.com.bonus630.thefrog.Environment
             }
         }
 
-
+        protected virtual Vector3 GetPoint()
+        {
+            return spawnerPoints[currentPoint].transform.position;
+        }
 
         public override void Activate()
         {

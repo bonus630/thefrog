@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.Activators
             }
             else
             {
-                IsOn = true;
+                IsOn = false;
                 Switch();
             }
             leftTime = Timer;
@@ -79,14 +79,14 @@ namespace br.com.bonus630.thefrog.Activators
         public override void Activate()
         {
             useTimer = false;
-            IsOn = false;
+            IsOn = true;
             Switch();
         }
 
         public override void Deactive()
         {
             useTimer = false;
-            IsOn = true;
+            IsOn = false;
             Switch();
         }
     }

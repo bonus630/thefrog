@@ -101,6 +101,9 @@ namespace br.com.bonus630.thefrog.Manager
 
             playerStates = new PlayerStates(new PlayerPosition(gameObject.transform.position), new Datas(), new Datas(), new Datas());
             environmentStates = new EnvironmentStates(playerStates);
+#if UNITY_EDITOR
+            LoadEventsAndStates();
+#endif
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
@@ -480,16 +483,14 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-
+            Debug.Log("[GameManager] ChangeGameToState");
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
            // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
-#if UNITY_EDITOR
-            LoadEventsAndStates();
-#endif
+
             GameStatesRestaured?.Invoke();
         }
         public void GameOver()
@@ -622,23 +623,23 @@ namespace br.com.bonus630.thefrog.Manager
             // playerStates.HasFireball = true;
             // playerStates.HasLightning = true;
             //playerStates.HasWallJump = true;
-            ////           playerStates.HasDoubleJump = true;
+            //playerStates.HasDoubleJump = true;
             //playerStates.FallsControl = true;
             //playerStates.HasDash = true;
             //playerStates.Shurykens = 100;
-            //eventManager.EventCompleted(GameEventName.HeartContainer, false);
-            eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
-            eventManager.EventCompleted(GameEventName.NPCFirstTalk, false);
-            eventManager.EventCompleted(GameEventName.KillPig, false);
-            // eventManager.EventCompleted(GameEventName.Gravity, false);
-            //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            // eventManager.EventCompleted(GameEventName.FireBall, false);
-            //  eventManager.EventCompleted(GameEventName.LightningBolt, false);
-            //eventManager.EventCompleted(GameEventName.RollingWind, false);
-            //eventManager.EventCompleted(GameEventName.PrisionerTip, false);
-            //eventManager.EventCompleted(GameEventName.LadyLaments, false);
-            //eventManager.EventCompleted(GameEventName.KoarFounded, false);
-            eventManager.EventCompleted(GameEventName.MagicGlass, false);
+            //this.EventCompleted(GameEventName.HeartContainer, false);
+            this.EventCompleted(GameEventName.PlayerCheckWall, false);
+            this.EventCompleted(GameEventName.NPCFirstTalk, false);
+            this.EventCompleted(GameEventName.KillPig, false);
+            this.EventCompleted(GameEventName.LightningBolt, false);
+            this.EventCompleted(GameEventName.MagicGlass, false);
+            //this.EventCompleted(GameEventName.Gravity, false);
+            //this.EventCompleted(GameEventName.FeatherTouch, false);
+            //this.EventCompleted(GameEventName.FireBall, false);
+            //this.EventCompleted(GameEventName.RollingWind, false);
+            //this.EventCompleted(GameEventName.PrisionerTip, false);
+            //this.EventCompleted(GameEventName.LadyLaments, false);
+            //this.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
 #endregion
