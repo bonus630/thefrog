@@ -10,14 +10,14 @@ public class Isekai : MonoBehaviour
         {
             if(MiniGameManager.Instance.lives == 1)
             {
-                transform.GetChild(0).gameObject.GetComponent<MoveCycle>().speed = 100f;
+                transform.GetChild(0).gameObject.GetComponent<MoveCycle>().speed = 60f;
                 StartCoroutine(NormalSpeed());
             }
         }
     }
     IEnumerator NormalSpeed()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         transform.GetChild(0).gameObject.GetComponent<MoveCycle>().speed = 1f;
     }
 }

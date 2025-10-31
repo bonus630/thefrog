@@ -53,6 +53,11 @@ namespace br.com.bonus630.thefrog.Caracters
             box = GetComponent<BoxCollider2D>();
             this.CurrentDialogueData = dialoguesData[0];
         }
+        protected override void Update()
+        {
+            if (wallJumpCutscene.state == PlayState.Playing)
+                GetComponent<SpriteRenderer>().enabled = false;
+        }
         protected override void OnGameStatesRestaured()
         {
             CheckGameEvents();
@@ -188,6 +193,7 @@ namespace br.com.bonus630.thefrog.Caracters
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
             ServiceLocator.Instance.Get<IPlayer>().UpdatePlayer();
             finalRoute = true;
+            GetComponent<SpriteRenderer>().enabled = true;
             StartCoroutine(EnableAnimator());
             //GameManager.Instance.GetPlayerScript.UpdatePlayer();
             //  var g = Instantiate(gameObject);
@@ -212,8 +218,10 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void GoToWallJumpScene()
         {
+            GetComponent<SpriteRenderer>().enabled = false;
             MoveToWallJump();
             goToWallCutscene.Play();
+            GetComponent<SpriteRenderer>().enabled = true;
         }
         private IEnumerator GoToWallJump()
         {
@@ -235,10 +243,12 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public void MoveToWallJump([CallerMemberName] string caller = "")
         {
+           
             Debug.Log("Coroutine MoveTowalljump: " + caller);
             IsFirstDialogue = true;
             animator.enabled = false;
             transform.position = point2.transform.position;
+         
             currentDialogue = 1;
             dialogueCounter = 0;
             wallJump = true;
@@ -251,12 +261,11 @@ namespace br.com.bonus630.thefrog.Caracters
             Debug.Log("Npc currentDialogue: " + currentDialogue);
             TalkIcon.SetActive(false);
             ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(true, 1f);
-            ChangeDummy(true);
             box.enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
+            ChangeDummy(true);
+           
             //  GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
-            animator.enabled = false;
-            StartCoroutine(GoToFinalRoutine());
+            //animator.enabled = false;
             // animator.applyRootMotion = false;
             // animator.SetTrigger("StartTutorial");
         }
@@ -330,14 +339,33 @@ namespace br.com.bonus630.thefrog.Caracters
             //GetComponent<SpriteRenderer>().enabled = !activeDummy;
             if (activeDummy)
             {
-                wallJumpCutscene.Play();
+
+               // wallJumpCutscene.time = 1;
+              //  wallJumpCutscene.Evaluate();
                 wallJumpCutscene.stopped += (d) =>
                 {
-                    GoToFinal();
-                   // ChangeDummy(false);
+                  
+                    GoToFinal();//npc chegou ao ponto final
+                    // ChangeDummy(false);
                 };
+                //wallJumpCutscene.played += (d) => {
+                //    //move npc para o ponto final
+                //};
+                StartCoroutine(De());
             }
         }
+
+        private IEnumerator De()
+        {
+          //  animator.enabled = false;
+          //  GetComponent<SpriteRenderer>().color = Color.green;
+            StartCoroutine(GoToFinalRoutine());
+            yield return new WaitForEndOfFrame();
+            wallJumpCutscene.Play();
+            yield return new WaitForEndOfFrame();
+        }
+
+        
     }
 }
 

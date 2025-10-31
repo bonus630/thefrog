@@ -117,8 +117,8 @@ namespace br.com.bonus630.thefrog.Player
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
             }
 #else
-            if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
-                transform.position = GameManager.Instance.PlayerStartPosition;
+            //if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
+            //    transform.position = GameManager.Instance.PlayerStartPosition;
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();

@@ -104,30 +104,7 @@ namespace br.com.bonus630.thefrog.Manager
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
-#if UNITY_EDITOR
-            ////Time.timeScale = 0.5f;
-            playerStates.HasGravity = true;
-            playerStates.HasVision = true;
-            playerStates.HasFireball = true;
-            //playerStates.HasWallJump = true;
-            ////           playerStates.HasDoubleJump = true;
-            //playerStates.FallsControl = true;
-            //playerStates.HasDash = true;
-            //playerStates.Shurykens = 100;
-            //eventManager.EventCompleted(GameEventName.HeartContainer, false);
-            //eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
-            //eventManager.EventCompleted(GameEventName.KillPig, false);
-            eventManager.EventCompleted(GameEventName.Gravity, false);
-            //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
-            eventManager.EventCompleted(GameEventName.FireBall, false);
-            //eventManager.EventCompleted(GameEventName.LightningBolt, false);
-            //eventManager.EventCompleted(GameEventName.RollingWind, false);
-            //eventManager.EventCompleted(GameEventName.PrisionerTip, false);
-            //eventManager.EventCompleted(GameEventName.LadyLaments, false);
-            //eventManager.EventCompleted(GameEventName.KoarFounded, false);
-            eventManager.EventCompleted(GameEventName.MagicGlass, false);
 
-#endif
             DontDestroyOnLoad(gameObject);
         }
         private void Start()
@@ -510,7 +487,9 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.UpdateShurykens();
            // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
-
+#if UNITY_EDITOR
+            LoadEventsAndStates();
+#endif
             GameStatesRestaured?.Invoke();
         }
         public void GameOver()
@@ -585,6 +564,24 @@ namespace br.com.bonus630.thefrog.Manager
             else
                 text.color = Color.gray;
         }
+
+        public void ResetEnvironment()
+        {
+            GameManager.Instance.eventManager.Reset();
+            GameManager.Instance.PlayerStates.CollectablesID.Clear();
+            GameManager.Instance.PlayerStates.ChestsID.Clear();
+            GameManager.Instance.EnvironmentStates.Activeds.Clear();
+            GameManager.Instance.environmentStates.NPCVirtualGuyApples = 0;
+            GameManager.Instance.environmentStates.NPCVirtualGuyDialogue = 0;
+            GameManager.Instance.environmentStates.NPC_WallJump_Tutorial = 0;
+            GameManager.Instance.PlayerStates.PlayerPosition.Position = StartGamePosition;
+        }
+        private void OnApplicationQuit()
+        {
+            Debug.Log("Application Quit");
+            PlayerPrefs.Save();
+        }
+        #region testes e debugs
         //public void UpdatePlayer()
         //{
 
@@ -616,22 +613,35 @@ namespace br.com.bonus630.thefrog.Manager
             byte[] buffert = Convert.FromBase64String(file);
             File.WriteAllBytes(@"C:\Users\bonus630\Desktop\teste\p.png", buffert);
         }
+        private void LoadEventsAndStates()
+        {
+#if UNITY_EDITOR
+            ////Time.timeScale = 0.5f;
+            // playerStates.HasGravity = true;
+            playerStates.HasVision = true;
+            // playerStates.HasFireball = true;
+            // playerStates.HasLightning = true;
+            //playerStates.HasWallJump = true;
+            ////           playerStates.HasDoubleJump = true;
+            //playerStates.FallsControl = true;
+            //playerStates.HasDash = true;
+            //playerStates.Shurykens = 100;
+            //eventManager.EventCompleted(GameEventName.HeartContainer, false);
+            eventManager.EventCompleted(GameEventName.PlayerCheckWall, false);
+            eventManager.EventCompleted(GameEventName.NPCFirstTalk, false);
+            eventManager.EventCompleted(GameEventName.KillPig, false);
+            // eventManager.EventCompleted(GameEventName.Gravity, false);
+            //eventManager.EventCompleted(GameEventName.FeatherTouch, false);
+            // eventManager.EventCompleted(GameEventName.FireBall, false);
+            //  eventManager.EventCompleted(GameEventName.LightningBolt, false);
+            //eventManager.EventCompleted(GameEventName.RollingWind, false);
+            //eventManager.EventCompleted(GameEventName.PrisionerTip, false);
+            //eventManager.EventCompleted(GameEventName.LadyLaments, false);
+            //eventManager.EventCompleted(GameEventName.KoarFounded, false);
+            eventManager.EventCompleted(GameEventName.MagicGlass, false);
 
-        public void ResetEnvironment()
-        {
-            GameManager.Instance.eventManager.Reset();
-            GameManager.Instance.PlayerStates.CollectablesID.Clear();
-            GameManager.Instance.PlayerStates.ChestsID.Clear();
-            GameManager.Instance.EnvironmentStates.Activeds.Clear();
-            GameManager.Instance.environmentStates.NPCVirtualGuyApples = 0;
-            GameManager.Instance.environmentStates.NPCVirtualGuyDialogue = 0;
-            GameManager.Instance.environmentStates.NPC_WallJump_Tutorial = 0;
-            GameManager.Instance.PlayerStates.PlayerPosition.Position = StartGamePosition;
-        }
-        private void OnApplicationQuit()
-        {
-            Debug.Log("Application Quit");
-            PlayerPrefs.Save();
+#endif
+#endregion
         }
     }
     public enum SceneStartType
