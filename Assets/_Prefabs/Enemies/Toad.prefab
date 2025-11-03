@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4865532196735925066}
   - component: {fileID: 7051134974759743356}
   - component: {fileID: 2289731615976831552}
-  - component: {fileID: 5036898051974686488}
+  - component: {fileID: 2239447644843563838}
   m_Layer: 6
   m_Name: Toad
   m_TagString: Enemy
@@ -165,14 +165,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPoint: {fileID: 6933383952611446464}
   downPoint: {fileID: 5023225166617524308}
+  coll: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 2368
-  coll: {fileID: 5036898051974686488}
   speed: 100
   life: 1
-  repulse: {x: 0, y: 200}
+  <KnockUpHitForce>k__BackingField: {x: 120, y: 20}
   repulseForce: 20
+  <Repulse>k__BackingField: {x: 0, y: 100}
   xDirection: -1
   enemyWeakenesses: 0100000008000000
 --- !u!95 &2289731615976831552
@@ -197,8 +198,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &5036898051974686488
-BoxCollider2D:
+--- !u!70 &2239447644843563838
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -231,18 +232,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.000092983246, y: -0.059651986}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.20984375, y: 0.20619419}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.001564771, y: -0.056821007}
+  m_Size: {x: 0.2146409, y: 0.20009905}
+  m_Direction: 0
 --- !u!1 &6645012384470464498
 GameObject:
   m_ObjectHideFlags: 0

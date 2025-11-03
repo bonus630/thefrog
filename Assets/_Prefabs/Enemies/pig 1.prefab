@@ -263,7 +263,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e05ffaf4afff03e48ac1df6190c86c6d, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e05ffaf4afff03e48ac1df6190c86c6d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
@@ -407,9 +407,9 @@ MonoBehaviour:
     m_Bits: 256
   speed: 20
   life: 1
-  <KnockUpHitForce>k__BackingField: 60
+  <KnockUpHitForce>k__BackingField: {x: 100, y: 20}
   repulseForce: 80
-  repulse: {x: 0, y: 80}
+  <Repulse>k__BackingField: {x: 0, y: 100}
   xDirection: -1
   enemyWeakenesses: 00000000
   bodyCollider: {fileID: 7221884794571044310}

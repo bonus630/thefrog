@@ -1,4 +1,3 @@
-using br.com.bonus630.thefrog.Debuggers;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -18,13 +17,14 @@ namespace br.com.bonus630.thefrog.Player
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int LifeID = Animator.StringToHash("Life");
         public bool PrepareFallDie { get; set; } = false;
+        public bool InHit { get; private set; }
 
         private void Start()
         {
             CurrentLife = player.playerManager.PlayerStates.Hearts;
 #if UNITY_EDITOR
             CurrentLife = 18;
-            GameManager.Instance.UpdateHeart(18);
+            player.playerManager.UpdateHeart(18);
 #endif
         }
 
@@ -72,31 +72,38 @@ namespace br.com.bonus630.thefrog.Player
                     if (collision.collider.TryGetComponent<IEnemy>(out IEnemy enemy))
                     {
                         player.knockUp = true;
-                        player.knockUpForce = Vector2.Scale(collision.GetContact(0).normal, enemy.KnockUpHitForce);
+                        player.KnockedUpOnHit(collision.GetContact(0).normal.x * enemy.KnockUpHitForce);
+                        //player.knockUpForce = Vector2.Scale(collision.GetContact(0).normal, enemy.KnockUpHitForce);
                     }
                 }
+            }
+            if (collision.gameObject.layer == 10)
+            {
+                Die();
             }
         }
         public void Hit(int damage = 1)
         {
             if (invencible)
                 return;
-            GameManager.Instance.UpdateHeart(-damage);
+            player.playerManager.UpdateHeart(-damage);
             invencible = true;
             anim.SetTrigger(HitID);
             audioSource.PlayOneShot(hitSFX);
             anim.SetInteger(LifeID, CurrentLife);
+            this.InHit = true;
+            Invoke(nameof(RestoreHit), hitTime);
             if (CurrentLife <= 0)
             {
                 Invoke(nameof(GameOver), 0.517f);
             }
             try
             {
-                FindAnyObjectByType<ScreenEffects>().FashVignettePlayerDamage();
+                ServiceLocator.Instance.Get<ScreenEffects>().FashVignettePlayerDamage();
             }
             catch { }
         }
-
+        private void RestoreHit() => this.InHit = false;
         public void Die()
         {
             player.playerMovement.FreezePlayerMove();
@@ -110,8 +117,8 @@ namespace br.com.bonus630.thefrog.Player
             player.RigibodyGravityScale = 0;
             player.RigibodyBodyType = RigidbodyType2D.Static;
             player.FooterColliding.GetComponent<BoxCollider2D>().isTrigger = true;
-
-            GameManager.Instance.GameOver();
+            player.playerManager.PlayerDie();
+           
         }
 
     }

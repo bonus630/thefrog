@@ -9,7 +9,9 @@ namespace br.com.bonus630.thefrog.Manager
     {
         public PlayerStates PlayerStates { get; private set; }
 
-        private Dictionary<GameEventName, Action> eventActions = new();
+        private readonly Dictionary<GameEventName, Action> eventActions = new();
+
+        private Action GameEventChanged = null;
 
         private void Awake()
         {
@@ -21,24 +23,13 @@ namespace br.com.bonus630.thefrog.Manager
             eventActions.Add(GameEventName.NPCTutorial, () => { PlayerStates.HasWallJump = true; });
             eventActions.Add(GameEventName.FeatherTouch, () => { PlayerStates.FallsControl = true; });
             eventActions.Add(GameEventName.MagicGlass, () => { PlayerStates.HasVision = true; });
-            this.PlayerStates = GameManager.Instance.PlayerStates;
+            this.PlayerStates = GameManager.Instance.PlayerStates ?? new PlayerStates();
             GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;
             ServiceLocator.Instance.GetAsync<IHourProvider>(HourProviderCallBack);
         }
 
-        private void OnGameStatesRestaured()
-        {
-           // Debug.Log("[PlayerManager] ongamerestaured:");
-            this.PlayerStates = GameManager.Instance.PlayerStates;
-        }
-
-        private void OnGameEventCompleted(GameEvent obj)
-        {
-           // Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
-            if (eventActions.TryGetValue(obj.Name, out Action action))
-                action?.Invoke();
-        }
+        //vamos deixar as chamadas de gamemanager aqui por enquanto, depois vamos centralizar tudo em um event bus
         public void UpdatePlayer()
         {
             this.PlayerStates.Speed += 0.1f;
@@ -49,10 +40,31 @@ namespace br.com.bonus630.thefrog.Manager
             this.PlayerStates.Shurykens += shurykens;
             GameManager.Instance.UpdateShurykens();
         }
+        public void UpdateHeart(int hearts) => GameManager.Instance.UpdateHeart(hearts);
+        
+        public void PlayerDie() => GameManager.Instance.GameOver();
+        public void ActiveSkill(bool active)=> GameManager.Instance.ActiveSkill(active);
+        public void GameEventChange(Action callback) => this.GameEventChanged = callback;
+        private void OnGameEventChanged() => this.GameEventChanged?.Invoke();
         private void HourProviderCallBack(IHourProvider hourProvider)
         {
             PlayerStates.Hour = hourProvider.Hour;
             hourProvider.OnHourChanged += (hour) => { PlayerStates.Hour = hour; };
+        }
+        private void OnGameStatesRestaured()
+        {
+           // Debug.Log("[PlayerManager] ongamerestaured:");
+            this.PlayerStates = GameManager.Instance.PlayerStates;
+        }
+
+        private void OnGameEventCompleted(GameEvent obj)
+        {
+            // Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
+            if (eventActions.TryGetValue(obj.Name, out Action action))
+            {
+                action?.Invoke();
+                OnGameEventChanged();
+            }
         }
     }
 }

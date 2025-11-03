@@ -32,5 +32,18 @@ namespace br.com.bonus630.thefrog.Debuggers
             string className = System.IO.Path.GetFileNameWithoutExtension(filePath);
             Debug.LogError($"[{className}.{methodName} (linha {lineNumber})] {message}");
         }
+        public static void Pause([CallerMemberName] string methodName = "",
+            [CallerFilePath] string filePath = "",
+            [CallerLineNumber] int lineNumber = 0)
+        {
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPaused)
+            {
+                UnityEditor.EditorApplication.isPaused = true;
+                string className = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                Debug.LogError($"Paused: [{className}.{methodName} (linha {lineNumber})]");
+            }
+#endif
+        }
     }
 }

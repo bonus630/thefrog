@@ -98,7 +98,6 @@ namespace br.com.bonus630.thefrog.Manager
                 Destroy(gameObject);
                 return;
             }
-
             playerStates = new PlayerStates(new PlayerPosition(gameObject.transform.position), new Datas(), new Datas(), new Datas());
             environmentStates = new EnvironmentStates(playerStates);
 #if UNITY_EDITOR
@@ -107,7 +106,6 @@ namespace br.com.bonus630.thefrog.Manager
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             Instance = this;
-
             DontDestroyOnLoad(gameObject);
         }
         private void Start()
@@ -220,6 +218,7 @@ namespace br.com.bonus630.thefrog.Manager
         private SceneStartType sceneStartType;
         public void LoadGame(SceneStartType type, int index = 0)
         {
+            
             // Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
@@ -622,7 +621,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasVision = true;
             // playerStates.HasFireball = true;
             // playerStates.HasLightning = true;
-            //playerStates.HasWallJump = true;
+            playerStates.HasWallJump = true;
             //playerStates.HasDoubleJump = true;
             //playerStates.FallsControl = true;
             //playerStates.HasDash = true;

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
-    [DefaultExecutionOrder(-100)]
+    [DefaultExecutionOrder(-99)]
     public class EventsManager : MonoBehaviour
     {
 
@@ -17,54 +17,19 @@ namespace br.com.bonus630.thefrog.Manager
         void Awake()
         {
             audioSource = GetComponent<AudioSource>();
-            GameEvent previewEvent = new GameEvent(GameEventName.NPCFirstTalk, true, false);
-            events.Add(previewEvent);
-            GameEvent killPig = new GameEvent(GameEventName.KillPig, true, false);
-            events.Add(killPig);
-            GameEvent firtEvent = new GameEvent(GameEventName.NPCTutorial, false, false);
-            firtEvent.Requires = new List<GameEvent>()
-            {
-                previewEvent,
-            };
-            events.Add(firtEvent);
-
-            GameEvent secondEvent = new GameEvent(GameEventName.Shuryken, false, false);
-            secondEvent.Requires = new List<GameEvent>() { firtEvent };
-            events.Add(secondEvent);
-            GameEvent thirdEvent = new GameEvent(GameEventName.Gravity, false, false);
-            thirdEvent.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(thirdEvent);
-            GameEvent fourthEvent = new GameEvent(GameEventName.Teleport, false, false);
-            fourthEvent.Requires = new List<GameEvent>() { thirdEvent };
-            events.Add(fourthEvent);
-            GameEvent heartContainer = new GameEvent(GameEventName.HeartContainer, false, false);
-            heartContainer.Requires = new List<GameEvent>() { thirdEvent };
-            events.Add(heartContainer);
-            GameEvent scroll = new GameEvent(GameEventName.MysticScroll, false, false);
-            scroll.Requires = new List<GameEvent>() { thirdEvent };
-            events.Add(scroll);
-            GameEvent duckPath = new GameEvent(GameEventName.DuckPath, false, false);
-            duckPath.Requires = new List<GameEvent>() { secondEvent };
-            events.Add(duckPath);
-
-            events.Add(new GameEvent(GameEventName.FireBall));
-            events.Add(new GameEvent(GameEventName.PlayerCheckWall));
-            
-            events.Add(new GameEvent(GameEventName.AppleTreeFounded));
-            events.Add(new GameEvent(GameEventName.FeatherTouch));
-            events.Add(new GameEvent(GameEventName.KoarFounded));
-            events.Add(new GameEvent(GameEventName.Dash));
-            events.Add(new GameEvent(GameEventName.LightningBolt));
-           
-            events.Add(new GameEvent(GameEventName.DefeatWizard));
-            events.Add(new GameEvent(GameEventName.RollingWind));
-            events.Add(new GameEvent(GameEventName.PurifyWater));
-            events.Add(new GameEvent(GameEventName.LadyLaments));
-            events.Add(new GameEvent(GameEventName.PrisionerTip));
-            events.Add(new GameEvent(GameEventName.MagicGlass));
+            InitEvents();
 
         }
+        private void InitEvents()
+        {
+            foreach(GameEventName gameEvent in Enum.GetValues(typeof(GameEventName)))
+            {
+                if (gameEvent == GameEventName.None)
+                    continue;
+                events.Add(new GameEvent(gameEvent));
+            }
 
+        }
         public GameEvent CurrentEvent()
         {
             return events[currentEventIndex];
@@ -179,8 +144,8 @@ namespace br.com.bonus630.thefrog.Manager
         public GameEventName Name { get; set; }
         public bool Unlocked { get; set; }
         public bool Completed { get; set; }
-        public List<GameEvent> Requires { get; set; }
-        public List<GameEvent> Unlockes { get; set; }
+       // public List<GameEvent> Requires { get; set; }
+       // public List<GameEvent> Unlockes { get; set; }
         public override string ToString()
         {
             return Name.ToString();

@@ -29,20 +29,14 @@ namespace br.com.bonus630.thefrog.Player
         {
             CheckProjectil();
             SetCurrentProjectil();
-            GameManager.Instance.eventManager.GameEventCompleted += EventManager_GameEventCompleted;
         }
-
-        private void EventManager_GameEventCompleted(GameEvent obj)
+   
+        public void GameEventsChanged()
         {
             CheckProjectil();
             if (count - 1 > -1)
                 currentIndex = count - 1;
             SetCurrentProjectil();
-        }
-
-        void Update()
-        {
-            //   time += Time.deltaTime;
         }
 
         public void SelectProjectile(float direction)

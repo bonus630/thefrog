@@ -14,13 +14,19 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] protected LayerMask layerMask;
         [SerializeField] protected float speed = 200;
         [SerializeField] protected float life = 1;
-        [field: SerializeField][Tooltip("Repulso no acerto no player")] public Vector2 KnockUpHitForce { get; set; } = Vector2.right * 100;
-        [SerializeField] protected float repulseForce = 100;
-        [SerializeField][Tooltip("Antigo não usar")] protected float repulse;
-        [field:SerializeField][Tooltip("Repulso no pulo do player")] public Vector2 Repulse { get; set; } = Vector2.up * 100;
+        [field: SerializeField][Tooltip("Repulso no acerto no player")] 
+        public Vector2 KnockUpHitForce { get; set; } = Vector2.right * 100;
+        [SerializeField]
+        [Tooltip("Parece nao ser usado")]
+        protected float repulseForce = 100;
+        //[SerializeField][Tooltip("Antigo não usar")] 
+        //protected float repulse;
+        [field:SerializeField][Tooltip("Repulso no pulo do player")]
+        public Vector2 Repulse { get; set; } = Vector2.up * 100;
         public bool IsEnable { get; set; } = true;
         public bool IsDied { get;protected set; } = false;
-        [SerializeField][Range(-1, 1)] protected int xDirection = -1;
+        [SerializeField][Range(-1, 1)] 
+        protected int xDirection = -1;
         [SerializeField] protected List<Elements> enemyWeakenesses;
 
         protected Rigidbody2D rg;
@@ -56,8 +62,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                IPlayer player;
-                if (collision.gameObject.TryGetComponent<IPlayer>(out player) && player.FooterTouching(coll))
+                if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(coll))
                 {
                    // Debug.Log("collision base");
                     player.KnockUpOnJump(Repulse);
@@ -73,7 +78,8 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public virtual void Hit(float hit)
         {
-            KnockUpHitForce = new Vector2(80f,0);
+            //bugs futuros no inimigo, olhar aqui
+           // KnockUpHitForce = new Vector2(80f,0);
             //Debug.Log("Collider Hit BASE " + gameObject.name);
             //animator.SetTrigger("Hit");
             animator.SetTrigger(HitID);

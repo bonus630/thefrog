@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 
 namespace br.com.bonus630.thefrog.Player
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-1),SelectionBase]
     public class Player : MonoBehaviour, IPlayer, IForcible
     {
         [SerializeField] private GameObject interactIcon;
@@ -90,6 +90,9 @@ namespace br.com.bonus630.thefrog.Player
             playerSpiritController = GetComponent<PlayerSpiritController>();
             barManager = GetComponent<BarManager>();
             playerManager = GetComponent<PlayerManager>();
+            playerManager.GameEventChange(() => { playerSpiritController.GameEventsChanged(); });
+
+
             //Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
             ServiceLocator.Instance.Register<PlayerInput>(GetComponent<PlayerInput>());
             ServiceLocator.Instance.Register<IPlayer>(this);
@@ -97,12 +100,6 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            //GameManager.Instance.PlayerStates.HasGravity = GameManager.Instance.IsEventCompleted(GameEventName.Gravity);
-            //GameManager.Instance.PlayerStates.FallsControl = GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch);
-            //Debug.Log($"Gamepad: {Gamepad.current.GetType() == typeof(XInputControllerWindows)}");
-            //states = GameManager.Instance.PlayerStates;
-            //Debug
-            //            Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
 #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
@@ -154,11 +151,11 @@ namespace br.com.bonus630.thefrog.Player
             playerMovement.UseYvelocityLimit = false;
             //    rb.AddForce(force, mode);
             Invoke(nameof(ReenableYVelocityLimit), 0.6f);
-            while (timer < duration)
+            while (timer < duration && Mathf.Abs(rb.linearVelocity.x) >= 0.1f)
             {
                 // se a velocidade j� caiu, pode desligar antes
-                if (Mathf.Abs(rb.linearVelocity.x) < 0.1f)
-                    break;
+                //if (Mathf.Abs(rb.linearVelocity.x) < 0.1f)
+                //    break;
 
                 timer += Time.fixedDeltaTime; // usa ciclo da f�sica
                 yield return new WaitForFixedUpdate();
@@ -323,7 +320,7 @@ namespace br.com.bonus630.thefrog.Player
             this.gravityDirection = gravityDirection;
          
             //LinearMaxY *= -1;
-            GameManager.Instance.ActiveSkill(this.gravityDirection > 0);
+            playerManager.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
             {
                // Debug.Log(gravityDirection);
@@ -393,22 +390,58 @@ namespace br.com.bonus630.thefrog.Player
             yield return new WaitForSeconds(time);
             inputsOn = true;
         }
-        public void KnockedUpOnHit()
+        public void KnockUpOnJump(Vector2 force)
+        {
+            knockUp = true;
+            if (IsJumpPressed)
+                force.y *= 1.5f;
+            if (gravityDirection == 1)
+                force.y *= -1;
+            knockUpForce = force * 2;
+            playerMovement.TimeInFastFall = 0;
+            playerMovement.airDash = false;
+            Debug.Log("[player] knockuponjump force:" + force);
+        }
+        public void KnockedUpOnHit(Vector2 force)
+        {
+            knockUp = true;
+            knockUpForce = force;
+            Debug.Log("[player] knockeduponhit force:" + force);
+            ApplyKnockUp();
+            
+        }
+        //public void KnockedUpOnHit()
+        //{
+        //    if (knockUp)
+        //    {
+        //        if (rb == null)
+        //        {
+        //            Debug.LogError("Rigidbody2D est� null no Build!");
+        //            return;
+        //        }
+        //        //vou resetar o airDash aqui, mas n�o � o lugar certo para isso
+        //        //playerMovement.airDash
+        //        Debug.Log("knocked hit: " + knockUpForce);
+        //        rb.linearVelocity = Vector2.zero;
+        //        AddForce(knockUpForce, time: 0.2f, removeInput: false);
+        //        //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
+        //        //pq estou estou resetando o timeinfastfall aqui?
+        //        //aparentemente utilizo este metodo para aplicar o knock de pulo e hit
+
+        //        knockUp = false;
+        //    }
+        //}
+        public void ApplyKnockUp()
         {
             if (knockUp)
             {
                 if (rb == null)
                 {
-                    // Debug.LogError("Rigidbody2D est� null no Build!");
-                    return;
+                    knockUp = false;
+                    throw new System.Exception("Rigidbody2D NULL");
                 }
-                //vou resetar o airDash aqui, mas n�o � o lugar certo para isso
-                //playerMovement.airDash
-               // Debug.Log("knocked hit: " + knockUpForce);
                 rb.linearVelocity = Vector2.zero;
                 AddForce(knockUpForce, time: 0.2f, removeInput: false);
-                //rb.AddForce(knockUpForce, ForceMode2D.Impulse);
-                playerMovement.TimeInFastFall = 0;
                 knockUp = false;
             }
         }
@@ -436,15 +469,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             return GetComponent<CapsuleCollider2D>().IsTouching(collision);
         }
-        public void KnockUpOnJump(Vector2 force)
-        {
-            knockUp = true;
-            if (IsJumpPressed)
-                force.y *= 1.5f;
-            if (gravityDirection == 1)
-                force.y *= -1;
-            knockUpForce = force * 2;
-        }
+     
 
         public void ChangeNumberShurykens(int shurykens)
         {

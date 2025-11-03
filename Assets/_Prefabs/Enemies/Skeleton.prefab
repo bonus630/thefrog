@@ -340,9 +340,9 @@ MonoBehaviour:
     m_Bits: 2368
   speed: 60
   life: 2
-  <KnockUpHitForce>k__BackingField: 100
+  <KnockUpHitForce>k__BackingField: {x: 100, y: 20}
   repulseForce: 100
-  repulse: {x: 0, y: 100}
+  <Repulse>k__BackingField: {x: 0, y: 100}
   xDirection: -1
   enemyWeakenesses: 
   AttackPoint: {fileID: 9055863374887291939}
