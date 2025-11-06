@@ -7,6 +7,7 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace br.com.bonus630.thefrog.Player
 {
@@ -100,26 +101,26 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
           
             
-            //transform.position = GameManager.Instance.PlayerStartPosition;
-            //if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-            //{
-            //    audioSource.PlayOneShot(Entrace);
-            //    //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-            //    AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
-            //}
-#else
-            //if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
-            //    transform.position = GameManager.Instance.PlayerStartPosition;
+            transform.position = GameManager.Instance.PlayerStartPosition;
+            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            {
+                audioSource.PlayOneShot(Entrace);
+                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+                AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
+            }
+//#else
+//            if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
+//                transform.position = GameManager.Instance.PlayerStartPosition;
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-#endif
+//#endif
 
         }
 
@@ -373,6 +374,9 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void Launch()
         {
+            //bug
+            //o valor não está chegando a zero
+            //o nº foi alterado ao pegar uma shuryken
             if (playerManager.PlayerStates.Shurykens > 0)
             {
                 GameObject projectileGO = playerMovement.GetWallSliding ? Instantiate(projectile, projectilesSpawPoint2.position, Quaternion.identity) : Instantiate(projectile, projectilesSpawPoint.position, Quaternion.identity);

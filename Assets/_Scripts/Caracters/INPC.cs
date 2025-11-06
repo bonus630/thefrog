@@ -19,6 +19,9 @@ namespace br.com.bonus630.thefrog.Caracters
         /// O player executa esse metodo assim que não existe mais falas no dialogo
         /// </summary>
         void SetFinishDialogue();
+        DialogueData GetDialogueForPlayer();
+
+        void OnStartDialogue();
         void CheckInitialDialogue(int dialogue);
 
         Dictionary<string, string> GetDialogueVariables();

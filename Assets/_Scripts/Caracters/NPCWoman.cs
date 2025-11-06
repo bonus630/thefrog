@@ -12,15 +12,18 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] Collider2D Entrace;
         [SerializeField] MusicSource musicSource;
         [SerializeField] int mazeSteps = 5;
+        [SerializeField] DialogueData firstDialogue;
         [SerializeField] DialogueData secondDialogue;
         [SerializeField] DialogueData thirdDialogue;
         List<int> mazeDirections = null;
         private readonly string MAZE = "MAZE";
+        private bool createInThisInteraction = false;
         public void Start()
         {
             if(GameManager.Instance.IsEventCompleted(GameEventName.LadyLaments))
                 Destroy(gameObject);
-           CheckDialogue();
+            this.CurrentDialogueData = firstDialogue;
+           
 
         }
         public override DialogueData CurrentDialogueData { 
@@ -33,16 +36,22 @@ namespace br.com.bonus630.thefrog.Caracters
         {
 
         }
+        public override DialogueData GetDialogueForPlayer()
+        {
+            CheckDialogue();
+            return this.CurrentDialogueData;
+        }
         private void CheckDialogue()
         {
-            if (DataScenePreserver.Instance.Contains(MAZE))
+            Debug.Log($"createInThisInteraction:{createInThisInteraction} dialogueCounter{dialogueCounter}");
+            if (DataScenePreserver.Instance.Contains(MAZE) && !createInThisInteraction)
             {
                 mazeDirections = DataScenePreserver.Instance.Get<ListStorage<int>>(MAZE).Values;
-                this.currentDialogueData = secondDialogue;
+                this.CurrentDialogueData = secondDialogue;
             }
             if (GameManager.Instance.EnvironmentStates.Activeds.Contains("trans_0005"))
             {
-                this.currentDialogueData = thirdDialogue;
+                this.CurrentDialogueData = thirdDialogue;
             }
         }
         public override Transform GetTransform() => transform;
@@ -53,6 +62,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
         public override void SetFinishDialogue()
         {
+            
             if(this.CurrentDialogueData==thirdDialogue)
             {
                 GameManager.Instance.ScreenEffects.FadeIn(10f);
@@ -62,10 +72,21 @@ namespace br.com.bonus630.thefrog.Caracters
             musicSource.Play(BackgroundMusic.Ignition, true);
             Entrace.enabled = true;
         }
+        public override bool HaveMoreDialogue()
+        {
+            bool result = CurrentDialogueData.Count > dialogueCounter;
+            dialogueCounter++;
+            if (CurrentDialogueData == firstDialogue && CurrentDialogueData.Count==dialogueCounter)
+                createInThisInteraction = false;
+            return result;
+        }
         public override Dictionary<string, string> GetDialogueVariables()
         {
             if (mazeDirections == null)
+            {
                 FillPath();
+                createInThisInteraction = true;
+            }
             string path = string.Empty;
             for (int i = 0; i < mazeSteps; i++)
                 path += ((MazeDirections)mazeDirections[i]).ToString() + ", ";

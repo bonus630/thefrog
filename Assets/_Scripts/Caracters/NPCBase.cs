@@ -56,6 +56,13 @@ namespace br.com.bonus630.thefrog.Caracters
         {
 
         }
+        public virtual DialogueData GetDialogueForPlayer()
+        {
+            CheckDialogs(); // Aqui o NPC ajusta o diálogo conforme estado
+            return CurrentDialogueData;
+        }
+
+        public virtual void OnStartDialogue() { }
         public void PlayerReadDialogue()
         {
             IsFirstDialogue = false;

@@ -33,7 +33,6 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void OnAttack(InputAction.CallbackContext context)
         {
-
             if (context.performed)
             {
 
@@ -42,12 +41,12 @@ namespace br.com.bonus630.thefrog.Player
 
                     if (interacting is INPC inpc)
                     {
-
+                        DialogueData data = inpc.GetDialogueForPlayer();
+                        inpc.OnStartDialogue();
+                        dialogueSystem.DialogueData = data;
+                        dialogueSystem.DialogueVariables = inpc.GetDialogueVariables();
                         if (inpc.HaveMoreDialogue())
                         {
-                            inpc.CheckDialogs();
-                            dialogueSystem.DialogueData = inpc.CurrentDialogueData;
-                            dialogueSystem.DialogueVariables = inpc.GetDialogueVariables();
                             dialogueSystem.Next();
                         }
                         else
@@ -55,8 +54,6 @@ namespace br.com.bonus630.thefrog.Player
                             inpc.SetFinishDialogue();
                         }
                     }
-
-
                 }
                 else if (interacting != null && canInteract)
                 {
@@ -64,12 +61,10 @@ namespace br.com.bonus630.thefrog.Player
                 }
                 else if (tips != null)
                 {
-
                     ReadDialogue();
                 }
                 else
                 {
-
                     player.Launch();
                 }
                 
@@ -106,7 +101,7 @@ namespace br.com.bonus630.thefrog.Player
                 //Debug.Log("NPC trigger exit");
                 npc = null;
                 interacting = null;
-                dialogueSystem.ResetDialog();//movendo para playerdialogue
+                dialogueSystem.ResetDialog();
             }
             if (collision.gameObject.CompareTag("Item"))
             {
@@ -117,7 +112,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 //  Debug.Log("tips trigger exit");
                 tips = null;
-                dialogueSystem.ResetDialog();//movendo para playerdialogue
+                dialogueSystem.ResetDialog();
             }
         }
         public void ReadDialogue()

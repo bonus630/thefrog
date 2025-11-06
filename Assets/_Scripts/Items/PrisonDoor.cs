@@ -6,12 +6,9 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Items
 {
+    [SelectionBase]
     public class PrisonDoor : IActivator
     {
-        Vector3 closePosition = Vector3.zero;
-        Vector3 openPosition = Vector3.up * 0.5f;
-        AudioSource audioSource;
-
         [SerializeField] Collider2D doorCollider;
         [SerializeField] Transform doorGrid;
         [SerializeField] float operationSpeed = 0.05f;
@@ -22,32 +19,42 @@ namespace br.com.bonus630.thefrog.Items
 
         [field: SerializeField] public bool IsOpened { get; set; } = false;
 
+        Vector3 closePosition = Vector3.zero;
+        Vector3 openPosition = Vector3.up * 0.5f;
+        AudioSource audioSource;
+        bool useSound = true;
+
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
             if (GameManager.Instance.IsActived(this.DoorID))
-                setOpenClose(doorGrid,openPosition, true);
+                setOpenClose(doorGrid, openPosition, true, true);
         }
 
         public override void Activate()
         {
+            if (this.Actived)
+                return;
             StopAllCoroutines();
             audioSource.Stop();
             StartCoroutine(OpenClose(doorGrid, openPosition, operationSpeed, true));
-            StartCoroutine(PlayAudioSequence());
+            if (useSound)
+                StartCoroutine(PlayAudioSequence());
         }
 
         public override void Deactive()
         {
+            if (!this.Actived)
+                return;
             StopAllCoroutines();
             audioSource.Stop();
             StartCoroutine(OpenClose(doorGrid, closePosition, operationSpeed, false));
-            StartCoroutine(PlayAudioSequence());
+            if (useSound)
+                StartCoroutine(PlayAudioSequence());
         }
 
         private IEnumerator OpenClose(Transform transform, Vector3 destine, float speed = 5f, bool opening = true)
         {
-
             while (Vector3.Distance(transform.localPosition, destine) > 0.00001f)
             {
                 Vector3 t = Vector3.MoveTowards(transform.localPosition, destine, speed * Time.deltaTime);
@@ -59,12 +66,13 @@ namespace br.com.bonus630.thefrog.Items
             audioSource.clip = endSound;
             audioSource.Play();
         }
-        private void setOpenClose(Transform transform, Vector3 destine, bool opened)
+        private void setOpenClose(Transform transform, Vector3 destine, bool opened, bool useSound = true)
         {
             transform.localPosition = destine;
             IsOpened = opened;
             this.Actived = IsOpened;
             doorCollider.enabled = IsOpened;
+            this.useSound = useSound;
             GameManager.Instance.SetActived(this.DoorID, opened);
         }
         private IEnumerator PlayAudioSequence()

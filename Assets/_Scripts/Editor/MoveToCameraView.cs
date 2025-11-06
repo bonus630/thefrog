@@ -24,11 +24,11 @@ public class MoveToCameraView
             }
 
             Camera cam = sceneView.camera;
-            Undo.RecordObjects(Selection.transforms, "Move To Camera View");
+            Undo.RecordObjects(Selection.transforms, "Move To Camera XY");
             foreach (Transform t in Selection.transforms)
             {
                 Vector3 targetPos = cam.transform.position + cam.transform.forward * 5f;
-                t.position = targetPos;
+                t.position = new Vector3(targetPos.x,targetPos.y,t.position.z);
             }
         }
         [MenuItem("GameObject/Distance between %#d", false, 0)] // Ctrl+Shift+d de atalho

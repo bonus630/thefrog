@@ -56,8 +56,10 @@ namespace br.com.bonus630.thefrog.Manager
             if (blocked)
                 return;
 
-            if (!data.ColliderOther.CompareTag("Player"))
+            if (!ServiceLocator.Instance.Get<IPlayer>().BodyTouching(data.GameObjectOwner.GetComponent<Collider2D>()))
                 return;
+            //if (!data.ColliderOther.CompareTag("Player"))
+            //    return;
 
             blocked = true;
            // Debug.Log("Data.index: " + data.Index);

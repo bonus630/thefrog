@@ -340,7 +340,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void UpdateShurykens()
         {
-            bool active = playerStates.Shurykens > 0;
+            bool active = playerStates.Shurykens >= 0;
             GameObject hud = GameObject.Find(ShurykenHUD);
 
             if (active)
