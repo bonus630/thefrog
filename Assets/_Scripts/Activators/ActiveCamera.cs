@@ -43,6 +43,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         protected void ChangeCamera()
         {
+           // Debug.Log("[ActiveCamera] gameObject:" + gameObject.name);
             GameObject camera = controller.ActiveCam(cameraIndex);
             string confiner = ConfinerName(cameraIndex);
            // Debug.Log($"Index camera:{cameraIndex} confiner:{confinierIndex} name:{confiner}");

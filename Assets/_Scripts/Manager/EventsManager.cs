@@ -4,10 +4,9 @@ using System.Linq;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
-    [DefaultExecutionOrder(-99)]
+    [DefaultExecutionOrder(-101)]
     public class EventsManager : MonoBehaviour
     {
-
         int currentEventIndex = 0;
         public List<GameEvent> events = new List<GameEvent>();
         [SerializeField] List<string> completedEvents = new List<string>();
@@ -18,7 +17,6 @@ namespace br.com.bonus630.thefrog.Manager
         {
             audioSource = GetComponent<AudioSource>();
             InitEvents();
-
         }
         private void InitEvents()
         {
@@ -28,7 +26,6 @@ namespace br.com.bonus630.thefrog.Manager
                     continue;
                 events.Add(new GameEvent(gameEvent));
             }
-
         }
         public GameEvent CurrentEvent()
         {
@@ -72,7 +69,6 @@ namespace br.com.bonus630.thefrog.Manager
                 if (ev.Completed && (events & ev.Name) != 0)
                     return true;
             }
-
             return false;
         }
         public bool AllEventsCompleted(GameEventName events)
@@ -92,7 +88,6 @@ namespace br.com.bonus630.thefrog.Manager
                         return false;
                 }
             }
-
             return true;
         }
         public void LoadEvents(Datas eventsDatas)

@@ -274,7 +274,7 @@ namespace br.com.bonus630.thefrog.Manager
         public void InstantPlay(BackgroundMusic music, bool loop = false)
         {
             AudioClip clip = BackgroundMusics[(int)music];
-            InstantPlay(clip, false);
+            InstantPlay(clip, loop);
         }
         public void InstantPlay(AudioClip clip, bool loop = false)
         {

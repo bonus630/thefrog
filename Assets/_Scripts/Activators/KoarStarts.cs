@@ -44,17 +44,18 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.PlayerStates.FallsControl = false;
             koarLimiter.SetActive(true);
             dialogueIndex++;
-
-
+            yield return new WaitForSeconds(4.5f);//tempo de fala
+            GameManager.Instance.EventCompleted(GameEventName.KoarFounded);
         }
         private void RestorePlayerInput()
         {
             Time.timeScale = 1f;
             GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0);
             //GameManager.Instance.GetPlayerScript.MoveInputOn = true;
-            musicSource.Sleep();
-            musicSource.CrossFade(BackgroundMusic.DarkWind, true);
-            Destroy(gameObject, 1f);
+           // musicSource.Sleep();
+            musicSource.InstantPlay(BackgroundMusic.DarkWind, true);
+            // musicSource.CrossFade(BackgroundMusic.DarkWind, true);
+            //Destroy(gameObject, 1f);
         }
         public override DialogueData GetDialogue(int index = -1)
         {

@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
@@ -68,6 +69,16 @@ namespace br.com.bonus630.thefrog.Manager
             screenFader.fadeDuration = duration;
             StartCoroutine(screenFader.FadeIn());
         }
+        //public Coroutine FadeOut(float duration = 1f)
+        //{
+        //    screenFader.fadeDuration = duration;
+        //    return StartCoroutine(screenFader.FadeOut());
+        //}
+        //public Coroutine FadeIn(float duration = 1f)
+        //{
+        //    screenFader.fadeDuration = duration;
+        //    return StartCoroutine(screenFader.FadeIn());
+        //}
         public void CameraOffSet(Vector2 offsetXY)
         {
             camerasController.SetOffSet(offsetXY);

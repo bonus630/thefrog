@@ -118,7 +118,6 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     FallsControl();
                 }
-                player.playerHealth.PrepareFallDie = TimeInFastFall > maxTimeInFall;
                 if (UseYvelocityLimit)
                 {
                     Vector2 velocity = player.RigibodyLinearVelocity;
@@ -133,6 +132,7 @@ namespace br.com.bonus630.thefrog.Player
             {
                 FastFallParticles.Stop();
             }
+            player.playerHealth.PrepareFallDie = TimeInFastFall > maxTimeInFall;
             if (player.MoveInputOn)
                 Move();
             Jump();
@@ -278,10 +278,11 @@ namespace br.com.bonus630.thefrog.Player
             doubleJump = false;
             anim.SetBool(JumpID, false);
             jumps = 2;
-            TimeInFastFall = 0;
+            Invoke(nameof(resetFastFall),0.1f);
             player.playerFallControl.FallsControl(false);
             anim.SetBool(FallingID, false);
         }
+        private void resetTimeInFastFall() => TimeInFastFall = 0;
         private void Move()
         {
             // Debug.Log("[PlayerMovement] ignoreDamping:" + IgnoreDamping);

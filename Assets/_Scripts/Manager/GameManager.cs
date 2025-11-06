@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Manager
         public float PlayTimeInSeconds { get; private set; }
         public int ToPoint { get; set; }
         private PlayerStates playerStates;
-        public PlayerStates PlayerStates { get { return playerStates; } private set { playerStates = value; } }
+        public PlayerStates PlayerStates { get { return playerStates; }  set { playerStates = value; } }
 
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
@@ -156,7 +156,6 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private bool TryPause(bool pause, string hudName, out GameObject go)
         {
-            
             if (GamePaused)
             {
                 var pauseHud = GameObject.Find(PauseHUD).transform.GetChild(0).gameObject;
@@ -194,8 +193,6 @@ namespace br.com.bonus630.thefrog.Manager
         {
             Pause(pause);
         }
-
-
         public void StartCountingTime()
         {
             _isCountingTime = true;
@@ -218,28 +215,36 @@ namespace br.com.bonus630.thefrog.Manager
         private SceneStartType sceneStartType;
         public void LoadGame(SceneStartType type, int index = 0)
         {
-            
+            StartCoroutine(LoadGame(true,type, index));
+        }
+        public IEnumerator LoadGame(bool courotine,SceneStartType type, int index = 0)
+        {
+            yield return new WaitForEndOfFrame();
             // Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
             {
                 StartCoroutine(ChangeScene(InternAreas));
-                return;
+                yield return new WaitForEndOfFrame();
+                
             }
             if (type == SceneStartType.Main)
             {
                 StartCoroutine(ChangeScene(MainScene));
-                return;
+                yield return new WaitForEndOfFrame();
             }
-            eventManager.Reset();
+            if(type == SceneStartType.Start || type == SceneStartType.New || type == SceneStartType.Continue)
+                eventManager.Reset();
             if (type == SceneStartType.Start)
             {
                 SceneManager.LoadScene(FroggerScene);
+                yield return new WaitForEndOfFrame();
             }
             if (type == SceneStartType.New)
             {
                 SaveStates(0);
                 SceneManager.LoadScene(MainScene);
+                yield return new WaitForEndOfFrame();
             }
             if (type == SceneStartType.Continue)
             {
@@ -253,9 +258,10 @@ namespace br.com.bonus630.thefrog.Manager
                 eventManager.LoadEvents(this.PlayerStates.CompletedGameEvents);
                 SceneManager.LoadScene(MainScene);
                 //ChangeGameToState(this.PlayerStates);
+                yield return new WaitForEndOfFrame();
             }
         }
-
+        
         private IEnumerator ChangeScene(string sceneName)
         {
             ServiceLocator.Instance.ResetService();
@@ -386,6 +392,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
      
         }
+        #region vamos passar tudo isso para o script HeartHUD
         int maxColHearts = 10;
         public void UpdateHeart(int hearts)
         {
@@ -450,6 +457,7 @@ namespace br.com.bonus630.thefrog.Manager
                 yield return new WaitForSeconds(0.05f);
             }
         }
+        #endregion
         public bool CanContinue()
         {
             SavesManager sm = new SavesManager();
@@ -514,10 +522,10 @@ namespace br.com.bonus630.thefrog.Manager
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(1).gameObject.GetComponentAtIndex(1);
                     break;
          
-                case GameEventName.HeartContainer:
-                    GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
-                    gameObject.SetActive(true);
-                    break;
+                //case GameEventName.HeartContainer:
+                //    GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+                //    gameObject.SetActive(true);
+                //    break;
                 case GameEventName.Shuryken:
                     GameObject o = GameObject.Find("ShurykenPoint");
                     if (o != null)
@@ -529,16 +537,16 @@ namespace br.com.bonus630.thefrog.Manager
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(2).gameObject.GetComponentAtIndex(1);
                     break;
-                case GameEventName.Gravity:
-                    var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
-                    hud.SetActive(true);
-                    break;
+                //case GameEventName.Gravity:
+                //    var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
+                //    hud.SetActive(true);
+                //    break;
 
                 case GameEventName.MysticScroll:
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(3).gameObject.GetComponentAtIndex(1);
-                    gameObject = GameObject.Find(ToSkyPoint).transform.GetChild(0).gameObject;
-                    gameObject.SetActive(true);
+                    //gameObject = GameObject.Find(ToSkyPoint).transform.GetChild(0).gameObject;
+                    //gameObject.SetActive(true);
 
                     break;
 
@@ -617,23 +625,23 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             ////Time.timeScale = 0.5f;
-            // playerStates.HasGravity = true;
+             playerStates.HasGravity = true;
             playerStates.HasVision = true;
             // playerStates.HasFireball = true;
             // playerStates.HasLightning = true;
             playerStates.HasWallJump = true;
             //playerStates.HasDoubleJump = true;
-            //playerStates.FallsControl = true;
+            playerStates.FallsControl = true;
             //playerStates.HasDash = true;
             //playerStates.Shurykens = 100;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             this.EventCompleted(GameEventName.PlayerCheckWall, false);
             this.EventCompleted(GameEventName.NPCFirstTalk, false);
             this.EventCompleted(GameEventName.KillPig, false);
-            this.EventCompleted(GameEventName.LightningBolt, false);
+            //this.EventCompleted(GameEventName.LightningBolt, false);
             this.EventCompleted(GameEventName.MagicGlass, false);
-            //this.EventCompleted(GameEventName.Gravity, false);
-            //this.EventCompleted(GameEventName.FeatherTouch, false);
+            this.EventCompleted(GameEventName.Gravity, false);
+            this.EventCompleted(GameEventName.FeatherTouch, false);
             //this.EventCompleted(GameEventName.FireBall, false);
             //this.EventCompleted(GameEventName.RollingWind, false);
             //this.EventCompleted(GameEventName.PrisionerTip, false);

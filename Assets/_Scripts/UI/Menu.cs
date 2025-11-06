@@ -3,7 +3,6 @@ using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Utils;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -46,11 +45,8 @@ namespace br.com.bonus630.thefrog.UI
         }
         public void ContinueButton_clicked()
         {
-            //GameManager.Instance.LoadGame(SceneStartType.Continue);
             buttons.SetActive(false);
             saves.SetActive(true);
-
-           
         }
         //public void QuitButton_clicked()
         //{
@@ -70,22 +66,5 @@ namespace br.com.bonus630.thefrog.UI
             saves.SetActive(false);
             EventSystem.current.SetSelectedGameObject(startButton.gameObject);
         }
-
-
-
-
-        //void Update()
-        //{
-        //    if (Input.GetButtonDown("Jump"))
-        //        StartButton_clicked();
-        //}
-
-        //public void OnMove(InputAction.CallbackContext context)
-        //{
-        //    if(context.canceled)
-        //    {
-        //        startButton.se
-        //    }
-        //}
     }
 }

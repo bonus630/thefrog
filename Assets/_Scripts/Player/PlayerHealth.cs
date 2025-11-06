@@ -106,6 +106,7 @@ namespace br.com.bonus630.thefrog.Player
         private void RestoreHit() => this.InHit = false;
         public void Die()
         {
+            Debug.Log("[PlayerHearth] prepareFallDie:" + PrepareFallDie);
             player.playerMovement.FreezePlayerMove();
             CurrentLife = 0;
             Hit();

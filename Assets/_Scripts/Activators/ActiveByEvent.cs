@@ -11,9 +11,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField][Tooltip("Desmarque para desativar")] bool Activing = true;
         void Start()
         {
-           // Debug.LogError("[ActiveByEvent] " + gameObject.name + " GameEvent: " + GameEvent);
-
-            if (GameManager.Instance.IsEventCompleted(GameEvent))
+             if (GameManager.Instance.IsEventCompleted(GameEvent))
             {
                 if (Activing)
                     ItemToActive.Activate();

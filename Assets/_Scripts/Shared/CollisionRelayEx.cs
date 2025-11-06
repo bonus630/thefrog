@@ -1,5 +1,4 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
@@ -30,6 +29,7 @@ namespace br.com.bonus630.thefrog.Shared
             data.ColliderOther = collision;
             OnTriggerExitAction?.Invoke(data);
         }
+
     }
     public class ColliderData
     {

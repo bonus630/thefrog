@@ -97,6 +97,8 @@ MonoBehaviour:
   upGame: {fileID: 0}
   downGame: {fileID: 0}
   koarLimiter: {fileID: 0}
+  koar: {fileID: 0}
+  distance: 4.5
 --- !u!1 &1270458179886077116
 GameObject:
   m_ObjectHideFlags: 0

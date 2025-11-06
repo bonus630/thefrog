@@ -12,27 +12,33 @@ namespace br.com.bonus630.thefrog.Player
     {
         [SerializeField] float visionTime = 10f;
         [SerializeField] float maxOffSetY = 5f;
+        [SerializeField] AudioClip audioVision;
+        IBarUI activeVisionBar;
+        AudioSource audioSource;
         float nextVisionTime = 0;
         bool activeVision = false;
         float activeVisionBarValue = 0;
         float ElapseTime = 0f;
         float gravityDirection;
-        IBarUI activeVisionBar;
         float maxValue = 100;
 
         float offsetY = 0;
+        Vector3 currentScale;
+        float time = 0;
 
         InputAction interactUp;
         InputAction interactDown;
         ScreenEffects effects;
         private void Start()
         {
+            currentScale = transform.localScale;
             var input = ServiceLocator.Instance.Get<PlayerInput>();
             var map = input.actions.FindActionMap("Global", true);
             interactUp = map.FindAction("InteractUp", true);
             interactDown = map.FindAction("InteractDown", true);
             interactUp.Enable();
             interactDown.Enable();
+            audioSource = GetComponent<AudioSource>();
             effects = ServiceLocator.Instance.Get<ScreenEffects>();
             ServiceLocator.Instance.Get<IPlayer>().GravityChanged += VisionController_GravityChanged;
         }
@@ -70,7 +76,18 @@ namespace br.com.bonus630.thefrog.Player
                 }
                 MoveVision();
             }
-            
+            if (activeVision)
+            {
+                float ping = Mathf.PingPong(time, 2f);
+                Vector3 v = new Vector3(currentScale.x - ping, currentScale.y - ping, currentScale.z);
+                if (time > 0.5f)
+                {
+                    time = 0;
+                    audioSource.PlayOneShot(audioVision);
+                }
+                time += Time.deltaTime;
+                transform.localScale = v;
+            }
         }
         private void OnDestroy()
         {

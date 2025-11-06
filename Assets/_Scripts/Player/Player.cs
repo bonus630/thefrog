@@ -106,13 +106,13 @@ namespace br.com.bonus630.thefrog.Player
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
           
             
-            transform.position = GameManager.Instance.PlayerStartPosition;
-            if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
-            {
-                audioSource.PlayOneShot(Entrace);
-                //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-                AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
-            }
+            //transform.position = GameManager.Instance.PlayerStartPosition;
+            //if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            //{
+            //    audioSource.PlayOneShot(Entrace);
+            //    //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
+            //    AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
+            //}
 #else
             //if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
             //    transform.position = GameManager.Instance.PlayerStartPosition;
@@ -510,6 +510,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             playerManager.UpdatePlayer();
         }
+        public PlayerStates GetPlayerStates => playerManager.PlayerStates;
     }
     public enum PlayerGravityDirection : short
     {

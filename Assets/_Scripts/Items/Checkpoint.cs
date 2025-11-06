@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace br.com.bonus630.thefrog.Items
@@ -44,6 +45,7 @@ namespace br.com.bonus630.thefrog.Items
         protected virtual void Check()
         {
             // Debug.Log("base checkpoint");
+            GameManager.Instance.PlayerStates = ServiceLocator.Instance.Get("Player").GetComponent<PlayerManager>().PlayerStates;
             GameManager.Instance.PlayerStates.PlayerPosition.Position = gameObject.transform.position;
             GameManager.Instance.SaveStates(0);
             active = true;

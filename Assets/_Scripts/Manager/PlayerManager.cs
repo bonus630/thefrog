@@ -66,5 +66,10 @@ namespace br.com.bonus630.thefrog.Manager
                 OnGameEventChanged();
             }
         }
+        private void OnDestroy()
+        {
+            GameManager.Instance.eventManager.GameEventCompleted -= OnGameEventCompleted;
+            GameManager.Instance.GameStatesRestaured -= OnGameStatesRestaured;
+        }
     }
 }

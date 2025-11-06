@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 namespace br.com.bonus630.thefrog.Activators
 {
     public class ToKoar : MonoBehaviour
@@ -12,11 +12,12 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] public Vector2 newLocation;
         [SerializeField] float playerWaitTime = 0.001f;
 
-        [SerializeField] GameObject upGame;
-        [SerializeField] GameObject downGame;
+        [SerializeField] CollisionRelayEx upGame;
+        [SerializeField] CollisionRelayEx downGame;
         [SerializeField] GameObject koarLimiter;
         //GameObject player;
-        GameObject koar;
+        [SerializeField] GameObject koar;
+        [SerializeField] float distance = 4.5f;
         bool inProgress = false;
         bool startCheckDistance = false;
 
@@ -26,18 +27,33 @@ namespace br.com.bonus630.thefrog.Activators
         int last = -1;
         public void Awake()
         {
-            screenEffects = FindAnyObjectByType<ScreenEffects>();
             koar = GameObject.Find("KoarActivator").transform.GetChild(0).gameObject;
-            upGame.GetComponent<CollisionRelayEx>().OnTriggerEnterAction += CheckEvent;
-            downGame.GetComponent<CollisionRelayEx>().OnTriggerEnterAction += CheckEvent;
+           // Debug.LogError($"[ToKoar] koarActivator {name} — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
+           // screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
+            //Debug.LogError($"[ToKoar] screen {name} — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
+        }
+        public void Start()
+        {
+           // Debug.LogError($"[ToKoar] {name} Start — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
+           // yield return null;
+          
+            // upGame = transform.GetChild(0).GetComponent<CollisionRelayEx>();
+            //  downGame = transform.GetChild(1).GetComponent<CollisionRelayEx>();
+            upGame.OnTriggerEnterAction += CheckEvent;
+           // Debug.LogError($"[ToKoar] upGame {name} — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
+            downGame.OnTriggerEnterAction += CheckEvent;
+           // Debug.LogError($"[ToKoar] downGame {name} — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
+       
+    
+
         }
         void Update()
         {
             if (startCheckDistance)
             {
-                if (Vector2.Distance(GameManager.Instance.GetPlayer.transform.position, newLocation) > 4.5)
+                if (Vector2.Distance(ServiceLocator.Instance.Get("Player").transform.position, newLocation) > distance)
                 {
-                    GameManager.Instance.GetPlayerScript.FallsControl();
+                    ServiceLocator.Instance.Get<IPlayer>().FallsControl();
                     startCheckDistance = false;
                 }
             }
@@ -53,12 +69,12 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (inProgress)
                 return;
-           // Debug.Log("feather touch" + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
+            // Debug.Log("feather touch" + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
             inProgress = true;
             //Debug.Log("Collision to koar");
-            
+          //  koar = GameObject.Find("KoarActivator").transform.GetChild(0).gameObject;
             koar.SetActive(true);
-            if (GameManager.Instance.IsEventCompleted(GameEventName.LadyLaments))
+            if (GameManager.Instance.IsEventCompleted(GameEventName.KoarFounded))
                 StartCoroutine(SimpleTransition(true));
             else
                 StartCoroutine(PlayCutscene());
@@ -66,17 +82,18 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Deactive()
         {
-           // Debug.Log("ToKoar Deactive: ");
+            // Debug.Log("ToKoar Deactive: ");
             if (inProgress)
                 return;
             inProgress = true;
+          //  koar = GameObject.Find("KoarActivator").transform.GetChild(0).gameObject;
             koar.SetActive(false);
             StartCoroutine(SimpleTransition(false));
         }
         private void CheckEvent(ColliderData data)
         {
-           // Debug.Log("first: " + first);
-            //Debug.Log("ColliderData: " + data.Index);
+            //Debug.Log("[tokoar] first: " + first);
+            //Debug.Log("[tokoar] ColliderData: " + data.Index);
             if (data.Index == last)
                 return;
             last = data.Index;
@@ -87,20 +104,16 @@ namespace br.com.bonus630.thefrog.Activators
                 first = data.Index;
                 return;
             }
-           // player = data.Collider.gameObject;
+            // player = data.Collider.gameObject;
             if (first < data.Index)
             {
-               
                 Active();
             }
             else
             {
-                
-                Deactive();
+               Deactive();
             }
-
             first = -1;
-
         }
         private bool CheckToContinue(Collider2D coll)
         {
@@ -108,7 +121,7 @@ namespace br.com.bonus630.thefrog.Activators
                 return false;
             if (!coll.CompareTag("Player"))
             {
-                if(!coll.transform.ContainsChildren("Player"))
+                if (!coll.transform.ContainsChildren("Player"))
                     return false;
             }
             return true;
@@ -121,49 +134,57 @@ namespace br.com.bonus630.thefrog.Activators
         IEnumerator FixX()
         {
             yield return new WaitForSeconds(0.2f);
-            GameManager.Instance.GetPlayer.transform.position = new Vector3(91f, GameManager.Instance.GetPlayer.transform.position.y, 0);
+            ServiceLocator.Instance.Get("Player").transform.position = new Vector3(91f, GameManager.Instance.GetPlayer.transform.position.y, 0);
         }
 
 
 
         private IEnumerator PlayCutscene()
         {
+            screenEffects.FadeOut(1f);
             koarLimiter.SetActive(false);
             //GameManager.Instance.GetPlayerScript.MoveInputOn = false;
-            GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
+            ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(false, 0);
+            ServiceLocator.Instance.Get<IPlayer>().RemoveGravity(true);
             // yield return new WaitForSeconds(0.2f);
             // player.transform.position = new Vector3(87f, player.transform.position.y, 0);
-            screenEffects.FadeOut(1f);
             //GameManager.Instance.GetPlayerScript.ChangeGravity(0);
             // GameObject.Find("Kaor").SetActive(true);
             yield return new WaitForSeconds(1);
-           // FindAnyObjectByType<CameraBackground>().ChangeBackground();
+            // FindAnyObjectByType<CameraBackground>().ChangeBackground();
             //GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = 0.2f;
-            GameManager.Instance.GetPlayer.transform.position = newLocation;
+            ServiceLocator.Instance.Get("Player").transform.position = newLocation;
+            ServiceLocator.Instance.Get<IPlayer>().RemoveGravity(false);
             screenEffects.FadeIn(1);
             yield return new WaitForEndOfFrame();
-            GameManager.Instance.EventCompleted(GameEventName.KoarFounded);
             startCheckDistance = true;
             inProgress = false;
+            // yield return new WaitForSeconds(6);
 
         }
         private IEnumerator SimpleTransition(bool toKoar = false)
         {
-           // Debug.Log("Simple transition, to koar: "+ toKoar);
+            // Debug.Log("Simple transition, to koar: "+ toKoar);
             screenEffects.FadeOut(0.1f);
             yield return new WaitForSeconds(0.1f);
-          //  float ligth = 0.6f;
+            //  float ligth = 0.6f;
             if (toKoar)
             {
                 FindAnyObjectByType<CameraBackground>().ChangeBackground();
-               // ligth = 0.2f;
+                // ligth = 0.2f;
             }
             else
                 FindAnyObjectByType<CameraBackground>().RestoreBackground();
-           // GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = ligth;
+            // GameObject.Find("Global Light 2D").GetComponent<Light2D>().intensity = ligth;
             screenEffects.FadeIn(0.1f);
             yield return new WaitForEndOfFrame();
             inProgress = false;
+        }
+
+        private void OnDestroy()
+        {
+            upGame.OnTriggerEnterAction -= CheckEvent;
+            downGame.OnTriggerEnterAction -= CheckEvent;
         }
     }
 

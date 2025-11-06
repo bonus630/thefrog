@@ -13,11 +13,14 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] enableType enableType = enableType.Self;
         public override void Activate()
         {
-           // Debug.Log($"[EnableGameObject] name:{externGameObject.name} enable:{!invert}");
+           // Debug.Log($"[EnableGameObject] name:{externGameObject.name} enable:{invert}");
             if(externGameObject!=null && enableType.HasFlag(enableType.Extern))
                 externGameObject.SetActive(invert ? false : true);
-            if(enableType.HasFlag(enableType.Self))
+            if (enableType.HasFlag(enableType.Self))
+            {
+              //  Debug.Log($"[EnableGameObject] name:{gameObject.name} enable:"+(invert ? false : true));
                 gameObject.SetActive(invert ? false : true);
+            }
 
         }
 
@@ -28,7 +31,10 @@ namespace br.com.bonus630.thefrog.Activators
                 if (externGameObject != null && enableType.HasFlag(enableType.Extern))
                     externGameObject.SetActive(invert ? true : false);
                 if (enableType.HasFlag(enableType.Self))
+                {
+                  //  Debug.Log($"[EnableGameObject] name:{gameObject.name} enable:" + (invert ? false : true));
                     gameObject.SetActive(invert ? true : false);
+                }
             }
         }
     }

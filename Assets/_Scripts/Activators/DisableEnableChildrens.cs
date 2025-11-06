@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -74,6 +75,6 @@ namespace br.com.bonus630.thefrog.Activators
                 Change(false);
             }
         }
-
+        
     }
 }

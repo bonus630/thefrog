@@ -30,7 +30,6 @@ namespace br.com.bonus630.thefrog.Player
             CheckProjectil();
             SetCurrentProjectil();
         }
-   
         public void GameEventsChanged()
         {
             CheckProjectil();
@@ -38,10 +37,8 @@ namespace br.com.bonus630.thefrog.Player
                 currentIndex = count - 1;
             SetCurrentProjectil();
         }
-
         public void SelectProjectile(float direction)
         {
-
             //Debug.Log("Direction: " + direction);
             //  if(time > updateTime)
             //  {
@@ -101,12 +98,10 @@ namespace br.com.bonus630.thefrog.Player
             if (avaliableProjectilies.Count > 0)
             {
                 CurrentProjectile = avaliableProjectilies[currentIndex];
-               // Debug.Log("[PlayerSpiritController] SetCurrentProjectil color:" + CurrentProjectile.EffectColor);
+                Debug.Log("[PlayerSpiritController] SetCurrentProjectil color:" + CurrentProjectile.EffectColor);
                 GameManager.Instance.UpdateProjectil(CurrentProjectile.EffectColor, CurrentProjectile.hud);
             }
-
         }
-
     }
     [SerializeField]
     public class ProjectilData
@@ -141,12 +136,10 @@ namespace br.com.bonus630.thefrog.Player
             if (other == null) return false;
             return this.Element == other.Element;
         }
-
         public override bool Equals(object obj)
         {
             return Equals(obj as ProjectilData);
         }
-
         public override int GetHashCode()
         {
             return Element.GetHashCode();

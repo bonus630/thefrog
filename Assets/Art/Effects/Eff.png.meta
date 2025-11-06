@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 2443808086817909281
     second: Eff_1
+  - first:
+      213: -6334442692162159932
+    second: Eff_2
+  - first:
+      213: -1028899114270289632
+    second: Eff_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -202,7 +208,7 @@ TextureImporter:
       tessellationDetail: -1
       bones: []
       spriteID: 00000000000000000800000000000000
-      internalID: 0
+      internalID: -6334442692162159932
       vertices: []
       indices: 
       edges: []
@@ -224,7 +230,7 @@ TextureImporter:
       tessellationDetail: -1
       bones: []
       spriteID: 00000000000000000800000000000000
-      internalID: 0
+      internalID: -1028899114270289632
       vertices: []
       indices: 
       edges: []
@@ -245,8 +251,8 @@ TextureImporter:
     nameFileIdTable:
       Eff_0: -9006597391346096501
       Eff_1: 2443808086817909281
-      Eff_2: 0
-      Eff_3: 0
+      Eff_2: -6334442692162159932
+      Eff_3: -1028899114270289632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
