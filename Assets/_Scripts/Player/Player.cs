@@ -101,7 +101,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-//#if !UNITY_EDITOR
+#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -114,13 +114,13 @@ namespace br.com.bonus630.thefrog.Player
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
             }
-//#else
+#else
 //            if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
 //                transform.position = GameManager.Instance.PlayerStartPosition;
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-//#endif
+#endif
 
         }
 
