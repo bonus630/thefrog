@@ -60,7 +60,6 @@ namespace br.com.bonus630.thefrog.Environment
                 transporter.active = true;
                 transporter.SetPositions();
                 transporter.going = true;
-                transform.parent = null;
                 
             }
             else

@@ -4936,8 +4936,8 @@ AudioSource:
   m_GameObject: {fileID: 942615952}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -5149,6 +5149,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9e30f25d-1e88-4cc8-992e-a58821b5f625
+    m_ActionName: 'Player/Vision[/XInputControllerWindows/leftShoulder,/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14f09139-3a17-4c8c-b4bf-c3da97fe0daa
+    m_ActionName: 'Player/Select[/XInputControllerWindows/select,/Keyboard/rightShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99f131b0-bebf-4504-bfbc-636fe0d66033
+    m_ActionName: 'Global/InteractUP[/XInputControllerWindows/dpad/up,/Keyboard/upArrow,/XInputControllerWindows/leftStick/up]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c72482b9-0fb7-4aec-8514-a4ca07a71c7a
+    m_ActionName: 'Global/InteractDown[/XInputControllerWindows/dpad/down,/Keyboard/downArrow,/XInputControllerWindows/leftStick/down]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

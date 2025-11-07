@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Manager
         public float PlayTimeInSeconds { get; private set; }
         public int ToPoint { get; set; }
         private PlayerStates playerStates;
-        public PlayerStates PlayerStates { get { return playerStates; }  set { playerStates = value; } }
+        public PlayerStates PlayerStates { get { return playerStates; } set { playerStates = value; } }
 
         private EnvironmentStates environmentStates;
         public EnvironmentStates EnvironmentStates { get { return environmentStates; } private set { environmentStates = value; } }
@@ -48,7 +48,11 @@ namespace br.com.bonus630.thefrog.Manager
         public Vector3 PlayerStartPosition { get; set; }
         public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
 
-        public bool GamePaused { get => gamePaused;private set => gamePaused = value; }
+        public bool GamePaused { get => gamePaused; private set => gamePaused = value; }
+
+        private float musicVolum = 0;
+        private float soundVolum = 0;
+
 
         //Scenes Names
         public readonly string MainScene = "SampleScene";
@@ -72,6 +76,9 @@ namespace br.com.bonus630.thefrog.Manager
         public readonly string TimerHUD = "TimerHUD";
         public readonly string SpiritHUD = "SpiritHUD";
 
+        //Pref Keys
+        private readonly string MusicVolum = "MusicVolum";
+        private readonly string SoundVolum = "SoundVolum";
 
         //Env Names
 
@@ -98,6 +105,7 @@ namespace br.com.bonus630.thefrog.Manager
                 Destroy(gameObject);
                 return;
             }
+            Instance = this;
             playerStates = new PlayerStates(new PlayerPosition(gameObject.transform.position), new Datas(), new Datas(), new Datas());
             environmentStates = new EnvironmentStates(playerStates);
 #if UNITY_EDITOR
@@ -105,7 +113,6 @@ namespace br.com.bonus630.thefrog.Manager
 #endif
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         private void Start()
@@ -113,7 +120,26 @@ namespace br.com.bonus630.thefrog.Manager
             PauseAction.Enable();
             //Time.timeScale = 0.5f;
         }
-
+        public bool LoadVolum(out float soundVolum, out float musicVolum)
+        {
+            soundVolum = this.soundVolum;
+            musicVolum = this.musicVolum;
+            if (PlayerPrefs.HasKey(MusicVolum) && PlayerPrefs.HasKey(SoundVolum))
+            {
+                soundVolum = PlayerPrefs.GetFloat(SoundVolum);  
+                musicVolum = PlayerPrefs.GetFloat(MusicVolum);
+                return true;
+            }
+            return false;
+        }
+        public void SaveVolum(float soundVolum, float musicVolum)
+        {
+            this.soundVolum = soundVolum;
+            this.musicVolum = musicVolum;
+            PlayerPrefs.SetFloat(MusicVolum, musicVolum);
+            PlayerPrefs.SetFloat(SoundVolum, soundVolum);
+            PlayerPrefs.Save();
+        }
         private void Update()
         {
             if (PauseAction.WasPressedThisFrame())
@@ -174,8 +200,10 @@ namespace br.com.bonus630.thefrog.Manager
                 return false;
             if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
             {
-                float vol = pause ? -80f : 0f;
-                musicSource.SetMasterVolume(vol);
+                float musicVol = pause ? -80f : musicVolum;
+                float soundVol = pause ? -80f : soundVolum;
+                musicSource.SetMusicVolume(musicVol);
+                musicSource.SetSFXVolume(soundVol);
                 Time.timeScale = pause ? 0 : 1;
                 go.SetActive(pause);
                 GetPlayerScript.AllInputsOn(!pause);
@@ -215,9 +243,9 @@ namespace br.com.bonus630.thefrog.Manager
         private SceneStartType sceneStartType;
         public void LoadGame(SceneStartType type, int index = 0)
         {
-            StartCoroutine(LoadGame(true,type, index));
+            StartCoroutine(LoadGame(true, type, index));
         }
-        public IEnumerator LoadGame(bool courotine,SceneStartType type, int index = 0)
+        public IEnumerator LoadGame(bool courotine, SceneStartType type, int index = 0)
         {
             yield return new WaitForEndOfFrame();
             // Debug.LogWarning("LoadGame type:" + type);
@@ -226,14 +254,14 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 StartCoroutine(ChangeScene(InternAreas));
                 yield return new WaitForEndOfFrame();
-                
+
             }
             if (type == SceneStartType.Main)
             {
                 StartCoroutine(ChangeScene(MainScene));
                 yield return new WaitForEndOfFrame();
             }
-            if(type == SceneStartType.Start || type == SceneStartType.New || type == SceneStartType.Continue)
+            if (type == SceneStartType.Start || type == SceneStartType.New || type == SceneStartType.Continue)
                 eventManager.Reset();
             if (type == SceneStartType.Start)
             {
@@ -261,7 +289,7 @@ namespace br.com.bonus630.thefrog.Manager
                 yield return new WaitForEndOfFrame();
             }
         }
-        
+
         private IEnumerator ChangeScene(string sceneName)
         {
             ServiceLocator.Instance.ResetService();
@@ -284,6 +312,11 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
+            {
+                musicSource.SetMusicVolume(this.musicVolum);
+                musicSource.SetSFXVolume(this.soundVolum);
+            }
             if (arg0.name.Equals(MainScene))
             {
                 if (sceneStartType.Equals(SceneStartType.Main))
@@ -323,7 +356,7 @@ namespace br.com.bonus630.thefrog.Manager
             PlayerStartPosition = StartGamePosition;
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates(index);
-           // DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
+            // DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
         }
         public void UpdateScore()
         {
@@ -390,7 +423,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 Debug.LogWarning("HUD não encontrado!");
             }
-     
+
         }
         #region vamos passar tudo isso para o script HeartHUD
         int maxColHearts = 10;
@@ -399,7 +432,7 @@ namespace br.com.bonus630.thefrog.Manager
             GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
             GetPlayerScript.CurrentLife += hearts;
             this.PlayerStates.Hearts += hearts;
-            
+
             if (hearts > 0)
             {
                 StartCoroutine(AddHeart(hud, hearts));
@@ -472,7 +505,7 @@ namespace br.com.bonus630.thefrog.Manager
         {
             try
             {
-               // OnCallSave(false);
+                // OnCallSave(false);
                 EnvironmentStates.GameTimeInSeconds = GetElapsedTime();
                 SavesManager sm = new SavesManager();
                 return sm.Save(index, this.PlayerStates, this.EnvironmentStates, FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>());
@@ -490,12 +523,12 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-           // Debug.Log("[GameManager] ChangeGameToState");
+            // Debug.Log("[GameManager] ChangeGameToState");
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
-           // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
+            // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
 
             GameStatesRestaured?.Invoke();
@@ -521,7 +554,7 @@ namespace br.com.bonus630.thefrog.Manager
                     CinemachineConfiner confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(1).gameObject.GetComponentAtIndex(1);
                     break;
-         
+
                 //case GameEventName.HeartContainer:
                 //    GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                 //    gameObject.SetActive(true);
@@ -586,7 +619,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void OnApplicationQuit()
         {
-           // Debug.Log("Application Quit");
+            // Debug.Log("Application Quit");
             PlayerPrefs.Save();
         }
         #region testes e debugs
@@ -625,10 +658,10 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             ////Time.timeScale = 0.5f;
-             playerStates.HasGravity = true;
+            playerStates.HasGravity = true;
             playerStates.HasVision = true;
-             playerStates.HasFireball = true;
-             playerStates.HasLightning = true;
+            playerStates.HasFireball = true;
+            playerStates.HasLightning = true;
             playerStates.HasWallJump = true;
             //playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
@@ -649,7 +682,7 @@ namespace br.com.bonus630.thefrog.Manager
             //this.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
-#endregion
+            #endregion
         }
     }
     public enum SceneStartType

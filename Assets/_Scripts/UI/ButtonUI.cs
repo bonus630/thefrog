@@ -15,7 +15,8 @@ namespace br.com.bonus630.thefrog.UI
         private void Awake()
         {
             btn = GetComponent<Button>();
-            btn.onClick.AddListener(OnClick);
+            if (btn != null)
+                btn.onClick.AddListener(OnClick);
         }
 
         public void OnDeselect(BaseEventData eventData)

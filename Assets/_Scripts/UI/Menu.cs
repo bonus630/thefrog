@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Utils;
 using TMPro;
@@ -15,15 +15,24 @@ namespace br.com.bonus630.thefrog.UI
         [SerializeField] Button startButton;
         [SerializeField] Button continueButton;
         [SerializeField] Button controlsButton;
-        [SerializeField] Button goBackButton;
+        [SerializeField] Button goBackButtonControls;
+        [SerializeField] Button goBackButtonOptions;
+
      
         [SerializeField] GameObject buttons;
         [SerializeField] GameObject control;
+        [SerializeField] GameObject options;
         [SerializeField] GameObject saves;
 
         void Start()
         {
-            if(GameManager.Instance.CanContinue())
+            StartCoroutine(WaitLoad());
+
+        }
+        private IEnumerator WaitLoad()
+        {
+            yield return new WaitUntil(() => GameManager.Instance != null);// vamos esperar a instancia estatica do gamemanager ficar pronta
+            if (GameManager.Instance.CanContinue())
             {
                 continueButton.gameObject.SetActive(true);
                 Vector2 pos = controlsButton.GetComponent<RectTransform>().anchoredPosition;
@@ -55,16 +64,23 @@ namespace br.com.bonus630.thefrog.UI
         public void ControlsButton_clicked()
         {
             control.SetActive(true);
+            options.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(goBackButtonControls.gameObject);
+        }
+        public void OptionsButton_clicked()
+        {
             buttons.SetActive(false);
-            EventSystem.current.SetSelectedGameObject(goBackButton.gameObject);
+            options.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(goBackButtonOptions.gameObject);
         }
         public void GoBackButton_clicked()
         {
-
+            options.SetActive(false);
             control.SetActive(false);
             buttons.SetActive(true);
             saves.SetActive(false);
             EventSystem.current.SetSelectedGameObject(startButton.gameObject);
         }
+
     }
 }
