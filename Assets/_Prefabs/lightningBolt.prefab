@@ -137,7 +137,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 08a62f9473b9ab74a9cc34d040fe64d1, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 08a62f9473b9ab74a9cc34d040fe64d1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.86
@@ -241,7 +241,7 @@ MonoBehaviour:
   canHitLayers:
     serializedVersion: 2
     m_Bits: 142400
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 9116702748624442103}
   impactZone: {fileID: 7941071834480346841}
   intensity: 1
 --- !u!1 &6556618861161751296

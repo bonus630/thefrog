@@ -269,7 +269,7 @@ namespace br.com.bonus630.thefrog.Player
                 return;
             if (Time.time > nextLaunch)
             {
-                //  GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil, playerSpiritController.CurrentProjectile.SpawnPoint.transform.position, Quaternion.identity);
+                //GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil, playerSpiritController.CurrentProjectile.SpawnPoint.transform.position, Quaternion.identity);
                 GameObject bullet = Instantiate(playerSpiritController.CurrentProjectile.Projectil,
                     playerMovement.GetWallSliding ? playerSpiritController.CurrentProjectile.SpawnPoint2.transform.position : playerSpiritController.CurrentProjectile.SpawnPoint.transform.position,
                     Quaternion.identity);

@@ -679,7 +679,7 @@ namespace br.com.bonus630.thefrog.Manager
             //this.EventCompleted(GameEventName.RollingWind, false);
             //this.EventCompleted(GameEventName.PrisionerTip, false);
             //this.EventCompleted(GameEventName.LadyLaments, false);
-            //this.EventCompleted(GameEventName.KoarFounded, false);
+            this.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
             #endregion

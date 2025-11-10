@@ -164,7 +164,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private IEnumerator SimpleTransition(bool toKoar = false)
         {
-            // Debug.Log("Simple transition, to koar: "+ toKoar);
+             Debug.Log("Simple transition, to koar: "+ toKoar);
             screenEffects.FadeOut(0.1f);
             yield return new WaitForSeconds(0.1f);
             //  float ligth = 0.6f;

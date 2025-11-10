@@ -109,6 +109,7 @@ namespace br.com.bonus630.thefrog.Player
             //    airDash = false;
             //}
             //Debug.Log("[playermovement] update knockup force:" + player.knockUpForce);
+           // Debug.Log("[PlayerMovement] TimeInFastFall:" + TimeInFastFall);
 
             player.ApplyKnockUp();
             if (Mathf.Abs(player.RigibodyLinearVelocity.y * player.gravityDirection) > Mathf.Abs(LinearMaxY))
@@ -203,7 +204,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (player.playerManager.PlayerStates.FallsControl && TimeInFastFall > 0)
                 {
                     resetFastFall = true;
-                    //Debug.Log("resetFastFall fallcontrol");
+                    Debug.Log("[PlayerMovement] resetFastFall fallcontrol");
                 }
             }
             //if (context.performed)

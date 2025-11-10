@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace br.com.bonus630.thefrog.Environment
     {
         BoxCollider2D col;
         Transform playerPos;
+        float time = 1f;
         void Awake()
         {
             if (GameManager.Instance.IsEventCompleted(GameEventName.DefeatWizard))
@@ -18,17 +20,21 @@ namespace br.com.bonus630.thefrog.Environment
             col = GetComponent<BoxCollider2D>();
             playerPos = GameManager.Instance.GetPlayer.transform;
         }
-
         public void Update()
         {
             Change(col.OverlapPoint(playerPos.position));
         }
         private void Change(bool b)
         {
-           // Debug.Log("Koar limiter: " + !b);
-            if(GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
+            // Debug.Log("Koar limiter: " + !b);
+            StartCoroutine(change(b, b ? time : 0));
+        }
+        private IEnumerator change(bool b, float time = 0)
+        {
+            yield return new WaitForSeconds(time);
+            if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
                 GameManager.Instance.PlayerStates.HasGravity = !b;
-            if(GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
+            if (GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
                 GameManager.Instance.PlayerStates.FallsControl = !b;
         }
     }

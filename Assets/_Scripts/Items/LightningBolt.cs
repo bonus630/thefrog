@@ -12,7 +12,7 @@ namespace br.com.bonus630.thefrog.Items
         [field: SerializeField] public Color ElementColor { get; set; } = Color.white;
         [SerializeField] LayerMask canHitLayers;
         [SerializeField] AudioSource audioSource;
-        [SerializeField] GameObject impactZone;
+        //[SerializeField] GameObject impactZone;
         [SerializeField] float intensity = 1f;
         bool hit = false;
         //  ParticleSystem ps;
@@ -52,7 +52,7 @@ namespace br.com.bonus630.thefrog.Items
 
         private void Finish(GameObject other)
         {
-           // Debug.Log(other.name);
+            //Debug.Log(other.name);
             //if(other.TryGetComponent<SpriteRenderer>(out var render))
             //{
             //    render.color = Color.gray;
@@ -179,9 +179,11 @@ namespace br.com.bonus630.thefrog.Items
         {
            // Debug.Log("Lightining impact:");
             Collider2D raycastHit = Physics2D.OverlapCircle(gameObject.transform.position, 0.2f, canHitLayers);
+           // Gizmos.DrawWireSphere(gameObject.transform.position, 0.2f);
+            //Debug.Break();
             if (raycastHit != null)
             {
-                Debug.Log("Lightining impact: " + raycastHit.name);
+               // Debug.Log("Lightining impact: " + raycastHit.name);
                 Finish(raycastHit.gameObject);
             }
             //impactZone.SetActive(true);

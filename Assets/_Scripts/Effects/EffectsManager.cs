@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Effects
@@ -6,9 +7,7 @@ namespace br.com.bonus630.thefrog.Effects
     public class EffectManager : MonoBehaviour
     {
         public static EffectManager instance;
-
         private List<IEffects> activeEffects = new List<IEffects>();
-
         private void Awake()
         {
             if (instance != null)
@@ -19,7 +18,6 @@ namespace br.com.bonus630.thefrog.Effects
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
         void Update()
         {
             float dt = Time.deltaTime;
@@ -30,11 +28,14 @@ namespace br.com.bonus630.thefrog.Effects
                     activeEffects.RemoveAt(i);
             }
         }
-
         public void AddEffect(IEffects effect)
         {
             if (!activeEffects.Contains(effect))
                 activeEffects.Add(effect);
+        }
+        public IEffects GetEffect<T>() where T : class, IEffects
+        {
+            return activeEffects.FirstOrDefault(r => r.GetType() == typeof(T));
         }
     }
 }

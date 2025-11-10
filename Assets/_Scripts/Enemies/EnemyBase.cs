@@ -33,6 +33,8 @@ namespace br.com.bonus630.thefrog.Enemies
         protected bool frontColliding;
         protected Animator animator;
 
+        
+
 
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int WalkID = Animator.StringToHash("Walk");
@@ -51,6 +53,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             Debug.DrawLine(topPoint.position, downPoint.position, Color.red);
             frontColliding = Physics2D.Linecast(topPoint.position, downPoint.position, layerMask);
+            
             //if(frontColliding)
             //    Debug.Log(xDirection);
         }

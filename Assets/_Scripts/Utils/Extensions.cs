@@ -41,5 +41,9 @@ namespace br.com.bonus630.thefrog.Utils
         public static float Distance2D(this Vector3 a, Vector2 b) => Vector2.Distance(new Vector2(a.x, a.y), b);
         public static float Distance2D(this Vector2 a, Vector3 b) => Vector2.Distance(a, new Vector2(b.x, b.y));
         public static float Distance2D(this Vector2 a, Vector2 b) => Vector2.Distance(a, b);
+
+        public static Vector2 ToVector2(this Vector3 v)=>new Vector2(v.x,v.y);
+
+
     }
 }

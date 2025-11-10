@@ -14,12 +14,12 @@ namespace br.com.bonus630.thefrog.Debuggers
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Debug.LogError($"[SceneWatchdog] Cena recarregada: {scene.name} — modo: {mode}");
+            Debug.LogWarning($"[SceneWatchdog] Cena recarregada: {scene.name} — modo: {mode}");
         }
 
         void OnDestroy()
         {
-            Debug.LogError($"[SceneWatchdog] O próprio Watchdog foi destruído! Cena atual: {gameObject.scene.name}");
+            Debug.LogWarning($"[SceneWatchdog] O próprio Watchdog foi destruído! Cena atual: {gameObject.scene.name}");
         }
     }
 

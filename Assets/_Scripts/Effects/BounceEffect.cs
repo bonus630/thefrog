@@ -48,12 +48,11 @@ namespace br.com.bonus630.thefrog.Effects
 
         public void Activate()
         {
-            throw new System.NotImplementedException();
         }
 
         public void Deactivate()
         {
-            throw new System.NotImplementedException();
+            IsFinished = true;
         }
     }
 }

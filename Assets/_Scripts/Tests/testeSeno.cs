@@ -23,7 +23,7 @@ namespace br.com.bonus630.tests
 
             time += Time.deltaTime / duration;
             if (time > 1)
-                time = 1;
+                time = 0;
             factor = Mathf.Sin(time * Mathf.PI / 2);
 
             rb.linearVelocityX = speed * factor;

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 namespace br.com.bonus630.thefrog.Manager
 {
+    [SelectionBase]
     public class CameraBackground : MonoBehaviour
     {
         [SerializeField] DayNightCycleManager cycleManager;
