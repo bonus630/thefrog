@@ -29,6 +29,7 @@ namespace br.com.bonus630.thefrog.Player
         InputAction interactUp;
         InputAction interactDown;
         ScreenEffects effects;
+        CircleCollider2D visionCollider;
         private void Start()
         {
             currentScale = transform.localScale;
@@ -40,6 +41,7 @@ namespace br.com.bonus630.thefrog.Player
             interactDown.Enable();
             audioSource = GetComponent<AudioSource>();
             effects = ServiceLocator.Instance.Get<ScreenEffects>();
+            visionCollider = GetComponent<CircleCollider2D>();
             ServiceLocator.Instance.Get<IPlayer>().GravityChanged += VisionController_GravityChanged;
         }
 
@@ -122,6 +124,7 @@ namespace br.com.bonus630.thefrog.Player
                 activeVision = true;
                 GetComponent<SpriteMask>().enabled = true;
                 GetComponent<SpriteRenderer>().enabled = true;
+                visionCollider.enabled = true;
                 return;
             }
             if (activeVision)
@@ -148,6 +151,7 @@ namespace br.com.bonus630.thefrog.Player
             //Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
             GetComponent<SpriteMask>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
+            visionCollider.enabled = false;
         }
         //private void ResetVision()
         //{
@@ -168,6 +172,13 @@ namespace br.com.bonus630.thefrog.Player
                // Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
                // Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
             }
+        }
+        public bool InVision(Collider2D other)
+        {
+            Debug.Log("A:" + activeVision + "other:" + other);
+            if (!activeVision)
+                return false;
+            return other.IsTouching(visionCollider);
         }
     }
 }

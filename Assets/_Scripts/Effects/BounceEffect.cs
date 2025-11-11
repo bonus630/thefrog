@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Effects
         private Transform transform;
 
         public bool IsFinished { get; private set; } = false;
+        public ushort ID { get; set; }
 
         public BounceEffect(Transform transform)
         {

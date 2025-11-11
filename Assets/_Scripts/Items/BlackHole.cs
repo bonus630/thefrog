@@ -24,6 +24,13 @@ namespace br.com.bonus630.thefrog.Items
                 }
             }
         }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                OnDisable();
+            }
+        }
 
         private void OnDisable()
         {

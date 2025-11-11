@@ -26,6 +26,7 @@ namespace br.com.bonus630.thefrog.Manager
         private TextMeshProUGUI TimerText = null;
         public event Action TimeOverEvent;
         public event Action GameStatesRestaured;
+        public event Action<string, bool> ActiveItemChanged;
         private bool continueGame = false;
         private bool _isCountingTime = false;
         private bool gamePaused = false;
@@ -403,6 +404,7 @@ namespace br.com.bonus630.thefrog.Manager
                 GameManager.Instance.EnvironmentStates.Activeds.Add(ActivatorID);
             else
                 GameManager.Instance.EnvironmentStates.Activeds.Remove(ActivatorID);
+            ActiveItemChanged?.Invoke(ActivatorID, actived);
         }
         public void UpdateProjectil(Color color, Sprite sprite)
         {
@@ -665,7 +667,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasWallJump = true;
             //playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
-            //playerStates.HasDash = true;
+            playerStates.HasDash = true;
             //playerStates.Shurykens = 100;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             this.EventCompleted(GameEventName.PlayerCheckWall, false);

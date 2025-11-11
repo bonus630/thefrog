@@ -82,6 +82,7 @@ namespace br.com.bonus630.thefrog.Enemies
 
         }
         SpriteAfterImageEffect spriteAfterImage;
+        ushort effectID;
         private void Fly()
         {
             flying = true;
@@ -91,10 +92,10 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public void ActiveFlyEffect()
         {
-            spriteAfterImage ??= EffectManager.instance.GetEffect<SpriteAfterImageEffect>() as SpriteAfterImageEffect;
+            spriteAfterImage ??= EffectManager.instance.GetEffect<SpriteAfterImageEffect>(effectID) as SpriteAfterImageEffect;
             spriteAfterImage ??= new SpriteAfterImageEffect(GetComponent<SpriteRenderer>(), 4, lifeTime: 3f, fadeSpeed: 1f);
             spriteAfterImage.Activate();
-            EffectManager.instance.AddEffect(spriteAfterImage);
+            effectID = EffectManager.instance.AddEffect(spriteAfterImage);
         }
         private void ChangeDirection()
         {

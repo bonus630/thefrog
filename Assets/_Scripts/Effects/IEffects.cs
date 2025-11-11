@@ -6,5 +6,6 @@ namespace br.com.bonus630.thefrog.Effects
         void Deactivate();  
         void UpdateEffects(float deltaTime);
         bool IsFinished { get; }
+        ushort ID { get; set; }
     }
 }

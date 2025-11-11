@@ -15,7 +15,7 @@ namespace br.com.bonus630.thefrog.Effects
         private int limit;
         private bool finished;
         private int nextIndex; // índice circular
-
+        public ushort ID { get; set; }
         public bool IsFinished => finished;
 
         public SpriteAfterImageEffect(SpriteRenderer original,

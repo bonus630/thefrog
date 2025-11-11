@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 5432558744791276580}
   - component: {fileID: 328706631452530263}
   - component: {fileID: 9074661570785531915}
+  - component: {fileID: 1370652492987578129}
   m_Layer: 0
   m_Name: SpecialVision
   m_TagString: Untagged
@@ -466,6 +467,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &1370652492987578129
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724537982002545065}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.00000047683716}
+  m_Radius: 0.08990089
 --- !u!1 &1534754640575007890
 GameObject:
   m_ObjectHideFlags: 0
@@ -25863,6 +25900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.3
   jumpForce: 12.3
+  wallJumpRemoveInputTime: 0.2
   LinearMaxY: -22
   dashActiveMaxTime: 0.18
   dashReloadMaxTime: 1.2
@@ -25870,6 +25908,7 @@ MonoBehaviour:
   JumpDownParticles: {fileID: 3611581164299857639}
   DashParticles: {fileID: 3928824168382239469}
   FastFallParticles: {fileID: 3995645062775101840}
+  playerSpriteRender: {fileID: 9042840821368717614}
   direction: {x: 0, y: 0}
   airDash: 0
 --- !u!114 &4129413091084944471

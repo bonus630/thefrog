@@ -4,7 +4,7 @@ using br.com.bonus630.thefrog.Manager;
 
 namespace br.com.bonus630.Environment
 {
-    internal class DownBridge : IActivator
+    public class DownBridge : IActivator
     {
 
         private int chainAngleOffset = 0;
@@ -44,7 +44,7 @@ namespace br.com.bonus630.Environment
         //}
 
  
-            Vector3 start, end;
+         Vector3 start, end;
         void Update()
         {
             if (!operating) return;
@@ -60,7 +60,7 @@ namespace br.com.bonus630.Environment
 
           
 
-                chainConnectorWall.position = Vector3.Lerp(start, end, t);
+            chainConnectorWall.position = Vector3.Lerp(start, end, t);
             //Debug.Log("V:" + chainConnectorWall.position);
            //// 4) Finaliza operação
             if (Mathf.Approximately(angle, targetAngle))
@@ -174,7 +174,8 @@ namespace br.com.bonus630.Environment
           //  init();
             try
             {
-                FindAnyObjectByType<CamerasController>().GameObjectFocus(gameObject, 2);
+                if(!GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
+                    FindAnyObjectByType<CamerasController>().GameObjectFocus(gameObject, 2);
             }
             catch { }
         }
@@ -188,7 +189,8 @@ namespace br.com.bonus630.Environment
            // init();
             try
             {
-                FindAnyObjectByType<CamerasController>().GameObjectFocus(gameObject, 2);
+                if (!GameManager.Instance.IsEventCompleted(GameEventName.LightningBolt))
+                    FindAnyObjectByType<CamerasController>().GameObjectFocus(gameObject, 2);
             }
             catch { }
         }

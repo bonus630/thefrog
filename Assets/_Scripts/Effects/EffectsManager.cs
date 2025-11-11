@@ -28,14 +28,26 @@ namespace br.com.bonus630.thefrog.Effects
                     activeEffects.RemoveAt(i);
             }
         }
-        public void AddEffect(IEffects effect)
+        public ushort AddEffect(IEffects effect)
         {
             if (!activeEffects.Contains(effect))
+            {
+                ushort id;
+                do
+                {
+                    id = (ushort)Random.Range(ushort.MinValue, ushort.MaxValue);
+                }
+                while (activeEffects.Any(r => r.ID == id));
+
+                effect.ID = id;
                 activeEffects.Add(effect);
+                return id;
+            }
+            throw new System.Exception("Erro to add Effect in list");
         }
-        public IEffects GetEffect<T>() where T : class, IEffects
+        public IEffects GetEffect<T>(ushort ID) where T : class, IEffects
         {
-            return activeEffects.FirstOrDefault(r => r.GetType() == typeof(T));
+            return activeEffects.FirstOrDefault(r => r.GetType() == typeof(T) && r.ID == ID);
         }
     }
 }

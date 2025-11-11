@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Player
     {
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
+        [SerializeField] private float wallJumpRemoveInputTime = 0.2f;
         [SerializeField] private float LinearMaxY = 15;
         [SerializeField] float dashActiveMaxTime = 0.5f;
         [SerializeField] float dashReloadMaxTime = 0.5f;
@@ -20,6 +21,8 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] private ParticleSystem JumpDownParticles;
         [SerializeField] private ParticleSystem DashParticles;
         [SerializeField] private ParticleSystem FastFallParticles;
+        [SerializeField] private SpriteRenderer playerSpriteRender;
+        private SpriteAfterImageEffect spriteAfterImage;
         float dashActiveTimer = 0;
         float dashReloadTimer = 0;
         float coyouteTime = 0.2f;
@@ -40,7 +43,8 @@ namespace br.com.bonus630.thefrog.Player
         private bool isJumping;
         private bool doubleJump;
         private bool readyToJump;
-        private bool resetFastFall = false;
+        private bool resetFastFall = false; //quando verdadeiro ativa o FallControl
+        private bool jumpReleasedAfterFall = false; //flag auxiliar para o FallControl
         public bool GetWallSliding { get; private set; }
         private bool canWallJump;
         bool inDash = false;
@@ -109,7 +113,7 @@ namespace br.com.bonus630.thefrog.Player
             //    airDash = false;
             //}
             //Debug.Log("[playermovement] update knockup force:" + player.knockUpForce);
-           // Debug.Log("[PlayerMovement] TimeInFastFall:" + TimeInFastFall);
+            // Debug.Log("[PlayerMovement] TimeInFastFall:" + TimeInFastFall);
 
             player.ApplyKnockUp();
             if (Mathf.Abs(player.RigibodyLinearVelocity.y * player.gravityDirection) > Mathf.Abs(LinearMaxY))
@@ -201,22 +205,30 @@ namespace br.com.bonus630.thefrog.Player
                     readyToJump = true;
                 }
                 //ativa o controle de queda
-                if (player.playerManager.PlayerStates.FallsControl && TimeInFastFall > 0)
+                if (player.playerManager.PlayerStates.FallsControl && TimeInFastFall > 0 && jumpReleasedAfterFall)
                 {
                     resetFastFall = true;
+                    jumpReleasedAfterFall = false;
                     Debug.Log("[PlayerMovement] resetFastFall fallcontrol");
                 }
             }
             //if (context.performed)
             //    Debug.Log("Jump context perfomed"); 
-            if (context.canceled && !player.knockUp && !IgnoreDamping)
+            if (context.canceled )
             {
-                if ((player.gravityDirection.Equals((float)PlayerGravityDirection.DOWN) && player.RigibodyLinearVelocity.y > 0) ||
-                    (player.gravityDirection.Equals((float)PlayerGravityDirection.UP) && player.RigibodyLinearVelocity.y < 0))
+                if (!player.knockUp && !IgnoreDamping)
                 {
-                    player.RigibodyLinearVelocityY *= 0.2f;
-                    doubleJump = true;
-                    jumps--;
+                    if ((player.gravityDirection.Equals((float)PlayerGravityDirection.DOWN) && player.RigibodyLinearVelocity.y > 0) ||
+                        (player.gravityDirection.Equals((float)PlayerGravityDirection.UP) && player.RigibodyLinearVelocity.y < 0))
+                    {
+                        player.RigibodyLinearVelocityY *= 0.2f;
+                        doubleJump = true;
+                        jumps--;
+                    }
+                }
+                if (player.playerManager.PlayerStates.FallsControl)
+                {
+                    jumpReleasedAfterFall = true;
                 }
             }
         }
@@ -279,7 +291,7 @@ namespace br.com.bonus630.thefrog.Player
             doubleJump = false;
             anim.SetBool(JumpID, false);
             jumps = 2;
-            Invoke(nameof(resetFastFall),0.1f);
+            Invoke(nameof(resetTimeInFastFall), 0.1f);
             player.playerFallControl.FallsControl(false);
             anim.SetBool(FallingID, false);
         }
@@ -365,11 +377,11 @@ namespace br.com.bonus630.thefrog.Player
                 if (IgnoreDamping && player.playerHealth.InHit)
                 {
                     return;
-                        acceleration =  Mathf.Sign(player.RigibodyLinearVelocityX);
+                    acceleration = Mathf.Sign(player.RigibodyLinearVelocityX);
                     //    //return;
                     //   // Debug.Log("acceleration:" + acceleration);
                     Debug.Log("[PlayerMovement] rigidibodyVelocityX:" + player.RigibodyLinearVelocityX);
-                   // Debug.Break();
+                    // Debug.Break();
                 }
 
                 if (player.InGround)
@@ -415,22 +427,23 @@ namespace br.com.bonus630.thefrog.Player
                         airDash = false;
                     else
                         airDash = true;
-                    // ParticleSystem.MainModule main = DashParticles.main;
-
-                    if (player.LookFor < 0)
-                    {
-                        DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
-                        DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-                        // main.startSpeed = -6;
-                    }
-                    else
-                    {
-                        DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
-                        DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
-                        //main.startSpeed = 6;
-                    }
+                    if(!firstTimeInDashLoop)
+                        ApplyDashEffect();
+                    //// ParticleSystem.MainModule main = DashParticles.main;
+                    //if (player.LookFor < 0)
+                    //{
+                    //    DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
+                    //    DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                    //    // main.startSpeed = -6;
+                    //}
+                    //else
+                    //{
+                    //    DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
+                    //    DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+                    //    //main.startSpeed = 6;
+                    //}
+                    //DashParticles.Play();
                     DashSpeed = new Vector2(8, 0);
-                    DashParticles.Play();
                     // Debug.Log("Dash here time: " + dashReloadMaxTime);
                     // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
                     player.RigibodyGravityScale = 0;
@@ -442,6 +455,7 @@ namespace br.com.bonus630.thefrog.Player
             }
             if (!inDash)
             {
+                spriteAfterImage?.Deactivate();
                 DashSpeed = new Vector2(1, 0);
                 if (player.gravityDirection > 0)
                     player.RigibodyGravityScale = -player.gravityScale;
@@ -455,8 +469,17 @@ namespace br.com.bonus630.thefrog.Player
                 if (dashActiveTimer < 0)
                     dashActiveTimer = 0;
                 firstTimeInDashLoop = false;
+
             }
 
+        }
+        ushort effectID;
+        public void ApplyDashEffect()
+        {
+            spriteAfterImage ??= EffectManager.instance.GetEffect<SpriteAfterImageEffect>(effectID) as SpriteAfterImageEffect;
+            spriteAfterImage ??= new SpriteAfterImageEffect(playerSpriteRender, 14, delayTime: 0.012f, lifeTime: 1f, fadeSpeed: 0.1f);
+            spriteAfterImage.Activate();
+            effectID = EffectManager.instance.AddEffect(spriteAfterImage);
         }
         private void DashBarController()
         {
@@ -514,7 +537,7 @@ namespace br.com.bonus630.thefrog.Player
                 if (canWallJump)
                 {
                     player.RigibodyLinearVelocity = Vector2.zero;
-                    player.AddForce(new Vector2(wallJumpXForce * direction.x * -1, wallJumpYForce), ForceMode2D.Impulse, 0.2f);
+                    player.AddForce(new Vector2(wallJumpXForce * direction.x * -1, wallJumpYForce), ForceMode2D.Impulse, wallJumpRemoveInputTime);
 
                 }
             }

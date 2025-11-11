@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Enemies
@@ -11,6 +12,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] float normalSpeed = 20f;
         [SerializeField] float followSpeed = 80f;
         [SerializeField] bool canJump = true;
+        [SerializeField] CollisionRelayEx projectilDetector;
 
         float followDistance = 6f;
         float turnDistance = 3f;
@@ -23,7 +25,18 @@ namespace br.com.bonus630.thefrog.Enemies
             base.Start();
             normalSpeed += Random.Range(0, 4) * 10;
             followSpeed += Random.Range(0, 4) * 10;
+            if(projectilDetector!=null)
+                projectilDetector.OnTriggerEnterAction += ProjectilDetector_OnTriggerEnterAction;
         }
+
+        private void ProjectilDetector_OnTriggerEnterAction(ColliderData obj)
+        {
+            if(obj.ColliderOther.TryGetComponent<IProjectilies>(out IProjectilies proj))
+            {
+                Jump();
+            }
+        }
+
         protected override void Update()
         {
 
@@ -82,7 +95,11 @@ namespace br.com.bonus630.thefrog.Enemies
             }
             // Debug.Log($"chao {detectGround.GetContacts(new ContactPoint2D[4])}");
         }
-
+        private void OnDisable()
+        {
+            if (projectilDetector != null)
+                projectilDetector.OnTriggerEnterAction -= ProjectilDetector_OnTriggerEnterAction;
+        }
         public override void Hit(float hit)
         {
             animator.SetTrigger(HitID);
@@ -106,7 +123,7 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         public void Jump()
         {
-            if (!canJump)
+            if (!canJump && jump)
                 return;
             jump = true;
             rg.linearVelocityY = jumpForce;

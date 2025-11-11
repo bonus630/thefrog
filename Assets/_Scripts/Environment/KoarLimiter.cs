@@ -7,9 +7,11 @@ namespace br.com.bonus630.thefrog.Environment
     [RequireComponent(typeof(BoxCollider2D))]
     public class KoarLimiter : MonoBehaviour
     {
+        [SerializeField] MusicSource musicSource;
         BoxCollider2D col;
         Transform playerPos;
         float time = 1f;
+        readonly string musicKey = "KoarLimiter";
         void Awake()
         {
             if (GameManager.Instance.IsEventCompleted(GameEventName.DefeatWizard))
@@ -31,6 +33,13 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private IEnumerator change(bool b, float time = 0)
         {
+            if (b)
+            {
+                musicSource?.PreserveMusic(musicKey);
+                musicSource?.InstantPlay(BackgroundMusic.DarkWind, true);
+            }
+            else
+                musicSource?.RestoreMusic(musicKey);
             yield return new WaitForSeconds(time);
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
                 GameManager.Instance.PlayerStates.HasGravity = !b;

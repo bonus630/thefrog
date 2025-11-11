@@ -8,7 +8,7 @@ namespace br.com.bonus630.thefrog.Effects
         private Transform center;
         private float gravityForce;
         private float maxSpeed;
-
+        public ushort ID { get; set; }
         public bool IsFinished { get; private set; }
 
         public BlackHoleEffect(Rigidbody2D target, Transform center, float gravityForce, float maxSpeed)

@@ -9,7 +9,7 @@ namespace br.com.bonus630.thefrog.Effects
         private float duration;
         private float timer = 0f;
         public bool IsFinished { get; private set; } = false;
-
+        public ushort ID { get; set; }
         public ColorEffect(SpriteRenderer sr,Color start, Color end, float duration = 1f)
         {
             this.sr = sr;

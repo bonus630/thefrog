@@ -178,7 +178,7 @@ namespace br.com.bonus630.thefrog.Items
         public void Impact()
         {
            // Debug.Log("Lightining impact:");
-            Collider2D raycastHit = Physics2D.OverlapCircle(gameObject.transform.position, 0.2f, canHitLayers);
+            Collider2D raycastHit = Physics2D.OverlapCircle(gameObject.transform.position, 0.25f, canHitLayers);
            // Gizmos.DrawWireSphere(gameObject.transform.position, 0.2f);
             //Debug.Break();
             if (raycastHit != null)

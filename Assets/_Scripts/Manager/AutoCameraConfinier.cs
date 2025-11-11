@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Manager
     {
         PolygonCollider2D polygonCollider;
         [SerializeField] GameObject nextCamera;
+        [SerializeField] GameObject confiner;
         void Start()
         {
             polygonCollider = GetComponent<PolygonCollider2D>();
@@ -24,6 +25,7 @@ namespace br.com.bonus630.thefrog.Manager
                 camera = nextCamera;
             }
             camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = polygonCollider;
+            confiner = gameObject;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
