@@ -22,4 +22,5 @@ namespace br.com.bonus630.thefrog.Manager
 
         public SceneStartType SceneType;
     }
+
 }

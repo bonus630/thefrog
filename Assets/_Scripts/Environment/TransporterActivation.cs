@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Environment
         void Start()
         {
             render = GetComponent<SpriteRenderer>();
-            Debug.Log($"[Transport] isActived:{GameManager.Instance.IsActived(ID)}");
+            //Debug.Log($"[Transport] isActived:{GameManager.Instance.IsActived(ID)}");
             if(GameManager.Instance.IsActived(ID))
             {
                 VisualActivation();

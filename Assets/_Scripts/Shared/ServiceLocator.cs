@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Shared
@@ -49,6 +50,16 @@ namespace br.com.bonus630.thefrog.Shared
             Debug.LogWarning($"[ServiceLocator] Nenhum objeto do tipo {typeof(T).Name} encontrado!");
             return null;
         }
+        /// <summary>
+        /// Registers a callback to be invoked when an instance of type T becomes available. If an instance is already
+        /// available, the callback is invoked immediately.
+        /// </summary>
+        /// <remarks>If an instance of type T is not currently available, the callback will be stored and
+        /// invoked once the instance becomes available. Multiple callbacks for the same type are supported and will be
+        /// invoked in the order they were registered.</remarks>
+        /// <typeparam name="T">The type of the service to retrieve. Must be a reference type.</typeparam>
+        /// <param name="onAvailableCallBack">The callback to execute when an instance of type T is available. The callback receives the instance as its
+        /// parameter. Cannot be null.</param>
         public void GetAsync<T>(Action<T> onAvailableCallBack) where T : class
         {
             //Debug.Log($"[ServiceLocator] Instance hash: {GetHashCode()} | Method: GetAsync<{typeof(T).Name}>");
@@ -106,6 +117,10 @@ namespace br.com.bonus630.thefrog.Shared
                 callbacks.Remove(typeof(T));
             }
         }
+        public void Register(GameObject obj)
+        {
+            Register(obj.name, obj);
+        }
         public void Register(string name, GameObject obj)
         {
             if (obj == null || string.IsNullOrEmpty(name))
@@ -121,9 +136,18 @@ namespace br.com.bonus630.thefrog.Shared
             }
 
         }
+        
         public void ClearCache() => cache.Clear();
         public void ClearGameObjectCache() => gameObjectsCache.Clear();
 
+        public List<string> GetRegistredsServicesNames()
+        {
+            return cache.Keys.ToList().ConvertAll(t => t.Name);
+        }
+        public List<string> GetRegistredsGameObjectsNames()
+        {
+            return gameObjectsCache.Keys.ToList();
+        }
         public void ResetService()
         {
             ClearCache();

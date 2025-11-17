@@ -5,7 +5,7 @@ namespace br.com.bonus630.thefrog.Caracters
     public class Crow : MonoBehaviour
     {
         Animator animator;
-        AudioSource audio;
+        AudioSource audioSource;
         int CrawID = Animator.StringToHash("craw");
         float timer = 0;
         float maxTimer = 0f;
@@ -14,7 +14,7 @@ namespace br.com.bonus630.thefrog.Caracters
         {
             maxTimer = Random.Range(2f, 16f);
             animator = GetComponent<Animator>();
-            audio = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void Craw()
         {
-            audio.Play();
+            audioSource.Play();
             animator.SetTrigger(CrawID);
         }
     }

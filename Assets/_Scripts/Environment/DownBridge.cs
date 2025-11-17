@@ -7,13 +7,13 @@ namespace br.com.bonus630.Environment
     public class DownBridge : IActivator
     {
 
-        private int chainAngleOffset = 0;
         public float speed = 0.1f;
-        private int direction = 1;
-        private float bridgeBodyFineAngleAjust = -0.69f;
+        //private int chainAngleOffset = 0;
+        //private int direction = 1;
+        //private float bridgeBodyFineAngleAjust = -0.69f;
 
-        private Vector3 wallClosedPos;
-        private Vector3 wallOpenedPos;
+        //private Vector3 wallClosedPos;
+        //private Vector3 wallOpenedPos;
         Vector3 wallInitialOffset;
 
         [Header("Referências")]

@@ -14,6 +14,11 @@ namespace br.com.bonus630.thefrog.Activators
         bool start = false;
         int dialogueIndex = 0;
         IPlayer player;
+        private void Start()
+        {
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
+            camerasController = ServiceLocator.Instance.Get<CamerasController>();
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent<IPlayer>(out player))

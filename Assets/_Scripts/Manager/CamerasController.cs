@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using br.com.bonus630.thefrog.Shared;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    public class CamerasController : MonoBehaviour
+    public class CamerasController : MonoBehaviour,IService
     {
         [SerializeField] List<GameObject> Cameras;
         [field: SerializeField] public GameObject ThumbCamera { get; protected set; }
 
         public int LastActiveCam { get; private set; }
         public int LastActiveConfiner { get; private set; }
+        private void Awake()
+        {
+             ServiceLocator.Instance.Register<CamerasController>(this);
+        }
 
         public GameObject ActiveCam(int index)
         {

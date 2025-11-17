@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
 {
@@ -23,6 +24,8 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (GameManager.Instance.IsEventCompleted(GameEventName.KillPig))
                 gameObject.SetActive(false);
+            if (player == null)
+                player = ServiceLocator.Instance.Get("Player");
             //adicionar um fad out
             //GameObject.Find("Listener").GetComponent<AudioSource>().Stop();
         }

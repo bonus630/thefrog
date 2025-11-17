@@ -8,7 +8,7 @@ namespace br.com.bonus630.thefrog.Environment
     public class Transporter : MonoBehaviour
     {
         public Vector2[] destines;
-        [SerializeField] float travelDuration = 2f;
+        //[SerializeField] float travelDuration = 2f;
         [SerializeField] float speed = 10f;
         [SerializeField] float currentSpeed;
         [SerializeField] float stopMaxTime = 1f;
@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         public bool going = false;
         bool playerOut = true;
-        float time = 0;
+        //float time = 0;
         float stopTime = 0;
         private Vector3 startPosition;
         private Vector3 worldDestination;

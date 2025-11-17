@@ -16,6 +16,7 @@ namespace br.com.bonus630.thefrog.Activators
         private void Awake()
         {
             spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {

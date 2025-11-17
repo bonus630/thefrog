@@ -1,5 +1,6 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using Cinemachine;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Activators
@@ -18,9 +19,14 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void Start()
         {
-            FindAnyObjectByType<CameraBackground>().HourChanged += ActiveDuckPath_HourChanged;
+            ServiceLocator.Instance.Get<IHourProvider>().OnHourChanged  += ActiveDuckPath_HourChanged;
+            screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
         }
-
+        private void OnDisable()
+        {
+            ServiceLocator.Instance.Get<IHourProvider>().OnHourChanged -= ActiveDuckPath_HourChanged;
+        }
         private void ActiveDuckPath_HourChanged(int hour)
         {
             if (hour > 17 || hour < 6)

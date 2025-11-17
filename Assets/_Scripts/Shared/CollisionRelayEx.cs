@@ -5,7 +5,7 @@ namespace br.com.bonus630.thefrog.Shared
 {
     public class CollisionRelayEx : MonoBehaviour
     {
-        [SerializeField] int index;
+        [SerializeField] public int index;
         [SerializeField] string colliderName;
 
 
@@ -19,12 +19,12 @@ namespace br.com.bonus630.thefrog.Shared
         public event Action<ColliderData> OnTriggerEnterAction;
         public event Action<ColliderData> OnTriggerExitAction;
      
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void OnTriggerEnter2D(Collider2D collision)
         {
             data.ColliderOther = collision;
             OnTriggerEnterAction?.Invoke(data);
         }
-        private void OnTriggerExit2D(Collider2D collision)
+        public void OnTriggerExit2D(Collider2D collision)
         {
             data.ColliderOther = collision;
             OnTriggerExitAction?.Invoke(data);

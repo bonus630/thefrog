@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 namespace br.com.bonus630.thefrog.Manager
 {
-    public class MusicSource : MonoBehaviour
+    public class MusicSource : MonoBehaviour, IService
     {
         [SerializeField] AudioSource audioLeft;
         [SerializeField] AudioSource audioRight;
@@ -22,10 +22,22 @@ namespace br.com.bonus630.thefrog.Manager
 
         private bool leftTurn = true;
 
+        [SerializeField] private float normalPitch = 1f;
+        [SerializeField] private float dangerPitch = 1.25f;
+        [SerializeField] private float pitchFadeTime = 1.5f;
+        private Coroutine pitchCoroutine;
+
+
         public float SavedTime { get; set; } = 0f; // Guarda o tempo da música antes de pausar
         public bool SavedLoop { get; private set; } = false; //Guarda o loop
 
         private AudioClip savedClip;
+
+
+        private void Start()
+        {
+            ServiceLocator.Instance.Register<MusicSource>(this);
+        }
 
         /// <summary>
         /// Global volume
@@ -105,7 +117,6 @@ namespace br.com.bonus630.thefrog.Manager
             }
             leftTurn = !leftTurn;
         }
-        //Este é um metodo publico
         public void CrossFade(BackgroundMusic music)
         {
             if (leftTurn)
@@ -114,7 +125,6 @@ namespace br.com.bonus630.thefrog.Manager
                 audioRight.loop = true;
             CrossFade(BackgroundMusics[(int)music], false);
         }
-        //Este é um metodo publico
         public void CrossFade(BackgroundMusic music, bool inLoop)
         {
             if (leftTurn)
@@ -139,13 +149,11 @@ namespace br.com.bonus630.thefrog.Manager
             StopFadOut(new AudioSource[] { nowPlaying });
             //Debug.Log("Estamos no audio:" + toPlay.time);
         }
-        //Este é um metodo publico
         public void PlayFadIn(AudioClip clip)
         {
             // Debug.Log("Audio");
             PlayFadIn(new AudioSource[] { audioLeft, audioRight }, clip);
         }
-       //Este é um metodo publico
         public void PlayFadIn(BackgroundMusic music)
         {
             AudioClip clip = BackgroundMusics[(int)music];
@@ -189,7 +197,6 @@ namespace br.com.bonus630.thefrog.Manager
             for (int i = 0; i < channels.Length; i++)
                 channels[i].volume = targetVolume; // Corrigido: channels[1] → channels[i]
         }
-        //Este é um metodo publico
         /// <summary>
         /// Utilize este método para tocar uma música das musicas pre definidas
         /// </summary>
@@ -375,6 +382,46 @@ namespace br.com.bonus630.thefrog.Manager
                 ResumeMainMusic();
             }
         }
+        public void BoostDangerMusic()
+        {
+            SetPitch(dangerPitch);
+        }
+
+        public void RestoreNormalMusic()
+        {
+            SetPitch(normalPitch);
+        }
+
+        public void SetPitch(float target)
+        {
+            if (pitchCoroutine != null)
+                StopCoroutine(pitchCoroutine);
+
+            pitchCoroutine = StartCoroutine(FadePitch(target));
+        }
+
+        private IEnumerator FadePitch(float target)
+        {
+            float startLeft = audioLeft.pitch;
+            float startRight = audioRight.pitch;
+
+            float elapsed = 0f;
+
+            while (elapsed < pitchFadeTime)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / pitchFadeTime;
+
+                audioLeft.pitch = Mathf.Lerp(startLeft, target, t);
+                audioRight.pitch = Mathf.Lerp(startRight, target, t);
+
+                yield return null;
+            }
+
+            audioLeft.pitch = target;
+            audioRight.pitch = target;
+        }
+
     }
     public class MusicData
     {

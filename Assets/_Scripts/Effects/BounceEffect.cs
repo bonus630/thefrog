@@ -36,9 +36,10 @@ namespace br.com.bonus630.thefrog.Effects
                 // Aplica compressão no Y e estica no X
                 float scaleY = originalScale.y - bounceAmount * bounce;
                 float scaleX = originalScale.x + bounceAmount * bounce * 0.5f;
-
-                transform.localScale = new Vector3(scaleX, scaleY, originalScale.z);
-
+                if(transform != null)
+                    transform.localScale = new Vector3(scaleX, scaleY, originalScale.z);
+                else
+                    IsFinished = true;
                 if (t >= 1f)
                 {
                     IsFinished = true;

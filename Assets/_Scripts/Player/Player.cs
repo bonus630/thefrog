@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 namespace br.com.bonus630.thefrog.Player
 {
-    [DefaultExecutionOrder(-1),SelectionBase]
+    [DefaultExecutionOrder(-1), SelectionBase]
     public class Player : MonoBehaviour, IPlayer, IForcible
     {
         [SerializeField] private GameObject interactIcon;
@@ -72,9 +72,11 @@ namespace br.com.bonus630.thefrog.Player
         public RigidbodyType2D RigibodyBodyType { get { return rb.bodyType; } set { rb.bodyType = value; } }
 
         public event System.Action<float> GravityChanged;
+        private  Scene bornScene; 
         void Awake()
         {
             GetComponents();
+            bornScene = SceneManager.GetActiveScene();
             //jumpTimeCharger = startJumpTime;
         }
         private void GetComponents()
@@ -101,27 +103,63 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-#if !UNITY_EDITOR
+           // #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
-          
-            
             transform.position = GameManager.Instance.PlayerStartPosition;
             if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
             {
                 audioSource.PlayOneShot(Entrace);
                 //rb.AddForce(new Vector2(100, 480), ForceMode2D.Impulse);
-                AddForce(new Vector2(100, 480), ForceMode2D.Impulse,4,true);
+                AddForce(new Vector2(100, 480), ForceMode2D.Impulse, 4, true);
+                return;
             }
-#else
-//            if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
-//                transform.position = GameManager.Instance.PlayerStartPosition;
+            Debug.Log("[Player] position " + transform.position);
+            if (SceneManager.GetActiveScene().name != "Main")
+                return;
+           // StartCoroutine(WaitSceneLoad());
+
+
+            // if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
+            //Debug.Log("[Player] position object" + GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position);
+            // Debug.Log("[Player] position player" + transform.position);
+            // Debug.Log("[Player] gamemanager" + GameManager.Instance);
+            //#else
+            //            if (SceneManager.GetActiveScene().name.Equals(GameManager.Instance.InternAreas))
+            //                transform.position = GameManager.Instance.PlayerStartPosition;
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-#endif
+            //#endif
 
+        }
+
+        private IEnumerator WaitSceneLoad()
+        {
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            var sceneManager = ServiceLocator.Instance.Get<SceneLoadManager>();
+            int blockIndex = -1; //sceneManager.GetBlockIndexByPosition(transform.position);
+            yield return new WaitUntil(() =>
+            {
+                blockIndex = sceneManager.GetBlockIndexByPosition(transform.position);
+                return blockIndex != -1;
+            });
+            Debug.Log("[Player] block index:" + blockIndex);
+            sceneManager.LoadSceneAsync(blockIndex);
+            bool wait = true;
+            System.Action<List<string>> handler = null;
+            handler = (list) =>
+            {
+                for (int i = 0; i < list.Count; i++)
+                    Debug.Log("[Player] allscenes loaded scene:" + list[i]);
+                wait = false;
+            };
+            sceneManager.AllScenesLoadedEvent += handler;
+            yield return new WaitUntil(() => wait == false);
+            sceneManager.AllScenesLoadedEvent -= handler;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            Debug.Log("[Player] scene loaded, player dynamic");
         }
 
         //public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f)
@@ -164,7 +202,7 @@ namespace br.com.bonus630.thefrog.Player
             inputsOn = true;
             if (duration > 0 && !removeInput)
                 playerMovement.IgnoreDamping = false;
-           // DebugUtils.Log("InputsOn: " + inputsOn);
+            // DebugUtils.Log("InputsOn: " + inputsOn);
         }
         private void ReenableYVelocityLimit() => playerMovement.UseYvelocityLimit = true;
 
@@ -306,25 +344,26 @@ namespace br.com.bonus630.thefrog.Player
             if (collision.gameObject.layer == 13)
             {
                 gameObject.transform.parent = null;
+                SceneManager.MoveGameObjectToScene(gameObject, bornScene);// evita que o player fique na cena da plataforma
             }
         }
 
         public void ActiveVision()
         {
-          //  Debug.Log("[Player] HasVision:" + playerManager.PlayerStates.HasVision);
+            //  Debug.Log("[Player] HasVision:" + playerManager.PlayerStates.HasVision);
             if (playerManager.PlayerStates.HasVision)
                 visionController.ActiveVision(barManager, gravityDirection);
         }
-        
+
         public void ChangeGravity(float gravityDirection, float speed = 0.05f)
         {
             this.gravityDirection = gravityDirection;
-         
+
             //LinearMaxY *= -1;
             playerManager.ActiveSkill(this.gravityDirection > 0);
             if (this.gravityDirection > 0)
             {
-               // Debug.Log(gravityDirection);
+                // Debug.Log(gravityDirection);
                 var m = GravityParticles.main;
                 m.gravityModifierMultiplier = 0;
                 GravityParticles.Play();
@@ -375,7 +414,6 @@ namespace br.com.bonus630.thefrog.Player
         public void Launch()
         {
             //bug
-            //o valor não está chegando a zero
             //o nº foi alterado ao pegar uma shuryken
             if (playerManager.PlayerStates.Shurykens > 0)
             {
@@ -412,7 +450,7 @@ namespace br.com.bonus630.thefrog.Player
             knockUpForce = force;
             Debug.Log("[player] knockeduponhit force:" + force);
             ApplyKnockUp();
-            
+
         }
         //public void KnockedUpOnHit()
         //{
@@ -471,9 +509,13 @@ namespace br.com.bonus630.thefrog.Player
         }
         public bool BodyTouching(Collider2D collision)
         {
+            if(collision == null)
+                return false;
+            if (GetComponent<CapsuleCollider2D>() == null)
+                return false;
             return GetComponent<CapsuleCollider2D>().IsTouching(collision);
         }
-     
+
 
         public void ChangeNumberShurykens(int shurykens)
         {
@@ -497,7 +539,7 @@ namespace br.com.bonus630.thefrog.Player
             yield return new WaitForSeconds(delayTime);
             GetComponent<PlayerInputHandler>().enabled = inputOn;
             GetComponent<PlayerInput>().enabled = inputOn;
-           //Debug.Log("Disable inputs :" + inputOn);
+            //Debug.Log("Disable inputs :" + inputOn);
             if (autoSwitch)
             {
                 yield return new WaitForSeconds(switchTime);

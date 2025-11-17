@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
@@ -15,6 +16,10 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] AudioClip clip;
        
         bool start = false;
+        private void Start()
+        {
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!start && collision.CompareTag("Player"))

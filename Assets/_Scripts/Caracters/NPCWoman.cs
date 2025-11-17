@@ -23,7 +23,7 @@ namespace br.com.bonus630.thefrog.Caracters
             if(GameManager.Instance.IsEventCompleted(GameEventName.LadyLaments))
                 Destroy(gameObject);
             this.CurrentDialogueData = firstDialogue;
-           
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
 
         }
         public override DialogueData CurrentDialogueData { 

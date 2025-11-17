@@ -47,7 +47,7 @@ namespace br.com.bonus630.thefrog.Caracters
             GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;  
             //Debug.Log(currentDialogueData.DialogueName);
         }
-        protected virtual void OnDestroy()
+        protected virtual void OnDisable()
         {
             GameManager.Instance.eventManager.GameEventCompleted -= OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured -= OnGameStatesRestaured;

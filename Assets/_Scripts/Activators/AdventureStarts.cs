@@ -8,6 +8,13 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] MusicSource musicSource;
         [SerializeField] StageBuilder mStageBuilder;
         bool start = false;
+        private void Start()
+        {
+            if(musicSource == null)
+            {
+                musicSource = ServiceLocator.Instance.Get<MusicSource>();
+            }
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!start)

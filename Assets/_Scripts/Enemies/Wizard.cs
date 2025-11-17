@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Enemies
             startPos = transform.position;
             action = new System.Action[]
             {
-                Fly
+                Fly,Attack,Attack2,Idle
             };
             base.Start();
         }

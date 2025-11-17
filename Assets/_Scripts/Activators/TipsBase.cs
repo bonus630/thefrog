@@ -18,11 +18,14 @@ namespace br.com.bonus630.thefrog.Activators
         protected virtual void Awake()
         {
             if (RemoveInCompleted != GameEventName.None && GameManager.Instance.eventManager.AnyEventCompleted(RemoveInCompleted))
+            {
                 Destroy(gameObject);
+                return;
+            }
             boxCollider = GetComponent<BoxCollider2D>();
             GameManager.Instance.eventManager.GameEventCompleted += OnEventCompleted;
         }
-        private void OnDestroy()
+        private void OnDisable()
         {
            // Debug.Log($"OnDestroy {name} | GameManager.Instance = {GameManager.Instance}");
 

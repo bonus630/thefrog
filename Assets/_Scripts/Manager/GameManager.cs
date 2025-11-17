@@ -17,7 +17,7 @@ using System.Runtime.CompilerServices;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    [DefaultExecutionOrder(-100)]
+    [DefaultExecutionOrder(-100), RequireComponent(typeof(EventsManager))]
     public class GameManager : MonoBehaviour
     {
         [SerializeField] InputAction PauseAction;
@@ -56,10 +56,12 @@ namespace br.com.bonus630.thefrog.Manager
 
 
         //Scenes Names
-        public readonly string MainScene = "SampleScene";
+        //public readonly string MainScene = "  ";
+        public readonly string MainScene = "Main";
         public readonly string InternAreas = "InternAreas";
         public readonly string FroggerScene = "Frogger";
         public readonly string GameOverScene = "GameOver";
+        public readonly string MainMenu = "MainMenu";
 
         //GameObjects Names
         public readonly string StartPointBuilder = "StartPointBuilder";
@@ -112,9 +114,9 @@ namespace br.com.bonus630.thefrog.Manager
 #if UNITY_EDITOR
             LoadEventsAndStates();
 #endif
+            DontDestroyOnLoad(gameObject);
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-            DontDestroyOnLoad(gameObject);
         }
         private void Start()
         {
@@ -127,7 +129,7 @@ namespace br.com.bonus630.thefrog.Manager
             musicVolum = this.musicVolum;
             if (PlayerPrefs.HasKey(MusicVolum) && PlayerPrefs.HasKey(SoundVolum))
             {
-                soundVolum = PlayerPrefs.GetFloat(SoundVolum);  
+                soundVolum = PlayerPrefs.GetFloat(SoundVolum);
                 musicVolum = PlayerPrefs.GetFloat(MusicVolum);
                 return true;
             }
@@ -177,7 +179,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void Pause(bool pause)
         {
-            if (SceneManager.GetActiveScene().name.Equals("SampleScene") || SceneManager.GetActiveScene().name.Equals("InternAreas"))
+            if (SceneManager.GetActiveScene().name.Equals(MainScene) || SceneManager.GetActiveScene().name.Equals(InternAreas))
                 TryPause(pause, PauseHUD, out GameObject go);
 
         }
@@ -189,7 +191,7 @@ namespace br.com.bonus630.thefrog.Manager
                 if (pauseHud != null)
                 {
                     if (hudName.Equals(SaveHUD) && pauseHud.activeInHierarchy)
-                        SceneManager.LoadScene("MainMenu");
+                        SceneManager.LoadScene(MainMenu);
                     pauseHud.SetActive(false);
                 }
                 var saveHud = GameObject.Find(SaveHUD).transform.GetChild(0).gameObject;
@@ -242,11 +244,11 @@ namespace br.com.bonus630.thefrog.Manager
             return PlayTimeInSeconds;
         }
         private SceneStartType sceneStartType;
-        public void LoadGame(SceneStartType type, int index = 0)
+        public void LoadGame(SceneStartType type, int saveGameIndex = 0)
         {
-            StartCoroutine(LoadGame(true, type, index));
+            StartCoroutine(LoadGame(true, type, saveGameIndex));
         }
-        public IEnumerator LoadGame(bool courotine, SceneStartType type, int index = 0)
+        public IEnumerator LoadGame(bool courotine, SceneStartType type, int saveGameIndex = 0)
         {
             yield return new WaitForEndOfFrame();
             // Debug.LogWarning("LoadGame type:" + type);
@@ -277,13 +279,15 @@ namespace br.com.bonus630.thefrog.Manager
             }
             if (type == SceneStartType.Continue)
             {
-                this.EnvironmentStates = LoadStates(index);
+                this.EnvironmentStates = LoadStates(saveGameIndex);
                 this.PlayerStates = this.EnvironmentStates.playerStates;
-                if (index == 0)
+                if (saveGameIndex == 0)
                     this.PlayerStates.Hearts = this.playerStates.MaxHearts;
                 continueGame = true;
                 //vamos colocar a carga dos eventos completos aqui, não sei se é o melhor lugar, mas parece resolver o problema dos eventos carregarem após a cena
                 //já estar carregada
+                if (eventManager == null)
+                    eventManager = GetComponent<EventsManager>();
                 eventManager.LoadEvents(this.PlayerStates.CompletedGameEvents);
                 SceneManager.LoadScene(MainScene);
                 //ChangeGameToState(this.PlayerStates);
@@ -313,16 +317,16 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            if (GameObject.Find("AudioManager").TryGetComponent<MusicSource>(out MusicSource musicSource))
+            ServiceLocator.Instance.GetAsync<MusicSource>((musicSource) =>
             {
                 musicSource.SetMusicVolume(this.musicVolum);
                 musicSource.SetSFXVolume(this.soundVolum);
-            }
+            });
             if (arg0.name.Equals(MainScene))
             {
                 if (sceneStartType.Equals(SceneStartType.Main))
                 {
-                    //Debug.Log("Topoint index:" + ToPoint);
+                    Debug.Log("Topoint index:" + ToPoint);
                     GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
                     ChangeGameToState(this.EnvironmentStates);
                     // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -334,12 +338,16 @@ namespace br.com.bonus630.thefrog.Manager
                 //return;
 
 #endif
-                if (!continueGame)
-                    LoadStartGamePoint(0);
-                else
+                Debug.Log($"[GameManager] SceneManager_sceneLoaded {MainScene} continue:{continueGame} ");
+                if (continueGame)
                 {
                     ChangeGameToState(this.EnvironmentStates);
                     PlayerStartPosition = playerStates.PlayerPosition.Position;
+                    continueGame = false;
+                }
+                else
+                {
+                    LoadStartGamePoint(0);
                 }
             }
             if (arg0.name.Equals(InternAreas))
@@ -352,9 +360,11 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void LoadStartGamePoint(int index)
         {
-            StartGamePosition = GameObject.Find(StartPointBuilder).gameObject.transform.position;
+            //StartGamePosition = GameObject.Find(StartPointBuilder).gameObject.transform.position;
+            StartGamePosition = new Vector3(-110.73f, -4.34f, 0f);
             this.PlayerStates.PlayerPosition.Position = StartGamePosition;
             PlayerStartPosition = StartGamePosition;
+            // Debug.Log("[GameManager] playerstartposition:" + PlayerStartPosition);
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates(index);
             // DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
@@ -525,24 +535,31 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-            // Debug.Log("[GameManager] ChangeGameToState");
+            Debug.Log("[GameManager] ChangeGameToState");
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
-            // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
+            Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
 
             GameStatesRestaured?.Invoke();
         }
         public void GameOver()
         {
+            Debug.Log("[GameManager] GameOver");
             StopCountingTime();
+            Debug.Log("[GameManager] GameOver 1");
             this.EnvironmentStates = LoadStates(0);
+            Debug.Log("[GameManager] GameOver 2");
             this.PlayerStates = this.EnvironmentStates.playerStates;
+            Debug.Log("[GameManager] GameOver 3");
             this.PlayerStates.numDies++;
+            Debug.Log("[GameManager] GameOver 4");
             SaveStates(0);
+            Debug.Log("[GameManager] GameOver 5");
             SceneManager.LoadScene(GameOverScene);
+            Debug.Log("[GameManager] GameOver 6");
         }
         public void EventCompleted(GameEventName gameEvent, bool playSound = true)
         {
@@ -660,28 +677,28 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             ////Time.timeScale = 0.5f;
-            playerStates.HasGravity = true;
-            playerStates.HasVision = true;
-            playerStates.HasFireball = true;
-            playerStates.HasLightning = true;
-            playerStates.HasWallJump = true;
-            //playerStates.HasDoubleJump = true;
-            playerStates.FallsControl = true;
-            playerStates.HasDash = true;
-            //playerStates.Shurykens = 100;
-            //this.EventCompleted(GameEventName.HeartContainer, false);
-            this.EventCompleted(GameEventName.PlayerCheckWall, false);
-            this.EventCompleted(GameEventName.NPCFirstTalk, false);
-            this.EventCompleted(GameEventName.KillPig, false);
-            this.EventCompleted(GameEventName.LightningBolt, false);
-            this.EventCompleted(GameEventName.MagicGlass, false);
-            this.EventCompleted(GameEventName.Gravity, false);
-            this.EventCompleted(GameEventName.FeatherTouch, false);
-            this.EventCompleted(GameEventName.FireBall, false);
-            //this.EventCompleted(GameEventName.RollingWind, false);
-            //this.EventCompleted(GameEventName.PrisionerTip, false);
-            //this.EventCompleted(GameEventName.LadyLaments, false);
-            this.EventCompleted(GameEventName.KoarFounded, false);
+            //playerStates.HasGravity = true;
+            //playerStates.HasVision = true;
+            //playerStates.HasFireball = true;
+            //playerStates.HasLightning = true;
+            //playerStates.HasWallJump = true;
+            ////playerStates.HasDoubleJump = true;
+            //playerStates.FallsControl = true;
+            //playerStates.HasDash = true;
+            ////playerStates.Shurykens = 100;
+            ////this.EventCompleted(GameEventName.HeartContainer, false);
+            //this.EventCompleted(GameEventName.PlayerCheckWall, false);
+            //this.EventCompleted(GameEventName.NPCFirstTalk, false);
+            //this.EventCompleted(GameEventName.KillPig, false);
+            //this.EventCompleted(GameEventName.LightningBolt, false);
+            //this.EventCompleted(GameEventName.MagicGlass, false);
+            //this.EventCompleted(GameEventName.Gravity, false);
+            //this.EventCompleted(GameEventName.FeatherTouch, false);
+            //this.EventCompleted(GameEventName.FireBall, false);
+            ////this.EventCompleted(GameEventName.RollingWind, false);
+            ////this.EventCompleted(GameEventName.PrisionerTip, false);
+            ////this.EventCompleted(GameEventName.LadyLaments, false);
+            //this.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
             #endregion

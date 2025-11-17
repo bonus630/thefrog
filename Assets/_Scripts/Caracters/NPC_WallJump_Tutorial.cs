@@ -26,9 +26,7 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] private int currentDialogue = 0;
         [SerializeField] private int prevDialogue = 0;
 
-        // private bool CanGoToNext = false;
         private GameObject player;
-        //private int dialogueCounter = 0;
 
         private Animator animator;
         private BoxCollider2D box;
@@ -40,18 +38,19 @@ namespace br.com.bonus630.thefrog.Caracters
         public bool finalRoute = false;
         public bool isFarAwayFromNPC = false;
         private Coroutine courotine;
-
-        //public bool FirstTalk { get { return firstTalk; } set { firstTalk = value; SetDialogue(); } }
-        //public bool KillPig { get { return killPig; } set { killPig = value; SetDialogue(); } }
+  
         public bool PlayerCheckWall { get { return playerCheckWall; } set { playerCheckWall = value; SetDialogue(); } }
 
         protected override void Awake()
         {
             base.Awake();
-            player = GameObject.Find("Player");
+            player = ServiceLocator.Instance.Get("Player");
             animator = GetComponent<Animator>();
             box = GetComponent<BoxCollider2D>();
             this.CurrentDialogueData = dialoguesData[0];
+            CheckGameEvents();
+            //if (GameManager.Instance.IsActived(firstTalkKey))
+            //    firstTalk = true;
         }
         protected override void Update()
         {
@@ -60,11 +59,18 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         protected override void OnGameStatesRestaured()
         {
+           // Debug.Log("[npc_walljump_tutorial] OnGameStatesRestaured:");
             CheckGameEvents();
+        }
+        public override DialogueData GetDialogueForPlayer()
+        {
+            this.CurrentDialogueData = dialoguesData[currentDialogue];
+            //Debug.Log("[npc_walljump_tutorial] currentdialog:" + this.currentDialogueData.name);
+            return this.CurrentDialogueData;
         }
         private void CheckGameEvents()
         {
-           // Debug.Log("[walljump] gravity:" + GameManager.Instance.IsEventCompleted(GameEventName.Gravity));
+            //Debug.Log("[walljump] gravity:" + GameManager.Instance.IsEventCompleted(GameEventName.Gravity));
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
             {
                 Destroy(gameObject);
@@ -162,9 +168,12 @@ namespace br.com.bonus630.thefrog.Caracters
 
         protected override void OnGameEventCompleted(GameEvent gameEvent)
         {
-           // Debug.Log("[EventComplet][npc walljump]:" + gameEvent.Name);
+            // Debug.Log("[EventComplet][npc walljump]:" + gameEvent.Name);
             if (gameEvent.Name.Equals(GameEventName.PlayerCheckWall))
+            {
                 PlayerCheckWall = true;
+                SetDialogue();
+            }
             if (gameEvent.Name.Equals(GameEventName.NPCFirstTalk))
             {
                 firstTalk = true;

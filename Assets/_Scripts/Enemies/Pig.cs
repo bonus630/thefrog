@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace br.com.bonus630.thefrog.Enemies
         private new CircleCollider2D collider2D;
         protected override void Start()
         {
-            this.life = 5;
+            this.life = 6;
 #if UNITY_EDITOR
             this.life = 1;
 #endif
@@ -69,6 +70,12 @@ namespace br.com.bonus630.thefrog.Enemies
                     animator.SetBool(WalkID, false);
                     speed *= 2;
                     
+                    if (life < 3)
+                    {
+                        ServiceLocator.Instance.Get<MusicSource>().BoostDangerMusic();
+                    }
+
+
                     if (life < 1)
                     {
                         Die();
@@ -102,6 +109,7 @@ namespace br.com.bonus630.thefrog.Enemies
             rg.totalForce = Vector2.zero;
             rg.linearVelocityX = 0f;
             animator.SetBool("Run", false);
+            ServiceLocator.Instance.Get<MusicSource>().RestoreNormalMusic();
             Destroy(gameObject);
         }
         private void Appear()

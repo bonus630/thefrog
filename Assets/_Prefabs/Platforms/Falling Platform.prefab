@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallingTime: 0.8
   respawnable: 0
+  restoreTime: 10
 --- !u!251 &6049294328360465797
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4128607
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0

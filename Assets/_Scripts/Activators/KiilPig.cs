@@ -9,6 +9,10 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] IActivator fanToDisable;
         [SerializeField] IActivator fanToEnable;
 
+        private void Start()
+        {
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

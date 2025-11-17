@@ -21,6 +21,7 @@ namespace br.com.bonus630.thefrog.Activators
         private GameObject player;
         private void Update()
         {
+            if (player == null) return;
             playerDistance = Vector3.Distance(player.transform.position, pointToActive.transform.position);
             ActiveItem();
         }
@@ -34,7 +35,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void Start()
         {
-            player = GameManager.Instance.GetPlayer;
+            player = ServiceLocator.Instance.Get("Player");
         }
         private void Item_HourChanged(int hour)
         {

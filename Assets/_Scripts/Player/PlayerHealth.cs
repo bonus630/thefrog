@@ -79,7 +79,8 @@ namespace br.com.bonus630.thefrog.Player
             }
             if (collision.gameObject.layer == 10)
             {
-                Die();
+                if(!invencible)
+                    Die();
             }
         }
         public void Hit(int damage = 1)
@@ -107,6 +108,7 @@ namespace br.com.bonus630.thefrog.Player
         public void Die()
         {
             Debug.Log("[PlayerHearth] prepareFallDie:" + PrepareFallDie);
+            //player.AllInputsOn(false);
             player.playerMovement.FreezePlayerMove();
             CurrentLife = 0;
             Hit();
@@ -116,7 +118,7 @@ namespace br.com.bonus630.thefrog.Player
             player.AllInputsOn(false);
             player.RigibodyLinearVelocity = Vector2.zero;
             player.RigibodyGravityScale = 0;
-            player.RigibodyBodyType = RigidbodyType2D.Static;
+            player.RigibodyBodyType = RigidbodyType2D.Kinematic;
             player.FooterColliding.GetComponent<BoxCollider2D>().isTrigger = true;
             player.playerManager.PlayerDie();
            

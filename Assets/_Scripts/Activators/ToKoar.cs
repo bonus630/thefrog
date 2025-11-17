@@ -10,7 +10,7 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] public ScreenEffects screenEffects;
         [SerializeField] public Vector2 newLocation;
-        [SerializeField] float playerWaitTime = 0.001f;
+       // [SerializeField] float playerWaitTime = 0.001f;
 
         [SerializeField] CollisionRelayEx upGame;
         [SerializeField] CollisionRelayEx downGame;
@@ -29,7 +29,7 @@ namespace br.com.bonus630.thefrog.Activators
         {
             koar = GameObject.Find("KoarActivator").transform.GetChild(0).gameObject;
            // Debug.LogError($"[ToKoar] koarActivator {name} — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
-           // screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
+            screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
             //Debug.LogError($"[ToKoar] screen {name} — frame {Time.frameCount}\n{new System.Diagnostics.StackTrace(true)}");
         }
         public void Start()

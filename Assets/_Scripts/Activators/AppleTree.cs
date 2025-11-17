@@ -8,11 +8,12 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] MusicSource musicSource;
         bool monitor = false;
         bool active = false;
-        bool isFound = false;
+       // bool isFound = false;
         IHourProvider hourProvider;
         void Start()
         {
             hourProvider = ServiceLocator.Instance.Get<IHourProvider>();
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
         }
 
         void Update()

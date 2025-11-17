@@ -19,6 +19,12 @@ namespace br.com.bonus630.thefrog.Environment
 
         bool cancel = false;
 
+        private void Start()
+        {
+            if (teleported == null)
+                teleported = ServiceLocator.Instance.Get("Player");
+        }
+
         public override void Activate()
         {
 

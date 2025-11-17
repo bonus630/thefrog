@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    public class PlayerPointsEntry : IActivator
+    public class PlayerPointsEntry : IActivator,IService
     {
         [SerializeField] ScreenEffects screenEffects;
         [SerializeField] List<ScenePointsData> ScenePointsDatas;
@@ -19,9 +19,10 @@ namespace br.com.bonus630.thefrog.Manager
            // Debug.Log("PlayerPointenttry");
             ScenePointsData data = ScenePointsDatas.SingleOrDefault(s=>s.SceneIndex == sceneIndex);
            // Debug.Log("PlayerPointenttry "+data);
+           Debug.Log("ToPoint :"+ GameManager.Instance.ToPoint);
             if (data != null)
                 GameManager.Instance.PlayerStartPosition = data.PointsData[GameManager.Instance.ToPoint].Point;
-           // Debug.Log("PlayerPointenttry :"+ GameManager.Instance.PlayerStartPosition);
+            Debug.Log("PlayerPointenttry :"+ GameManager.Instance.PlayerStartPosition);
         }
 
         public override void Deactive()
@@ -36,6 +37,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void Start()
         {
+            ServiceLocator.Instance.Register(this);
             screenEffects.FadeIn(1f);
         }
     }

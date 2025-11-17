@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    public class ScreenEffects : MonoBehaviour
+    public class ScreenEffects : MonoBehaviour, IService
     {
         [field:SerializeField]public ScreenFader screenFader { get; private set; }
         [field:SerializeField]public CamerasController camerasController { get; private set; }

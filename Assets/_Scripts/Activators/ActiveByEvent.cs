@@ -22,7 +22,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
            
         
-        private void OnDestroy()
+        private void OnDisable()
         {
             GameManager.Instance.eventManager.GameEventCompleted -= EventManager_GameEventCompleted;
         }

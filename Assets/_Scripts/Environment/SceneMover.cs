@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (isActived)
                 return;
             isActived = true;
-           // Debug.Log("Scenemover :" + ToPoint);
+            Debug.Log("Scenemover :" + ToPoint);
             if(!useCurrentHour)
                 GameManager.Instance.EnvironmentStates.playerStates.Hour = scenePointsData.PointsData[ToPoint].Hour;
             GameManager.Instance.GetPlayerScript.FreezePlayer();

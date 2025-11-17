@@ -1,5 +1,6 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment
@@ -20,7 +21,7 @@ namespace br.com.bonus630.thefrog.Environment
                 return;
             }
             col = GetComponent<BoxCollider2D>();
-            playerPos = GameManager.Instance.GetPlayer.transform;
+            playerPos = ServiceLocator.Instance.Get("Player").transform;
         }
         public void Update()
         {
@@ -35,12 +36,16 @@ namespace br.com.bonus630.thefrog.Environment
         {
             if (b)
             {
+                Debug.Log("Koar limiter activated");
                 musicSource?.PreserveMusic(musicKey);
                 musicSource?.InstantPlay(BackgroundMusic.DarkWind, true);
             }
             else
+            {
                 musicSource?.RestoreMusic(musicKey);
-            yield return new WaitForSeconds(time);
+                Debug.Log("Koar limiter deactivated");
+            }
+                yield return new WaitForSeconds(time);
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
                 GameManager.Instance.PlayerStates.HasGravity = !b;
             if (GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))

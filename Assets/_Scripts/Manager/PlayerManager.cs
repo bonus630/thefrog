@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : MonoBehaviour, IService, IPlayerManager
     {
         public PlayerStates PlayerStates { get; private set; }
 
@@ -66,7 +66,7 @@ namespace br.com.bonus630.thefrog.Manager
                 OnGameEventChanged();
             }
         }
-        private void OnDestroy()
+        private void OnDisable()
         {
             GameManager.Instance.eventManager.GameEventCompleted -= OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured -= OnGameStatesRestaured;
