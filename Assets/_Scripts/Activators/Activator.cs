@@ -16,6 +16,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] bool permanentActived = false;
         [SerializeField] bool onlyActive = false;
         [SerializeField] bool onlyDeactive = false;
+        [SerializeField] bool reverseActivation = false;
        
         
         void Start()
@@ -38,6 +39,7 @@ namespace br.com.bonus630.thefrog.Activators
             if (other.CompareTag(Tag))
             {
                 StartCoroutine(true,delayActiveTime);
+                StartCoroutine(!reverseActivation,delayActiveTime);
             }
 
         }
@@ -47,13 +49,15 @@ namespace br.com.bonus630.thefrog.Activators
                 return;
             if (collision.CompareTag(Tag))
             {
-                StartCoroutine(false,delayDeactiveTime);
+                StartCoroutine(reverseActivation,delayDeactiveTime);
             }
         }
         private void StartCoroutine(bool active,float time)
         {
+            Debug.Log("[Activators] StartCoroutine: " + gameObject.name);
             StopAllCoroutines();
-            StartCoroutine(ToggleActivations(active, time));
+            if(gameObject.activeInHierarchy)
+                StartCoroutine(ToggleActivations(active, time));
         }
         private IEnumerator ToggleActivations(bool active, float time)
         {

@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
@@ -7,6 +8,9 @@ namespace br.com.bonus630.thefrog.Items
         Rigidbody2D rb;
         [SerializeField] Collider2D coll;
         [SerializeField] AudioSource hitting;
+        [SerializeField] AudioClip hittingSound;
+        [SerializeField] AudioClip collectedSound;
+
         
         // [SerializeField] GameObject shuryken;
         //  bool canClone = true;
@@ -51,7 +55,7 @@ namespace br.com.bonus630.thefrog.Items
             if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
             {
                 player.ChangeNumberShurykens(Shurykens);
-
+                ServiceLocator.Instance.Get<AudioEffects>().Play(collectedSound);
                 Destroy(gameObject);
             }
             //Collider2D coll = gameObject.GetComponent<CapsuleCollider2D>();
@@ -79,7 +83,7 @@ namespace br.com.bonus630.thefrog.Items
                 {
                     Vector2 normal = collision.contacts[0].normal;
                     hitWall = true;
-                    hitting.Play();
+                    hitting.PlayOneShot(hittingSound);
                     rb.freezeRotation = false;
                     rb.constraints = RigidbodyConstraints2D.None;
                     rb.gravityScale = 1;

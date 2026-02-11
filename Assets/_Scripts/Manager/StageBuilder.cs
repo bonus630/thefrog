@@ -37,7 +37,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         Vector3 GenerateModule(GameObject modulePrefab, Vector3 startPos)
         {
-            var module = Instantiate(modulePrefab);
+            var module = Instantiate(modulePrefab,transform);
             modules.Add(module);
             Vector3 entry = module.transform.Find("StartPoint").transform.position;
             Vector3 diff = module.transform.position - entry;

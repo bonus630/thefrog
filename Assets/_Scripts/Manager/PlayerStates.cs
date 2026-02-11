@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -13,12 +14,13 @@ namespace br.com.bonus630.thefrog.Manager
             this.PlayerPosition = playerPosition;
             this.CollectablesID = CollectablesID;
         }
-        public PlayerStates(PlayerPosition playerPosition, Datas CollectablesID, Datas CompletedGameEvents, Datas ChestsID)
+        public PlayerStates(PlayerPosition playerPosition, Datas CollectablesID, Datas CompletedGameEvents, Datas ChestsID, [CallerMemberName] string caller = "")
         {
             this.PlayerPosition = playerPosition;
             this.CollectablesID = CollectablesID;
             this.ChestsID = ChestsID;
             this.CompletedGameEvents = CompletedGameEvents;
+            //Debug.Log($"[PlayerStates] ctor caller:{caller}\n{Environment.StackTrace}");
         }
         public PlayerPosition PlayerPosition;
         public Datas CollectablesID;

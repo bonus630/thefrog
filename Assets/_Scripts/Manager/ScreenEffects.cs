@@ -59,11 +59,19 @@ namespace br.com.bonus630.thefrog.Manager
             if (Gamepad.current != null)
                 Gamepad.current.SetMotorSpeeds(low, hi);
         }
+        /// <summary>
+        /// claro para escuro
+        /// </summary>
+        /// <param name="duration"></param>
         public void FadeOut(float duration = 1f)
         {
             screenFader.fadeDuration = duration;
             StartCoroutine(screenFader.FadeOut());
         }
+        /// <summary>
+        /// Escuro para claro
+        /// </summary>
+        /// <param name="duration"></param>
         public void FadeIn(float duration = 1f)
         {
             screenFader.fadeDuration = duration;

@@ -170,6 +170,8 @@ MonoBehaviour:
   shurykens: 1
   coll: {fileID: 475670970221323667}
   hitting: {fileID: 4570871566031292932}
+  hittingSound: {fileID: 8300000, guid: d5e047642b210bd4ebbefe817b33bbce, type: 3}
+  collectedSound: {fileID: 8300000, guid: df8ff9758df76234d98d0b71d85b1178, type: 3}
 --- !u!82 &4570871566031292932
 AudioSource:
   m_ObjectHideFlags: 0
@@ -180,8 +182,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d5e047642b210bd4ebbefe817b33bbce, type: 3}
-  m_Resource: {fileID: 8300000, guid: d5e047642b210bd4ebbefe817b33bbce, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

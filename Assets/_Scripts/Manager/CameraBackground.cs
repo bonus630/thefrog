@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+
 namespace br.com.bonus630.thefrog.Manager
 {
-    [SelectionBase]
+    [SelectionBase,DefaultExecutionOrder(-80)]
     public class CameraBackground : MonoBehaviour
     {
         [SerializeField] DayNightCycleManager cycleManager;
@@ -29,6 +32,7 @@ namespace br.com.bonus630.thefrog.Manager
 
 
         public int Hour { get { return hour; } }
+        public bool IsStarted { get; private set; }
         float yAmplitude = 20f; // Altura máxima que o sol vai chegar
                       
 
@@ -66,11 +70,15 @@ namespace br.com.bonus630.thefrog.Manager
         {
             filterSR = filter.GetComponent<SpriteRenderer>();
             cycleManager.cycleDurationMinutes = this.CycleDurationMinutes;
+            //vamos escrever um hack
+            this.hour = GameManager.Instance.EnvironmentStates.playerStates.Hour;
             InitializeDayByHour(this.hour);
+           // Debug.Log("[CameraBackground][Awake] hour:" + hour);
+           // Debug.Log("[CameraBackground][Awake] player hour:" + GameManager.Instance.EnvironmentStates.playerStates.Hour);
             //cycleManager.OnHourChanged += (h) => { this.hour = h;GameManager.Instance.PlayerStates.Hour = h; HourChanged?.Invoke(h); };
             //mudar para eliminar esse aclopamento,espero que funcione ainda
             cycleManager.OnHourChanged += (h) => { this.hour = h; HourChanged?.Invoke(h); };
-
+            IsStarted = true;
 
         }
         private void Start()
@@ -88,9 +96,9 @@ namespace br.com.bonus630.thefrog.Manager
             UpdateSunPosition(t);
             OverlayMovement();
         }
-        public void InitializeDayByHour(int hour)
+        public void InitializeDayByHour(int hour, [CallerMemberName] string caller = "")
         {
-            //Debug.Log("InitializeDayByHour hour:" + hour);
+            //Debug.Log("[CameraBackground] InitializeDayByHour hour:" + hour+" caller "+caller);
             cycleManager.InitializeByHour(hour);
             this.hour = hour;
         }
@@ -114,6 +122,7 @@ namespace br.com.bonus630.thefrog.Manager
                 float t = Mathf.InverseLerp(sunriseTime, morningTime, time);
                 resultColor = Color.Lerp(transparent, white, t);
             }
+           // Debug.Log($"[CameraBackground][updateDaynightSprites] isDay:{isDay} isNight:{isNight} transitionToDay:{transitionToDay}");
             // para noite passamos transparente, para dia passamos branco
             day.GetComponent<SpriteRenderer>().color = resultColor;
             daySunOverlay.GetComponent<SpriteRenderer>().color = resultColor;
@@ -123,19 +132,19 @@ namespace br.com.bonus630.thefrog.Manager
         {
             Color corAtual;
 
-            if (t < sunriseTime) // 0h - 6h
+            if (t < sunriseTime)        // 0h - 6h
             {
                 corAtual = Color.Lerp(corNoite, corAmanhecer, t / sunriseTime);
             }
-            else if (t < noonTime) // 6h - 12h
+            else if (t < noonTime)      // 6h - 12h
             {
                 corAtual = Color.Lerp(corAmanhecer, corMeioDia, (t - sunriseTime) / sunriseTime);
             }
-            else if (t < sunsetTime) // 12h - 18h
+            else if (t < sunsetTime)    // 12h - 18h
             {
                 corAtual = Color.Lerp(corMeioDia, corAnoitecer, (t - noonTime) / sunriseTime);
             }
-            else // 18h - 24h
+            else                        // 18h - 24h
             {
                 corAtual = Color.Lerp(corAnoitecer, corNoite, (t - sunsetTime) / sunriseTime);
             }
@@ -145,6 +154,8 @@ namespace br.com.bonus630.thefrog.Manager
 
         void CheckTransition(float time)
         {
+            //Debug.Log($"[CameraBackground][CheckTransition] time:{time}");
+            //Debug.Log($"[CameraBackground][CheckTransition] hour:{this.hour}");
             if (time >= sunriseTime && time <= morningTime)
                 transitionToDay = true;
             else if (time >= sunsetTime && time <= eveningTime)

@@ -244,6 +244,7 @@ namespace br.com.bonus630.thefrog.Manager
             return PlayTimeInSeconds;
         }
         private SceneStartType sceneStartType;
+        //Este metodo é chamado pelo script UI/Menu.cs
         public void LoadGame(SceneStartType type, int saveGameIndex = 0)
         {
             StartCoroutine(LoadGame(true, type, saveGameIndex));
@@ -257,7 +258,6 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 StartCoroutine(ChangeScene(InternAreas));
                 yield return new WaitForEndOfFrame();
-
             }
             if (type == SceneStartType.Main)
             {
@@ -280,6 +280,8 @@ namespace br.com.bonus630.thefrog.Manager
             if (type == SceneStartType.Continue)
             {
                 this.EnvironmentStates = LoadStates(saveGameIndex);
+                //neste momento o horario ainda esta correto bug:2051
+                //Debug.Log("[GameManager][LoadGame] hour: " + this.EnvironmentStates.playerStates.Hour);
                 this.PlayerStates = this.EnvironmentStates.playerStates;
                 if (saveGameIndex == 0)
                     this.PlayerStates.Hearts = this.playerStates.MaxHearts;
@@ -289,6 +291,7 @@ namespace br.com.bonus630.thefrog.Manager
                 if (eventManager == null)
                     eventManager = GetComponent<EventsManager>();
                 eventManager.LoadEvents(this.PlayerStates.CompletedGameEvents);
+                //Debug.Log("[GameManager][LoadGame] 2 hour: " + this.EnvironmentStates.playerStates.Hour);
                 SceneManager.LoadScene(MainScene);
                 //ChangeGameToState(this.PlayerStates);
                 yield return new WaitForEndOfFrame();
@@ -297,6 +300,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private IEnumerator ChangeScene(string sceneName)
         {
+            //Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
             ServiceLocator.Instance.ResetService();
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
@@ -326,7 +330,7 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 if (sceneStartType.Equals(SceneStartType.Main))
                 {
-                    Debug.Log("Topoint index:" + ToPoint);
+                    //Debug.Log("Topoint index:" + ToPoint);
                     GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
                     ChangeGameToState(this.EnvironmentStates);
                     // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -338,9 +342,11 @@ namespace br.com.bonus630.thefrog.Manager
                 //return;
 
 #endif
-                Debug.Log($"[GameManager] SceneManager_sceneLoaded {MainScene} continue:{continueGame} ");
+              //  Debug.Log($"[GameManager] SceneManager_sceneLoaded {MainScene} continue:{continueGame} ");
                 if (continueGame)
                 {
+                    //Aqui o horario ja esta alterado bug:2051
+                   // Debug.Log("[GameManager][SceneManager_sceneLoaded] hour: " + this.EnvironmentStates.playerStates.Hour);
                     ChangeGameToState(this.EnvironmentStates);
                     PlayerStartPosition = playerStates.PlayerPosition.Position;
                     continueGame = false;
@@ -535,31 +541,29 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
-            Debug.Log("[GameManager] ChangeGameToState");
+            //Debug.Log("[GameManager][ChangeGameToState] state index: " + state.index);
+           // this.EnvironmentStates = LoadStates(saveGameIndex);
+            //aqui o horario ja esta alterado, e antes em scene_loaded tbm ja esta anterado devo investigar antes disso bug:2051
+           // Debug.Log("[GameManager] ChangeGameToState");
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
-            Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
+           // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
+            ServiceLocator.Instance.LogRegistredsServicesNames();
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
-
+            //Debug.Log("[GameManager] GhangeGameToState hour:"+ServiceLocator.Instance.Get<IHourProvider>().Hour);
             GameStatesRestaured?.Invoke();
         }
         public void GameOver()
         {
-            Debug.Log("[GameManager] GameOver");
             StopCountingTime();
-            Debug.Log("[GameManager] GameOver 1");
+            ServiceLocator.Instance.Get<MusicSource>().StopAll();
             this.EnvironmentStates = LoadStates(0);
-            Debug.Log("[GameManager] GameOver 2");
             this.PlayerStates = this.EnvironmentStates.playerStates;
-            Debug.Log("[GameManager] GameOver 3");
             this.PlayerStates.numDies++;
-            Debug.Log("[GameManager] GameOver 4");
             SaveStates(0);
-            Debug.Log("[GameManager] GameOver 5");
             SceneManager.LoadScene(GameOverScene);
-            Debug.Log("[GameManager] GameOver 6");
         }
         public void EventCompleted(GameEventName gameEvent, bool playSound = true)
         {
@@ -641,6 +645,10 @@ namespace br.com.bonus630.thefrog.Manager
             // Debug.Log("Application Quit");
             PlayerPrefs.Save();
         }
+        private void OnApplicationFocus(bool focus)
+        {
+            Cursor.visible = !focus;
+        }
         #region testes e debugs
         //public void UpdatePlayer()
         //{
@@ -676,17 +684,17 @@ namespace br.com.bonus630.thefrog.Manager
         private void LoadEventsAndStates()
         {
 #if UNITY_EDITOR
-            ////Time.timeScale = 0.5f;
+            //////Time.timeScale = 0.5f;
             //playerStates.HasGravity = true;
             //playerStates.HasVision = true;
             //playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
             //playerStates.HasWallJump = true;
-            ////playerStates.HasDoubleJump = true;
+            //////playerStates.HasDoubleJump = true;
             //playerStates.FallsControl = true;
             //playerStates.HasDash = true;
-            ////playerStates.Shurykens = 100;
-            ////this.EventCompleted(GameEventName.HeartContainer, false);
+            //playerStates.Shurykens = 100;
+            //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);
             //this.EventCompleted(GameEventName.NPCFirstTalk, false);
             //this.EventCompleted(GameEventName.KillPig, false);
@@ -695,10 +703,10 @@ namespace br.com.bonus630.thefrog.Manager
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
             //this.EventCompleted(GameEventName.FireBall, false);
-            ////this.EventCompleted(GameEventName.RollingWind, false);
-            ////this.EventCompleted(GameEventName.PrisionerTip, false);
-            ////this.EventCompleted(GameEventName.LadyLaments, false);
-            //this.EventCompleted(GameEventName.KoarFounded, false);
+            //////this.EventCompleted(GameEventName.RollingWind, false);
+            //////this.EventCompleted(GameEventName.PrisionerTip, false);
+            //////this.EventCompleted(GameEventName.LadyLaments, false);
+            ////this.EventCompleted(GameEventName.KoarFounded, false);
 
 #endif
             #endregion

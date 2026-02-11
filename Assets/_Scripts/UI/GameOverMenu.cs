@@ -2,6 +2,7 @@ using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace br.com.bonus630.thefrog.UI
 {
@@ -13,13 +14,14 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
+        
             StartCoroutine(WaitAndSelect());
         }
 
         IEnumerator WaitAndSelect()
         {
-            GameObject firstButton = transform.GetChild(0).GetChild(0).gameObject;
 
+            GameObject firstButton = transform.GetChild(0).GetChild(0).gameObject;
             // Espera até o EventSystem e o InputSystemUIInputModule estarem prontos
             while (EventSystem.current == null ||
                    EventSystem.current.currentInputModule == null ||
@@ -30,6 +32,9 @@ namespace br.com.bonus630.thefrog.UI
 
             yield return new WaitForEndOfFrame(); // garante que layout UI foi atualizado
             EventSystem.current.SetSelectedGameObject(firstButton);
+            Debug.Log("[GameOverMenu] EventSystems: " + FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length);
+            Debug.Log("[GameOverMenu] Raycasters: " + FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None).Length);
+            Debug.Log("[GameOverMenu] Cursor Lockstate: " + Cursor.lockState);
         }
 
         public void ContinueButton_clicked()

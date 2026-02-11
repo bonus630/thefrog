@@ -148,6 +148,14 @@ namespace br.com.bonus630.thefrog.Shared
         {
             return gameObjectsCache.Keys.ToList();
         }
+        public void LogRegistredsServicesNames()
+        {
+            Debug.Log("[ServiceLocator]Resgistred Service: " + string.Join('|', GetRegistredsServicesNames()));
+        }
+        public void LogRegistredsGameObjectsNames()
+        {
+            Debug.Log("[ServiceLocator]Resgistred GameObjects: " + string.Join('|', GetRegistredsGameObjectsNames()));
+        }
         public void ResetService()
         {
             ClearCache();

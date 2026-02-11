@@ -404,7 +404,7 @@ namespace br.com.bonus630.thefrog.Player
                 //    acceleration = 0.2f * Mathf.Sign(player.RigibodyLinearVelocityX);
                 //    //return;
                 //   // Debug.Log("acceleration:" + acceleration);
-                Debug.Log("[PlayerMovement] rigidibodyVelocityX:" + player.RigibodyLinearVelocityX);
+               // Debug.Log("[PlayerMovement] rigidibodyVelocityX:" + player.RigibodyLinearVelocityX);
                 //Debug.Break();
             }
             anim.SetFloat(WalkID, Mathf.Abs(player.RigibodyLinearVelocityX));

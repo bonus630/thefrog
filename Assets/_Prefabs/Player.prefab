@@ -25639,6 +25639,7 @@ GameObject:
   - component: {fileID: 3540986201880000921}
   - component: {fileID: 1151959965755703110}
   - component: {fileID: 5568101765153628795}
+  - component: {fileID: -7955307352015832832}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -25854,6 +25855,7 @@ MonoBehaviour:
   projectilesSpawPoint2: {fileID: 592441022469554054}
   throwProjectileSFX: {fileID: 8300000, guid: 201a1ed16928d26469ea8a000e8273e9, type: 3}
   Entrace: {fileID: 8300000, guid: a92bd6dc482692547bf604a90f54e2a1, type: 3}
+  PowerUp: {fileID: 8300000, guid: 727ee02dd83914246be86c8caaec3b82, type: 3}
   GravityParticles: {fileID: 5267456748424603697}
   visionController: {fileID: 328706631452530263}
   anim: {fileID: 1346750905149390656}
@@ -26130,34 +26132,6 @@ MonoBehaviour:
     m_ActionId: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
     m_ActionName: 'UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 32b35790-4ed0-4e9a-aa41-69ac6d629449
-    m_ActionName: 'UI/Point[/Mouse/position]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3c7022bf-7922-4f7c-a998-c437916075ad
-    m_ActionName: 'UI/Click[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 44b200b1-1557-4083-816c-b22cbdf77ddf
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dad70c86-b58c-4b17-88ad-f5e53adf419e
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0489e84a-4833-4c40-bfae-cea84b696689
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 24908448-c609-4bc3-a128-ea258674378a
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1712995329823639533}
         m_TargetAssemblyTypeName: br.com.bonus630.thefrog.Player.PlayerInputHandler,
@@ -26293,6 +26267,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comment: Player
   noteColor: {r: 0, g: 1, b: 0.028357267, a: 1}
+--- !u!114 &-7955307352015832832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620097102780067214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e6e890a4ec1642accc5a2a26c9c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8873583698127253809
 GameObject:
   m_ObjectHideFlags: 0

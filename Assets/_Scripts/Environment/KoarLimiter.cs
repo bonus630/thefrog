@@ -22,6 +22,7 @@ namespace br.com.bonus630.thefrog.Environment
             }
             col = GetComponent<BoxCollider2D>();
             playerPos = ServiceLocator.Instance.Get("Player").transform;
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
         }
         public void Update()
         {
@@ -32,20 +33,18 @@ namespace br.com.bonus630.thefrog.Environment
             // Debug.Log("Koar limiter: " + !b);
             StartCoroutine(change(b, b ? time : 0));
         }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            musicSource?.PreserveMusic(musicKey);
+            musicSource?.InstantPlay(BackgroundMusic.DarkWind, true);
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            musicSource?.RestoreMusic(musicKey);
+        }
         private IEnumerator change(bool b, float time = 0)
         {
-            if (b)
-            {
-                Debug.Log("Koar limiter activated");
-                musicSource?.PreserveMusic(musicKey);
-                musicSource?.InstantPlay(BackgroundMusic.DarkWind, true);
-            }
-            else
-            {
-                musicSource?.RestoreMusic(musicKey);
-                Debug.Log("Koar limiter deactivated");
-            }
-                yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(time);
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
                 GameManager.Instance.PlayerStates.HasGravity = !b;
             if (GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))

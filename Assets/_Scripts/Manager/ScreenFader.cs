@@ -8,7 +8,7 @@ namespace br.com.bonus630.thefrog.Manager
     {
         public Image fadeImage;
         public float fadeDuration = 1f;
-
+      
         public IEnumerator FadeOut()
         {
             yield return StartCoroutine(Fade(0f, 1f));

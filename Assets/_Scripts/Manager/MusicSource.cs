@@ -462,7 +462,8 @@ namespace br.com.bonus630.thefrog.Manager
         MiniTour = 9,
         DarkWind = 10,
         GoodDayToDie = 11,
-        Ignition = 12
+        Ignition = 12,
+        lament =13
     }
 
 }

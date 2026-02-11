@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] protected bool autoPlay;
         [SerializeField] protected bool oneShot;
         [SerializeField] protected bool ciclily = true;
+        [SerializeField] protected bool onLeaveDestroy = false;
         [SerializeField] protected GameEventName RemoveInCompleted = GameEventName.None;
         protected int count = 0;
         protected BoxCollider2D boxCollider;

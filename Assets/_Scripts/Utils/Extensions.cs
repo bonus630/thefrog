@@ -37,6 +37,7 @@ namespace br.com.bonus630.thefrog.Utils
             // Faz o AND bitwise e verifica se o resultado é diferente de zero
             return (layerMask.value & objLayerMask) != 0;
         }
+      
         public static float Distance2D(this Vector3 a, Vector3 b) => Vector2.Distance(new Vector2(a.x, a.y), new Vector2(b.x, b.y));
         public static float Distance2D(this Vector3 a, Vector2 b) => Vector2.Distance(new Vector2(a.x, a.y), b);
         public static float Distance2D(this Vector2 a, Vector3 b) => Vector2.Distance(a, new Vector2(b.x, b.y));

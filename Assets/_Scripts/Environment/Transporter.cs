@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Environment
 {
@@ -31,6 +32,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         int currentDestine = 1;
         private Rigidbody2D rb;
+        private Collider2D col; 
         [ContextMenu("Adicionar posição atual")]
         private void AddCurrentPositionToStartPosition()
         {
@@ -51,6 +53,7 @@ namespace br.com.bonus630.thefrog.Environment
         void Start()
         {
             TryGetComponent<Rigidbody2D>(out rb);
+            TryGetComponent<Collider2D>(out col);
             Init();
         }
         public void Init()
@@ -175,7 +178,7 @@ namespace br.com.bonus630.thefrog.Environment
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!active) return;
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(col))
             {
                 going = true;
                 render.sprite = OnSprite;

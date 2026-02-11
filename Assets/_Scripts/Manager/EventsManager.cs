@@ -47,7 +47,9 @@ namespace br.com.bonus630.thefrog.Manager
                 if (!eventGame.Completed && playSound)
                     GetComponent<AudioSource>().PlayOneShot(eventCompleteSound);
                 if (!eventGame.Completed)
+                {
                     GameEventCompleted?.Invoke(eventGame);
+                }
                 eventGame.Completed = true;
                 if (!completedEvents.Contains(eventName.ToString()))
                     completedEvents.Add(eventName.ToString());
@@ -106,7 +108,7 @@ namespace br.com.bonus630.thefrog.Manager
                         {
                             EventCompleted(eventGame.Name, false);
                             //eventGame.Completed = true;
-                           // Debug.Log("Evento carregado como verdadeiro: " + eventGame.Name);
+                           // Debug.Log("[EventsManager]Evento carregado como verdadeiro: " + eventGame.Name);
                         }
                     }
                 //}
@@ -153,6 +155,10 @@ namespace br.com.bonus630.thefrog.Manager
         {
             return other is not null &&
                    Name == other.Name;
+        }
+        public bool Equals(GameEventName other)
+        {
+            return Name == other;
         }
         public override int GetHashCode()
         {

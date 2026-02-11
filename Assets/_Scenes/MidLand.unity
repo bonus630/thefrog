@@ -17391,6 +17391,7 @@ MonoBehaviour:
   permanentActived: 0
   onlyActive: 0
   onlyDeactive: 0
+  reverseActivation: 0
 --- !u!61 &167140834
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33419,6 +33420,7 @@ MonoBehaviour:
   permanentActived: 0
   onlyActive: 0
   onlyDeactive: 0
+  reverseActivation: 0
 --- !u!61 &661784716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118287,7 +118289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerPoints: []
   spawnerTypes:
-  - {fileID: 1032494636919912174, guid: 0cf7b2486fd0762429bd04ac866d78e5, type: 3}
+  - {fileID: 4158286346421420280, guid: 0cf7b2486fd0762429bd04ac866d78e5, type: 3}
   randomPoints: 1
   randomTypes: 1
   spawnerTime: 2
@@ -118348,7 +118350,7 @@ Transform:
   m_GameObject: {fileID: 1716869944}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.105, z: 0}
+  m_LocalPosition: {x: 0, y: 0.027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120125,6 +120127,7 @@ MonoBehaviour:
   permanentActived: 1
   onlyActive: 0
   onlyDeactive: 0
+  reverseActivation: 0
 --- !u!1001 &2064839328
 PrefabInstance:
   m_ObjectHideFlags: 0

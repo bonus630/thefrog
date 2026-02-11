@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace br.com.bonus630.thefrog.Player
         [Header("Sounds")]
         [SerializeField] private AudioClip throwProjectileSFX;
         [SerializeField] private AudioClip Entrace;
+        [SerializeField] private AudioClip PowerUp;
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
         [SerializeField] private VisionController visionController;
@@ -38,6 +40,7 @@ namespace br.com.bonus630.thefrog.Player
         public PlayerMovement playerMovement { get; private set; }
         public PlayerFallControl playerFallControl { get; private set; }
         public PlayerSpiritController playerSpiritController { get; private set; }
+        public PlayerDirector playerDirector { get; private set; }
 
         [Header("Others")]
         private Rigidbody2D rb;
@@ -89,6 +92,7 @@ namespace br.com.bonus630.thefrog.Player
             playerDialogue = GetComponent<PlayerDialogue>();
             playerHealth = GetComponent<PlayerHealth>();
             playerMovement = GetComponent<PlayerMovement>();
+            playerDirector = GetComponent<PlayerDirector>();
             playerFallControl = GetComponent<PlayerFallControl>();
             playerSpiritController = GetComponent<PlayerSpiritController>();
             barManager = GetComponent<BarManager>();
@@ -100,10 +104,11 @@ namespace br.com.bonus630.thefrog.Player
             ServiceLocator.Instance.Register<PlayerInput>(GetComponent<PlayerInput>());
             ServiceLocator.Instance.Register<IPlayer>(this);
             ServiceLocator.Instance.Register("Player", gameObject);
+            
         }
         private void Start()
         {
-           // #if !UNITY_EDITOR
+            #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -115,9 +120,9 @@ namespace br.com.bonus630.thefrog.Player
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse, 4, true);
                 return;
             }
-            Debug.Log("[Player] position " + transform.position);
-            if (SceneManager.GetActiveScene().name != "Main")
-                return;
+            //Debug.Log("[Player] position " + transform.position);
+            //if (SceneManager.GetActiveScene().name != "Main")
+            //    return;
            // StartCoroutine(WaitSceneLoad());
 
 
@@ -131,7 +136,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-            //#endif
+            #endif
 
         }
 
@@ -214,76 +219,76 @@ namespace br.com.bonus630.thefrog.Player
             //Gizmos.DrawWireCube(Vector3.zero, new Vector3(0.140f, 0.01f));
 
 #if UNITY_EDITOR
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                GameManager.Instance.GetPlayerScript.UpdatePlayer();
-                //CreateBar(Color.green,0.4f);
-                //foreach (var c in g.GetComponents(typeof(IBarUI)))
-                //{
-                //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
-                //    (c as IBarUI).GoToValue(50);
-                //}
+            //if (Input.GetKeyUp(KeyCode.W))
+            //{
+            //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
+            //    //CreateBar(Color.green,0.4f);
+            //    //foreach (var c in g.GetComponents(typeof(IBarUI)))
+            //    //{
+            //    //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
+            //    //    (c as IBarUI).GoToValue(50);
+            //    //}
 
-                //playerMovement.FallsControl();
-                //GameManager.Instance.TesteThumb();
-                //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
-                //StartCoroutine(DestroyEffects(s));
-                //Debug.Log(s.camerasController);
-                //s.ScreenAndGamepadShake();
-                //s.FadeOut();
-                //Debug.Log(s);
-                //MusicSource m = FindAnyObjectByType<MusicSource>();
-                //m.CrossFade(BackgroundMusic.AppleTree);
-                // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
-                //GameManager.Instance.UpdatePlayer();
-                //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
-            }
-            if (Input.GetKeyUp(KeyCode.T))
-            {
-                GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
-                //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
-            }
-            if (Input.GetKeyUp(KeyCode.Alpha9))
-                GameManager.Instance.UpdateMaxHearts(1);
-            if (Input.GetKeyUp(KeyCode.Alpha8))
-                GameManager.Instance.UpdateHeart(-1);
-            if (Input.GetKeyUp(KeyCode.Alpha1))
-                GameManager.Instance.SaveStates(1);
-            if (Input.GetKeyUp(KeyCode.Alpha2))
-            {
-                GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
-            }
-            if (Input.GetKeyUp(KeyCode.Alpha7))
-            {
-                GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_" + Random.Range(0, 10000));
-                GameManager.Instance.PlayerStates.Collectables++;
-                GameManager.Instance.UpdateScore();
-            }
-            if (Input.anyKeyDown)
-            {
-                switch (true)
-                {
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
-                        Time.timeScale = 0.1f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
-                        Time.timeScale = 0.2f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
-                        Time.timeScale = 0.3f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
-                        Time.timeScale = 0.4f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
-                        Time.timeScale = 0.5f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
-                        Time.timeScale = 1f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
-                        Time.timeScale = 1.5f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
-                        Time.timeScale = 2f; break;
-                    case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
-                        Time.timeScale = 3f; break;
-                }
-                Debug.LogWarning("Time Scale: " + Time.timeScale);
-            }
+            //    //playerMovement.FallsControl();
+            //    //GameManager.Instance.TesteThumb();
+            //    //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
+            //    //StartCoroutine(DestroyEffects(s));
+            //    //Debug.Log(s.camerasController);
+            //    //s.ScreenAndGamepadShake();
+            //    //s.FadeOut();
+            //    //Debug.Log(s);
+            //    //MusicSource m = FindAnyObjectByType<MusicSource>();
+            //    //m.CrossFade(BackgroundMusic.AppleTree);
+            //    // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+            //    //GameManager.Instance.UpdatePlayer();
+            //    //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
+            //}
+            //if (Input.GetKeyUp(KeyCode.T))
+            //{
+            //    GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
+            //    //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
+            //}
+            //if (Input.GetKeyUp(KeyCode.Alpha9))
+            //    GameManager.Instance.UpdateMaxHearts(1);
+            //if (Input.GetKeyUp(KeyCode.Alpha8))
+            //    GameManager.Instance.UpdateHeart(-1);
+            //if (Input.GetKeyUp(KeyCode.Alpha1))
+            //    GameManager.Instance.SaveStates(1);
+            //if (Input.GetKeyUp(KeyCode.Alpha2))
+            //{
+            //    GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
+            //}
+            //if (Input.GetKeyUp(KeyCode.Alpha7))
+            //{
+            //    GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_" + Random.Range(0, 10000));
+            //    GameManager.Instance.PlayerStates.Collectables++;
+            //    GameManager.Instance.UpdateScore();
+            //}
+            //if (Input.anyKeyDown)
+            //{
+            //    switch (true)
+            //    {
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
+            //            Time.timeScale = 0.1f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
+            //            Time.timeScale = 0.2f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
+            //            Time.timeScale = 0.3f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
+            //            Time.timeScale = 0.4f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
+            //            Time.timeScale = 0.5f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
+            //            Time.timeScale = 1f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
+            //            Time.timeScale = 1.5f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
+            //            Time.timeScale = 2f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
+            //            Time.timeScale = 3f; break;
+            //    }
+            //    Debug.LogWarning("Time Scale: " + Time.timeScale);
+            //}
 
 #endif
 
@@ -343,8 +348,15 @@ namespace br.com.bonus630.thefrog.Player
 
             if (collision.gameObject.layer == 13)
             {
-                gameObject.transform.parent = null;
-                SceneManager.MoveGameObjectToScene(gameObject, bornScene);// evita que o player fique na cena da plataforma
+                try
+                {
+                    gameObject.transform.parent = null;
+                    SceneManager.MoveGameObjectToScene(gameObject, bornScene);// evita que o player fique na cena da plataforma
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError("[Player] Erro ao desparentear o player da plataforma: " + e.Message);
+                }
             }
         }
 
@@ -516,7 +528,14 @@ namespace br.com.bonus630.thefrog.Player
             return GetComponent<CapsuleCollider2D>().IsTouching(collision);
         }
 
-
+        public bool BodyTouching(LayerMask layer)
+        {
+            CapsuleCollider2D col = GetComponent<CapsuleCollider2D>();
+            if (col == null)
+                return false;
+          return col.IsTouchingLayers(layer);
+          
+        }
         public void ChangeNumberShurykens(int shurykens)
         {
             playerManager.UpdateShurykens(shurykens);
@@ -554,8 +573,13 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void UpdatePlayer()
         {
+            audioSource.PlayOneShot(PowerUp);
             playerManager.UpdatePlayer();
         }
+
+        public void AddAction(PlayerDirectorData action)=> playerDirector.AddAction(action);
+        public void AddAction(Action action,float time)=> playerDirector.AddAction(new PlayerDirectorData(action,time));
+
         public PlayerStates GetPlayerStates => playerManager.PlayerStates;
     }
     public enum PlayerGravityDirection : short

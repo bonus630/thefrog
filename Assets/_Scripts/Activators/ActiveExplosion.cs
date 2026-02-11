@@ -13,7 +13,7 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Active Explosoi:" + collision.tag);
+           // Debug.Log("Active Explosoi:" + collision.tag);
             if (collision.CompareTag("Destroyable"))
             {
                 StartCoroutine(Explosions(collision));

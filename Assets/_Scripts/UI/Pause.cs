@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
-            this.hour = ServiceLocator.Instance.Get<DayNightCycleManager>().Hour;
+            this.hour = ServiceLocator.Instance.Get<IHourProvider>().Hour;
             hoursText.text = this.hour.ToString("00") + " HORAS";
             prevHour = hour;
         }

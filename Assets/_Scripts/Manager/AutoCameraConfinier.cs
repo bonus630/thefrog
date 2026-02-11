@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Shared;
 using Cinemachine;
 using UnityEngine;
 
@@ -33,6 +34,17 @@ namespace br.com.bonus630.thefrog.Manager
             if (collision.CompareTag("Player"))
                 SetConfinier();
         }
+        //private void OnTriggerExit2D(Collider2D collision)
+        //{
+        //    if(collision.TryGetComponent<IPlayer>(out IPlayer player))
+        //    {
+        //        if(!player.BodyTouching(1<<16))
+        //        {
+        //            ServiceLocator.Instance.Get<CamerasController>().GetSkyCam().gameObject.SetActive(true);
+        //            Utils.CameraUtils.GetActiveVirtualCamera2().gameObject.SetActive(false);
+        //        }
+        //    }
+        //}
 
     }
 }

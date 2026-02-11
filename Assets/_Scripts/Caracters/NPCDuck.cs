@@ -11,6 +11,8 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] AudioSource musicTarget;
         [SerializeField] GameObject teleporter;
 
+        bool isFinishing = false;
+
         protected override void Awake()
         {
             base.Awake();
@@ -18,7 +20,7 @@ namespace br.com.bonus630.thefrog.Caracters
 
             CheckGameEvents();
         }
-
+        
         private void CheckGameEvents()
         {
             if (GameManager.Instance.IsEventCompleted(GameEventName.Gravity))
@@ -28,11 +30,26 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public override void SetFinishDialogue()
         {
-            teleporter.SetActive(true);
+           
             StartCoroutine(SkyWalkerLearned());
+        }
+        protected override void OnDisable()
+        {
+            Debug.Log("[NPCDuck] duck is disable");
+            if(isFinishing)
+            {
+                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { }, 3.5f,"wait"));
+                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { Time.timeScale = 1f; }, 2f,"timescale"));
+                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(
+                    () => ServiceLocator.Instance.Get<ScreenEffects>().FadeIn(), 1f,"fadein"));
+                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0); }, 0f,"restoreinputs"));
+              
+            }
+            base.OnDisable();
         }
         private IEnumerator SkyWalkerLearned()
         {
+            teleporter.SetActive(true);
             float time = Time.realtimeSinceStartup;
             MusicSource musicSource;
             musicSource = GameObject.Find("AudioManager").GetComponent<MusicSource>();
@@ -44,16 +61,17 @@ namespace br.com.bonus630.thefrog.Caracters
 
             GameManager.Instance.EventCompleted(GameEventName.Gravity);
             GameManager.Instance.GetPlayerScript.UpdatePlayer();
+            GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
+            isFinishing = true;
+            Time.timeScale = 0.5f;
             yield return new WaitForSeconds(1f);
             //  yield return fader.FadeIn();
-            Time.timeScale = 0.5f;
-            GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 0.2f);
+           // Invoke(nameof(RestorePlayerInput), 3f);
             yield return fader.FadeOut();
             yield return new WaitForSeconds(1);
-            Invoke(nameof(RestorePlayerInput), 3f);
-           // Debug.Log($"[NPCDuck] time: {(Time.realtimeSinceStartup - time):F3}");
-
+            // Debug.Log($"[NPCDuck] time: {(Time.realtimeSinceStartup - time):F3}");
+            Destroy(gameObject);
         }
         //private IEnumerator SkyWalkerLearned()
         //{
@@ -86,7 +104,10 @@ namespace br.com.bonus630.thefrog.Caracters
         {
 
         }
-
+        private void FadeIn()
+        {
+            ServiceLocator.Instance.Get<ScreenFader>().FadeIn();
+        }
         public override Transform GetTransform()
         {
             return transform;

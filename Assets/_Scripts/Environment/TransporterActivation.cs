@@ -69,6 +69,11 @@ namespace br.com.bonus630.thefrog.Environment
                 {
                     rb.bodyType = RigidbodyType2D.Dynamic;
                     rb.gravityScale = 20;
+                    
+                }
+                if (TryGetComponent<Collider2D>(out var col))
+                {
+                    col.usedByEffector = false;
                 }
             }
 
@@ -82,6 +87,10 @@ namespace br.com.bonus630.thefrog.Environment
             {
                 rb.gravityScale = 0;
                 rb.bodyType = RigidbodyType2D.Kinematic;
+            }
+            if(TryGetComponent<Collider2D>(out var col))
+            {
+                col.usedByEffector = true;
             }
             transform.rotation = Quaternion.identity;
         }

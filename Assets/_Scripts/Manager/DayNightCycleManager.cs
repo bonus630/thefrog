@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-
     public class DayNightCycleManager : MonoBehaviour, IHourProvider
     {
         [Tooltip("Tempo que você quer que dure o ciclo inteiro (12 minutos)")]public float cycleDurationMinutes = 1f;
@@ -13,18 +12,21 @@ namespace br.com.bonus630.thefrog.Manager
         public event Action<int> OnHourChanged;
 
         public int Hour { get; private set; }
-
-
         private float speed;
         private int lastHour = -1;
 
         private void Awake()
         {
-            ServiceLocator.Instance.Register<IHourProvider>(this);
             speed = 1f / (cycleDurationMinutes * 60f);
+            CalculeHour();
+            ServiceLocator.Instance.Register<IHourProvider>(this);
         }
 
         private void FixedUpdate()
+        {
+            CalculeHour();
+        }
+        private void CalculeHour()
         {
             cycleTime = Mathf.Repeat(cycleTime + Time.fixedDeltaTime * speed, 1f);
             currentHour = cycleTime * 24f;
@@ -37,10 +39,10 @@ namespace br.com.bonus630.thefrog.Manager
                 OnHourChanged?.Invoke(lastHour);
             }
         }
-
         public void InitializeByHour(int hour)
         {
             cycleTime = hour / 24f;
+            //Debug.Log("[IHourProvider] InitializeDayByHour hour:" + hour);
         }
         public float GetTimeUntil(float currentHour, float targetHour, float cycleDuration)
         {

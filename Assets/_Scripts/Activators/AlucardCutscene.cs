@@ -14,17 +14,18 @@ namespace br.com.bonus630.thefrog.Activators
         float timer = 0;
         bool started = false;
         int hour = -1;
-        DayNightCycleManager cycleManager;
+        IHourProvider cycleManager;
         private void Start()
         {
-            cycleManager = ServiceLocator.Instance.Get<DayNightCycleManager>();
+            cycleManager = ServiceLocator.Instance.Get<IHourProvider>();
             hour = cycleManager.Hour;
             cycleManager.OnHourChanged += CycleManager_OnHourChanged;
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
         }
 
         private void CycleManager_OnHourChanged(int obj)
         {
-            Debug.Log("alucard: " +obj);
+          //  Debug.Log("alucard: " +obj);
             hour = obj;
         }
 

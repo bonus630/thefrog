@@ -115,7 +115,7 @@ namespace br.com.bonus630.thefrog.Items
             );
 
             Draw.Bounds2D(bounds, Color.red, 10f);
-            Debug.Log(bounds);
+            //Debug.Log(bounds);
             // Desenha o retângulo pra debug
             Debug.DrawLine(new Vector2(playerPos.x, frontTop.y), frontTop, Color.blue, 5f);
             Debug.DrawLine(frontTop, new Vector2(frontTop.x, behindBottom.y), Color.blue, 5f);
@@ -129,9 +129,13 @@ namespace br.com.bonus630.thefrog.Items
             int index = -1;
             for (int i = 0; i < hits.Length; i++)
             {
-              //  Debug.Log($"hits:{i} name:{hits[i].name} layer:{hits[i].gameObject.layer}");
-                if (hits[i].Distance(GameManager.Instance.GetPlayer.GetComponent<Collider2D>()).distance < distance)
+                //  Debug.Log($"hits:{i} name:{hits[i].name} layer:{hits[i].gameObject.layer}");
+                float d = hits[i].Distance(GameManager.Instance.GetPlayer.GetComponent<Collider2D>()).distance;
+                if (d < distance)
+                {
+                    distance = d;
                     index = i;
+                }
             }
           //  Debug.Log("Index:" + index);
             //utilizar esse código para um raio que encontre um teto 

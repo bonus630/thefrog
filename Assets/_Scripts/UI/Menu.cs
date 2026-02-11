@@ -39,8 +39,8 @@ namespace br.com.bonus630.thefrog.UI
                 controlsButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(pos.x,pos.y-120);
             }
 
-            string[] joys = Input.GetJoystickNames();
-            var gamepad = Gamepad.current;
+         //   string[] joys = Input.GetJoystickNames();
+           // var gamepad = Gamepad.current;
             //  Debug.Log(gamepad);
             // startButton.Select();
         }

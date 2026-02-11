@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
@@ -15,6 +16,7 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] DialogueData firstDialogue;
         [SerializeField] DialogueData secondDialogue;
         [SerializeField] DialogueData thirdDialogue;
+        [SerializeField] AudioClip lamentMusic;
         List<int> mazeDirections = null;
         private readonly string MAZE = "MAZE";
         private bool createInThisInteraction = false;
@@ -43,7 +45,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void CheckDialogue()
         {
-            Debug.Log($"createInThisInteraction:{createInThisInteraction} dialogueCounter{dialogueCounter}");
+            //Debug.Log($"createInThisInteraction:{createInThisInteraction} dialogueCounter{dialogueCounter}");
             if (DataScenePreserver.Instance.Contains(MAZE) && !createInThisInteraction)
             {
                 mazeDirections = DataScenePreserver.Instance.Get<ListStorage<int>>(MAZE).Values;
@@ -65,8 +67,8 @@ namespace br.com.bonus630.thefrog.Caracters
             
             if(this.CurrentDialogueData==thirdDialogue)
             {
-                GameManager.Instance.ScreenEffects.FadeIn(10f);
-                GameManager.Instance.EventCompleted(GameEventName.LadyLaments);
+                StartCoroutine(Cutscene());
+                return;
             }
             dialogueCounter = 0;
             musicSource.Play(BackgroundMusic.Ignition, true);
@@ -102,6 +104,23 @@ namespace br.com.bonus630.thefrog.Caracters
             }
             ListStorage<int> li = new() { Values = mazeDirections };
             DataScenePreserver.Instance.Set<ListStorage<int>>(MAZE, li);
+        }
+        private IEnumerator Cutscene()
+        {
+            musicSource.CrossFade(BackgroundMusic.lament,false);
+            ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(false);
+            GameManager.Instance.ScreenEffects.FadeOut(3f);
+            yield return new WaitForSeconds(6f);
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+            transform.GetChild(0).gameObject.SetActive(false);
+            ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(true);
+            yield return new WaitForSeconds(3f);
+            GameManager.Instance.EventCompleted(GameEventName.LadyLaments);
+            GameManager.Instance.ScreenEffects.FadeIn(4f);
+            musicSource.InstantPlay(BackgroundMusic.DarkWind,true);
+
+
         }
     }
 }

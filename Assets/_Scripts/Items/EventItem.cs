@@ -8,8 +8,11 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] GameEventName eventToComplete;
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            GameManager.Instance.EventCompleted(eventToComplete);
-            Destroy(gameObject);
+            if (collision.CompareTag("Player"))
+            {
+                GameManager.Instance.EventCompleted(eventToComplete);
+                Destroy(gameObject);
+            }
         }
     }
 }

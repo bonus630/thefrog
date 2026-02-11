@@ -13,7 +13,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] enableType enableType = enableType.Self;
         public override void Activate()
         {
-           // Debug.Log($"[EnableGameObject] name:{externGameObject.name} enable:{invert}");
+            //Debug.Log($"[EnableGameObject] name:{externGameObject.name} enable:{invert}");
             if(externGameObject!=null && enableType.HasFlag(enableType.Extern))
                 externGameObject.SetActive(invert ? false : true);
             if (enableType.HasFlag(enableType.Self))

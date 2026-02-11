@@ -19,7 +19,10 @@ namespace br.com.bonus630.thefrog.Manager
         {
              ServiceLocator.Instance.Register<CamerasController>(this);
         }
-
+        public CinemachineVirtualCamera GetSkyCam()
+        {
+            return Cameras[2].GetComponent<CinemachineVirtualCamera>();
+        }
         public GameObject ActiveCam(int index)
         {
             for (int i = 0; i < Cameras.Count; i++)

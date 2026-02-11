@@ -28,9 +28,11 @@ namespace br.com.bonus630.thefrog.Shared
         void KnockUpOnJump(Vector2 repulse);
         bool FooterTouching(Collider2D coll);
         bool BodyTouching(Collider2D coll);
+        bool BodyTouching(LayerMask layers);
 
         void AllInputsOn(bool inputOn, float delayTime = 0, bool autoSwitch = false, float switchTime = 0);
-      
+        void AddAction(PlayerDirectorData action);
+        void AddAction(Action action, float time);
 
     }
 }

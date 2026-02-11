@@ -40,7 +40,7 @@ namespace br.com.bonus630.thefrog.Manager
             sceneBlocks.Add("Koar", new int[] { 24, 25, 26, 27, 28, 29, 14, 15, 16, 17, 18, 19, 4, 5, 6, 7, 8, 9 });
             sceneBlocks.Add("Stickerbrush", new int[] { 36, 37, 38, 39, 46, 47, 48, 49, 26, 27, 28, 29 });
             sceneBlocks.Add("MiniTour", new int[] { 34, 35, 36, 44, 45, 46, 54, 55, 56 });
-            sceneBlocks.Add("MidLand", new int[] { 20, 21, 22, 23, 30, 31, 32, 33, 34, 35, 36 });
+            sceneBlocks.Add("MidLand", new int[] { 20, 21, 22, 23,24, 30, 31, 32, 33, 34, 35, 36 });
             sceneBlocks.Add("InterGround", new int[] { 20, 21, 22, 23, 10, 11, 12, 13 });
             sceneBlocks.Add("TreeSkyShip", new int[] { 50, 51, 52, 53, 40, 41, 42, 43, 30, 31, 32, 33 });
         }
@@ -55,14 +55,14 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void SceneLoadManager_OnTriggerExitAction(ColliderData obj)
         {
-            Debug.Log("index trigger exit:"+obj.Index+" colName: " + obj.ColliderOther.name + " layer:"+obj.ColliderOther.gameObject.layer);
+            //Debug.Log("index trigger exit:"+obj.Index+" colName: " + obj.ColliderOther.name + " layer:"+obj.ColliderOther.gameObject.layer);
             //Debug.Log("Scene unload:" + obj.Index);
             UnLoadScene(obj.Index);
         }
 
         private void SceneLoadManager_OnTriggerEnterAction(ColliderData obj)
         {
-            Debug.Log("index trigger enter:" + obj.Index + " colName: " + obj.ColliderOther.name + " layer:" + obj.ColliderOther.gameObject.layer);
+            //Debug.Log("index trigger enter:" + obj.Index + " colName: " + obj.ColliderOther.name + " layer:" + obj.ColliderOther.gameObject.layer);
             //if (obj.Index == 6)
             //    Debug.Break();
             LoadSceneAsync(obj.Index);
@@ -80,7 +80,7 @@ namespace br.com.bonus630.thefrog.Manager
         {
             prevBlockIndex = -1;
             List<string> scenes = GetSceneName(blockIndex);
-            Debug.Log("index unload: " + blockIndex +" - "+ String.Join(",",scenes));
+            //Debug.Log("index unload: " + blockIndex +" - "+ String.Join(",",scenes));
             foreach (string scene in scenes)
             {
                 bool playerInside = false;
@@ -95,7 +95,7 @@ namespace br.com.bonus630.thefrog.Manager
                 }
                 if (playerInside)
                     continue;
-                Debug.Log("index: " + scene);
+                //Debug.Log("index: " + scene);
                 if (IsSceneLoaded(scene))
                     SceneManager.UnloadSceneAsync(scene).completed += (a) =>
                     {
@@ -111,12 +111,12 @@ namespace br.com.bonus630.thefrog.Manager
                 return;
             prevBlockIndex = blockIndex;
             var scenes = GetSceneName(blockIndex);
-            Debug.Log("index load: " + blockIndex + " - " + String.Join(",", scenes));
+            //Debug.Log("index load: " + blockIndex + " - " + String.Join(",", scenes));
             var sceneLoadTasks = new List<Task>();
             var scenesToLoad = new List<string>();
             for (int i = 0; i < scenes.Count; i++)
             {
-                Debug.Log("[SceneLoadManager] start Load:" + scenes[i]);
+                //Debug.Log("[SceneLoadManager] start Load:" + scenes[i]);
                 if (!loadedScenes.Contains(scenes[i]))
                 {
                     loadedScenes.Add(scenes[i]);
@@ -142,7 +142,7 @@ namespace br.com.bonus630.thefrog.Manager
                 {
                     await Task.WhenAll(sceneLoadTasks);
 
-                    Debug.Log("[SceneLoadManager] All scenes loaded: " + string.Join(", ", scenesToLoad));
+                    //Debug.Log("[SceneLoadManager] All scenes loaded: " + string.Join(", ", scenesToLoad));
                     AllScenesLoadedEvent?.Invoke(scenesToLoad);
                 }
                 catch (System.Exception ex)

@@ -89,10 +89,10 @@ namespace br.com.bonus630.thefrog.Enemies
                 runTime -= Time.deltaTime;
 
             }
-            if (Input.GetKeyDown("q"))
-            {
-                Jump();
-            }
+            //if (Input.GetKeyDown("q"))
+            //{
+            //    Jump();
+            //}
             // Debug.Log($"chao {detectGround.GetContacts(new ContactPoint2D[4])}");
         }
         private void OnDisable()

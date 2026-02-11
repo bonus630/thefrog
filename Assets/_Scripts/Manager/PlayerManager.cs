@@ -49,12 +49,17 @@ namespace br.com.bonus630.thefrog.Manager
         private void HourProviderCallBack(IHourProvider hourProvider)
         {
             PlayerStates.Hour = hourProvider.Hour;
-            hourProvider.OnHourChanged += (hour) => { PlayerStates.Hour = hour; };
+            //Debug.Log("[PlayerManager][HourProviderCallBack] hour: " + this.PlayerStates.Hour);
+            hourProvider.OnHourChanged += (hour) => 
+            {
+                PlayerStates.Hour = hour;
+                //Debug.Log("[PlayerManager][HourProviderCallBack] event hour: " + this.PlayerStates.Hour);
+            };
         }
         private void OnGameStatesRestaured()
         {
-           // Debug.Log("[PlayerManager] ongamerestaured:");
             this.PlayerStates = GameManager.Instance.PlayerStates;
+            Debug.Log("[PlayerManager][OnGameStatesRestaured] hour: " + this.PlayerStates.Hour);
         }
 
         private void OnGameEventCompleted(GameEvent obj)

@@ -84,6 +84,7 @@ namespace br.com.bonus630.thefrog.Caracters
             firstTalk = GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk);
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
             playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);
+            Debug.Log("[walljump] firstTalk: " + firstTalk + " killPig: " + killPig + " PlayerCheckWall: " +  playerCheckWall);
             // GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             if (GameManager.Instance.IsEventCompleted(GameEventName.NPCTutorial))
             {
@@ -307,18 +308,19 @@ namespace br.com.bonus630.thefrog.Caracters
         public override Dictionary<string, string> GetDialogueVariables()
         {
             string msg = string.Empty;
-            switch (ServiceLocator.Instance.Get<DayNightCycleManager>().Hour)
+            switch (ServiceLocator.Instance.Get<IHourProvider>().Hour)
             {
                 case < 6:
-                    msg = ", mas aguarde até o amanhecer";
+                    msg = ", seja paciente e aguarde até o amanhecer";
                     break;
                 case > 17:
-                    msg = ", mas você precisa esperar até amanhã";
+                    msg = ", está não é uma boa hora para visita-ló, espere até amanhã";
                     break;
                 case > 14 and <= 17:
-                    msg = ", mas você não tem muito tempo";
+                    msg = ", RÁPIDO você não tem muito tempo!!!";
                     break;
             }
+            Debug.Log("[npc_walljump_tutorial] hour msg: " + msg);
             return new Dictionary<string, string>() { { "{hours}", msg } };
         }
         public void Dash()
@@ -355,7 +357,7 @@ namespace br.com.bonus630.thefrog.Caracters
                 {
                   
                     GoToFinal();//npc chegou ao ponto final
-                    // ChangeDummy(false);
+                   // // ChangeDummy(false);
                 };
                 //wallJumpCutscene.played += (d) => {
                 //    //move npc para o ponto final
@@ -372,6 +374,7 @@ namespace br.com.bonus630.thefrog.Caracters
             yield return new WaitForEndOfFrame();
             wallJumpCutscene.Play();
             yield return new WaitForEndOfFrame();
+            
         }
 
         

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8209468083350765616}
   - component: {fileID: 8693344830195210584}
   - component: {fileID: -6513693680990822503}
+  - component: {fileID: 7309705060978356468}
   m_Layer: 13
   m_Name: Transporter
   m_TagString: Untagged
@@ -136,7 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destines: []
-  travelDuration: 2
   speed: 10
   currentSpeed: 0
   stopMaxTime: 1
@@ -218,6 +218,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!251 &7309705060978356468
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797467853424401978}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 175
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &5367504922460414577
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ namespace br.com.bonus630.thefrog.Activators
             ServiceLocator.Instance.Get<IHourProvider>().OnHourChanged  += ActiveDuckPath_HourChanged;
             screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
             musicSource = ServiceLocator.Instance.Get<MusicSource>();
+            ActiveDuckPath_HourChanged(ServiceLocator.Instance.Get<IHourProvider>().Hour);
         }
         private void OnDisable()
         {
@@ -29,6 +30,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void ActiveDuckPath_HourChanged(int hour)
         {
+            Debug.Log($"[ActiveDuckPath][hourChanged] hour:{hour}");
             if (hour > 17 || hour < 6)
             {
                 cloud1.gameObject.SetActive(false);
@@ -36,7 +38,7 @@ namespace br.com.bonus630.thefrog.Activators
                 cloud3.gameObject.SetActive(false);
                 GetComponent<BoxCollider2D>().enabled = false;
             }
-            else
+            if(hour >= 6 && hour <= 17)
             {
                 cloud1.gameObject.SetActive(true);
                 cloud2.gameObject.SetActive(true);

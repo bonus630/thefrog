@@ -19,6 +19,10 @@ namespace br.com.bonus630.thefrog.Enemies
         float flyTimer = 0;
 
 
+        [SerializeField] GameObject plantBulletPrefab;
+        [SerializeField] Transform magicSpawnerPoint;
+
+
         protected override void Start()
         {
             startPos = transform.position;
@@ -64,6 +68,12 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             flying = false;
             animator.SetTrigger(Attack2ID);
+           
+        }
+        public void LaunchAttack2()
+        {
+             var go = Instantiate(plantBulletPrefab, magicSpawnerPoint.position,Quaternion.identity);
+            go.GetComponent<PlantBullet>().Direction = xDirection;
         }
         private void Idle()
         {

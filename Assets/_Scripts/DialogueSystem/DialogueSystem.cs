@@ -52,8 +52,8 @@ namespace br.com.bonus630.thefrog.DialogueSystem
 
             dialogueUI.SetAvatar(DialogueData.Dialogues[current].Avatar);
             //verificar aqui
-            Debug.Log("Current Dialog System: " + current);
-            Debug.Log("Current Dialog Name: " + DialogueData.name);
+          //  Debug.Log("Current Dialog System: " + current);
+           // Debug.Log("Current Dialog Name: " + DialogueData.name);
            
            textAnimation.FullText = ReplaceVariables(DialogueData.Dialogues[current].text);
             current++;
@@ -107,7 +107,7 @@ namespace br.com.bonus630.thefrog.DialogueSystem
 
             }
         }
-        int t = 0;
+       // int t = 0;
         public void ResetDialog()
         {
            //  Debug.Log("Resete "+(t++));
