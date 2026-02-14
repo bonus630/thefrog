@@ -117,7 +117,11 @@ namespace br.com.bonus630.thefrog.Manager
             DontDestroyOnLoad(gameObject);
             //Debug
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+            SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
         }
+
+       
+
         private void Start()
         {
             PauseAction.Enable();
@@ -252,7 +256,7 @@ namespace br.com.bonus630.thefrog.Manager
         public IEnumerator LoadGame(bool courotine, SceneStartType type, int saveGameIndex = 0)
         {
             yield return new WaitForEndOfFrame();
-            // Debug.LogWarning("LoadGame type:" + type);
+            Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
             {
@@ -301,7 +305,7 @@ namespace br.com.bonus630.thefrog.Manager
         private IEnumerator ChangeScene(string sceneName)
         {
             //Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
-            ServiceLocator.Instance.ResetService();
+           
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
             {
@@ -363,6 +367,12 @@ namespace br.com.bonus630.thefrog.Manager
                 //GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             }
 
+        }
+        private void SceneManager_sceneUnloaded(Scene arg0)
+        {
+            Debug.Log("[GameManager] sceneUnload name: " + arg0.name);
+            if(arg0.name.Equals(MainScene))
+                ServiceLocator.Instance.ResetService();
         }
         private void LoadStartGamePoint(int index)
         {
@@ -441,7 +451,6 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 Debug.LogWarning("HUD não encontrado!");
             }
-
         }
         #region vamos passar tudo isso para o script HeartHUD
         int maxColHearts = 10;
@@ -513,7 +522,6 @@ namespace br.com.bonus630.thefrog.Manager
         {
             SavesManager sm = new SavesManager();
             return sm.CanContinue();
-
         }
         /// <summary>
         /// 
@@ -577,7 +585,6 @@ namespace br.com.bonus630.thefrog.Manager
                     CinemachineConfiner confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(1).gameObject.GetComponentAtIndex(1);
                     break;
-
                 //case GameEventName.HeartContainer:
                 //    GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
                 //    gameObject.SetActive(true);
@@ -586,10 +593,8 @@ namespace br.com.bonus630.thefrog.Manager
                     GameObject o = GameObject.Find("ShurykenPoint");
                     if (o != null)
                         o.SetActive(false);
-
                     break;
                 case GameEventName.DuckPath:
-
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(2).gameObject.GetComponentAtIndex(1);
                     break;
@@ -597,13 +602,11 @@ namespace br.com.bonus630.thefrog.Manager
                 //    var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
                 //    hud.SetActive(true);
                 //    break;
-
                 case GameEventName.MysticScroll:
                     confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
                     confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(3).gameObject.GetComponentAtIndex(1);
                     //gameObject = GameObject.Find(ToSkyPoint).transform.GetChild(0).gameObject;
                     //gameObject.SetActive(true);
-
                     break;
 
             }
@@ -645,10 +648,10 @@ namespace br.com.bonus630.thefrog.Manager
             // Debug.Log("Application Quit");
             PlayerPrefs.Save();
         }
-        private void OnApplicationFocus(bool focus)
-        {
-            Cursor.visible = !focus;
-        }
+        //private void OnApplicationFocus(bool focus)
+        //{
+        //    Cursor.visible = !focus;
+        //}
         #region testes e debugs
         //public void UpdatePlayer()
         //{
@@ -686,7 +689,8 @@ namespace br.com.bonus630.thefrog.Manager
 #if UNITY_EDITOR
             //////Time.timeScale = 0.5f;
             //playerStates.HasGravity = true;
-            //playerStates.HasVision = true;
+            playerStates.HasVision = true;
+            playerStates.Collectables = 21;
             //playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
             //playerStates.HasWallJump = true;

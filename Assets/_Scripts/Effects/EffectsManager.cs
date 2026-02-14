@@ -7,7 +7,7 @@ namespace br.com.bonus630.thefrog.Effects
     public class EffectManager : MonoBehaviour
     {
         public static EffectManager instance;
-        private List<IEffects> activeEffects = new List<IEffects>();
+        private List<IEffects> activeEffects = new();
         private void Awake()
         {
             if (instance != null)
@@ -45,9 +45,9 @@ namespace br.com.bonus630.thefrog.Effects
             }
             throw new System.Exception("Erro to add Effect in list");
         }
-        public IEffects GetEffect<T>(ushort ID) where T : class, IEffects
+        public T GetEffect<T>(ushort ID) where T : IEffects
         {
-            return activeEffects.FirstOrDefault(r => r.GetType() == typeof(T) && r.ID == ID);
+            return activeEffects.FirstOrDefault(r => r is T && r.ID == ID) as T;
         }
     }
 }

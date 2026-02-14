@@ -34,7 +34,7 @@ namespace br.com.bonus630.thefrog.UI
             EventSystem.current.SetSelectedGameObject(firstButton);
             Debug.Log("[GameOverMenu] EventSystems: " + FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length);
             Debug.Log("[GameOverMenu] Raycasters: " + FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None).Length);
-            Debug.Log("[GameOverMenu] Cursor Lockstate: " + Cursor.lockState);
+           // Debug.Log("[GameOverMenu] Cursor Lockstate: " + Cursor.lockState);
         }
 
         public void ContinueButton_clicked()

@@ -96,7 +96,7 @@ namespace br.com.bonus630.thefrog.Items
             {
                 Color color = el.ElementColor;
                 color = new Color(color.r,color.g,color.b,0.45f);
-                EffectManager.instance.AddEffect(new ColorEffect(spriteRenderer,spriteRenderer.color, color, 4f));
+                EffectManager.instance.AddEffect(ColorEffect.Create(spriteRenderer).WithStartColor(spriteRenderer.color).WithEndColor(color).WithDuration(4f));
                // StartCoroutine(StaticsRoutines.LerpColor(spriteRenderer, spriteRenderer.color, color, 4f));
                 if(el.CanActiveBy()== GetElement)
                     el.ActiveBy(GetElement);

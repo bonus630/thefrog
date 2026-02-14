@@ -103,7 +103,10 @@ namespace br.com.bonus630.thefrog.Enemies
         public void ActiveFlyEffect()
         {
             spriteAfterImage ??= EffectManager.instance.GetEffect<SpriteAfterImageEffect>(effectID) as SpriteAfterImageEffect;
-            spriteAfterImage ??= new SpriteAfterImageEffect(GetComponent<SpriteRenderer>(), 4, lifeTime: 3f, fadeSpeed: 1f);
+            spriteAfterImage ??= SpriteAfterImageEffect.Create(GetComponent<SpriteRenderer>())
+                                                        .WithLimit(4)
+                                                        .WithLifeTime(3f)
+                                                        .WithFadeSpeed(1f);
             spriteAfterImage.Activate();
             effectID = EffectManager.instance.AddEffect(spriteAfterImage);
         }

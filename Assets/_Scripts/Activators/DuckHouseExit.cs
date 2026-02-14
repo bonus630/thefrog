@@ -1,5 +1,6 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
@@ -24,10 +25,15 @@ namespace br.com.bonus630.thefrog.Activators
             yield return new WaitForSeconds(1f);
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(24);
             yield return new WaitForSeconds(0.1f);
+            GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { }, 3.5f, "wait"));
+            GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { Time.timeScale = 1f; }, 2f, "timescale"));
+            GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(
+                () => ServiceLocator.Instance.Get<ScreenEffects>().FadeIn(), 1f, "fadein"));
+            GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0); }, 0f, "restoreinputs"));
             GameManager.Instance.GetPlayer.transform.position = ExitPosition;
-            yield return new WaitForSeconds(1f);
-            yield return fader.FadeIn();
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
+            //yield return fader.FadeIn();
+            //yield return new WaitForSeconds(1f);
         }
     }
 }

@@ -84,7 +84,7 @@ namespace br.com.bonus630.thefrog.Caracters
             firstTalk = GameManager.Instance.IsEventCompleted(GameEventName.NPCFirstTalk);
             killPig = GameManager.Instance.IsEventCompleted(GameEventName.KillPig);
             playerCheckWall = GameManager.Instance.IsEventCompleted(GameEventName.PlayerCheckWall);
-            Debug.Log("[walljump] firstTalk: " + firstTalk + " killPig: " + killPig + " PlayerCheckWall: " +  playerCheckWall);
+           // Debug.Log("[walljump] firstTalk: " + firstTalk + " killPig: " + killPig + " PlayerCheckWall: " +  playerCheckWall);
             // GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             if (GameManager.Instance.IsEventCompleted(GameEventName.NPCTutorial))
             {

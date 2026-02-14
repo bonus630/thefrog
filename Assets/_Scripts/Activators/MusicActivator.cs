@@ -16,9 +16,10 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] AudioClip clip;
        
         bool start = false;
-        private void Start()
+        private void Awake()
         {
             musicSource = ServiceLocator.Instance.Get<MusicSource>();
+            Debug.Log("[MusicSource] musicSource:" + musicSource);
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -27,7 +28,8 @@ namespace br.com.bonus630.thefrog.Activators
                 start = true;
                 if(instantePlay)
                 {
-                    if(clip!=null)
+                    Debug.Log("[MusicSource] musicSource:" + musicSource);
+                    if (clip!=null)
                         musicSource.InstantPlay(clip, looping);
                     else
                         musicSource.InstantPlay(music, looping);

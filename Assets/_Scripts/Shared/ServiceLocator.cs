@@ -41,7 +41,8 @@ namespace br.com.bonus630.thefrog.Shared
                     return (T)obj;
                 cache.Remove(typeof(T));
             }
-            var instance = UnityEngine.Object.FindAnyObjectByType(typeof(T)) as T;
+           // Debug.Log("[ServiceLocator] Player: " + GameObject.Find("Player"));
+            var instance = FindFirstObjectByType(typeof(T)) as T;
             if (instance != null)
             {
                 cache[typeof(T)] = instance;
@@ -136,8 +137,12 @@ namespace br.com.bonus630.thefrog.Shared
             }
 
         }
-        
-        public void ClearCache() => cache.Clear();
+
+        public void ClearCache()
+        {
+            Debug.Log("[ServiceLocator] cache is clean");
+            cache.Clear();
+        }
         public void ClearGameObjectCache() => gameObjectsCache.Clear();
 
         public List<string> GetRegistredsServicesNames()

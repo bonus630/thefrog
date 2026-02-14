@@ -11,11 +11,8 @@ namespace br.com.bonus630.thefrog.Effects
         private float endIntensity;
         private float duration;
         private float timer = 0f;
-        public ushort ID { get; set; }
-        public bool IsFinished { get; private set; } = false;
-
         // Construtor
-        public VignetteEffect(Volume volume, float minValue, float maxValue, float duration)
+        private VignetteEffect(Volume volume, float minValue, float maxValue, float duration)
         {
             if (!volume.profile.TryGet<Vignette>(out vignette))
             {
@@ -29,8 +26,28 @@ namespace br.com.bonus630.thefrog.Effects
             vignette.intensity.value = startIntensity;
             this.duration = duration;
         }
-
-        public void UpdateEffects(float deltaTime)
+        public static VignetteEffect Create(Volume volume)
+        {
+            if (volume == null)
+                throw new System.ArgumentNullException(nameof(volume));
+            return new VignetteEffect(volume, 0, 0, 0);
+        }
+        public VignetteEffect WithInitialIntensity(float value)
+        {
+            this.startIntensity = value;
+            return this;
+        }
+        public VignetteEffect WithFinalIntensity(float value)
+        {
+            this.endIntensity = value;
+            return this;
+        }
+        public VignetteEffect WithDuration(float value)
+        {
+            this.duration = value;
+            return this;
+        }
+        public override void UpdateEffects(float deltaTime)
         {
             if (IsFinished || vignette == null) return;
 
@@ -43,14 +60,14 @@ namespace br.com.bonus630.thefrog.Effects
                 IsFinished = true;
         }
 
-        public void Activate()
+        public override void Activate()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
-            throw new System.NotImplementedException();
+            IsFinished = true;
         }
     }
 

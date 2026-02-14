@@ -16,5 +16,5 @@ MonoBehaviour:
   Dialogues:
   - Avatar: {fileID: 21300000, guid: e1d406927776ee64795c71923bf4e82b, type: 3}
     Name: 
-    text: "Nossa muito bom, voc\xEA conseguiu! Consiga mais {apples} ma\xE7\xE3s
+    text: "Nossa muito bom, voc\xEA encontrou a arvore! Consiga mais {apples} ma\xE7\xE3s
       e traga at\xE9 min, vou te ensinar algo especial!"

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
 namespace br.com.bonus630.thefrog.Effects
 {
     public class SpriteAfterImageEffect : IEffects
@@ -15,10 +16,9 @@ namespace br.com.bonus630.thefrog.Effects
         private int limit;
         private bool finished;
         private int nextIndex; // índice circular
-        public ushort ID { get; set; }
-        public bool IsFinished => finished;
+  
 
-        public SpriteAfterImageEffect(SpriteRenderer original,
+        private SpriteAfterImageEffect(SpriteRenderer original,
                                       int limit = 6,
                                       float delayTime = 0.08f,
                                       float lifeTime = 0.4f,
@@ -30,8 +30,42 @@ namespace br.com.bonus630.thefrog.Effects
             this.delayTime = delayTime;
             this.limit = Mathf.Max(1, limit);
         }
+        public static SpriteAfterImageEffect Create(SpriteRenderer original)
+        {
+            if (original == null)
+                throw new System.ArgumentNullException(nameof(original));
 
-        public void Activate()
+            return new SpriteAfterImageEffect(original, 6, 0.08f, 0.4f, 3f);
+        }
+
+        public SpriteAfterImageEffect WithLimit(int value)
+        {
+            limit = Mathf.Max(1, value);
+            return this;
+        }
+
+        public SpriteAfterImageEffect WithSpawnInterval(float value)
+        {
+            delayTime = value;
+            return this;
+        }
+
+        public SpriteAfterImageEffect WithLifeTime(float value)
+        {
+            lifeTime = value;
+            return this;
+        }
+
+        public SpriteAfterImageEffect WithFadeSpeed(float value)
+        {
+            fadeSpeed = value;
+            return this;
+        }
+        public SpriteAfterImageEffect Build()
+        {
+            return this;
+        }
+        public override void Activate()
         {
             finished = false;
             delayTimer = delayTime + 1f;
@@ -41,7 +75,7 @@ namespace br.com.bonus630.thefrog.Effects
             clones ??= new List<SpriteRenderer>(limit);
         }
 
-        public void UpdateEffects(float deltaTime)
+        public override void UpdateEffects(float deltaTime)
         {
             currentTime += deltaTime;
             delayTimer += deltaTime;
@@ -113,7 +147,7 @@ namespace br.com.bonus630.thefrog.Effects
             return true;
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
             if (clones != null)
             {

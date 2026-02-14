@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    [RequireComponent(typeof(PolygonCollider2D))]
+     [DefaultExecutionOrder(1) ,RequireComponent(typeof(PolygonCollider2D))]
     public class AutoCameraConfinier : MonoBehaviour
     {
         PolygonCollider2D polygonCollider;
@@ -19,6 +19,8 @@ namespace br.com.bonus630.thefrog.Manager
         private void SetConfinier()
         {
             GameObject camera = Utils.CameraUtils.GetActiveVirtualCamera2().gameObject;
+            if (camera == null)
+                return;
             if (nextCamera != null)
             {
                 camera.SetActive(false);

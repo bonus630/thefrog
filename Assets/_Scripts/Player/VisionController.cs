@@ -48,6 +48,7 @@ namespace br.com.bonus630.thefrog.Player
         private void VisionController_GravityChanged(float obj)
         {
             this.gravityDirection = obj;
+            offsetY = 0;
             Debug.Log("graviti" + obj);
         }
 
@@ -80,12 +81,14 @@ namespace br.com.bonus630.thefrog.Player
             }
             if (activeVision)
             {
+                effects.GamepadShake();
                 float ping = Mathf.PingPong(time, 2f);
                 Vector3 v = new Vector3(currentScale.x - ping, currentScale.y - ping, currentScale.z);
-                if (time > 0.5f)
+                if (time > 1f)
                 {
                     time = 0;
                     audioSource.PlayOneShot(audioVision);
+                    effects.GamepadShake(1f, 1f);
                 }
                 time += Time.deltaTime;
                 transform.localScale = v;
@@ -94,6 +97,7 @@ namespace br.com.bonus630.thefrog.Player
         private void OnDestroy()
         {
             ServiceLocator.Instance.Get<IPlayer>().GravityChanged -= VisionController_GravityChanged;
+            effects.GamepadShake();
         }
         private void MoveVision()
         {

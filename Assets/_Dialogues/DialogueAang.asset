@@ -17,10 +17,10 @@ MonoBehaviour:
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
     text: "Ol\xE1 ..."
-  - Avatar: {fileID: -1114070202486637157, guid: 1da0963372a94184ba991a81834bee0b, type: 3}
+  - Avatar: {fileID: 21300000, guid: e99d1c13d34aa2440b224826fd6465c3, type: 3}
     Name: 
     text: Vamos temos pressa, acabe logo com isso...
-  - Avatar: {fileID: -1114070202486637157, guid: 1da0963372a94184ba991a81834bee0b, type: 3}
+  - Avatar: {fileID: 21300000, guid: e99d1c13d34aa2440b224826fd6465c3, type: 3}
     Name: 
     text: "Este garoto tem mais talento que voc\xEA."
   - Avatar: {fileID: 781715578, guid: e71178c1e5391b94f8a86b4a35c59dae, type: 3}

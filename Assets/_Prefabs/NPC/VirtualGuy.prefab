@@ -269,8 +269,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c26681605d859c84b90786a86b708161, type: 2}
   - {fileID: 11400000, guid: c76d71790ca14c34dbb4f40f386992f4, type: 2}
   - {fileID: 11400000, guid: c6ce1045833bc314ca03e2bc71821482, type: 2}
+  - {fileID: 11400000, guid: 34e8181a7ca3e744c9e382a1408bbe64, type: 2}
+  - {fileID: 11400000, guid: f7b0bb7c0d5af76488517f2a978f6743, type: 2}
   currentDialogue: 0
   receivedApples: 0
+  heart: {fileID: 7858739703465745304, guid: cbc4cbc615965454e80520979f899f46, type: 3}
 --- !u!1001 &4648170346513388958
 PrefabInstance:
   m_ObjectHideFlags: 0

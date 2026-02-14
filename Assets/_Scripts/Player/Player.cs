@@ -108,7 +108,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            #if !UNITY_EDITOR
+            //#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -136,7 +136,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-            #endif
+           // #endif
 
         }
 

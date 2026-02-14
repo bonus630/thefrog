@@ -14,6 +14,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] MusicSource musicSource;
         [SerializeField] ScreenEffects screenEffects;
         bool build = false;
+        bool enable = false;
         float time = 2;
         private Color transparent = new Color(1f, 1f, 1f, 0f);
 
@@ -30,19 +31,25 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void ActiveDuckPath_HourChanged(int hour)
         {
-            Debug.Log($"[ActiveDuckPath][hourChanged] hour:{hour}");
+            if (build)
+                return;
+            //Debug.Log($"[ActiveDuckPath][hourChanged] hour:{hour}");
             if (hour > 17 || hour < 6)
             {
-                cloud1.gameObject.SetActive(false);
-                cloud2.gameObject.SetActive(false);
-                cloud3.gameObject.SetActive(false);
+                //cloud1.gameObject.SetActive(false);
+                //cloud2.gameObject.SetActive(false);
+                //cloud3.gameObject.SetActive(false);
+                if(cloud1.GetComponent<SpriteRenderer>().color != transparent)
+                    StartCoroutine(ChangeColor(Color.white, transparent));
                 GetComponent<BoxCollider2D>().enabled = false;
             }
             if(hour >= 6 && hour <= 17)
             {
-                cloud1.gameObject.SetActive(true);
-                cloud2.gameObject.SetActive(true);
-                cloud3.gameObject.SetActive(true);
+                //cloud1.gameObject.SetActive(true);
+                //cloud2.gameObject.SetActive(true);
+                //cloud3.gameObject.SetActive(true);
+                if (cloud1.GetComponent<SpriteRenderer>().color != Color.white)
+                    StartCoroutine(ChangeColor(transparent, Color.white));
                 GetComponent<BoxCollider2D>().enabled = true;
             }
         }
@@ -55,11 +62,13 @@ namespace br.com.bonus630.thefrog.Activators
                 build = true;
                 GetComponent<AudioSource>().Play();
                 GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>().enabled = false;
+                StopAllCoroutines();
                 StartCoroutine(Build());
             }
         }
         IEnumerator Build()
         {
+            
             musicSource.StopAll();
             musicSource.InstantPlay(BackgroundMusic.DuckPath,false);
             float currentTime = 0;
@@ -88,6 +97,21 @@ namespace br.com.bonus630.thefrog.Activators
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
             cloud1.GetComponent<SpriteRenderer>().color = transparent;
 
+        }
+        IEnumerator ChangeColor(Color start, Color end)
+        {
+            float currentTime = 0;
+            while(currentTime <  time)
+            {
+                currentTime += Time.deltaTime;
+                cloud1.GetComponent<SpriteRenderer>().color = Color.Lerp(start, end, currentTime);
+                cloud2.GetComponent<SpriteRenderer>().color = Color.Lerp(start, end, currentTime);
+                cloud3.GetComponent<SpriteRenderer>().color = Color.Lerp(start, end, currentTime);
+                yield return new WaitForSeconds(0.05f);
+            }
+            cloud1.GetComponent<SpriteRenderer>().color = end;
+            cloud1.GetComponent<SpriteRenderer>().color = end;
+            cloud1.GetComponent<SpriteRenderer>().color = end;
         }
     }
 }

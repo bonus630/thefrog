@@ -8,6 +8,10 @@ namespace br.com.bonus630.thefrog.Activators
     {
         [SerializeField] string key;
         [SerializeField] MusicSource musicSource;
+        private void Awake()
+        {
+            musicSource = ServiceLocator.Instance.Get<MusicSource>();
+        }
         public override void Activate()
         {
             musicSource.PreserveMusic(key);

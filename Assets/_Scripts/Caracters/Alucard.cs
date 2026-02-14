@@ -14,7 +14,11 @@ namespace br.com.bonus630.thefrog.Caracters
 
         void Start()
         {
-            SpriteAfterImageEffect spriteAfterImage = new SpriteAfterImageEffect(sprite,limit,delayTime,lifeTime,fadeSpeed);
+            SpriteAfterImageEffect spriteAfterImage = SpriteAfterImageEffect.Create(sprite)
+                                                                            .WithLimit(limit)
+                                                                            .WithSpawnInterval(delayTime)
+                                                                            .WithLifeTime(lifeTime)
+                                                                            .WithFadeSpeed(fadeSpeed);
             spriteAfterImage.Activate();
             effectID = EffectManager.instance.AddEffect(spriteAfterImage);
         }

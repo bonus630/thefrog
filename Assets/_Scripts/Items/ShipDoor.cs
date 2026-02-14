@@ -40,8 +40,10 @@ namespace br.com.bonus630.thefrog.Items
             if (InteractUp.WasPressedThisFrame() && inside)
             {
                 if (player == null)
+                {
                     player = ServiceLocator.Instance.Get<IPlayer>();
-                //Debug.Log($"[DoorShip] inGround:{player.InGround} touching:{player.BodyTouching(boxCollider)}");
+                    Debug.Log($"[DoorShip] inGround:{player.InGround} touching:{player.BodyTouching(boxCollider)}");
+                }
                 inside = player.BodyTouching(boxCollider);
                 if (!inside)
                     return;

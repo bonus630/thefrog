@@ -16,4 +16,5 @@ MonoBehaviour:
   Dialogues:
   - Avatar: {fileID: 21300000, guid: 0f64760a6ae6dd64abf8d6b21d82e5b8, type: 3}
     Name: 
-    text: "Um Ba\xFA? Ser\xE1 que tem algum tesouro dentro, mas parece muito perigoso!"
+    text: "Um Ba\xFA? Ser\xE1 que tem algum tesouro dentro, mas \xE9 muito alto para
+      voltar!"

@@ -15,6 +15,12 @@ namespace br.com.bonus630.thefrog.Caracters
         protected int dialogueCounter = 0;
         protected bool playerTriggerEnter = false;
 
+
+        //este metodo é chamado assim que o player entra na area de interaçaão e ao chamar o proximo dialogo
+        /// <summary>
+        /// Called when the player enters the NPC's interaction area and when the next dialogue is requested.
+        /// Use this method to update the NPC's dialogue (for example, `CurrentDialogueData`) based on game state or events.
+        /// </summary>
         public virtual void CheckDialogs()
         {
 
@@ -68,7 +74,7 @@ namespace br.com.bonus630.thefrog.Caracters
             IsFirstDialogue = false;
         }
         /// <summary>
-        /// Utilizar este método para finalizar o dialogo atual e alterar para o proximo dialogo
+        /// Use this method to finish the current dialogue.
         /// </summary>
         public virtual void SetFinishDialogue() { }
         /// <summary>

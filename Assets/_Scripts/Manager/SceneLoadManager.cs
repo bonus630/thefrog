@@ -88,6 +88,7 @@ namespace br.com.bonus630.thefrog.Manager
                 for (int j = 0; j < blocks.Length; j++)
                 {
                     playerInside = false;
+                    //Debug.Log("[SceneLoadManager] unloadScene");
                     if(ServiceLocator.Instance.Get<IPlayer>()!=null)
                         playerInside = ServiceLocator.Instance.Get<IPlayer>().BodyTouching(this.blocks[blocks[j]].GetComponent<Collider2D>());
                     if (playerInside)

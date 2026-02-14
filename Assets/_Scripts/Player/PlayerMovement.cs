@@ -477,7 +477,11 @@ namespace br.com.bonus630.thefrog.Player
         public void ApplyDashEffect()
         {
             spriteAfterImage ??= EffectManager.instance.GetEffect<SpriteAfterImageEffect>(effectID) as SpriteAfterImageEffect;
-            spriteAfterImage ??= new SpriteAfterImageEffect(playerSpriteRender, 14, delayTime: 0.012f, lifeTime: 1f, fadeSpeed: 0.1f);
+            spriteAfterImage ??= SpriteAfterImageEffect.Create(playerSpriteRender)
+                                                        .WithLifeTime(14)
+                                                        .WithSpawnInterval(0.012f)
+                                                        .WithLifeTime(1f)
+                                                        .WithFadeSpeed(0.1f);
             spriteAfterImage.Activate();
             effectID = EffectManager.instance.AddEffect(spriteAfterImage);
         }
@@ -547,7 +551,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void JumpDownEffect()
         {
-            var bounce = new BounceEffect(anim.gameObject.transform);
+            var bounce = BounceEffect.Create(anim.gameObject.transform);
             EffectManager.instance.AddEffect(bounce);
             JumpDownParticles.Play();
 

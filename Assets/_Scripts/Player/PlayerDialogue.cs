@@ -88,7 +88,7 @@ namespace br.com.bonus630.thefrog.Player
             }
             if (collision.gameObject.CompareTag("Tips"))
             {
-
+               // Debug.Log("[PlayerDialogue]tips trigger enter:" + interacting);
                 tips = collision.gameObject.GetComponent<ITips>();
                 dialogueSystem.DialogueData = tips.GetDialogue();
                 tips.AutoPlayer(gameObject);

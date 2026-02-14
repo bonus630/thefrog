@@ -18,7 +18,7 @@ namespace br.com.bonus630.thefrog.Items
                 Rigidbody2D playerRb = other.attachedRigidbody;
                 if (playerRb != null)
                 {
-                    ba = new BlackHoleEffect(playerRb, center, gravityForce: 20f, maxSpeed: 5f);
+                    ba = BlackHoleEffect.Create(playerRb).FromCenter(center.position).WithGravityForce(20f).WithMaxSpeed(5f);
                     EffectManager.instance.AddEffect(ba);
                     
                 }

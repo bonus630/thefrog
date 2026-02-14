@@ -38,11 +38,11 @@ namespace br.com.bonus630.thefrog.Caracters
             Debug.Log("[NPCDuck] duck is disable");
             if(isFinishing)
             {
-                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { }, 3.5f,"wait"));
-                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { Time.timeScale = 1f; }, 2f,"timescale"));
-                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(
-                    () => ServiceLocator.Instance.Get<ScreenEffects>().FadeIn(), 1f,"fadein"));
-                GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0); }, 0f,"restoreinputs"));
+                //GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { }, 3.5f,"wait"));
+                //GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { Time.timeScale = 1f; }, 2f,"timescale"));
+                //GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(
+                //    () => ServiceLocator.Instance.Get<ScreenEffects>().FadeIn(), 1f,"fadein"));
+                //GameManager.Instance.GetPlayerScript.AddAction(new PlayerDirectorData(() => { GameManager.Instance.GetPlayerScript.AllInputsOn(true, 0); }, 0f,"restoreinputs"));
               
             }
             base.OnDisable();
