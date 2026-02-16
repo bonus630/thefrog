@@ -9,7 +9,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class MazeBuilder : MonoBehaviour
     {
         [field: SerializeField] public List<int> CorrectPath { get; set; }
-        
+
         [SerializeField] IActivator entrace;
         [SerializeField] IActivator exit;
         [SerializeField] GameObject[] teleportPoints;
@@ -21,7 +21,7 @@ namespace br.com.bonus630.thefrog.Manager
         public bool Completed { get; private set; }
         int current = 0;
         bool blocked = false;
-        
+
         Vector3 newPos;
         private void Start()
         {
@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog.Manager
             //    return;
 
             blocked = true;
-           // Debug.Log("Data.index: " + data.Index);
+            // Debug.Log("Data.index: " + data.Index);
 
             bool isCorrect = CorrectPath[current] == data.Index;
 
@@ -96,17 +96,35 @@ namespace br.com.bonus630.thefrog.Manager
 
             newPos = points[UnityEngine.Random.Range(0, points.Count)].transform.position;
 
-            StartCoroutine(ScreenFader(data.ColliderOther.gameObject));
+            // StartCoroutine(Realocate2(data.ColliderOther.gameObject));
+            Realocate(data.ColliderOther.gameObject);
         }
 
-        private IEnumerator ScreenFader(GameObject obj)
-        {
-            yield return fader.FadeOut();
-            obj.transform.position = newPos;
-            Randomize(Probs);
-            Randomize(Enemies);
-            yield return fader.FadeIn();
+        //private IEnumerator Realocate2(GameObject obj)
+        //{
+        //    yield return fader.FadeOut();
+        //    obj.transform.position = newPos;
+        //    Randomize(Probs);
+        //    Randomize(Enemies);
+        //    yield return fader.FadeIn();
 
+        //}
+
+        private void Realocate(GameObject obj)
+        {
+            void Handler()
+            {
+                fader.OnFadeOutCompleted -= Handler;
+
+                obj.transform.position = newPos;
+                Randomize(Probs);
+                Randomize(Enemies);
+
+                fader.FadeIn(0.4f);
+            }
+
+            fader.OnFadeOutCompleted += Handler;
+            fader.FadeOut(0.4f);
         }
 
         private void Randomize(GameObject o)

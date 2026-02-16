@@ -31,7 +31,7 @@ namespace br.com.bonus630.thefrog.Shared
         bool BodyTouching(LayerMask layers);
 
         void AllInputsOn(bool inputOn, float delayTime = 0, bool autoSwitch = false, float switchTime = 0);
-        void AddAction(PlayerDirectorData action);
+        void AddAction(SchedulerData action);
         void AddAction(Action action, float time);
 
     }

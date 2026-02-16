@@ -24,6 +24,8 @@ namespace br.com.bonus630.thefrog.Activators
                     return "SkullCameraConfinier";
                 case 3:
                     return "KoarCameraConfinier";
+                case 4:
+                    return "CameraContainer";
                 default:
                     return string.Empty;
             }

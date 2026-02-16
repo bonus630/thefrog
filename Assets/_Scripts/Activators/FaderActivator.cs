@@ -12,15 +12,15 @@ namespace br.com.bonus630.thefrog.Activators
         //Enable fade
         public override void Activate()
         {
-            ServiceLocator.Instance.Get<ScreenFader>().fadeDuration = enableTime;
-            ServiceLocator.Instance.Get<ScreenFader>().FadeOut();
+           // ServiceLocator.Instance.Get<ScreenFader>().fadeDuration = enableTime;
+            ServiceLocator.Instance.Get<ScreenFader>().FadeOut(enableTime);
         }
         //Disable fade
         public override void Deactive()
         {
             Debug.Log("[FaderActivator] Deactive");
-            ServiceLocator.Instance.Get<ScreenFader>().fadeDuration = disableTime;
-            ServiceLocator.Instance.Get<ScreenFader>().FadeIn();
+           // ServiceLocator.Instance.Get<ScreenFader>().fadeDuration = disableTime;
+            ServiceLocator.Instance.Get<ScreenFader>().FadeIn(disableTime);
         }
     }
 }

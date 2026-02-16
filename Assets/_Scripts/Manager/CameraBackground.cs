@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog.Manager
         [SerializeField] GameObject background2;
         [field: SerializeField] public float CycleDurationMinutes { get; set; } = 1f; 
         [SerializeField][Range(0, 24)] private int hour = 6;
-
+        [SerializeField]float yAmplitude = 80f; // era 20f
         [SerializeField] Color corNoite = new Color(0.2f, 0.3f, 0.5f, 0.4f);     // Azul escuro, frio
         [SerializeField] Color corAmanhecer = new Color(1f, 0.5f, 0.3f, 0.2f);   // Alaranjado suave
         [SerializeField] Color corMeioDia = new Color(1f, 1f, 0.8f, 0f);         // Luz forte, quase sem filtro
@@ -33,7 +33,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         public int Hour { get { return hour; } }
         public bool IsStarted { get; private set; }
-        float yAmplitude = 20f; // Altura máxima que o sol vai chegar
+        // Altura máxima que o sol vai chegar
                       
 
         SpriteRenderer filterSR;
@@ -202,11 +202,15 @@ namespace br.com.bonus630.thefrog.Manager
             // Exibir ou ocultar o sol
             bool isDay = cycleTime >= sunriseTime && cycleTime <= sunsetTime;
             sun.GetComponent<SpriteRenderer>().enabled = isDay;
-            sunLight.GetComponent<Light2D>().enabled = isDay;
+            sunLight.SetActive(isDay);
+            //sunLight.GetComponent<Light2D>().enabled = isDay;
             // Atualiza rotação do sol, acho que temos um bug aqui
-            Vector3 direction = (Vector3.zero - sunLight.transform.position).normalized;
-            float sunAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
-            sunLight.transform.rotation = Quaternion.RotateTowards(sunLight.transform.rotation, Quaternion.Euler(0, 0, sunAngle), 500 * Time.fixedDeltaTime);
+            if (day)
+            {
+                Vector3 direction = (Vector3.zero - sunLight.transform.position).normalized;
+                float sunAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
+                sunLight.transform.rotation = Quaternion.RotateTowards(sunLight.transform.rotation, Quaternion.Euler(0, 0, sunAngle), 500 * Time.fixedDeltaTime);
+            }
         }
 
 

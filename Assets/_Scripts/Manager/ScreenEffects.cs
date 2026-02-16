@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Manager
         [field:SerializeField]public CamerasController camerasController { get; private set; }
         [field:SerializeField]public VignetteManager vignetteManager { get; private set; }
 
+        private Coroutine fadeinRoutine, fadeoutRoutine; 
 
         private void Awake()
         {
@@ -65,8 +66,9 @@ namespace br.com.bonus630.thefrog.Manager
         /// <param name="duration"></param>
         public void FadeOut(float duration = 1f)
         {
-            screenFader.fadeDuration = duration;
-            StartCoroutine(screenFader.FadeOut());
+            //screenFader.fadeDuration = duration;
+            //fadeoutRoutine = StartCoroutine(screenFader.FadeOut());
+            screenFader.FadeOut(duration, false);
         }
         /// <summary>
         /// Escuro para claro
@@ -74,8 +76,9 @@ namespace br.com.bonus630.thefrog.Manager
         /// <param name="duration"></param>
         public void FadeIn(float duration = 1f)
         {
-            screenFader.fadeDuration = duration;
-            StartCoroutine(screenFader.FadeIn());
+            //screenFader.fadeDuration = duration;
+            //fadeinRoutine = StartCoroutine(screenFader.FadeIn());
+            screenFader.FadeIn(duration, false);
         }
         //public Coroutine FadeOut(float duration = 1f)
         //{

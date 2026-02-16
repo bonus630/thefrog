@@ -304,7 +304,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private IEnumerator ChangeScene(string sceneName)
         {
-            //Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
+            Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
            
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
@@ -318,7 +318,7 @@ namespace br.com.bonus630.thefrog.Manager
             se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
             {
-                se.screenFader.fadeImage.color = Color.black;
+                se.screenFader.FadeOut(0f);
                 se.FadeIn(1f);
             }
             yield return null;

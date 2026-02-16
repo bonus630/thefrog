@@ -12,11 +12,11 @@ namespace br.com.bonus630.tests
             {
                 Debug.Log("collision");
                 ServiceLocator.Instance.LogRegistredsServicesNames();
-                ServiceLocator.Instance.Get<IPlayer>().AddAction(new PlayerDirectorData(() =>
+                ServiceLocator.Instance.Get<IPlayer>().AddAction(new SchedulerData(() =>
                 ServiceLocator.Instance.Get<ScreenEffects>().FadeOut(), 1f));
-                ServiceLocator.Instance.Get<IPlayer>().AddAction(new PlayerDirectorData(() =>
+                ServiceLocator.Instance.Get<IPlayer>().AddAction(new SchedulerData(() =>
                 { }, 10f));
-                ServiceLocator.Instance.Get<IPlayer>().AddAction(new PlayerDirectorData(() =>
+                ServiceLocator.Instance.Get<IPlayer>().AddAction(new SchedulerData(() =>
                 ServiceLocator.Instance.Get<ScreenEffects>().FadeIn(), 1f));
                 Destroy(gameObject);
             }

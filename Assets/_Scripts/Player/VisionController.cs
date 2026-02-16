@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Player
         [SerializeField] float visionTime = 10f;
         [SerializeField] float maxOffSetY = 5f;
         [SerializeField] AudioClip audioVision;
+        [SerializeField] GameObject light;
         IBarUI activeVisionBar;
         AudioSource audioSource;
         float nextVisionTime = 0;
@@ -117,7 +118,7 @@ namespace br.com.bonus630.thefrog.Player
             if (Time.time > nextVisionTime && !activeVision)
             {
                 //Debug.Log("[Player] visionBar ElapseTime:" + ElapseTime);
-               //Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
+                //Debug.Log("[Player] visionBar minValue:" + activeVisionBarValue);
                 activeVisionBar = barManager.CreateBar(Color.magenta, 0, barManager.transform, gravityDirection);
                 activeVisionBar.BarDestroyed += ActiveVisonBar_BarDestroyed;
                 activeVisionBar.MaxValue = maxValue;
@@ -129,6 +130,7 @@ namespace br.com.bonus630.thefrog.Player
                 GetComponent<SpriteMask>().enabled = true;
                 GetComponent<SpriteRenderer>().enabled = true;
                 visionCollider.enabled = true;
+                light.SetActive(true);
                 return;
             }
             if (activeVision)
@@ -156,6 +158,7 @@ namespace br.com.bonus630.thefrog.Player
             GetComponent<SpriteMask>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
             visionCollider.enabled = false;
+            light.SetActive(false); 
         }
         //private void ResetVision()
         //{

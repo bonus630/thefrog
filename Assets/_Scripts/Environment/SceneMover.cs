@@ -20,6 +20,7 @@ namespace br.com.bonus630.thefrog.Environment
             if(!useCurrentHour)
                 GameManager.Instance.EnvironmentStates.playerStates.Hour = scenePointsData.PointsData[ToPoint].Hour;
             GameManager.Instance.GetPlayerScript.FreezePlayer();
+            ServiceLocator.Instance.Get<ScreenEffects>().FadeOut(0.4f);
             Debug.Log("[SceneMover] player:" + ToPoint);
             GameManager.Instance.ToPoint = ToPoint;
             GameManager.Instance.LoadGame(scenePointsData.SceneType);

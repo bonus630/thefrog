@@ -33,7 +33,9 @@ namespace br.com.bonus630.thefrog.Manager
         private void Awake()
         {
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            screenEffects.screenFader.fadeImage.color = Color.black;
+            //screenEffects.screenFader.fadeImage.color = Color.black;
+            screenEffects.FadeOut(0f);
+            
         }
         private void Start()
         {

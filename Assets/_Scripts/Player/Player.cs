@@ -40,7 +40,7 @@ namespace br.com.bonus630.thefrog.Player
         public PlayerMovement playerMovement { get; private set; }
         public PlayerFallControl playerFallControl { get; private set; }
         public PlayerSpiritController playerSpiritController { get; private set; }
-        public PlayerDirector playerDirector { get; private set; }
+        public SchedulerDirector playerDirector { get; private set; }
 
         [Header("Others")]
         private Rigidbody2D rb;
@@ -92,7 +92,7 @@ namespace br.com.bonus630.thefrog.Player
             playerDialogue = GetComponent<PlayerDialogue>();
             playerHealth = GetComponent<PlayerHealth>();
             playerMovement = GetComponent<PlayerMovement>();
-            playerDirector = GetComponent<PlayerDirector>();
+            playerDirector = GetComponent<SchedulerDirector>();
             playerFallControl = GetComponent<PlayerFallControl>();
             playerSpiritController = GetComponent<PlayerSpiritController>();
             barManager = GetComponent<BarManager>();
@@ -108,7 +108,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            //#if !UNITY_EDITOR
+            #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -136,7 +136,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-           // #endif
+            #endif
 
         }
 
@@ -577,8 +577,8 @@ namespace br.com.bonus630.thefrog.Player
             playerManager.UpdatePlayer();
         }
 
-        public void AddAction(PlayerDirectorData action)=> playerDirector.AddAction(action);
-        public void AddAction(Action action,float time)=> playerDirector.AddAction(new PlayerDirectorData(action,time));
+        public void AddAction(SchedulerData action)=> playerDirector.AddAction(action);
+        public void AddAction(Action action,float time)=> playerDirector.AddAction(new SchedulerData(action,time));
 
         public PlayerStates GetPlayerStates => playerManager.PlayerStates;
     }

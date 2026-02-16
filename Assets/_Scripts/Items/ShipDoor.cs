@@ -96,7 +96,7 @@ namespace br.com.bonus630.thefrog.Items
         }
         public void Close()
         {
-            //Debug.Log("[ShipDoor] cont:" + cont++);
+            Debug.Log("[ShipDoor] cont:" + cont++);
             if (!isExit)
             {
                 player.AllInputsOn(false, 0);

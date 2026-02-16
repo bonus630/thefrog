@@ -37,12 +37,47 @@ namespace br.com.bonus630.thefrog.Manager
             //sceneBlocks.Add("InterGround", new int[] { 5, 6, 7, 10, 11, 12 });
             //sceneBlocks.Add("TreeSkyShip", new int[] { 0, 1, 5, 6 });
             //Blocos de 50x50 unidades  
-            sceneBlocks.Add("Koar", new int[] { 24, 25, 26, 27, 28, 29, 14, 15, 16, 17, 18, 19, 4, 5, 6, 7, 8, 9 });
-            sceneBlocks.Add("Stickerbrush", new int[] { 36, 37, 38, 39, 46, 47, 48, 49, 26, 27, 28, 29 });
-            sceneBlocks.Add("MiniTour", new int[] { 34, 35, 36, 44, 45, 46, 54, 55, 56 });
-            sceneBlocks.Add("MidLand", new int[] { 20, 21, 22, 23,24, 30, 31, 32, 33, 34, 35, 36 });
-            sceneBlocks.Add("InterGround", new int[] { 20, 21, 22, 23, 10, 11, 12, 13 });
-            sceneBlocks.Add("TreeSkyShip", new int[] { 50, 51, 52, 53, 40, 41, 42, 43, 30, 31, 32, 33 });
+            sceneBlocks.Add("Koar", new int[]
+            {
+                4, 5, 6, 7, 8, 9,
+                14, 15, 16, 17, 18, 19,
+                24, 25, 26, 27, 28, 29
+            });
+
+            sceneBlocks.Add("Stickerbrush", new int[]
+            {
+                26, 27, 28, 29,
+                36, 37, 38, 39,
+                46, 47, 48, 49
+            });
+
+            sceneBlocks.Add("MiniTour", new int[]
+            {
+                33, 34, 35, 36,
+                43, 44, 45, 46,
+                53, 54, 55, 56
+            });
+
+            sceneBlocks.Add("MidLand", new int[]
+            {
+                20, 21, 22, 23,
+                24,
+                30, 31, 32, 33, 34, 35, 36
+            });
+
+            sceneBlocks.Add("InterGround", new int[]
+            {
+                10, 11, 12, 13,
+                20, 21, 22, 23
+            });
+
+            sceneBlocks.Add("TreeSkyShip", new int[]
+            {
+                30, 31, 32, 33,
+                40, 41, 42, 43,
+                50, 51, 52, 53
+            });
+
         }
 
         private void SceneManager_sceneUnloaded(Scene arg0)

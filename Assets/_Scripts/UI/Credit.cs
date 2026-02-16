@@ -116,7 +116,8 @@ namespace br.com.bonus630.thefrog
             totalTime += Time.deltaTime;
             if (totalTime > 225f)
             {
-                StartCoroutine(Exit());
+                Exit();
+               // StartCoroutine(Exit());
             }
 
         }
@@ -130,13 +131,17 @@ namespace br.com.bonus630.thefrog
                     NewGamePlus();
             }
         }
-        IEnumerator Exit()
+        void Exit()
         {
-            screenFader.fadeDuration = 3f;
-            StartCoroutine(screenFader.FadeOut());
-            yield return new WaitForSeconds(3f);
-            MenuButton_clicked();
+            void Handler()
+            {
+                screenFader.OnFadeOutCompleted -= Handler;
+                MenuButton_clicked();
+            }
 
+            screenFader.OnFadeOutCompleted += Handler;
+            screenFader.FadeOut(3f);
         }
+
     }
 }

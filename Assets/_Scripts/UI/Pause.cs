@@ -9,6 +9,7 @@ namespace br.com.bonus630.thefrog.UI
     public class Pause : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI hoursText;
+        [SerializeField] TextMeshProUGUI deadsText;
         public int hour;
         public int prevHour;
         Vector2 direction;
@@ -18,6 +19,7 @@ namespace br.com.bonus630.thefrog.UI
         {
             this.hour = ServiceLocator.Instance.Get<IHourProvider>().Hour;
             hoursText.text = this.hour.ToString("00") + " HORAS";
+            deadsText.text = GameManager.Instance.PlayerStates.numDies.ToString("0000") + " MORTES";
             prevHour = hour;
         }
         private void OnDisable()

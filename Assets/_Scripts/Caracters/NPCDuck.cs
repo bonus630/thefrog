@@ -67,8 +67,9 @@ namespace br.com.bonus630.thefrog.Caracters
             yield return new WaitForSeconds(1f);
             //  yield return fader.FadeIn();
             GameManager.Instance.GetPlayerScript.ChangeGravity(1f, 0.2f);
-           // Invoke(nameof(RestorePlayerInput), 3f);
-            yield return fader.FadeOut();
+            // Invoke(nameof(RestorePlayerInput), 3f);
+            //yield return fader.FadeOut();
+            fader.FadeOut(1f);
             yield return new WaitForSeconds(1);
             // Debug.Log($"[NPCDuck] time: {(Time.realtimeSinceStartup - time):F3}");
             Destroy(gameObject);
@@ -106,7 +107,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private void FadeIn()
         {
-            ServiceLocator.Instance.Get<ScreenFader>().FadeIn();
+            ServiceLocator.Instance.Get<ScreenFader>().FadeIn(1f);
         }
         public override Transform GetTransform()
         {
