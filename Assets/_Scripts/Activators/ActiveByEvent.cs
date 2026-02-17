@@ -11,17 +11,14 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField][Tooltip("Desmarque para desativar")] bool Activing = true;
         void Start()
         {
-             if (GameManager.Instance.IsEventCompleted(GameEvent))
+            if (GameManager.Instance.IsEventCompleted(GameEvent))
             {
-                if (Activing)
-                    ItemToActive.Activate();
-                else
-                    ItemToActive.Deactive();
+                Toggle();
             }
             GameManager.Instance.eventManager.GameEventCompleted += EventManager_GameEventCompleted;
         }
-           
-        
+
+
         private void OnDisable()
         {
             GameManager.Instance.eventManager.GameEventCompleted -= EventManager_GameEventCompleted;
@@ -30,11 +27,21 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (obj.Equals(GameEvent))
             {
-                if (Activing)
-                    ItemToActive.Activate();
-                else
-                    ItemToActive.Deactive();
+                Toggle();
             }
+        }
+        private void Toggle()
+        {
+
+            if (ItemToActive == null)
+            {
+                Debug.LogError($"ActiveByEvent: ItemToActive é null em {gameObject.name}");
+                return;
+            }
+            if (Activing)
+                ItemToActive.Activate();
+            else
+                ItemToActive.Deactive();
         }
     }
 }

@@ -11,7 +11,9 @@ namespace br.com.bonus630.thefrog.Activators
         private void Start()
         {
             if(DataScenePreserver.Instance.Contains("Maze"))
-                GetComponent<CircleCollider2D>().enabled = true;    
+                GetComponent<CircleCollider2D>().enabled = true;
+            if (musicSource == null)
+                musicSource = ServiceLocator.Instance.Get<MusicSource>();
         }
         public override void Activate()
         {

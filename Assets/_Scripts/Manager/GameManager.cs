@@ -272,6 +272,7 @@ namespace br.com.bonus630.thefrog.Manager
                 eventManager.Reset();
             if (type == SceneStartType.Start)
             {
+                Time.timeScale = 1;
                 SceneManager.LoadScene(FroggerScene);
                 yield return new WaitForEndOfFrame();
             }
@@ -283,9 +284,9 @@ namespace br.com.bonus630.thefrog.Manager
             }
             if (type == SceneStartType.Continue)
             {
+                Time.timeScale = 1;
                 this.EnvironmentStates = LoadStates(saveGameIndex);
                 //neste momento o horario ainda esta correto bug:2051
-                //Debug.Log("[GameManager][LoadGame] hour: " + this.EnvironmentStates.playerStates.Hour);
                 this.PlayerStates = this.EnvironmentStates.playerStates;
                 if (saveGameIndex == 0)
                     this.PlayerStates.Hearts = this.playerStates.MaxHearts;
@@ -294,6 +295,11 @@ namespace br.com.bonus630.thefrog.Manager
                 //já estar carregada
                 if (eventManager == null)
                     eventManager = GetComponent<EventsManager>();
+                //for (int i = 0; i < this.PlayerStates.CompletedGameEvents.Count; i++)
+                //{
+                //    Debug.Log("[GameManager][LoadGame] eventName: " + this.PlayerStates.CompletedGameEvents[i]);
+                //}
+              
                 eventManager.LoadEvents(this.PlayerStates.CompletedGameEvents);
                 //Debug.Log("[GameManager][LoadGame] 2 hour: " + this.EnvironmentStates.playerStates.Hour);
                 SceneManager.LoadScene(MainScene);
@@ -304,7 +310,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private IEnumerator ChangeScene(string sceneName)
         {
-            Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
+            //Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
            
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
@@ -370,7 +376,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void SceneManager_sceneUnloaded(Scene arg0)
         {
-            Debug.Log("[GameManager] sceneUnload name: " + arg0.name);
+            //Debug.Log("[GameManager] sceneUnload name: " + arg0.name);
             if(arg0.name.Equals(MainScene))
                 ServiceLocator.Instance.ResetService();
         }
@@ -688,15 +694,15 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             //////Time.timeScale = 0.5f;
-            //playerStates.HasGravity = true;
+            playerStates.HasGravity = true;
             playerStates.HasVision = true;
             playerStates.Collectables = 21;
             //playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
-            //playerStates.HasWallJump = true;
+            playerStates.HasWallJump = true;
             //////playerStates.HasDoubleJump = true;
-            //playerStates.FallsControl = true;
-            //playerStates.HasDash = true;
+            playerStates.FallsControl = true;
+            playerStates.HasDash = true;
             //playerStates.Shurykens = 100;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);

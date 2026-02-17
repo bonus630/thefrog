@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Effects
         private int limit;
         private bool finished;
         private int nextIndex; // índice circular
-  
+        private ushort id;
 
         private SpriteAfterImageEffect(SpriteRenderer original,
                                       int limit = 6,
@@ -29,6 +29,7 @@ namespace br.com.bonus630.thefrog.Effects
             this.fadeSpeed = fadeSpeed;
             this.delayTime = delayTime;
             this.limit = Mathf.Max(1, limit);
+            id = (ushort)Random.Range(1,ushort.MaxValue);
         }
         public static SpriteAfterImageEffect Create(SpriteRenderer original)
         {
@@ -77,6 +78,8 @@ namespace br.com.bonus630.thefrog.Effects
 
         public override void UpdateEffects(float deltaTime)
         {
+            if (finished)
+                return;
             currentTime += deltaTime;
             delayTimer += deltaTime;
 
@@ -112,7 +115,7 @@ namespace br.com.bonus630.thefrog.Effects
             // se ainda não atingiu o limite, cria um novo clone
             if (clones.Count < limit)
             {
-                GameObject cloneObj = new GameObject($"AfterImage_{clones.Count}");
+                GameObject cloneObj = new GameObject($"AfterImage_{id}_{clones.Count}");
                 target = cloneObj.AddComponent<SpriteRenderer>();
                 clones.Add(target);
             }
@@ -154,7 +157,10 @@ namespace br.com.bonus630.thefrog.Effects
                 for (int i = 0; i < clones.Count; i++)
                 {
                     if (clones[i] != null)
+                    {
+                        clones[i].name = $"AfterImage_MarkedToDelete_{id}_{i}";
                         Object.Destroy(clones[i].gameObject);
+                    }
                 }
                 clones.Clear();
             }

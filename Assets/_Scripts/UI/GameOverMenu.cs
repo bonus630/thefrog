@@ -32,14 +32,14 @@ namespace br.com.bonus630.thefrog.UI
 
             yield return new WaitForEndOfFrame(); // garante que layout UI foi atualizado
             EventSystem.current.SetSelectedGameObject(firstButton);
-            Debug.Log("[GameOverMenu] EventSystems: " + FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length);
-            Debug.Log("[GameOverMenu] Raycasters: " + FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None).Length);
+            //Debug.Log("[GameOverMenu] EventSystems: " + FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length);
+           // Debug.Log("[GameOverMenu] Raycasters: " + FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None).Length);
            // Debug.Log("[GameOverMenu] Cursor Lockstate: " + Cursor.lockState);
         }
 
         public void ContinueButton_clicked()
         {
-            Debug.Log("[GameOverMenu] continue button clicked");
+           //Debug.Log("[GameOverMenu] continue button clicked");
             GameManager.Instance.LoadGame(SceneStartType.Continue);
         }
         public void LoadButton_clicked()

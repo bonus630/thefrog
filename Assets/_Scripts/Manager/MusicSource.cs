@@ -8,6 +8,9 @@ namespace br.com.bonus630.thefrog.Manager
     {
         [SerializeField] AudioSource audioLeft;
         [SerializeField] AudioSource audioRight;
+        [SerializeField] AudioSource audioAux;
+
+
         [SerializeField] AudioMixer mixer;
 
         [SerializeField] private AudioClip[] BackgroundMusics;
@@ -420,6 +423,10 @@ namespace br.com.bonus630.thefrog.Manager
 
             audioLeft.pitch = target;
             audioRight.pitch = target;
+        }
+        public void PlayClip(AudioClip clip, int times = 1)
+        {
+            audioAux.PlayOneShot(clip);
         }
 
     }

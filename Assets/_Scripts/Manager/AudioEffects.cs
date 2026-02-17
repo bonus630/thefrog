@@ -1,6 +1,5 @@
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace br.com.bonus630.thefrog.Manager
 {

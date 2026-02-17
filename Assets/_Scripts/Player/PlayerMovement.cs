@@ -49,7 +49,7 @@ namespace br.com.bonus630.thefrog.Player
         private bool canWallJump;
         bool inDash = false;
         public bool airDash = false;
-        bool firstTimeInDashLoop = false;
+        bool dashInitialized = false;
         //  bool HasDoubleJump = false;
         // bool HasWallJump = false;
 
@@ -102,7 +102,7 @@ namespace br.com.bonus630.thefrog.Player
                 anim.SetBool(FallingID, (IsFalling() && !player.playerFallControl.InFallControl));
             }
             DashBarController();
-            // Debug.Log($"DashReloadTime: {dashReloadTimer} inDash: {inDash}");
+            //   Debug.Log($"[PlayerMovement]DashReloadTime: {dashReloadTimer} inDash: {inDash}");
 
         }
         void FixedUpdate()
@@ -209,12 +209,12 @@ namespace br.com.bonus630.thefrog.Player
                 {
                     resetFastFall = true;
                     jumpReleasedAfterFall = false;
-                    Debug.Log("[PlayerMovement] resetFastFall fallcontrol");
+                    //Debug.Log("[PlayerMovement] resetFastFall fallcontrol");
                 }
             }
             //if (context.performed)
             //    Debug.Log("Jump context perfomed"); 
-            if (context.canceled )
+            if (context.canceled)
             {
                 if (!player.knockUp && !IgnoreDamping)
                 {
@@ -242,15 +242,9 @@ namespace br.com.bonus630.thefrog.Player
             if (player.playerManager.PlayerStates.HasDash)
             {
                 if (context.started)
-                {
-                    //Debug.Log("InDash true");
                     inDash = true;
-                }
                 if (context.canceled)
-                {
-                    //Debug.Log("InDash false");
                     inDash = false;
-                }
             }
         }
         private void DoubleJump()
@@ -404,76 +398,219 @@ namespace br.com.bonus630.thefrog.Player
                 //    acceleration = 0.2f * Mathf.Sign(player.RigibodyLinearVelocityX);
                 //    //return;
                 //   // Debug.Log("acceleration:" + acceleration);
-               // Debug.Log("[PlayerMovement] rigidibodyVelocityX:" + player.RigibodyLinearVelocityX);
+                // Debug.Log("[PlayerMovement] rigidibodyVelocityX:" + player.RigibodyLinearVelocityX);
                 //Debug.Break();
             }
             anim.SetFloat(WalkID, Mathf.Abs(player.RigibodyLinearVelocityX));
         }
         GameObject dashBar;
+        //private void Dash(bool canMove)
+        //{
+        //    if (inDash)
+        //    {
+        //        TryStartOrUpdateDash(canMove);
+        //    }
+        //    else
+        //    {
+        //        UpdateDashCooldown();
+        //    }
+        //}
+
+        //private void TryStartOrUpdateDash(bool canMove)
+        //{
+        //    // Se ainda não inicializou, significa que está tentando começar
+        //    if (!dashInitialized)
+        //    {
+        //        // Validação real acontece aqui
+        //        if (!CanStartDash(canMove))
+        //        {
+        //            inDash = false; // Rejeita a tentativa
+        //            return;
+        //        }
+
+        //        InitializeDash();
+        //    }
+
+        //    UpdateDashLoop(canMove);
+        //}
+        //float originalGravity;
+        //private void InitializeDash()
+        //{
+        //    dashInitialized = true;
+        //    dashActiveTimer = 0f;
+        //    dashReloadTimer = 0f;
+
+        //    originalGravity = player.RigibodyGravityScale;
+
+        //    if (!player.InGround)
+        //        player.RigibodyGravityScale = 0f;
+
+        //    DashSpeed = new Vector2(8f, 0f);
+
+        //    ApplyDashEffect();
+        //}
+
+        //private void UpdateDashLoop(bool canMove)
+        //{
+        //    if (!canMove)
+        //    {
+        //        EndDash();
+        //        return;
+        //    }
+
+        //    dashActiveTimer += Time.deltaTime;
+
+        //    if (dashActiveTimer >= dashActiveMaxTime)
+        //    {
+        //        EndDash();
+        //    }
+        //}
+
+        //private bool CanStartDash(bool canMove)
+        //{
+        //    if (!canMove)
+        //        return false;
+
+        //    if (dashReloadTimer < dashReloadMaxTime)
+        //        return false;
+
+        //    if (player.WallCheck.RightWallCheck())
+        //        return false;
+
+        //    return true;
+        //}
+
+        //private void EndDash()
+        //{
+        //    inDash = false;
+        //    dashInitialized = false;
+
+        //    DashSpeed = Vector2.zero;
+        //    player.RigibodyGravityScale = originalGravity;
+
+        //    spriteAfterImage?.Deactivate();
+        //}
+
+        //private void UpdateDashCooldown()
+        //{
+        //    if (dashReloadTimer < dashReloadMaxTime)
+        //    {
+        //        dashReloadTimer += Time.deltaTime;
+        //    }
+        //}
         private void Dash(bool canMove)
         {
-            //Debug.Log(canMove);
-            //Debug.Log(dashActiveTimer >= dashActiveMaxTime);
-            //Debug.Log((dashReloadTimer < dashReloadMaxTime && !firstTimeInDashLoop));
-            //Debug.Log(player.WallCheck.RightWallCheck());
-            // if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer > 0 && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())
-            if (!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer < dashReloadMaxTime && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck())
+            if (!CanDash(canMove))
                 inDash = false;
             if (inDash)
             {
-                if (!airDash)
-                {
-                    if (player.InGround || GetWallSliding)
-                        airDash = false;
-                    else
-                        airDash = true;
-                    if(!firstTimeInDashLoop)
-                        ApplyDashEffect();
-                    //// ParticleSystem.MainModule main = DashParticles.main;
-                    //if (player.LookFor < 0)
-                    //{
-                    //    DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
-                    //    DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-                    //    // main.startSpeed = -6;
-                    //}
-                    //else
-                    //{
-                    //    DashParticles.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
-                    //    DashParticles.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
-                    //    //main.startSpeed = 6;
-                    //}
-                    //DashParticles.Play();
-                    DashSpeed = new Vector2(8, 0);
-                    // Debug.Log("Dash here time: " + dashReloadMaxTime);
-                    // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
-                    player.RigibodyGravityScale = 0;
-                    firstTimeInDashLoop = true;
-                }
-                //dashReloadTimer = dashReloadMaxTime;
-                dashReloadTimer = 0;
-                dashActiveTimer += Time.deltaTime;
-            }
-            if (!inDash)
-            {
-                spriteAfterImage?.Deactivate();
-                DashSpeed = new Vector2(1, 0);
-                if (player.gravityDirection > 0)
-                    player.RigibodyGravityScale = -player.gravityScale;
+                if (dashInitialized)
+                    DashLoop();
                 else
-                    player.RigibodyGravityScale = player.gravityScale;
-                //dashReloadTimer -= Time.deltaTime;
-                dashReloadTimer += Time.deltaTime;
-                dashActiveTimer -= Time.deltaTime;
-                //if (dashReloadTimer < 0)
-                //    dashReloadTimer = 0;
-                if (dashActiveTimer < 0)
-                    dashActiveTimer = 0;
-                firstTimeInDashLoop = false;
-
+                    InitializeDash();
             }
-
+            else
+            {
+                EndDash();
+            }
         }
-        ushort effectID;
+        private bool CanDash(bool canMove)
+        {
+            if (!canMove)
+                return false;
+            if (dashActiveTimer >= dashActiveMaxTime)
+                return false;
+            if (dashReloadTimer < dashReloadMaxTime && !dashInitialized)
+                return false;
+            if (player.WallCheck.RightWallCheck())
+                return false;
+            return true;
+        }
+        private void InitializeDash()
+        {
+            dashInitialized = true;
+            ApplyDashEffect();
+            DashSpeed = new Vector2(8, 0);
+            player.RigibodyGravityScale = 0;
+            dashReloadTimer = 0;
+        }
+        private void EndDash()
+        {
+            dashInitialized = false;
+            spriteAfterImage?.Deactivate();
+            DashSpeed = new Vector2(1, 0);
+            if (player.gravityDirection > 0)
+                player.RigibodyGravityScale = -player.gravityScale;
+            else
+                player.RigibodyGravityScale = player.gravityScale;
+            dashReloadTimer += Time.deltaTime;
+            dashActiveTimer -= Time.deltaTime;
+            if (dashActiveTimer < 0)
+                dashActiveTimer = 0;
+        }
+        private void DashLoop()
+        {
+            dashActiveTimer += Time.deltaTime;
+        }
+        //private void Dash(bool canMove)
+        //{
+        //    Debug.Log(canMove);
+        //    //Debug.Log(dashActiveTimer >= dashActiveMaxTime);
+        //    //Debug.Log((dashReloadTimer < dashReloadMaxTime && !firstTimeInDashLoop));
+        //    //Debug.Log(player.WallCheck.RightWallCheck());
+        //   if (!canMove || dashActiveTimer >= dashActiveMaxTime || dashReloadTimer > dashReloadMaxTime  || player.WallCheck.RightWallCheck())
+        //     inDash = false;
+        //    Debug.Log(inDash);
+        //    if (inDash)
+        //    {
+        //        if (!airDash)
+        //        {
+        //            if (player.InGround || GetWallSliding)
+        //                airDash = false;
+        //            else
+        //                airDash = true;
+        //            if (!dashInitialized)
+        //            {
+        //                ApplyDashEffect();
+        //            }
+        //            DashSpeed = new Vector2(8, 0);
+        //            // Debug.Log("Dash here time: " + dashReloadMaxTime);
+        //            // rb.AddForceX(direction.x * DashSpeed.x,ForceMode2D.Impulse);
+        //            player.RigibodyGravityScale = 0;
+        //            dashInitialized = true;
+        //        }
+        //       // dashReloadTimer = dashReloadMaxTime;
+        //        dashReloadTimer = 0;
+        //        dashActiveTimer += Time.deltaTime;
+        //    }
+        //    if (!inDash)
+        //    {
+        //        spriteAfterImage?.Deactivate();
+        //        DashSpeed = new Vector2(1, 0);
+        //        if (player.gravityDirection > 0)
+        //            player.RigibodyGravityScale = -player.gravityScale;
+        //        else
+        //            player.RigibodyGravityScale = player.gravityScale;
+        //        //dashReloadTimer -= Time.deltaTime;
+        //        dashReloadTimer += Time.deltaTime;
+        //        dashActiveTimer -= Time.deltaTime;
+        //        //if (dashReloadTimer < 0)
+        //        //    dashReloadTimer = 0;
+        //        if (dashActiveTimer < 0)
+        //            dashActiveTimer = 0;
+
+        //        dashInitialized = true;
+
+        //    }
+
+        //}
+        //private bool CanDash(bool canMove)
+        //{
+        //    Debug.Log($"[PlayerMovement][CanDash] dashActiveTimer:{dashActiveTimer} dashReloadTimer:{dashReloadTimer} firstTimeInDashLoop:{firstTimeInDashLoop} RightWallCheck:{player.WallCheck.RightWallCheck()}");
+        //    return !(!canMove || dashActiveTimer >= dashActiveMaxTime || (dashReloadTimer < dashReloadMaxTime && !firstTimeInDashLoop) || player.WallCheck.RightWallCheck());
+        //}
+
+        ushort effectID = 0;
         public void ApplyDashEffect()
         {
             spriteAfterImage ??= EffectManager.instance.GetEffect<SpriteAfterImageEffect>(effectID) as SpriteAfterImageEffect;
@@ -487,7 +624,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void DashBarController()
         {
-            if (firstTimeInDashLoop && inDash)
+            if (dashInitialized && inDash)
             {
                 IBarUI c = null;
                 if (dashBar == null)

@@ -71,15 +71,24 @@ namespace br.com.bonus630.thefrog.Caracters
                 return;
             }
             dialogueCounter = 0;
-            musicSource.Play(BackgroundMusic.Ignition, true);
-            Entrace.enabled = true;
+            if (currentDialogueData == secondDialogue)
+            {
+                musicSource.Play(BackgroundMusic.Ignition, true);
+                Entrace.enabled = true;
+            }
         }
         public override bool HaveMoreDialogue()
         {
             bool result = CurrentDialogueData.Count > dialogueCounter;
             dialogueCounter++;
+            Debug.Log("[npcwoman] dialogueCounter:" + dialogueCounter);
             if (CurrentDialogueData == firstDialogue && CurrentDialogueData.Count==dialogueCounter)
                 createInThisInteraction = false;
+            if(CurrentDialogueData == firstDialogue && dialogueCounter >= 15 && Entrace.enabled == false)
+            {
+                musicSource.Play(BackgroundMusic.Ignition, true);
+                Entrace.enabled = true;
+            }
             return result;
         }
         public override Dictionary<string, string> GetDialogueVariables()

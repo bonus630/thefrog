@@ -30,19 +30,21 @@ namespace br.com.bonus630.thefrog.Effects
         }
         public ushort AddEffect(IEffects effect)
         {
-            if (!activeEffects.Contains(effect))
-            {
+            //if (!activeEffects.Contains(effect))
+            //{
                 ushort id;
                 do
                 {
-                    id = (ushort)Random.Range(ushort.MinValue, ushort.MaxValue);
+                    id = (ushort)Random.Range(1, ushort.MaxValue);
                 }
                 while (activeEffects.Any(r => r.ID == id));
 
                 effect.ID = id;
                 activeEffects.Add(effect);
                 return id;
-            }
+            //}
+            //else
+
             throw new System.Exception("Erro to add Effect in list");
         }
         public T GetEffect<T>(ushort ID) where T : IEffects

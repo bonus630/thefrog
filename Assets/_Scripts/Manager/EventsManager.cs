@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.Manager
             return events[currentEventIndex];
         }
 
-        public bool EventCompleted(GameEventName eventName, bool playSound)
+        public bool EventCompleted(GameEventName eventName, bool playSound,bool firesEvent = true)
         {
             if (eventName.Equals(GameEventName.None))
                 return true;
@@ -46,7 +46,7 @@ namespace br.com.bonus630.thefrog.Manager
                 //}
                 if (!eventGame.Completed && playSound)
                     GetComponent<AudioSource>().PlayOneShot(eventCompleteSound);
-                if (!eventGame.Completed)
+                if (!eventGame.Completed && firesEvent)
                 {
                     GameEventCompleted?.Invoke(eventGame);
                 }
@@ -94,7 +94,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void LoadEvents(Datas eventsDatas)
         {
-           // Debug.Log("eventos: " + eventsDatas.Count);
+           // Debug.Log("[EventsManager]eventos: " + eventsDatas.Count);
             for (int i = 0; i < eventsDatas.Count; i++)
             {
                // if (!completedEvents.Contains(eventsDatas[i].ToString()))
@@ -104,9 +104,9 @@ namespace br.com.bonus630.thefrog.Manager
                     if (Enum.TryParse(eventsDatas[i].ToString(), out eventName))
                     {
                         GameEvent eventGame = GetEvent(eventName);
-                        if (eventGame != null)
+                        if (eventGame != null && !eventName.Equals(GameEventName.None))
                         {
-                            EventCompleted(eventGame.Name, false);
+                            EventCompleted(eventGame.Name, false,false);
                             //eventGame.Completed = true;
                            // Debug.Log("[EventsManager]Evento carregado como verdadeiro: " + eventGame.Name);
                         }
