@@ -11,13 +11,13 @@ public class FollowPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         float x = player.transform.position.x;
-        if(player.transform.position.x < -3)
-            x = -3;
-        if(player.transform.position.x > 38)
-            x = 38;
+        //if(player.transform.position.x < -3)
+        //    x = -3;
+        //if(player.transform.position.x > 38)
+        //    x = 38;
         float y = gameObject.transform.position.y;
         float z = gameObject.transform.position.z;
         Vector3 pos = new Vector3(x, y, z);
