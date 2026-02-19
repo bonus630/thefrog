@@ -6,7 +6,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class AudioEffects : MonoBehaviour , IService
     {
         [SerializeField] AudioSource audioSource;
-        private void Start()
+        private void Awake()
         {
             ServiceLocator.Instance.Register<AudioEffects>(this);
         }

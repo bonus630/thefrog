@@ -18,7 +18,7 @@ namespace br.com.bonus630.thefrog.Activators
                 externGameObject.SetActive(invert ? false : true);
             if (enableType.HasFlag(enableType.Self))
             {
-              //  Debug.Log($"[EnableGameObject] name:{gameObject.name} enable:"+(invert ? false : true));
+                Debug.Log($"[EnableGameObject] Active name:{gameObject.name} enable:"+(invert ? false : true));
                 gameObject.SetActive(invert ? false : true);
             }
 
@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog.Activators
                     externGameObject.SetActive(invert ? true : false);
                 if (enableType.HasFlag(enableType.Self))
                 {
-                  //  Debug.Log($"[EnableGameObject] name:{gameObject.name} enable:" + (invert ? false : true));
+                    Debug.Log($"[EnableGameObject] Deactive name:{gameObject.name} enable:" + (invert ? false : true));
                     gameObject.SetActive(invert ? true : false);
                 }
             }

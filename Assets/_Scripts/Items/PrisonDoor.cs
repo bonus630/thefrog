@@ -20,21 +20,23 @@ namespace br.com.bonus630.thefrog.Items
         [field: SerializeField] public bool IsOpened { get; set; } = false;
 
         Vector3 closePosition = Vector3.zero;
-        Vector3 openPosition = Vector3.up * 0.5f;
+        [SerializeField]Vector3 openPosition = Vector3.up * 0.5f;
         AudioSource audioSource;
         bool useSound = true;
+        bool openOperation = false;
 
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
             if (GameManager.Instance.IsActived(this.DoorID))
-                setOpenClose(doorGrid, openPosition, true, true);
+                setOpenClose(doorGrid, openPosition, true, false);
         }
 
         public override void Activate()
         {
-            if (this.Actived)
+            if (openOperation)
                 return;
+            openOperation = true;
             StopAllCoroutines();
             audioSource.Stop();
             StartCoroutine(OpenClose(doorGrid, openPosition, operationSpeed, true));
@@ -44,8 +46,9 @@ namespace br.com.bonus630.thefrog.Items
 
         public override void Deactive()
         {
-            if (!this.Actived)
+            if (!openOperation)
                 return;
+            openOperation = false;
             StopAllCoroutines();
             audioSource.Stop();
             StartCoroutine(OpenClose(doorGrid, closePosition, operationSpeed, false));

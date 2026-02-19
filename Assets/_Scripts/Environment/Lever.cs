@@ -39,6 +39,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         IEnumerator TurnOff()
         {
+            yield return null;
             yield return new WaitForSeconds(delayTime);
             //SetActive(false);
             ItemToActive.Deactive();
@@ -46,6 +47,7 @@ namespace br.com.bonus630.thefrog.Environment
         IEnumerator TurnOn()
         {
             //Debug.Log("Lever TurnOn");
+            yield return null;
             yield return new WaitForSeconds(delayTime);
             //SetActive(true);
             ItemToActive.Activate();

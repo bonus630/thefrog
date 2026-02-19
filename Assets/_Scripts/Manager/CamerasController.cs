@@ -25,6 +25,8 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public GameObject ActiveCam(int index)
         {
+            if (Cameras == null)
+                throw new NullReferenceException("[CamerasController] ");
             for (int i = 0; i < Cameras.Count; i++)
             {
 

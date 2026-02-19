@@ -26016,10 +26016,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.3
   jumpForce: 12.3
-  wallJumpRemoveInputTime: 0.2
+  wallJumpRemoveInputTime: 0.25
   LinearMaxY: -22
   dashActiveMaxTime: 0.18
-  dashReloadMaxTime: 1.2
+  dashReloadMaxTime: 1.4
   jumpSFX: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
   JumpDownParticles: {fileID: 3611581164299857639}
   DashParticles: {fileID: 3928824168382239469}

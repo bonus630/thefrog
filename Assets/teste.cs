@@ -19,5 +19,11 @@ namespace br.com.bonus630.thefrog
             transform.position = pos;
         }
 
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == 8)
+                gameObject.GetComponent<teste>().enabled = false;
+        }
+
     }
 }

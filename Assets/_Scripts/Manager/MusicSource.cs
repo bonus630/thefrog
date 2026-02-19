@@ -375,7 +375,7 @@ namespace br.com.bonus630.thefrog.Manager
                 return;
 
             var musicData = DataScenePreserver.Instance.Get<MusicData>(key);
-            Debug.Log($"[MusicData] clip:{musicData.Clip}, Time:{musicData.Time}, Loop:{musicData.Loop}");
+            //Debug.Log($"[MusicData] clip:{musicData.Clip}, Time:{musicData.Time}, Loop:{musicData.Loop}");
             if (musicData.Clip != null)
             {
                 InstantPlay(musicData.Clip, musicData.Loop);

@@ -37,7 +37,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             queue.Enqueue(action);
 
-            Debug.Log("[Playerdirector] " + queue.Count + " tarefas na fila");
+            //Debug.Log("[Playerdirector] " + queue.Count + " tarefas na fila");
             if (!running)
                 ExecuteNext();
         }
@@ -47,7 +47,7 @@ namespace br.com.bonus630.thefrog.Player
             var data = queue.Dequeue();
 
             data.Action.Invoke();
-            Debug.Log("[Playerdirector] Tarefa " + data + " iniciou!");
+            //Debug.Log("[Playerdirector] Tarefa " + data + " iniciou!");
             actionTime = data.Time;
             actionStartTime = Time.realtimeSinceStartup;
             running = true;

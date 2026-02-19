@@ -10,8 +10,16 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void OnDestroy()
         {
+
+            if (ItemToDrop == null)
+            {
+                return;
+            }
+
             if (Random.value < Rate)
+            {
                 Instantiate(ItemToDrop, transform.position, Quaternion.identity);
+            }
         }
 
     }

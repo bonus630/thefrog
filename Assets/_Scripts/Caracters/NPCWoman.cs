@@ -50,6 +50,7 @@ namespace br.com.bonus630.thefrog.Caracters
             {
                 mazeDirections = DataScenePreserver.Instance.Get<ListStorage<int>>(MAZE).Values;
                 this.CurrentDialogueData = secondDialogue;
+                Entrace.enabled = true;
             }
             if (GameManager.Instance.EnvironmentStates.Activeds.Contains("trans_0005"))
             {

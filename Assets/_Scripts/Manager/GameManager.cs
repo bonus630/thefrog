@@ -703,13 +703,13 @@ namespace br.com.bonus630.thefrog.Manager
             //////playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
-            //playerStates.Shurykens = 100;
+            playerStates.Shurykens = 100;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);
             //this.EventCompleted(GameEventName.NPCFirstTalk, false);
             //this.EventCompleted(GameEventName.KillPig, false);
             //this.EventCompleted(GameEventName.LightningBolt, false);
-            //this.EventCompleted(GameEventName.MagicGlass, false);
+            this.EventCompleted(GameEventName.MagicGlass, false);
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
             //this.EventCompleted(GameEventName.FireBall, false);

@@ -54,7 +54,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void StartCoroutine(bool active,float time)
         {
-            Debug.Log("[Activators] StartCoroutine: " + gameObject.name);
+           // Debug.Log("[Activators] StartCoroutine: " + gameObject.name);
             StopAllCoroutines();
             if(gameObject.activeInHierarchy)
                 StartCoroutine(ToggleActivations(active, time));

@@ -14,7 +14,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] MusicSource musicSource;
         [SerializeField] ScreenEffects screenEffects;
         bool build = false;
-        bool enable = false;
+       // bool enable = false;
         float time = 2;
         private Color transparent = new Color(1f, 1f, 1f, 0f);
 

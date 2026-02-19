@@ -201,7 +201,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 14
   m_TargetDisplay: 0
 --- !u!224 &93516427
 RectTransform:
@@ -811,8 +811,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
-  m_sharedMaterial: {fileID: -8722573922416251172, guid: 037c911cff5d2004f888cc5b87fe4439, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d7e8b6520f1a76641b985271c257833f, type: 2}
+  m_sharedMaterial: {fileID: 3546514484824113242, guid: d7e8b6520f1a76641b985271c257833f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1077,6 +1077,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 987657466442988104, guid: dea980c8d239b074f8dbb226304d5629, type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1171109661568445618, guid: dea980c8d239b074f8dbb226304d5629, type: 3}
       propertyPath: m_BodyType
       value: 2
@@ -1182,6 +1186,10 @@ PrefabInstance:
     - target: {fileID: 987657466442988104, guid: dea980c8d239b074f8dbb226304d5629, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987657466442988104, guid: dea980c8d239b074f8dbb226304d5629, type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1171109661568445618, guid: dea980c8d239b074f8dbb226304d5629, type: 3}
       propertyPath: m_BodyType
@@ -1621,7 +1629,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 12
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2665,6 +2673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioLeft: {fileID: 365554813}
   audioRight: {fileID: 1970566897}
+  audioAux: {fileID: 0}
   mixer: {fileID: 24100000, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
   BackgroundMusics: []
   BackgroundMusicsRandom:

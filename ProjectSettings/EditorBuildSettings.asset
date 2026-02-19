@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/InterGround.unity
     guid: 8b9af26175e00104192a9aea42171d43
   - enabled: 1
-    path: Assets/_Scenes/TreeSkyShip.unity
+    path: Assets/_Scenes/SampleScene/TreeSkyShip.unity
     guid: 90c8b836eb054d249b4ed2d2a4664924
   - enabled: 1
     path: Assets/_Scenes/MiniTour.unity

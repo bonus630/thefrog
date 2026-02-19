@@ -104,7 +104,7 @@ namespace br.com.bonus630.thefrog.Caracters
             bool d1 = dialoguesData[1].IsReaded;
             bool d2 = dialoguesData[2].IsReaded;
             bool d3 = dialoguesData[3].IsReaded;
-
+            bool d8 = dialoguesData[8].IsReaded;
             int result;
 
             // 5 - Já possui habilidade
@@ -119,11 +119,11 @@ namespace br.com.bonus630.thefrog.Caracters
             else if (npcHas10)
             {
                 // TROCA (2 ou 7)
-                if (has10Player)
+                if (has10Player && d8)
                     result = d2 ? 7 : 2;
 
                 // FEEDBACK (3 ou 8)
-                else if (treeFound)
+                else if (treeFound && !d8)
                     result = d3 ? 8 : 3;
 
                 else
@@ -186,7 +186,7 @@ namespace br.com.bonus630.thefrog.Caracters
                     dialoguesData[7].IsReaded = false;
                     break;
                 case 8:
-
+                    dialoguesData[8].IsReaded = false;
                     break;
 
             }

@@ -45,8 +45,13 @@ namespace br.com.bonus630.thefrog.Activators
         }
         protected void ChangeCamera()
         {
-           // Debug.Log("[ActiveCamera] gameObject:" + gameObject.name);
+            if(controller==null)
+                Debug.Log("[ActiveCamera] Controller null in gameObject:" + gameObject.name);
+            if (controller == null)
+                Debug.Log("[ActiveCamera] Controller null in gameObject:" + gameObject.name);
             GameObject camera = controller.ActiveCam(cameraIndex);
+            if (camera == null)
+                return;
             string confiner = ConfinerName(cameraIndex);
            // Debug.Log($"Index camera:{cameraIndex} confiner:{confinierIndex} name:{confiner}");
             // Debug.Log("Collider camera Activator:" + GameObject.Find(confiner).transform.childCount);

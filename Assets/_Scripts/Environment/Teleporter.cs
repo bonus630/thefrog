@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Environment
 {
+    
     public class Teleporter : IActivator
     {
         [SerializeField] GameObject teleported;
