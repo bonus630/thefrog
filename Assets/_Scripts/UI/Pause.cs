@@ -1,8 +1,10 @@
+using System;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace br.com.bonus630.thefrog.UI
 {
@@ -10,6 +12,12 @@ namespace br.com.bonus630.thefrog.UI
     {
         [SerializeField] TextMeshProUGUI hoursText;
         [SerializeField] TextMeshProUGUI deadsText;
+        [SerializeField] TextMeshProUGUI totalTimeText;
+        [SerializeField] TextMeshProUGUI runsText;
+        [SerializeField] TextMeshProUGUI heartsText;
+        [SerializeField] TextMeshProUGUI playerSpeedText;
+        [SerializeField] TextMeshProUGUI playerJumpForceText;
+        [SerializeField] Image EffectImage;
         public int hour;
         public int prevHour;
         Vector2 direction;
@@ -18,8 +26,14 @@ namespace br.com.bonus630.thefrog.UI
         private void OnEnable()
         {
             this.hour = ServiceLocator.Instance.Get<IHourProvider>().Hour;
-            hoursText.text = this.hour.ToString("00") + " HORAS";
-            deadsText.text = GameManager.Instance.PlayerStates.numDies.ToString("0000") + " MORTES";
+            TimeSpan time = TimeSpan.FromSeconds(GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
+            hoursText.text =           this.hour.ToString("00") + " HORAS";
+            deadsText.text =           GameManager.Instance.PlayerStates.numDies.ToString("0000");
+            runsText.text =            GameManager.Instance.EnvironmentStates.run.ToString("0000");
+            totalTimeText.text =       time.ToString(@"hh\:mm\:ss");
+            heartsText.text =          $"{GameManager.Instance.PlayerStates.Hearts}/{GameManager.Instance.GameTotalHearts}";
+            playerSpeedText.text =     $"{GameManager.Instance.PlayerStates.Speed * 100}";
+            playerJumpForceText.text = $"{GameManager.Instance.PlayerStates.JumpForce * 100}";
             prevHour = hour;
         }
         private void OnDisable()
@@ -43,10 +57,17 @@ namespace br.com.bonus630.thefrog.UI
                
             }
             time += Time.unscaledDeltaTime;
+
+            if (time > 2)
+            {
+                EffectImage.GetComponent<RectTransform>().anchoredPosition += Vector2.down * 10;
+            }
+            if (EffectImage.GetComponent<RectTransform>().anchoredPosition.y < -1200)
+                EffectImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(EffectImage.GetComponent<RectTransform>().anchoredPosition.x, 0);
         }
         public void GetDirection(InputAction.CallbackContext context)
         {
-            
+            Debug.Log("[Pause][GetDiretions]");
             direction = context.ReadValue<Vector2>();
            
         }

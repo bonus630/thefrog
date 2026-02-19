@@ -50,6 +50,7 @@ namespace br.com.bonus630.thefrog.Manager
         public IPlayer GetPlayerScript { get { return GetPlayer.GetComponent<IPlayer>(); } }
 
         public bool GamePaused { get => gamePaused; private set => gamePaused = value; }
+        public readonly int GameTotalHearts = 13;
 
         private float musicVolum = 0;
         private float soundVolum = 0;
