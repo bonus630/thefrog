@@ -4969,6 +4969,7 @@ MonoBehaviour:
   stub: {fileID: 5823065392948698608}
   _base: {fileID: 5700919651579576275}
   dust: {fileID: 3928115892004054455}
+  dontDestroy: 0
   <autoDestroy>k__BackingField: 1
   <actived>k__BackingField: 1
 --- !u!82 &5613530138120954048
@@ -4981,7 +4982,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ce099f3e927e4f74e940bedc055b655c, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: ce099f3e927e4f74e940bedc055b655c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4992,8 +4993,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

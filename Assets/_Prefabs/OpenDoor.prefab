@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: 2296307394215323276}
   - {fileID: 4671543978518092555}
   - {fileID: 8776385020893803997}
+  <ID>k__BackingField: 0
 --- !u!212 &1457821359753717515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,6 +124,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever Green
       objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MinDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: LevelID
+      value: op_green
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: actived
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: ItemToActive
+      value: 
+      objectReference: {fileID: 4671543978518092555}
     - target: {fileID: 5823153338348653243, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
       propertyPath: m_Color.b
       value: 0.09313814
@@ -226,6 +247,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MinDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: LevelID
+      value: op_yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: actived
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: ItemToActive
+      value: 
+      objectReference: {fileID: 8776385020893803997}
     - target: {fileID: 5823153338348653243, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -329,6 +370,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever Red
       objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MinDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: LevelID
+      value: op_red
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: actived
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: ItemToActive
+      value: 
+      objectReference: {fileID: 557856203474338985}
     - target: {fileID: 5823153338348653243, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
       propertyPath: m_Color.b
       value: 0.4273318
@@ -432,6 +493,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181724577638714778, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: MinDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: LevelID
+      value: op_blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: actived
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835983214486227184, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
+      propertyPath: ItemToActive
+      value: 
+      objectReference: {fileID: 2296307394215323276}
     - target: {fileID: 5823153338348653243, guid: 577a4ff5d6d8ec14091b389136f4b7fe, type: 3}
       propertyPath: m_Color.b
       value: 0.8962264

@@ -29,7 +29,9 @@ namespace br.com.bonus630.thefrog.Items
         {
             audioSource = GetComponent<AudioSource>();
             if (GameManager.Instance.IsActived(this.DoorID))
+            {
                 setOpenClose(doorGrid, openPosition, true, false);
+            }
         }
 
         public override void Activate()

@@ -74,4 +74,9 @@ MonoBehaviour:
     Hour: 0
     Point: {x: 267.06, y: -57.59, z: 0}
     transform: {fileID: 0}
+  - Name: CastleRightTowerExit
+    GameObjectName: CastleRightTowerExit
+    Hour: 0
+    Point: {x: 268.43, y: -61.58, z: 0}
+    transform: {fileID: 0}
   SceneType: 4

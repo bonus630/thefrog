@@ -42,7 +42,8 @@ namespace br.com.bonus630.thefrog.Environment
             yield return null;
             yield return new WaitForSeconds(delayTime);
             //SetActive(false);
-            ItemToActive.Deactive();
+            if(ItemToActive.Actived)
+                ItemToActive.Deactive();
         }
         IEnumerator TurnOn()
         {
@@ -50,7 +51,8 @@ namespace br.com.bonus630.thefrog.Environment
             yield return null;
             yield return new WaitForSeconds(delayTime);
             //SetActive(true);
-            ItemToActive.Activate();
+            if (!ItemToActive.Actived)
+                ItemToActive.Activate();
         }
         private void SetActive(bool actived,bool playAudio = true)
         {

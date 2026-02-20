@@ -26016,7 +26016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.3
   jumpForce: 12.3
-  wallJumpRemoveInputTime: 0.25
+  wallJumpRemoveInputTime: 0.14
   LinearMaxY: -22
   dashActiveMaxTime: 0.18
   dashReloadMaxTime: 1.4

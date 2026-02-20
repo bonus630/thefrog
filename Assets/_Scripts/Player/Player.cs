@@ -60,7 +60,7 @@ namespace br.com.bonus630.thefrog.Player
         private bool inputsOn = true;
 
         public float LookFor { get; set; } = 1;
-
+        public Vector3 Position => transform.position;
         public GameObject FooterColliding { get { return footer; } protected set { footer = value; } }
         public bool MoveInputOn { get { return inputsOn; } set { inputsOn = value; } }
 
@@ -108,7 +108,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            #if !UNITY_EDITOR
+           // #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
@@ -136,7 +136,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-            #endif
+            //#endif
 
         }
 

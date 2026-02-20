@@ -71,23 +71,29 @@ namespace br.com.bonus630.thefrog.Manager
             CinemachineConfiner confiner;
             bool confinerEnabled = true;
             Transform startFollow = vCam.Follow;
-            if (vCam.TryGetComponent<CinemachineConfiner>(out confiner))
+            //Hack para contornar um problema quando se inicia uma cena onde existam muitos camera focus
+            if (startFollow.gameObject.name == "Camera")
             {
-                confinerEnabled = confiner.enabled;
-                confiner.enabled = false;
-            }
-            for (int i = 0; i < gameObjects.Length; i++)
-            {
-                vCam.Follow = gameObjects[i].transform;
-                yield return new WaitForSeconds(time);
+                if (vCam.TryGetComponent<CinemachineConfiner>(out confiner))
+                {
+                    confinerEnabled = confiner.enabled;
+                    confiner.enabled = false;
+                }
+                for (int i = 0; i < gameObjects.Length; i++)
+                {
+                    vCam.Follow = gameObjects[i].transform;
+                    yield return new WaitForSeconds(time);
 
+                }
+                yield return new WaitForSeconds(time);
+                if (confiner != null)
+                {
+                    confiner.enabled = confinerEnabled;
+                }
+                vCam.Follow = startFollow;
             }
-            yield return new WaitForSeconds(time);
-            if(confiner!=null)
-            {
-                confiner.enabled = confinerEnabled;
-            }
-            vCam.Follow = startFollow;
+            else
+                yield return null;
             //vCam.Follow = GameManager.Instance.GetPlayer.transform.Find("Camera");
 
         }

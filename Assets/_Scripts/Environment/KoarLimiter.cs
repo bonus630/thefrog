@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Environment
         BoxCollider2D col;
         Transform playerPos;
         float time = 1f;
+        bool running = false;
         readonly string musicKey = "KoarLimiter";
         void Awake()
         {
@@ -30,8 +31,13 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void Change(bool b)
         {
-            // Debug.Log("Koar limiter: " + !b);
-            StartCoroutine(change(b, b ? time : 0));
+            if (!running)
+            {
+                running = true;
+                Debug.Log("Koar limiter "+transform.parent.gameObject.name+": inside: " + b);
+                StartCoroutine(change(b, b ? time : 0));
+               
+            }
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -49,6 +55,7 @@ namespace br.com.bonus630.thefrog.Environment
                 GameManager.Instance.PlayerStates.HasGravity = !b;
             if (GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch))
                 GameManager.Instance.PlayerStates.FallsControl = !b;
+            running = false;
         }
     }
 }

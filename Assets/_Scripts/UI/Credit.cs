@@ -59,6 +59,8 @@ namespace br.com.bonus630.thefrog
         {
             GameManager.Instance.ResetEnvironment();
             GameManager.Instance.EnvironmentStates.run++;
+            isEndText.gameObject.SetActive(true);
+            isEndText.text = $"NOVO JOGO ++\n\r{GameManager.Instance.EnvironmentStates.run}";
             GameManager.Instance.SaveStates(0);
             GameManager.Instance.LoadGame(SceneStartType.Continue, 0);
         }

@@ -14,13 +14,13 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] MusicSource musicSource;
         [SerializeField] ScreenEffects screenEffects;
         bool build = false;
-       // bool enable = false;
+        // bool enable = false;
         float time = 2;
         private Color transparent = new Color(1f, 1f, 1f, 0f);
 
         private void Start()
         {
-            ServiceLocator.Instance.Get<IHourProvider>().OnHourChanged  += ActiveDuckPath_HourChanged;
+            ServiceLocator.Instance.Get<IHourProvider>().OnHourChanged += ActiveDuckPath_HourChanged;
             screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
             musicSource = ServiceLocator.Instance.Get<MusicSource>();
             ActiveDuckPath_HourChanged(ServiceLocator.Instance.Get<IHourProvider>().Hour);
@@ -39,11 +39,11 @@ namespace br.com.bonus630.thefrog.Activators
                 //cloud1.gameObject.SetActive(false);
                 //cloud2.gameObject.SetActive(false);
                 //cloud3.gameObject.SetActive(false);
-                if(cloud1.GetComponent<SpriteRenderer>().color != transparent)
+                if (cloud1.GetComponent<SpriteRenderer>().color != transparent)
                     StartCoroutine(ChangeColor(Color.white, transparent));
                 GetComponent<BoxCollider2D>().enabled = false;
             }
-            if(hour >= 6 && hour <= 17)
+            if (hour >= 6 && hour <= 17)
             {
                 //cloud1.gameObject.SetActive(true);
                 //cloud2.gameObject.SetActive(true);
@@ -52,6 +52,7 @@ namespace br.com.bonus630.thefrog.Activators
                     StartCoroutine(ChangeColor(transparent, Color.white));
                 GetComponent<BoxCollider2D>().enabled = true;
             }
+        
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -68,9 +69,9 @@ namespace br.com.bonus630.thefrog.Activators
         }
         IEnumerator Build()
         {
-            
+
             musicSource.StopAll();
-            musicSource.InstantPlay(BackgroundMusic.DuckPath,false);
+            musicSource.InstantPlay(BackgroundMusic.DuckPath, false);
             float currentTime = 0;
             float gamepadShake = 0.2f;
             float x1 = cloud1.transform.position.x;
@@ -89,7 +90,7 @@ namespace br.com.bonus630.thefrog.Activators
                 cloud3.transform.position = new Vector3(Mathf.Lerp(x3, x3 + 6, currentTime), cloud3.transform.position.y, 0);
 
                 screenEffects.GamepadShake(gamepadShake, 0);
-                gamepadShake = Mathf.Lerp(0.2f,0,currentTime);
+                gamepadShake = Mathf.Lerp(0.2f, 0, currentTime);
                 yield return new WaitForSeconds(0.05f);
             }
             screenEffects.GamepadShake(0, 0);
@@ -101,7 +102,7 @@ namespace br.com.bonus630.thefrog.Activators
         IEnumerator ChangeColor(Color start, Color end)
         {
             float currentTime = 0;
-            while(currentTime <  time)
+            while (currentTime < time)
             {
                 currentTime += Time.deltaTime;
                 cloud1.GetComponent<SpriteRenderer>().color = Color.Lerp(start, end, currentTime);
@@ -112,6 +113,16 @@ namespace br.com.bonus630.thefrog.Activators
             cloud1.GetComponent<SpriteRenderer>().color = end;
             cloud1.GetComponent<SpriteRenderer>().color = end;
             cloud1.GetComponent<SpriteRenderer>().color = end;
+        }
+        IEnumerator ChangePosition(Vector2 start, Vector2 end)
+        {
+            float currentTime = 0;
+            while (currentTime < time)
+            {
+                cloud1.transform.parent.position = Vector2.Lerp(start, end, currentTime);
+                yield return new WaitForSeconds(0.05f);
+            }
+            cloud1.transform.parent.position = end;
         }
     }
 }

@@ -141,6 +141,18 @@ namespace br.com.bonus630.thefrog.Enemies
             for (int i = 0; i < contacts.Length; i++) {
                 Debug.Log(contacts[i].normal);
                     }
+            if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && speed < minSpeed)
+            {
+                //vamos refatorar isso depois, criar um enum para o player retornando a posiçao, em relaçao a outro transforme
+                //direta, esquerda, cima, baixa, usar flags para poder combinar os valores
+                //e criar um metodo de extensão para converter o valor do enum em Vector2
+                if (player.Position.x < transform.position.x && xDirection > 0 || player.Position.x > transform.position.x && xDirection < 0)
+                {
+                    ChangeDirection();
+                    return;
+                }
+              
+            }
         }
         private void EnemyRino_OnTriggerEnterAction(ColliderData obj)
         {
@@ -168,9 +180,11 @@ namespace br.com.bonus630.thefrog.Enemies
                         HornyHitPlayer(player, 1, 80f);
                         return;
                     }
+                   
                 }
             }
 
         }
     }
+   
 }

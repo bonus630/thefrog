@@ -72,11 +72,13 @@ namespace br.com.bonus630.thefrog.Enemies
                     safeFollowTurn = 1f;
                     ChangeDirection();
                 }
+                canJump = false;
             }
             else
             {
                 if (rg.linearVelocityY < 0.1f)
                     jump = false;
+                canJump = true;
             }
             if (runTime < 0)
             {
@@ -91,9 +93,10 @@ namespace br.com.bonus630.thefrog.Enemies
             }
             //if (Input.GetKeyDown("q"))
             //{
+            //    Debug.Log($"chao {detectGround.collider}");
             //    Jump();
+            //    Debug.Log($"chao {detectGround.collider}");
             //}
-            // Debug.Log($"chao {detectGround.GetContacts(new ContactPoint2D[4])}");
         }
         private void OnDisable()
         {
