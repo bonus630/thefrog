@@ -12,7 +12,7 @@ namespace br.com.bonus630.thefrog.Manager
     public class SceneLoadManager : MonoBehaviour, IService
     {
         [SerializeField] CollisionRelayEx[] blocks;
-        readonly Dictionary<string, int[]> sceneBlocks = new();
+        Dictionary<string, int[]> sceneBlocks;
         private List<string> loadedScenes = new();
 
         public event Action<SceneDataEventArgs> SceneLoadEvent;
@@ -29,6 +29,27 @@ namespace br.com.bonus630.thefrog.Manager
                 blocks[i].OnTriggerEnterAction += SceneLoadManager_OnTriggerEnterAction;
                 blocks[i].OnTriggerExitAction += SceneLoadManager_OnTriggerExitAction;
             }
+            InitializeBlocks();
+
+        }
+        private void OnEnable()
+        {
+            EnsureInitialized();
+        }
+        public void EnsureInitialized()
+        {
+            if (sceneBlocks == null)
+                sceneBlocks = new Dictionary<string, int[]>();
+
+            if (sceneBlocks.Count > 0)
+                return;
+
+            InitializeBlocks();
+        }
+
+        public void InitializeBlocks()
+        {
+
             //Blocos de 100x100 unidades
             // sceneBlocks.Add("Koar", new int[] { 7, 8, 9, 12, 13, 14 });
             // sceneBlocks.Add("Stickerbrush", new int[] { 3, 4, 8, 9 });
@@ -37,6 +58,7 @@ namespace br.com.bonus630.thefrog.Manager
             //sceneBlocks.Add("InterGround", new int[] { 5, 6, 7, 10, 11, 12 });
             //sceneBlocks.Add("TreeSkyShip", new int[] { 0, 1, 5, 6 });
             //Blocos de 50x50 unidades  
+            sceneBlocks.Clear();
             sceneBlocks.Add("Koar", new int[]
             {
                 4, 5, 6, 7, 8, 9,
@@ -66,7 +88,7 @@ namespace br.com.bonus630.thefrog.Manager
             });
 
             sceneBlocks.Add("InterGround", new int[]
-            {
+            {    0,  1,  2,  3,
                 10, 11, 12, 13,
                 20, 21, 22, 23
             });
@@ -77,9 +99,7 @@ namespace br.com.bonus630.thefrog.Manager
                 40, 41, 42, 43,
                 50, 51, 52, 53
             });
-
         }
-
         private void SceneManager_sceneUnloaded(Scene arg0)
         {
         }

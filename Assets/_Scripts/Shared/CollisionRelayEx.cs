@@ -21,7 +21,7 @@ namespace br.com.bonus630.thefrog.Shared
      
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("[CollisionRelayEx] gameObject:" +gameObject.name+ " | data:" + data);
+          //  Debug.Log("[CollisionRelayEx] gameObject:" +gameObject.name+ " | data:" + data);
 
             data.ColliderOther = collision;
             OnTriggerEnterAction?.Invoke(data);

@@ -697,7 +697,7 @@ namespace br.com.bonus630.thefrog.Manager
             //////Time.timeScale = 0.5f;
             playerStates.HasGravity = true;
             playerStates.HasVision = true;
-            playerStates.Collectables = 21;
+            playerStates.Collectables = 51;
             //playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
             playerStates.HasWallJump = true;
@@ -705,11 +705,12 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
+            playerStates.HasLightning = true;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);
             //this.EventCompleted(GameEventName.NPCFirstTalk, false);
             //this.EventCompleted(GameEventName.KillPig, false);
-            //this.EventCompleted(GameEventName.LightningBolt, false);
+            this.EventCompleted(GameEventName.LightningBolt, false);
             this.EventCompleted(GameEventName.MagicGlass, false);
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
@@ -718,6 +719,7 @@ namespace br.com.bonus630.thefrog.Manager
             //////this.EventCompleted(GameEventName.PrisionerTip, false);
             //////this.EventCompleted(GameEventName.LadyLaments, false);
             ////this.EventCompleted(GameEventName.KoarFounded, false);
+            //this.EventCompleted(GameEventName.AppleTreeFounded, false);
 
 #endif
             #endregion

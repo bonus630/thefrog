@@ -57,7 +57,7 @@ MonoBehaviour:
   - Name: CastleLibrary
     GameObjectName: PigSpawner
     Hour: 0
-    Point: {x: -26.08, y: -301.06, z: 0}
+    Point: {x: -26.08, y: -301.5, z: 0}
     transform: {fileID: 0}
   - Name: CastleRightTowerWindow
     GameObjectName: WindowExit

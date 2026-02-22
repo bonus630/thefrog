@@ -34,7 +34,7 @@ namespace br.com.bonus630.thefrog.Environment
             if (!running)
             {
                 running = true;
-                Debug.Log("Koar limiter "+transform.parent.gameObject.name+": inside: " + b);
+                //Debug.Log("Koar limiter "+transform.parent.gameObject.name+": inside: " + b);
                 StartCoroutine(change(b, b ? time : 0));
                
             }

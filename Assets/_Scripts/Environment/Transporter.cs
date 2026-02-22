@@ -30,7 +30,7 @@ namespace br.com.bonus630.thefrog.Environment
         public List<Vector2> DestinesIntern { get; set; }
         public event Action OnePass;
 
-        int currentDestine = 1;
+       [SerializeField] int currentDestine = 1;
         private Rigidbody2D rb;
         private Collider2D col; 
         [ContextMenu("Adicionar posição atual")]
@@ -67,6 +67,7 @@ namespace br.com.bonus630.thefrog.Environment
         public void SetPositions()
         {
             if (!active) return;
+
             // startPosition = transform.TransformPoint(transform.position);
             startPosition = transform.position;
             worldDestination = new Vector3(DestinesIntern[currentDestine].x, DestinesIntern[currentDestine].y, transform.position.z);
@@ -110,6 +111,7 @@ namespace br.com.bonus630.thefrog.Environment
                         render.sprite = OffSprite;
                         currentDestine = 1;
                         DestinesIntern.Reverse();
+                        Debug.Log("[Transporter] evento onepass: " + (OnePass == null ? "nulo" : "ok")+" gameObject: "+gameObject.name);
                         OnePass?.Invoke();
                     }
                     else
@@ -177,9 +179,11 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            //Debug.Log("[Transporter] Active: " + active);
             if (!active) return;
             if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && player.FooterTouching(col))
             {
+              //  Debug.Log("[Transporter] DestinesIntern.Count: " + DestinesIntern.Count);
                 going = true;
                 render.sprite = OnSprite;
                 playerOut = false;

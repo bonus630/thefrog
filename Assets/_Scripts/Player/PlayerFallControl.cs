@@ -53,5 +53,6 @@ namespace br.com.bonus630.thefrog.Player
         {
             Debug.Log("FallsControleEffect");
         }
+
     }
 }
