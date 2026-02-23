@@ -17,7 +17,7 @@ namespace br.com.bonus630.thefrog.Manager
         private float elapsed;
         private float from;
         private float to;
-
+        private float maxFadeTime = 10f;
         //public IEnumerator FadeOut()
         //{
         //    yield return StartCoroutine(Fade(0f, 1f));
@@ -105,6 +105,16 @@ namespace br.com.bonus630.thefrog.Manager
 
         void Update()
         {
+            if(State == FadeState.FadedIn)
+            {
+                maxFadeTime -= Time.deltaTime;
+                if (maxFadeTime < 0)
+                {
+                    SetAlpha(1f);
+                    return;
+                }
+            }
+            maxFadeTime = 10f;
             if (State != FadeState.FadingIn && State != FadeState.FadingOut)
                 return;
 

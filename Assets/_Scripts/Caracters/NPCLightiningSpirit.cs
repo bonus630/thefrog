@@ -14,7 +14,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private void Start()
         {
             if (dialoguesData is null or { Count: 0})  return;
-            if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall)&&this.dialoguesData.Count>1)
+            if (GameManager.Instance.IsEventCompleted(GameEventName.FireBall))
                 this.CurrentDialogueData = dialoguesData[1];
             else
                 this.CurrentDialogueData = dialoguesData[0];
@@ -34,7 +34,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public override void SetFinishDialogue()
         {
            // Debug.Log(this.CurrentDialogueData.name);
-            if(this.CurrentDialogueData.name.Equals("LightiningSpiritLast"))
+            if(this.CurrentDialogueData.name.Contains("Last"))
             {
                 GameManager.Instance.EventCompleted(GameEventName.LightningBolt);
                 factoryCutScene.EndScene();

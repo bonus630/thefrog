@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Caracters
@@ -51,6 +52,7 @@ namespace br.com.bonus630.thefrog.Caracters
             coll.enabled = false;
             TalkIcon.SetActive(false);
             GameManager.Instance.EventCompleted(GameEventName.RollingWind);
+            GameManager.Instance.GetPlayerScript.UpdatePlayer();
         }
     }
 }

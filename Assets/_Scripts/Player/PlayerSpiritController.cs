@@ -58,15 +58,17 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void CheckProjectil()
         {
+            Debug.Log("[PlayerSpiritiController] GameEvent:" + player.playerManager.PlayerStates.HasWind);
             for (int i = 0; i < projectilies.Count; i++)
             {
                 var projectile = projectilies[i];
                 IProjectilies p = projectile.GetComponent<IProjectilies>();
+                Debug.Log("[PlayerSpiritiController] projectile:" + p);
                 if (p == null)
                     return;
                 var el = p.GetElement;
                 if (avaliableProjectilies.Contains(new ProjectilData(el)))
-                    return;
+                    continue;
                 switch (el)
                 {
                     case Elements.Fire:

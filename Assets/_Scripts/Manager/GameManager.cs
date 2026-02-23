@@ -615,6 +615,7 @@ namespace br.com.bonus630.thefrog.Manager
                     //gameObject = GameObject.Find(ToSkyPoint).transform.GetChild(0).gameObject;
                     //gameObject.SetActive(true);
                     break;
+             
 
             }
         }
@@ -698,7 +699,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasGravity = true;
             playerStates.HasVision = true;
             playerStates.Collectables = 51;
-            //playerStates.HasFireball = true;
+            playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
             playerStates.HasWallJump = true;
             //////playerStates.HasDoubleJump = true;
@@ -714,7 +715,7 @@ namespace br.com.bonus630.thefrog.Manager
             this.EventCompleted(GameEventName.MagicGlass, false);
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
-            //this.EventCompleted(GameEventName.FireBall, false);
+            this.EventCompleted(GameEventName.FireBall, false);
             //////this.EventCompleted(GameEventName.RollingWind, false);
             //////this.EventCompleted(GameEventName.PrisionerTip, false);
             //////this.EventCompleted(GameEventName.LadyLaments, false);

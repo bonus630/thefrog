@@ -14,8 +14,6 @@ namespace br.com.bonus630.thefrog.Shared
         [SerializeField] UnityEvent active;
         [SerializeField] UnityEvent deactive;
 
-      
-
         public Elements CanActiveBy() => activeBy;
 
         public Elements CanDeactiveBy() => deactiveBy;
@@ -29,7 +27,6 @@ namespace br.com.bonus630.thefrog.Shared
         {
             deactive?.Invoke();
         }
-
      
     }
 

@@ -12,18 +12,20 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] PasswordGenerator passwordGenerator;
         [SerializeField] List<IActivator> candelablus;
         [SerializeField] CameraFocus cameraFocus;
+        [SerializeField] AudioClip clip;
         private void OnTriggerEnter2D(Collider2D collision)
         {
             //Debug.Log("Collision target: " + collision.gameObject.layer);
             if (collision.gameObject.layer == 12)
             {
-                //Debug.Log("Collision target");
+                Debug.Log("Collision target");
                 passwordGenerator.Activate();
                 for (int i = 0; i < candelablus.Count; i++)
                 {
                     candelablus[i].Deactive();
                 }
                 Destroy(collision.gameObject);
+                ServiceLocator.Instance.Get<AudioEffects>().Play(clip);
                 StartCoroutine(RunDemo());
             }
         }

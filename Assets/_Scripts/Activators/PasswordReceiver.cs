@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
@@ -23,6 +24,10 @@ namespace br.com.bonus630.thefrog.Activators
             {
                 activatorSlots[i].Activated += PasswordReceiver_Activated;
             }
+            if (GameManager.Instance.IsActived(this.ID.ToString()))
+            {
+                ItemToActive.Activate();
+            }
         }
 
         private void PasswordReceiver_Activated(int id, bool activade)
@@ -39,12 +44,18 @@ namespace br.com.bonus630.thefrog.Activators
                 if(audioSource!=null)
                     audioSource.Play();
                 if (!ItemToActive.Actived)
+                {
                     ItemToActive.Activate();
+                    GameManager.Instance.SetActived(this.ID.ToString(),true);
+                }
             }
             else
             {
                 if (ItemToActive.Actived)
+                {
                     ItemToActive.Deactive();
+                    GameManager.Instance.SetActived(this.ID.ToString(), false);
+                }
             }
 
 

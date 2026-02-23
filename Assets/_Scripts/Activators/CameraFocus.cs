@@ -18,6 +18,8 @@ namespace br.com.bonus630.thefrog.Activators
             if (oneTime && runtime > 0)
                 return;
             runtime++;
+            if (screenEffects == null)
+                screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
             screenEffects.GameObjectsFocus(gameObjects, time);
             if (disablePlayerMove)
             {

@@ -15,14 +15,14 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void Awake()
         {
-            eventActions.Add(GameEventName.Gravity, () => { PlayerStates.HasGravity = true; });
-            eventActions.Add(GameEventName.Dash, () => { PlayerStates.HasDash = true; });
-            eventActions.Add(GameEventName.FireBall, () => { PlayerStates.HasFireball = true; });
-            eventActions.Add(GameEventName.LightningBolt, () => { PlayerStates.HasLightning = true; });
-            eventActions.Add(GameEventName.RollingWind, () => { PlayerStates.HasWind = true; });
-            eventActions.Add(GameEventName.NPCTutorial, () => { PlayerStates.HasWallJump = true; });
-            eventActions.Add(GameEventName.FeatherTouch, () => { PlayerStates.FallsControl = true; });
-            eventActions.Add(GameEventName.MagicGlass, () => { PlayerStates.HasVision = true; });
+            eventActions.Add(GameEventName.Gravity,         () => { PlayerStates.HasGravity = true; });
+            eventActions.Add(GameEventName.Dash,            () => { PlayerStates.HasDash = true; });
+            eventActions.Add(GameEventName.FireBall,        () => { PlayerStates.HasFireball = true; });
+            eventActions.Add(GameEventName.LightningBolt,   () => { PlayerStates.HasLightning = true; });
+            eventActions.Add(GameEventName.RollingWind,     () => { PlayerStates.HasWind = true; });
+            eventActions.Add(GameEventName.NPCTutorial,     () => { PlayerStates.HasWallJump = true; });
+            eventActions.Add(GameEventName.FeatherTouch,    () => { PlayerStates.FallsControl = true; });
+            eventActions.Add(GameEventName.MagicGlass,      () => { PlayerStates.HasVision = true; });
             this.PlayerStates = GameManager.Instance.PlayerStates ?? new PlayerStates();
             GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;
@@ -64,7 +64,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         private void OnGameEventCompleted(GameEvent obj)
         {
-            // Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
+             Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
             if (eventActions.TryGetValue(obj.Name, out Action action))
             {
                 action?.Invoke();

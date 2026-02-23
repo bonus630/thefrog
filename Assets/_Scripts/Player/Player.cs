@@ -333,7 +333,7 @@ namespace br.com.bonus630.thefrog.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-
+            Debug.Log("[Player] rigidbody type:" + RigibodyBodyType);
             if (collision.gameObject.layer == 13)
             {
                 if (FooterTouching(collision.collider))
@@ -351,6 +351,7 @@ namespace br.com.bonus630.thefrog.Player
                 try
                 {
                     gameObject.transform.parent = null;
+                    gameObject.transform.rotation = Quaternion.identity;
                     SceneManager.MoveGameObjectToScene(gameObject, bornScene);// evita que o player fique na cena da plataforma
                 }
                 catch (System.Exception e)

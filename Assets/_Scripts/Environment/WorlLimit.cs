@@ -37,7 +37,7 @@ namespace br.com.bonus630.thefrog.Environment
             }
             else
             {
-                //Debug.Log("[Worllimit] "+name);
+                Debug.Log("[Worllimit] "+name);
                 Next.GetComponent<Collider2D>().enabled = false;
                 Transform p = collision.transform;
                 if (Horizontal)

@@ -24,7 +24,7 @@ namespace br.com.bonus630.thefrog.Items
         {
             rb = GetComponent<Rigidbody2D>();
             //direction = transform.forward;
-            audioSource = GetComponent<AudioSource>();
+             TryGetComponent<AudioSource>(out audioSource);
         }
         void Start()
         {
@@ -55,7 +55,8 @@ namespace br.com.bonus630.thefrog.Items
                     angle += 180;
                 }
                 rb.rotation = angle;
-                audioSource.PlayOneShot(launching);
+
+                audioSource?.PlayOneShot(launching);
                 
                 rb.AddForce(direction.normalized * speed, ForceMode2D.Impulse);
             }
@@ -67,7 +68,7 @@ namespace br.com.bonus630.thefrog.Items
             if (!remove)
             {
                 remove = true;
-                audioSource.PlayOneShot(hitting);
+                audioSource?.PlayOneShot(hitting);
                 GetComponent<Animator>().SetTrigger("Hit");
                 if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player))
                 {
