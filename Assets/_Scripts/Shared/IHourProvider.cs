@@ -10,6 +10,8 @@ namespace br.com.bonus630.thefrog.Shared
          int Hour { get;  }
          void InitializeByHour(int hour);
          float GetTimeUntil(float currentHour, float targetHour, float cycleDuration);
+        bool IsInRange(int start, int end);
+
        
     }
 }

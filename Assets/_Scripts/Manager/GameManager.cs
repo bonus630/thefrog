@@ -387,7 +387,7 @@ namespace br.com.bonus630.thefrog.Manager
             StartGamePosition = new Vector3(-110.73f, -4.34f, 0f);
             this.PlayerStates.PlayerPosition.Position = StartGamePosition;
             PlayerStartPosition = StartGamePosition;
-            // Debug.Log("[GameManager] playerstartposition:" + PlayerStartPosition);
+            Debug.Log("[GameManager] playerstartposition:" + PlayerStartPosition);
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates(index);
             // DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
@@ -615,8 +615,6 @@ namespace br.com.bonus630.thefrog.Manager
                     //gameObject = GameObject.Find(ToSkyPoint).transform.GetChild(0).gameObject;
                     //gameObject.SetActive(true);
                     break;
-             
-
             }
         }
         public bool IsEventCompleted(GameEventName gameEvent)
@@ -640,16 +638,33 @@ namespace br.com.bonus630.thefrog.Manager
                 text.color = Color.gray;
         }
 
+        public void NewGamePlus()
+        {
+            EnvironmentStates.run++;
+            ResetEnvironment();
+            SaveStates(0);
+            LoadGame(SceneStartType.New);
+        }
         public void ResetEnvironment()
         {
-            GameManager.Instance.eventManager.Reset();
-            GameManager.Instance.PlayerStates.CollectablesID.Clear();
-            GameManager.Instance.PlayerStates.ChestsID.Clear();
-            GameManager.Instance.EnvironmentStates.Activeds.Clear();
-            GameManager.Instance.environmentStates.NPCVirtualGuyApples = 0;
-            GameManager.Instance.environmentStates.NPCVirtualGuyDialogue = 0;
-            GameManager.Instance.environmentStates.NPC_WallJump_Tutorial = 0;
-            GameManager.Instance.PlayerStates.PlayerPosition.Position = StartGamePosition;
+            eventManager.Reset();
+            //float time = EnvironmentStates.GameTimeInSeconds;
+            float jump = PlayerStates.JumpForce;
+            float speed = PlayerStates.Speed;
+            int runs = EnvironmentStates.run;
+            int dies = playerStates.numDies;
+            StartGamePosition = new Vector3(-110.73f, -4.34f, 0f);
+            playerStates = new PlayerStates(new PlayerPosition(StartGamePosition), new Datas(), new Datas(), new Datas());
+            environmentStates = new EnvironmentStates(playerStates);
+            //this.PlayerStates.PlayerPosition.Position = StartGamePosition;
+            PlayerStartPosition = StartGamePosition;
+
+           // environmentStates.GameTimeInSeconds = time;
+            environmentStates.run = runs;
+            playerStates.JumpForce = jump;
+            playerStates.Speed = speed;
+            playerStates.numDies = dies;
+
         }
         private void OnApplicationQuit()
         {
@@ -718,7 +733,7 @@ namespace br.com.bonus630.thefrog.Manager
             this.EventCompleted(GameEventName.FireBall, false);
             //////this.EventCompleted(GameEventName.RollingWind, false);
             //////this.EventCompleted(GameEventName.PrisionerTip, false);
-            //////this.EventCompleted(GameEventName.LadyLaments, false);
+            this.EventCompleted(GameEventName.LadyLaments, false);
             ////this.EventCompleted(GameEventName.KoarFounded, false);
             //this.EventCompleted(GameEventName.AppleTreeFounded, false);
 

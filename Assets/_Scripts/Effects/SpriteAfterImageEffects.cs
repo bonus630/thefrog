@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Effects
         private int limit;
         private bool finished;
         private int nextIndex; // índice circular
-        private ushort id;
+        private readonly ushort id;
 
         private SpriteAfterImageEffect(SpriteRenderer original,
                                       int limit = 6,
@@ -111,7 +111,7 @@ namespace br.com.bonus630.thefrog.Effects
         private void SpawnOrReuseClone()
         {
             SpriteRenderer target;
-
+            Debug.Log("[SpriteAfterImageEffects] clones count" + clones.Count);
             // se ainda não atingiu o limite, cria um novo clone
             if (clones.Count < limit)
             {
@@ -167,135 +167,4 @@ namespace br.com.bonus630.thefrog.Effects
             finished = true;
         }
     }
-
-    //public class SpriteAfterImageEffect : IEffects
-    //{
-    //    private SpriteRenderer original;
-    //    private List<GameObject> clones;
-    //    private SpriteRenderer cloneRenderer;
-
-    //    private float lifeTime;
-    //    private float fadeSpeed;
-    //    private float currentTime;
-    //    private float delayTime;
-    //    private float delayTimer;
-
-
-    //    private int limit;
-    //    private int current;
-    //    private int reverseCurrent;
-    //    private bool finished;
-
-    //    public bool IsFinished => finished;
-
-    //    public SpriteAfterImageEffect(SpriteRenderer original, int limit = 4, float delayTime = 0.1f, float lifeTime = 0.3f, float fadeSpeed = 3f)
-    //    {
-    //        this.original = original;
-    //        this.lifeTime = lifeTime;
-    //        this.fadeSpeed = fadeSpeed;
-    //        this.delayTime = delayTime;
-    //        this.limit = limit;
-    //    }
-
-    //    public void Activate()
-    //    {
-    //        currentTime = 0;
-    //        finished = false;
-    //        delayTimer = delayTime + 1;
-    //        clones = new();
-    //    }
-
-    //    public void UpdateEffects(float deltaTime)
-    //    {
-    //        Debug.Log("index" + current);
-    //        if (delayTimer > delayTime)
-    //        {
-    //            delayTimer = 0;
-    //            if (clones.Count < limit)
-    //            {
-    //                clones.Add(GetGameObject(original));
-    //            }
-    //            else
-    //            {
-    //                ResetRender(clones[reverseCurrent].GetComponent<SpriteRenderer>());
-    //                reverseCurrent++;
-    //                if (reverseCurrent > limit - 1)
-    //                    reverseCurrent = 0;
-    //            }
-    //        }
-    //        UpdateSpriteRender(deltaTime);
-    //        currentTime += deltaTime;
-    //        if (currentTime > lifeTime)
-    //            Deactivate();
-    //        //if (currentTime >= lifeTime || c.a <= 0f)
-    //        //{
-    //        //    Deactivate();
-    //        //}
-    //        if (delayTimer == 0)
-    //        {
-    //            current++;
-    //            if (current > limit - 1)
-    //                current = 0;
-    //        }
-    //        delayTimer += deltaTime;
-    //    }
-    //    private GameObject GetGameObject(SpriteRenderer original)
-    //    {
-    //        GameObject clone = new GameObject("AfterImage");
-    //        cloneRenderer = clone.AddComponent<SpriteRenderer>();
-    //        //  clone.transform.parent = original.transform;
-
-    //        cloneRenderer.sprite = original.sprite;
-    //        cloneRenderer.flipX = original.flipX;
-    //        cloneRenderer.flipY = original.flipY;
-    //        cloneRenderer.color = new Color(1, 1, 1, 1);
-    //        cloneRenderer.sortingLayerID = original.sortingLayerID;
-    //        cloneRenderer.sortingOrder = original.sortingOrder - 1;
-
-    //        clone.transform.position = original.transform.position;
-    //        //+ (Vector3.right * Mathf.Sign(original.transform.localScale.x) * (0.5f * (current+1)));
-    //        clone.transform.rotation = original.transform.rotation;
-    //        clone.transform.localScale = original.transform.lossyScale;
-
-    //        return clone;
-    //    }
-    //    private void UpdateSpriteRender(float deltaTime)
-    //    {
-    //        for (int i = 0; i < clones.Count; i++)
-    //        {
-    //            cloneRenderer = clones[i].GetComponent<SpriteRenderer>();
-    //            if (cloneRenderer == null)
-    //                continue;
-    //            cloneRenderer.sprite = original.sprite;
-    //            //if (finished || cloneRenderer == null)
-    //            //    return;
-    //            Color c = cloneRenderer.color;
-
-    //            c.a -= fadeSpeed * deltaTime;
-    //            cloneRenderer.color = c;
-
-    //            if (c.a <= 0)
-    //            {
-    //                ResetRender(cloneRenderer);
-    //            }
-
-    //        }
-    //    }
-    //    private void ResetRender(SpriteRenderer cloneRenderer)
-    //    {
-    //        cloneRenderer.color = new Color(1, 1, 1, 1);
-    //        cloneRenderer.transform.position = original.transform.position;
-    //    }
-    //    public void Deactivate()
-    //    {
-    //        for (int i = 0; i < limit; i++)
-    //        {
-    //            if (clones[i] != null)
-    //                Object.Destroy(clones[i]);
-    //        }
-
-    //        finished = true;
-    //    }
-    //}
-
 }

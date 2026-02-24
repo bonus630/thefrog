@@ -7026,22 +7026,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: e070c554-6628-4c91-8eaa-3eba7932ecdd
-      m_Path: <Gamepad>/start
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Menu
-      m_Flags: 0
-    - m_Name: 
-      m_Id: b872d883-b0f8-4c64-bcd5-6dfa836b440c
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Menu
-      m_Flags: 0
-    - m_Name: 
       m_Id: 758d0d83-fc5b-445b-b371-a7bc09fba72d
       m_Path: <Gamepad>/buttonSouth
       m_Interactions: 
@@ -7050,12 +7034,37 @@ MonoBehaviour:
       m_Action: Menu
       m_Flags: 0
     - m_Name: 
-      m_Id: 6a599d72-1e29-4f91-b796-6e799f1735a0
-      m_Path: <Keyboard>/enter
+      m_Id: 9c2dc22e-c5e9-49ee-8320-8493ce0ceb44
+      m_Path: <Keyboard>/space
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Menu
+      m_Flags: 0
+    m_Flags: 0
+  pauseAction:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6451fa9f-0285-4d18-b77f-23914d21e952
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: aba5867a-a5c3-48fc-b7f9-60bfc01a20f1
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: b25e2096-d6e5-4ba4-816b-77d238a367e5
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause
       m_Flags: 0
     m_Flags: 0
 --- !u!1 &1589486364
@@ -7564,8 +7573,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

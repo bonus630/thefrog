@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -28,6 +29,13 @@ namespace br.com.bonus630.thefrog.Activators
         private void OnTriggerExit2D(Collider2D collision)
         {
             Destroy(gameObject);
+        }
+        public override DialogueData GetDialogue(int index = -1)
+        {
+            if (GameManager.Instance.EnvironmentStates.run > 1)
+                return dialogues[1];
+            else
+                return base.GetDialogue(index);
         }
     }
 }

@@ -139,7 +139,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             ContactPoint2D[] contacts = collision.contacts;
             for (int i = 0; i < contacts.Length; i++) {
-                Debug.Log(contacts[i].normal);
+            //    Debug.Log(contacts[i].normal);
                     }
             if (collision.gameObject.TryGetComponent<IPlayer>(out IPlayer player) && speed < minSpeed)
             {

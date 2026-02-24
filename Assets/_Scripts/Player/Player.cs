@@ -219,6 +219,8 @@ namespace br.com.bonus630.thefrog.Player
             //Gizmos.DrawWireCube(Vector3.zero, new Vector3(0.140f, 0.01f));
 
 #if UNITY_EDITOR
+            //if (Input.GetKeyUp(KeyCode.K))
+            //    GameManager.Instance.TesteThumb();
             //if (Input.GetKeyUp(KeyCode.W))
             //{
             //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
@@ -333,7 +335,7 @@ namespace br.com.bonus630.thefrog.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("[Player] rigidbody type:" + RigibodyBodyType);
+           // Debug.Log("[Player] rigidbody type:" + RigibodyBodyType);
             if (collision.gameObject.layer == 13)
             {
                 if (FooterTouching(collision.collider))

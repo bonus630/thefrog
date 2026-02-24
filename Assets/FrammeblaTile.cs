@@ -32,7 +32,7 @@ namespace br.com.bonus630.thefrog
                 tileMap.SetTileFlags(tilePos, TileFlags.None);
                 tileMap.SetTile(tilePos, null);
                 // tileMap.SetColor(tilePos, Color.red);
-               
+                int cont = tileMap.GetUsedTilesCount();
                 Instantiate(fire, point, Quaternion.identity);
 
             }

@@ -48324,6 +48324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - {fileID: 11400000, guid: 952f0fd994c53df44b2d6e68056fab78, type: 2}
+  - {fileID: 11400000, guid: 65e2526e65888ef4c82ae2e44ea9a372, type: 2}
   autoPlay: 1
   oneShot: 1
   ciclily: 1

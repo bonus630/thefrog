@@ -41,10 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8488992683162244680}
   - component: {fileID: 45507029406664801}
-  - component: {fileID: 8209468083350765616}
   - component: {fileID: 8693344830195210584}
   - component: {fileID: -6513693680990822503}
   - component: {fileID: 7309705060978356468}
+  - component: {fileID: 8209468083350765616}
   m_Layer: 13
   m_Name: Transporter
   m_TagString: Untagged
@@ -124,27 +124,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8209468083350765616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797467853424401978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9421dbd86092cf54d9e2bb88312ed7a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destines: []
-  speed: 10
-  currentSpeed: 0
-  stopMaxTime: 1
-  OnSprite: {fileID: 955477813400596420, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
-  OffSprite: {fileID: -6262087978637747557, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
-  stopOnPlayerOut: 0
-  active: 1
-  going: 0
 --- !u!61 &8693344830195210584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -237,6 +216,28 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &8209468083350765616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797467853424401978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9421dbd86092cf54d9e2bb88312ed7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destines: []
+  speed: 10
+  currentSpeed: 0
+  stopMaxTime: 1
+  OnSprite: {fileID: 955477813400596420, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
+  OffSprite: {fileID: -6262087978637747557, guid: 5f0f1f22f29500348888de3e6775ba2f, type: 3}
+  stopOnPlayerOut: 0
+  active: 1
+  going: 0
+  currentDestine: 1
 --- !u!1 &5367504922460414577
 GameObject:
   m_ObjectHideFlags: 0

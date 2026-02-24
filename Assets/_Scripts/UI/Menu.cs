@@ -47,7 +47,7 @@ namespace br.com.bonus630.thefrog.UI
 
         public void StartButton_clicked()
         {
-            if (text.text == "INICIAL")
+            if (text.text == "INICIAR")
                 GameManager.Instance.LoadGame(SceneStartType.Start);
             else
                 GameManager.Instance.LoadGame(SceneStartType.Continue);

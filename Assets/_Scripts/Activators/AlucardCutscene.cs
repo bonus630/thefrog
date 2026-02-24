@@ -41,11 +41,19 @@ namespace br.com.bonus630.thefrog.Activators
         private void Update()
         {
             
-            if(this.Actived && (hour >= 23 || hour <= 2))
+            if(this.Actived && (hour >= 23 || hour <= 4))
             {
                 if(!musicSource.IsPlaying(clip))
                     PlayMusic();
                 timer += Time.deltaTime;
+            }
+            if (this.Actived && hour > 4 && hour < 23)
+            {
+                started = false;
+                timer = 0;
+                director.Stop();
+                director.time = 0;
+                director.Evaluate();
             }
             if(timer > delayTime && !started)
             {

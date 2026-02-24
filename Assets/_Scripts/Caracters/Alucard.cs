@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Effects;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Caracters
@@ -11,18 +12,23 @@ namespace br.com.bonus630.thefrog.Caracters
         [SerializeField] float lifeTime = 0.4f;
         [SerializeField] float fadeSpeed = 3f;
         ushort effectID;
-
+        SpriteAfterImageEffect spriteAfterImage;
         void Start()
         {
-            SpriteAfterImageEffect spriteAfterImage = SpriteAfterImageEffect.Create(sprite)
+            spriteAfterImage = SpriteAfterImageEffect.Create(sprite)
                                                                             .WithLimit(limit)
                                                                             .WithSpawnInterval(delayTime)
                                                                             .WithLifeTime(lifeTime)
                                                                             .WithFadeSpeed(fadeSpeed);
             spriteAfterImage.Activate();
             effectID = EffectManager.instance.AddEffect(spriteAfterImage);
+
+
+        }
+        private void OnDisable()
+        {
+            spriteAfterImage?.Deactivate();
         }
 
-        
     }
 }

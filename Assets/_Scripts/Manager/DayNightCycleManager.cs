@@ -55,7 +55,14 @@ namespace br.com.bonus630.thefrog.Manager
             // Tempo real que falta
             return cycleDifference * cycleDuration;
         }
+        public bool IsInRange(int start, int end)
+        {
+            if (start <= end)
+                return Hour >= start && Hour <= end;
 
+            // intervalo atravessa meia-noite
+            return Hour >= start || Hour <= end;
+        }
     }
 
 }

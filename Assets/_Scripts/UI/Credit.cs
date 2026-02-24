@@ -15,6 +15,7 @@ namespace br.com.bonus630.thefrog
         [SerializeField] TextMeshProUGUI states;
         [SerializeField] TextMeshProUGUI isEndText;
         [SerializeField] InputAction MenuAction;
+        [SerializeField] InputAction pauseAction;
 
         float timer = 0f;
         float turnOnTime = 6f;
@@ -25,6 +26,11 @@ namespace br.com.bonus630.thefrog
         bool showTurn = true;
         bool canMenu = false;
         bool fakeEnd = false;
+        bool newGamePlus = false;
+        float timeMenu = 0;
+
+
+        string startButton = "Pressione Enter!";
 
         private void Awake()
         {
@@ -35,34 +41,70 @@ namespace br.com.bonus630.thefrog
         }
         void Start()
         {
-
             maxCompose = creditsCompose.transform.childCount;
             MenuAction.Enable();
+            pauseAction.Enable();
             MenuAction.performed += MenuAction_performed;
+            pauseAction.performed += PauseAction_performed;
             states.text = GetStatesString();
         }
+
+
+
         private void OnDestroy()
         {
             MenuAction.performed -= MenuAction_performed;
+            pauseAction.performed -= PauseAction_performed;
+            MenuAction.Disable();
+            pauseAction.Disable();
+            Debug.Log("[Credit][ondisable]");
         }
         private void MenuAction_performed(InputAction.CallbackContext obj)
         {
-            if (canMenu)
+            if (newGamePlus && timeMenu > 0.4f)
+                SceneManager.LoadScene("MainMenu");
+            else
             {
-                if (fakeEnd)
-                    SceneManager.LoadScene("MainMenu");
-                else
-                    NewGamePlus();
+                var device = obj.control.device;
+
+                if (device is Gamepad)
+                    startButton = "Pressione Start!";
+                else if (device is Keyboard)
+                    startButton = "Pressione Enter!";
+                NewGamePlusMessage();
             }
         }
-        private void NewGamePlus()
+        private void PauseAction_performed(InputAction.CallbackContext obj)
         {
-            GameManager.Instance.ResetEnvironment();
-            GameManager.Instance.EnvironmentStates.run++;
-            isEndText.gameObject.SetActive(true);
-            isEndText.text = $"NOVO JOGO ++\n\r{GameManager.Instance.EnvironmentStates.run}";
-            GameManager.Instance.SaveStates(0);
-            GameManager.Instance.LoadGame(SceneStartType.Continue, 0);
+            if (newGamePlus && timeMenu > 0.4f)
+                GameManager.Instance.NewGamePlus();
+            else
+            {
+                var device = obj.control.device;
+
+                if (device is Gamepad)
+                    startButton = "Pressione Start!";
+                else if (device is Keyboard)
+                    startButton = "Pressione Enter!";
+                NewGamePlusMessage();
+            }
+        }
+    
+        private void NewGamePlusMessage()
+        {
+            if (!canMenu)
+                return;
+            if (fakeEnd)
+                SceneManager.LoadScene("MainMenu");
+            else
+            {
+                Debug.Log("[Credit] newGamePlus");
+                isEndText.gameObject.SetActive(true);
+                isEndText.text = $"NOVO JOGO+\n\r{startButton}";
+                newGamePlus = true;
+                timeMenu = 0;
+            }
+
         }
         private string GetStatesString()
         {
@@ -70,7 +112,7 @@ namespace br.com.bonus630.thefrog
             TimeSpan time = TimeSpan.FromSeconds(GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
             string text = time.ToString(@"hh\:mm\:ss");
             result = $"Estatisticas\n\r\n\r*Concluído {GameManager.Instance.EnvironmentStates.run}\n\r*Tempo de Jogo {text}\n\r*Mortes {GameManager.Instance.PlayerStates.numDies}\n\r " +
-                $"* Maçãs {GameManager.Instance.PlayerStates.Collectables}/56\n\r*Corações {GameManager.Instance.PlayerStates.Hearts}/{GameManager.Instance.GameTotalHearts}\n\r" +
+                $"* Maçãs {GameManager.Instance.PlayerStates.CollectablesID.Count}/56\n\r*Corações {GameManager.Instance.PlayerStates.Hearts}/{GameManager.Instance.GameTotalHearts}\n\r" +
                 $"* Espiritos {GetSpiritsStates()}";
             return result;
         }
@@ -116,21 +158,23 @@ namespace br.com.bonus630.thefrog
             // }
             timer += Time.deltaTime;
             totalTime += Time.deltaTime;
+            timeMenu += Time.deltaTime;
             if (totalTime > 225f)
             {
                 Exit();
-               // StartCoroutine(Exit());
+                // StartCoroutine(Exit());
             }
 
         }
         public void MenuButton_clicked()
         {
+            return;
             if (canMenu)
             {
                 if (fakeEnd)
                     SceneManager.LoadScene("MainMenu");
                 else
-                    NewGamePlus();
+                    NewGamePlusMessage();
             }
         }
         void Exit()
