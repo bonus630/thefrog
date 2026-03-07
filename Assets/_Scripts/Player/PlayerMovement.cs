@@ -205,7 +205,7 @@ namespace br.com.bonus630.thefrog.Player
                     readyToJump = true;
                 }
                 //ativa o controle de queda
-                if (player.playerManager.PlayerStates.FallsControl && TimeInFastFall > 0 && jumpReleasedAfterFall)
+                if (player.playerManager.PlayerStates.FallsControl && TimeInFastFall > 0 && jumpReleasedAfterFall && !canWallJump)
                 {
                     resetFastFall = true;
                     jumpReleasedAfterFall = false;
@@ -660,7 +660,7 @@ namespace br.com.bonus630.thefrog.Player
             player.AllInputsOn(false);
             anim.SetFloat(WalkID, 0);
             direction.x = 0;
-            player.RigibodyBodyType = RigidbodyType2D.Static;
+            player.RigibodyBodyType = RigidbodyType2D.Kinematic;
             //anim.SetBool(WalkID, false);
         }
         public void UnFreezePlayerMove()

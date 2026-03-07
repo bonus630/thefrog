@@ -23,7 +23,8 @@ namespace br.com.bonus630.thefrog.Environment
             }
             col = GetComponent<BoxCollider2D>();
             playerPos = ServiceLocator.Instance.Get("Player").transform;
-            musicSource = ServiceLocator.Instance.Get<MusicSource>();
+            if(musicSource == null)
+                musicSource = ServiceLocator.Instance.Get<MusicSource>();
         }
         public void Update()
         {
@@ -41,6 +42,7 @@ namespace br.com.bonus630.thefrog.Environment
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+          
             musicSource?.PreserveMusic(musicKey);
             musicSource?.InstantPlay(BackgroundMusic.DarkWind, true);
         }

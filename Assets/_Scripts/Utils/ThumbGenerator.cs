@@ -28,6 +28,19 @@ namespace br.com.bonus630.thefrog.Utils
 
             return base64;
         }
+        public byte[] CreatePNGTexture(Camera cam, GameObject target)
+        {
+            cam.gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, cam.gameObject.transform.position.z);
+            cam.Render();
+            RenderTexture.active = cam.targetTexture;
+            Texture2D texture = new Texture2D(width, height, TextureFormat.ARGB32, false);
+            texture.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            texture.Apply();
+            byte[] buffer = texture.EncodeToPNG();
+            RenderTexture.active = null;
+            return buffer;
+        }
+
         public Sprite DecodeThumb(string base64Image)
         {
             byte[] buffer = Convert.FromBase64String(base64Image);

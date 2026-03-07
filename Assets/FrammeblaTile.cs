@@ -20,7 +20,7 @@ namespace br.com.bonus630.thefrog
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("[frammeblaTile] collision:" + collision.gameObject.name);
+            //Debug.Log("[frammeblaTile] collision:" + collision.gameObject.name);
             if (collision.collider.TryGetComponent<IElement>(out IElement el) && el.GetElement == Elements.Fire )
             {
 

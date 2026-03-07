@@ -39,7 +39,7 @@ namespace br.com.bonus630.thefrog.Items
             if (GlobalActions.Global.InteractUP.WasPressedThisFrame() && inside)
                 teleporter.Activate();
         }
-        private void OnDestroy()
+        private void OnDisable()
         {
                 gameObject.transform.GetChild((int)stairTheme).GetComponent<CollisionRelayEx>().OnTriggerEnterAction -= RustStairs_OnTriggerEnterAction;
                 gameObject.transform.GetChild((int)stairTheme).GetComponent<CollisionRelayEx>().OnTriggerExitAction -= RustStairs_OnTriggerExitAction;
@@ -53,9 +53,13 @@ namespace br.com.bonus630.thefrog.Items
         }
         private void RustStairs_OnTriggerExitAction(ColliderData obj)
         {
-            if(obj.ColliderOther.CompareTag(Teleported.tag))
-                inside = false;
+            try
+            {
+                if (obj.ColliderOther.CompareTag(Teleported.tag))
+                    inside = false;
                 //teleporter.Activate();
+            }
+            catch { }
         }
 
 

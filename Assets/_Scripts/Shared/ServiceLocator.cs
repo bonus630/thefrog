@@ -140,7 +140,7 @@ namespace br.com.bonus630.thefrog.Shared
 
         public void ClearCache()
         {
-            Debug.Log("[ServiceLocator] cache is clean");
+            Debug.LogWarning("[ServiceLocator] cache is clean");
             cache.Clear();
         }
         public void ClearGameObjectCache() => gameObjectsCache.Clear();
@@ -155,11 +155,11 @@ namespace br.com.bonus630.thefrog.Shared
         }
         public void LogRegistredsServicesNames()
         {
-            Debug.Log("[ServiceLocator]Resgistred Service: " + string.Join('|', GetRegistredsServicesNames()));
+            Debug.LogWarning("[ServiceLocator]Resgistred Service: " + string.Join('|', GetRegistredsServicesNames()));
         }
         public void LogRegistredsGameObjectsNames()
         {
-            Debug.Log("[ServiceLocator]Resgistred GameObjects: " + string.Join('|', GetRegistredsGameObjectsNames()));
+            Debug.LogWarning("[ServiceLocator]Resgistred GameObjects: " + string.Join('|', GetRegistredsGameObjectsNames()));
         }
         public void ResetService()
         {

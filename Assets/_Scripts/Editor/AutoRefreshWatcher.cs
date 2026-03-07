@@ -40,7 +40,7 @@ namespace br.corp.bonus630.unity
 
             watcher.EnableRaisingEvents = true;
 
-            Debug.Log("AutoReload: FileSystemWatcher iniciado.");
+            Debug.LogWarning("AutoReload: FileSystemWatcher iniciado.");
         }
     }
 

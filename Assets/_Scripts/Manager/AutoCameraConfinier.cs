@@ -1,10 +1,11 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Shared;
 using Cinemachine;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-     [DefaultExecutionOrder(1) ,RequireComponent(typeof(PolygonCollider2D))]
+    [DefaultExecutionOrder(1), RequireComponent(typeof(PolygonCollider2D))]
     public class AutoCameraConfinier : MonoBehaviour
     {
         PolygonCollider2D polygonCollider;
@@ -13,28 +14,41 @@ namespace br.com.bonus630.thefrog.Manager
         void Start()
         {
             polygonCollider = GetComponent<PolygonCollider2D>();
+
+            //Debug.Log("[AutoCameraConfinier] polygonCollider:" + polygonCollider);
+            //Debug.Log("[AutoCameraConfinier] player:" + GameManager.Instance.GetPlayer.transform.position);
+
+
             if (polygonCollider.OverlapPoint(GameManager.Instance.GetPlayer.transform.position))
-                SetConfinier();
+                StartCoroutine(SetConfinier());
         }
-        private void SetConfinier()
+        private IEnumerator SetConfinier()
         {
-            GameObject camera = Utils.CameraUtils.GetActiveVirtualCamera2().gameObject;
-            if (camera == null)
-                return;
-            if (nextCamera != null)
+            CinemachineVirtualCamera cam = null;
+            while (cam == null)
             {
-                camera.SetActive(false);
-                nextCamera.SetActive(true);
-                camera = nextCamera;
+                yield return null;
+                cam = Utils.CameraUtils.GetActiveVirtualCamera2();
             }
-            camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = polygonCollider;
-            confiner = gameObject;
+            GameObject camera = cam.gameObject;
+            if (camera != null)
+            {
+                if (nextCamera != null)
+                {
+                    camera.SetActive(false);
+                    nextCamera.SetActive(true);
+                    camera = nextCamera;
+                }
+                camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = polygonCollider;
+                camera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+                confiner = gameObject;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
-                SetConfinier();
+                StartCoroutine(SetConfinier());
         }
         //private void OnTriggerExit2D(Collider2D collision)
         //{

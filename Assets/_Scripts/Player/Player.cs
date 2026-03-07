@@ -108,10 +108,11 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Start()
         {
-            #if !UNITY_EDITOR
+            //#if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
-            //            //Debug.Log(GameManager.Instance.PlayerStates.PlayerPosition.ToString());
+            Debug.Log("[Player]state POS:"+GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
+            Debug.Log("[Player]position POS:"+GameManager.Instance.PlayerStartPosition);
             transform.position = GameManager.Instance.PlayerStartPosition;
             if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
             {
@@ -136,7 +137,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-            #endif
+           // #endif
 
         }
 
@@ -504,7 +505,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         private void Die()
         {
-            playerHealth.Die();
+            StartCoroutine(playerHealth.Die());
         }
         public void Hit()
         {

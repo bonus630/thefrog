@@ -76,7 +76,7 @@ MonoBehaviour:
     transform: {fileID: 0}
   - Name: CastleRightTowerExit
     GameObjectName: CastleRightTowerExit
-    Hour: 0
+    Hour: 22
     Point: {x: 268.43, y: -61.58, z: 0}
     transform: {fileID: 0}
   SceneType: 4

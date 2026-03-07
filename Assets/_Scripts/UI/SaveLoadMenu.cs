@@ -33,11 +33,11 @@ namespace br.com.bonus630.thefrog.UI
             FillSaveButton(save01Button, list[0]);
             FillSaveButton(save02Button, list[1]);
             FillSaveButton(save03Button, list[2]);
+            Debug.Log("[SaveLoadMenu] Ativando");
             if (goBackButton.gameObject.activeInHierarchy)
                 EventSystem.current.SetSelectedGameObject(goBackButton.gameObject);
             else
             {
-                //Debug.Log("Ativando");
                 EventSystem.current.SetSelectedGameObject(save01Button.gameObject);
             }
            // save01Button.onClick.AddListener(() => Save01Button_clicked());

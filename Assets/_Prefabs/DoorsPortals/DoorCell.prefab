@@ -199,7 +199,9 @@ MonoBehaviour:
   startSound: {fileID: 8300000, guid: 521ea3021fa16ee4592fef11eb1b3dd3, type: 3}
   loopSound: {fileID: 8300000, guid: d69ffe1f4103d6246877dde0c5be927a, type: 3}
   endSound: {fileID: 8300000, guid: 5c6e42056c8209d4e82e7744f9b88dbf, type: 3}
+  DoorID: 
   <IsOpened>k__BackingField: 0
+  openPosition: {x: 0, y: 0.5, z: 0}
 --- !u!61 &6395295693130204840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -278,6 +280,7 @@ MonoBehaviour:
   Auto: 0
   delayTime: 0
   ActiveOnArrival: {fileID: 0}
+  fade: 0
 --- !u!82 &612679057583468300
 AudioSource:
   m_ObjectHideFlags: 0
@@ -287,7 +290,7 @@ AudioSource:
   m_GameObject: {fileID: 7327541157504485591}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

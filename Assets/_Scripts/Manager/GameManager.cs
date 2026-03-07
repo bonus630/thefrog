@@ -1,19 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-//using br.com.bonus630.thefrog.Activators;
-//using br.com.bonus630.thefrog.Caracters;
-using Cinemachine;
 using TMPro;
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
-using UnityEngine.UI;
-using br.com.bonus630.thefrog.Debuggers;
-using System.Runtime.CompilerServices;
+
 
 namespace br.com.bonus630.thefrog.Manager
 {
@@ -58,31 +54,31 @@ namespace br.com.bonus630.thefrog.Manager
 
         //Scenes Names
         //public readonly string MainScene = "  ";
-        public readonly string MainScene = "Main";
-        public readonly string InternAreas = "InternAreas";
-        public readonly string FroggerScene = "Frogger";
-        public readonly string GameOverScene = "GameOver";
-        public readonly string MainMenu = "MainMenu";
+        public readonly string MainScene            = "Main";
+        public readonly string InternAreas          = "InternAreas";
+        public readonly string FroggerScene         = "Frogger";
+        public readonly string GameOverScene        = "GameOver";
+        public readonly string MainMenu             = "MainMenu";
 
         //GameObjects Names
-        public readonly string StartPointBuilder = "StartPointBuilder";
-        public readonly string ToSkyPoint = "ToSkyPoint";
-        public readonly string CameraContainer = "CameraContainer";
+        public readonly string StartPointBuilder    = "StartPointBuilder";
+        public readonly string ToSkyPoint           = "ToSkyPoint";
+        public readonly string CameraContainer      = "CameraContainer";
 
         //HUD Names
-        public readonly string CollecteblesHUD = "CollecteblesHUD";
-        public readonly string ShurykenHUD = "ShurykenHUD";
-        public readonly string HeartContainerHUD = "HeartContainerHUD";
-        public readonly string HeartHUD = "HeartHUD";
-        public readonly string SkillsHUD = "SkillsHUD";
-        public readonly string PauseHUD = "PauseHUD";
-        public readonly string SaveHUD = "SaveHUD";
-        public readonly string TimerHUD = "TimerHUD";
-        public readonly string SpiritHUD = "SpiritHUD";
+        public readonly string CollecteblesHUD      = "CollecteblesHUD";
+        public readonly string ShurykenHUD          = "ShurykenHUD";
+        public readonly string HeartContainerHUD    = "HeartContainerHUD";
+        public readonly string HeartHUD             = "HeartHUD";
+        public readonly string SkillsHUD            = "SkillsHUD";
+        public readonly string PauseHUD             = "PauseHUD";
+        public readonly string SaveHUD              = "SaveHUD";
+        public readonly string TimerHUD             = "TimerHUD";
+        public readonly string SpiritHUD            = "SpiritHUD";
 
         //Pref Keys
-        private readonly string MusicVolum = "MusicVolum";
-        private readonly string SoundVolum = "SoundVolum";
+        private readonly string MusicVolum          = "MusicVolum";
+        private readonly string SoundVolum          = "SoundVolum";
 
         //Env Names
 
@@ -121,7 +117,7 @@ namespace br.com.bonus630.thefrog.Manager
             SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
         }
 
-       
+
 
         private void Start()
         {
@@ -221,47 +217,29 @@ namespace br.com.bonus630.thefrog.Manager
             return false;
         }
 
-        public void OnCallSave(bool active)
-        {
-            TryPause(active, SaveHUD, out GameObject go);
-        }
-        private void OnApplicationPause(bool pause)
-        {
-            Pause(pause);
-        }
-        public void StartCountingTime()
-        {
-            _isCountingTime = true;
-        }
-
-        public void StopCountingTime()
-        {
-            _isCountingTime = false;
-        }
-
-        public void SetElapsedTime(float savedTime)
-        {
-            PlayTimeInSeconds = savedTime;
-        }
-
-        public float GetElapsedTime()
-        {
-            return PlayTimeInSeconds;
-        }
+        public void OnCallSave(bool active)         => TryPause(active, SaveHUD, out GameObject go);
+        private void OnApplicationPause(bool pause) => Pause(pause);
+        public void StartCountingTime()             => _isCountingTime = true;
+        public void StopCountingTime()              => _isCountingTime = false;
+        public void SetElapsedTime(float savedTime) => PlayTimeInSeconds = savedTime;
+        public float GetElapsedTime()               => PlayTimeInSeconds;
         private SceneStartType sceneStartType;
         //Este metodo é chamado pelo script UI/Menu.cs
-        public void LoadGame(SceneStartType type, int saveGameIndex = 0)
-        {
-            StartCoroutine(LoadGame(true, type, saveGameIndex));
-        }
-        public IEnumerator LoadGame(bool courotine, SceneStartType type, int saveGameIndex = 0)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="saveGameIndex"></param>
+        /// <param name="sceneBuildIndex">Para passar esse parametro use SceneStartType.Intern</param>
+        public void LoadGame(SceneStartType type, int saveGameIndex = 0, int sceneBuildIndex = -1) => StartCoroutine(LoadGame(true, type, saveGameIndex, sceneBuildIndex));
+        public IEnumerator LoadGame(bool courotine, SceneStartType type, int saveGameIndex = 0, int sceneBuildIndex = -1)
         {
             yield return new WaitForEndOfFrame();
             Debug.LogWarning("LoadGame type:" + type);
             sceneStartType = type;
             if (type.Equals(SceneStartType.Intern))
             {
-                StartCoroutine(ChangeScene(InternAreas));
+                StartCoroutine(ChangeScene(InternAreas, sceneBuildIndex));
                 yield return new WaitForEndOfFrame();
             }
             if (type == SceneStartType.Main)
@@ -300,7 +278,7 @@ namespace br.com.bonus630.thefrog.Manager
                 //{
                 //    Debug.Log("[GameManager][LoadGame] eventName: " + this.PlayerStates.CompletedGameEvents[i]);
                 //}
-              
+
                 eventManager.LoadEvents(this.PlayerStates.CompletedGameEvents);
                 //Debug.Log("[GameManager][LoadGame] 2 hour: " + this.EnvironmentStates.playerStates.Hour);
                 SceneManager.LoadScene(MainScene);
@@ -309,10 +287,12 @@ namespace br.com.bonus630.thefrog.Manager
             }
         }
 
-        private IEnumerator ChangeScene(string sceneName)
+
+        //aqui passamos o nome da cena, para ser mais dinânimoco será que conseguimos passar o index da cena vindo do Scriptableobjects de pontos?
+        private IEnumerator ChangeScene(string sceneName, int sceneBuildIndex = -1)
         {
-            //Debug.Log("[GameManager][ChangeScene] player hour:" + this.EnvironmentStates.playerStates.Hour);
-           
+            Debug.Log($"[GameManager][ChangeScene] scene name: {sceneName} index: {sceneBuildIndex}");
+
             ScreenEffects se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
             {
@@ -320,8 +300,10 @@ namespace br.com.bonus630.thefrog.Manager
                 yield return new WaitForSeconds(1f);
                 // se.screenFader.fadeImage.color = Color.black;
             }
-
-            SceneManager.LoadScene(sceneName);
+            if (sceneBuildIndex > -1)
+                SceneManager.LoadScene(sceneBuildIndex);
+            else
+                SceneManager.LoadScene(sceneName);
             se = FindAnyObjectByType<ScreenEffects>();
             if (se != null)
             {
@@ -337,12 +319,17 @@ namespace br.com.bonus630.thefrog.Manager
                 musicSource.SetMusicVolume(this.musicVolum);
                 musicSource.SetSFXVolume(this.soundVolum);
             });
+            if (arg0.name.Equals(MainMenu) || arg0.name.Equals(FroggerScene) || arg0.name.Equals(GameOverScene))
+                return;
             if (arg0.name.Equals(MainScene))
             {
                 if (sceneStartType.Equals(SceneStartType.Main))
                 {
                     //Debug.Log("Topoint index:" + ToPoint);
-                    GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
+                    //PlayerStartPosition = GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().GetPoint(ToPoint);
+                    //GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
+                    PlayerStartPosition = ServiceLocator.Instance.Get<PlayerPointsEntry>().GetPoint(ToPoint,arg0.buildIndex);
+                    Debug.Log($"[GameManager] SceneManager_sceneLoaded hours {this.environmentStates.playerStates.Hour}");
                     ChangeGameToState(this.EnvironmentStates);
                     // GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                     return;
@@ -353,11 +340,11 @@ namespace br.com.bonus630.thefrog.Manager
                 //return;
 
 #endif
-              //  Debug.Log($"[GameManager] SceneManager_sceneLoaded {MainScene} continue:{continueGame} ");
+                //  Debug.Log($"[GameManager] SceneManager_sceneLoaded {MainScene} continue:{continueGame} ");
                 if (continueGame)
                 {
                     //Aqui o horario ja esta alterado bug:2051
-                   // Debug.Log("[GameManager][SceneManager_sceneLoaded] hour: " + this.EnvironmentStates.playerStates.Hour);
+                    // Debug.Log("[GameManager][SceneManager_sceneLoaded] hour: " + this.EnvironmentStates.playerStates.Hour);
                     ChangeGameToState(this.EnvironmentStates);
                     PlayerStartPosition = playerStates.PlayerPosition.Position;
                     continueGame = false;
@@ -367,9 +354,12 @@ namespace br.com.bonus630.thefrog.Manager
                     LoadStartGamePoint(0);
                 }
             }
-            if (arg0.name.Equals(InternAreas))
+            if (!arg0.name.Equals(MainScene) && arg1==LoadSceneMode.Single)
             {
-                GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
+                Debug.Log($"[GameManager] SceneManager_sceneLoaded {arg0.name}");
+                PlayerStartPosition = ServiceLocator.Instance.Get<PlayerPointsEntry>().GetPoint(ToPoint,arg0.buildIndex);
+                //GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().Activate();
+                //PlayerStartPosition = GameObject.Find("PlayerPointsEntry").GetComponent<PlayerPointsEntry>().GetPoint(ToPoint);
                 ChangeGameToState(this.EnvironmentStates);
                 //GameManager.Instance.GetPlayer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             }
@@ -378,7 +368,7 @@ namespace br.com.bonus630.thefrog.Manager
         private void SceneManager_sceneUnloaded(Scene arg0)
         {
             //Debug.Log("[GameManager] sceneUnload name: " + arg0.name);
-            if(arg0.name.Equals(MainScene))
+            if (arg0.name.Equals(MainScene))
                 ServiceLocator.Instance.ResetService();
         }
         private void LoadStartGamePoint(int index)
@@ -387,7 +377,7 @@ namespace br.com.bonus630.thefrog.Manager
             StartGamePosition = new Vector3(-110.73f, -4.34f, 0f);
             this.PlayerStates.PlayerPosition.Position = StartGamePosition;
             PlayerStartPosition = StartGamePosition;
-            Debug.Log("[GameManager] playerstartposition:" + PlayerStartPosition);
+            // Debug.Log("[GameManager] playerstartposition:" + PlayerStartPosition);
             GameManager.Instance.UpdateHearts(this.playerStates.Hearts);
             GameManager.Instance.SaveStates(index);
             // DebugUtils.Log($"walljumptutorial: {this.environmentStates.NPC_WallJump_Tutorial}");
@@ -419,18 +409,10 @@ namespace br.com.bonus630.thefrog.Manager
             }
 
         }
-        public bool IsCollected(string itemID)
-        {
-            return playerStates.CollectablesID.Contains(itemID);
-        }
-        public bool IsOpened(string chestID)
-        {
-            return playerStates.ChestsID.Contains(chestID);
-        }
-        public bool IsActived(string ActivatorID)
-        {
-            return environmentStates.Activeds.Contains(ActivatorID);
-        }
+        public bool IsCollected(string itemID)      =>playerStates.CollectablesID.Contains(itemID);
+        public bool IsOpened(string chestID)        =>playerStates.ChestsID.Contains(chestID);
+        public bool IsActived(string ActivatorID)   =>environmentStates.Activeds.Contains(ActivatorID);
+       
         public void SetActived(string ActivatorID, bool actived)
         {
             if (actived)
@@ -460,70 +442,74 @@ namespace br.com.bonus630.thefrog.Manager
             }
         }
         #region vamos passar tudo isso para o script HeartHUD
-        int maxColHearts = 10;
+       
+        //int maxColHearts = 10;
         public void UpdateHeart(int hearts)
         {
-            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+            //Debug.Log("[GameManager] [UpdateHeart]");
+            //GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
             GetPlayerScript.CurrentLife += hearts;
             this.PlayerStates.Hearts += hearts;
+            GameObject.Find(HeartHUD).GetComponent<IHeartHud>().UpdateHeart(hearts);
+            //if (hearts > 0)
+            //{
+            //    StartCoroutine(AddHeart(hud, hearts));
+            //}
 
-            if (hearts > 0)
-            {
-                StartCoroutine(AddHeart(hud, hearts));
-            }
-
-            if (hearts < 0)
-            {
-                StartCoroutine(RemoveHeart(hud, hearts));
-            }
+            //if (hearts < 0)
+            //{
+            //    StartCoroutine(RemoveHeart(hud, hearts));
+            //}
         }
         public void UpdateMaxHearts(int hearts)
         {
             this.PlayerStates.MaxHearts += hearts;
             UpdateHeart(hearts);
         }
-        private void UpdateHearts(int hearts)
-        {
-            GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
-            StartCoroutine(AddHeart(hud, hearts - 1));
-        }
-        IEnumerator AddHeart(GameObject hud, int hearts)
-        {
-            int heartCount = hud.transform.childCount;
-            int total = hearts + heartCount;
-            GameObject heart = hud.transform.GetChild(0).gameObject;
-            GameObject lastHeart = hud.transform.GetChild(heartCount - 1).gameObject;
-            var rect = hud.GetComponent<RectTransform>();
-            var heartRect = heart.GetComponent<RectTransform>();
-            int col = heartCount % maxColHearts;
-            int row = heartCount / maxColHearts;
+        private void UpdateHearts(int hearts) => GameObject.Find(HeartHUD).GetComponent<IHeartHud>().UpdateHearts(hearts);
+        //private void UpdateHearts(int hearts)
+        //{
+        //    GameObject hud = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
+        //    int heartHudItems = hud.transform.childCount;
+        //    StartCoroutine(AddHeart(hud, hearts - 1));
+        //}
+        //IEnumerator AddHeart(GameObject hud, int hearts)
+        //{
+        //    int heartCount = hud.transform.childCount;
+        //    int total = hearts + heartCount;
+        //    GameObject heart = hud.transform.GetChild(0).gameObject;
+        //    GameObject lastHeart = hud.transform.GetChild(heartCount - 1).gameObject;
+        //    var rect = hud.GetComponent<RectTransform>();
+        //    var heartRect = heart.GetComponent<RectTransform>();
+        //    int col = heartCount % maxColHearts;
+        //    int row = heartCount / maxColHearts;
 
-            while (total > hud.transform.childCount)
-            {
-                var gb = Instantiate(heart, rect, false);
-                //Debug.Log("Col: " + col + " Row: " + row);
-                float offsetX = (heartRect.sizeDelta.x + 0.5f) * col;
-                float offsetY = (-heartRect.sizeDelta.y - 0.5f) * row;
-                gb.GetComponent<RectTransform>().anchoredPosition = gb.GetComponent<RectTransform>().anchoredPosition + new Vector2(offsetX, offsetY);
-                col++;
-                if (col >= maxColHearts)
-                {
-                    row++;
-                    col = 0;
-                }
-                yield return new WaitForSeconds(0.05f);
-            }
-        }
-        IEnumerator RemoveHeart(GameObject hud, int hearts)
-        {
-            int toRemove = hearts;
-            while (toRemove < 0)
-            {
-                Destroy(hud.transform.GetChild(hud.transform.childCount - 1).gameObject);
-                toRemove++;
-                yield return new WaitForSeconds(0.05f);
-            }
-        }
+        //    while (total > hud.transform.childCount)
+        //    {
+        //        var gb = Instantiate(heart, rect, false);
+        //        //Debug.Log("Col: " + col + " Row: " + row);
+        //        float offsetX = (heartRect.sizeDelta.x + 0.5f) * col;
+        //        float offsetY = (-heartRect.sizeDelta.y - 0.5f) * row;
+        //        gb.GetComponent<RectTransform>().anchoredPosition = gb.GetComponent<RectTransform>().anchoredPosition + new Vector2(offsetX, offsetY);
+        //        col++;
+        //        if (col >= maxColHearts)
+        //        {
+        //            row++;
+        //            col = 0;
+        //        }
+        //        yield return new WaitForSeconds(0.05f);
+        //    }
+        //}
+        //IEnumerator RemoveHeart(GameObject hud, int hearts)
+        //{
+        //    int toRemove = hearts;
+        //    while (toRemove < 0)
+        //    {
+        //        Destroy(hud.transform.GetChild(hud.transform.childCount - 1).gameObject);
+        //        toRemove++;
+        //        yield return new WaitForSeconds(0.05f);
+        //    }
+        //}
         #endregion
         public bool CanContinue()
         {
@@ -557,14 +543,14 @@ namespace br.com.bonus630.thefrog.Manager
         public void ChangeGameToState(EnvironmentStates state)
         {
             //Debug.Log("[GameManager][ChangeGameToState] state index: " + state.index);
-           // this.EnvironmentStates = LoadStates(saveGameIndex);
+            // this.EnvironmentStates = LoadStates(saveGameIndex);
             //aqui o horario ja esta alterado, e antes em scene_loaded tbm ja esta anterado devo investigar antes disso bug:2051
-           // Debug.Log("[GameManager] ChangeGameToState");
+            // Debug.Log("[GameManager] ChangeGameToState");
             SetElapsedTime(EnvironmentStates.GameTimeInSeconds);
             GameManager.Instance.UpdateScore();
             GameManager.Instance.UpdateHearts(state.playerStates.Hearts);
             GameManager.Instance.UpdateShurykens();
-           // Debug.Log("ChangeGameToState hour: " + state.playerStates.Hour);
+            Debug.Log("[GameManager] ChangeGameToState hour: " + state.playerStates.Hour);
             ServiceLocator.Instance.LogRegistredsServicesNames();
             FindAnyObjectByType<CameraBackground>().InitializeDayByHour(state.playerStates.Hour);
             //Debug.Log("[GameManager] GhangeGameToState hour:"+ServiceLocator.Instance.Get<IHourProvider>().Hour);
@@ -659,7 +645,7 @@ namespace br.com.bonus630.thefrog.Manager
             //this.PlayerStates.PlayerPosition.Position = StartGamePosition;
             PlayerStartPosition = StartGamePosition;
 
-           // environmentStates.GameTimeInSeconds = time;
+            // environmentStates.GameTimeInSeconds = time;
             environmentStates.run = runs;
             playerStates.JumpForce = jump;
             playerStates.Speed = speed;
@@ -702,7 +688,7 @@ namespace br.com.bonus630.thefrog.Manager
         //}
         public void TesteThumb()
         {
-            var t = new ThumbGenerator(0.1f);
+            var t = new ThumbGenerator(0.15f);
             string file = t.CreateEncodeThumb(FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>(), GetPlayer);
             byte[] buffert = Convert.FromBase64String(file);
             File.WriteAllBytes(@"C:\Users\bonus630\Desktop\teste\p.png", buffert);
@@ -711,29 +697,29 @@ namespace br.com.bonus630.thefrog.Manager
         {
 #if UNITY_EDITOR
             //////Time.timeScale = 0.5f;
-            playerStates.HasGravity = true;
-            playerStates.HasVision = true;
-            playerStates.Collectables = 51;
-            playerStates.HasFireball = true;
+            //playerStates.HasGravity = true;
+            //playerStates.HasVision = true;
+            //playerStates.Collectables = 51;
+            //playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
-            playerStates.HasWallJump = true;
+            //playerStates.HasWallJump = true;
             //////playerStates.HasDoubleJump = true;
-            playerStates.FallsControl = true;
-            playerStates.HasDash = true;
-            playerStates.Shurykens = 100;
-            playerStates.HasLightning = true;
+            //playerStates.FallsControl = true;
+            //playerStates.HasDash = true;
+            //playerStates.Shurykens = 100;
+            //playerStates.HasLightning = true;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);
             //this.EventCompleted(GameEventName.NPCFirstTalk, false);
             //this.EventCompleted(GameEventName.KillPig, false);
-            this.EventCompleted(GameEventName.LightningBolt, false);
-            this.EventCompleted(GameEventName.MagicGlass, false);
+            //this.EventCompleted(GameEventName.LightningBolt, false);
+            //this.EventCompleted(GameEventName.MagicGlass, false);
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
-            this.EventCompleted(GameEventName.FireBall, false);
+            //this.EventCompleted(GameEventName.FireBall, false);
             //////this.EventCompleted(GameEventName.RollingWind, false);
             //////this.EventCompleted(GameEventName.PrisionerTip, false);
-            this.EventCompleted(GameEventName.LadyLaments, false);
+            //this.EventCompleted(GameEventName.LadyLaments, false);
             ////this.EventCompleted(GameEventName.KoarFounded, false);
             //this.EventCompleted(GameEventName.AppleTreeFounded, false);
 

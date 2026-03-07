@@ -111,7 +111,7 @@ namespace br.com.bonus630.thefrog.Effects
         private void SpawnOrReuseClone()
         {
             SpriteRenderer target;
-            Debug.Log("[SpriteAfterImageEffects] clones count" + clones.Count);
+            //Debug.Log("[SpriteAfterImageEffects] clones count" + clones.Count);
             // se ainda não atingiu o limite, cria um novo clone
             if (clones.Count < limit)
             {

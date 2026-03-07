@@ -249,17 +249,14 @@ namespace br.com.bonus630.thefrog.Manager
         public int GetGridIndex(Vector2 position, float topY, float leftX,
                         float cellSize, int numCols, int numRows)
         {
-            // Converte posição global para coordenadas de célula
             float dx = position.x - leftX;
-            float dy = topY - position.y; // como vem de cima para baixo, inverte o eixo Y
+            float dy = topY - position.y; 
 
-            // Fora do grid
             if (dx < 0 || dy < 0) return -1;
 
             int col = Mathf.FloorToInt(dx / cellSize);   // coluna (0 → numCols-1)
             int row = Mathf.FloorToInt(dy / cellSize);   // linha  (0 → numRows-1)
 
-            // Checa se está dentro dos limites
             if (col < 0 || col >= numCols || row < 0 || row >= numRows)
                 return -1;
 

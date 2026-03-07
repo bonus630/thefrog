@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] float followSpeed = 80f;
         [SerializeField] bool canJump = true;
         [SerializeField] CollisionRelayEx projectilDetector;
+        [SerializeField] IActivator Dropper;
 
         float followDistance = 6f;
         float turnDistance = 3f;
@@ -121,6 +122,7 @@ namespace br.com.bonus630.thefrog.Enemies
                 xDirection = 0;
                 rg.gravityScale = 0;
                 bodyCollider.enabled = false;
+                Dropper?.Activate();
                 Destroy(gameObject, 0.66f);
             }
         }

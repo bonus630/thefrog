@@ -90,18 +90,42 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 StartNewMusic(audioLeft, audioRight);
             }
-            //   Debug.Log("Left Time:" + (audioLeft.clip.length - audioLeft.time));
+            //Debug.Log("[MusicSource][LateUpdate]Left Time:" + (audioLeft.clip.length - audioLeft.time));
         }
         private void StartNewMusic(AudioSource current, AudioSource next)
         {
-            if (current.clip == null)
+            if (current.clip == null )
                 return;
             if (current.clip.length - fadDuration - current.time <= 0 && !next.isPlaying)
             {
+                Debug.Log("[MusicSource][StartNewMusic]Left Time:" + (current.clip.length - fadDuration - current.time));
+                Debug.Log("[MusicSource][StartNewMusic] next.isPlaying:" + next.isPlaying);
                 CrossFade(BackgroundMusicsRandom[Random.Range(0, BackgroundMusicsRandom.Length)]);
             }
         }
+        //private void StartNewMusic(AudioSource current, AudioSource next)
+        //{
+        //    if (current.clip == null ||
+        //        !current.isPlaying ||
+        //        current.clip.loadState != AudioDataLoadState.Loaded)
+        //        return;
 
+        //    // Proteção extra para streaming
+        //    if (current.timeSamples <= 0)
+        //        return;
+
+        //    float remaining =
+        //        (current.clip.samples - current.timeSamples)
+        //        / (float)current.clip.frequency;
+
+        //    if (remaining <= fadDuration && !next.isPlaying)
+        //    {
+        //        CrossFade(
+        //            BackgroundMusicsRandom[
+        //                Random.Range(0, BackgroundMusicsRandom.Length)
+        //            ]);
+        //    }
+        //}
         private void CrossFade(AudioClip clip, bool disableLoop = true)
         {
             if (disableLoop)
@@ -150,11 +174,11 @@ namespace br.com.bonus630.thefrog.Manager
                 yield return null;
             }
             StopFadOut(new AudioSource[] { nowPlaying });
-            //Debug.Log("Estamos no audio:" + toPlay.time);
+            Debug.Log("[MusicSource][WaitToPlay]Estamos no audio:" + toPlay.time);
         }
         public void PlayFadIn(AudioClip clip)
         {
-            // Debug.Log("Audio");
+             Debug.Log("[MusicSource][PlayFadIn]Audio");
             PlayFadIn(new AudioSource[] { audioLeft, audioRight }, clip);
         }
         public void PlayFadIn(BackgroundMusic music)
@@ -283,6 +307,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         public void InstantPlay(BackgroundMusic music, bool loop = false)
         {
+            Debug.Log("[MusicSource][InstantPlay]music:" + music);
             AudioClip clip = BackgroundMusics[(int)music];
             InstantPlay(clip, loop);
         }
@@ -394,7 +419,7 @@ namespace br.com.bonus630.thefrog.Manager
         {
             SetPitch(normalPitch);
         }
-
+    
         public void SetPitch(float target)
         {
             if (pitchCoroutine != null)
@@ -470,7 +495,10 @@ namespace br.com.bonus630.thefrog.Manager
         DarkWind = 10,
         GoodDayToDie = 11,
         Ignition = 12,
-        lament =13
+        lament =13,
+        KoarCastle = 14,
+        WizardBoss = 15
+            
     }
 
 }

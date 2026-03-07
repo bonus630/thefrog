@@ -50,7 +50,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             this.gravityDirection = obj;
             offsetY = 0;
-            Debug.Log("graviti" + obj);
+            //Debug.Log("graviti" + obj);
         }
 
         private void Update()

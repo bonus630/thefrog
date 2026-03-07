@@ -23,7 +23,7 @@ namespace br.com.bonus630.thefrog.Environment
             ServiceLocator.Instance.Get<ScreenEffects>().FadeOut(0.4f);
             Debug.Log("[SceneMover] player:" + ToPoint);
             GameManager.Instance.ToPoint = ToPoint;
-            GameManager.Instance.LoadGame(scenePointsData.SceneType);
+            GameManager.Instance.LoadGame(scenePointsData.SceneType,sceneBuildIndex:scenePointsData.SceneIndex);
         }
 
         public override void Deactive()

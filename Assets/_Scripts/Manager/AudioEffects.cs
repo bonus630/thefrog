@@ -11,8 +11,11 @@ namespace br.com.bonus630.thefrog.Manager
             ServiceLocator.Instance.Register<AudioEffects>(this);
         }
 
-        public void Play(AudioClip audioClipe) => audioSource.PlayOneShot(audioClipe);
-
+        public void Play(AudioClip audioClipe)
+        {
+            if(audioSource != null)
+                audioSource.PlayOneShot(audioClipe);
+        }
 
     }
 }

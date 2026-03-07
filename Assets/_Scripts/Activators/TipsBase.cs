@@ -28,7 +28,7 @@ namespace br.com.bonus630.thefrog.Activators
         }
         private void OnDisable()
         {
-           // Debug.Log($"OnDestroy {name} | GameManager.Instance = {GameManager.Instance}");
+           // Debug.Log($"OnDestroy {name} | GameManager.Instance.eventManager = {GameManager.Instance.eventManager}");
 
             GameManager.Instance.eventManager.GameEventCompleted -= OnEventCompleted;
         }

@@ -3,13 +3,23 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Activators
 {
-    public class Dropper : MonoBehaviour
+    public class Dropper : IActivator
     {
         [SerializeField] GameObject ItemToDrop;
         [SerializeField][Range(0,1)]float Rate = 1.0f;
 
-        private void OnDestroy()
+        public override void Activate()
         {
+            Drop();
+        }
+
+        public override void Deactive()
+        {
+        }
+
+        private void Drop()
+        {
+         
 
             if (ItemToDrop == null)
             {

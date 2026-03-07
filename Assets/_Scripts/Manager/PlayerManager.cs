@@ -59,12 +59,12 @@ namespace br.com.bonus630.thefrog.Manager
         private void OnGameStatesRestaured()
         {
             this.PlayerStates = GameManager.Instance.PlayerStates;
-            Debug.Log("[PlayerManager][OnGameStatesRestaured] hour: " + this.PlayerStates.Hour);
+            //Debug.Log("[PlayerManager][OnGameStatesRestaured] hour: " + this.PlayerStates.Hour);
         }
 
         private void OnGameEventCompleted(GameEvent obj)
         {
-             Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
+            // Debug.Log("[PlayerManager] GameEvent:" + obj.Name);
             if (eventActions.TryGetValue(obj.Name, out Action action))
             {
                 action?.Invoke();

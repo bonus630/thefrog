@@ -7,6 +7,8 @@ namespace br.com.bonus630.thefrog.Player
 {
     public class PlayerSpiritController : PlayerBase
     {
+
+
         [SerializeField] List<GameObject> projectilies;
         [SerializeField] GameObject projectileSpawPoint;
         [SerializeField] GameObject projectileSpawPoint2;
@@ -141,6 +143,10 @@ namespace br.com.bonus630.thefrog.Player
         public override bool Equals(object obj)
         {
             return Equals(obj as ProjectilData);
+        }
+        public bool Equals(Elements el)
+        {
+            return this.Element == el;
         }
         public override int GetHashCode()
         {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Shared;
+using br.com.bonus630.thefrog.Utils;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,17 +41,22 @@ namespace br.com.bonus630.thefrog.Manager
 
         public GameObject GetActiveCamera()
         {
+       
             if (Cameras[LastActiveCam] != null && Cameras[LastActiveCam].activeSelf)
+            {
                 return Cameras[LastActiveCam];
+            }
             else
             {
                 for (int i = 0; i < Cameras.Count; i++)
                 {
-                    if (Cameras[i].activeSelf)
+
+                    if (Cameras[i] !=null && Cameras[i].activeSelf)
                         return Cameras[i];
                 }
             }
-            return null;
+            return CameraUtils.GetActiveVirtualCamera2().gameObject;
+            //return null;
         }
         public CinemachineVirtualCamera GetActiveVirtualCamera()
         {
@@ -114,6 +120,7 @@ namespace br.com.bonus630.thefrog.Manager
             yield return new WaitForSeconds(duration);
             noise.m_AmplitudeGain = 0f;
         }
+        //Este método deve ser removido em breve
         private IEnumerator shakeCamera(Transform camera, int times,bool rumble)
         {
             if (rumble && Gamepad.current!=null)

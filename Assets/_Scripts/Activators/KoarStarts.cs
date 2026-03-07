@@ -47,7 +47,7 @@ namespace br.com.bonus630.thefrog.Activators
             GameManager.Instance.GetPlayerScript.ChangeGravity(-1f);
             GameManager.Instance.PlayerStates.HasGravity = false;
             GameManager.Instance.PlayerStates.FallsControl = false;
-            koarLimiter.SetActive(true);
+           // koarLimiter.SetActive(true);
             dialogueIndex++;
             yield return new WaitForSeconds(4.5f);//tempo de fala
             GameManager.Instance.EventCompleted(GameEventName.KoarFounded);

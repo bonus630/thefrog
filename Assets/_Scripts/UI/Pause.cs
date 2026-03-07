@@ -25,8 +25,8 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
-            this.hour = ServiceLocator.Instance.Get<IHourProvider>().Hour;
-            TimeSpan time = TimeSpan.FromSeconds(GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
+            this.hour =                ServiceLocator.Instance.Get<IHourProvider>().Hour;
+            TimeSpan time =            TimeSpan.FromSeconds(GameManager.Instance.EnvironmentStates.GameTimeInSeconds);
             hoursText.text =           this.hour.ToString("00") + " HORAS";
             deadsText.text =           GameManager.Instance.PlayerStates.numDies.ToString("0000");
             runsText.text =            GameManager.Instance.EnvironmentStates.run.ToString("0000");

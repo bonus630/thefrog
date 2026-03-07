@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.UI
 {
-    public class HeartHUD : MonoBehaviour
+    public class HeartHUD : MonoBehaviour, IHeartHud
     {
         //vamos começar depois refatoramos
         int maxColHearts = 10;
@@ -29,7 +30,7 @@ namespace br.com.bonus630.thefrog.UI
             //this.PlayerStates.MaxHearts += hearts;
             UpdateHeart(hearts);
         }
-        private void UpdateHearts(int hearts)
+        public void UpdateHearts(int hearts)
         {
             GameObject hud = transform.GetChild(0).gameObject;
             StartCoroutine(AddHeart(hud, hearts - 1));

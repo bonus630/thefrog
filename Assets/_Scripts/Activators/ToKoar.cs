@@ -142,7 +142,7 @@ namespace br.com.bonus630.thefrog.Activators
         private IEnumerator PlayCutscene()
         {
             screenEffects.FadeOut(1f);
-            koarLimiter.SetActive(false);
+           // koarLimiter.SetActive(false);
             //GameManager.Instance.GetPlayerScript.MoveInputOn = false;
             ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(false, 0);
             ServiceLocator.Instance.Get<IPlayer>().RemoveGravity(true);

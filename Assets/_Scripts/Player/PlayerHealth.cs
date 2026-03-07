@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace br.com.bonus630.thefrog.Player
         {
             CurrentLife = player.playerManager.PlayerStates.Hearts;
 #if UNITY_EDITOR
+            
             CurrentLife = 18;
             player.playerManager.UpdateHeart(18);
 #endif
@@ -58,7 +60,7 @@ namespace br.com.bonus630.thefrog.Player
                 invencibleTimer = invencibleTime;
             }
             if (PrepareFallDie && player.InGround)
-                Die();
+                StartCoroutine(Die());
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -79,14 +81,15 @@ namespace br.com.bonus630.thefrog.Player
             }
             if (collision.gameObject.layer == 10)
             {
-                if(!invencible)
-                    Die();
+                if (!invencible)
+                    StartCoroutine(Die());
             }
         }
         public void Hit(int damage = 1)
         {
             if (invencible)
                 return;
+            Debug.Log("[PlayerHealth][Hit]");
             player.playerManager.UpdateHeart(-damage);
             invencible = true;
             anim.SetTrigger(HitID);
@@ -105,13 +108,22 @@ namespace br.com.bonus630.thefrog.Player
             catch { }
         }
         private void RestoreHit() => this.InHit = false;
-        public void Die()
+        public IEnumerator Die()
         {
-            Debug.Log("[PlayerHearth] prepareFallDie:" + PrepareFallDie);
-            //player.AllInputsOn(false);
             player.playerMovement.FreezePlayerMove();
+            while (CurrentLife > 0)
+            {
+                CurrentLife--;
+               // Debug.Log("[PlayerHealth][Die]");
+                player.playerManager.UpdateHeart(-1);
+                yield return null;
+                yield return null;
+            }
+            yield return null;
             CurrentLife = 0;
             Hit();
+           // Debug.Log("[PlayerHearth] prepareFallDie:" + PrepareFallDie);
+            //player.AllInputsOn(false);
         }
         public void GameOver()
         {
@@ -121,7 +133,7 @@ namespace br.com.bonus630.thefrog.Player
             player.RigibodyBodyType = RigidbodyType2D.Kinematic;
             player.FooterColliding.GetComponent<BoxCollider2D>().isTrigger = true;
             player.playerManager.PlayerDie();
-           
+
         }
 
     }

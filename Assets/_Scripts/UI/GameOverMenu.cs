@@ -14,7 +14,6 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
-        
             StartCoroutine(WaitAndSelect());
         }
 
@@ -27,6 +26,7 @@ namespace br.com.bonus630.thefrog.UI
                    EventSystem.current.currentInputModule == null ||
                    !firstButton.activeInHierarchy)
             {
+                Debug.Log("[GameOverMenu] EventSystems");
                 yield return null;
             }
 

@@ -182,7 +182,13 @@ namespace br.com.bonus630.thefrog
             void Handler()
             {
                 screenFader.OnFadeOutCompleted -= Handler;
-                MenuButton_clicked();
+                if (canMenu)
+                {
+                    if (fakeEnd)
+                        SceneManager.LoadScene("MainMenu");
+                    else
+                        GameManager.Instance.NewGamePlus();
+                }
             }
 
             screenFader.OnFadeOutCompleted += Handler;

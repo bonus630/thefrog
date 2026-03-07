@@ -18,8 +18,9 @@ namespace br.com.bonus630.thefrog.Activators
         bool start = false;
         private void Awake()
         {
-            musicSource = ServiceLocator.Instance.Get<MusicSource>();
-            Debug.Log("[MusicSource] musicSource:" + musicSource);
+            if(musicSource==null)
+                musicSource = ServiceLocator.Instance.Get<MusicSource>();
+            //Debug.Log("[MusicSource] musicSource:" + musicSource);
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
