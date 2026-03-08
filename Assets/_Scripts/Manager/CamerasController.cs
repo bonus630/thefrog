@@ -49,6 +49,7 @@ namespace br.com.bonus630.thefrog.Manager
                 currentConfiner = null;
             if (!prevConfiner && !currentConfiner)
             {
+                currentCamera.Priority = 10;
                 currentCamera = GetSkyCam();
                 currentCamera.Priority = 20;
             }
