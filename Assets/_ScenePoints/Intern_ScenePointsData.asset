@@ -84,4 +84,9 @@ MonoBehaviour:
     Hour: 0
     Point: {x: 38.8, y: -242.4, z: 0}
     transform: {fileID: 0}
+  - Name: FactoryPortalEntry
+    GameObjectName: Spawner
+    Hour: 0
+    Point: {x: 112.29, y: -61.19, z: 0}
+    transform: {fileID: 0}
   SceneType: 3

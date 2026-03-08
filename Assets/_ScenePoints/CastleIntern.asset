@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c4fd6963bb5e4abe0500b84d0d1ff, type: 3}
+  m_Name: CastleIntern
+  m_EditorClassIdentifier: 
+  SceneIndex: 14
+  PointsData:
+  - Name: CastleEntry
+    GameObjectName: CastleEntryAreaStart
+    Hour: 0
+    Point: {x: -35.9, y: -267, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleLibrary
+    GameObjectName: PigSpawner
+    Hour: 0
+    Point: {x: -26.08, y: -301.5, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleRightTowerWindow
+    GameObjectName: WindowExit
+    Hour: 0
+    Point: {x: 127.54, y: -256.63, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleLeftTowerWindow
+    GameObjectName: WindowExit
+    Hour: 0
+    Point: {x: -86.45, y: -257.63, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleLeftTowerRoof
+    GameObjectName: Roof
+    Hour: 0
+    Point: {x: 8.42, y: -241.88, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleRightTowerRoof
+    GameObjectName: Roof
+    Hour: 0
+    Point: {x: 70.38, y: -241.09, z: 0}
+    transform: {fileID: 0}
+  - Name: CastleCenterRoof
+    GameObjectName: CastleEntryRoofs
+    Hour: 0
+    Point: {x: 38.8, y: -242.4, z: 0}
+    transform: {fileID: 0}
+  SceneType: 3

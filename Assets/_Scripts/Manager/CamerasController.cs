@@ -11,11 +11,49 @@ namespace br.com.bonus630.thefrog.Manager
 {
     public class CamerasController : MonoBehaviour,IService
     {
+        //Ainda posso confiar nesta lista de cameras
         [SerializeField] List<GameObject> Cameras;
         [field: SerializeField] public GameObject ThumbCamera { get; protected set; }
 
         public int LastActiveCam { get; private set; }
         public int LastActiveConfiner { get; private set; }
+
+        public PolygonCollider2D currentConfiner;
+        public PolygonCollider2D prevConfiner;
+        public CinemachineVirtualCamera currentCamera;
+
+
+
+        public void SwitchConfiner(PolygonCollider2D confiner,GameObject nextCamera)
+        {
+            CinemachineVirtualCamera cam = GetActiveVirtualCamera();
+             currentCamera = cam.GetComponent<CinemachineVirtualCamera>();
+            if (currentCamera != null)
+            {
+                if (nextCamera.TryGetComponent<CinemachineVirtualCamera>(out var next))
+                {
+                    currentCamera.Priority = 10;
+                    next.Priority = 20;
+                    currentCamera = next;
+                }
+                currentCamera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = confiner;
+                currentCamera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+                currentConfiner = confiner;
+            }
+        }
+        public void LeavingConfiner(PolygonCollider2D confiner)
+        {
+            if (confiner == prevConfiner)
+                prevConfiner = null;
+            if (confiner == currentConfiner)
+                currentConfiner = null;
+            if (!prevConfiner && !currentConfiner)
+            {
+                currentCamera = GetSkyCam();
+                currentCamera.Priority = 20;
+            }
+        }
+
         private void Awake()
         {
              ServiceLocator.Instance.Register<CamerasController>(this);

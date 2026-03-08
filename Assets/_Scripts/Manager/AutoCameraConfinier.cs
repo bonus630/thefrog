@@ -11,44 +11,46 @@ namespace br.com.bonus630.thefrog.Manager
         PolygonCollider2D polygonCollider;
         [SerializeField] GameObject nextCamera;
         [SerializeField] GameObject confiner;
+        CamerasController controller;
         void Start()
         {
             polygonCollider = GetComponent<PolygonCollider2D>();
-
-            //Debug.Log("[AutoCameraConfinier] polygonCollider:" + polygonCollider);
-            //Debug.Log("[AutoCameraConfinier] player:" + GameManager.Instance.GetPlayer.transform.position);
-
-
+            controller = ServiceLocator.Instance.Get<CamerasController>();
             if (polygonCollider.OverlapPoint(GameManager.Instance.GetPlayer.transform.position))
-                StartCoroutine(SetConfinier());
+                controller.SwitchConfiner(polygonCollider, nextCamera);
         }
-        private IEnumerator SetConfinier()
-        {
-            CinemachineVirtualCamera cam = null;
-            while (cam == null)
-            {
-                yield return null;
-                cam = Utils.CameraUtils.GetActiveVirtualCamera2();
-            }
-            GameObject camera = cam.gameObject;
-            if (camera != null)
-            {
-                if (nextCamera != null)
-                {
-                    camera.SetActive(false);
-                    nextCamera.SetActive(true);
-                    camera = nextCamera;
-                }
-                camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = polygonCollider;
-                camera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
-                confiner = gameObject;
-            }
-        }
+        //private IEnumerator SetConfinier()
+        //{
+        //    CinemachineVirtualCamera cam = null;
+        //    while (cam == null)
+        //    {
+        //        yield return null;
+        //        cam = Utils.CameraUtils.GetActiveVirtualCamera2();
+        //    }
+        //    GameObject camera = cam.gameObject;
+        //    if (camera != null)
+        //    {
+        //        if (nextCamera != null)
+        //        {
+        //            camera.SetActive(false);
+        //            nextCamera.SetActive(true);
+        //            camera = nextCamera;
+        //        }
+        //        camera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = polygonCollider;
+        //        camera.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+        //        confiner = gameObject;
+        //    }
+        //}
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (collision.TryGetComponent<IPlayer>(out IPlayer player) && player.BodyTouching(polygonCollider))
+                controller.SwitchConfiner(polygonCollider, nextCamera);
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
             if (collision.CompareTag("Player"))
-                StartCoroutine(SetConfinier());
+                controller.LeavingConfiner(polygonCollider);
         }
         //private void OnTriggerExit2D(Collider2D collision)
         //{
