@@ -19,7 +19,6 @@ namespace br.com.bonus630.thefrog.Activators
 
         private void Drop()
         {
-         
 
             if (ItemToDrop == null)
             {

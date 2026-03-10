@@ -155,7 +155,9 @@ namespace br.com.bonus630.thefrog.Caracters
                     break;
                 case 4:
                     GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
-                    GameManager.Instance.GetPlayerScript.UpdatePlayer();
+                    ServiceLocator.Instance.Get<IPlayer>().FallsControl();
+                    ServiceLocator.Instance.Get<IPlayer>().AddAction(SchedulerData.Wait(2f));
+                    ServiceLocator.Instance.Get<IPlayer>().AddAction(SchedulerData.Do(GameManager.Instance.GetPlayerScript.UpdatePlayer, 0));
                     break;
                 case 5:
                     break;

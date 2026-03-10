@@ -1,8 +1,10 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Effects;
+using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace br.com.bonus630.thefrog.Enemies
 {
@@ -44,7 +46,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] Transform magicSpawnerPoint;
         [SerializeField] LayerMask transformLayers;
         [SerializeField] State currentState = State.Idle;
-
+        [SerializeField] PlayableDirector playableDirector;
         protected override void Start()
         {
             startPos = transform.position;
@@ -274,7 +276,15 @@ namespace br.com.bonus630.thefrog.Enemies
         }
         private void Die()
         {
-            activeOnDie.Activate();
+            ServiceLocator.Instance.Get<IPlayer>().UpdatePlayer();
+            ServiceLocator.Instance.Get<MusicSource>().Sleep();
+            ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(false);
+            playableDirector.stopped += (a) => { 
+                activeOnDie.Activate();
+                ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(true);
+            };
+            playableDirector.Play();
+            //
         }
 
         protected override void OnCollisionEnter2D(Collision2D collision)

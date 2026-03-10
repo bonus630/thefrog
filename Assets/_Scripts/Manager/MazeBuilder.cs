@@ -62,7 +62,7 @@ namespace br.com.bonus630.thefrog.Manager
             //    return;
 
             blocked = true;
-            // Debug.Log("Data.index: " + data.Index);
+             Debug.Log("Data.index: " + data.Index);
 
             bool isCorrect = CorrectPath[current] == data.Index;
 
@@ -119,11 +119,12 @@ namespace br.com.bonus630.thefrog.Manager
                 obj.transform.position = newPos;
                 Randomize(Probs);
                 Randomize(Enemies);
-
+                Debug.Log("FadeIn chamado");
                 fader.FadeIn(0.4f);
             }
 
             fader.OnFadeOutCompleted += Handler;
+            Debug.Log("FadeOut chamado");
             fader.FadeOut(0.4f);
         }
 

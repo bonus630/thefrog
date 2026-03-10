@@ -1,3 +1,4 @@
+using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
@@ -82,7 +83,7 @@ namespace br.com.bonus630.thefrog.Items
                 else
                 {
                     Vector2 normal = collision.contacts[0].normal;
-                    hitWall = true;
+                    StartCoroutine(ChangeHitWall());
                     hitting.PlayOneShot(hittingSound);
                     rb.freezeRotation = false;
                     rb.constraints = RigidbodyConstraints2D.None;
@@ -98,7 +99,12 @@ namespace br.com.bonus630.thefrog.Items
             Destroy(gameObject);
 
         }
-
+        private IEnumerator ChangeHitWall()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            hitWall = true;
+        }
 
     }
 

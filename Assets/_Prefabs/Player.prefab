@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 328706631452530263}
   - component: {fileID: 9074661570785531915}
   - component: {fileID: 1370652492987578129}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: SpecialVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20346,7 +20346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3477501710759100007}
   - component: {fileID: 441962762193283035}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 216c53aef79eaaf40a1800cc5e542dc3, type: 3}
@@ -20473,7 +20473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4743822801826777061}
   - component: {fileID: 7807579267460455204}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Freeform Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25972,6 +25972,7 @@ MonoBehaviour:
   PowerUp: {fileID: 8300000, guid: 727ee02dd83914246be86c8caaec3b82, type: 3}
   GravityParticles: {fileID: 5267456748424603697}
   visionController: {fileID: 328706631452530263}
+  PowerUpEffect: {fileID: 8616282190702445612, guid: f88573367a5a7574da7a78f84e1ed458, type: 3}
   anim: {fileID: 1346750905149390656}
   gravityDirection: -1
   gravityScale: 4

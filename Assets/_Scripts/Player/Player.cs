@@ -32,6 +32,7 @@ namespace br.com.bonus630.thefrog.Player
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
         [SerializeField] private VisionController visionController;
+        [SerializeField] private GameObject PowerUpEffect;
         public BarManager barManager { get; set; }
         public PlayerManager playerManager { get; set; }
 
@@ -42,8 +43,8 @@ namespace br.com.bonus630.thefrog.Player
         public PlayerSpiritController playerSpiritController { get; private set; }
         public SchedulerDirector playerDirector { get; private set; }
 
-        [Header("Others")]
         private Rigidbody2D rb;
+        [Header("Others")]
         [SerializeField] public Animator anim;
         public WallCheck WallCheck { get; private set; }
         private BoxCollider2D footerCollider;
@@ -98,17 +99,18 @@ namespace br.com.bonus630.thefrog.Player
             barManager = GetComponent<BarManager>();
             playerManager = GetComponent<PlayerManager>();
             playerManager.GameEventChange(() => { playerSpiritController.GameEventsChanged(); });
-
-
+            playerManager.UpdatePlayerEvent += PlayerManager_UpdatePlayerEvent; 
             //Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
             ServiceLocator.Instance.Register<PlayerInput>(GetComponent<PlayerInput>());
             ServiceLocator.Instance.Register<IPlayer>(this);
             ServiceLocator.Instance.Register("Player", gameObject);
             
         }
+
+
         private void Start()
         {
-            //#if !UNITY_EDITOR
+            #if !UNITY_EDITOR
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
             Debug.Log("[Player]state POS:"+GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
@@ -137,7 +139,7 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-           // #endif
+            #endif
 
         }
 
@@ -221,7 +223,8 @@ namespace br.com.bonus630.thefrog.Player
 
 #if UNITY_EDITOR
             //if (Input.GetKeyUp(KeyCode.K))
-            //    GameManager.Instance.TesteThumb();
+            //   // UpdatePlayer();
+            // GameManager.Instance.TesteThumb();
             //if (Input.GetKeyUp(KeyCode.W))
             //{
             //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
@@ -578,13 +581,24 @@ namespace br.com.bonus630.thefrog.Player
         public void UpdatePlayer()
         {
             audioSource.PlayOneShot(PowerUp);
+            if (PowerUpEffect != null)
+                Instantiate(PowerUpEffect, transform);
             playerManager.UpdatePlayer();
+        }
+        private void PlayerManager_UpdatePlayerEvent()
+        {
+            playerMovement.speed = playerManager.PlayerStates.Speed;
+            playerMovement.jumpForce = playerManager.PlayerStates.JumpForce;
         }
 
         public void AddAction(SchedulerData action)=> playerDirector.AddAction(action);
         public void AddAction(Action action,float time)=> playerDirector.AddAction(new SchedulerData(action,time));
 
         public PlayerStates GetPlayerStates => playerManager.PlayerStates;
+        private void OnDisable()
+        {
+            playerManager.UpdatePlayerEvent -= PlayerManager_UpdatePlayerEvent;
+        }
     }
     public enum PlayerGravityDirection : short
     {

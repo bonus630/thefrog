@@ -1,4 +1,5 @@
 using br.com.bonus630.thefrog.Manager;
+using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Items
@@ -8,7 +9,7 @@ namespace br.com.bonus630.thefrog.Items
         [field: SerializeField] ScreenEffects screenEffects { get; set; }
         void Start()
         {
-            screenEffects = GameManager.Instance.ScreenEffects;
+            screenEffects = ServiceLocator.Instance.Get<ScreenEffects>();
         }
 
         public void Explode()

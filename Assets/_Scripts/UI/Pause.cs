@@ -32,8 +32,8 @@ namespace br.com.bonus630.thefrog.UI
             runsText.text =            GameManager.Instance.EnvironmentStates.run.ToString("0000");
             totalTimeText.text =       time.ToString(@"hh\:mm\:ss");
             heartsText.text =          $"{GameManager.Instance.PlayerStates.Hearts}/{GameManager.Instance.GameTotalHearts}";
-            playerSpeedText.text =     $"{GameManager.Instance.PlayerStates.Speed * 100}";
-            playerJumpForceText.text = $"{GameManager.Instance.PlayerStates.JumpForce * 100}";
+            playerSpeedText.text =     $"{(int)(GameManager.Instance.PlayerStates.Speed * 100)}";
+            playerJumpForceText.text = $"{(int)(GameManager.Instance.PlayerStates.JumpForce * 100)}";
             prevHour = hour;
         }
         private void OnDisable()

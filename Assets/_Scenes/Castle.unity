@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!114 &57097623
 MonoBehaviour:
@@ -29992,6 +29992,7 @@ GameObject:
   - component: {fileID: 403464408}
   - component: {fileID: 403464414}
   - component: {fileID: 403464413}
+  - component: {fileID: 403464415}
   m_Layer: 0
   m_Name: CastleEntryAreaStart
   m_TagString: Untagged
@@ -30146,6 +30147,103 @@ MonoBehaviour:
   instantePlay: 1
   extraAudioSource: {fileID: 0}
   clip: {fileID: 0}
+--- !u!82 &403464415
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403464407}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -619438268405638283, guid: 86a2a8c1e1de9bc4299765802445322e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 2baf7d90a80573a4e964324c8adc4f6e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &404795818
 GameObject:
   m_ObjectHideFlags: 0
@@ -35576,7 +35674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1 &431328785 stripped
 GameObject:
@@ -37159,7 +37257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!60 &486388785
 PolygonCollider2D:
@@ -37339,7 +37437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1 &497898255
 GameObject:
@@ -38006,7 +38104,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 188.4855, y: -256.34225, z: 0}
+  m_LocalPosition: {x: 188.47356, y: -257.86475, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38702,7 +38800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!60 &542359056
 PolygonCollider2D:
@@ -76167,7 +76265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1001 &1005508196
 PrefabInstance:
@@ -76952,7 +77050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1001 &1069340575
 PrefabInstance:
@@ -77857,7 +77955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1001 &1128863623
 PrefabInstance:
@@ -178122,7 +178220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!60 &1259636023
 PolygonCollider2D:
@@ -180081,7 +180179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1 &1336576051
 GameObject:
@@ -180694,12 +180792,16 @@ PrefabInstance:
       objectReference: {fileID: 30478055}
     - target: {fileID: 8325032003733526728, guid: 099a4b78b4efa6c4f87d9cac730b41be, type: 3}
       propertyPath: ScenePointsDatas.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8325032003733526728, guid: 099a4b78b4efa6c4f87d9cac730b41be, type: 3}
       propertyPath: 'ScenePointsDatas.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 5a719a971c3601a45b536198b88c8435, type: 2}
+    - target: {fileID: 8325032003733526728, guid: 099a4b78b4efa6c4f87d9cac730b41be, type: 3}
+      propertyPath: 'ScenePointsDatas.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 61a769ff4b0981540b9408033d5a536c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -217858,7 +217960,7 @@ Transform:
   m_GameObject: {fileID: 1610515799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.89, y: -255.49, z: 0}
+  m_LocalPosition: {x: 8.631121, y: -266.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -218973,7 +219075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1 &1654260313
 GameObject:
@@ -228774,11 +228876,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2294317406190021175, guid: 9de7edbc19e0ba24fb960bd293014f6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 78.64
+      value: 7.381121
       objectReference: {fileID: 0}
     - target: {fileID: 2294317406190021175, guid: 9de7edbc19e0ba24fb960bd293014f6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -255.49
+      value: -266.81
       objectReference: {fileID: 0}
     - target: {fileID: 2294317406190021175, guid: 9de7edbc19e0ba24fb960bd293014f6f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -232717,7 +232819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!1001 &2082987660
 PrefabInstance:
@@ -233531,7 +233633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3085a33674400c24a9d848196d398371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCamera: {fileID: 0}
+  nextCamera: {fileID: 1610515799}
   confiner: {fileID: 0}
 --- !u!4 &2120971297 stripped
 Transform:

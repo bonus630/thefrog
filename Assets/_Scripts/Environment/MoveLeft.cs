@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Environment
     {
         [SerializeField] Vector3 speed;
         [SerializeField] float newScale = 1;
+        [SerializeField] bool normalMove = false;
         float time = 0;
         float maxtime = 2;
         float scale = 1;
@@ -15,6 +16,11 @@ namespace br.com.bonus630.thefrog.Environment
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            if (normalMove)
+            {
+                resizing = true;
+                return;
+            }
             ServiceLocator.Instance.Get<IHourProvider>().OnHourChanged += MoveLeft_OnHourChanged;
             Calc();
         }

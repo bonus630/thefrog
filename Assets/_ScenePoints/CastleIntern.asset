@@ -17,12 +17,12 @@ MonoBehaviour:
   - Name: CastleEntry
     GameObjectName: CastleEntryAreaStart
     Hour: 0
-    Point: {x: -35.9, y: -267, z: 0}
+    Point: {x: -35.83, y: -267.89, z: 0}
     transform: {fileID: 0}
   - Name: CastleLibrary
     GameObjectName: PigSpawner
     Hour: 0
-    Point: {x: -26.08, y: -301.5, z: 0}
+    Point: {x: -26.08, y: -303.07, z: 0}
     transform: {fileID: 0}
   - Name: CastleRightTowerWindow
     GameObjectName: WindowExit
@@ -32,7 +32,7 @@ MonoBehaviour:
   - Name: CastleLeftTowerWindow
     GameObjectName: WindowExit
     Hour: 0
-    Point: {x: -86.45, y: -257.63, z: 0}
+    Point: {x: -86.45, y: -258.06, z: 0}
     transform: {fileID: 0}
   - Name: CastleLeftTowerRoof
     GameObjectName: Roof

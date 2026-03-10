@@ -12,6 +12,8 @@ namespace br.com.bonus630.thefrog.Manager
         private readonly Dictionary<GameEventName, Action> eventActions = new();
 
         private Action GameEventChanged = null;
+  
+        public event Action UpdatePlayerEvent;
 
         private void Awake()
         {
@@ -34,7 +36,9 @@ namespace br.com.bonus630.thefrog.Manager
         {
             this.PlayerStates.Speed += 0.1f;
             this.PlayerStates.JumpForce += 0.1f;
+            UpdatePlayerEvent?.Invoke();
         }
+        
         public void UpdateShurykens(int shurykens)
         {
             this.PlayerStates.Shurykens += shurykens;

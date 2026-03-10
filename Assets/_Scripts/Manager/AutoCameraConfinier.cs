@@ -8,6 +8,7 @@ namespace br.com.bonus630.thefrog.Manager
     [DefaultExecutionOrder(1), RequireComponent(typeof(PolygonCollider2D))]
     public class AutoCameraConfinier : MonoBehaviour
     {
+        //Temos um problema na camera
         PolygonCollider2D polygonCollider;
         [SerializeField] GameObject nextCamera;
         [SerializeField] GameObject confiner;
@@ -52,17 +53,7 @@ namespace br.com.bonus630.thefrog.Manager
             if (collision.CompareTag("Player"))
                 controller.LeavingConfiner(polygonCollider);
         }
-        //private void OnTriggerExit2D(Collider2D collision)
-        //{
-        //    if(collision.TryGetComponent<IPlayer>(out IPlayer player))
-        //    {
-        //        if(!player.BodyTouching(1<<16))
-        //        {
-        //            ServiceLocator.Instance.Get<CamerasController>().GetSkyCam().gameObject.SetActive(true);
-        //            Utils.CameraUtils.GetActiveVirtualCamera2().gameObject.SetActive(false);
-        //        }
-        //    }
-        //}
+
 
     }
 }

@@ -22,8 +22,6 @@ namespace br.com.bonus630.thefrog.Manager
         public PolygonCollider2D prevConfiner;
         public CinemachineVirtualCamera currentCamera;
 
-
-
         public void SwitchConfiner(PolygonCollider2D confiner,GameObject nextCamera)
         {
             CinemachineVirtualCamera cam = GetActiveVirtualCamera();

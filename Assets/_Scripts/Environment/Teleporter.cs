@@ -28,7 +28,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         public override void Activate()
         {
-
+            Debug.Log("[Teleporter] Activate");
             if (teleported.TryGetComponent<IPlayer>(out var player))
             {
                 AdvancedTeleport();

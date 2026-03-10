@@ -34,11 +34,14 @@ namespace br.com.bonus630.thefrog.Activators
         {
             if (Password == null || Password.Count == 0)
                 return;
-            //Debug.Log($"id: {id} ativo: {activade}");
+            
             if (activade && !received.Contains(id))
                 received.Add(id);
             if (!activade && received.Contains(id))
+            {
                 received.Remove(id);
+                Debug.Log($"id: {id} ativo: {activade} received count:{received.Count}");
+            }
             if (Password.SequenceEqual<int>(received))
             {
                 if(audioSource!=null)

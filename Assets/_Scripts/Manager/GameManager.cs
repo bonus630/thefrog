@@ -82,7 +82,6 @@ namespace br.com.bonus630.thefrog.Manager
 
         //Env Names
 
-
         //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         //static void InitOnLoad()
         //{
@@ -96,7 +95,6 @@ namespace br.com.bonus630.thefrog.Manager
         //        }
         //    }
         //}
-
 
         private void Awake()
         {
@@ -116,9 +114,6 @@ namespace br.com.bonus630.thefrog.Manager
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
         }
-
-
-
         private void Start()
         {
             PauseAction.Enable();
@@ -542,6 +537,7 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void ChangeGameToState(EnvironmentStates state)
         {
+            
             //Debug.Log("[GameManager][ChangeGameToState] state index: " + state.index);
             // this.EnvironmentStates = LoadStates(saveGameIndex);
             //aqui o horario ja esta alterado, e antes em scene_loaded tbm ja esta anterado devo investigar antes disso bug:2051
@@ -559,6 +555,11 @@ namespace br.com.bonus630.thefrog.Manager
         public void GameOver()
         {
             StopCountingTime();
+            if (DataScenePreserver.Instance != null)
+            {
+                Debug.Log("[GameManager][Gameover] DataScenePreserver cleaned");
+                DataScenePreserver.Instance.Clear();
+            }
             ServiceLocator.Instance.Get<MusicSource>().StopAll();
             this.EnvironmentStates = LoadStates(0);
             this.PlayerStates = this.EnvironmentStates.playerStates;
@@ -571,37 +572,6 @@ namespace br.com.bonus630.thefrog.Manager
             if (!eventManager.EventCompleted(gameEvent, playSound))
                 return;
             PlayerStates.CompletedGameEvents.Add(gameEvent.ToString());
-            //events.GetEvent(gameEvent).Completed = true;
-            switch (gameEvent)
-            {
-                case GameEventName.KillPig:
-                    CinemachineConfiner confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
-                    confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(1).gameObject.GetComponentAtIndex(1);
-                    break;
-                //case GameEventName.HeartContainer:
-                //    GameObject gameObject = GameObject.Find(HeartHUD).transform.GetChild(0).gameObject;
-                //    gameObject.SetActive(true);
-                //    break;
-                case GameEventName.Shuryken:
-                    GameObject o = GameObject.Find("ShurykenPoint");
-                    if (o != null)
-                        o.SetActive(false);
-                    break;
-                case GameEventName.DuckPath:
-                    confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
-                    confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(2).gameObject.GetComponentAtIndex(1);
-                    break;
-                //case GameEventName.Gravity:
-                //    var hud = GameObject.Find(SkillsHUD).transform.GetChild(0).gameObject;
-                //    hud.SetActive(true);
-                //    break;
-                case GameEventName.MysticScroll:
-                    confiner = GameObject.FindAnyObjectByType<CinemachineVirtualCamera>().GetComponent<CinemachineConfiner>();
-                    confiner.m_BoundingShape2D = (PolygonCollider2D)GameObject.Find(CameraContainer).transform.GetChild(3).gameObject.GetComponentAtIndex(1);
-                    //gameObject = GameObject.Find(ToSkyPoint).transform.GetChild(0).gameObject;
-                    //gameObject.SetActive(true);
-                    break;
-            }
         }
         public bool IsEventCompleted(GameEventName gameEvent)
         {
@@ -634,6 +604,12 @@ namespace br.com.bonus630.thefrog.Manager
         public void ResetEnvironment()
         {
             eventManager.Reset();
+
+            if (DataScenePreserver.Instance != null)
+            {
+                Debug.Log("[GameManager][ResetEnvironment] DataScenePreserver cleaned");
+                DataScenePreserver.Instance.Clear();
+            }
             //float time = EnvironmentStates.GameTimeInSeconds;
             float jump = PlayerStates.JumpForce;
             float speed = PlayerStates.Speed;
@@ -699,13 +675,13 @@ namespace br.com.bonus630.thefrog.Manager
             //////Time.timeScale = 0.5f;
             //playerStates.HasGravity = true;
             //playerStates.HasVision = true;
-            //playerStates.Collectables = 51;
+            playerStates.Collectables = 51;
             //playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
-            //playerStates.HasWallJump = true;
+            playerStates.HasWallJump = true;
             //////playerStates.HasDoubleJump = true;
             //playerStates.FallsControl = true;
-            //playerStates.HasDash = true;
+            playerStates.HasDash = true;
             //playerStates.Shurykens = 100;
             //playerStates.HasLightning = true;
             //this.EventCompleted(GameEventName.HeartContainer, false);

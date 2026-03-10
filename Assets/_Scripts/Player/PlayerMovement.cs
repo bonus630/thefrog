@@ -11,8 +11,8 @@ namespace br.com.bonus630.thefrog.Player
 {
     public class PlayerMovement : PlayerBase
     {
-        [SerializeField] private float speed;
-        [SerializeField] private float jumpForce;
+        [SerializeField] public float speed;
+        [SerializeField] public float jumpForce;
         [SerializeField] private float wallJumpRemoveInputTime = 0.2f;
         [SerializeField] private float LinearMaxY = 15;
         [SerializeField] float dashActiveMaxTime = 0.5f;
@@ -77,10 +77,12 @@ namespace br.com.bonus630.thefrog.Player
             //  HasWallJump = player.playerManager.PlayerStates.HasWallJump;
             base.Awake();
         }
-        //private void Start()
-        //{
-        //    bounce = new BounceEffect(anim.gameObject.transform);
-        //}
+        private void Start()
+        {
+            this.speed = player.GetPlayerStates.Speed;
+            this.jumpForce = player.GetPlayerStates.JumpForce;
+            //bounce = new BounceEffect(anim.gameObject.transform);
+        }
         private void Update()
         {
             GetWallSliding = IsWallSliding();
@@ -267,6 +269,7 @@ namespace br.com.bonus630.thefrog.Player
 #endif
             if (isJumping && coyouteTimer > 0)
             {
+                Debug.Log("[PlayerMovement] [Jump] jumpForce:" + jumpForce);
                 player.RigibodyLinearVelocityY = jumpForce;
                 audioSource.PlayOneShot(jumpSFX);
                 isJumping = false;
