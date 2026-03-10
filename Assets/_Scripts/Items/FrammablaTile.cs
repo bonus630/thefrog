@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using br.com.bonus630.thefrog.Shared;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Items
 {
-    public class FrammeblaTile : MonoBehaviour,IElement
+    public class FrammeblaTile : Frammabla
     {
 
         Tilemap tileMap;
-        [SerializeField] GameObject fire;
         HashSet<Vector3Int> tilesPos = new();
         
 
@@ -20,10 +20,8 @@ namespace br.com.bonus630.thefrog
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            //Debug.Log("[frammeblaTile] collision:" + collision.gameObject.name);
             if (collision.collider.TryGetComponent<IElement>(out IElement el) && el.GetElement == Elements.Fire )
             {
-
                 Vector2 point = collision.GetContact(0).point;
                 Vector3Int tilePos = tileMap.WorldToCell(point);
                 if (tilesPos.Contains(tilePos))
@@ -34,29 +32,9 @@ namespace br.com.bonus630.thefrog
                 // tileMap.SetColor(tilePos, Color.red);
                 int cont = tileMap.GetUsedTilesCount();
                 Instantiate(fire, point, Quaternion.identity);
-
             }
         }
 
-        [field: SerializeField] public  Elements GetElement { get; set; } = Elements.Fire;
-        [field: SerializeField] public Color ElementColor { get; set; } = Color.red;
 
-        public Elements CanActiveBy() => Elements.Fire;
-        public Elements CanDeactiveBy() => Elements.Water;
-   
-
-        public void ActiveBy(Elements element)
-        {
-            ActiveDeactive(true);
-        }
-
-        public void DeactiveBy(Elements element)
-        {
-            ActiveDeactive(false);
-        }
-        private void ActiveDeactive(bool active)
-        {
-           
-        }
     }
 }

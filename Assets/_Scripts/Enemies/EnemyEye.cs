@@ -11,7 +11,7 @@ namespace br.com.bonus630.thefrog.Enemies
         [SerializeField] float speed;
         Vector2 destine;
         int current = 0;
-
+        public bool isActived { get; set; }
         public void ActiveBy(Elements element)
         {
             if (element.Equals(Elements.Lightining))

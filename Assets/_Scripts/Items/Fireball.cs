@@ -14,11 +14,11 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] AudioClip hitting;
         [SerializeField] Light2D light2D;
         [SerializeField] GameObject FireSprite;
+        [field:SerializeField]public bool isActived { get; set; }
 
         AudioSource audioSource;
         //Vector3 direction;
         Rigidbody2D rb;
-
         bool remove = false;
         private void Awake()
         {

@@ -64,43 +64,113 @@ namespace br.com.bonus630.thefrog.Items
             //  rigidbody.gravityScale = 1;
 
         }
-
+        //meu codigo
         bool hitWall = false;
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //   // Debug.Log("Collision Shyruken 2: " + collision.gameObject.name);
+        //    if (collision.gameObject.CompareTag("Player"))
+        //        return;
+        //    if (collision.gameObject.layer == 8)
+        //    {
+        //        if (hitWall)
+        //        {
+        //            rb.gravityScale = 0;
+        //            coll.isTrigger = true;
+        //            rb.linearVelocity = Vector2.zero;
+        //            rb.freezeRotation = true;
+        //        }
+        //        else
+        //        {
+        //            Vector2 normal = collision.GetContact(0).normal;
+        //            StartCoroutine(ChangeHitWall());
+        //            hitting.PlayOneShot(hittingSound);
+        //            rb.freezeRotation = false;
+        //            rb.constraints = RigidbodyConstraints2D.None;
+        //            rb.gravityScale = 1;
+        //            rb.AddForce(new Vector2(normal.x * Random.Range(2,5), Random.Range(2, 5)), ForceMode2D.Impulse);
+        //            rb.AddTorque(Random.Range(2, 5));
+        //        }
+        //        return;
+        //    }
+
+
+        //    //Debug.Log(collision.contacts[0].normal);
+        //    Destroy(gameObject);
+
+        //}
+
+        //IA
         private void OnCollisionEnter2D(Collision2D collision)
         {
-           // Debug.Log("Collision Shyruken 2: " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Player"))
                 return;
+
             if (collision.gameObject.layer == 8)
             {
+               // Vector2 normal = collision.GetContact(0).normal;
+                Vector2 normal = GetNormal(collision);
+
                 if (hitWall)
                 {
-                    rb.gravityScale = 0;
-                    coll.isTrigger = true;
-                    rb.linearVelocity = Vector2.zero;
-                    rb.freezeRotation = true;
+                    if (normal.y > 0.5f) // só para em chão
+                    {
+                        rb.gravityScale = 0;
+                        coll.isTrigger = true;
+                        rb.linearVelocity = Vector2.zero;
+                        rb.freezeRotation = true;
+                    }
+                    else
+                    {
+                        // ainda não é chão → continua ricochete
+                        Bounce(normal);
+                    }
                 }
                 else
                 {
-                    Vector2 normal = collision.contacts[0].normal;
                     StartCoroutine(ChangeHitWall());
                     hitting.PlayOneShot(hittingSound);
-                    rb.freezeRotation = false;
-                    rb.constraints = RigidbodyConstraints2D.None;
-                    rb.gravityScale = 1;
-                    rb.AddForce(new Vector2(normal.x * Random.Range(2,5), Random.Range(2, 5)), ForceMode2D.Impulse);
-                    rb.AddTorque(Random.Range(2, 5));
+                    Bounce(normal);
                 }
+
                 return;
             }
 
-
-            //Debug.Log(collision.contacts[0].normal);
             Destroy(gameObject);
+        }
+        int bounceCount = 0;
+        void Bounce(Vector2 normal)
+        {
+            float factor = Mathf.Pow(0.5f, bounceCount);
+            Debug.Log("factor:" + factor);
+     
 
+            rb.freezeRotation = false;
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.gravityScale = 1;
+
+            Vector2 force = normal * Random.Range(2f * factor, 5f * factor);
+            force += Vector2.up * Random.Range(2f * factor, 5f * factor);
+
+            rb.AddForce(force, ForceMode2D.Impulse);
+            rb.AddTorque(Random.Range(2f, 5f));
+            bounceCount++;
+        }
+        private Vector2 GetNormal(Collision2D collision)
+        {
+            Vector2 normal = Vector2.zero;
+
+            for (int i = 0; i < collision.contactCount; i++)
+            {
+                normal += collision.GetContact(i).normal;
+            }
+
+            normal.Normalize();
+            return normal;
         }
         private IEnumerator ChangeHitWall()
         {
+           /// yield return new WaitForSeconds(0.1f);
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
             hitWall = true;

@@ -48,4 +48,6 @@ MonoBehaviour:
   ScenePointsDatas:
   - {fileID: 11400000, guid: c1b2c93e4908a274ca9a79e992e0ed94, type: 2}
   - {fileID: 11400000, guid: 5f0f79fe62625ef4fbc1b46cc2aef1a1, type: 2}
+  - {fileID: 11400000, guid: 5a719a971c3601a45b536198b88c8435, type: 2}
+  - {fileID: 11400000, guid: 61a769ff4b0981540b9408033d5a536c, type: 2}
   sceneIndex: -1

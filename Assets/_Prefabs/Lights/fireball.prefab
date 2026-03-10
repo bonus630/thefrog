@@ -219,6 +219,9 @@ MonoBehaviour:
   hitting: {fileID: 8300000, guid: 443bb4ec63638d34a85f24118c13431d, type: 3}
   light2D: {fileID: 0}
   FireSprite: {fileID: 0}
+  <isActived>k__BackingField: 1
+  <GetElement>k__BackingField: 1
+  <ElementColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
 --- !u!58 &3035831052573965113
 CircleCollider2D:
   m_ObjectHideFlags: 0

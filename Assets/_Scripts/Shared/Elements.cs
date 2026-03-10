@@ -8,6 +8,8 @@ namespace br.com.bonus630.thefrog.Shared
     {
         [field: SerializeField]public Elements GetElement { get; set; } 
         [field: SerializeField] public Color ElementColor { get; set; }
+        public bool isActived { get; set; }
+
         [SerializeField] Elements activeBy;
         [SerializeField] Elements deactiveBy;
 

@@ -5,6 +5,7 @@ namespace br.com.bonus630.thefrog.Shared
 {
     public interface IElement 
     {
+        bool isActived { get; set; }
         Elements GetElement { get; }
 
         Elements CanActiveBy();

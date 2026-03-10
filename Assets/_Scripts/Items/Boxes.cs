@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Items
 {
-    public class Boxes : IActivator
+    public class Boxes : IActivator 
     {
-   
+        //vamos separar isso para IHitReaction, deixar o iactivator para realmente o que ele foi desenhado no projeto
+
         [SerializeField] SpriteRenderer spriteRenderer;
         //[SerializeField] GameObject[] pierces;
         [SerializeField] AudioSource audioSource;

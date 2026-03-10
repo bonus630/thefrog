@@ -222,79 +222,79 @@ namespace br.com.bonus630.thefrog.Player
             //Gizmos.DrawWireCube(Vector3.zero, new Vector3(0.140f, 0.01f));
 
 #if UNITY_EDITOR
-            //if (Input.GetKeyUp(KeyCode.K))
-            //   // UpdatePlayer();
-            // GameManager.Instance.TesteThumb();
-            //if (Input.GetKeyUp(KeyCode.W))
-            //{
-            //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
-            //    //CreateBar(Color.green,0.4f);
-            //    //foreach (var c in g.GetComponents(typeof(IBarUI)))
-            //    //{
-            //    //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
-            //    //    (c as IBarUI).GoToValue(50);
-            //    //}
+            if (Input.GetKeyUp(KeyCode.K))
+                UpdatePlayer();
+               // GameManager.Instance.TesteThumb();
+               //if (Input.GetKeyUp(KeyCode.W))
+               //{
+               //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
+               //    //CreateBar(Color.green,0.4f);
+               //    //foreach (var c in g.GetComponents(typeof(IBarUI)))
+               //    //{
+               //    //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
+               //    //    (c as IBarUI).GoToValue(50);
+               //    //}
 
-            //    //playerMovement.FallsControl();
-            //    //GameManager.Instance.TesteThumb();
-            //    //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
-            //    //StartCoroutine(DestroyEffects(s));
-            //    //Debug.Log(s.camerasController);
-            //    //s.ScreenAndGamepadShake();
-            //    //s.FadeOut();
-            //    //Debug.Log(s);
-            //    //MusicSource m = FindAnyObjectByType<MusicSource>();
-            //    //m.CrossFade(BackgroundMusic.AppleTree);
-            //    // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
-            //    //GameManager.Instance.UpdatePlayer();
-            //    //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
-            //}
-            //if (Input.GetKeyUp(KeyCode.T))
-            //{
-            //    GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
-            //    //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
-            //}
-            //if (Input.GetKeyUp(KeyCode.Alpha9))
-            //    GameManager.Instance.UpdateMaxHearts(1);
-            //if (Input.GetKeyUp(KeyCode.Alpha8))
-            //    GameManager.Instance.UpdateHeart(-1);
-            //if (Input.GetKeyUp(KeyCode.Alpha1))
-            //    GameManager.Instance.SaveStates(1);
-            //if (Input.GetKeyUp(KeyCode.Alpha2))
-            //{
-            //    GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
-            //}
-            //if (Input.GetKeyUp(KeyCode.Alpha7))
-            //{
-            //    GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_" + Random.Range(0, 10000));
-            //    GameManager.Instance.PlayerStates.Collectables++;
-            //    GameManager.Instance.UpdateScore();
-            //}
-            //if (Input.anyKeyDown)
-            //{
-            //    switch (true)
-            //    {
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
-            //            Time.timeScale = 0.1f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
-            //            Time.timeScale = 0.2f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
-            //            Time.timeScale = 0.3f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
-            //            Time.timeScale = 0.4f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
-            //            Time.timeScale = 0.5f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
-            //            Time.timeScale = 1f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
-            //            Time.timeScale = 1.5f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
-            //            Time.timeScale = 2f; break;
-            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
-            //            Time.timeScale = 3f; break;
-            //    }
-            //    Debug.LogWarning("Time Scale: " + Time.timeScale);
-            //}
+                //    //playerMovement.FallsControl();
+                //    //GameManager.Instance.TesteThumb();
+                //    //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
+                //    //StartCoroutine(DestroyEffects(s));
+                //    //Debug.Log(s.camerasController);
+                //    //s.ScreenAndGamepadShake();
+                //    //s.FadeOut();
+                //    //Debug.Log(s);
+                //    //MusicSource m = FindAnyObjectByType<MusicSource>();
+                //    //m.CrossFade(BackgroundMusic.AppleTree);
+                //    // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+                //    //GameManager.Instance.UpdatePlayer();
+                //    //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
+                //}
+                //if (Input.GetKeyUp(KeyCode.T))
+                //{
+                //    GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
+                //    //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
+                //}
+                //if (Input.GetKeyUp(KeyCode.Alpha9))
+                //    GameManager.Instance.UpdateMaxHearts(1);
+                //if (Input.GetKeyUp(KeyCode.Alpha8))
+                //    GameManager.Instance.UpdateHeart(-1);
+                //if (Input.GetKeyUp(KeyCode.Alpha1))
+                //    GameManager.Instance.SaveStates(1);
+                //if (Input.GetKeyUp(KeyCode.Alpha2))
+                //{
+                //    GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
+                //}
+                //if (Input.GetKeyUp(KeyCode.Alpha7))
+                //{
+                //    GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_" + Random.Range(0, 10000));
+                //    GameManager.Instance.PlayerStates.Collectables++;
+                //    GameManager.Instance.UpdateScore();
+                //}
+                //if (Input.anyKeyDown)
+                //{
+                //    switch (true)
+                //    {
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
+                //            Time.timeScale = 0.1f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
+                //            Time.timeScale = 0.2f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
+                //            Time.timeScale = 0.3f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
+                //            Time.timeScale = 0.4f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
+                //            Time.timeScale = 0.5f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
+                //            Time.timeScale = 1f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
+                //            Time.timeScale = 1.5f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
+                //            Time.timeScale = 2f; break;
+                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
+                //            Time.timeScale = 3f; break;
+                //    }
+                //    Debug.LogWarning("Time Scale: " + Time.timeScale);
+                //}
 
 #endif
 

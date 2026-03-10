@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1153860895771098689}
   - component: {fileID: 8994467888983113056}
   - component: {fileID: 6937232131578843617}
+  - component: {fileID: 7923256478896406217}
+  - component: {fileID: 2236576468598987867}
   m_Layer: 8
   m_Name: Table01
   m_TagString: Untagged
@@ -134,3 +136,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.34375, y: 0.9375}
   m_EdgeRadius: 0
+--- !u!114 &7923256478896406217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386113669672121477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e81e4c6f2c6a14f94f86b69d104f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: {fileID: 597866257985006302, guid: 8d372e7aed44c714b81320ae3444ec3f, type: 3}
+  <GetElement>k__BackingField: 1
+  <ElementColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
+  fires: 5
+--- !u!114 &2236576468598987867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386113669672121477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c94aa7b868ec6d46880aaac6337cc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

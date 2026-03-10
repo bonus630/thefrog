@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] float intensity = 1f;
         bool hit = false;
         //  ParticleSystem ps;
-
+        public bool isActived { get; set; }
         private void Awake()
         {
             //   ps = GetComponent<ParticleSystem>();

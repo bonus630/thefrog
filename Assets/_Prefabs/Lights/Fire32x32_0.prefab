@@ -171,6 +171,7 @@ MonoBehaviour:
   hitting: {fileID: 8300000, guid: 443bb4ec63638d34a85f24118c13431d, type: 3}
   light2D: {fileID: 4757593259147582708}
   FireSprite: {fileID: 597866257985006302}
+  <isActived>k__BackingField: 1
   <GetElement>k__BackingField: 1
   <ElementColor>k__BackingField: {r: 1, g: 0.29682127, b: 0, a: 1}
 --- !u!82 &4719819413791092265

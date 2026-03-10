@@ -4,6 +4,7 @@ namespace br.com.bonus630.thefrog.Shared
 {
     public abstract class ElementFire : MonoBehaviour , IElement
     {
+        public bool isActived { get; set; }
         public virtual Elements GetElement => Elements.Fire;
         public virtual Color ElementColor => Color.red;
         public virtual Elements CanActiveBy() => Elements.Fire;

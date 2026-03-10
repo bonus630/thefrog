@@ -1,7 +1,7 @@
 using System.Collections;
 using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
-namespace br.com.bonus630.thefrog
+namespace br.com.bonus630.thefrog.Items
 {
     [RequireComponent(typeof(Rigidbody2D),typeof(AudioSource),typeof(Collider2D))]
     

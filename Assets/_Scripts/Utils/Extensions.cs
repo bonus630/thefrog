@@ -11,11 +11,23 @@ namespace br.com.bonus630.thefrog.Utils
             float y = Random.Range(bound.center.y - bound.size.y / 2,bound.center.y + bound.size.y / 2);
             return new Vector2(x,y);
         }
+        public static Vector2 RandomVector2(this  Rect bound)
+        {
+            float x = Random.Range(bound.center.x - bound.size.x / 2, bound.center.x + bound.size.x / 2);
+            float y = Random.Range(bound.center.y - bound.size.y / 2, bound.center.y + bound.size.y / 2);
+            return new Vector2(x, y);
+        }
         public static Vector2 Vector2FromRect(this System.Random random,Bounds bound)
         {
             float x = Random.Range(bound.center.x - bound.size.x / 2,bound.center.x + bound.size.x / 2);
             float y = Random.Range(bound.center.y - bound.size.y / 2,bound.center.y + bound.size.y / 2);
             return new Vector2(x,y);
+        }
+        public static Vector2 RandomVector2(this Bounds bound)
+        {
+            float x = Random.Range(bound.center.x - bound.size.x / 2, bound.center.x + bound.size.x / 2);
+            float y = Random.Range(bound.center.y - bound.size.y / 2, bound.center.y + bound.size.y / 2);
+            return new Vector2(x, y);
         }
 
         public static bool ContainsChildren(this Transform transform, string childrenName)

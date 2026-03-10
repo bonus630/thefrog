@@ -117,6 +117,7 @@ namespace br.com.bonus630.thefrog.Manager
         private void Start()
         {
             PauseAction.Enable();
+            Debug.Log($"[GameManager] start PauseInput:{PauseAction.enabled} ");
             //Time.timeScale = 0.5f;
         }
         public bool LoadVolum(out float soundVolum, out float musicVolum)
@@ -175,7 +176,8 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void Pause(bool pause)
         {
-            if (SceneManager.GetActiveScene().name.Equals(MainScene) || SceneManager.GetActiveScene().name.Equals(InternAreas))
+            if (SceneManager.GetActiveScene().name.Equals(MainScene) || SceneManager.GetActiveScene().name.Equals(InternAreas) ||
+                SceneManager.GetActiveScene().name.Equals("Castle") || SceneManager.GetActiveScene().name.Equals("CastleBoss"))
                 TryPause(pause, PauseHUD, out GameObject go);
 
         }
@@ -309,6 +311,8 @@ namespace br.com.bonus630.thefrog.Manager
         }
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+
+              Debug.Log($"[GameManager] SceneManager_sceneLoaded {arg0.name} PauseInput:{PauseAction.enabled} ");
             ServiceLocator.Instance.GetAsync<MusicSource>((musicSource) =>
             {
                 musicSource.SetMusicVolume(this.musicVolum);
@@ -335,7 +339,6 @@ namespace br.com.bonus630.thefrog.Manager
                 //return;
 
 #endif
-                //  Debug.Log($"[GameManager] SceneManager_sceneLoaded {MainScene} continue:{continueGame} ");
                 if (continueGame)
                 {
                     //Aqui o horario ja esta alterado bug:2051
@@ -676,13 +679,13 @@ namespace br.com.bonus630.thefrog.Manager
             //playerStates.HasGravity = true;
             //playerStates.HasVision = true;
             playerStates.Collectables = 51;
-            //playerStates.HasFireball = true;
+            playerStates.HasFireball = true;
             //playerStates.HasLightning = true;
             playerStates.HasWallJump = true;
             //////playerStates.HasDoubleJump = true;
             //playerStates.FallsControl = true;
             playerStates.HasDash = true;
-            //playerStates.Shurykens = 100;
+            playerStates.Shurykens = 100;
             //playerStates.HasLightning = true;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);

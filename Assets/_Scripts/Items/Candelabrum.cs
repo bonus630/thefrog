@@ -9,6 +9,8 @@ namespace br.com.bonus630.thefrog.Items
         [SerializeField] IActivator ItemToActive;
         [field: SerializeField] public Elements GetElement { get; set; } = Elements.Fire;
         [field: SerializeField] public Color ElementColor { get; set; } = Color.red;
+        public bool isActived { get; set; }
+
         [SerializeField] private bool off = false;
         private readonly int OffID = Animator.StringToHash("Off");
         private Animator anim;

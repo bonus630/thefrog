@@ -21,6 +21,7 @@ namespace br.com.bonus630.thefrog.Items
         float time = 3.75f;
         Animator anim;
         SpriteRenderer spriteRenderer;
+        public bool isActived { get; set; }
         private void Awake()
         {
             //   ps = GetComponent<ParticleSystem>();
