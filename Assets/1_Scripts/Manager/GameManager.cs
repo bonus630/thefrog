@@ -157,6 +157,7 @@ namespace br.com.bonus630.thefrog.Manager
                 PlayTimeInSeconds += Time.deltaTime;
             }
         }
+        private Coroutine timerCoroutine;
         public void StartTimer(float Time, Action callback)
         {
             if (TimerText == null)
@@ -168,11 +169,11 @@ namespace br.com.bonus630.thefrog.Manager
             audioSource.loop = true;
             audioSource.clip = timeTick;
             audioSource.Play();
-            StartCoroutine(startTimerCouroutine(Time, callback));
+            timerCoroutine = StartCoroutine(startTimerCouroutine(Time, callback));
         }
         private IEnumerator startTimerCouroutine(float Time, Action callback)
         {
-            while (startTimer + Time > GetElapsedTime())
+           while (startTimer + Time > GetElapsedTime())
             {
                 yield return new WaitForSeconds(1);
                 TimeSpan time = TimeSpan.FromSeconds(startTimer + Time - GetElapsedTime());
@@ -184,6 +185,16 @@ namespace br.com.bonus630.thefrog.Manager
             audioSource.PlayOneShot(timeOver);
             callback?.Invoke();
             TimeOverEvent?.Invoke();
+        }
+        public void StopTimer()
+        {
+            if (timerCoroutine == null)
+                return;
+            StopCoroutine(timerCoroutine);
+            TimerText.transform.parent.gameObject.SetActive(false);
+            audioSource.loop = false;
+            audioSource.Stop();
+            timerCoroutine = null;
         }
         public void Pause(bool pause)
         {
@@ -701,7 +712,7 @@ namespace br.com.bonus630.thefrog.Manager
             playerStates.HasLightning = true;
             playerStates.HasWallJump = true;
             //////playerStates.HasDoubleJump = true;
-            //playerStates.FallsControl = true;
+            playerStates.FallsControl = true;
             playerStates.HasDash = true;
             playerStates.Shurykens = 100;
             //playerStates.HasLightning = true;
@@ -713,7 +724,7 @@ namespace br.com.bonus630.thefrog.Manager
             //this.EventCompleted(GameEventName.MagicGlass, false);
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
-            //this.EventCompleted(GameEventName.FireBall, false);
+            this.EventCompleted(GameEventName.FireBall, false);
             //////this.EventCompleted(GameEventName.RollingWind, false);
             //////this.EventCompleted(GameEventName.PrisionerTip, false);
             //this.EventCompleted(GameEventName.LadyLaments, false);

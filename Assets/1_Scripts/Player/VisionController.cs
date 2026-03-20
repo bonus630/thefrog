@@ -187,5 +187,19 @@ namespace br.com.bonus630.thefrog.Player
                 return false;
             return other.IsTouching(visionCollider);
         }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Tips"))
+            {
+                gameObject.layer = 9;
+            }
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Tips"))
+            {
+                gameObject.layer = 23;
+            }
+        }
     }
 }

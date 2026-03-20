@@ -18,6 +18,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] Tilemap foreground;
         [SerializeField] GameObject explosion;
 
+        public bool endStep;
 
         AudioSource AudioSource;
         BoxCollider2D col;
@@ -87,23 +88,26 @@ namespace br.com.bonus630.thefrog.Activators
         bool timeOver = false;
         public void EndScene()
         {
+            if (endStep)
+                return;
+            endStep = true;
             screenEffects.StopCameraShake();
             screenEffects.GamepadShake();
-            StartCoroutine(EndSceneCoroutine()); 
             GameManager.Instance.StartTimer(15f, () => { timeOver = true; });
+            StartCoroutine(EndSceneCoroutine()); 
             //GameManager.Instance.TimeOverEvent += ;
         }
         IEnumerator EndSceneCoroutine()
         {
-            System.Random rand = new System.Random();
+            yield return null;
             while (true)
             {
-                GameObject explo = Instantiate(explosion, rand.Vector2FromRect(col.bounds), Quaternion.identity);
+                GameObject explo = Instantiate(explosion, col.bounds.RandomVector2(), Quaternion.identity);
                 float var = Random.Range(5, 10);
                 explo.transform.localScale = new Vector3(var, var, 0);
                 if (timeOver)
                     GameManager.Instance.GetPlayerScript.Hit();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.7f);
                 Destroy(explo,2f);
             }
             

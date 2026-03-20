@@ -16,7 +16,7 @@ namespace br.com.bonus630.thefrog.Caracters
         /// <returns></returns>
         bool HaveMoreDialogue();
         /// <summary>
-        /// O player executa esse metodo assim que não existe mais falas no dialogo
+        /// O player executa esse metodo assim que não exista mais falas no dialogo
         /// </summary>
         void SetFinishDialogue();
         DialogueData GetDialogueForPlayer();

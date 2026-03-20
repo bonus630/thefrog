@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using br.com.bonus630.thefrog.Debuggers;
 using br.com.bonus630.thefrog.Items;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
@@ -44,6 +42,8 @@ namespace br.com.bonus630.thefrog.Player
         public SchedulerDirector playerDirector { get; private set; }
 
         private Rigidbody2D rb;
+        private PlayerInput playerInput;
+        
         [Header("Others")]
         [SerializeField] public Animator anim;
         public WallCheck WallCheck { get; private set; }
@@ -78,6 +78,7 @@ namespace br.com.bonus630.thefrog.Player
         public RigidbodyType2D RigibodyBodyType { get { return rb.bodyType; } set { rb.bodyType = value; } }
 
         public event System.Action<float> GravityChanged;
+        public event System.Action<bool> FastFall;
         private  Scene bornScene; 
         void Awake()
         {
@@ -94,6 +95,7 @@ namespace br.com.bonus630.thefrog.Player
             WallCheck = GetComponent<WallCheck>();
             playerDialogue = GetComponent<PlayerDialogue>();
             playerHealth = GetComponent<PlayerHealth>();
+            playerHealth.OnPrepareFallDie += PlayerHealth_OnPrepareFallDie;
             playerMovement = GetComponent<PlayerMovement>();
             playerDirector = GetComponent<SchedulerDirector>();
             playerFallControl = GetComponent<PlayerFallControl>();
@@ -101,14 +103,16 @@ namespace br.com.bonus630.thefrog.Player
             barManager = GetComponent<BarManager>();
             playerManager = GetComponent<PlayerManager>();
             playerManager.GameEventChange(() => { playerSpiritController.GameEventsChanged(); });
-            playerManager.UpdatePlayerEvent += PlayerManager_UpdatePlayerEvent; 
+            playerManager.UpdatePlayerEvent += PlayerManager_UpdatePlayerEvent;
+            playerInput = GetComponent<PlayerInput>();
             //Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
-            ServiceLocator.Instance.Register<PlayerInput>(GetComponent<PlayerInput>());
+            ServiceLocator.Instance.Register<PlayerInput>(playerInput);
             ServiceLocator.Instance.Register<IPlayer>(this);
             ServiceLocator.Instance.Register("Player", gameObject);
             
         }
 
+        private void PlayerHealth_OnPrepareFallDie(bool obj)=>FastFall?.Invoke(obj);
 
         private void Start()
         {
@@ -429,10 +433,7 @@ namespace br.com.bonus630.thefrog.Player
             interactIcon.SetActive(true);
             Invoke(nameof(Dealert), 2f);
         }
-        private void Dealert()
-        {
-            interactIcon.SetActive(false);
-        }
+        private void Dealert() => interactIcon.SetActive(false);
         public void Launch()
         {
             //bug
@@ -509,26 +510,11 @@ namespace br.com.bonus630.thefrog.Player
                 knockUp = false;
             }
         }
-        private void Die()
-        {
-            StartCoroutine(playerHealth.Die());
-        }
-        public void Hit()
-        {
-            playerHealth.Hit();
-        }
-        public void Hit(int damage)
-        {
-            playerHealth.Hit(damage);
-        }
-        public void GameOver()
-        {
-            playerHealth.GameOver();
-        }
-        public bool FooterTouching(Collider2D collision)
-        {
-            return footerCollider.IsTouching(collision);
-        }
+        private void Die() => StartCoroutine(playerHealth.Die());
+        public void Hit() => playerHealth.Hit();
+        public void Hit(int damage) => playerHealth.Hit(damage);
+        public void GameOver() => playerHealth.GameOver();
+        public bool FooterTouching(Collider2D collision) => footerCollider.IsTouching(collision);
         public bool BodyTouching(Collider2D collision)
         {
             if(collision == null)
@@ -546,18 +532,21 @@ namespace br.com.bonus630.thefrog.Player
           return col.IsTouchingLayers(layer);
           
         }
-        public void ChangeNumberShurykens(int shurykens)
+        public void ChangeNumberShurykens(int shurykens) => playerManager.UpdateShurykens(shurykens);
+        public void ReadDialogue() => playerDialogue.ReadDialogue();
+        public void CancelDialogue() => playerDialogue.CancelDialogue();
+        public InputAction GetInputAction(string actionName) => playerInput.actions[actionName];
+        public InputDevice GetCurrentDevice() => GetComponent<PlayerInputHandler>().LastDevice;
+
+        public string GetFormattedInputName(string actionName)
         {
-            playerManager.UpdateShurykens(shurykens);
+    
+           var device = GetCurrentDevice();
+           string controlName =  Utils.DeviceDetector.GetControlName(GetInputAction(actionName), device);
+            string formattedInput =  $"{Utils.DeviceDetector.GetCategory(device)}_{Utils.DeviceDetector.GetReplacedName(Utils.DeviceDetector.GetCategory(device),controlName)}";
+            return formattedInput;
         }
-        public void ReadDialogue()
-        {
-            playerDialogue.ReadDialogue();
-        }
-        public void CancelDialogue()
-        {
-            playerDialogue.CancelDialogue();
-        }
+
         public void FallsControl()
         {
             playerMovement.FallsControl();
@@ -601,6 +590,7 @@ namespace br.com.bonus630.thefrog.Player
         private void OnDisable()
         {
             playerManager.UpdatePlayerEvent -= PlayerManager_UpdatePlayerEvent;
+            playerHealth.OnPrepareFallDie -= PlayerHealth_OnPrepareFallDie;
         }
     }
     public enum PlayerGravityDirection : short

@@ -22,6 +22,8 @@ namespace br.com.bonus630.thefrog.Manager
         public PolygonCollider2D prevConfiner;
         public CinemachineVirtualCamera currentCamera;
 
+        private float[] orthoSizes = { 4, 6.38f, 7, 6.38f };
+
         public void SwitchConfiner(PolygonCollider2D confiner,GameObject nextCamera)
         {
             CinemachineVirtualCamera cam = GetActiveVirtualCamera();
@@ -56,6 +58,31 @@ namespace br.com.bonus630.thefrog.Manager
         private void Awake()
         {
              ServiceLocator.Instance.Register<CamerasController>(this);
+            
+        }
+        private void Start()
+        {
+            ServiceLocator.Instance.Get<IPlayer>().FastFall += CamerasController_FastFall;
+        }
+
+        private void CamerasController_FastFall(bool obj)
+        {
+            if(obj)
+            {
+                SetOrthoSize(new float[4] { 10f,10,10,10 });
+            }
+            else
+            {
+                SetOrthoSize(orthoSizes);
+            }
+            
+        }
+        private void SetOrthoSize(float[] sizes)
+        {
+            for (int i = 0; i < Cameras.Count; i++)
+            {
+                Cameras[i].GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = sizes[i];
+            }
         }
         public CinemachineVirtualCamera GetSkyCam()
         {

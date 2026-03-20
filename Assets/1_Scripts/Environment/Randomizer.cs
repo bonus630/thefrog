@@ -13,6 +13,7 @@ namespace br.com.bonus630.thefrog.Environment
 
         void Start()
         {
+            Debug.Log("[Randomizer] create:" + gameObject.name);
             int spawnIndex = Random.Range(0, SpawnPoints.Count);
             Transform point = SpawnPoints[spawnIndex];
             if(RealGameObject!=null)

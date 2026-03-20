@@ -25,7 +25,7 @@ namespace br.com.bonus630.thefrog.Player
             //temos que melhorar isso aqui
             if (interacting != null)
             {
-                canInteract = Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.1f && player.WallCheck.IsFaceTo(interacting.GetTransform());
+                canInteract = Mathf.Abs(transform.position.x - interacting.GetTransform().position.x) < 1.2f && player.WallCheck.IsFaceTo(interacting.GetTransform());
                 interacting.ReadyToInteract(canInteract);
             }
             else
@@ -89,9 +89,8 @@ namespace br.com.bonus630.thefrog.Player
             if (collision.gameObject.CompareTag("Tips"))
             {
                // Debug.Log("[PlayerDialogue]tips trigger enter:" + interacting);
-                tips = collision.gameObject.GetComponent<ITips>();
-                dialogueSystem.DialogueData = tips.GetDialogue();
-                tips.AutoPlayer(gameObject);
+               
+                SetTip(collision.gameObject.GetComponent<ITips>());
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
@@ -111,12 +110,23 @@ namespace br.com.bonus630.thefrog.Player
             if (collision.gameObject.CompareTag("Tips"))
             {
                 //  Debug.Log("tips trigger exit");
-                tips = null;
-                dialogueSystem.ResetDialog();
+                ResetTip();
             }
+        }
+        public void SetTip(ITips tip)
+        {
+            this.tips = tip;
+            dialogueSystem.DialogueData = tips.GetDialogue();
+            tips.AutoPlayer(gameObject);
+        }
+        public void ResetTip()
+        {
+            this.tips = null;
+            dialogueSystem.ResetDialog();
         }
         public void ReadDialogue()
         {
+            Debug.Log("[PlayerDialogue] readDialogue");
             dialogueSystem.DialoguePosition = GetDialogPosition();
             dialogueSystem.Next();
         }

@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4639075125991332757}
   - component: {fileID: 5589769023227887569}
+  - component: {fileID: 6242068594839916338}
   m_Layer: 10
   m_Name: FakeFloor
   m_TagString: Untagged
@@ -168,6 +169,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.952893, y: 0.3881778}
   m_EdgeRadius: 0
+--- !u!114 &6242068594839916338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286473942825815867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e3eaa0920119f40b99a5a435b4f55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5161205333403987829
 GameObject:
   m_ObjectHideFlags: 0

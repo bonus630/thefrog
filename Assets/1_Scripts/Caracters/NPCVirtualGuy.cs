@@ -86,7 +86,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         private int EvaluateDialogue()
         {
-            bool hasSkill = GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch);
+            bool hasSkill =  GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch);
             bool treeFound = GameManager.Instance.IsEventCompleted(GameEventName.AppleTreeFounded);
 
             bool d0 = dialoguesData[0].IsReaded;

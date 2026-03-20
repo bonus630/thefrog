@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
@@ -17,9 +18,16 @@ namespace br.com.bonus630.thefrog.Player
         private float hitTime;
         protected readonly int HitID = Animator.StringToHash("Hit");
         protected readonly int LifeID = Animator.StringToHash("Life");
-        public bool PrepareFallDie { get; set; } = false;
+        private bool prepareFallDie = false;
+        public bool PrepareFallDie { 
+            get { return prepareFallDie; } 
+            set {
+                if(value != prepareFallDie) 
+                    OnPrepareFallDie?.Invoke(value);
+                prepareFallDie = value;
+            } }
         public bool InHit { get; private set; }
-
+        public event Action<bool> OnPrepareFallDie;
         private void Start()
         {
             CurrentLife = player.playerManager.PlayerStates.Hearts;

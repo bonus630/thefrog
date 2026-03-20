@@ -1,0 +1,1933 @@
+fileFormatVersion: 2
+guid: b0921f18f11e8a54ca44f09f1d4a0149
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2667601937048796137
+    second: AllButtons_0
+  - first:
+      213: 8214095464950831658
+    second: AllButtons_1
+  - first:
+      213: 3330059195138927908
+    second: AllButtons_2
+  - first:
+      213: 2411212472365977688
+    second: AllButtons_3
+  - first:
+      213: -3584729956510026820
+    second: AllButtons_4
+  - first:
+      213: -5036017874119578007
+    second: AllButtons_5
+  - first:
+      213: 8358031735429160076
+    second: AllButtons_6
+  - first:
+      213: -1346192342640614101
+    second: AllButtons_7
+  - first:
+      213: 3048046727508453914
+    second: AllButtons_8
+  - first:
+      213: -1598660791985785328
+    second: AllButtons_9
+  - first:
+      213: -55883367789263871
+    second: AllButtons_10
+  - first:
+      213: 4870583925440662370
+    second: AllButtons_11
+  - first:
+      213: -5343104428733539016
+    second: AllButtons_12
+  - first:
+      213: 4637296544684726787
+    second: AllButtons_13
+  - first:
+      213: -7623941836676379646
+    second: AllButtons_14
+  - first:
+      213: -218204792859334503
+    second: AllButtons_15
+  - first:
+      213: -4705361236846966694
+    second: AllButtons_16
+  - first:
+      213: 5074925829654688468
+    second: AllButtons_17
+  - first:
+      213: -8621510400839366488
+    second: AllButtons_18
+  - first:
+      213: 8033685832096523929
+    second: AllButtons_19
+  - first:
+      213: -4325344483412377081
+    second: AllButtons_20
+  - first:
+      213: -3545097406111724251
+    second: AllButtons_21
+  - first:
+      213: -1446568011463190389
+    second: AllButtons_22
+  - first:
+      213: 9172018823517258570
+    second: AllButtons_23
+  - first:
+      213: 6191934784453491013
+    second: AllButtons_24
+  - first:
+      213: -3378620415173508254
+    second: AllButtons_25
+  - first:
+      213: -7756046531487774873
+    second: AllButtons_26
+  - first:
+      213: -7105838415379137814
+    second: AllButtons_27
+  - first:
+      213: 2537499004336207649
+    second: AllButtons_28
+  - first:
+      213: -6643489563445633184
+    second: AllButtons_29
+  - first:
+      213: -2801215014503850406
+    second: AllButtons_30
+  - first:
+      213: -3770037549661132662
+    second: AllButtons_31
+  - first:
+      213: -5557311362914362804
+    second: AllButtons_32
+  - first:
+      213: -3376421101684041893
+    second: AllButtons_33
+  - first:
+      213: 8137079396453190131
+    second: AllButtons_34
+  - first:
+      213: 8744901716778303309
+    second: AllButtons_35
+  - first:
+      213: 8403930871317876283
+    second: AllButtons_36
+  - first:
+      213: -5850876844355741516
+    second: AllButtons_37
+  - first:
+      213: 2410170924539388714
+    second: AllButtons_38
+  - first:
+      213: 1779864487194225798
+    second: AllButtons_39
+  - first:
+      213: 6847605546451414030
+    second: AllButtons_40
+  - first:
+      213: -2951433304647852272
+    second: AllButtons_41
+  - first:
+      213: 3318992471164133680
+    second: AllButtons_42
+  - first:
+      213: 6356605897955753315
+    second: AllButtons_43
+  - first:
+      213: 8461833717731056131
+    second: AllButtons_44
+  - first:
+      213: -4289030507130721770
+    second: AllButtons_45
+  - first:
+      213: -2148114611371266679
+    second: AllButtons_46
+  - first:
+      213: -5039968571366158257
+    second: AllButtons_47
+  - first:
+      213: -6196702832253481671
+    second: AllButtons_48
+  - first:
+      213: -1297830953353935080
+    second: AllButtons_49
+  - first:
+      213: 1764949140100585591
+    second: AllButtons_50
+  - first:
+      213: -693140774681856385
+    second: AllButtons_51
+  - first:
+      213: -7352088572964096500
+    second: AllButtons_52
+  - first:
+      213: -695747590148242303
+    second: AllButtons_53
+  - first:
+      213: -8897989534198756312
+    second: AllButtons_54
+  - first:
+      213: -8889393967935330737
+    second: AllButtons_55
+  - first:
+      213: -5494236041543085147
+    second: AllButtons_56
+  - first:
+      213: -7606605691137564993
+    second: AllButtons_57
+  - first:
+      213: -7137208719926276129
+    second: AllButtons_58
+  - first:
+      213: 6366774350791611582
+    second: AllButtons_59
+  - first:
+      213: -1209654424594476226
+    second: AllButtons_60
+  - first:
+      213: -806850782179518777
+    second: AllButtons_61
+  - first:
+      213: 6183176668792243741
+    second: AllButtons_62
+  - first:
+      213: -540282917252290500
+    second: AllButtons_63
+  - first:
+      213: -1523647454315815776
+    second: AllButtons_64
+  - first:
+      213: -4601303498134058259
+    second: AllButtons_65
+  - first:
+      213: 6416715301252270008
+    second: AllButtons_66
+  - first:
+      213: -4935547917574506794
+    second: AllButtons_67
+  - first:
+      213: 6304626212277774688
+    second: AllButtons_68
+  - first:
+      213: -8952728081583192984
+    second: AllButtons_69
+  - first:
+      213: -1575523469848890773
+    second: AllButtons_70
+  - first:
+      213: -6886991647147233661
+    second: AllButtons_71
+  - first:
+      213: 5810144446801771238
+    second: AllButtons_72
+  - first:
+      213: 236865198082288178
+    second: AllButtons_73
+  - first:
+      213: 3440621863859515857
+    second: AllButtons_74
+  - first:
+      213: 1604303256955051876
+    second: AllButtons_75
+  - first:
+      213: 2008460126377396140
+    second: AllButtons_76
+  - first:
+      213: 7443847320703266262
+    second: AllButtons_77
+  - first:
+      213: -5241815865626063542
+    second: AllButtons_78
+  - first:
+      213: 4975220958913198332
+    second: AllButtons_79
+  - first:
+      213: 1990868916854629075
+    second: AllButtons_80
+  - first:
+      213: -7628383946105716210
+    second: AllButtons_81
+  - first:
+      213: -5480267005873280980
+    second: AllButtons_82
+  - first:
+      213: -2571950983389438962
+    second: AllButtons_83
+  - first:
+      213: 6943307313018948004
+    second: AllButtons_84
+  - first:
+      213: 212667028480292133
+    second: AllButtons_85
+  - first:
+      213: -5020552262015103475
+    second: AllButtons_86
+  - first:
+      213: 7016733999399947174
+    second: AllButtons_87
+  - first:
+      213: 3173869353798697078
+    second: AllButtons_88
+  - first:
+      213: 1230451357389851858
+    second: AllButtons_89
+  - first:
+      213: 7755814163061882573
+    second: AllButtons_90
+  - first:
+      213: -6582571754389089474
+    second: AllButtons_91
+  - first:
+      213: -305021464865830500
+    second: AllButtons_92
+  - first:
+      213: 573726059670021700
+    second: AllButtons_93
+  - first:
+      213: 6877619996560352450
+    second: AllButtons_94
+  - first:
+      213: -2149939550530862863
+    second: AllButtons_95
+  - first:
+      213: 5380713221398774973
+    second: AllButtons_96
+  - first:
+      213: -4133622243822340595
+    second: AllButtons_97
+  - first:
+      213: 8250624278922228870
+    second: AllButtons_98
+  - first:
+      213: 3517982060508358993
+    second: AllButtons_99
+  - first:
+      213: 5105097782706030936
+    second: AllButtons_100
+  - first:
+      213: 1399753540161406681
+    second: AllButtons_101
+  - first:
+      213: -4034886486740151941
+    second: AllButtons_102
+  - first:
+      213: -7970256245190658506
+    second: AllButtons_103
+  - first:
+      213: -2733953630595726984
+    second: AllButtons_104
+  - first:
+      213: 8450006317644913951
+    second: AllButtons_105
+  - first:
+      213: -4810111797572075558
+    second: AllButtons_106
+  - first:
+      213: 9029785107440053578
+    second: AllButtons_107
+  - first:
+      213: 6711412851556728259
+    second: AllButtons_108
+  - first:
+      213: 1538051463268371166
+    second: AllButtons_109
+  - first:
+      213: -1425813794682425100
+    second: AllButtons_110
+  - first:
+      213: 7303829116273576715
+    second: AllButtons_111
+  - first:
+      213: -5620336824123363556
+    second: AllButtons_112
+  - first:
+      213: -8158284112006667868
+    second: AllButtons_113
+  - first:
+      213: -8361960075576632667
+    second: AllButtons_114
+  - first:
+      213: -5733750923972921042
+    second: AllButtons_115
+  - first:
+      213: 3743593012686101133
+    second: AllButtons_116
+  - first:
+      213: 1049051041062747075
+    second: AllButtons_117
+  - first:
+      213: 4874586832210301971
+    second: AllButtons_118
+  - first:
+      213: 6971439789730941093
+    second: AllButtons_119
+  - first:
+      213: -7433962619862223767
+    second: AllButtons_120
+  - first:
+      213: -482885598509152956
+    second: AllButtons_121
+  - first:
+      213: -3191541469510780443
+    second: AllButtons_122
+  - first:
+      213: -3620005304116518262
+    second: AllButtons_123
+  - first:
+      213: 7913725438280033514
+    second: AllButtons_124
+  - first:
+      213: -2560111935359186958
+    second: AllButtons_125
+  - first:
+      213: -8213150363474802955
+    second: AllButtons_126
+  - first:
+      213: -7346978440620743817
+    second: AllButtons_127
+  - first:
+      213: 259156755866120437
+    second: AllButtons_128
+  - first:
+      213: -598224523905510406
+    second: AllButtons_129
+  - first:
+      213: 7241300834708552201
+    second: AllButtons_130
+  - first:
+      213: -2070363288206808915
+    second: AllButtons_131
+  - first:
+      213: -3563049106172548292
+    second: AllButtons_132
+  - first:
+      213: -2574768537008662615
+    second: AllButtons_133
+  - first:
+      213: 6135030441126371627
+    second: AllButtons_134
+  - first:
+      213: 5873353964076069747
+    second: AllButtons_135
+  - first:
+      213: 7968884633844997718
+    second: AllButtons_136
+  - first:
+      213: 297572687030076919
+    second: AllButtons_137
+  - first:
+      213: -6513321659173055408
+    second: AllButtons_138
+  - first:
+      213: -4680923847650922475
+    second: AllButtons_139
+  - first:
+      213: 2546516881148817101
+    second: AllButtons_140
+  - first:
+      213: 5337021824285796783
+    second: AllButtons_141
+  - first:
+      213: 8056998674538878239
+    second: AllButtons_142
+  - first:
+      213: -2737946646373987665
+    second: AllButtons_143
+  - first:
+      213: 8715742474756798495
+    second: AllButtons_144
+  - first:
+      213: -4109144512039812600
+    second: AllButtons_145
+  - first:
+      213: -6018848183249790301
+    second: AllButtons_146
+  - first:
+      213: -4639267997894179282
+    second: AllButtons_147
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PS_N
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714001cfb26cafad0800000000000000
+      internalID: -2667601937048796137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_Dpad
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2a9a832e445ef170800000000000000
+      internalID: 8214095464950831658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 304
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d674fc13fb63e20800000000000000
+      internalID: 3330059195138927908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 304
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8509d5de7f8567120800000000000000
+      internalID: 2411212472365977688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 304
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3b486e81b704ec0800000000000000
+      internalID: -3584729956510026820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 304
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ea59aec687c1ab0800000000000000
+      internalID: -5036017874119578007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_L1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 276
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8c52b3a491bdf370800000000000000
+      internalID: 8358031735429160076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_R1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 276
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b252e81623d515de0800000000000000
+      internalID: -1346192342640614101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_S
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1aeee37956dc4a20800000000000000
+      internalID: 3048046727508453914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_L2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 261
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016b751da7a60d9e0800000000000000
+      internalID: -1598660791985785328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_R2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 261
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10481128f56793ff0800000000000000
+      internalID: -55883367789263871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_E
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26b4e94564ac79340800000000000000
+      internalID: 4870583925440662370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_W
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83d558fb4da79d5b0800000000000000
+      internalID: -5343104428733539016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_N
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a541053acfa5040800000000000000
+      internalID: 4637296544684726787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_SELECT
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 291
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c4aacfa41523690800000000000000
+      internalID: -7623941836676379646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_START
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 291
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 998e451a5e7c8fcf0800000000000000
+      internalID: -218204792859334503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_SELECT
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 290
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5808d992e233beb0800000000000000
+      internalID: -4705361236846966694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_START
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 290
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2b50a6722cd6640800000000000000
+      internalID: 5074925829654688468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a842aa18fd3a5880800000000000000
+      internalID: -8621510400839366488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 258
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 996a33333b26d7f60800000000000000
+      internalID: 8033685832096523929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_Dpad
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7028207eb1a49f3c0800000000000000
+      internalID: -4325344483412377081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d4d8e11b84dcec0800000000000000
+      internalID: -3545097406111724251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 258
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b881b4dce02ccebe0800000000000000
+      internalID: -1446568011463190389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 242
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4341f8468e894f70800000000000000
+      internalID: 9172018823517258570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 242
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5493cb351eb2ee550800000000000000
+      internalID: 6191934784453491013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_L2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 257
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26343b212aabc11d0800000000000000
+      internalID: -3378620415173508254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_D
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 767454dd5ccfc5490800000000000000
+      internalID: -7756046531487774873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_left
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 114
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aea700c0c9df26d90800000000000000
+      internalID: -7105838415379137814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_right
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 114
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 127fd5376e1073320800000000000000
+      internalID: 2537499004336207649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_up
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 130
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06fdec5d0759dc3a0800000000000000
+      internalID: -6643489563445633184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_down
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 114
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5ed10929c51029d0800000000000000
+      internalID: -2801215014503850406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_a
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46e6b0c84782a480800000000000000
+      internalID: -8889393967935330737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_space
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 114
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 510bc18af840a0fb0800000000000000
+      internalID: -4680923847650922475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_140
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 17
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dce29638c9b075320800000000000000
+      internalID: 2546516881148817101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_S
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 321
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69def8e861d06ce4589208d61e1b48ad
+      internalID: 291194344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_E
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 321
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2b3131f6ff3d949ab2abd2456d233f
+      internalID: 1680968371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PS_W
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 321
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5822df7b94e401145b0ffc5e24c1262e
+      internalID: -578280197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_151
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6687850d4b3a7e9419b53ee69c5f4e69
+      internalID: 334614062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_152
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c48df94b79110dd4589a0d4c1dbc0aba
+      internalID: -1663646317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_153
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1727f7cf8dcccc2488d542bfd69cf568
+      internalID: -1587547528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_154
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1587f1fdbb2de429631aa702147bdb
+      internalID: -373966710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_L1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 275
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5c5696226871d48b932298e2b71442
+      internalID: 1356393400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_R1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 275
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e835f2da00dae145b88002cf91646b4
+      internalID: 1304253555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XBOX_R2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 257
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed502f110488fd43a130e6cab9dceff
+      internalID: -453194332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllButtons_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 194
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71466731e78ae5944af272e6a468c842
+      internalID: 77939643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_E
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 178
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3479e1833f262a04cb394454d7ebcf08
+      internalID: -2028669147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_X
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 146
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d84ec62011de4b4a8779691532bad89
+      internalID: 382516466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_Z
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 178
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 839f3b03b57ab524cb03cae940edadf1
+      internalID: 470177115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_ctrl
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 130
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a86e8a54883d95409b4c0bd986ebf45
+      internalID: 539229198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_Shift
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 114
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d7b95fcaf872ac4ba9c6491bafe42ac
+      internalID: 316752981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_Rshift
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 130
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec06d994d4189e47979e30bd449e00c
+      internalID: 1560487323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_w
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 178
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33bf1906443753b42ba09355d8c32a6a
+      internalID: 1521156684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KEY_s
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 036498260e74e1448981de8131e2d680
+      internalID: 2020455995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 845400e0647f98c4d97bc75dbbabf84d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AllButtons_0: 77939643
+      AllButtons_100: 5105097782706030936
+      AllButtons_101: 1399753540161406681
+      AllButtons_102: -4034886486740151941
+      AllButtons_103: -7970256245190658506
+      AllButtons_104: -2733953630595726984
+      AllButtons_105: 8450006317644913951
+      AllButtons_106: -4810111797572075558
+      AllButtons_107: 9029785107440053578
+      AllButtons_108: 6711412851556728259
+      AllButtons_109: 1538051463268371166
+      AllButtons_110: -1425813794682425100
+      AllButtons_111: 7303829116273576715
+      AllButtons_112: -5620336824123363556
+      AllButtons_113: -8158284112006667868
+      AllButtons_114: -8361960075576632667
+      AllButtons_115: -5733750923972921042
+      AllButtons_116: 3743593012686101133
+      AllButtons_117: 1049051041062747075
+      AllButtons_118: 4874586832210301971
+      AllButtons_119: 6971439789730941093
+      AllButtons_120: -7433962619862223767
+      AllButtons_121: -482885598509152956
+      AllButtons_122: -3191541469510780443
+      AllButtons_123: -3620005304116518262
+      AllButtons_124: 7913725438280033514
+      AllButtons_125: -2560111935359186958
+      AllButtons_126: -8213150363474802955
+      AllButtons_127: -7346978440620743817
+      AllButtons_128: 259156755866120437
+      AllButtons_129: -598224523905510406
+      AllButtons_130: 7241300834708552201
+      AllButtons_131: -2070363288206808915
+      AllButtons_132: -3563049106172548292
+      AllButtons_133: -2574768537008662615
+      AllButtons_134: 6135030441126371627
+      AllButtons_135: 5873353964076069747
+      AllButtons_136: 7968884633844997718
+      AllButtons_137: 297572687030076919
+      AllButtons_138: -6513321659173055408
+      AllButtons_140: 2546516881148817101
+      AllButtons_141: 5337021824285796783
+      AllButtons_142: 8056998674538878239
+      AllButtons_143: -2737946646373987665
+      AllButtons_144: 8715742474756798495
+      AllButtons_145: -4109144512039812600
+      AllButtons_146: -6018848183249790301
+      AllButtons_147: -4639267997894179282
+      AllButtons_151: 334614062
+      AllButtons_152: -1663646317
+      AllButtons_153: -1587547528
+      AllButtons_154: -373966710
+      AllButtons_18: -8621510400839366488
+      AllButtons_19: 8033685832096523929
+      AllButtons_2: 3330059195138927908
+      AllButtons_21: -3545097406111724251
+      AllButtons_22: -1446568011463190389
+      AllButtons_23: 9172018823517258570
+      AllButtons_24: 6191934784453491013
+      AllButtons_3: 2411212472365977688
+      AllButtons_31: -3770037549661132662
+      AllButtons_32: -5557311362914362804
+      AllButtons_33: -3376421101684041893
+      AllButtons_34: 8137079396453190131
+      AllButtons_35: 8744901716778303309
+      AllButtons_36: 8403930871317876283
+      AllButtons_37: -5850876844355741516
+      AllButtons_38: 2410170924539388714
+      AllButtons_39: 1779864487194225798
+      AllButtons_4: -3584729956510026820
+      AllButtons_40: 6847605546451414030
+      AllButtons_41: -2951433304647852272
+      AllButtons_42: 3318992471164133680
+      AllButtons_43: 6356605897955753315
+      AllButtons_44: 8461833717731056131
+      AllButtons_45: -4289030507130721770
+      AllButtons_46: -2148114611371266679
+      AllButtons_47: -5039968571366158257
+      AllButtons_48: -6196702832253481671
+      AllButtons_49: -1297830953353935080
+      AllButtons_5: -5036017874119578007
+      AllButtons_50: 1764949140100585591
+      AllButtons_51: -693140774681856385
+      AllButtons_52: -7352088572964096500
+      AllButtons_53: -695747590148242303
+      AllButtons_54: -8897989534198756312
+      AllButtons_56: -5494236041543085147
+      AllButtons_57: -7606605691137564993
+      AllButtons_58: -7137208719926276129
+      AllButtons_59: 6366774350791611582
+      AllButtons_60: -1209654424594476226
+      AllButtons_61: -806850782179518777
+      AllButtons_62: 6183176668792243741
+      AllButtons_63: -540282917252290500
+      AllButtons_64: -1523647454315815776
+      AllButtons_65: -4601303498134058259
+      AllButtons_66: 6416715301252270008
+      AllButtons_67: -4935547917574506794
+      AllButtons_68: 6304626212277774688
+      AllButtons_69: -8952728081583192984
+      AllButtons_70: -1575523469848890773
+      AllButtons_71: -6886991647147233661
+      AllButtons_72: 5810144446801771238
+      AllButtons_73: 236865198082288178
+      AllButtons_74: 3440621863859515857
+      AllButtons_75: 1604303256955051876
+      AllButtons_76: 2008460126377396140
+      AllButtons_77: 7443847320703266262
+      AllButtons_78: -5241815865626063542
+      AllButtons_79: 4975220958913198332
+      AllButtons_80: 1990868916854629075
+      AllButtons_81: -7628383946105716210
+      AllButtons_82: -5480267005873280980
+      AllButtons_83: -2571950983389438962
+      AllButtons_84: 6943307313018948004
+      AllButtons_85: 212667028480292133
+      AllButtons_86: -5020552262015103475
+      AllButtons_87: 7016733999399947174
+      AllButtons_88: 3173869353798697078
+      AllButtons_89: 1230451357389851858
+      AllButtons_90: 7755814163061882573
+      AllButtons_91: -6582571754389089474
+      AllButtons_92: -305021464865830500
+      AllButtons_93: 573726059670021700
+      AllButtons_94: 6877619996560352450
+      AllButtons_95: -2149939550530862863
+      AllButtons_96: 5380713221398774973
+      AllButtons_97: -4133622243822340595
+      AllButtons_98: 8250624278922228870
+      AllButtons_99: 3517982060508358993
+      KEY_D: -7756046531487774873
+      KEY_E: -2028669147
+      KEY_Rshift: 1560487323
+      KEY_Shift: 316752981
+      KEY_X: 382516466
+      KEY_Z: 470177115
+      KEY_a: -8889393967935330737
+      KEY_ctrl: 539229198
+      KEY_down: -2801215014503850406
+      KEY_left: -7105838415379137814
+      KEY_right: 2537499004336207649
+      KEY_s: 2020455995
+      KEY_space: -4680923847650922475
+      KEY_up: -6643489563445633184
+      KEY_w: 1521156684
+      PS_Dpad: 8214095464950831658
+      PS_E: 1680968371
+      PS_L1: 8358031735429160076
+      PS_L2: -1598660791985785328
+      PS_N: -2667601937048796137
+      PS_R1: -1346192342640614101
+      PS_R2: -55883367789263871
+      PS_S: 291194344
+      PS_SELECT: -7623941836676379646
+      PS_START: -218204792859334503
+      PS_W: -578280197
+      XBOX_Dpad: -4325344483412377081
+      XBOX_E: 4870583925440662370
+      XBOX_L1: 1356393400
+      XBOX_L2: -3378620415173508254
+      XBOX_N: 4637296544684726787
+      XBOX_R1: 1304253555
+      XBOX_R2: -453194332
+      XBOX_S: 3048046727508453914
+      XBOX_SELECT: -4705361236846966694
+      XBOX_START: 5074925829654688468
+      XBOX_W: -5343104428733539016
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
