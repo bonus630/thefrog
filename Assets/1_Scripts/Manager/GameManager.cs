@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.IO;
 using TMPro;
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -28,6 +27,7 @@ namespace br.com.bonus630.thefrog.Manager
         private bool gamePaused = false;
         float startTimer = 0;
         public float PlayTimeInSeconds { get; private set; }
+        public bool? Dirty { get; private set; } = null;
         public int ToPoint { get; set; }
         private PlayerStates playerStates;
         public PlayerStates PlayerStates { get { return playerStates; } set { playerStates = value; } }
@@ -48,7 +48,7 @@ namespace br.com.bonus630.thefrog.Manager
 
         [SerializeField] AudioClip timeTick;
         [SerializeField] AudioClip timeOver;
-        AudioSource audioSource;
+        AudioSource timerAudioSource;
         public bool GamePaused { get => gamePaused; private set => gamePaused = value; }
         public readonly int GameTotalHearts = 20;
 
@@ -121,7 +121,7 @@ namespace br.com.bonus630.thefrog.Manager
         private void Start()
         {
             PauseAction.Enable();
-            audioSource = GetComponent<AudioSource>();
+            timerAudioSource = GetComponent<AudioSource>();
           //  Debug.Log($"[GameManager] start PauseInput:{PauseAction.enabled} ");
             //Time.timeScale = 0.5f;
         }
@@ -166,9 +166,7 @@ namespace br.com.bonus630.thefrog.Manager
             }
             TimerText.transform.parent.gameObject.SetActive(true);
             startTimer = GetElapsedTime();
-            audioSource.loop = true;
-            audioSource.clip = timeTick;
-            audioSource.Play();
+            timerAudioSource.loop = false;
             timerCoroutine = StartCoroutine(startTimerCouroutine(Time, callback));
         }
         private IEnumerator startTimerCouroutine(float Time, Action callback)
@@ -177,12 +175,13 @@ namespace br.com.bonus630.thefrog.Manager
             {
                 yield return new WaitForSeconds(1);
                 TimeSpan time = TimeSpan.FromSeconds(startTimer + Time - GetElapsedTime());
+                timerAudioSource.PlayOneShot(timeTick);
                 TimerText.text = time.ToString(@"hh\:mm\:ss");
             }
             TimerText.transform.parent.gameObject.SetActive(false);
-            audioSource.loop = false;
-            audioSource.Stop();
-            audioSource.PlayOneShot(timeOver);
+            timerAudioSource.loop = false;
+            timerAudioSource.Stop();
+            timerAudioSource.PlayOneShot(timeOver);
             callback?.Invoke();
             TimeOverEvent?.Invoke();
         }
@@ -192,8 +191,8 @@ namespace br.com.bonus630.thefrog.Manager
                 return;
             StopCoroutine(timerCoroutine);
             TimerText.transform.parent.gameObject.SetActive(false);
-            audioSource.loop = false;
-            audioSource.Stop();
+            timerAudioSource.loop = false;
+            timerAudioSource.Stop();
             timerCoroutine = null;
         }
         public void Pause(bool pause)
@@ -423,11 +422,14 @@ namespace br.com.bonus630.thefrog.Manager
         }
         public void UpdateShurykens()
         {
-            bool active = playerStates.Shurykens >= 0;
+            bool active = playerStates.Shurykens > 0;
+            if (!eventManager.AnyEventCompleted(GameEventName.Shuryken) && active)
+                eventManager.EventCompleted(GameEventName.Shuryken,true,true);
             GameObject hud = GameObject.Find(ShurykenHUD);
 
             if (active)
             {
+
                 var shurykens = hud.transform.GetChild(1).gameObject;
                 hud.transform.GetChild(0).gameObject.SetActive(active);
                 shurykens.SetActive(active);
@@ -553,10 +555,21 @@ namespace br.com.bonus630.thefrog.Manager
                 // OnCallSave(false);
                 EnvironmentStates.GameTimeInSeconds = GetElapsedTime();
                 SavesManager sm = new SavesManager();
-                return sm.Save(index, this.PlayerStates, this.EnvironmentStates, FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>());
+                bool result = sm.Save(index, this.PlayerStates, this.EnvironmentStates, FindAnyObjectByType<CamerasController>().ThumbCamera.GetComponent<Camera>());
+                if (result)
+                {
+                    if (index == 0)
+                        Dirty = true;
+                    else
+                        Dirty = false;
+                }
+                else
+                    Dirty = null;
+                return result;
             }
             catch
             {
+                Dirty = null;
                 return false;
             }
         }
@@ -714,7 +727,8 @@ namespace br.com.bonus630.thefrog.Manager
             //////playerStates.HasDoubleJump = true;
             playerStates.FallsControl = true;
             playerStates.HasDash = true;
-            playerStates.Shurykens = 100;
+            playerStates.HasDoubleJump = true;
+           // playerStates.Shurykens = 100;
             //playerStates.HasLightning = true;
             //this.EventCompleted(GameEventName.HeartContainer, false);
             //this.EventCompleted(GameEventName.PlayerCheckWall, false);
@@ -724,11 +738,11 @@ namespace br.com.bonus630.thefrog.Manager
             //this.EventCompleted(GameEventName.MagicGlass, false);
             //this.EventCompleted(GameEventName.Gravity, false);
             //this.EventCompleted(GameEventName.FeatherTouch, false);
-            this.EventCompleted(GameEventName.FireBall, false);
-            //////this.EventCompleted(GameEventName.RollingWind, false);
-            //////this.EventCompleted(GameEventName.PrisionerTip, false);
+            //this.EventCompleted(GameEventName.FireBall, false);
+            //this.EventCompleted(GameEventName.RollingWind, false);
+            //this.EventCompleted(GameEventName.PrisionerTip, false);
             //this.EventCompleted(GameEventName.LadyLaments, false);
-            ////this.EventCompleted(GameEventName.KoarFounded, false);
+            //this.EventCompleted(GameEventName.KoarFounded, false);
             //this.EventCompleted(GameEventName.AppleTreeFounded, false);
 
 #endif

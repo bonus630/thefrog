@@ -19,6 +19,7 @@ namespace br.com.bonus630.thefrog.Enemies
             animator = GetComponent<Animator>();
             coll = GetComponent<Collider2D>();
             audioSource = GetComponent<AudioSource>();
+            
         }
 
         public override void Hit(float hit)
@@ -43,7 +44,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             if (!continueToDie)
                 yield return null;
-            Debug.Log("Sprite: " + fallSprite);
+            //Debug.Log("Sprite: " + fallSprite);
             audioSource.loop = false;
             audioSource.PlayOneShot(deadClips[UnityEngine.Random.Range(0, deadClips.Length)]);
             speed = 0;

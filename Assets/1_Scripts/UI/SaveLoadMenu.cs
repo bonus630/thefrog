@@ -22,7 +22,7 @@ namespace br.com.bonus630.thefrog.UI
 
         public event Action SaveSucess;
         private List<SaveStates> list;
-        
+        private bool[] filleds = new bool[3];
         private void OnEnable()
         {
             if (ObjectToEnableDisable != null && ObjectToEnableDisable.activeInHierarchy)
@@ -30,16 +30,31 @@ namespace br.com.bonus630.thefrog.UI
             SavesManager sm = new SavesManager();
             list = sm.ListSaves();
 
-            FillSaveButton(save01Button, list[0]);
-            FillSaveButton(save02Button, list[1]);
-            FillSaveButton(save03Button, list[2]);
+            filleds[0] = FillSaveButton(save01Button, list[0]);
+            filleds[1] = FillSaveButton(save02Button, list[1]);
+            filleds[2] = FillSaveButton(save03Button, list[2]);
             Debug.Log("[SaveLoadMenu] Ativando");
-            if (goBackButton.gameObject.activeInHierarchy)
-                EventSystem.current.SetSelectedGameObject(goBackButton.gameObject);
-            else
+            StartCoroutine(CoroutineUtil.WaitFrames(() => {
+                EventSystem.current.SetSelectedGameObject(null);
+            }));
+
+            if (filleds[0])
             {
-                EventSystem.current.SetSelectedGameObject(save01Button.gameObject);
+                StartCoroutine(CoroutineUtil.WaitFrames(() => { EventSystem.current.SetSelectedGameObject(save01Button.gameObject); }));
+                return;
             }
+            if (filleds[1])
+            {
+                StartCoroutine(CoroutineUtil.WaitFrames(() => { EventSystem.current.SetSelectedGameObject(save02Button.gameObject); }));
+                return;
+            }
+            if (filleds[2])
+            {
+                StartCoroutine(CoroutineUtil.WaitFrames(() => { EventSystem.current.SetSelectedGameObject(save03Button.gameObject); }));
+                return;
+            }
+            if (goBackButton.gameObject.activeInHierarchy)
+                    StartCoroutine(CoroutineUtil.WaitFrames(() => { EventSystem.current.SetSelectedGameObject(goBackButton.gameObject); }));
            // save01Button.onClick.AddListener(() => Save01Button_clicked());
         }
         //IEnumerator WaitAndSelect()
@@ -109,7 +124,7 @@ namespace br.com.bonus630.thefrog.UI
             //gameObject.SetActive(false);
         }
     
-        private void FillSaveButton(Button button, SaveStates saveStates)
+        private bool FillSaveButton(Button button, SaveStates saveStates)
         {
             GameObject thumb = button.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
             GameObject time  = button.gameObject.transform.GetChild(1).transform.GetChild(1).gameObject;
@@ -126,6 +141,7 @@ namespace br.com.bonus630.thefrog.UI
                 thumb.GetComponent<Image>().sprite = sprite;
                 time.GetComponent<TextMeshProUGUI>().text = TimeSpan.FromSeconds(saveStates.environmentStates.GameTimeInSeconds).ToString(@"hh\:mm\:ss");
                 hours.GetComponent<TextMeshProUGUI>().text = saveStates.environmentStates.playerStates.Hour.ToString("00") + " HORAS";
+                return true;
             }
             else
             {
@@ -134,7 +150,7 @@ namespace br.com.bonus630.thefrog.UI
                 hours.SetActive(false);
                 time.GetComponent<TextMeshProUGUI>().text = "NADA SALVO";
             }
-
+            return false;
         }
     }
 }

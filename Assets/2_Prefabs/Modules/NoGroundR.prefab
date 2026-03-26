@@ -116,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2599957222708970898, guid: f1d4e4a4f7b9fe24ba398b2981fc34a8, type: 3}
       propertyPath: m_Name
-      value: NoGround
+      value: NoGroundR
       objectReference: {fileID: 0}
     - target: {fileID: 3899790597399244696, guid: f1d4e4a4f7b9fe24ba398b2981fc34a8, type: 3}
       propertyPath: m_LocalPosition.x

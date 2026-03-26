@@ -4,7 +4,7 @@ using br.com.bonus630.thefrog.Shared;
 using UnityEngine;
 namespace br.com.bonus630.thefrog.Items
 {
-
+    [SelectionBase]
     public class ShipDoor : Door, IInteract
     {
         [SerializeField] AudioClip openingAudio;

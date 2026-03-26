@@ -26,7 +26,7 @@ namespace br.com.bonus630.thefrog.Player
         [Header("Sounds")]
         [SerializeField] private AudioClip throwProjectileSFX;
         [SerializeField] private AudioClip Entrace;
-        [SerializeField] private AudioClip PowerUp;
+        //[SerializeField] private AudioClip PowerUp;
         [Header("Effects")]
         [SerializeField] private ParticleSystem GravityParticles;
         [SerializeField] private VisionController visionController;
@@ -43,14 +43,14 @@ namespace br.com.bonus630.thefrog.Player
 
         private Rigidbody2D rb;
         private PlayerInput playerInput;
-        
+
         [Header("Others")]
         [SerializeField] public Animator anim;
         public WallCheck WallCheck { get; private set; }
         private BoxCollider2D footerCollider;
         private AudioSource audioSource;
         /// <summary>
-        /// -1 para normal, 1 para ponta cabe�a
+        /// -1 para normal, 1 para ponta cabe�a, invertida
         /// </summary>
         public float gravityDirection = 1;
         public float gravityScale = 4f;
@@ -65,7 +65,7 @@ namespace br.com.bonus630.thefrog.Player
         public Vector3 Position => transform.position;
         public GameObject FooterColliding { get { return footer; } protected set { footer = value; } }
         public bool MoveInputOn { get { return inputsOn; } set { inputsOn = value; } }
-        public bool IsNormalGravity { get {return gravityDirection < 0; } }
+        public bool IsNormalGravity { get { return gravityDirection < 0; } }
 
         //public float Speed { get { return playerMovement.Speed; } set { playerMovement.Speed = value; } }
         // public float JumpForce { get { return playerMovement.JumpForce; } set { playerMovement.JumpForce = value; } }
@@ -79,7 +79,7 @@ namespace br.com.bonus630.thefrog.Player
 
         public event System.Action<float> GravityChanged;
         public event System.Action<bool> FastFall;
-        private  Scene bornScene; 
+        private Scene bornScene;
         void Awake()
         {
             GetComponents();
@@ -105,23 +105,25 @@ namespace br.com.bonus630.thefrog.Player
             playerManager.GameEventChange(() => { playerSpiritController.GameEventsChanged(); });
             playerManager.UpdatePlayerEvent += PlayerManager_UpdatePlayerEvent;
             playerInput = GetComponent<PlayerInput>();
+            playerInput.SwitchCurrentActionMap("Player");
             //Debug.Log("Player getcomponentes:" + playerManager.PlayerStates);
             ServiceLocator.Instance.Register<PlayerInput>(playerInput);
             ServiceLocator.Instance.Register<IPlayer>(this);
             ServiceLocator.Instance.Register("Player", gameObject);
-            
+
         }
 
-        private void PlayerHealth_OnPrepareFallDie(bool obj)=>FastFall?.Invoke(obj);
+        private void PlayerHealth_OnPrepareFallDie(bool obj) => FastFall?.Invoke(obj);
 
         private void Start()
         {
-           
-#if !UNITY_EDITOR
+            
             //            //Debug.Log(GameManager.Instance.ToString());
             //            //Debug.Log(GameManager.Instance.PlayerStates.ToString());
-            Debug.Log("[Player]state POS:"+GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
-            Debug.Log("[Player]position POS:"+GameManager.Instance.PlayerStartPosition);
+            // Debug.Log("[Player]state POS:"+GameManager.Instance.PlayerStates.PlayerPosition.Position.ToString());
+            //Debug.Log("[Player]position POS:"+GameManager.Instance.PlayerStartPosition);
+#if !UNITY_EDITOR
+            
             transform.position = GameManager.Instance.PlayerStartPosition;
             if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
             {
@@ -130,10 +132,11 @@ namespace br.com.bonus630.thefrog.Player
                 AddForce(new Vector2(100, 480), ForceMode2D.Impulse, 4, true);
                 return;
             }
+#endif
             //Debug.Log("[Player] position " + transform.position);
             //if (SceneManager.GetActiveScene().name != "Main")
             //    return;
-           // StartCoroutine(WaitSceneLoad());
+            // StartCoroutine(WaitSceneLoad());
 
 
             // if (transform.position == GameObject.Find(GameManager.Instance.StartPointBuilder).gameObject.transform.position)
@@ -146,7 +149,6 @@ namespace br.com.bonus630.thefrog.Player
             //var i = FindAnyObjectByType<CamerasController>();
             //i.ActiveCam(2);
             ////           // playerMovement.FallsControl();
-#endif
 
         }
 
@@ -229,79 +231,84 @@ namespace br.com.bonus630.thefrog.Player
             //Gizmos.DrawWireCube(Vector3.zero, new Vector3(0.140f, 0.01f));
 
 #if UNITY_EDITOR
+            if (Input.GetKeyUp(KeyCode.U))
+            {
+                var eDash = Instantiate(playerMovement.dashEffect, WallCheck.footerWallCheck.transform);
+                //eDash.transform.localScale = new Vector3(eDash.transform.localScale.x * LookFor, eDash.transform.localScale.y * -gravityDirection, 1);
+            }
             if (Input.GetKeyUp(KeyCode.K))
-                UpdatePlayer();
-               // GameManager.Instance.TesteThumb();
-               //if (Input.GetKeyUp(KeyCode.W))
-               //{
-               //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
-               //    //CreateBar(Color.green,0.4f);
-               //    //foreach (var c in g.GetComponents(typeof(IBarUI)))
-               //    //{
-               //    //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
-               //    //    (c as IBarUI).GoToValue(50);
-               //    //}
+                UpgradePlayer();
+            // GameManager.Instance.TesteThumb();
+            //if (Input.GetKeyUp(KeyCode.W))
+            //{
+            //    GameManager.Instance.GetPlayerScript.UpdatePlayer();
+            //    //CreateBar(Color.green,0.4f);
+            //    //foreach (var c in g.GetComponents(typeof(IBarUI)))
+            //    //{
+            //    //    Debug.Log(c.GetType().IsAssignableFrom(typeof(IBarUI)));
+            //    //    (c as IBarUI).GoToValue(50);
+            //    //}
 
-                //    //playerMovement.FallsControl();
-                //    //GameManager.Instance.TesteThumb();
-                //    //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
-                //    //StartCoroutine(DestroyEffects(s));
-                //    //Debug.Log(s.camerasController);
-                //    //s.ScreenAndGamepadShake();
-                //    //s.FadeOut();
-                //    //Debug.Log(s);
-                //    //MusicSource m = FindAnyObjectByType<MusicSource>();
-                //    //m.CrossFade(BackgroundMusic.AppleTree);
-                //    // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
-                //    //GameManager.Instance.UpdatePlayer();
-                //    //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
-                //}
-                //if (Input.GetKeyUp(KeyCode.T))
-                //{
-                //    GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
-                //    //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
-                //}
-                //if (Input.GetKeyUp(KeyCode.Alpha9))
-                //    GameManager.Instance.UpdateMaxHearts(1);
-                //if (Input.GetKeyUp(KeyCode.Alpha8))
-                //    GameManager.Instance.UpdateHeart(-1);
-                //if (Input.GetKeyUp(KeyCode.Alpha1))
-                //    GameManager.Instance.SaveStates(1);
-                //if (Input.GetKeyUp(KeyCode.Alpha2))
-                //{
-                //    GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
-                //}
-                //if (Input.GetKeyUp(KeyCode.Alpha7))
-                //{
-                //    GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_" + Random.Range(0, 10000));
-                //    GameManager.Instance.PlayerStates.Collectables++;
-                //    GameManager.Instance.UpdateScore();
-                //}
-                //if (Input.anyKeyDown)
-                //{
-                //    switch (true)
-                //    {
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
-                //            Time.timeScale = 0.1f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
-                //            Time.timeScale = 0.2f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
-                //            Time.timeScale = 0.3f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
-                //            Time.timeScale = 0.4f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
-                //            Time.timeScale = 0.5f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
-                //            Time.timeScale = 1f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
-                //            Time.timeScale = 1.5f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
-                //            Time.timeScale = 2f; break;
-                //        case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
-                //            Time.timeScale = 3f; break;
-                //    }
-                //    Debug.LogWarning("Time Scale: " + Time.timeScale);
-                //}
+            //    //playerMovement.FallsControl();
+            //    //GameManager.Instance.TesteThumb();
+            //    //ScreenEffects s  = GameObject.FindAnyObjectByType<ScreenEffects>();
+            //    //StartCoroutine(DestroyEffects(s));
+            //    //Debug.Log(s.camerasController);
+            //    //s.ScreenAndGamepadShake();
+            //    //s.FadeOut();
+            //    //Debug.Log(s);
+            //    //MusicSource m = FindAnyObjectByType<MusicSource>();
+            //    //m.CrossFade(BackgroundMusic.AppleTree);
+            //    // GameObject.Find("Virtual Camera").GetComponent<Animator>().SetTrigger("Shake");
+            //    //GameManager.Instance.UpdatePlayer();
+            //    //GameObject.FindAnyObjectByType<CamerasController>().ShakeCameraEffect();
+            //}
+            //if (Input.GetKeyUp(KeyCode.T))
+            //{
+            //    GameManager.Instance.StartTimer(10, () => { Debug.Log("Time Over Event"); });
+            //    //GameManager.Instance.TimeOverEvent += () => { Debug.Log("Time Over Event"); };
+            //}
+            //if (Input.GetKeyUp(KeyCode.Alpha9))
+            //    GameManager.Instance.UpdateMaxHearts(1);
+            //if (Input.GetKeyUp(KeyCode.Alpha8))
+            //    GameManager.Instance.UpdateHeart(-1);
+            //if (Input.GetKeyUp(KeyCode.Alpha1))
+            //    GameManager.Instance.SaveStates(1);
+            //if (Input.GetKeyUp(KeyCode.Alpha2))
+            //{
+            //    GameManager.Instance.ChangeGameToState(GameManager.Instance.LoadStates(1));
+            //}
+            //if (Input.GetKeyUp(KeyCode.Alpha7))
+            //{
+            //    GameManager.Instance.PlayerStates.CollectablesID.Add("Apple_" + Random.Range(0, 10000));
+            //    GameManager.Instance.PlayerStates.Collectables++;
+            //    GameManager.Instance.UpdateScore();
+            //}
+            //if (Input.anyKeyDown)
+            //{
+            //    switch (true)
+            //    {
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad1):
+            //            Time.timeScale = 0.1f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad2):
+            //            Time.timeScale = 0.2f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad3):
+            //            Time.timeScale = 0.3f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad4):
+            //            Time.timeScale = 0.4f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad5):
+            //            Time.timeScale = 0.5f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad6):
+            //            Time.timeScale = 1f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad7):
+            //            Time.timeScale = 1.5f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad8):
+            //            Time.timeScale = 2f; break;
+            //        case bool _ when Input.GetKeyDown(KeyCode.Keypad9):
+            //            Time.timeScale = 3f; break;
+            //    }
+            //    Debug.LogWarning("Time Scale: " + Time.timeScale);
+            //}
 
 #endif
 
@@ -332,7 +339,7 @@ namespace br.com.bonus630.thefrog.Player
 
                 if (bullet != null && bullet.TryGetComponent<IProjectilies>(out IProjectilies projectilie))
                 {
-                    if (gravityDirection.Equals((float)PlayerGravityDirection.UP))
+                    if (gravityDirection.Equals((float)PlayerGravityDirection.INVERTED))
                         projectilie.ChangeDirectionY();
                     projectilie.Launch(new Vector2(LookFor.FlipIfNegative(playerMovement.GetWallSliding), 0));
                     IBarUI bar = barManager.CreateBar(playerSpiritController.CurrentProjectile.EffectColor, 0, transform, gravityDirection);
@@ -346,7 +353,7 @@ namespace br.com.bonus630.thefrog.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-           // Debug.Log("[Player] rigidbody type:" + RigibodyBodyType);
+            // Debug.Log("[Player] rigidbody type:" + RigibodyBodyType);
             if (collision.gameObject.layer == 13)
             {
                 if (FooterTouching(collision.collider))
@@ -420,6 +427,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void RemoveGravity(bool remove)
         {
+            Debug.Log("[Player][RemoveGravity] remove:" + remove);
             if (remove)
             {
                 rb.linearVelocity = Vector2.zero;
@@ -465,13 +473,13 @@ namespace br.com.bonus630.thefrog.Player
             knockUpForce = force * 2;
             playerMovement.TimeInFastFall = 0;
             playerMovement.airDash = false;
-          //  Debug.Log("[player] knockuponjump force:" + force);
+            //  Debug.Log("[player] knockuponjump force:" + force);
         }
         public void KnockedUpOnHit(Vector2 force)
         {
             knockUp = true;
             knockUpForce = force;
-          //  Debug.Log("[player] knockeduponhit force:" + force);
+            //  Debug.Log("[player] knockeduponhit force:" + force);
             ApplyKnockUp();
 
         }
@@ -517,7 +525,7 @@ namespace br.com.bonus630.thefrog.Player
         public bool FooterTouching(Collider2D collision) => footerCollider.IsTouching(collision);
         public bool BodyTouching(Collider2D collision)
         {
-            if(collision == null)
+            if (collision == null)
                 return false;
             if (GetComponent<CapsuleCollider2D>() == null)
                 return false;
@@ -529,8 +537,8 @@ namespace br.com.bonus630.thefrog.Player
             CapsuleCollider2D col = GetComponent<CapsuleCollider2D>();
             if (col == null)
                 return false;
-          return col.IsTouchingLayers(layer);
-          
+            return col.IsTouchingLayers(layer);
+
         }
         public void ChangeNumberShurykens(int shurykens) => playerManager.UpdateShurykens(shurykens);
         public void ReadDialogue() => playerDialogue.ReadDialogue();
@@ -540,17 +548,21 @@ namespace br.com.bonus630.thefrog.Player
 
         public string GetFormattedInputName(string actionName)
         {
-    
-           var device = GetCurrentDevice();
-           string controlName =  Utils.DeviceDetector.GetControlName(GetInputAction(actionName), device);
-            string formattedInput =  $"{Utils.DeviceDetector.GetCategory(device)}_{Utils.DeviceDetector.GetReplacedName(Utils.DeviceDetector.GetCategory(device),controlName)}";
+
+            var device = GetCurrentDevice();
+            string controlName = Utils.DeviceDetector.GetControlName(GetInputAction(actionName), device);
+            string formattedInput = $"{Utils.DeviceDetector.GetCategory(device)}_{Utils.DeviceDetector.GetReplacedName(Utils.DeviceDetector.GetCategory(device), controlName)}";
             return formattedInput;
         }
 
-        public void FallsControl()
+        public void FallsControl() => playerMovement.FallsControl();
+        public void FallsControlEffect(bool active)
         {
-            playerMovement.FallsControl();
+            playerFallControl.FallsControlEffect(active);
+            if(active)
+            playerMovement.InitializeFallControl();
         }
+
         public void AllInputsOn(bool inputOn = true, float delayTime = 0, bool autoSwitch = false, float switchTime = 0) => StartCoroutine(disablesAllInputs(inputOn, delayTime, autoSwitch, switchTime));
         private IEnumerator disablesAllInputs(bool inputOn, float delayTime, bool autoSwitch, float switchTime)
         {
@@ -570,21 +582,18 @@ namespace br.com.bonus630.thefrog.Player
             AllInputsOn(true);
             playerMovement.FreezePlayerMove();
         }
-        public void UpdatePlayer()
+        public void UpgradePlayer()
         {
-            audioSource.PlayOneShot(PowerUp);
+           // audioSource.PlayOneShot(PowerUp);
             if (PowerUpEffect != null)
-                Instantiate(PowerUpEffect, transform);
-            playerManager.UpdatePlayer();
+                Instantiate(PowerUpEffect, WallCheck.footerWallCheck.transform);
+            playerManager.RequestPlayerUpgrade();
         }
-        private void PlayerManager_UpdatePlayerEvent()
-        {
-            playerMovement.speed = playerManager.PlayerStates.Speed;
-            playerMovement.jumpForce = playerManager.PlayerStates.JumpForce;
-        }
+        private void PlayerManager_UpdatePlayerEvent() => playerMovement.RequestUpgrade();
+        public void Jump() => playerMovement.Jump();
 
-        public void AddAction(SchedulerData action)=> playerDirector.AddAction(action);
-        public void AddAction(Action action,float time)=> playerDirector.AddAction(new SchedulerData(action,time));
+        public void AddAction(SchedulerData action) => playerDirector.AddAction(action);
+        public void AddAction(Action action, float time) => playerDirector.AddAction(new SchedulerData(action, time));
 
         public PlayerStates GetPlayerStates => playerManager.PlayerStates;
         private void OnDisable()
@@ -595,7 +604,7 @@ namespace br.com.bonus630.thefrog.Player
     }
     public enum PlayerGravityDirection : short
     {
-        DOWN = -1,
-        UP = 1
+        NORMAL = -1,
+        INVERTED = 1
     }
 }

@@ -201,7 +201,7 @@ namespace br.com.bonus630.thefrog.Caracters
         public void GoToFinal()
         {
             GameManager.Instance.EventCompleted(GameEventName.NPCTutorial);
-            ServiceLocator.Instance.Get<IPlayer>().UpdatePlayer();
+            ServiceLocator.Instance.Get<IPlayer>().UpgradePlayer();
             finalRoute = true;
             GetComponent<SpriteRenderer>().enabled = true;
             StartCoroutine(EnableAnimator());

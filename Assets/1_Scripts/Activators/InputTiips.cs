@@ -10,16 +10,28 @@ namespace br.com.bonus630.thefrog.Activators
     public class InputTiips : TipsBase
     {
         [SerializeField] string[] InputActionName;
-
+        [SerializeField] bool freezePlayer;
+        [SerializeField] bool RemoveImmediatelyInGameEventComplete;
+        [SerializeField] GameEventName ActiveInComplete;
+        private bool removeInGameEventComplete;
         private float removeTime = 4f;
-
         protected override void Awake()
         {
-            if (RemoveInCompleted != GameEventName.None && GameManager.Instance.eventManager.AnyEventCompleted(RemoveInCompleted))
-            {
-                Destroy(gameObject);
-                return;
-            }
+            base.Awake();
+            if (RemoveInCompleted == GameEventName.None)
+                removeInGameEventComplete = true;
+            if (ActiveInComplete != GameEventName.None && GameManager.Instance.eventManager.AnyEventCompleted(ActiveInComplete))
+                boxCollider.enabled = true;
+        }
+        protected override void OnEventCompleted(GameEvent obj)
+        {
+            if (RemoveInCompleted != GameEventName.None && obj.Name == RemoveInCompleted)
+                if (RemoveImmediatelyInGameEventComplete)
+                    Destroy(gameObject);
+                else
+                    removeInGameEventComplete = true;
+            if (ActiveInComplete != GameEventName.None && obj.Name == ActiveInComplete)
+                boxCollider.enabled = true;
         }
 
         public override DialogueData GetDialogue(int index = -1)
@@ -50,6 +62,7 @@ namespace br.com.bonus630.thefrog.Activators
                     StopAllCoroutines();
                     removeTime = 4f;
                     player.ReadDialogue();
+                   if(freezePlayer)
                     player.AllInputsOn(false, 0f, true, 2.1f);
                   
                 }
@@ -69,8 +82,10 @@ namespace br.com.bonus630.thefrog.Activators
                 removeTime -= Time.deltaTime;
                 yield return null;
             }
-            Destroy(gameObject);
+            if(removeInGameEventComplete || onLeaveDestroy)
+                Destroy(gameObject);
         }
+     
     }
 
 

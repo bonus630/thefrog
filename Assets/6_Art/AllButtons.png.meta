@@ -602,7 +602,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PS_Dpad
+      name: PS_DPAD
       rect:
         serializedVersion: 2
         x: 0
@@ -1020,7 +1020,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: XBOX_Dpad
+      name: XBOX_DPAD
       rect:
         serializedVersion: 2
         x: 96
@@ -1904,7 +1904,7 @@ TextureImporter:
       KEY_space: -4680923847650922475
       KEY_up: -6643489563445633184
       KEY_w: 1521156684
-      PS_Dpad: 8214095464950831658
+      PS_DPAD: 8214095464950831658
       PS_E: 1680968371
       PS_L1: 8358031735429160076
       PS_L2: -1598660791985785328
@@ -1915,7 +1915,7 @@ TextureImporter:
       PS_SELECT: -7623941836676379646
       PS_START: -218204792859334503
       PS_W: -578280197
-      XBOX_Dpad: -4325344483412377081
+      XBOX_DPAD: -4325344483412377081
       XBOX_E: 4870583925440662370
       XBOX_L1: 1356393400
       XBOX_L2: -3378620415173508254

@@ -59,6 +59,7 @@ namespace br.corp.bonus630.unity
             EditorGUILayout.PropertyField(useCurrentHourProp);
             serializedObject.ApplyModifiedProperties();
         }
+
     }
 }
 

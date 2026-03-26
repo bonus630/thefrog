@@ -18,12 +18,7 @@ namespace br.com.bonus630.thefrog.Items
 
         private void Update()
         {
-            if(rb.linearVelocityX < 1f)
-            {
-               
-                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-                rb.linearVelocityY = 0.01f;
-            }
+           
             //Debug.Log("Shuryken: " + rb.linearVelocityX);
 
             //if (Mathf.Approximately(rigidbody.linearVelocityX, 0) && Mathf.Approximately(rigidbody.linearVelocityY, 0) && canClone)
@@ -39,6 +34,17 @@ namespace br.com.bonus630.thefrog.Items
             //    rb.gravityScale = 1;
 
             //}
+        }
+        private void FixedUpdate()
+        {
+            if (rb.linearVelocityX < 1f)
+            {
+
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+                rb.linearVelocityY = 0.01f;
+            }
+            //if (rb.linearVelocity.magnitude < 0.1f)
+            //    rb.linearVelocityY = -0.5f;
         }
         private void Awake()
         {
@@ -123,6 +129,8 @@ namespace br.com.bonus630.thefrog.Items
                     else
                     {
                         // ainda não é chão → continua ricochete
+                        
+                        hitting.PlayOneShot(hittingSound);
                         Bounce(normal);
                     }
                 }

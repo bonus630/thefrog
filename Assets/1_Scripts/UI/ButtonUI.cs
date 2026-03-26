@@ -17,13 +17,17 @@ namespace br.com.bonus630.thefrog.UI
             btn = GetComponent<Button>();
             if (btn != null)
                 btn.onClick.AddListener(OnClick);
+            
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
             Image.SetActive(false);
         }
-
+        private void OnDisable()
+        {
+            Image.SetActive(false);
+        }
         public void OnSelect(BaseEventData eventData)
         {
             Image.SetActive(true);

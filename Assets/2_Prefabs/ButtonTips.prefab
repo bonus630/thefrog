@@ -105,10 +105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues:
-  - {fileID: 11400000, guid: 2f757cb0e8ea42c4fbd6b98b6bf29e95, type: 2}
+  - {fileID: 11400000, guid: 628e8a43acd384a40a06b34b738fc01e, type: 2}
   autoPlay: 1
   oneShot: 0
   ciclily: 1
   onLeaveDestroy: 0
   RemoveInCompleted: 0
-  InputActionName: Jump
+  InputActionName:
+  - Move

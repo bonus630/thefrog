@@ -37,9 +37,7 @@ namespace br.com.bonus630.thefrog.Player
             }
             else
             {
-                timer = 0f;
-                FallsControl(false);
-                player.RemoveGravity(false);
+                ResetFallControl();
             }
 
         }
@@ -48,10 +46,16 @@ namespace br.com.bonus630.thefrog.Player
             InFallControl = inFallControl;
             wings.SetActive(InFallControl);
         }
-
-        public void FallsControlEffect()
+        public void ResetFallControl()
         {
-            Debug.Log("FallsControleEffect");
+            timer = 0f;
+            FallsControl(false);
+            player.RemoveGravity(false);
+        }
+
+        public void FallsControlEffect(bool active)
+        {
+            wings.SetActive(active);
         }
 
     }

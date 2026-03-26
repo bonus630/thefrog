@@ -540,7 +540,7 @@ TextureImporter:
         width: 218
         height: 118
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -563,7 +563,7 @@ TextureImporter:
         width: 21
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -586,7 +586,7 @@ TextureImporter:
         width: 20
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -609,7 +609,7 @@ TextureImporter:
         width: 22
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -632,7 +632,7 @@ TextureImporter:
         width: 23
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -655,7 +655,7 @@ TextureImporter:
         width: 16
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -678,7 +678,7 @@ TextureImporter:
         width: 21
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -687,6 +687,29 @@ TextureImporter:
       bones: []
       spriteID: 34023da8e1d13df4b915f3d9e08d059f
       internalID: 796114856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - Avatar_ The Last Airbender - Playable Characters -
+        Avatar Aang_24
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1335
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a9d1f5f7b66db941bd0b1cfeff808df
+      internalID: 1687268723
       vertices: []
       indices: 
       edges: []
@@ -722,6 +745,7 @@ TextureImporter:
       Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_21: 1046786847
       Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_22: 1685316015
       Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_23: 796114856
+      Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_24: 1687268723
       Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_3: 1996000746
       Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_4: -1787829119
       Game Boy Advance - Avatar_ The Last Airbender - Playable Characters - Avatar Aang_5: 600928161

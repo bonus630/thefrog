@@ -50,62 +50,30 @@ namespace br.com.bonus630.thefrog.Environment
             IPlayer player = teleported.GetComponent<IPlayer>();
             if (cancel) return;
 
-            // 1️⃣ Delay inicial
-            director.AddAction(new SchedulerData(
-                () => { },
-                delayTime
-            ));
-            director.AddAction(new SchedulerData(
-                () => { player.AllInputsOn(false); },
+            director.AddAction(SchedulerData.Wait(delayTime));
+            director.AddAction(SchedulerData.Do(() => { player.AllInputsOn(false); },
                 0f
             ));
 
             if (fade && screenFx != null)
             {
-                // 2️⃣ FadeOut
-                director.AddAction(new SchedulerData(
-                    () => screenFx.FadeOut(0.5f),
-                    0.5f
-                ));
+                director.AddAction(SchedulerData.Do(screenFx.FadeOut,0.5f,false,0.5f));
             }
 
-            // 3️⃣ Teleporte crítico
-            director.AddAction(new SchedulerData(
-                () =>
-                {
-                    ExecuteTeleport();
-                },
-                0f
-            ));
+            director.AddAction(SchedulerData.Do(ExecuteTeleport,0f));
 
-            // 4️⃣ Pequeno delay pós teleporte
-            director.AddAction(new SchedulerData(
-                () => { },
-                0.1f
-            ));
+            director.AddAction(SchedulerData.Wait(0.1f));
 
-            // 5️⃣ ActiveOnArrival
             if (ActiveOnArrival != null)
             {
-                director.AddAction(new SchedulerData(
-                    () => ActiveOnArrival.Activate(),
-                    0f
-                ));
+                director.AddAction(SchedulerData.Do(ActiveOnArrival.Activate,0f));
             }
 
             if (fade && screenFx != null)
             {
-                // 6️⃣ Espera estabilização câmera (tempo máximo)
-                director.AddAction(new SchedulerData(
-                    () => { },
-                    0.3f   // ou valor que você julgar seguro
-                ));
+                director.AddAction(SchedulerData.Wait(0.3f));
 
-                // 7️⃣ FadeIn
-                director.AddAction(new SchedulerData(
-                    () => screenFx.FadeIn(0.5f),
-                    0.5f
-                ));
+                director.AddAction(SchedulerData.Do(screenFx.FadeIn, 0.5f, false, 0.5f));
             }
             director.AddAction(new SchedulerData(
            () => { player.AllInputsOn(true); },

@@ -12,6 +12,7 @@ namespace br.com.bonus630.thefrog.Environment
         [SerializeField] protected bool randomTypes = true;
         [SerializeField] protected float spawnerTime = 2;
         [SerializeField] protected bool running = true;
+        [SerializeField] protected bool destroySpawnedInDisable = false;
         [SerializeField][Tooltip("Use 0 to infinity")] protected int limit = 2;
 
         public float SpawnerTime { get { return spawnerTime; } set { spawnerTime = value; } }
@@ -20,14 +21,11 @@ namespace br.com.bonus630.thefrog.Environment
         protected float timer = 0;
         protected int currentPoint = 0;
         protected int currentType = 0;
-
         protected List<GameObject> instances = new List<GameObject>();
         protected virtual void Start()
         {
             
         }
-
-        // Update is called once per frame
         void Update()
         {
             if (running)
@@ -78,20 +76,28 @@ namespace br.com.bonus630.thefrog.Environment
                     currentType = 0;
             }
         }
-
         protected virtual Vector3 GetPoint()
         {
             return spawnerPoints[currentPoint].transform.position;
         }
-
         public override void Activate()
         {
             running = true;
         }
-
         public override void Deactive()
         {
             running = false;
+        }
+        private void OnDisable()
+        {
+            if (destroySpawnedInDisable)
+            {
+                running = false;
+                for (int i = instances.Count - 1; i >= 0; i--)
+                {
+                    Destroy(instances[i]);
+                }
+            }
         }
     }
 }

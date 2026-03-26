@@ -39,6 +39,7 @@ namespace br.com.bonus630.thefrog.Enemies
 
         [SerializeField] GameObject plantBulletPrefab;
         [SerializeField] GameObject transformBulletPrefab;
+        [SerializeField] GameObject transformPrefab;
         [SerializeField] GameObject player;
         [SerializeField] GameObject shield;
         [SerializeField] GameObject heal;
@@ -62,6 +63,7 @@ namespace br.com.bonus630.thefrog.Enemies
             {
 
                 Fly,Fly,
+                LaunchAttack3,
                 Attack,Attack,Attack2,
                 GoHigh,GoHigh,GoHigh,
                 Idle,
@@ -198,6 +200,17 @@ namespace br.com.bonus630.thefrog.Enemies
             }
             // go.GetComponent<PlantBullet>().Direction = xDirection;
         }
+        public void LaunchAttack3()
+        {
+            Debug.Log("[Wizard] LaunchAttack3");
+            StartCoroutine(LaunchAttack3Coroutine());
+        }
+        IEnumerator LaunchAttack3Coroutine()
+        {
+            var go = Instantiate(transformPrefab, transform);
+            yield return new WaitForSeconds(0.2f);
+            go.transform.parent = null;
+        }
         private void Idle()
         {
             if (AlignedAction != null)
@@ -317,7 +330,7 @@ namespace br.com.bonus630.thefrog.Enemies
             playableDirector.stopped += (a) =>
             {
                 GameManager.Instance.EventCompleted(GameEventName.DefeatWizard, true);
-                ServiceLocator.Instance.Get<IPlayer>().UpdatePlayer();
+                ServiceLocator.Instance.Get<IPlayer>().UpgradePlayer();
                 activeOnDie.Activate();
                 ServiceLocator.Instance.Get<IPlayer>().AllInputsOn(true,1f);
             };

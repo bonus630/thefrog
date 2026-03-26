@@ -8,17 +8,27 @@ namespace br.corp.bonus630.unity
     [CustomEditor(typeof(ScenePointsData))]
     public class ScenePointsDataProcessor : Editor
     {
+        private int activeIndex = -1;
+
+
         SerializedProperty sceneIndexProp;
         SerializedProperty pointsDataProp;
         SerializedProperty sceneTypeProp;
+
 
         private void OnEnable()
         {
             sceneIndexProp = serializedObject.FindProperty("SceneIndex");
             pointsDataProp = serializedObject.FindProperty("PointsData");
             sceneTypeProp = serializedObject.FindProperty("SceneType");
+            SceneView.duringSceneGui += SceneView_duringSceneGui;
         }
-
+        private void OnDisable()
+        {
+            activeIndex = -1;
+            SceneView.RepaintAll();
+            SceneView.duringSceneGui -= SceneView_duringSceneGui;
+        }
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -57,10 +67,16 @@ namespace br.corp.bonus630.unity
                 EditorGUILayout.BeginHorizontal();
                 hour.intValue = EditorGUILayout.IntField("Hour", hour.intValue);
                 EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
                 pointProp.vector3Value = EditorGUILayout.Vector3Field("Point", pointProp.vector3Value);
-
+                if (GUILayout.Button("P", GUILayout.Width(20)))
+                {
+                    activeIndex = i;
+                    SceneView.RepaintAll();
+                }
+                EditorGUILayout.EndHorizontal();
                 // Campo temporário para arrastar Transform
-               // Transform transformInput = EditorGUILayout.ObjectField("Set From Transform", null, typeof(Transform), true) as Transform;
+                // Transform transformInput = EditorGUILayout.ObjectField("Set From Transform", null, typeof(Transform), true) as Transform;
                 //if (transformInput != null)
                 //{
                 //    pointProp.vector3Value = transformInput.position;
@@ -80,8 +96,9 @@ namespace br.corp.bonus630.unity
                 }
 
                 EditorGUILayout.EndVertical();
+                EditorGUILayout.Space();
             }
-
+            EditorGUILayout.Space();
             EditorGUILayout.Space();
             if (GUILayout.Button("Add New Point"))
             {
@@ -93,6 +110,18 @@ namespace br.corp.bonus630.unity
 
             serializedObject.ApplyModifiedProperties();
         }
-
+        private void SceneView_duringSceneGui(SceneView obj)
+        {
+            if (activeIndex < 0) return;
+            if (activeIndex >= pointsDataProp.arraySize) return;
+            var data = pointsDataProp.GetArrayElementAtIndex(activeIndex);
+            var point = data.FindPropertyRelative("Point").vector3Value;
+            Handles.color = Color.yellow;
+            Handles.DrawWireDisc(point, Vector3.forward, 4f);
+            // opcional: ponto central
+            Handles.DotHandleCap(0, point, Quaternion.identity, 0.1f, EventType.Repaint);
+            Handles.DrawLine(point - Vector3.right * 5, point + Vector3.right *5);
+            Handles.DrawLine(point - Vector3.up * 5, point + Vector3.up * 5);
+        }
     }
 }

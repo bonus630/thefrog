@@ -21,11 +21,13 @@ namespace br.com.bonus630.thefrog.Shared
         void Alert();
         void Hit();
         void Hit(int damage);
-        void UpdatePlayer();
+        void UpgradePlayer();
         void FreezePlayer();
         //mover algumas coisas para uma interface de automação do player fora do script player
         //isso vai permitir melhor controle nas cutscenes
+        void Jump();
         void FallsControl();
+        void FallsControlEffect(bool active);
         void ChangeNumberShurykens(int Shurykens);
         void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse, float time = 1f,bool removeInput = true);
         void ChangeGravity(float gravityDirection, float speed = 0.05f);

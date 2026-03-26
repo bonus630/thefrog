@@ -3,10 +3,10 @@ namespace br.com.bonus630.thefrog.Player
 {
     public class WallCheck : MonoBehaviour
     {
-        [SerializeField] private Transform leftWallCheck;
-        [SerializeField] private Transform rightWallCheck;
-        [SerializeField] private Transform footerWallCheck;
-        [SerializeField] private Transform headWallCheck;
+        [SerializeField] public Transform leftWallCheck;
+        [SerializeField] public Transform rightWallCheck;
+        [SerializeField] public Transform footerWallCheck;
+        [SerializeField] public Transform headWallCheck;
         [SerializeField] private Vector2 size;
         [SerializeField] private LayerMask layerMask;
 

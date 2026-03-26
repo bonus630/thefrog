@@ -126,7 +126,7 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void ReadDialogue()
         {
-            Debug.Log("[PlayerDialogue] readDialogue");
+           // Debug.Log("[PlayerDialogue] readDialogue");
             dialogueSystem.DialoguePosition = GetDialogPosition();
             dialogueSystem.Next();
         }

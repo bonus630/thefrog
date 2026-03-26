@@ -45,6 +45,8 @@ namespace br.com.bonus630.thefrog.Player
         }
         public void OnHability(InputAction.CallbackContext context)
         {
+            if (context.performed)
+                RegisterDevice(context);
             if (context.started)
                 player.playerMovement.HandlerHability();
                

@@ -97,7 +97,10 @@ namespace br.com.bonus630.thefrog.Utils
             { "dpad_up", "UP" },
             { "dpad_down", "DOWN" },
             { "dpad_left", "LEFT" },
-            { "dpad_right", "RIGHT" }
+            { "dpad_right", "RIGHT" },
+
+            { "leftStick", "DPAD" },
+          
         };
         public static readonly Dictionary<string, string> Xbox = new()
         {
@@ -203,13 +206,11 @@ namespace br.com.bonus630.thefrog.Utils
 
             if (control == null)
                 return null;
-
             return control.name; // "buttonSouth", "space", etc
         }
 
         public static string GetReplacedName(DeviceCategory category, string controlName)
         {
-
             string result = "";
             switch (category)
             {

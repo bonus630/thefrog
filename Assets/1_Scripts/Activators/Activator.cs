@@ -38,7 +38,7 @@ namespace br.com.bonus630.thefrog.Activators
                 return;
             if (other.CompareTag(Tag))
             {
-                Debug.Log("[Activators][OnTriggerEnter2D] Tag: " + Tag+" other.tag: "+other.tag);
+               // Debug.Log("[Activators][OnTriggerEnter2D] Tag: " + Tag+" other.tag: "+other.tag);
                 StartCoroutine(true,delayActiveTime);
                 StartCoroutine(!reverseActivation,delayActiveTime);
             }
@@ -50,7 +50,7 @@ namespace br.com.bonus630.thefrog.Activators
                 return;
             if (collision.CompareTag(Tag))
             {
-                Debug.Log("[Activators][OnTriggerExit2D] Tag: " + Tag + " other.tag: " + collision.tag);
+                //Debug.Log("[Activators][OnTriggerExit2D] Tag: " + Tag + " other.tag: " + collision.tag);
                 StartCoroutine(reverseActivation,delayDeactiveTime);
             }
         }

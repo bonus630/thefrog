@@ -1,3 +1,4 @@
+using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,11 @@ namespace br.com.bonus630.thefrog.UI
 
         private void OnEnable()
         {
+            StartCoroutine(CoroutineUtil.WaitUntilThen(CheckControlScheme, CheckCurrentControl));
+        }
+
+        private void CheckControlScheme()
+        {
             if (playerInput.currentControlScheme.Equals("Gamepad"))
             {
                 xboxControlImage.SetActive(true);
@@ -24,6 +30,6 @@ namespace br.com.bonus630.thefrog.UI
                 keyboardControlImage.SetActive(true);
             }
         }
-
+        private bool CheckCurrentControl() => playerInput.currentControlScheme != null;
     }
 }

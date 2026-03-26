@@ -8,12 +8,12 @@ namespace br.com.bonus630.thefrog.Activators
     {
         public override void Activate()
         {
-            SceneManager.LoadScene("Credit");
+            SceneManager.LoadScene("PigLaughter");
         }
 
         public override void Deactive()
         {
-            SceneManager.LoadScene("Credit");
+            SceneManager.LoadScene("PigLaughter");
         }
     }
 }

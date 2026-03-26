@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf6e17f56c9d1c41b349581e6e38d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExitPosition: {x: 44.404, y: 102.231, z: 0}
+  ExitPosition: {x: 112.5, y: 145.4, z: 0}
 --- !u!61 &8776615785844509498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133026,7 +133026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf6e17f56c9d1c41b349581e6e38d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExitPosition: {x: 44.404, y: 102.231, z: 0}
+  ExitPosition: {x: 112.5, y: 145.4, z: 0}
 --- !u!4 &6313831250176951489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 580559430187974953, guid: c230104d8c9582f4a9b7cfafcb51f410, type: 3}

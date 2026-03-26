@@ -25776,9 +25776,9 @@ GameObject:
   - component: {fileID: 1986361228954023779}
   - component: {fileID: 6344091576142687241}
   - component: {fileID: 1030435611655584703}
+  - component: {fileID: 3710577230507976286}
   - component: {fileID: 4129413091084944471}
   - component: {fileID: 1712995329823639533}
-  - component: {fileID: 2230491924721172614}
   - component: {fileID: 912517909433977595}
   - component: {fileID: 3540986201880000921}
   - component: {fileID: 1151959965755703110}
@@ -26001,10 +26001,9 @@ MonoBehaviour:
   projectilesSpawPoint2: {fileID: 592441022469554054}
   throwProjectileSFX: {fileID: 8300000, guid: 201a1ed16928d26469ea8a000e8273e9, type: 3}
   Entrace: {fileID: 8300000, guid: a92bd6dc482692547bf604a90f54e2a1, type: 3}
-  PowerUp: {fileID: 8300000, guid: 727ee02dd83914246be86c8caaec3b82, type: 3}
   GravityParticles: {fileID: 5267456748424603697}
   visionController: {fileID: 328706631452530263}
-  PowerUpEffect: {fileID: 8616282190702445612, guid: f88573367a5a7574da7a78f84e1ed458, type: 3}
+  PowerUpEffect: {fileID: 2732309020799663255, guid: 0e4b757a30d19ce42aade2695940ec54, type: 3}
   anim: {fileID: 1346750905149390656}
   gravityDirection: -1
   gravityScale: 4
@@ -26055,12 +26054,27 @@ MonoBehaviour:
   dashReloadMaxTime: 1.4
   jumpSFX: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
   headKnockSFX: {fileID: 8300000, guid: b06fc77dbca439641826c6030ca2f06b, type: 3}
+  dashSFX: {fileID: 8300000, guid: 386247da28a08ae4eb4ca52ecc624b9f, type: 3}
   JumpDownParticles: {fileID: 3611581164299857639}
   DashParticles: {fileID: 3928824168382239469}
   FastFallParticles: {fileID: 3995645062775101840}
   playerSpriteRender: {fileID: 9042840821368717614}
+  dashEffect: {fileID: 667955677973448035, guid: b7c781d4162fa944f821cf14bc696a39, type: 3}
   direction: {x: 0, y: 0}
   airDash: 0
+--- !u!114 &3710577230507976286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620097102780067214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b800bebcba0e3fc4da130a369dbed7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wings: {fileID: 7261494873462529448}
 --- !u!114 &4129413091084944471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26093,19 +26107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1504b89536ca6314c9dc645ab72c558f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2230491924721172614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8620097102780067214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a600b927951edc34ba70d2f3151e50da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wings: {fileID: 7261494873462529448}
 --- !u!114 &912517909433977595
 MonoBehaviour:
   m_ObjectHideFlags: 0

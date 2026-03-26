@@ -22,6 +22,7 @@ namespace br.com.bonus630.thefrog.Enemies
         {
             animator = GetComponent<Animator>();
             coll = GetComponent<Collider2D>();
+            audioSource = GetComponent<AudioSource>();
         }
         protected override void Update()
         {

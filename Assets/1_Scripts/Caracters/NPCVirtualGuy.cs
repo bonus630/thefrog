@@ -4,7 +4,9 @@ using System.Runtime.CompilerServices;
 using br.com.bonus630.thefrog.DialogueSystem;
 using br.com.bonus630.thefrog.Manager;
 using br.com.bonus630.thefrog.Shared;
+using br.com.bonus630.thefrog.Utils;
 using UnityEngine;
+
 namespace br.com.bonus630.thefrog.Caracters
 {
     public class NPCVirtualGuy : NPCBase, INPC
@@ -24,31 +26,19 @@ namespace br.com.bonus630.thefrog.Caracters
         protected override void Awake()
         {
             base.Awake();
-            Debug.Log("[NPCVirtualGuy][awake] NPCVirtualGuyDialogue: " + GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
-          
-            //dialogState = DialogStateUtils.Decode(GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
             currentDialogue = DialogStateUtils.GetDialogIndex(GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
             currentDialogueData = dialoguesData[currentDialogue];
             for (int i = 0; i < dialoguesData.Count; i++)
             {
                 dialoguesData[i].IsReaded = DialogStateUtils.IsDialogRead(GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue, i);
             }
-            // Debug.Log("VirtualGuy Dialogue:" + GameManager.Instance.EnvironmentStates.NPCVirtualGuyDialogue);
-        }
-        public override Transform GetTransform()
-        {
-            return transform;
-        }
-        public override void SetFinishDialogue()
-        {
-            SetDialog(currentDialogue);
         }
         //este metodo é chamado assim que o player entra na area de interaçaão e ao chamar o proximo dialogo
         public override void CheckDialogs()
         {
             receivedApples = GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples;
             playerApples = GameManager.Instance.PlayerStates.Collectables;
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] currentDialogue start: " + currentDialogue);
+         //   Debug.Log("[NPCVirtualGuy][CheckDialogs] currentDialogue start: " + currentDialogue);
             //Dialogo 0, boas vindas, e percebe as maças - precisa ser o primeiro dialogo do npc
             //Dialogo 1, pede as maças,e fala da macieira e transporte - segundo dialogo, entra se o primeiro for lido
             //Dialogo 2, fala sobre os corações, em troca de 10 maças, dialogo longo - terceiro dialogo
@@ -59,29 +49,7 @@ namespace br.com.bonus630.thefrog.Caracters
             //Dialogo 7, oferece um coraçao por 10 maças, dialogo curto - o player tem 10 maças ou mais, e ainda nao tem a habilidade, e o dialogo 2 já foi lido
             //Dialogo 8, diz quantas maças faltam para a ensinar a habilidade - este vem depois do npc conseguir 10 maças e antes de conseguir 50 e quando o player encontra a arvore mas ja viu o dialogo 3
             //somente 2 e 7 fornecem corações
-            //  bool has10Player = GameManager.Instance.PlayerStates.Collectables >= 10;
-            //  bool npcHas10 = receivedApples >= 10;
-            //  bool npcHas50 = receivedApples >= 50;
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] Player Apples: " + GameManager.Instance.PlayerStates.Collectables);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] NPC Apples: " + receivedApples);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] 7 ou 6: " + PlayerHasApples());
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] hasSkill: " + GameManager.Instance.IsEventCompleted(GameEventName.FeatherTouch));
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] treeFound: " + GameManager.Instance.IsEventCompleted(GameEventName.AppleTreeFounded));
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d0: " + dialoguesData[0].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d1: " + dialoguesData[1].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d2: " + dialoguesData[2].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d3: " + dialoguesData[3].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d4: " + dialoguesData[4].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d5: " + dialoguesData[5].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d6: " + dialoguesData[6].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d7: " + dialoguesData[7].IsReaded);
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] d8: " + dialoguesData[8].IsReaded);
-
            currentDialogue =  EvaluateDialogue();
-
-
-            Debug.Log("[NPCVirtualGuy][CheckDialogs] currentDialogue end: " + currentDialogue);
-
             currentDialogueData = dialoguesData[currentDialogue];
         }
         private int EvaluateDialogue()
@@ -136,7 +104,7 @@ namespace br.com.bonus630.thefrog.Caracters
         //este metodo é chamado no final da conversa
         private void SetDialog(int dialog, [CallerMemberName] string caller = "")
         {
-            Debug.Log("[NPCVirtualGuy][SetDialog] currentDialogue: " + currentDialogue + " caller: " + caller);
+         //   Debug.Log("[NPCVirtualGuy][SetDialog] currentDialogue: " + currentDialogue + " caller: " + caller);
             dialogueCounter = 0;
             dialoguesData[dialog].IsReaded = true;
             switch (dialog)
@@ -154,10 +122,8 @@ namespace br.com.bonus630.thefrog.Caracters
                 case 3:
                     break;
                 case 4:
-                    GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
-                    ServiceLocator.Instance.Get<IPlayer>().FallsControl();
-                    ServiceLocator.Instance.Get<IPlayer>().AddAction(SchedulerData.Wait(2f));
-                    ServiceLocator.Instance.Get<IPlayer>().AddAction(SchedulerData.Do(GameManager.Instance.GetPlayerScript.UpdatePlayer, 0));
+                     GameManager.Instance.EventCompleted(GameEventName.FeatherTouch);
+                    StartCoroutine(CoroutineUtil.WaitFrames(FeatherTouchCompleted, 1));
                     break;
                 case 5:
                     break;
@@ -186,13 +152,24 @@ namespace br.com.bonus630.thefrog.Caracters
                 currentDialogue);
         }
 
+        private  void FeatherTouchCompleted()
+        {
+            Debug.Log("Aqui");
+        
+            IPlayer player = ServiceLocator.Instance.Get<IPlayer>();
+            player.AllInputsOn(false,autoSwitch:true,switchTime: 4.2f);
+            player.AddAction(SchedulerData.Do(player.AddForce,Vector2.up * -400,ForceMode2D.Impulse,1f,false,0.8f));
+            player.AddAction(SchedulerData.Do(player.FallsControl, 2.2f));
+            player.AddAction(SchedulerData.Do(player.UpgradePlayer, 1.8f));
+        }
+
         private void ChangePlayerHearts()
         {
             int amount = GameManager.Instance.PlayerStates.Collectables / 10;
             if (amount > 0)
             {
                 GetApples(10);
-                Instantiate(heart, new Vector3(transform.position.x - 2f, transform.position.y, transform.position.z), Quaternion.identity);
+                Instantiate(heart, new Vector3(transform.position.x - Random.Range(1.3f,2.8f), transform.position.y, transform.position.z), Quaternion.identity);
             }
 
         }
@@ -203,7 +180,7 @@ namespace br.com.bonus630.thefrog.Caracters
         private void GetApples(int apples)
         {
             GameManager.Instance.PlayerStates.Collectables -= apples;
-            Debug.Log("[NPCVirtualGuy][GetApples] player apples in collectables: " + GameManager.Instance.PlayerStates.Collectables);
+           // Debug.Log("[NPCVirtualGuy][GetApples] player apples in collectables: " + GameManager.Instance.PlayerStates.Collectables);
             GameManager.Instance.UpdateScore();
             receivedApples += apples;
             GameManager.Instance.EnvironmentStates.NPCVirtualGuyApples = receivedApples;
@@ -215,10 +192,9 @@ namespace br.com.bonus630.thefrog.Caracters
             GetComponent<BoxCollider2D>().enabled = true;
 
         }
-        public override void Interact()
-        {
-
-        }
+        public override Transform GetTransform() => transform;
+        public override void SetFinishDialogue() => SetDialog(currentDialogue);
+        public override void Interact(){  }
         public override Dictionary<string, string> GetDialogueVariables()
         {
             int val = prizeApplesAmount - receivedApples;
@@ -244,7 +220,7 @@ namespace br.com.bonus630.thefrog.Caracters
         }
         public override DialogueData GetDialogueForPlayer()
         {
-            Debug.Log("[NPCVirtualGuy][GetDialogueForPlayer] Iniciando! -------------------------------");
+          //  Debug.Log("[NPCVirtualGuy][GetDialogueForPlayer] Iniciando! -------------------------------");
             return base.GetDialogueForPlayer();
         }
     }

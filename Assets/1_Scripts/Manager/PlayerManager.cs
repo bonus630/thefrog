@@ -5,9 +5,11 @@ using UnityEngine;
 
 namespace br.com.bonus630.thefrog.Manager
 {
-    public class PlayerManager : MonoBehaviour, IService
+    public class PlayerManager : MonoBehaviour, IPlayerManager, IService
     {
         public PlayerStates PlayerStates { get; private set; }
+
+        public int NumDies => this.PlayerStates.numDies;
 
         private readonly Dictionary<GameEventName, Action> eventActions = new();
 
@@ -29,9 +31,10 @@ namespace br.com.bonus630.thefrog.Manager
             GameManager.Instance.eventManager.GameEventCompleted += OnGameEventCompleted;
             GameManager.Instance.GameStatesRestaured += OnGameStatesRestaured;
             ServiceLocator.Instance.GetAsync<IHourProvider>(HourProviderCallBack);
+            ServiceLocator.Instance.Register<IPlayerManager>(this);
         }
         //vamos deixar as chamadas de gamemanager aqui por enquanto, depois vamos centralizar tudo em um event bus
-        public void UpdatePlayer()
+        public void RequestPlayerUpgrade()
         {
             this.PlayerStates.Speed += 0.1f;
             this.PlayerStates.JumpForce += 0.1f;
@@ -84,6 +87,10 @@ namespace br.com.bonus630.thefrog.Manager
             if(GameManager.Instance == null || GameManager.Instance.PlayerStates == null)
                     return new PlayerStates();
             return GameManager.Instance.PlayerStates;
+        }
+
+        public void Registre(IGameEvents gameEvents)
+        {
         }
     }
 }

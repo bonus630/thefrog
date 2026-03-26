@@ -52,7 +52,7 @@ namespace br.com.bonus630.thefrog.Caracters
             coll.enabled = false;
             TalkIcon.SetActive(false);
             GameManager.Instance.EventCompleted(GameEventName.RollingWind);
-            GameManager.Instance.GetPlayerScript.UpdatePlayer();
+            GameManager.Instance.GetPlayerScript.UpgradePlayer();
         }
     }
 }

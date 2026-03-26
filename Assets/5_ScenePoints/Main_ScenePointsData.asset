@@ -17,7 +17,7 @@ MonoBehaviour:
   - Name: GhostShipExit
     GameObjectName: 
     Hour: 0
-    Point: {x: 68, y: 110, z: 0}
+    Point: {x: 69, y: 112, z: 0}
     transform: {fileID: 0}
   - Name: CaveExit
     GameObjectName: 
@@ -80,8 +80,8 @@ MonoBehaviour:
     Point: {x: 268.43, y: -61.58, z: 0}
     transform: {fileID: 0}
   - Name: CastleBossCorridor
-    GameObjectName: RustStairs
+    GameObjectName: Exit
     Hour: 22
-    Point: {x: -78.52, y: -329.08, z: 0}
+    Point: {x: -76.9, y: -332.53, z: 0}
     transform: {fileID: 0}
   SceneType: 4

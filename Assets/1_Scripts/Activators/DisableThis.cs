@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 namespace br.com.bonus630.thefrog.Activators
 {
     public class DisableThis : MonoBehaviour
@@ -6,6 +7,7 @@ namespace br.com.bonus630.thefrog.Activators
         [SerializeField] GameObject toDisable;
         [SerializeField][Tooltip("Use -1 to disable by collider")] float time = -1;
         float timer = 0;
+     
 
         void Update()
         {

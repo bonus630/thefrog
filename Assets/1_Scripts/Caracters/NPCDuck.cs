@@ -60,7 +60,7 @@ namespace br.com.bonus630.thefrog.Caracters
             yield return new WaitForEndOfFrame();
 
             GameManager.Instance.EventCompleted(GameEventName.Gravity);
-            GameManager.Instance.GetPlayerScript.UpdatePlayer();
+            GameManager.Instance.GetPlayerScript.UpgradePlayer();
             GameManager.Instance.GetPlayerScript.AllInputsOn(false, 0);
             isFinishing = true;
             Time.timeScale = 0.5f;

@@ -130,7 +130,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 2, y: -6, z: 0}
+  - first: {x: 3, y: -6, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 8
@@ -140,7 +140,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 3, y: -6, z: 0}
+  - first: {x: 4, y: -6, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 7
@@ -150,7 +150,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 4, y: -6, z: 0}
+  - first: {x: 5, y: -6, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 6
@@ -160,7 +160,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: -6, z: 0}
+  - first: {x: 6, y: -6, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 2
@@ -969,7 +969,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destines:
   - {x: -56, y: 46}
-  travelDuration: 2
   speed: 10
   currentSpeed: 0
   stopMaxTime: 1
@@ -978,6 +977,8 @@ MonoBehaviour:
   stopOnPlayerOut: 1
   active: 1
   going: 0
+  currentDestine: 1
+  draw: 0
 --- !u!61 &6388250300584173146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1386,7 +1387,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5294716308815028864, guid: 623888400cb1074489ad103f255e3c90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.3799996
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 5294716308815028864, guid: 623888400cb1074489ad103f255e3c90, type: 3}
       propertyPath: m_LocalPosition.y

@@ -41284,6 +41284,7 @@ MonoBehaviour:
   randomTypes: 1
   spawnerTime: 2
   running: 1
+  destroySpawnedInDisable: 1
   limit: 3
 --- !u!61 &516221231
 BoxCollider2D:
@@ -41470,6 +41471,7 @@ MonoBehaviour:
   randomTypes: 1
   spawnerTime: 2
   running: 1
+  destroySpawnedInDisable: 1
   limit: 1
 --- !u!61 &529397112
 BoxCollider2D:
@@ -41774,6 +41776,7 @@ MonoBehaviour:
   randomTypes: 1
   spawnerTime: 2
   running: 1
+  destroySpawnedInDisable: 1
   limit: 2
 --- !u!61 &624840127
 BoxCollider2D:
@@ -42156,6 +42159,7 @@ MonoBehaviour:
   randomTypes: 1
   spawnerTime: 2
   running: 0
+  destroySpawnedInDisable: 0
   limit: 2
   EnemiesToKill: 3
   ItemToActive: {fileID: 2145590734}
@@ -43806,7 +43810,6 @@ MonoBehaviour:
   - {fileID: 1611101576591546393, guid: f2a0fb503909c5a4e942b4ccef750a7d, type: 3}
   - {fileID: 3466973874101389160, guid: e3c4fe0f5b9f35a49bbd3376696c1a18, type: 3}
   - {fileID: 585775216323897462, guid: 38d6cccea48ef9a4cadf6c0043645964, type: 3}
-  - {fileID: 2456528751434251856, guid: 744c6f0e2ba0a7040ac1febdcd8ac3be, type: 3}
   endModule: {fileID: 0}
   count: 26
   removeEnd: 1
@@ -49081,7 +49084,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 252436476824556781, guid: 84c27994ffe83504392be083f28972df, type: 3}
       propertyPath: m_Name
-      value: HeartBox20
+      value: HeartContainerChest09
       objectReference: {fileID: 0}
     - target: {fileID: 784160864395332998, guid: 84c27994ffe83504392be083f28972df, type: 3}
       propertyPath: Item
@@ -49089,7 +49092,7 @@ PrefabInstance:
       objectReference: {fileID: 7858739703465745304, guid: cbc4cbc615965454e80520979f899f46, type: 3}
     - target: {fileID: 784160864395332998, guid: 84c27994ffe83504392be083f28972df, type: 3}
       propertyPath: chestID
-      value: heart_0020
+      value: heart_0009
       objectReference: {fileID: 0}
     - target: {fileID: 4044022371289213470, guid: 84c27994ffe83504392be083f28972df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57385,6 +57388,7 @@ MonoBehaviour:
   randomTypes: 1
   spawnerTime: 4
   running: 1
+  destroySpawnedInDisable: 0
   limit: 2
 --- !u!1 &2101602187
 GameObject:
